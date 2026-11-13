@@ -1,0 +1,110 @@
+.accessible-map,
+.journey-result {
+  color: #1c1915;
+  background: #fffdf8;
+  font-family: "Segoe UI", "Noto Sans", sans-serif;
+  line-height: 1.45;
+}
+
+.accessible-map h2,
+.journey-result h2,
+.journey-result h3,
+.journey-result h4,
+.journey-result h5 {
+  line-height: 1.25;
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: 0.5rem;
+  background: #10261c;
+  color: #fff;
+  padding: 0.6rem 0.8rem;
+  z-index: 2;
+}
+
+.map-toolbar button,
+.feature-list button,
+.map-marker {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.55rem 0.75rem;
+  border: 2px solid #1f4b3a;
+  background: #fff;
+  color: #10261c;
+  text-align: left;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.feature-list button {
+  display: grid;
+  gap: 0.2rem;
+  width: 100%;
+}
+
+.feature-list button:focus,
+.map-toolbar button:focus,
+.skip-link:focus,
+.journey-result a:focus,
+.journey-result h2:focus {
+  outline: 3px solid #0b3a82;
+  outline-offset: 2px;
+}
+
+.map-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 1fr);
+  gap: 1rem;
+}
+
+.map-canvas {
+  min-height: 280px;
+  background: #efe8da;
+  border: 1px solid #1f4b3a;
+}
+
+.status-step-free {
+  background: #e5f2ea;
+}
+
+.status-unknown {
+  background: #fff4d6;
+}
+
+.status-not-step-free {
+  background: #fde8e4;
+}
+
+.map-attribution {
+  font-size: 0.9rem;
+}
+
+@media (max-width: 720px) {
+  .map-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accessible-map *,
+  .journey-result * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .status,
+  .feature-list button,
+  .map-canvas {
+    border: 1px solid CanvasText;
+  }
+}

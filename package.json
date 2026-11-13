@@ -1,0 +1,17 @@
+{
+  "name": "access-maps",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "packages/journey",
+    "packages/map-ui"
+  ],
+  "scripts": {
+    "test": "npm test -w @access-maps/journey && npm test -w @access-maps/map-ui",
+    "lint": "npm run lint -w @access-maps/journey && npm run lint -w @access-maps/map-ui",
+    "demo": "npm run demo -w @access-maps/map-ui"
+  }
+}
