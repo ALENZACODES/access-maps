@@ -2,21 +2,21 @@
 
 A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. The same fact is not stored on two tranches.
 
-Total pieces: **6,958,879**.
+Total pieces: **6,958,871**.
 Accessibility-fact pieces: **1,192,420**.
-Name, category, address, and geometry pieces: **5,766,459**.
-Total UNKNOWN gaps: **43,938,491**.
+Name, category, address, and geometry pieces: **5,766,451**.
+Total UNKNOWN gaps: **43,938,499**.
 UNKNOWN gaps on accessibility fields: **28,222,638**.
 Derived values excluded from both totals: **3,566**.
 Records: **1,417,632**.
 
-The illustrative 500,000-piece target in master plan section 5.6 is a sizing example (venues 250,000, paths 100,000, transit 50,000, washrooms 100,000). This import's piece total is 6,958,879.
+The illustrative 500,000-piece target in master plan section 5.6 is a sizing example (venues 250,000, paths 100,000, transit 50,000, washrooms 100,000). This import's piece total is 6,958,871.
 The piece total meets the illustrative total. The counts are not padded.
 Tranches under their illustrative targets: washroom is 70,132 under its illustrative 100,000.
 
 | Tranche | Records | Pieces | UNKNOWN gaps | Derived excluded | Illustrative target | Shortfall |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| venue | 540944 | 2924561 | 20336031 | 0 | 250000 | 0 |
+| venue | 540944 | 2924553 | 20336039 | 0 | 250000 | 0 |
 | washroom | 6377 | 29868 | 208892 | 3566 | 100000 | 70132 |
 | path | 846525 | 3863020 | 23225780 | 0 | 100000 | 0 |
 | transit | 23786 | 141430 | 167788 | 0 | 50000 | 0 |
@@ -25,11 +25,11 @@ Tranches under their illustrative targets: washroom is 70,132 under its illustra
 
 An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, automatic door, and the other fields listed in this report. Names, categories, addresses, hours, operators, coordinates, and geometry are pieces too, and they are counted apart from accessibility facts. toilets:wheelchair is stored on the washroom wheelchair field.
 
-Accessibility facts and the other pieces add up to the total: 1,192,420 + 5,766,459 = 6,958,879.
+Accessibility facts and the other pieces add up to the total: 1,192,420 + 5,766,451 = 6,958,871.
 
 | Tranche | Accessibility pieces | Accessibility-field gaps | Other pieces |
 | --- | ---: | ---: | ---: |
-| venue | 195072 | 13869472 | 2729489 |
+| venue | 195072 | 13869472 | 2729481 |
 | washroom | 5932 | 83346 | 23936 |
 | path | 971371 | 14266079 | 2891649 |
 | transit | 20045 | 3741 | 121385 |
@@ -106,7 +106,7 @@ Populated accessibility facts by field:
 
 | Tranche | Tier 0 | Tier 1 | Tier 2 | Tier 3 | Tier 4 |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| venue | 2924561 | 0 | 0 | 0 | 0 |
+| venue | 2924553 | 0 | 0 | 0 | 0 |
 | washroom | 29868 | 0 | 0 | 0 | 0 |
 | path | 3863020 | 0 | 0 | 0 | 0 |
 | transit | 0 | 141430 | 0 | 0 | 0 |
@@ -129,7 +129,7 @@ Populated accessibility facts by field:
 | kingston-public-washrooms | 48 | 432 | 0 | 1392 | 432 | 0 | 2026-11-13 |
 | mto-picnic-parks | 168 | 1005 | 0 | 6219 | 1005 | 0 | 2026-11-13 |
 | osm-ontario | 1392049 | 6802019 | 1171449 | 43711702 | 6802019 | 0 | 2026-11-13 |
-| sudbury-fieldhouses | 61 | 480 | 0 | 2143 | 480 | 0 | 2026-11-13 |
+| sudbury-fieldhouses | 61 | 472 | 0 | 2151 | 472 | 0 | 2026-11-13 |
 | toronto-crem-washrooms | 119 | 1309 | 238 | 3213 | 1309 | 0 | 2026-11-13 |
 | toronto-park-washrooms | 355 | 3651 | 355 | 9839 | 3651 | 0 | 2026-11-13 |
 | toronto-street-washrooms | 4 | 24 | 0 | 128 | 24 | 0 | 2026-11-13 |

@@ -1,12 +1,12 @@
 {
   "definition": "A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. The same fact is not stored on two tranches.",
   "records": 1417632,
-  "pieces": 6958879,
-  "gaps": 43938491,
+  "pieces": 6958871,
+  "gaps": 43938499,
   "derived_excluded": 3566,
   "accessibility_pieces": 1192420,
   "accessibility_gaps": 28222638,
-  "identity_pieces": 5766459,
+  "identity_pieces": 5766451,
   "accessibility_definition": "An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, automatic door, and the other fields listed in this report. Names, categories, addresses, hours, operators, coordinates, and geometry are pieces too, and they are counted apart from accessibility facts. toilets:wheelchair is stored on the washroom wheelchair field.",
   "accessibility_fields": {
     "venue": [
@@ -80,27 +80,27 @@
   "by_tranche": {
     "venue": {
       "records": 540944,
-      "pieces": 2924561,
-      "gaps": 20336031,
+      "pieces": 2924553,
+      "gaps": 20336039,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 2924561
+        "0": 2924553
       },
       "gaps_by_tier": {
-        "0": 20336031
+        "0": 20336039
       },
       "pieces_by_source": {
         "brampton-recreation-centres": 312,
         "kingston-accessible-features": 7827,
         "mto-picnic-parks": 1005,
         "osm-ontario": 2914937,
-        "sudbury-fieldhouses": 480
+        "sudbury-fieldhouses": 472
       },
       "pieces_by_retrieved_at": {
-        "2026-11-13": 2924561
+        "2026-11-13": 2924553
       },
       "gaps_by_retrieved_at": {
-        "2026-11-13": 20336031
+        "2026-11-13": 20336039
       },
       "gap_fields": {
         "addr_city": 498186,
@@ -142,6 +142,8 @@
         "addr_housenumber": 465712,
         "name": 385174,
         "addr_street": 464556,
+        "lat": 4,
+        "lon": 4,
         "category": 2
       },
       "accessibility_pieces": 195072,
@@ -579,17 +581,17 @@
     },
     "sudbury-fieldhouses": {
       "records": 61,
-      "pieces": 480,
-      "gaps": 2143,
+      "pieces": 472,
+      "gaps": 2151,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 480
+        "0": 472
       },
       "pieces_by_tranche": {
-        "venue": 480
+        "venue": 472
       },
       "pieces_by_retrieved_at": {
-        "2026-11-13": 480
+        "2026-11-13": 472
       },
       "accessibility_pieces": 0
     },
@@ -661,7 +663,7 @@
   "shortfalls": [
     {
       "tranche": "venue",
-      "pieces": 2924561,
+      "pieces": 2924553,
       "illustrative_target": 250000,
       "shortfall": 0
     },
@@ -4582,10 +4584,6 @@
       "bytes": 1033
     },
     {
-      "file": "data/venues/sudbury-fieldhouses/n00.0_w085.5.ndjson.gz",
-      "bytes": 939
-    },
-    {
       "file": "data/venues/sudbury-fieldhouses/n46.0_w081.0.ndjson.gz",
       "bytes": 1346
     },
@@ -4600,6 +4598,10 @@
     {
       "file": "data/venues/sudbury-fieldhouses/n46.5_w081.5.ndjson.gz",
       "bytes": 1533
+    },
+    {
+      "file": "data/venues/sudbury-fieldhouses/unknown.ndjson.gz",
+      "bytes": 916
     },
     {
       "file": "data/washrooms/kingston-accessible-features/n44.0_w076.5.ndjson.gz",

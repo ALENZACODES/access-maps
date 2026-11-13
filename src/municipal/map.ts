@@ -241,8 +241,11 @@ export function mapBramptonRecreationCentre(row: Record<string, string>, ctx: Pr
 export function mapSudburyFieldhouse(row: Record<string, string>, ctx: Provenance): DataRecord {
   const easting = Number(cell(row, "X"));
   const northing = Number(cell(row, "Y"));
-  const point =
-    Number.isFinite(easting) && Number.isFinite(northing) ? utm17nToWgs84(easting, northing) : null;
+  const projected =
+    Number.isFinite(easting) && Number.isFinite(northing) && (easting !== 0 || northing !== 0)
+      ? utm17nToWgs84(easting, northing)
+      : null;
+  const point = projected && inOntario(projected.lon, projected.lat) ? projected : null;
   const address = splitCivicAddress(cell(row, "ADDRESS") || cell(row, "FULL_ADDRE"));
   return buildRecord(
     "venue",
@@ -299,8 +302,12 @@ function webMercatorCell(row: Record<string, string>): { lon: number; lat: numbe
   const x = Number(xRaw);
   const y = Number(yRaw);
   if (!Number.isFinite(x) || !Number.isFinite(y)) return null;
-  if (Math.abs(x) <= 180 && Math.abs(y) <= 90) return { lon: x, lat: y };
-  return webMercatorToWgs84(x, y);
+  const point = Math.abs(x) <= 180 && Math.abs(y) <= 90 ? { lon: x, lat: y } : webMercatorToWgs84(x, y);
+  return inOntario(point.lon, point.lat) ? point : null;
+}
+
+function inOntario(lon: number, lat: number): boolean {
+  return lat >= 41 && lat <= 57.5 && lon >= -96 && lon <= -73.5;
 }
 
 function stableNumber(raw: string): string {

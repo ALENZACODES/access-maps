@@ -203,6 +203,13 @@ describe("municipal coordinates and published facts", () => {
     expect(house.fields.lon?.value).toBe(roundCoord(expected.lon));
     expect(Math.abs((house.fields.lon?.value as number) - -80.972311)).toBeLessThan(1e-5);
     expect(Math.abs((house.fields.lat?.value as number) - 46.490613)).toBeLessThan(1e-5);
+    const unlocated = mapSudburyFieldhouse(
+      { OBJECTID: "59", X: "0", Y: "0", FACILITY_N: "Carol Richard Playground - Fieldhouse", ADDRESS: "" },
+      { ...city, source_id: "sudbury-fieldhouses", licence: "Greater-Sudbury-Open-Data-Licence-1.0" },
+    );
+    expect(unlocated.fields.lat?.value).toBe("UNKNOWN");
+    expect(unlocated.fields.lon?.value).toBe("UNKNOWN");
+    expect(unlocated.fields.name?.value).toBe("Carol Richard Playground - Fieldhouse");
   });
 
   it("reads a geographic point shapefile and refuses a projected one", () => {
