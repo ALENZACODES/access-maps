@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://access-maps.local/schema/transit-stop.schema.json",
+  "title": "TransitStop",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "tranche",
+    "region",
+    "fields"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tranche": {
+      "const": "transit"
+    },
+    "region": {
+      "type": "string",
+      "minLength": 1
+    },
+    "fields": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "lat",
+        "lon",
+        "stop_code",
+        "location_type",
+        "parent_station",
+        "wheelchair_boarding",
+        "platform_code",
+        "level_id",
+        "level_index",
+        "level_name",
+        "description",
+        "url"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "lat": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "lon": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "stop_code": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "location_type": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "parent_station": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "wheelchair_boarding": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "platform_code": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "level_id": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "level_index": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "level_name": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "description": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "url": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        }
+      }
+    }
+  }
+}

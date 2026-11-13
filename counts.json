@@ -1,0 +1,5368 @@
+{
+  "definition": "A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. Section 5.6 counts only tier 2 and tier 3 values toward 500,000. Tier 0 and tier 1 accessibility facts are reported separately and are not verified.",
+  "records": 1417632,
+  "pieces": 6958940,
+  "gaps": 43944541,
+  "derived_excluded": 3832,
+  "verified_toward_500k": 0,
+  "accessibility_fact_pieces": 698375,
+  "other_populated_pieces": 5766520,
+  "accessibility_pieces": 698375,
+  "accessibility_gaps": 24197679,
+  "identity_pieces": 5766520,
+  "context_pieces": 494045,
+  "context_gaps": 4024959,
+  "accessibility_definition": "An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.",
+  "context_definition": "Context fields are populated values that are not a physical access measurement: access, crossing, lit, foot, fee, changing_table_fee, unisex, male, female, locked, and supervised. They are not accessibility facts and they are not names or geometry.",
+  "accessibility_fields": {
+    "venue": [
+      "wheelchair",
+      "wheelchair_description",
+      "entrance",
+      "automatic_door",
+      "door",
+      "door_width",
+      "ramp",
+      "ramp_wheelchair",
+      "ramp_stroller",
+      "step_count",
+      "incline",
+      "kerb",
+      "kerb_height",
+      "tactile_paving",
+      "handrail",
+      "width",
+      "surface",
+      "smoothness",
+      "braille",
+      "hearing_loop",
+      "speech_output",
+      "stroller",
+      "capacity_disabled",
+      "elevator"
+    ],
+    "washroom": [
+      "wheelchair",
+      "wheelchair_description",
+      "changing_table",
+      "changing_table_location",
+      "adult_changing_table",
+      "published_accessibility"
+    ],
+    "path": [
+      "surface",
+      "smoothness",
+      "incline",
+      "width",
+      "kerb",
+      "tactile_paving",
+      "wheelchair",
+      "wheelchair_description",
+      "step_count",
+      "handrail",
+      "max_slope",
+      "min_width",
+      "stair_count",
+      "ramp"
+    ],
+    "transit": [
+      "wheelchair_boarding"
+    ]
+  },
+  "context_fields": {
+    "venue": [
+      "access",
+      "lit"
+    ],
+    "washroom": [
+      "access",
+      "fee",
+      "changing_table_fee",
+      "unisex",
+      "male",
+      "female",
+      "locked",
+      "supervised"
+    ],
+    "path": [
+      "foot",
+      "access",
+      "lit",
+      "crossing"
+    ],
+    "transit": []
+  },
+  "by_tranche": {
+    "venue": {
+      "records": 540944,
+      "pieces": 2924533,
+      "accessibility_facts": 99349,
+      "other_populated": 2729461,
+      "verified": 0,
+      "gaps": 20336059,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 2924533
+      },
+      "gaps_by_tier": {
+        "0": 20336059
+      },
+      "pieces_by_source": {
+        "brampton-recreation-centres": 312,
+        "kingston-accessible-features": 7808,
+        "mto-picnic-parks": 1005,
+        "osm-ontario": 2914928,
+        "sudbury-fieldhouses": 480
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 2924533
+      },
+      "gaps_by_retrieved_at": {
+        "2026-11-13": 20336059
+      },
+      "gap_fields": {
+        "addr_city": 498186,
+        "addr_postcode": 508868,
+        "addr_unit": 533862,
+        "opening_hours": 519532,
+        "level": 530276,
+        "operator": 495450,
+        "brand": 489607,
+        "wheelchair": 528274,
+        "wheelchair_description": 540241,
+        "entrance": 523311,
+        "automatic_door": 540851,
+        "door": 538909,
+        "door_width": 540944,
+        "ramp": 540915,
+        "ramp_wheelchair": 540944,
+        "ramp_stroller": 540944,
+        "step_count": 540944,
+        "incline": 540944,
+        "kerb": 540758,
+        "kerb_height": 540944,
+        "tactile_paving": 540931,
+        "handrail": 540944,
+        "width": 540914,
+        "access": 453210,
+        "surface": 478724,
+        "smoothness": 540812,
+        "lit": 532955,
+        "braille": 540944,
+        "hearing_loop": 540941,
+        "speech_output": 540903,
+        "stroller": 540893,
+        "capacity_disabled": 537447,
+        "indoor": 538052,
+        "elevator": 540931,
+        "ref": 531336,
+        "website": 505974,
+        "addr_housenumber": 465712,
+        "name": 385174,
+        "addr_street": 464556,
+        "category": 2
+      },
+      "accessibility_pieces": 99349,
+      "accessibility_gaps": 12883307,
+      "accessibility_by_field": {
+        "kerb": 186,
+        "automatic_door": 93,
+        "elevator": 13,
+        "ramp": 29,
+        "speech_output": 41,
+        "hearing_loop": 3,
+        "entrance": 17633,
+        "surface": 62220,
+        "wheelchair": 12670,
+        "capacity_disabled": 3497,
+        "width": 30,
+        "stroller": 51,
+        "door": 2035,
+        "smoothness": 132,
+        "wheelchair_description": 703,
+        "tactile_paving": 13
+      },
+      "context_pieces": 95723,
+      "context_gaps": 986165,
+      "context_by_field": {
+        "access": 87734,
+        "lit": 7989
+      }
+    },
+    "washroom": {
+      "records": 6377,
+      "pieces": 29957,
+      "accessibility_facts": 3000,
+      "other_populated": 24025,
+      "verified": 0,
+      "gaps": 214914,
+      "derived_excluded": 3832,
+      "pieces_by_tier": {
+        "0": 29957
+      },
+      "gaps_by_tier": {
+        "0": 214914
+      },
+      "pieces_by_source": {
+        "kingston-accessible-features": 390,
+        "kingston-public-washrooms": 432,
+        "osm-ontario": 24062,
+        "toronto-crem-washrooms": 1309,
+        "toronto-park-washrooms": 3740,
+        "toronto-street-washrooms": 24
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 29957
+      },
+      "gaps_by_retrieved_at": {
+        "2026-11-13": 214914
+      },
+      "gap_fields": {
+        "wheelchair": 4291,
+        "wheelchair_description": 6308,
+        "changing_table": 5934,
+        "changing_table_fee": 6374,
+        "changing_table_location": 6373,
+        "adult_changing_table": 6376,
+        "access": 5270,
+        "fee": 5645,
+        "opening_hours": 5646,
+        "unisex": 5880,
+        "male": 6080,
+        "female": 6084,
+        "supervised": 6374,
+        "level": 6150,
+        "indoor": 6251,
+        "operator": 5810,
+        "addr_city": 6338,
+        "addr_postcode": 6376,
+        "address": 5904,
+        "description": 5824,
+        "locked": 6377,
+        "drinking_water": 6324,
+        "shower": 6355,
+        "disposal": 4870,
+        "capacity": 6372,
+        "seasonal": 6252,
+        "location": 5903,
+        "building": 5616,
+        "parent_id": 4594,
+        "website": 5962,
+        "posted_date": 6022,
+        "addr_housenumber": 6239,
+        "published_accessibility": 5980,
+        "status": 5857,
+        "name": 5697,
+        "addr_street": 6233,
+        "facility_type": 973
+      },
+      "accessibility_pieces": 3000,
+      "accessibility_gaps": 35262,
+      "accessibility_by_field": {
+        "published_accessibility": 397,
+        "wheelchair": 2086,
+        "changing_table": 443,
+        "wheelchair_description": 69,
+        "changing_table_location": 4,
+        "adult_changing_table": 1
+      },
+      "context_pieces": 2932,
+      "context_gaps": 48084,
+      "context_by_field": {
+        "male": 297,
+        "female": 293,
+        "access": 1107,
+        "unisex": 497,
+        "fee": 732,
+        "supervised": 3,
+        "changing_table_fee": 3
+      }
+    },
+    "path": {
+      "records": 846525,
+      "pieces": 3863020,
+      "accessibility_facts": 575981,
+      "other_populated": 2891649,
+      "verified": 0,
+      "gaps": 23225780,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 3863020
+      },
+      "gaps_by_tier": {
+        "0": 23225780
+      },
+      "pieces_by_source": {
+        "osm-ontario": 3863020
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 3863020
+      },
+      "gaps_by_retrieved_at": {
+        "2026-11-13": 23225780
+      },
+      "gap_fields": {
+        "footway": 509384,
+        "foot": 811893,
+        "surface": 568267,
+        "smoothness": 820540,
+        "incline": 832091,
+        "width": 778629,
+        "kerb": 789283,
+        "lit": 802783,
+        "wheelchair": 819898,
+        "wheelchair_description": 846490,
+        "step_count": 844487,
+        "handrail": 843866,
+        "access": 833045,
+        "length_m": 846481,
+        "max_slope": 846525,
+        "min_width": 846525,
+        "stair_count": 846525,
+        "from_ref": 846525,
+        "to_ref": 846525,
+        "crossing": 542989,
+        "pathway_mode": 846525,
+        "bidirectional": 846525,
+        "oneway": 834206,
+        "traversal_time_s": 846525,
+        "signposted_as": 846525,
+        "reversed_signposted_as": 846525,
+        "ramp": 845153,
+        "indoor": 843955,
+        "tactile_paving": 747090
+      },
+      "accessibility_pieces": 575981,
+      "accessibility_gaps": 11275369,
+      "accessibility_by_field": {
+        "tactile_paving": 99435,
+        "kerb": 57242,
+        "surface": 278258,
+        "wheelchair": 26627,
+        "incline": 14434,
+        "width": 67896,
+        "smoothness": 25985,
+        "handrail": 2659,
+        "ramp": 1372,
+        "step_count": 2038,
+        "wheelchair_description": 35
+      },
+      "context_pieces": 395390,
+      "context_gaps": 2990710,
+      "context_by_field": {
+        "crossing": 303536,
+        "foot": 34632,
+        "access": 13480,
+        "lit": 43742
+      }
+    },
+    "transit": {
+      "records": 23786,
+      "pieces": 141430,
+      "accessibility_facts": 20045,
+      "other_populated": 121385,
+      "verified": 0,
+      "gaps": 167788,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "1": 141430
+      },
+      "gaps_by_tier": {
+        "1": 167788
+      },
+      "pieces_by_source": {
+        "gtfs-brampton": 16917,
+        "gtfs-go-transit": 6151,
+        "gtfs-grt-bus": 13750,
+        "gtfs-grt-ion": 159,
+        "gtfs-hsr": 13993,
+        "gtfs-ltc": 11625,
+        "gtfs-miway": 22663,
+        "gtfs-ttc": 56142,
+        "gtfs-up-express": 30
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 141430
+      },
+      "gaps_by_retrieved_at": {
+        "2026-11-13": 167788
+      },
+      "gap_fields": {
+        "parent_station": 23610,
+        "platform_code": 23629,
+        "level_id": 23786,
+        "level_index": 23786,
+        "level_name": 23786,
+        "description": 21564,
+        "url": 22789,
+        "wheelchair_boarding": 3741,
+        "stop_code": 1097
+      },
+      "accessibility_pieces": 20045,
+      "accessibility_gaps": 3741,
+      "accessibility_by_field": {
+        "wheelchair_boarding": 20045
+      },
+      "context_pieces": 0,
+      "context_gaps": 0,
+      "context_by_field": {}
+    }
+  },
+  "by_source": {
+    "osm-ontario": {
+      "records": 1392049,
+      "pieces": 6802010,
+      "gaps": 43717520,
+      "derived_excluded": 3566,
+      "pieces_by_tier": {
+        "0": 6802010
+      },
+      "pieces_by_tranche": {
+        "path": 3863020,
+        "venue": 2914928,
+        "washroom": 24062
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 6802010
+      },
+      "accessibility_pieces": 677579
+    },
+    "gtfs-brampton": {
+      "records": 2872,
+      "pieces": 16917,
+      "gaps": 20419,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "1": 16917
+      },
+      "pieces_by_tranche": {
+        "transit": 16917
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 16917
+      },
+      "accessibility_pieces": 2492
+    },
+    "gtfs-go-transit": {
+      "records": 889,
+      "pieces": 6151,
+      "gaps": 5406,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "1": 6151
+      },
+      "pieces_by_tranche": {
+        "transit": 6151
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 6151
+      },
+      "accessibility_pieces": 889
+    },
+    "gtfs-grt-bus": {
+      "records": 2265,
+      "pieces": 13750,
+      "gaps": 15695,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "1": 13750
+      },
+      "pieces_by_tranche": {
+        "transit": 13750
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 13750
+      },
+      "accessibility_pieces": 2251
+    },
+    "gtfs-grt-ion": {
+      "records": 32,
+      "pieces": 159,
+      "gaps": 257,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "1": 159
+      },
+      "pieces_by_tranche": {
+        "transit": 159
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 159
+      },
+      "accessibility_pieces": 31
+    },
+    "gtfs-hsr": {
+      "records": 2353,
+      "pieces": 13993,
+      "gaps": 16596,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "1": 13993
+      },
+      "pieces_by_tranche": {
+        "transit": 13993
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 13993
+      },
+      "accessibility_pieces": 0
+    },
+    "gtfs-ltc": {
+      "records": 1947,
+      "pieces": 11625,
+      "gaps": 13686,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "1": 11625
+      },
+      "pieces_by_tranche": {
+        "transit": 11625
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 11625
+      },
+      "accessibility_pieces": 1896
+    },
+    "gtfs-miway": {
+      "records": 4066,
+      "pieces": 22663,
+      "gaps": 30195,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "1": 22663
+      },
+      "pieces_by_tranche": {
+        "transit": 22663
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 22663
+      },
+      "accessibility_pieces": 3124
+    },
+    "gtfs-ttc": {
+      "records": 9357,
+      "pieces": 56142,
+      "gaps": 65499,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "1": 56142
+      },
+      "pieces_by_tranche": {
+        "transit": 56142
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 56142
+      },
+      "accessibility_pieces": 9357
+    },
+    "gtfs-up-express": {
+      "records": 5,
+      "pieces": 30,
+      "gaps": 35,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "1": 30
+      },
+      "pieces_by_tranche": {
+        "transit": 30
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 30
+      },
+      "accessibility_pieces": 5
+    },
+    "brampton-recreation-centres": {
+      "records": 39,
+      "pieces": 312,
+      "gaps": 1365,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 312
+      },
+      "pieces_by_tranche": {
+        "venue": 312
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 312
+      },
+      "accessibility_pieces": 0
+    },
+    "kingston-accessible-features": {
+      "records": 1003,
+      "pieces": 8198,
+      "gaps": 34763,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 8198
+      },
+      "pieces_by_tranche": {
+        "venue": 7808,
+        "washroom": 390
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 8198
+      },
+      "accessibility_pieces": 277
+    },
+    "mto-picnic-parks": {
+      "records": 168,
+      "pieces": 1005,
+      "gaps": 6219,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 1005
+      },
+      "pieces_by_tranche": {
+        "venue": 1005
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 1005
+      },
+      "accessibility_pieces": 0
+    },
+    "sudbury-fieldhouses": {
+      "records": 61,
+      "pieces": 480,
+      "gaps": 2143,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 480
+      },
+      "pieces_by_tranche": {
+        "venue": 480
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 480
+      },
+      "accessibility_pieces": 0
+    },
+    "kingston-public-washrooms": {
+      "records": 48,
+      "pieces": 432,
+      "gaps": 1440,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 432
+      },
+      "pieces_by_tranche": {
+        "washroom": 432
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 432
+      },
+      "accessibility_pieces": 0
+    },
+    "toronto-crem-washrooms": {
+      "records": 119,
+      "pieces": 1309,
+      "gaps": 3332,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 1309
+      },
+      "pieces_by_tranche": {
+        "washroom": 1309
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 1309
+      },
+      "accessibility_pieces": 119
+    },
+    "toronto-park-washrooms": {
+      "records": 355,
+      "pieces": 3740,
+      "gaps": 9839,
+      "derived_excluded": 266,
+      "pieces_by_tier": {
+        "0": 3740
+      },
+      "pieces_by_tranche": {
+        "washroom": 3740
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 3740
+      },
+      "accessibility_pieces": 355
+    },
+    "toronto-street-washrooms": {
+      "records": 4,
+      "pieces": 24,
+      "gaps": 132,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 24
+      },
+      "pieces_by_tranche": {
+        "washroom": 24
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 24
+      },
+      "accessibility_pieces": 0
+    }
+  },
+  "shortfalls": [
+    {
+      "tranche": "venue",
+      "verified": 0,
+      "illustrative_target": 250000,
+      "shortfall": 250000
+    },
+    {
+      "tranche": "washroom",
+      "verified": 0,
+      "illustrative_target": 100000,
+      "shortfall": 100000
+    },
+    {
+      "tranche": "path",
+      "verified": 0,
+      "illustrative_target": 100000,
+      "shortfall": 100000
+    },
+    {
+      "tranche": "transit",
+      "verified": 0,
+      "illustrative_target": 50000,
+      "shortfall": 50000
+    }
+  ],
+  "illustrative_total_target": 500000,
+  "total_shortfall": 500000,
+  "alerts": {
+    "records": 32,
+    "elevator": 3,
+    "escalator": 29,
+    "elevator_and_escalator": 0,
+    "unknown_equipment": 0,
+    "by_retrieved_at": {
+      "2026-11-13": 32
+    }
+  },
+  "files": [
+    {
+      "file": "data/paths/osm-ontario/n41.5_w083.0.ndjson.gz",
+      "bytes": 38375
+    },
+    {
+      "file": "data/paths/osm-ontario/n42.0_w082.0.ndjson.gz",
+      "bytes": 47153
+    },
+    {
+      "file": "data/paths/osm-ontario/n42.0_w082.5.ndjson.gz",
+      "bytes": 242034
+    },
+    {
+      "file": "data/paths/osm-ontario/n42.0_w083.0.ndjson.gz",
+      "bytes": 427920
+    },
+    {
+      "file": "data/paths/osm-ontario/n42.0_w083.0.p02.ndjson.gz",
+      "bytes": 487593
+    },
+    {
+      "file": "data/paths/osm-ontario/n42.0_w083.0.p03.ndjson.gz",
+      "bytes": 66574
+    },
+    {
+      "file": "data/paths/osm-ontario/n42.0_w083.5.ndjson.gz",
+      "bytes": 400620
+    },
+    {
+      "file": "data/paths/osm-ontario/n42.0_w083.5.p02.ndjson.gz",
+      "bytes": 498232
+    },
+    {
+      "file": "data/paths/osm-ontario/n42.0_w083.5.p03.ndjson.gz",
+      "bytes": 147220
+    },
+    {
+      "file": "data/paths/osm-ontario/n42.5_w079.0.ndjson.gz",
+      "bytes": 38012
+    },
+    {
+      "file": "data/paths/osm-ontario/n42.5_w079.5.ndjson.gz",
+      "bytes": 125473
+    },
+    {
+      "file": "data/paths/osm-ontario/n42.5_w080.0.ndjson.gz",
+      "bytes": 74575
+    },
+    {
+      "file": "data/paths/osm-ontario/n42.5_w080.5.ndjson.gz",
+      "bytes": 229287
+    },
+    {
+      "file": "data/paths/osm-ontario/n42.5_w081.0.ndjson.gz",
+      "bytes": 78365
+    },
+    {
+      "file": "data/paths/osm-ontario/n42.5_w081.5.ndjson.gz",
+      "bytes": 303541
+    },
+    {
+      "file": "data/paths/osm-ontario/n42.5_w081.5.p02.ndjson.gz",
+      "bytes": 706130
+    },
+    {
+      "file": "data/paths/osm-ontario/n42.5_w081.5.p03.ndjson.gz",
+      "bytes": 512360
+    },
+    {
+      "file": "data/paths/osm-ontario/n42.5_w081.5.p04.ndjson.gz",
+      "bytes": 87172
+    },
+    {
+      "file": "data/paths/osm-ontario/n42.5_w082.0.ndjson.gz",
+      "bytes": 62407
+    },
+    {
+      "file": "data/paths/osm-ontario/n42.5_w082.5.ndjson.gz",
+      "bytes": 254350
+    },
+    {
+      "file": "data/paths/osm-ontario/n42.5_w083.0.ndjson.gz",
+      "bytes": 9800
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w079.5.ndjson.gz",
+      "bytes": 590047
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w079.5.p02.ndjson.gz",
+      "bytes": 359757
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w080.0.ndjson.gz",
+      "bytes": 307567
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w080.0.p02.ndjson.gz",
+      "bytes": 292119
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w080.0.p03.ndjson.gz",
+      "bytes": 540769
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w080.0.p04.ndjson.gz",
+      "bytes": 668244
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w080.0.p05.ndjson.gz",
+      "bytes": 596020
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w080.0.p06.ndjson.gz",
+      "bytes": 562735
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w080.0.p07.ndjson.gz",
+      "bytes": 296593
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w080.5.ndjson.gz",
+      "bytes": 301176
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w080.5.p02.ndjson.gz",
+      "bytes": 348519
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w080.5.p03.ndjson.gz",
+      "bytes": 662400
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w080.5.p04.ndjson.gz",
+      "bytes": 560322
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w080.5.p05.ndjson.gz",
+      "bytes": 528085
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w080.5.p06.ndjson.gz",
+      "bytes": 414852
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w081.0.ndjson.gz",
+      "bytes": 296712
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w081.0.p02.ndjson.gz",
+      "bytes": 280428
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w081.0.p03.ndjson.gz",
+      "bytes": 517148
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w081.0.p04.ndjson.gz",
+      "bytes": 584911
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w081.0.p05.ndjson.gz",
+      "bytes": 510613
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w081.0.p06.ndjson.gz",
+      "bytes": 637593
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w081.0.p07.ndjson.gz",
+      "bytes": 99364
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w081.5.ndjson.gz",
+      "bytes": 551534
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w081.5.p02.ndjson.gz",
+      "bytes": 238711
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w082.0.ndjson.gz",
+      "bytes": 107715
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.0_w082.5.ndjson.gz",
+      "bytes": 49637
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w077.0.ndjson.gz",
+      "bytes": 4840
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w077.5.ndjson.gz",
+      "bytes": 40060
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w078.0.ndjson.gz",
+      "bytes": 14135
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w078.5.ndjson.gz",
+      "bytes": 124194
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.0.ndjson.gz",
+      "bytes": 303346
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.0.p02.ndjson.gz",
+      "bytes": 438632
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.0.p03.ndjson.gz",
+      "bytes": 547528
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.0.p04.ndjson.gz",
+      "bytes": 518828
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.0.p05.ndjson.gz",
+      "bytes": 190498
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.ndjson.gz",
+      "bytes": 310551
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p02.ndjson.gz",
+      "bytes": 309996
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p03.ndjson.gz",
+      "bytes": 310748
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p04.ndjson.gz",
+      "bytes": 305393
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p05.ndjson.gz",
+      "bytes": 299927
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p06.ndjson.gz",
+      "bytes": 304844
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p07.ndjson.gz",
+      "bytes": 296566
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p08.ndjson.gz",
+      "bytes": 291202
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p09.ndjson.gz",
+      "bytes": 599934
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p10.ndjson.gz",
+      "bytes": 691955
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p11.ndjson.gz",
+      "bytes": 599943
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p12.ndjson.gz",
+      "bytes": 652457
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p13.ndjson.gz",
+      "bytes": 599203
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p14.ndjson.gz",
+      "bytes": 606313
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p15.ndjson.gz",
+      "bytes": 545400
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p16.ndjson.gz",
+      "bytes": 540582
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p17.ndjson.gz",
+      "bytes": 566345
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p18.ndjson.gz",
+      "bytes": 537705
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p19.ndjson.gz",
+      "bytes": 492052
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p20.ndjson.gz",
+      "bytes": 516067
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p21.ndjson.gz",
+      "bytes": 533968
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p22.ndjson.gz",
+      "bytes": 532682
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p23.ndjson.gz",
+      "bytes": 556055
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p24.ndjson.gz",
+      "bytes": 529266
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p25.ndjson.gz",
+      "bytes": 486907
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w079.5.p26.ndjson.gz",
+      "bytes": 169350
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w080.0.ndjson.gz",
+      "bytes": 313708
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w080.0.p02.ndjson.gz",
+      "bytes": 307648
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w080.0.p03.ndjson.gz",
+      "bytes": 296653
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w080.0.p04.ndjson.gz",
+      "bytes": 298091
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w080.0.p05.ndjson.gz",
+      "bytes": 299635
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w080.0.p06.ndjson.gz",
+      "bytes": 293461
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w080.0.p07.ndjson.gz",
+      "bytes": 371700
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w080.0.p08.ndjson.gz",
+      "bytes": 723224
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w080.0.p09.ndjson.gz",
+      "bytes": 689649
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w080.0.p10.ndjson.gz",
+      "bytes": 684525
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w080.0.p11.ndjson.gz",
+      "bytes": 561587
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w080.0.p12.ndjson.gz",
+      "bytes": 539375
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w080.0.p13.ndjson.gz",
+      "bytes": 560373
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w080.0.p14.ndjson.gz",
+      "bytes": 551693
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w080.0.p15.ndjson.gz",
+      "bytes": 528808
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w080.0.p16.ndjson.gz",
+      "bytes": 545293
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w080.0.p17.ndjson.gz",
+      "bytes": 494714
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w080.0.p18.ndjson.gz",
+      "bytes": 420863
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w080.5.ndjson.gz",
+      "bytes": 434088
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w080.5.p02.ndjson.gz",
+      "bytes": 695442
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w080.5.p03.ndjson.gz",
+      "bytes": 528084
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w081.0.ndjson.gz",
+      "bytes": 277774
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w081.5.ndjson.gz",
+      "bytes": 27989
+    },
+    {
+      "file": "data/paths/osm-ontario/n43.5_w082.0.ndjson.gz",
+      "bytes": 74560
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.0_w076.0.ndjson.gz",
+      "bytes": 20162
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.0_w076.5.ndjson.gz",
+      "bytes": 314765
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.0_w077.0.ndjson.gz",
+      "bytes": 473804
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.0_w077.5.ndjson.gz",
+      "bytes": 223523
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.0_w078.0.ndjson.gz",
+      "bytes": 154663
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.0_w078.5.ndjson.gz",
+      "bytes": 460445
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.0_w079.0.ndjson.gz",
+      "bytes": 159512
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.0_w079.5.ndjson.gz",
+      "bytes": 660844
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.0_w079.5.p02.ndjson.gz",
+      "bytes": 54335
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.0_w080.0.ndjson.gz",
+      "bytes": 457315
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.0_w080.0.p02.ndjson.gz",
+      "bytes": 618780
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.0_w080.0.p03.ndjson.gz",
+      "bytes": 1689
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.0_w080.5.ndjson.gz",
+      "bytes": 284345
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.0_w081.0.ndjson.gz",
+      "bytes": 47599
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.0_w081.5.ndjson.gz",
+      "bytes": 138259
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.0_w082.0.ndjson.gz",
+      "bytes": 27303
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.5_w075.0.ndjson.gz",
+      "bytes": 7869
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.5_w075.5.ndjson.gz",
+      "bytes": 39551
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.5_w076.0.ndjson.gz",
+      "bytes": 151021
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.5_w076.5.ndjson.gz",
+      "bytes": 159273
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.5_w077.0.ndjson.gz",
+      "bytes": 77191
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.5_w077.5.ndjson.gz",
+      "bytes": 55180
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.5_w078.0.ndjson.gz",
+      "bytes": 10291
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.5_w078.5.ndjson.gz",
+      "bytes": 69915
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.5_w079.0.ndjson.gz",
+      "bytes": 101923
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.5_w079.5.ndjson.gz",
+      "bytes": 166483
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.5_w080.0.ndjson.gz",
+      "bytes": 220016
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.5_w080.5.ndjson.gz",
+      "bytes": 144747
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.5_w081.0.ndjson.gz",
+      "bytes": 160236
+    },
+    {
+      "file": "data/paths/osm-ontario/n44.5_w081.5.ndjson.gz",
+      "bytes": 94526
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.0_w074.5.ndjson.gz",
+      "bytes": 6817
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.0_w075.0.ndjson.gz",
+      "bytes": 210126
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.0_w075.5.ndjson.gz",
+      "bytes": 486996
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.0_w076.0.ndjson.gz",
+      "bytes": 299120
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.0_w076.0.p02.ndjson.gz",
+      "bytes": 513831
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.0_w076.0.p03.ndjson.gz",
+      "bytes": 696611
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.0_w076.0.p04.ndjson.gz",
+      "bytes": 635713
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.0_w076.0.p05.ndjson.gz",
+      "bytes": 613766
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.0_w076.0.p06.ndjson.gz",
+      "bytes": 610467
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.0_w076.0.p07.ndjson.gz",
+      "bytes": 561549
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.0_w076.0.p08.ndjson.gz",
+      "bytes": 606186
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.0_w076.0.p09.ndjson.gz",
+      "bytes": 423310
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.0_w076.5.ndjson.gz",
+      "bytes": 220991
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.0_w077.0.ndjson.gz",
+      "bytes": 85279
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.0_w077.5.ndjson.gz",
+      "bytes": 18500
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.0_w078.0.ndjson.gz",
+      "bytes": 39163
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.0_w078.5.ndjson.gz",
+      "bytes": 31329
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.0_w079.0.ndjson.gz",
+      "bytes": 143922
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.0_w079.5.ndjson.gz",
+      "bytes": 115204
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.0_w080.0.ndjson.gz",
+      "bytes": 65172
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.0_w080.5.ndjson.gz",
+      "bytes": 74238
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.0_w081.5.ndjson.gz",
+      "bytes": 53459
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.0_w082.0.ndjson.gz",
+      "bytes": 43961
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.5_w074.5.ndjson.gz",
+      "bytes": 10639
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.5_w075.0.ndjson.gz",
+      "bytes": 24847
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.5_w075.5.ndjson.gz",
+      "bytes": 61368
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.5_w076.5.ndjson.gz",
+      "bytes": 5669
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.5_w077.0.ndjson.gz",
+      "bytes": 24934
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.5_w077.5.ndjson.gz",
+      "bytes": 143943
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.5_w078.0.ndjson.gz",
+      "bytes": 74807
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.5_w078.5.ndjson.gz",
+      "bytes": 113146
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.5_w079.0.ndjson.gz",
+      "bytes": 175409
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.5_w079.5.ndjson.gz",
+      "bytes": 53701
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.5_w080.0.ndjson.gz",
+      "bytes": 19529
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.5_w080.5.ndjson.gz",
+      "bytes": 17363
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.5_w081.0.ndjson.gz",
+      "bytes": 12890
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.5_w081.5.ndjson.gz",
+      "bytes": 3210
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.5_w082.0.ndjson.gz",
+      "bytes": 31745
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.5_w082.5.ndjson.gz",
+      "bytes": 24076
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.5_w083.0.ndjson.gz",
+      "bytes": 15530
+    },
+    {
+      "file": "data/paths/osm-ontario/n45.5_w083.5.ndjson.gz",
+      "bytes": 8503
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.0_w077.5.ndjson.gz",
+      "bytes": 43068
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.0_w078.0.ndjson.gz",
+      "bytes": 32610
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.0_w078.5.ndjson.gz",
+      "bytes": 16500
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.0_w079.0.ndjson.gz",
+      "bytes": 47464
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.0_w079.5.ndjson.gz",
+      "bytes": 118587
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.0_w080.0.ndjson.gz",
+      "bytes": 23000
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.0_w080.5.ndjson.gz",
+      "bytes": 23564
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.0_w081.0.ndjson.gz",
+      "bytes": 169066
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.0_w081.5.ndjson.gz",
+      "bytes": 144657
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.0_w082.0.ndjson.gz",
+      "bytes": 38025
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.0_w082.5.ndjson.gz",
+      "bytes": 6842
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.0_w083.0.ndjson.gz",
+      "bytes": 32854
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.0_w083.5.ndjson.gz",
+      "bytes": 5291
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.0_w084.0.ndjson.gz",
+      "bytes": 10355
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.0_w084.5.ndjson.gz",
+      "bytes": 6379
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.0_w085.0.ndjson.gz",
+      "bytes": 1193
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.5_w079.5.ndjson.gz",
+      "bytes": 41351
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.5_w080.0.ndjson.gz",
+      "bytes": 9323
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.5_w080.5.ndjson.gz",
+      "bytes": 20414
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.5_w081.0.ndjson.gz",
+      "bytes": 158636
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.5_w081.5.ndjson.gz",
+      "bytes": 42886
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.5_w082.0.ndjson.gz",
+      "bytes": 29848
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.5_w082.5.ndjson.gz",
+      "bytes": 7361
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.5_w083.0.ndjson.gz",
+      "bytes": 35008
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.5_w083.5.ndjson.gz",
+      "bytes": 24081
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.5_w084.0.ndjson.gz",
+      "bytes": 53114
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.5_w084.5.ndjson.gz",
+      "bytes": 248840
+    },
+    {
+      "file": "data/paths/osm-ontario/n46.5_w085.0.ndjson.gz",
+      "bytes": 15476
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.0_w079.5.ndjson.gz",
+      "bytes": 15561
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.0_w080.0.ndjson.gz",
+      "bytes": 114165
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.0_w080.5.ndjson.gz",
+      "bytes": 35184
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.0_w081.0.ndjson.gz",
+      "bytes": 24822
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.0_w081.5.ndjson.gz",
+      "bytes": 8771
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.0_w082.0.ndjson.gz",
+      "bytes": 10436
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.0_w082.5.ndjson.gz",
+      "bytes": 1751
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.0_w083.5.ndjson.gz",
+      "bytes": 1114
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.0_w084.0.ndjson.gz",
+      "bytes": 15483
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.0_w084.5.ndjson.gz",
+      "bytes": 33554
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.0_w085.0.ndjson.gz",
+      "bytes": 50313
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.0_w086.0.ndjson.gz",
+      "bytes": 613
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.5_w080.0.ndjson.gz",
+      "bytes": 48057
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.5_w080.5.ndjson.gz",
+      "bytes": 17341
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.5_w081.0.ndjson.gz",
+      "bytes": 24490
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.5_w081.5.ndjson.gz",
+      "bytes": 51219
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.5_w082.0.ndjson.gz",
+      "bytes": 7227
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.5_w082.5.ndjson.gz",
+      "bytes": 5069
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.5_w083.0.ndjson.gz",
+      "bytes": 21012
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.5_w083.5.ndjson.gz",
+      "bytes": 10964
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.5_w084.0.ndjson.gz",
+      "bytes": 6083
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.5_w084.5.ndjson.gz",
+      "bytes": 18184
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.5_w085.0.ndjson.gz",
+      "bytes": 81206
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.5_w085.5.ndjson.gz",
+      "bytes": 5374
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.5_w086.0.ndjson.gz",
+      "bytes": 2488
+    },
+    {
+      "file": "data/paths/osm-ontario/n47.5_w090.0.ndjson.gz",
+      "bytes": 7279
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w079.5.ndjson.gz",
+      "bytes": 1203
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w080.0.ndjson.gz",
+      "bytes": 78634
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w080.5.ndjson.gz",
+      "bytes": 30158
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w081.0.ndjson.gz",
+      "bytes": 32008
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w081.5.ndjson.gz",
+      "bytes": 87635
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w082.0.ndjson.gz",
+      "bytes": 20089
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w082.5.ndjson.gz",
+      "bytes": 1743
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w083.0.ndjson.gz",
+      "bytes": 17849
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w083.5.ndjson.gz",
+      "bytes": 6432
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w084.0.ndjson.gz",
+      "bytes": 12213
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w084.5.ndjson.gz",
+      "bytes": 1193
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w085.0.ndjson.gz",
+      "bytes": 3565
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w086.0.ndjson.gz",
+      "bytes": 4159
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w086.5.ndjson.gz",
+      "bytes": 12114
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w088.5.ndjson.gz",
+      "bytes": 960
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w089.0.ndjson.gz",
+      "bytes": 36362
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w089.5.ndjson.gz",
+      "bytes": 404945
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w090.0.ndjson.gz",
+      "bytes": 30727
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w090.5.ndjson.gz",
+      "bytes": 38200
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w091.0.ndjson.gz",
+      "bytes": 17660
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w091.5.ndjson.gz",
+      "bytes": 29363
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w092.0.ndjson.gz",
+      "bytes": 29377
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w092.5.ndjson.gz",
+      "bytes": 8950
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.0_w093.0.ndjson.gz",
+      "bytes": 1028
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w080.0.ndjson.gz",
+      "bytes": 5636
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w080.5.ndjson.gz",
+      "bytes": 27514
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w081.0.ndjson.gz",
+      "bytes": 27983
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w081.5.ndjson.gz",
+      "bytes": 62917
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w082.0.ndjson.gz",
+      "bytes": 5811
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w082.5.ndjson.gz",
+      "bytes": 2645
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w083.0.ndjson.gz",
+      "bytes": 3408
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w083.5.ndjson.gz",
+      "bytes": 11880
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w084.0.ndjson.gz",
+      "bytes": 5451
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w084.5.ndjson.gz",
+      "bytes": 8028
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w085.0.ndjson.gz",
+      "bytes": 864
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w085.5.ndjson.gz",
+      "bytes": 2470
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w086.0.ndjson.gz",
+      "bytes": 3457
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w086.5.ndjson.gz",
+      "bytes": 27003
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w087.0.ndjson.gz",
+      "bytes": 9199
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w087.5.ndjson.gz",
+      "bytes": 31135
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w088.0.ndjson.gz",
+      "bytes": 5486
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w088.5.ndjson.gz",
+      "bytes": 49668
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w089.0.ndjson.gz",
+      "bytes": 7907
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w089.5.ndjson.gz",
+      "bytes": 7573
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w090.0.ndjson.gz",
+      "bytes": 2604
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w091.0.ndjson.gz",
+      "bytes": 14007
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w091.5.ndjson.gz",
+      "bytes": 26236
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w092.0.ndjson.gz",
+      "bytes": 18330
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w092.5.ndjson.gz",
+      "bytes": 2346
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w093.0.ndjson.gz",
+      "bytes": 682
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w093.5.ndjson.gz",
+      "bytes": 11213
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w094.0.ndjson.gz",
+      "bytes": 4281
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w094.5.ndjson.gz",
+      "bytes": 3305
+    },
+    {
+      "file": "data/paths/osm-ontario/n48.5_w095.0.ndjson.gz",
+      "bytes": 4204
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w080.0.ndjson.gz",
+      "bytes": 745
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w080.5.ndjson.gz",
+      "bytes": 11579
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w081.0.ndjson.gz",
+      "bytes": 17178
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w081.5.ndjson.gz",
+      "bytes": 28790
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w082.0.ndjson.gz",
+      "bytes": 23564
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w082.5.ndjson.gz",
+      "bytes": 39673
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w083.0.ndjson.gz",
+      "bytes": 15905
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w083.5.ndjson.gz",
+      "bytes": 16142
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w084.0.ndjson.gz",
+      "bytes": 39965
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w084.5.ndjson.gz",
+      "bytes": 40814
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w085.0.ndjson.gz",
+      "bytes": 17144
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w085.5.ndjson.gz",
+      "bytes": 8024
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w086.0.ndjson.gz",
+      "bytes": 16199
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w086.5.ndjson.gz",
+      "bytes": 15770
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w087.0.ndjson.gz",
+      "bytes": 11278
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w087.5.ndjson.gz",
+      "bytes": 48879
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w088.0.ndjson.gz",
+      "bytes": 26429
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w088.5.ndjson.gz",
+      "bytes": 17606
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w089.0.ndjson.gz",
+      "bytes": 2482
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w089.5.ndjson.gz",
+      "bytes": 1017
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w090.0.ndjson.gz",
+      "bytes": 659
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w090.5.ndjson.gz",
+      "bytes": 1186
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w091.0.ndjson.gz",
+      "bytes": 5320
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w092.0.ndjson.gz",
+      "bytes": 3656
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w092.5.ndjson.gz",
+      "bytes": 1411
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w094.0.ndjson.gz",
+      "bytes": 7893
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w094.5.ndjson.gz",
+      "bytes": 8231
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w095.0.ndjson.gz",
+      "bytes": 3028
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.0_w095.5.ndjson.gz",
+      "bytes": 9143
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w080.5.ndjson.gz",
+      "bytes": 470
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w081.5.ndjson.gz",
+      "bytes": 8883
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w082.0.ndjson.gz",
+      "bytes": 9322
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w082.5.ndjson.gz",
+      "bytes": 14363
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w083.0.ndjson.gz",
+      "bytes": 9741
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w083.5.ndjson.gz",
+      "bytes": 20765
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w084.0.ndjson.gz",
+      "bytes": 48249
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w084.5.ndjson.gz",
+      "bytes": 78768
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w085.0.ndjson.gz",
+      "bytes": 19884
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w085.5.ndjson.gz",
+      "bytes": 7311
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w086.0.ndjson.gz",
+      "bytes": 10261
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w086.5.ndjson.gz",
+      "bytes": 28242
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w087.0.ndjson.gz",
+      "bytes": 37158
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w087.5.ndjson.gz",
+      "bytes": 71384
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w088.0.ndjson.gz",
+      "bytes": 78714
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w088.5.ndjson.gz",
+      "bytes": 2207
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w091.0.ndjson.gz",
+      "bytes": 1159
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w091.5.ndjson.gz",
+      "bytes": 1545
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w092.0.ndjson.gz",
+      "bytes": 1818
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w092.5.ndjson.gz",
+      "bytes": 3615
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w093.0.ndjson.gz",
+      "bytes": 43331
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w093.5.ndjson.gz",
+      "bytes": 7997
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w094.0.ndjson.gz",
+      "bytes": 7352
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w094.5.ndjson.gz",
+      "bytes": 44508
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w095.0.ndjson.gz",
+      "bytes": 35337
+    },
+    {
+      "file": "data/paths/osm-ontario/n49.5_w095.5.ndjson.gz",
+      "bytes": 27979
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w080.5.ndjson.gz",
+      "bytes": 616
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w082.0.ndjson.gz",
+      "bytes": 8388
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w082.5.ndjson.gz",
+      "bytes": 6477
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w083.0.ndjson.gz",
+      "bytes": 971
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w083.5.ndjson.gz",
+      "bytes": 5514
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w084.0.ndjson.gz",
+      "bytes": 2321
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w084.5.ndjson.gz",
+      "bytes": 1236
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w085.5.ndjson.gz",
+      "bytes": 833
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w086.0.ndjson.gz",
+      "bytes": 795
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w086.5.ndjson.gz",
+      "bytes": 1638
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w087.0.ndjson.gz",
+      "bytes": 8992
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w087.5.ndjson.gz",
+      "bytes": 1239
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w088.0.ndjson.gz",
+      "bytes": 2948
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w088.5.ndjson.gz",
+      "bytes": 4946
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w089.0.ndjson.gz",
+      "bytes": 519
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w089.5.ndjson.gz",
+      "bytes": 1657
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w090.0.ndjson.gz",
+      "bytes": 558
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w090.5.ndjson.gz",
+      "bytes": 1722
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w091.0.ndjson.gz",
+      "bytes": 864
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w092.0.ndjson.gz",
+      "bytes": 8896
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w092.5.ndjson.gz",
+      "bytes": 6015
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w093.0.ndjson.gz",
+      "bytes": 3080
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w093.5.ndjson.gz",
+      "bytes": 3740
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w094.5.ndjson.gz",
+      "bytes": 486
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w095.0.ndjson.gz",
+      "bytes": 7129
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.0_w095.5.ndjson.gz",
+      "bytes": 1453
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.5_w080.5.ndjson.gz",
+      "bytes": 1674
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.5_w081.5.ndjson.gz",
+      "bytes": 6486
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.5_w082.0.ndjson.gz",
+      "bytes": 505
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.5_w087.0.ndjson.gz",
+      "bytes": 4244
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.5_w087.5.ndjson.gz",
+      "bytes": 653
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.5_w088.0.ndjson.gz",
+      "bytes": 1470
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.5_w089.0.ndjson.gz",
+      "bytes": 500
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.5_w093.0.ndjson.gz",
+      "bytes": 8922
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.5_w093.5.ndjson.gz",
+      "bytes": 11117
+    },
+    {
+      "file": "data/paths/osm-ontario/n50.5_w094.0.ndjson.gz",
+      "bytes": 25566
+    },
+    {
+      "file": "data/paths/osm-ontario/n51.0_w081.0.ndjson.gz",
+      "bytes": 7835
+    },
+    {
+      "file": "data/paths/osm-ontario/n51.0_w087.5.ndjson.gz",
+      "bytes": 2108
+    },
+    {
+      "file": "data/paths/osm-ontario/n51.0_w088.0.ndjson.gz",
+      "bytes": 932
+    },
+    {
+      "file": "data/paths/osm-ontario/n51.0_w090.5.ndjson.gz",
+      "bytes": 463
+    },
+    {
+      "file": "data/paths/osm-ontario/n51.0_w094.0.ndjson.gz",
+      "bytes": 14254
+    },
+    {
+      "file": "data/paths/osm-ontario/n51.5_w088.0.ndjson.gz",
+      "bytes": 1267
+    },
+    {
+      "file": "data/paths/osm-ontario/n51.5_w089.0.ndjson.gz",
+      "bytes": 514
+    },
+    {
+      "file": "data/paths/osm-ontario/n51.5_w094.0.ndjson.gz",
+      "bytes": 1719
+    },
+    {
+      "file": "data/paths/osm-ontario/n51.5_w094.5.ndjson.gz",
+      "bytes": 529
+    },
+    {
+      "file": "data/paths/osm-ontario/n52.0_w082.0.ndjson.gz",
+      "bytes": 2150
+    },
+    {
+      "file": "data/paths/osm-ontario/n52.0_w091.0.ndjson.gz",
+      "bytes": 926
+    },
+    {
+      "file": "data/paths/osm-ontario/n52.5_w082.5.ndjson.gz",
+      "bytes": 1263
+    },
+    {
+      "file": "data/paths/osm-ontario/n52.5_w087.5.ndjson.gz",
+      "bytes": 599
+    },
+    {
+      "file": "data/paths/osm-ontario/n52.5_w091.0.ndjson.gz",
+      "bytes": 466
+    },
+    {
+      "file": "data/paths/osm-ontario/n52.5_w093.0.ndjson.gz",
+      "bytes": 473
+    },
+    {
+      "file": "data/paths/osm-ontario/n52.5_w094.5.ndjson.gz",
+      "bytes": 1244
+    },
+    {
+      "file": "data/paths/osm-ontario/n52.5_w095.0.ndjson.gz",
+      "bytes": 957
+    },
+    {
+      "file": "data/paths/osm-ontario/n53.0_w089.0.ndjson.gz",
+      "bytes": 569
+    },
+    {
+      "file": "data/paths/osm-ontario/n53.0_w092.0.ndjson.gz",
+      "bytes": 1081
+    },
+    {
+      "file": "data/paths/osm-ontario/n53.0_w093.5.ndjson.gz",
+      "bytes": 1334
+    },
+    {
+      "file": "data/paths/osm-ontario/n53.5_w090.0.ndjson.gz",
+      "bytes": 1161
+    },
+    {
+      "file": "data/paths/osm-ontario/n53.5_w091.0.ndjson.gz",
+      "bytes": 477
+    },
+    {
+      "file": "data/paths/osm-ontario/n53.5_w092.5.ndjson.gz",
+      "bytes": 1335
+    },
+    {
+      "file": "data/paths/osm-ontario/n53.5_w093.0.ndjson.gz",
+      "bytes": 591
+    },
+    {
+      "file": "data/paths/osm-ontario/n55.0_w085.5.ndjson.gz",
+      "bytes": 675
+    },
+    {
+      "file": "data/paths/osm-ontario/n56.0_w088.0.ndjson.gz",
+      "bytes": 576
+    },
+    {
+      "file": "data/transit/gtfs-brampton/n43.5_w080.0.ndjson.gz",
+      "bytes": 112091
+    },
+    {
+      "file": "data/transit/gtfs-go-transit/n42.5_w080.5.ndjson.gz",
+      "bytes": 452
+    },
+    {
+      "file": "data/transit/gtfs-go-transit/n43.0_w079.5.ndjson.gz",
+      "bytes": 925
+    },
+    {
+      "file": "data/transit/gtfs-go-transit/n43.0_w080.0.ndjson.gz",
+      "bytes": 3056
+    },
+    {
+      "file": "data/transit/gtfs-go-transit/n43.0_w080.5.ndjson.gz",
+      "bytes": 2098
+    },
+    {
+      "file": "data/transit/gtfs-go-transit/n43.0_w081.0.ndjson.gz",
+      "bytes": 796
+    },
+    {
+      "file": "data/transit/gtfs-go-transit/n43.5_w079.0.ndjson.gz",
+      "bytes": 3551
+    },
+    {
+      "file": "data/transit/gtfs-go-transit/n43.5_w079.5.ndjson.gz",
+      "bytes": 8857
+    },
+    {
+      "file": "data/transit/gtfs-go-transit/n43.5_w080.0.ndjson.gz",
+      "bytes": 13437
+    },
+    {
+      "file": "data/transit/gtfs-go-transit/n43.5_w080.5.ndjson.gz",
+      "bytes": 3902
+    },
+    {
+      "file": "data/transit/gtfs-go-transit/n44.0_w078.5.ndjson.gz",
+      "bytes": 632
+    },
+    {
+      "file": "data/transit/gtfs-go-transit/n44.0_w079.0.ndjson.gz",
+      "bytes": 458
+    },
+    {
+      "file": "data/transit/gtfs-go-transit/n44.0_w079.5.ndjson.gz",
+      "bytes": 3211
+    },
+    {
+      "file": "data/transit/gtfs-go-transit/n44.0_w080.0.ndjson.gz",
+      "bytes": 2376
+    },
+    {
+      "file": "data/transit/gtfs-grt-bus/n43.0_w080.5.ndjson.gz",
+      "bytes": 57226
+    },
+    {
+      "file": "data/transit/gtfs-grt-bus/n43.0_w081.0.ndjson.gz",
+      "bytes": 27679
+    },
+    {
+      "file": "data/transit/gtfs-grt-bus/n43.5_w080.5.ndjson.gz",
+      "bytes": 559
+    },
+    {
+      "file": "data/transit/gtfs-grt-bus/n43.5_w081.0.ndjson.gz",
+      "bytes": 5080
+    },
+    {
+      "file": "data/transit/gtfs-grt-ion/n43.0_w080.5.ndjson.gz",
+      "bytes": 992
+    },
+    {
+      "file": "data/transit/gtfs-grt-ion/n43.0_w081.0.ndjson.gz",
+      "bytes": 1029
+    },
+    {
+      "file": "data/transit/gtfs-hsr/n43.0_w080.0.ndjson.gz",
+      "bytes": 95324
+    },
+    {
+      "file": "data/transit/gtfs-hsr/n43.0_w080.5.ndjson.gz",
+      "bytes": 2777
+    },
+    {
+      "file": "data/transit/gtfs-ltc/n42.5_w081.5.ndjson.gz",
+      "bytes": 58096
+    },
+    {
+      "file": "data/transit/gtfs-ltc/n43.0_w081.5.ndjson.gz",
+      "bytes": 25894
+    },
+    {
+      "file": "data/transit/gtfs-miway/n43.0_w080.0.ndjson.gz",
+      "bytes": 1746
+    },
+    {
+      "file": "data/transit/gtfs-miway/n43.5_w080.0.ndjson.gz",
+      "bytes": 161361
+    },
+    {
+      "file": "data/transit/gtfs-ttc/n43.5_w079.5.ndjson.gz",
+      "bytes": 331590
+    },
+    {
+      "file": "data/transit/gtfs-ttc/n43.5_w080.0.ndjson.gz",
+      "bytes": 93139
+    },
+    {
+      "file": "data/transit/gtfs-up-express/n43.5_w079.5.ndjson.gz",
+      "bytes": 550
+    },
+    {
+      "file": "data/transit/gtfs-up-express/n43.5_w080.0.ndjson.gz",
+      "bytes": 497
+    },
+    {
+      "file": "data/venues/brampton-recreation-centres/n43.5_w080.0.ndjson.gz",
+      "bytes": 4661
+    },
+    {
+      "file": "data/venues/kingston-accessible-features/n44.0_w076.5.ndjson.gz",
+      "bytes": 50622
+    },
+    {
+      "file": "data/venues/kingston-accessible-features/n44.0_w077.0.ndjson.gz",
+      "bytes": 37826
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n42.0_w082.5.ndjson.gz",
+      "bytes": 667
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n42.5_w079.5.ndjson.gz",
+      "bytes": 580
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n42.5_w080.0.ndjson.gz",
+      "bytes": 662
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n42.5_w082.0.ndjson.gz",
+      "bytes": 666
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n43.0_w080.5.ndjson.gz",
+      "bytes": 726
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n43.0_w081.0.ndjson.gz",
+      "bytes": 723
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n43.0_w081.5.ndjson.gz",
+      "bytes": 571
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n43.5_w078.5.ndjson.gz",
+      "bytes": 640
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n43.5_w079.0.ndjson.gz",
+      "bytes": 573
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n43.5_w079.5.ndjson.gz",
+      "bytes": 573
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n43.5_w080.0.ndjson.gz",
+      "bytes": 571
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n43.5_w080.5.ndjson.gz",
+      "bytes": 669
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n43.5_w081.0.ndjson.gz",
+      "bytes": 655
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n43.5_w081.5.ndjson.gz",
+      "bytes": 569
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.0_w076.0.ndjson.gz",
+      "bytes": 572
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.0_w077.0.ndjson.gz",
+      "bytes": 742
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.0_w078.0.ndjson.gz",
+      "bytes": 804
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.0_w079.0.ndjson.gz",
+      "bytes": 567
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.0_w080.0.ndjson.gz",
+      "bytes": 659
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.0_w080.5.ndjson.gz",
+      "bytes": 805
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.0_w081.0.ndjson.gz",
+      "bytes": 805
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.0_w082.0.ndjson.gz",
+      "bytes": 574
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.5_w075.5.ndjson.gz",
+      "bytes": 661
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.5_w076.0.ndjson.gz",
+      "bytes": 570
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.5_w076.5.ndjson.gz",
+      "bytes": 662
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.5_w077.0.ndjson.gz",
+      "bytes": 656
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.5_w077.5.ndjson.gz",
+      "bytes": 570
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.5_w078.0.ndjson.gz",
+      "bytes": 571
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.5_w078.5.ndjson.gz",
+      "bytes": 573
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.5_w079.5.ndjson.gz",
+      "bytes": 573
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.5_w080.0.ndjson.gz",
+      "bytes": 571
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.5_w081.0.ndjson.gz",
+      "bytes": 568
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.5_w081.5.ndjson.gz",
+      "bytes": 567
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.0_w074.5.ndjson.gz",
+      "bytes": 572
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.0_w076.5.ndjson.gz",
+      "bytes": 579
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.0_w077.5.ndjson.gz",
+      "bytes": 659
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.0_w078.5.ndjson.gz",
+      "bytes": 571
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.0_w079.0.ndjson.gz",
+      "bytes": 806
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.0_w079.5.ndjson.gz",
+      "bytes": 666
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.0_w080.0.ndjson.gz",
+      "bytes": 735
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.0_w081.5.ndjson.gz",
+      "bytes": 577
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.5_w074.5.ndjson.gz",
+      "bytes": 573
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.5_w077.0.ndjson.gz",
+      "bytes": 570
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.5_w077.5.ndjson.gz",
+      "bytes": 674
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.5_w078.0.ndjson.gz",
+      "bytes": 662
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.5_w079.5.ndjson.gz",
+      "bytes": 657
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.5_w080.0.ndjson.gz",
+      "bytes": 571
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.5_w080.5.ndjson.gz",
+      "bytes": 570
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.5_w082.0.ndjson.gz",
+      "bytes": 565
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.5_w082.5.ndjson.gz",
+      "bytes": 737
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.5_w083.0.ndjson.gz",
+      "bytes": 566
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w078.0.ndjson.gz",
+      "bytes": 569
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w078.5.ndjson.gz",
+      "bytes": 574
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w079.0.ndjson.gz",
+      "bytes": 655
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w079.5.ndjson.gz",
+      "bytes": 579
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w080.0.ndjson.gz",
+      "bytes": 562
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w080.5.ndjson.gz",
+      "bytes": 728
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w081.0.ndjson.gz",
+      "bytes": 567
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w081.5.ndjson.gz",
+      "bytes": 662
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w082.0.ndjson.gz",
+      "bytes": 572
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w083.0.ndjson.gz",
+      "bytes": 732
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w083.5.ndjson.gz",
+      "bytes": 563
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w084.0.ndjson.gz",
+      "bytes": 651
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.5_w079.5.ndjson.gz",
+      "bytes": 566
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.5_w080.0.ndjson.gz",
+      "bytes": 658
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.5_w081.5.ndjson.gz",
+      "bytes": 567
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.5_w084.5.ndjson.gz",
+      "bytes": 657
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.5_w085.0.ndjson.gz",
+      "bytes": 673
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n47.0_w080.0.ndjson.gz",
+      "bytes": 574
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n47.0_w082.0.ndjson.gz",
+      "bytes": 664
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n47.5_w080.0.ndjson.gz",
+      "bytes": 733
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n47.5_w080.5.ndjson.gz",
+      "bytes": 566
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n47.5_w081.0.ndjson.gz",
+      "bytes": 662
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n47.5_w083.0.ndjson.gz",
+      "bytes": 573
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.0_w080.0.ndjson.gz",
+      "bytes": 567
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.0_w080.5.ndjson.gz",
+      "bytes": 735
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.0_w082.0.ndjson.gz",
+      "bytes": 569
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.0_w085.0.ndjson.gz",
+      "bytes": 562
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.0_w090.0.ndjson.gz",
+      "bytes": 564
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.5_w081.0.ndjson.gz",
+      "bytes": 813
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.5_w085.5.ndjson.gz",
+      "bytes": 577
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.5_w087.5.ndjson.gz",
+      "bytes": 569
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.5_w088.0.ndjson.gz",
+      "bytes": 570
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.5_w089.0.ndjson.gz",
+      "bytes": 566
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.5_w090.5.ndjson.gz",
+      "bytes": 567
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.5_w091.0.ndjson.gz",
+      "bytes": 569
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.5_w091.5.ndjson.gz",
+      "bytes": 570
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.5_w093.0.ndjson.gz",
+      "bytes": 568
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.5_w093.5.ndjson.gz",
+      "bytes": 568
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.0_w081.5.ndjson.gz",
+      "bytes": 806
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.0_w082.0.ndjson.gz",
+      "bytes": 571
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.0_w088.5.ndjson.gz",
+      "bytes": 657
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.0_w091.5.ndjson.gz",
+      "bytes": 569
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.0_w092.0.ndjson.gz",
+      "bytes": 572
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.0_w094.0.ndjson.gz",
+      "bytes": 660
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.0_w094.5.ndjson.gz",
+      "bytes": 571
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.5_w084.0.ndjson.gz",
+      "bytes": 568
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.5_w085.0.ndjson.gz",
+      "bytes": 570
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.5_w086.0.ndjson.gz",
+      "bytes": 572
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.5_w087.5.ndjson.gz",
+      "bytes": 570
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.5_w092.5.ndjson.gz",
+      "bytes": 663
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.5_w093.5.ndjson.gz",
+      "bytes": 569
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.5_w094.0.ndjson.gz",
+      "bytes": 570
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.5_w094.5.ndjson.gz",
+      "bytes": 571
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n50.0_w092.0.ndjson.gz",
+      "bytes": 564
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n50.0_w093.5.ndjson.gz",
+      "bytes": 574
+    },
+    {
+      "file": "data/venues/osm-ontario/n41.0_w083.0.ndjson.gz",
+      "bytes": 1308
+    },
+    {
+      "file": "data/venues/osm-ontario/n41.5_w081.0.ndjson.gz",
+      "bytes": 1156
+    },
+    {
+      "file": "data/venues/osm-ontario/n41.5_w081.5.ndjson.gz",
+      "bytes": 1126
+    },
+    {
+      "file": "data/venues/osm-ontario/n41.5_w082.0.ndjson.gz",
+      "bytes": 1023
+    },
+    {
+      "file": "data/venues/osm-ontario/n41.5_w083.0.ndjson.gz",
+      "bytes": 29587
+    },
+    {
+      "file": "data/venues/osm-ontario/n41.5_w083.5.ndjson.gz",
+      "bytes": 1797
+    },
+    {
+      "file": "data/venues/osm-ontario/n42.0_w080.0.ndjson.gz",
+      "bytes": 585
+    },
+    {
+      "file": "data/venues/osm-ontario/n42.0_w080.5.ndjson.gz",
+      "bytes": 1154
+    },
+    {
+      "file": "data/venues/osm-ontario/n42.0_w082.0.ndjson.gz",
+      "bytes": 46032
+    },
+    {
+      "file": "data/venues/osm-ontario/n42.0_w082.5.ndjson.gz",
+      "bytes": 173991
+    },
+    {
+      "file": "data/venues/osm-ontario/n42.0_w083.0.ndjson.gz",
+      "bytes": 390569
+    },
+    {
+      "file": "data/venues/osm-ontario/n42.0_w083.0.p02.ndjson.gz",
+      "bytes": 35036
+    },
+    {
+      "file": "data/venues/osm-ontario/n42.0_w083.5.ndjson.gz",
+      "bytes": 362916
+    },
+    {
+      "file": "data/venues/osm-ontario/n42.5_w079.0.ndjson.gz",
+      "bytes": 33176
+    },
+    {
+      "file": "data/venues/osm-ontario/n42.5_w079.5.ndjson.gz",
+      "bytes": 118959
+    },
+    {
+      "file": "data/venues/osm-ontario/n42.5_w080.0.ndjson.gz",
+      "bytes": 55120
+    },
+    {
+      "file": "data/venues/osm-ontario/n42.5_w080.5.ndjson.gz",
+      "bytes": 132385
+    },
+    {
+      "file": "data/venues/osm-ontario/n42.5_w081.0.ndjson.gz",
+      "bytes": 81892
+    },
+    {
+      "file": "data/venues/osm-ontario/n42.5_w081.5.ndjson.gz",
+      "bytes": 429060
+    },
+    {
+      "file": "data/venues/osm-ontario/n42.5_w081.5.p02.ndjson.gz",
+      "bytes": 146315
+    },
+    {
+      "file": "data/venues/osm-ontario/n42.5_w082.0.ndjson.gz",
+      "bytes": 83046
+    },
+    {
+      "file": "data/venues/osm-ontario/n42.5_w082.5.ndjson.gz",
+      "bytes": 198677
+    },
+    {
+      "file": "data/venues/osm-ontario/n42.5_w083.0.ndjson.gz",
+      "bytes": 13420
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.0_w077.0.ndjson.gz",
+      "bytes": 1610
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.0_w077.5.ndjson.gz",
+      "bytes": 514
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.0_w078.0.ndjson.gz",
+      "bytes": 513
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.0_w079.5.ndjson.gz",
+      "bytes": 437938
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.0_w079.5.p02.ndjson.gz",
+      "bytes": 367234
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.0_w079.5.p03.ndjson.gz",
+      "bytes": 46543
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.0_w080.0.ndjson.gz",
+      "bytes": 477581
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.0_w080.0.p02.ndjson.gz",
+      "bytes": 401707
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.0_w080.0.p03.ndjson.gz",
+      "bytes": 439577
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.0_w080.0.p04.ndjson.gz",
+      "bytes": 350896
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.0_w080.0.p05.ndjson.gz",
+      "bytes": 323132
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.0_w080.5.ndjson.gz",
+      "bytes": 458502
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.0_w080.5.p02.ndjson.gz",
+      "bytes": 403501
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.0_w080.5.p03.ndjson.gz",
+      "bytes": 322752
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.0_w080.5.p04.ndjson.gz",
+      "bytes": 7739
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.0_w081.0.ndjson.gz",
+      "bytes": 463040
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.0_w081.0.p02.ndjson.gz",
+      "bytes": 374015
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.0_w081.0.p03.ndjson.gz",
+      "bytes": 263203
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.0_w081.0.p04.ndjson.gz",
+      "bytes": 224809
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.0_w081.5.ndjson.gz",
+      "bytes": 304578
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.0_w082.0.ndjson.gz",
+      "bytes": 67473
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.0_w082.5.ndjson.gz",
+      "bytes": 33313
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.0_w083.0.ndjson.gz",
+      "bytes": 1073
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w076.5.ndjson.gz",
+      "bytes": 1215
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w077.0.ndjson.gz",
+      "bytes": 5399
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w077.5.ndjson.gz",
+      "bytes": 55921
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w078.0.ndjson.gz",
+      "bytes": 17871
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w078.5.ndjson.gz",
+      "bytes": 116709
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w079.0.ndjson.gz",
+      "bytes": 412241
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w079.0.p02.ndjson.gz",
+      "bytes": 350071
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w079.0.p03.ndjson.gz",
+      "bytes": 99178
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w079.5.ndjson.gz",
+      "bytes": 475300
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w079.5.p02.ndjson.gz",
+      "bytes": 487351
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w079.5.p03.ndjson.gz",
+      "bytes": 511536
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w079.5.p04.ndjson.gz",
+      "bytes": 480547
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w079.5.p05.ndjson.gz",
+      "bytes": 427000
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w079.5.p06.ndjson.gz",
+      "bytes": 417777
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w079.5.p07.ndjson.gz",
+      "bytes": 388287
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w079.5.p08.ndjson.gz",
+      "bytes": 418682
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w079.5.p09.ndjson.gz",
+      "bytes": 401340
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w079.5.p10.ndjson.gz",
+      "bytes": 391055
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w079.5.p11.ndjson.gz",
+      "bytes": 461093
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w079.5.p12.ndjson.gz",
+      "bytes": 429210
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w079.5.p13.ndjson.gz",
+      "bytes": 394272
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w079.5.p14.ndjson.gz",
+      "bytes": 341316
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w079.5.p15.ndjson.gz",
+      "bytes": 384028
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w079.5.p16.ndjson.gz",
+      "bytes": 322846
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w079.5.p17.ndjson.gz",
+      "bytes": 286797
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w079.5.p18.ndjson.gz",
+      "bytes": 277171
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w079.5.p19.ndjson.gz",
+      "bytes": 62936
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w080.0.ndjson.gz",
+      "bytes": 493547
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w080.0.p02.ndjson.gz",
+      "bytes": 493581
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w080.0.p03.ndjson.gz",
+      "bytes": 403706
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w080.0.p04.ndjson.gz",
+      "bytes": 372684
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w080.0.p05.ndjson.gz",
+      "bytes": 373012
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w080.0.p06.ndjson.gz",
+      "bytes": 347780
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w080.0.p07.ndjson.gz",
+      "bytes": 404626
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w080.0.p08.ndjson.gz",
+      "bytes": 440798
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w080.0.p09.ndjson.gz",
+      "bytes": 348797
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w080.0.p10.ndjson.gz",
+      "bytes": 327482
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w080.0.p11.ndjson.gz",
+      "bytes": 323317
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w080.0.p12.ndjson.gz",
+      "bytes": 278085
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w080.0.p13.ndjson.gz",
+      "bytes": 254304
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w080.0.p14.ndjson.gz",
+      "bytes": 284252
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w080.0.p15.ndjson.gz",
+      "bytes": 85926
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w080.5.ndjson.gz",
+      "bytes": 477363
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w080.5.p02.ndjson.gz",
+      "bytes": 322591
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w080.5.p03.ndjson.gz",
+      "bytes": 253772
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w080.5.p04.ndjson.gz",
+      "bytes": 256297
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w080.5.p05.ndjson.gz",
+      "bytes": 99342
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w081.0.ndjson.gz",
+      "bytes": 195235
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w081.5.ndjson.gz",
+      "bytes": 48533
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w082.0.ndjson.gz",
+      "bytes": 80742
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w083.0.ndjson.gz",
+      "bytes": 527
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w083.5.ndjson.gz",
+      "bytes": 1289
+    },
+    {
+      "file": "data/venues/osm-ontario/n43.5_w084.0.ndjson.gz",
+      "bytes": 1280
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.0_w076.0.ndjson.gz",
+      "bytes": 18814
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.0_w076.5.ndjson.gz",
+      "bytes": 285947
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.0_w077.0.ndjson.gz",
+      "bytes": 343489
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.0_w077.5.ndjson.gz",
+      "bytes": 195141
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.0_w078.0.ndjson.gz",
+      "bytes": 145749
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.0_w078.5.ndjson.gz",
+      "bytes": 276812
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.0_w079.0.ndjson.gz",
+      "bytes": 129306
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.0_w079.5.ndjson.gz",
+      "bytes": 421583
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.0_w080.0.ndjson.gz",
+      "bytes": 442504
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.0_w080.0.p02.ndjson.gz",
+      "bytes": 105752
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.0_w080.5.ndjson.gz",
+      "bytes": 127782
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.0_w081.0.ndjson.gz",
+      "bytes": 52538
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.0_w081.5.ndjson.gz",
+      "bytes": 121904
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.0_w082.0.ndjson.gz",
+      "bytes": 42654
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.0_w083.0.ndjson.gz",
+      "bytes": 2138
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.0_w083.5.ndjson.gz",
+      "bytes": 1622
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.0_w084.0.ndjson.gz",
+      "bytes": 1023
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.5_w075.0.ndjson.gz",
+      "bytes": 11701
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.5_w075.5.ndjson.gz",
+      "bytes": 54208
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.5_w076.0.ndjson.gz",
+      "bytes": 169991
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.5_w076.5.ndjson.gz",
+      "bytes": 158651
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.5_w077.0.ndjson.gz",
+      "bytes": 45654
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.5_w077.5.ndjson.gz",
+      "bytes": 53151
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.5_w078.0.ndjson.gz",
+      "bytes": 9151
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.5_w078.5.ndjson.gz",
+      "bytes": 47488
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.5_w079.0.ndjson.gz",
+      "bytes": 80727
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.5_w079.5.ndjson.gz",
+      "bytes": 126980
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.5_w080.0.ndjson.gz",
+      "bytes": 152302
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.5_w080.5.ndjson.gz",
+      "bytes": 96903
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.5_w081.0.ndjson.gz",
+      "bytes": 95501
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.5_w081.5.ndjson.gz",
+      "bytes": 57955
+    },
+    {
+      "file": "data/venues/osm-ontario/n44.5_w083.5.ndjson.gz",
+      "bytes": 558
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w074.5.ndjson.gz",
+      "bytes": 18325
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w075.0.ndjson.gz",
+      "bytes": 272706
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w075.5.ndjson.gz",
+      "bytes": 385732
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w076.0.ndjson.gz",
+      "bytes": 394073
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w076.0.p02.ndjson.gz",
+      "bytes": 376190
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w076.0.p03.ndjson.gz",
+      "bytes": 354221
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w076.0.p04.ndjson.gz",
+      "bytes": 306811
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w076.0.p05.ndjson.gz",
+      "bytes": 411123
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w076.0.p06.ndjson.gz",
+      "bytes": 453101
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w076.0.p07.ndjson.gz",
+      "bytes": 456288
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w076.0.p08.ndjson.gz",
+      "bytes": 384849
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w076.0.p09.ndjson.gz",
+      "bytes": 289893
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w076.0.p10.ndjson.gz",
+      "bytes": 168012
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w076.5.ndjson.gz",
+      "bytes": 207355
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w077.0.ndjson.gz",
+      "bytes": 55288
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w077.5.ndjson.gz",
+      "bytes": 14437
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w078.0.ndjson.gz",
+      "bytes": 51766
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w078.5.ndjson.gz",
+      "bytes": 33804
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w079.0.ndjson.gz",
+      "bytes": 68364
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w079.5.ndjson.gz",
+      "bytes": 96402
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w080.0.ndjson.gz",
+      "bytes": 45013
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w080.5.ndjson.gz",
+      "bytes": 61975
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w081.0.ndjson.gz",
+      "bytes": 552
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w081.5.ndjson.gz",
+      "bytes": 13839
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w082.0.ndjson.gz",
+      "bytes": 36399
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.0_w083.5.ndjson.gz",
+      "bytes": 2746
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.5_w074.5.ndjson.gz",
+      "bytes": 17271
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.5_w075.0.ndjson.gz",
+      "bytes": 105287
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.5_w075.5.ndjson.gz",
+      "bytes": 63213
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.5_w076.0.ndjson.gz",
+      "bytes": 526
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.5_w076.5.ndjson.gz",
+      "bytes": 4790
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.5_w077.0.ndjson.gz",
+      "bytes": 30097
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.5_w077.5.ndjson.gz",
+      "bytes": 108164
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.5_w078.0.ndjson.gz",
+      "bytes": 32582
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.5_w078.5.ndjson.gz",
+      "bytes": 44375
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.5_w079.0.ndjson.gz",
+      "bytes": 61318
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.5_w079.5.ndjson.gz",
+      "bytes": 40646
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.5_w080.0.ndjson.gz",
+      "bytes": 19070
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.5_w080.5.ndjson.gz",
+      "bytes": 14836
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.5_w081.0.ndjson.gz",
+      "bytes": 18958
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.5_w081.5.ndjson.gz",
+      "bytes": 2924
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.5_w082.0.ndjson.gz",
+      "bytes": 38336
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.5_w082.5.ndjson.gz",
+      "bytes": 39319
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.5_w083.0.ndjson.gz",
+      "bytes": 7031
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.5_w083.5.ndjson.gz",
+      "bytes": 4906
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.5_w084.0.ndjson.gz",
+      "bytes": 2618
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.5_w084.5.ndjson.gz",
+      "bytes": 1363
+    },
+    {
+      "file": "data/venues/osm-ontario/n45.5_w085.0.ndjson.gz",
+      "bytes": 1388
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.0_w075.5.ndjson.gz",
+      "bytes": 1107
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.0_w077.5.ndjson.gz",
+      "bytes": 21223
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.0_w078.0.ndjson.gz",
+      "bytes": 17586
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.0_w078.5.ndjson.gz",
+      "bytes": 12421
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.0_w079.0.ndjson.gz",
+      "bytes": 32255
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.0_w079.5.ndjson.gz",
+      "bytes": 108683
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.0_w080.0.ndjson.gz",
+      "bytes": 34992
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.0_w080.5.ndjson.gz",
+      "bytes": 24012
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.0_w081.0.ndjson.gz",
+      "bytes": 104596
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.0_w081.5.ndjson.gz",
+      "bytes": 91715
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.0_w082.0.ndjson.gz",
+      "bytes": 31376
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.0_w082.5.ndjson.gz",
+      "bytes": 16922
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.0_w083.0.ndjson.gz",
+      "bytes": 44032
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.0_w083.5.ndjson.gz",
+      "bytes": 11719
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.0_w084.0.ndjson.gz",
+      "bytes": 21746
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.0_w084.5.ndjson.gz",
+      "bytes": 14635
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.0_w085.0.ndjson.gz",
+      "bytes": 1902
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.0_w087.0.ndjson.gz",
+      "bytes": 511
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.5_w079.5.ndjson.gz",
+      "bytes": 11151
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.5_w080.0.ndjson.gz",
+      "bytes": 11646
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.5_w080.5.ndjson.gz",
+      "bytes": 9129
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.5_w081.0.ndjson.gz",
+      "bytes": 152200
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.5_w081.5.ndjson.gz",
+      "bytes": 55398
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.5_w082.0.ndjson.gz",
+      "bytes": 11728
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.5_w082.5.ndjson.gz",
+      "bytes": 1917
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.5_w083.0.ndjson.gz",
+      "bytes": 5256
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.5_w083.5.ndjson.gz",
+      "bytes": 3882
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.5_w084.0.ndjson.gz",
+      "bytes": 1403
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.5_w084.5.ndjson.gz",
+      "bytes": 96005
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.5_w085.0.ndjson.gz",
+      "bytes": 11135
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.5_w085.5.ndjson.gz",
+      "bytes": 555
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.5_w088.0.ndjson.gz",
+      "bytes": 1453
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.5_w088.5.ndjson.gz",
+      "bytes": 752
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.5_w090.0.ndjson.gz",
+      "bytes": 608
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.5_w090.5.ndjson.gz",
+      "bytes": 1022
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.5_w091.0.ndjson.gz",
+      "bytes": 5006
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.5_w091.5.ndjson.gz",
+      "bytes": 625
+    },
+    {
+      "file": "data/venues/osm-ontario/n46.5_w092.0.ndjson.gz",
+      "bytes": 1066
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.0_w079.5.ndjson.gz",
+      "bytes": 6556
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.0_w080.0.ndjson.gz",
+      "bytes": 38427
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.0_w080.5.ndjson.gz",
+      "bytes": 7706
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.0_w081.0.ndjson.gz",
+      "bytes": 2697
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.0_w082.0.ndjson.gz",
+      "bytes": 3024
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.0_w082.5.ndjson.gz",
+      "bytes": 3104
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.0_w083.0.ndjson.gz",
+      "bytes": 603
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.0_w083.5.ndjson.gz",
+      "bytes": 1051
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.0_w084.5.ndjson.gz",
+      "bytes": 2297
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.0_w085.0.ndjson.gz",
+      "bytes": 12730
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.0_w088.0.ndjson.gz",
+      "bytes": 596
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.0_w088.5.ndjson.gz",
+      "bytes": 1196
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.0_w091.5.ndjson.gz",
+      "bytes": 1108
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.0_w092.0.ndjson.gz",
+      "bytes": 1026
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.5_w080.0.ndjson.gz",
+      "bytes": 40676
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.5_w080.5.ndjson.gz",
+      "bytes": 9224
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.5_w081.0.ndjson.gz",
+      "bytes": 5689
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.5_w081.5.ndjson.gz",
+      "bytes": 2362
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.5_w082.0.ndjson.gz",
+      "bytes": 7361
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.5_w083.0.ndjson.gz",
+      "bytes": 1406
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.5_w083.5.ndjson.gz",
+      "bytes": 11357
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.5_w084.0.ndjson.gz",
+      "bytes": 2832
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.5_w084.5.ndjson.gz",
+      "bytes": 2097
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.5_w085.0.ndjson.gz",
+      "bytes": 42003
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.5_w085.5.ndjson.gz",
+      "bytes": 2600
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.5_w086.0.ndjson.gz",
+      "bytes": 1250
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.5_w090.0.ndjson.gz",
+      "bytes": 3194
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.5_w090.5.ndjson.gz",
+      "bytes": 599
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.5_w091.0.ndjson.gz",
+      "bytes": 1122
+    },
+    {
+      "file": "data/venues/osm-ontario/n47.5_w094.0.ndjson.gz",
+      "bytes": 1300
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w080.0.ndjson.gz",
+      "bytes": 13975
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w080.5.ndjson.gz",
+      "bytes": 22686
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w081.0.ndjson.gz",
+      "bytes": 512
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w081.5.ndjson.gz",
+      "bytes": 68089
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w082.0.ndjson.gz",
+      "bytes": 3477
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w082.5.ndjson.gz",
+      "bytes": 6805
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w083.0.ndjson.gz",
+      "bytes": 4897
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w083.5.ndjson.gz",
+      "bytes": 1553
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w084.0.ndjson.gz",
+      "bytes": 3860
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w084.5.ndjson.gz",
+      "bytes": 2653
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w085.0.ndjson.gz",
+      "bytes": 8891
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w085.5.ndjson.gz",
+      "bytes": 3752
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w086.0.ndjson.gz",
+      "bytes": 1129
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w086.5.ndjson.gz",
+      "bytes": 3354
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w088.5.ndjson.gz",
+      "bytes": 535
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w089.0.ndjson.gz",
+      "bytes": 12517
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w089.5.ndjson.gz",
+      "bytes": 305934
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w089.5.p02.ndjson.gz",
+      "bytes": 249084
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w089.5.p03.ndjson.gz",
+      "bytes": 109726
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w090.0.ndjson.gz",
+      "bytes": 19349
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w090.5.ndjson.gz",
+      "bytes": 9406
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w091.0.ndjson.gz",
+      "bytes": 10877
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w091.5.ndjson.gz",
+      "bytes": 4624
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w092.0.ndjson.gz",
+      "bytes": 5356
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w092.5.ndjson.gz",
+      "bytes": 8036
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w093.0.ndjson.gz",
+      "bytes": 1812
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.0_w094.0.ndjson.gz",
+      "bytes": 1181
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w078.5.ndjson.gz",
+      "bytes": 1185
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w080.0.ndjson.gz",
+      "bytes": 1171
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w080.5.ndjson.gz",
+      "bytes": 10738
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w081.0.ndjson.gz",
+      "bytes": 17918
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w081.5.ndjson.gz",
+      "bytes": 5251
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w082.0.ndjson.gz",
+      "bytes": 2160
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w082.5.ndjson.gz",
+      "bytes": 513
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w083.0.ndjson.gz",
+      "bytes": 714
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w083.5.ndjson.gz",
+      "bytes": 1258
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w085.5.ndjson.gz",
+      "bytes": 7726
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w086.0.ndjson.gz",
+      "bytes": 5318
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w086.5.ndjson.gz",
+      "bytes": 25243
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w087.0.ndjson.gz",
+      "bytes": 8344
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w087.5.ndjson.gz",
+      "bytes": 17818
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w088.0.ndjson.gz",
+      "bytes": 4154
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w088.5.ndjson.gz",
+      "bytes": 9770
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w089.0.ndjson.gz",
+      "bytes": 11654
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w089.5.ndjson.gz",
+      "bytes": 8582
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w090.0.ndjson.gz",
+      "bytes": 6774
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w090.5.ndjson.gz",
+      "bytes": 5345
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w091.0.ndjson.gz",
+      "bytes": 2241
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w091.5.ndjson.gz",
+      "bytes": 7566
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w092.0.ndjson.gz",
+      "bytes": 11728
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w092.5.ndjson.gz",
+      "bytes": 4241
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w093.0.ndjson.gz",
+      "bytes": 4039
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w093.5.ndjson.gz",
+      "bytes": 27453
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w094.0.ndjson.gz",
+      "bytes": 15687
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w094.5.ndjson.gz",
+      "bytes": 7319
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w095.0.ndjson.gz",
+      "bytes": 9180
+    },
+    {
+      "file": "data/venues/osm-ontario/n48.5_w095.5.ndjson.gz",
+      "bytes": 1092
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w080.5.ndjson.gz",
+      "bytes": 513
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w081.0.ndjson.gz",
+      "bytes": 709
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w081.5.ndjson.gz",
+      "bytes": 28308
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w082.0.ndjson.gz",
+      "bytes": 8619
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w082.5.ndjson.gz",
+      "bytes": 26128
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w083.0.ndjson.gz",
+      "bytes": 3245
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w083.5.ndjson.gz",
+      "bytes": 1746
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w085.0.ndjson.gz",
+      "bytes": 7994
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w086.0.ndjson.gz",
+      "bytes": 5060
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w088.5.ndjson.gz",
+      "bytes": 15459
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w089.0.ndjson.gz",
+      "bytes": 512
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w089.5.ndjson.gz",
+      "bytes": 515
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w090.0.ndjson.gz",
+      "bytes": 533
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w090.5.ndjson.gz",
+      "bytes": 4947
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w091.0.ndjson.gz",
+      "bytes": 2609
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w091.5.ndjson.gz",
+      "bytes": 1544
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w092.0.ndjson.gz",
+      "bytes": 14956
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w092.5.ndjson.gz",
+      "bytes": 563
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w093.0.ndjson.gz",
+      "bytes": 678
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w093.5.ndjson.gz",
+      "bytes": 1157
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w094.0.ndjson.gz",
+      "bytes": 10139
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w094.5.ndjson.gz",
+      "bytes": 13059
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w095.0.ndjson.gz",
+      "bytes": 2794
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.0_w095.5.ndjson.gz",
+      "bytes": 1680
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w080.5.ndjson.gz",
+      "bytes": 1047
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w081.0.ndjson.gz",
+      "bytes": 622
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w081.5.ndjson.gz",
+      "bytes": 805
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w082.0.ndjson.gz",
+      "bytes": 547
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w083.0.ndjson.gz",
+      "bytes": 3928
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w083.5.ndjson.gz",
+      "bytes": 6047
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w084.0.ndjson.gz",
+      "bytes": 21728
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w084.5.ndjson.gz",
+      "bytes": 4339
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w085.0.ndjson.gz",
+      "bytes": 1768
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w085.5.ndjson.gz",
+      "bytes": 515
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w086.0.ndjson.gz",
+      "bytes": 2211
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w086.5.ndjson.gz",
+      "bytes": 2956
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w087.0.ndjson.gz",
+      "bytes": 20738
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w087.5.ndjson.gz",
+      "bytes": 2791
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w088.0.ndjson.gz",
+      "bytes": 6691
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w088.5.ndjson.gz",
+      "bytes": 2640
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w089.5.ndjson.gz",
+      "bytes": 2200
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w090.0.ndjson.gz",
+      "bytes": 560
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w090.5.ndjson.gz",
+      "bytes": 1262
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w091.0.ndjson.gz",
+      "bytes": 569
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w091.5.ndjson.gz",
+      "bytes": 4370
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w092.0.ndjson.gz",
+      "bytes": 1184
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w092.5.ndjson.gz",
+      "bytes": 5050
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w093.0.ndjson.gz",
+      "bytes": 31340
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w093.5.ndjson.gz",
+      "bytes": 11569
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w094.0.ndjson.gz",
+      "bytes": 4977
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w094.5.ndjson.gz",
+      "bytes": 31523
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w095.0.ndjson.gz",
+      "bytes": 18077
+    },
+    {
+      "file": "data/venues/osm-ontario/n49.5_w095.5.ndjson.gz",
+      "bytes": 2723
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.0_w080.5.ndjson.gz",
+      "bytes": 620
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.0_w083.0.ndjson.gz",
+      "bytes": 1025
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.0_w083.5.ndjson.gz",
+      "bytes": 817
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.0_w084.5.ndjson.gz",
+      "bytes": 514
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.0_w087.0.ndjson.gz",
+      "bytes": 6111
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.0_w087.5.ndjson.gz",
+      "bytes": 715
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.0_w089.5.ndjson.gz",
+      "bytes": 5442
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.0_w090.0.ndjson.gz",
+      "bytes": 514
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.0_w090.5.ndjson.gz",
+      "bytes": 1651
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.0_w091.0.ndjson.gz",
+      "bytes": 1784
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.0_w091.5.ndjson.gz",
+      "bytes": 748
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.0_w092.0.ndjson.gz",
+      "bytes": 14655
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.0_w092.5.ndjson.gz",
+      "bytes": 3670
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.0_w093.0.ndjson.gz",
+      "bytes": 746
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.0_w093.5.ndjson.gz",
+      "bytes": 3634
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.0_w094.5.ndjson.gz",
+      "bytes": 1952
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.0_w095.0.ndjson.gz",
+      "bytes": 3963
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.0_w095.5.ndjson.gz",
+      "bytes": 1366
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.5_w080.5.ndjson.gz",
+      "bytes": 540
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.5_w081.5.ndjson.gz",
+      "bytes": 514
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.5_w082.5.ndjson.gz",
+      "bytes": 587
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.5_w090.5.ndjson.gz",
+      "bytes": 568
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.5_w093.0.ndjson.gz",
+      "bytes": 606
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.5_w093.5.ndjson.gz",
+      "bytes": 8977
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.5_w094.0.ndjson.gz",
+      "bytes": 1297
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.5_w094.5.ndjson.gz",
+      "bytes": 1405
+    },
+    {
+      "file": "data/venues/osm-ontario/n50.5_w095.0.ndjson.gz",
+      "bytes": 1238
+    },
+    {
+      "file": "data/venues/osm-ontario/n51.0_w080.0.ndjson.gz",
+      "bytes": 616
+    },
+    {
+      "file": "data/venues/osm-ontario/n51.0_w081.0.ndjson.gz",
+      "bytes": 13945
+    },
+    {
+      "file": "data/venues/osm-ontario/n51.0_w087.0.ndjson.gz",
+      "bytes": 628
+    },
+    {
+      "file": "data/venues/osm-ontario/n51.0_w089.5.ndjson.gz",
+      "bytes": 589
+    },
+    {
+      "file": "data/venues/osm-ontario/n51.0_w090.5.ndjson.gz",
+      "bytes": 5806
+    },
+    {
+      "file": "data/venues/osm-ontario/n51.0_w092.0.ndjson.gz",
+      "bytes": 1831
+    },
+    {
+      "file": "data/venues/osm-ontario/n51.0_w092.5.ndjson.gz",
+      "bytes": 693
+    },
+    {
+      "file": "data/venues/osm-ontario/n51.0_w093.0.ndjson.gz",
+      "bytes": 826
+    },
+    {
+      "file": "data/venues/osm-ontario/n51.0_w094.0.ndjson.gz",
+      "bytes": 27376
+    },
+    {
+      "file": "data/venues/osm-ontario/n51.0_w094.5.ndjson.gz",
+      "bytes": 555
+    },
+    {
+      "file": "data/venues/osm-ontario/n51.5_w086.0.ndjson.gz",
+      "bytes": 518
+    },
+    {
+      "file": "data/venues/osm-ontario/n51.5_w086.5.ndjson.gz",
+      "bytes": 737
+    },
+    {
+      "file": "data/venues/osm-ontario/n51.5_w087.0.ndjson.gz",
+      "bytes": 729
+    },
+    {
+      "file": "data/venues/osm-ontario/n51.5_w088.0.ndjson.gz",
+      "bytes": 1776
+    },
+    {
+      "file": "data/venues/osm-ontario/n51.5_w092.0.ndjson.gz",
+      "bytes": 606
+    },
+    {
+      "file": "data/venues/osm-ontario/n51.5_w094.0.ndjson.gz",
+      "bytes": 3152
+    },
+    {
+      "file": "data/venues/osm-ontario/n51.5_w094.5.ndjson.gz",
+      "bytes": 1080
+    },
+    {
+      "file": "data/venues/osm-ontario/n52.0_w082.0.ndjson.gz",
+      "bytes": 4309
+    },
+    {
+      "file": "data/venues/osm-ontario/n52.0_w082.5.ndjson.gz",
+      "bytes": 521
+    },
+    {
+      "file": "data/venues/osm-ontario/n52.0_w085.5.ndjson.gz",
+      "bytes": 520
+    },
+    {
+      "file": "data/venues/osm-ontario/n52.0_w086.5.ndjson.gz",
+      "bytes": 521
+    },
+    {
+      "file": "data/venues/osm-ontario/n52.0_w088.0.ndjson.gz",
+      "bytes": 1827
+    },
+    {
+      "file": "data/venues/osm-ontario/n52.0_w088.5.ndjson.gz",
+      "bytes": 518
+    },
+    {
+      "file": "data/venues/osm-ontario/n52.0_w094.5.ndjson.gz",
+      "bytes": 1876
+    },
+    {
+      "file": "data/venues/osm-ontario/n52.5_w082.5.ndjson.gz",
+      "bytes": 3461
+    },
+    {
+      "file": "data/venues/osm-ontario/n52.5_w087.5.ndjson.gz",
+      "bytes": 627
+    },
+    {
+      "file": "data/venues/osm-ontario/n52.5_w089.5.ndjson.gz",
+      "bytes": 1043
+    },
+    {
+      "file": "data/venues/osm-ontario/n52.5_w091.0.ndjson.gz",
+      "bytes": 559
+    },
+    {
+      "file": "data/venues/osm-ontario/n52.5_w091.5.ndjson.gz",
+      "bytes": 4661
+    },
+    {
+      "file": "data/venues/osm-ontario/n52.5_w093.0.ndjson.gz",
+      "bytes": 521
+    },
+    {
+      "file": "data/venues/osm-ontario/n52.5_w093.5.ndjson.gz",
+      "bytes": 551
+    },
+    {
+      "file": "data/venues/osm-ontario/n52.5_w094.5.ndjson.gz",
+      "bytes": 954
+    },
+    {
+      "file": "data/venues/osm-ontario/n53.0_w087.0.ndjson.gz",
+      "bytes": 635
+    },
+    {
+      "file": "data/venues/osm-ontario/n53.0_w090.0.ndjson.gz",
+      "bytes": 645
+    },
+    {
+      "file": "data/venues/osm-ontario/n53.0_w093.0.ndjson.gz",
+      "bytes": 520
+    },
+    {
+      "file": "data/venues/osm-ontario/n53.0_w093.5.ndjson.gz",
+      "bytes": 3405
+    },
+    {
+      "file": "data/venues/osm-ontario/n53.0_w094.5.ndjson.gz",
+      "bytes": 513
+    },
+    {
+      "file": "data/venues/osm-ontario/n53.5_w089.0.ndjson.gz",
+      "bytes": 1585
+    },
+    {
+      "file": "data/venues/osm-ontario/n53.5_w090.0.ndjson.gz",
+      "bytes": 7468
+    },
+    {
+      "file": "data/venues/osm-ontario/n53.5_w092.5.ndjson.gz",
+      "bytes": 892
+    },
+    {
+      "file": "data/venues/osm-ontario/n53.5_w093.0.ndjson.gz",
+      "bytes": 580
+    },
+    {
+      "file": "data/venues/osm-ontario/n53.5_w093.5.ndjson.gz",
+      "bytes": 1234
+    },
+    {
+      "file": "data/venues/osm-ontario/n53.5_w094.0.ndjson.gz",
+      "bytes": 696
+    },
+    {
+      "file": "data/venues/osm-ontario/n54.5_w085.5.ndjson.gz",
+      "bytes": 512
+    },
+    {
+      "file": "data/venues/osm-ontario/n55.0_w085.5.ndjson.gz",
+      "bytes": 2766
+    },
+    {
+      "file": "data/venues/osm-ontario/n55.5_w088.0.ndjson.gz",
+      "bytes": 1033
+    },
+    {
+      "file": "data/venues/sudbury-fieldhouses/n46.0_w081.0.ndjson.gz",
+      "bytes": 1524
+    },
+    {
+      "file": "data/venues/sudbury-fieldhouses/n46.0_w081.5.ndjson.gz",
+      "bytes": 2067
+    },
+    {
+      "file": "data/venues/sudbury-fieldhouses/n46.5_w081.0.ndjson.gz",
+      "bytes": 2814
+    },
+    {
+      "file": "data/venues/sudbury-fieldhouses/n46.5_w081.5.ndjson.gz",
+      "bytes": 1698
+    },
+    {
+      "file": "data/washrooms/kingston-accessible-features/n44.0_w076.5.ndjson.gz",
+      "bytes": 2757
+    },
+    {
+      "file": "data/washrooms/kingston-accessible-features/n44.0_w077.0.ndjson.gz",
+      "bytes": 1383
+    },
+    {
+      "file": "data/washrooms/kingston-public-washrooms/n44.0_w076.5.ndjson.gz",
+      "bytes": 3505
+    },
+    {
+      "file": "data/washrooms/kingston-public-washrooms/n44.0_w077.0.ndjson.gz",
+      "bytes": 2528
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n41.5_w083.0.ndjson.gz",
+      "bytes": 3072
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n42.0_w082.0.ndjson.gz",
+      "bytes": 3320
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n42.0_w082.5.ndjson.gz",
+      "bytes": 6221
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n42.0_w083.0.ndjson.gz",
+      "bytes": 7811
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n42.0_w083.5.ndjson.gz",
+      "bytes": 5751
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n42.5_w079.0.ndjson.gz",
+      "bytes": 1648
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n42.5_w079.5.ndjson.gz",
+      "bytes": 5090
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n42.5_w080.0.ndjson.gz",
+      "bytes": 4041
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n42.5_w080.5.ndjson.gz",
+      "bytes": 6057
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n42.5_w081.0.ndjson.gz",
+      "bytes": 2167
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n42.5_w081.5.ndjson.gz",
+      "bytes": 13089
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n42.5_w082.0.ndjson.gz",
+      "bytes": 2188
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n42.5_w082.5.ndjson.gz",
+      "bytes": 3842
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n42.5_w083.0.ndjson.gz",
+      "bytes": 1001
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n43.0_w079.5.ndjson.gz",
+      "bytes": 21380
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n43.0_w080.0.ndjson.gz",
+      "bytes": 26204
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n43.0_w080.5.ndjson.gz",
+      "bytes": 16537
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n43.0_w081.0.ndjson.gz",
+      "bytes": 16043
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n43.0_w081.5.ndjson.gz",
+      "bytes": 7873
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n43.0_w082.0.ndjson.gz",
+      "bytes": 6851
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n43.0_w082.5.ndjson.gz",
+      "bytes": 1410
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n43.5_w077.0.ndjson.gz",
+      "bytes": 487
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n43.5_w077.5.ndjson.gz",
+      "bytes": 7156
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n43.5_w078.0.ndjson.gz",
+      "bytes": 3662
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n43.5_w078.5.ndjson.gz",
+      "bytes": 4685
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n43.5_w079.0.ndjson.gz",
+      "bytes": 14315
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n43.5_w079.5.ndjson.gz",
+      "bytes": 88488
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n43.5_w080.0.ndjson.gz",
+      "bytes": 40063
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n43.5_w080.5.ndjson.gz",
+      "bytes": 19800
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n43.5_w081.0.ndjson.gz",
+      "bytes": 5081
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n43.5_w081.5.ndjson.gz",
+      "bytes": 2155
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n43.5_w082.0.ndjson.gz",
+      "bytes": 2970
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.0_w076.0.ndjson.gz",
+      "bytes": 2165
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.0_w076.5.ndjson.gz",
+      "bytes": 9286
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.0_w077.0.ndjson.gz",
+      "bytes": 5480
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.0_w077.5.ndjson.gz",
+      "bytes": 5239
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.0_w078.0.ndjson.gz",
+      "bytes": 6601
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.0_w078.5.ndjson.gz",
+      "bytes": 7334
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.0_w079.0.ndjson.gz",
+      "bytes": 5347
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.0_w079.5.ndjson.gz",
+      "bytes": 6745
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.0_w080.0.ndjson.gz",
+      "bytes": 12712
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.0_w080.5.ndjson.gz",
+      "bytes": 6732
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.0_w081.0.ndjson.gz",
+      "bytes": 2358
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.0_w081.5.ndjson.gz",
+      "bytes": 6910
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.0_w082.0.ndjson.gz",
+      "bytes": 2955
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.5_w075.0.ndjson.gz",
+      "bytes": 1690
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.5_w075.5.ndjson.gz",
+      "bytes": 4936
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.5_w076.0.ndjson.gz",
+      "bytes": 6049
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.5_w076.5.ndjson.gz",
+      "bytes": 10147
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.5_w077.0.ndjson.gz",
+      "bytes": 6828
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.5_w077.5.ndjson.gz",
+      "bytes": 3850
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.5_w078.0.ndjson.gz",
+      "bytes": 514
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.5_w078.5.ndjson.gz",
+      "bytes": 4896
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.5_w079.0.ndjson.gz",
+      "bytes": 6898
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.5_w079.5.ndjson.gz",
+      "bytes": 6786
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.5_w080.0.ndjson.gz",
+      "bytes": 5520
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.5_w080.5.ndjson.gz",
+      "bytes": 7690
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.5_w081.0.ndjson.gz",
+      "bytes": 5806
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n44.5_w081.5.ndjson.gz",
+      "bytes": 7649
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.0_w074.5.ndjson.gz",
+      "bytes": 495
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.0_w075.0.ndjson.gz",
+      "bytes": 3860
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.0_w075.5.ndjson.gz",
+      "bytes": 12575
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.0_w076.0.ndjson.gz",
+      "bytes": 44385
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.0_w076.5.ndjson.gz",
+      "bytes": 11677
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.0_w077.0.ndjson.gz",
+      "bytes": 3517
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.0_w077.5.ndjson.gz",
+      "bytes": 2227
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.0_w078.0.ndjson.gz",
+      "bytes": 2465
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.0_w078.5.ndjson.gz",
+      "bytes": 3801
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.0_w079.0.ndjson.gz",
+      "bytes": 4885
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.0_w079.5.ndjson.gz",
+      "bytes": 6229
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.0_w080.0.ndjson.gz",
+      "bytes": 2916
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.0_w080.5.ndjson.gz",
+      "bytes": 6091
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.0_w081.5.ndjson.gz",
+      "bytes": 2712
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.0_w082.0.ndjson.gz",
+      "bytes": 6021
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.5_w074.5.ndjson.gz",
+      "bytes": 1692
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.5_w075.0.ndjson.gz",
+      "bytes": 1737
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.5_w075.5.ndjson.gz",
+      "bytes": 3314
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.5_w076.5.ndjson.gz",
+      "bytes": 575
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.5_w077.0.ndjson.gz",
+      "bytes": 1044
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.5_w077.5.ndjson.gz",
+      "bytes": 4499
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.5_w078.0.ndjson.gz",
+      "bytes": 5346
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.5_w078.5.ndjson.gz",
+      "bytes": 6814
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.5_w079.0.ndjson.gz",
+      "bytes": 5783
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.5_w079.5.ndjson.gz",
+      "bytes": 2292
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.5_w080.0.ndjson.gz",
+      "bytes": 1915
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.5_w080.5.ndjson.gz",
+      "bytes": 1663
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.5_w081.0.ndjson.gz",
+      "bytes": 3052
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.5_w081.5.ndjson.gz",
+      "bytes": 512
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.5_w082.0.ndjson.gz",
+      "bytes": 3733
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.5_w082.5.ndjson.gz",
+      "bytes": 1244
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.5_w083.0.ndjson.gz",
+      "bytes": 1549
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n45.5_w083.5.ndjson.gz",
+      "bytes": 487
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n46.0_w078.0.ndjson.gz",
+      "bytes": 2001
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n46.0_w078.5.ndjson.gz",
+      "bytes": 1230
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n46.0_w079.0.ndjson.gz",
+      "bytes": 4716
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n46.0_w079.5.ndjson.gz",
+      "bytes": 4791
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n46.0_w080.0.ndjson.gz",
+      "bytes": 1777
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n46.0_w081.0.ndjson.gz",
+      "bytes": 2820
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n46.0_w081.5.ndjson.gz",
+      "bytes": 5002
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n46.0_w082.0.ndjson.gz",
+      "bytes": 1532
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n46.0_w082.5.ndjson.gz",
+      "bytes": 892
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n46.0_w083.0.ndjson.gz",
+      "bytes": 2186
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n46.5_w079.5.ndjson.gz",
+      "bytes": 485
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n46.5_w080.0.ndjson.gz",
+      "bytes": 1559
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n46.5_w081.0.ndjson.gz",
+      "bytes": 1533
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n46.5_w081.5.ndjson.gz",
+      "bytes": 2409
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n46.5_w082.0.ndjson.gz",
+      "bytes": 2112
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n46.5_w084.5.ndjson.gz",
+      "bytes": 5512
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n46.5_w085.0.ndjson.gz",
+      "bytes": 1954
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n47.0_w080.0.ndjson.gz",
+      "bytes": 2921
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n47.0_w085.0.ndjson.gz",
+      "bytes": 1707
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n47.5_w080.0.ndjson.gz",
+      "bytes": 1866
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n47.5_w081.0.ndjson.gz",
+      "bytes": 571
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n47.5_w085.0.ndjson.gz",
+      "bytes": 3807
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n47.5_w085.5.ndjson.gz",
+      "bytes": 1596
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n47.5_w086.0.ndjson.gz",
+      "bytes": 1151
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.0_w080.0.ndjson.gz",
+      "bytes": 1031
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.0_w081.5.ndjson.gz",
+      "bytes": 486
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.0_w082.0.ndjson.gz",
+      "bytes": 1142
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.0_w082.5.ndjson.gz",
+      "bytes": 487
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.0_w083.0.ndjson.gz",
+      "bytes": 658
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.0_w084.0.ndjson.gz",
+      "bytes": 658
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.0_w086.5.ndjson.gz",
+      "bytes": 675
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.0_w089.0.ndjson.gz",
+      "bytes": 2872
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.0_w089.5.ndjson.gz",
+      "bytes": 5292
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.0_w090.0.ndjson.gz",
+      "bytes": 2159
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.0_w090.5.ndjson.gz",
+      "bytes": 4541
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.0_w091.0.ndjson.gz",
+      "bytes": 5065
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.0_w091.5.ndjson.gz",
+      "bytes": 2938
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.0_w092.0.ndjson.gz",
+      "bytes": 4568
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.0_w092.5.ndjson.gz",
+      "bytes": 1603
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.5_w081.0.ndjson.gz",
+      "bytes": 2120
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.5_w085.5.ndjson.gz",
+      "bytes": 984
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.5_w086.0.ndjson.gz",
+      "bytes": 1428
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.5_w086.5.ndjson.gz",
+      "bytes": 2837
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.5_w087.0.ndjson.gz",
+      "bytes": 1763
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.5_w087.5.ndjson.gz",
+      "bytes": 2837
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.5_w088.0.ndjson.gz",
+      "bytes": 493
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.5_w089.0.ndjson.gz",
+      "bytes": 1585
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.5_w090.0.ndjson.gz",
+      "bytes": 746
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.5_w090.5.ndjson.gz",
+      "bytes": 988
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.5_w091.0.ndjson.gz",
+      "bytes": 972
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.5_w091.5.ndjson.gz",
+      "bytes": 1482
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.5_w093.5.ndjson.gz",
+      "bytes": 511
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.5_w094.0.ndjson.gz",
+      "bytes": 500
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.5_w094.5.ndjson.gz",
+      "bytes": 523
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n48.5_w095.0.ndjson.gz",
+      "bytes": 523
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n49.0_w081.5.ndjson.gz",
+      "bytes": 3698
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n49.0_w082.5.ndjson.gz",
+      "bytes": 1352
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n49.0_w085.0.ndjson.gz",
+      "bytes": 748
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n49.0_w086.0.ndjson.gz",
+      "bytes": 524
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n49.0_w088.5.ndjson.gz",
+      "bytes": 1671
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n49.0_w091.5.ndjson.gz",
+      "bytes": 1002
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n49.0_w092.0.ndjson.gz",
+      "bytes": 1291
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n49.0_w094.0.ndjson.gz",
+      "bytes": 1108
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n49.0_w094.5.ndjson.gz",
+      "bytes": 487
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n49.5_w083.0.ndjson.gz",
+      "bytes": 503
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n49.5_w083.5.ndjson.gz",
+      "bytes": 487
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n49.5_w084.0.ndjson.gz",
+      "bytes": 1786
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n49.5_w085.0.ndjson.gz",
+      "bytes": 498
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n49.5_w086.0.ndjson.gz",
+      "bytes": 1121
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n49.5_w087.0.ndjson.gz",
+      "bytes": 502
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n49.5_w088.0.ndjson.gz",
+      "bytes": 488
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n49.5_w092.0.ndjson.gz",
+      "bytes": 487
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n49.5_w092.5.ndjson.gz",
+      "bytes": 1927
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n49.5_w093.0.ndjson.gz",
+      "bytes": 755
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n49.5_w093.5.ndjson.gz",
+      "bytes": 1673
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n49.5_w094.5.ndjson.gz",
+      "bytes": 3875
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n49.5_w095.0.ndjson.gz",
+      "bytes": 494
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n50.5_w093.5.ndjson.gz",
+      "bytes": 800
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n51.0_w094.0.ndjson.gz",
+      "bytes": 557
+    },
+    {
+      "file": "data/washrooms/osm-ontario/n52.5_w091.5.ndjson.gz",
+      "bytes": 1144
+    },
+    {
+      "file": "data/washrooms/toronto-crem-washrooms/n43.5_w079.5.ndjson.gz",
+      "bytes": 6249
+    },
+    {
+      "file": "data/washrooms/toronto-crem-washrooms/n43.5_w080.0.ndjson.gz",
+      "bytes": 1538
+    },
+    {
+      "file": "data/washrooms/toronto-park-washrooms/n43.5_w079.5.ndjson.gz",
+      "bytes": 34756
+    },
+    {
+      "file": "data/washrooms/toronto-park-washrooms/n43.5_w080.0.ndjson.gz",
+      "bytes": 9520
+    },
+    {
+      "file": "data/washrooms/toronto-street-washrooms/n43.5_w079.5.ndjson.gz",
+      "bytes": 798
+    }
+  ]
+}

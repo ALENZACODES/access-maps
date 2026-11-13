@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://access-maps.local/schema/service-alert.schema.json",
+  "title": "ServiceAlert",
+  "description": "One operator-published GTFS-RT service alert. Tier 4 is a live status snapshot, not an App measurement. header_text is copied. equipment is elevator or escalator only when that word is in the header.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "source_id",
+    "licence",
+    "retrieved_at",
+    "tier",
+    "feed_timestamp",
+    "entity_id",
+    "effect",
+    "equipment",
+    "header_text",
+    "header_language",
+    "stop_ids",
+    "route_ids",
+    "active_periods",
+    "cause"
+  ],
+  "properties": {
+    "id": { "type": "string", "minLength": 1 },
+    "source_id": { "type": "string", "minLength": 1 },
+    "licence": { "type": "string", "minLength": 1 },
+    "retrieved_at": { "type": "string", "format": "date" },
+    "tier": { "const": 4 },
+    "feed_timestamp": { "type": "integer", "minimum": 0 },
+    "entity_id": { "type": "string", "minLength": 1 },
+    "effect": { "type": "string", "minLength": 1 },
+    "equipment": {
+      "enum": ["elevator", "escalator", "elevator_and_escalator", "UNKNOWN"]
+    },
+    "header_text": { "type": "string", "minLength": 1 },
+    "header_language": { "type": "string", "minLength": 1 },
+    "stop_ids": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "route_ids": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "active_periods": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "start": { "type": "integer", "minimum": 0 },
+          "end": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "cause": { "type": "string", "minLength": 1 }
+  }
+}
