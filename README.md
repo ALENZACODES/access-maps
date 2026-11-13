@@ -35,11 +35,11 @@ OSM `amenity=doctors` and `amenity=dentist`, and individual healthcare practitio
 
 A piece is one field on one record whose value is not `UNKNOWN` and whose `derived` flag is not true. `UNKNOWN` values are gaps. Photos, reviews, and tags are not pieces. A fact stored on a washroom record is not also stored on the venue.
 
-The 500,000 figure in the master plan is an illustration: 5,000 venues × 50 fields, 10,000 path segments × 10 fields, 5,000 transit stops × 10 fields, and 5,000 washrooms × 20 fields. This import reports the honest populated-field total in [COUNTS.md](COUNTS.md) and `counts.json`, with tier and retrieval-date breakdowns. It does not add filler to reach that illustration.
+Section 5.6 counts only tier 2 and tier 3 values toward 500,000. This import's verified total is 0, so the shortfall is the full illustrative target in every tranche. The 2026-11-13 files contain 1,192,420 tier 0 or tier 1 accessibility-fact values and 5,765,634 other populated values. [COUNTS.md](COUNTS.md) has the tier split, the retrieval date, and the UNKNOWN gaps.
 
-[COUNTS.md](COUNTS.md) splits pieces into accessibility facts and identity or geometry. An accessibility fact is a populated field such as wheelchair, step count, ramp, door width, kerb, surface, incline, elevator, or changing table. `toilets:wheelchair` is stored on the washroom `wheelchair` field. A name, category, address, coordinate, hour, or linestring is not an accessibility fact. The two groups add up to the piece total.
+[COUNTS.md](COUNTS.md) also lists accessibility facts separately from names, addresses, and geometry. `toilets:wheelchair` is stored on the washroom `wheelchair` field. Tier 4 alert rows are not pieces.
 
-The 2026-11-13 import's current totals, including the Kingston, Brampton, Sudbury, and Ministry of Transportation picnic-park records, are in [COUNTS.md](COUNTS.md). Venue, path, and transit pieces are above the illustrative examples because Ontario has far more than 5,000–10,000 real features and their identity, location, and geometry fields are populated. The washroom tranche remains under the illustrative 100,000 because most washroom fields are untagged. Tier 0 accounts for the OSM and municipal pieces. Tier 1 accounts for the static GTFS pieces. Tier 4 alert rows are not pieces.
+OSM data is ODbL share-alike and stays in `data/*/osm-ontario/`. Other sources stay in their own directories. Code licence: [LICENSE](LICENSE). Data licences: [DATA-LICENCE.md](DATA-LICENCE.md). Schema tier ids follow `@access-main/schema` on `cursor/schema-package-61db`; see [schema/SOURCE.md](schema/SOURCE.md).
 
 ## Layout
 

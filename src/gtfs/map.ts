@@ -32,18 +32,104 @@ export function mapLocationType(raw: string | undefined, ctx: Provenance): Field
   return fv(token, ctx, { source_key: "location_type", raw: token });
 }
 
+export interface WheelchairStop {
+  wheelchair_boarding: string;
+  location_type: string;
+  parent_station: string;
+}
+
+/**
+ * GTFS wheelchair_boarding depends on location_type and parent_station.
+ * Parentless stops and stations: 0 or empty is no information.
+ * Child stops and boarding areas: 0 or empty inherits the parent; 1 and 2 describe the path from the station.
+ * Entrances (location_type 2): 0 or empty inherits the parent; 1 and 2 describe the entrance, not vehicle boarding.
+ * An inherited value is marked derived so it is not counted again as the parent's fact.
+ */
+/** Parentless stop: 0 or empty stays UNKNOWN. Child stops and entrances use resolveWheelchairBoarding. */
 export function mapWheelchairBoarding(raw: string | undefined, ctx: Provenance): FieldValue {
-  const token = (raw ?? "").trim();
-  if (token === "" || token === "0") {
-    return unknownField(ctx, { source_key: "wheelchair_boarding", raw: token });
+  return resolveWheelchairBoarding(
+    "stop",
+    new Map([["stop", { wheelchair_boarding: raw ?? "", location_type: "", parent_station: "" }]]),
+    ctx,
+  );
+}
+
+export function resolveWheelchairBoarding(
+  stopId: string,
+  stops: ReadonlyMap<string, WheelchairStop>,
+  ctx: Provenance,
+): FieldValue {
+  return walkWheelchair(stopId, stops, ctx, new Set(), false, "");
+}
+
+function walkWheelchair(
+  stopId: string,
+  stops: ReadonlyMap<string, WheelchairStop>,
+  ctx: Provenance,
+  seen: Set<string>,
+  inherited: boolean,
+  childRaw: string,
+): FieldValue {
+  if (seen.has(stopId) || seen.size > 6) {
+    return unknownField(ctx, { source_key: "wheelchair_boarding", raw: childRaw });
   }
-  if (token === "1") {
-    return fv("some_vehicles_accessible", ctx, { source_key: "wheelchair_boarding", raw: token });
+  const row = stops.get(stopId);
+  if (!row) return unknownField(ctx, { source_key: "wheelchair_boarding", raw: childRaw });
+  seen.add(stopId);
+  const code = row.wheelchair_boarding.trim();
+  const parent = row.parent_station.trim();
+  const role = wheelchairRole(row.location_type, parent !== "");
+  const noInformation = code === "" || code === "0";
+  if (noInformation && (role === "child_stop" || role === "entrance") && parent) {
+    return walkWheelchair(parent, stops, ctx, seen, true, inherited ? childRaw : code);
   }
-  if (token === "2") {
-    return fv("boarding_not_possible", ctx, { source_key: "wheelchair_boarding", raw: token });
+  const own = mapOwnWheelchair(role, code, ctx);
+  if (!inherited) return own;
+  if (own.value === "UNKNOWN") return unknownField(ctx, { source_key: "wheelchair_boarding", raw: childRaw });
+  return { ...own, derived: true, raw: childRaw, source_key: "wheelchair_boarding" };
+}
+
+function wheelchairRole(locationType: string, hasParent: boolean): "station" | "entrance" | "child_stop" | "parentless_stop" {
+  const token = locationType.trim();
+  if (token === "2") return "entrance";
+  if (token === "1") return "station";
+  return hasParent ? "child_stop" : "parentless_stop";
+}
+
+function mapOwnWheelchair(
+  role: "station" | "entrance" | "child_stop" | "parentless_stop",
+  code: string,
+  ctx: Provenance,
+): FieldValue {
+  if (code === "" || code === "0") {
+    return unknownField(ctx, { source_key: "wheelchair_boarding", raw: code });
   }
-  return fv(token, ctx, { source_key: "wheelchair_boarding", raw: token });
+  if (role === "entrance") {
+    if (code === "1") return fv("entrance_accessible", ctx, { source_key: "wheelchair_boarding", raw: code });
+    if (code === "2") return fv("entrance_not_accessible", ctx, { source_key: "wheelchair_boarding", raw: code });
+  } else if (role === "child_stop") {
+    if (code === "1") return fv("accessible_path", ctx, { source_key: "wheelchair_boarding", raw: code });
+    if (code === "2") return fv("no_accessible_path", ctx, { source_key: "wheelchair_boarding", raw: code });
+  } else if (code === "1") {
+    return fv("some_vehicles_accessible", ctx, { source_key: "wheelchair_boarding", raw: code });
+  } else if (code === "2") {
+    return fv("boarding_not_possible", ctx, { source_key: "wheelchair_boarding", raw: code });
+  }
+  return fv(code, ctx, { source_key: "wheelchair_boarding", raw: code });
+}
+
+export function wheelchairStopsFromRows(rows: Record<string, string>[]): Map<string, WheelchairStop> {
+  const stops = new Map<string, WheelchairStop>();
+  for (const row of rows) {
+    const id = (row.stop_id ?? "").trim();
+    if (!id) continue;
+    stops.set(id, {
+      wheelchair_boarding: row.wheelchair_boarding ?? "",
+      location_type: row.location_type ?? "",
+      parent_station: row.parent_station ?? "",
+    });
+  }
+  return stops;
 }
 
 export function mapBidirectional(raw: string | undefined, ctx: Provenance): FieldValue {
@@ -58,6 +144,7 @@ export function mapGtfsStop(
   levels: ReadonlyMap<string, LevelInfo>,
   ctx: Provenance,
   sourceId: string,
+  wheelchairStops?: ReadonlyMap<string, WheelchairStop>,
 ): DataRecord | null {
   const stopId = (row.stop_id ?? "").trim();
   if (!stopId) return null;
@@ -65,6 +152,7 @@ export function mapGtfsStop(
   const lon = parseCoord(row.stop_lon, 180);
   const levelId = (row.level_id ?? "").trim();
   const level = levelId ? levels.get(levelId) : undefined;
+  const feed = wheelchairStops ?? wheelchairStopsFromRows([row]);
   return buildRecord(
     "transit",
     `gtfs:${sourceId}:${stopId}`,
@@ -76,7 +164,7 @@ export function mapGtfsStop(
       stop_code: textCell(row, "stop_code", ctx),
       location_type: mapLocationType(row.location_type, ctx),
       parent_station: textCell(row, "parent_station", ctx),
-      wheelchair_boarding: mapWheelchairBoarding(row.wheelchair_boarding, ctx),
+      wheelchair_boarding: resolveWheelchairBoarding(stopId, feed, ctx),
       platform_code: textCell(row, "platform_code", ctx),
       level_id: levelId ? fv(levelId, ctx, { source_key: "level_id" }) : unknownField(ctx, { source_key: "level_id" }),
       level_index: level ? numericCell(level.level_index, ctx, "level_index") : unknownField(ctx),

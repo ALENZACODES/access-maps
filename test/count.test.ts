@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { countRecords } from "../src/count/count.js";
+import { countRecords, renderCountsMarkdown } from "../src/count/count.js";
 import { mapOsmElement, type OsmElement } from "../src/osm/map.js";
-import { mapWheelchairBoarding } from "../src/gtfs/map.js";
+import { resolveWheelchairBoarding } from "../src/gtfs/map.js";
 import { isPiece } from "../src/model/provenance.js";
 import type { Provenance } from "../src/model/provenance.js";
 import type { DataRecord } from "../src/model/records.js";
@@ -50,8 +50,33 @@ describe("counting rules", () => {
       ctx,
     );
     expect(isPiece(venue?.fields.level ?? fail())).toBe(true);
-    const boarding = mapWheelchairBoarding("0", { ...ctx, source_id: "gtfs-ttc", licence: "OGL-Toronto-1.0", tier: 1 });
+    const boarding = resolveWheelchairBoarding(
+      "s",
+      new Map([["s", { wheelchair_boarding: "0", location_type: "0", parent_station: "" }]]),
+      { ...ctx, source_id: "gtfs-ttc", licence: "OGL-Toronto-1.0", tier: 1 },
+    );
     expect(isPiece(boarding)).toBe(false);
+  });
+
+  it("measures the 500,000 shortfall against verified values only", () => {
+    const [venue] = mapOsmElement(
+      {
+        osmType: "node",
+        osmId: "9",
+        tags: { amenity: "cafe", wheelchair: "yes" },
+        geometry: { type: "Point", coordinates: [-79.4, 43.7] },
+      },
+      ctx,
+    );
+    const report = countRecords([venue as DataRecord]);
+    expect(report.verified_toward_500k).toBe(0);
+    expect(report.by_tranche.venue.verified).toBe(0);
+    expect(report.by_tranche.venue.accessibility_facts).toBe(1);
+    expect(report.shortfalls.find((item) => item.tranche === "venue")?.shortfall).toBe(250_000);
+    const markdown = renderCountsMarkdown(report);
+    expect(markdown).not.toContain("meets the illustrative");
+    expect(markdown).not.toMatch(/Shortfall 0/);
+    expect(markdown).toContain("Verified toward 500,000 is 0");
   });
 
   it("rejects a duplicate id inside one tranche", () => {

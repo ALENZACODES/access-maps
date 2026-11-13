@@ -82,7 +82,8 @@
     "building",
     "parent_id",
     "status",
-    "website"
+    "website",
+    "posted_date"
   ],
   "path": [
     "kind",

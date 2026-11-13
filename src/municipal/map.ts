@@ -23,6 +23,7 @@ export function mapTorontoParkWashroom(row: Record<string, string>, ctx: Provena
       address: published(row, "ADDRESS", ctx, BLANK),
       description: joinColumns(row, ["Comments", "Reason"], ctx, BLANK),
       status: published(row, "Status", ctx, new Set()),
+      posted_date: postedDate(row, ctx),
       published_accessibility: published(row, "ACCESSIBLE_FEATURES", ctx, new Set(["", "unknown", "n/a", "na", "null"])),
     },
     ctx,
@@ -318,6 +319,14 @@ function stableNumber(raw: string): string {
   const rounded = Math.round(value);
   if (Math.abs(value - rounded) < 1e-6) return String(rounded);
   return String(value);
+}
+
+function postedDate(row: Record<string, string>, ctx: Provenance): FieldValue {
+  if (!("PostedDate" in row)) return unknownField(ctx);
+  const raw = (row.PostedDate ?? "").trim();
+  const match = /^(\d{4}-\d{2}-\d{2})/.exec(raw);
+  if (!match?.[1]) return unknownField(ctx, { source_key: "PostedDate", raw });
+  return fv(match[1], ctx, { source_key: "PostedDate", raw });
 }
 
 function yesNo(row: Record<string, string>, key: string, ctx: Provenance): FieldValue {

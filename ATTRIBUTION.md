@@ -10,6 +10,8 @@ Data from the Geofabrik Ontario extract, https://download.geofabrik.de/north-ame
 
 Licence: Open Database License (ODbL) 1.0, https://opendatacommons.org/licenses/odbl/1-0/
 
+ODbL is share-alike. The OSM-derived files are only under `data/venues/osm-ontario/`, `data/washrooms/osm-ontario/`, and `data/paths/osm-ontario/`. See [DATA-LICENCE.md](DATA-LICENCE.md).
+
 ## TTC Routes and Schedules
 
 Contains information licensed under the Open Government Licence – Toronto.

@@ -14,6 +14,9 @@ import { isDerivedExcluded, isGap, isPiece, type FieldValue } from "../model/pro
 export interface Slice {
   records: number;
   pieces: number;
+  accessibility_facts: number;
+  other_populated: number;
+  verified: number;
   gaps: number;
   derived_excluded: number;
   pieces_by_tier: Record<string, number>;
@@ -40,7 +43,7 @@ export interface SourceSlice {
 
 export interface Shortfall {
   tranche: Tranche;
-  pieces: number;
+  verified: number;
   illustrative_target: number;
   shortfall: number;
 }
@@ -51,6 +54,9 @@ export interface CountReport {
   pieces: number;
   gaps: number;
   derived_excluded: number;
+  verified_toward_500k: number;
+  accessibility_fact_pieces: number;
+  other_populated_pieces: number;
   by_tranche: Record<Tranche, Slice>;
   by_source: Record<string, SourceSlice>;
   shortfalls: Shortfall[];
@@ -67,6 +73,9 @@ export function emptySlice(): Slice {
   return {
     records: 0,
     pieces: 0,
+    accessibility_facts: 0,
+    other_populated: 0,
+    verified: 0,
     gaps: 0,
     derived_excluded: 0,
     pieces_by_tier: {},
@@ -117,28 +126,34 @@ export function countRecords(records: DataRecord[]): CountReport {
 
 function finishReport(byTranche: Record<Tranche, Slice>, bySource: Record<string, SourceSlice>): CountReport {
   const shortfalls = TRANCHES.map((tranche) => {
-    const pieces = byTranche[tranche].pieces;
+    const verified = byTranche[tranche].verified;
     const target = TRANCHE_TARGETS[tranche];
     return {
       tranche,
-      pieces,
+      verified,
       illustrative_target: target,
-      shortfall: Math.max(0, target - pieces),
+      shortfall: target - verified,
     };
   });
   const pieces = TRANCHES.reduce((sum, tranche) => sum + byTranche[tranche].pieces, 0);
   const gaps = TRANCHES.reduce((sum, tranche) => sum + byTranche[tranche].gaps, 0);
   const derived = TRANCHES.reduce((sum, tranche) => sum + byTranche[tranche].derived_excluded, 0);
   const recordsTotal = TRANCHES.reduce((sum, tranche) => sum + byTranche[tranche].records, 0);
-  const accessibilityPieces = TRANCHES.reduce((sum, tranche) => sum + byTranche[tranche].accessibility_pieces, 0);
+const accessibilityPieces = TRANCHES.reduce((sum, tranche) => sum + byTranche[tranche].accessibility_pieces, 0);
   const accessibilityGaps = TRANCHES.reduce((sum, tranche) => sum + byTranche[tranche].accessibility_gaps, 0);
+  const verified = TRANCHES.reduce((sum, tranche) => sum + byTranche[tranche].verified, 0);
+  const accessibility = TRANCHES.reduce((sum, tranche) => sum + byTranche[tranche].accessibility_facts, 0);
+  const other = TRANCHES.reduce((sum, tranche) => sum + byTranche[tranche].other_populated, 0);
   return {
     definition:
-      "A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. The same fact is not stored on two tranches.",
+      "A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. Section 5.6 counts only tier 2 and tier 3 values toward 500,000. Tier 0 and tier 1 accessibility facts are reported separately and are not verified.",
     records: recordsTotal,
     pieces,
     gaps,
     derived_excluded: derived,
+verified_toward_500k: verified,
+    accessibility_fact_pieces: accessibility,
+    other_populated_pieces: other,
     accessibility_pieces: accessibilityPieces,
     accessibility_gaps: accessibilityGaps,
     identity_pieces: pieces - accessibilityPieces,
@@ -148,7 +163,7 @@ function finishReport(byTranche: Record<Tranche, Slice>, bySource: Record<string
     by_source: bySource,
     shortfalls,
     illustrative_total_target: TOTAL_TARGET,
-    total_shortfall: Math.max(0, TOTAL_TARGET - pieces),
+    total_shortfall: TOTAL_TARGET - verified,
   };
 }
 
@@ -177,11 +192,16 @@ function addField(
   const source = ensureSource(bySource, field.source_id);
   if (isPiece(field)) {
     slice.pieces += 1;
-    if (isAccessibilityField(tranche, fieldName)) {
+const access = isAccessibilityField(tranche, fieldName);
+    const verifiedTier = field.tier === 2 || field.tier === 3;
+    if (verifiedTier) slice.verified += 1;
+    if (access) {
       slice.accessibility_pieces += 1;
       bump(slice.accessibility_by_field, fieldName);
       source.accessibility_pieces += 1;
+      if (field.tier === 0 || field.tier === 1) slice.accessibility_facts += 1;
     }
+    if (!verifiedTier && !(access && (field.tier === 0 || field.tier === 1))) slice.other_populated += 1;
     bump(slice.pieces_by_tier, String(field.tier));
     bump(slice.pieces_by_source, field.source_id);
     bump(slice.pieces_by_retrieved_at, field.retrieved_at);
@@ -233,11 +253,17 @@ export function renderCountsMarkdown(report: CountReport): string {
   lines.push("");
   lines.push(report.definition);
   lines.push("");
-  lines.push(`Total pieces: **${report.pieces.toLocaleString("en-CA")}**.`);
-  lines.push(`Accessibility-fact pieces: **${report.accessibility_pieces.toLocaleString("en-CA")}**.`);
+lines.push(`Verified field-values toward the 500,000 target: **${report.verified_toward_500k.toLocaleString("en-CA")}**.`);
   lines.push(
-    `Name, category, address, and geometry pieces: **${report.identity_pieces.toLocaleString("en-CA")}**.`,
+    report.verified_toward_500k === 0
+      ? "Section 5.6 counts only tier 2 (peer-verified) and tier 3 (trained surveyor) values. Verified toward 500,000 is 0. None of those verified field-values exist in this import."
+      : `Section 5.6 counts only tier 2 and tier 3 values. Verified toward 500,000 is ${report.verified_toward_500k.toLocaleString("en-CA")}. The shortfall against 500,000 is ${report.total_shortfall.toLocaleString("en-CA")}.`,
   );
+  lines.push(
+    `Open-data or operator-claimed accessibility-fact values (tier 0 and tier 1 only; not names, coordinates, addresses, or geometry): **${report.accessibility_fact_pieces.toLocaleString("en-CA")}**.`,
+  );
+  lines.push(`All other populated values: **${report.other_populated_pieces.toLocaleString("en-CA")}**.`);
+  lines.push(`All populated pieces together: **${report.pieces.toLocaleString("en-CA")}**.`);
   lines.push(`Total UNKNOWN gaps: **${report.gaps.toLocaleString("en-CA")}**.`);
   lines.push(
     `UNKNOWN gaps on accessibility fields: **${report.accessibility_gaps.toLocaleString("en-CA")}**.`,
@@ -246,33 +272,18 @@ export function renderCountsMarkdown(report: CountReport): string {
   lines.push(`Records: **${report.records.toLocaleString("en-CA")}**.`);
   lines.push("");
   lines.push(
-    `The illustrative 500,000-piece target in master plan section 5.6 is a sizing example (venues 250,000, paths 100,000, transit 50,000, washrooms 100,000). This import's piece total is ${report.pieces.toLocaleString("en-CA")}.`,
+    "The illustrative targets are 250,000 venue, 100,000 path, 50,000 transit, and 100,000 washroom verified field-values. Shortfall is the target minus verified values.",
   );
-  const shortTranches = report.shortfalls.filter((item) => item.shortfall > 0);
-  if (report.total_shortfall > 0) {
-    lines.push(
-      `That is ${report.total_shortfall.toLocaleString("en-CA")} pieces under the illustrative total. The counts are not padded.`,
-    );
-  } else {
-    lines.push("The piece total meets the illustrative total. The counts are not padded.");
-  }
-  if (shortTranches.length > 0) {
-    const detail = shortTranches
-      .map(
-        (item) =>
-          `${item.tranche} is ${item.shortfall.toLocaleString("en-CA")} under its illustrative ${item.illustrative_target.toLocaleString("en-CA")}`,
-      )
-      .join("; ");
-    lines.push(`Tranches under their illustrative targets: ${detail}.`);
-  }
   lines.push("");
-  lines.push("| Tranche | Records | Pieces | UNKNOWN gaps | Derived excluded | Illustrative target | Shortfall |");
-  lines.push("| --- | ---: | ---: | ---: | ---: | ---: | ---: |");
+  lines.push(
+    "| Tranche | Records | Accessibility facts (tier 0–1) | Other populated | Verified (tier 2–3) | UNKNOWN gaps | Illustrative target | Shortfall |",
+  );
+  lines.push("| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |");
   for (const tranche of TRANCHES) {
     const slice = report.by_tranche[tranche];
     const shortfall = report.shortfalls.find((item) => item.tranche === tranche);
     lines.push(
-      `| ${tranche} | ${slice.records} | ${slice.pieces} | ${slice.gaps} | ${slice.derived_excluded} | ${shortfall?.illustrative_target ?? ""} | ${shortfall?.shortfall ?? ""} |`,
+      `| ${tranche} | ${slice.records} | ${slice.accessibility_facts} | ${slice.other_populated} | ${slice.verified} | ${slice.gaps} | ${shortfall?.illustrative_target ?? ""} | ${shortfall?.shortfall ?? ""} |`,
     );
   }
   lines.push("");

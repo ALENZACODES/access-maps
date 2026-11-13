@@ -13,7 +13,7 @@
       "retrieved_at": "2026-11-13",
       "tier": 0,
       "tier_note": "OpenStreetMap tags are tier 0 open-data imports. They are not shown as verified.",
-      "notes": "Extract file retrieved from Geofabrik. The data licence is ODbL. Contributor usernames are not stored. Phone and email tags are dropped."
+      "notes": "Extract file retrieved from Geofabrik. The data licence is ODbL 1.0 and it is share-alike. OSM records stay in data/*/osm-ontario/ and are not mixed into GTFS or municipal files. Contributor usernames are not stored. Phone numbers and email addresses are removed from values, including when they appear under another tag."
     },
     {
       "id": "gtfs-ttc",

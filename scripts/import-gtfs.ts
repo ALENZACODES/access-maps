@@ -5,7 +5,7 @@ import { parseCsv } from "../src/io/csv.js";
 import { PartitionWriter } from "../src/io/partition-writer.js";
 import { findZipEntry, listZip, readZipText } from "../src/io/zip.js";
 import { GTFS_FEEDS } from "../src/gtfs/feeds.js";
-import { indexLevels, mapGtfsPathway, mapGtfsStop } from "../src/gtfs/map.js";
+import { indexLevels, mapGtfsPathway, mapGtfsStop, wheelchairStopsFromRows } from "../src/gtfs/map.js";
 import { readRegistry, requireSource, type SourceEntry } from "../src/registry.js";
 import { compileValidators } from "../src/validate/ajv.js";
 
@@ -57,8 +57,10 @@ async function importFeed(
   let pathways = 0;
   let skippedDuplicate = 0;
   let skippedMissingId = 0;
-  for (const row of parseCsv(readZipText(zipPath, stopsEntry)).rows) {
-    const record = mapGtfsStop(row, levels, ctx, source.id);
+  const stopRows = parseCsv(readZipText(zipPath, stopsEntry)).rows;
+  const wheelchairStops = wheelchairStopsFromRows(stopRows);
+  for (const row of stopRows) {
+    const record = mapGtfsStop(row, levels, ctx, source.id, wheelchairStops);
     if (!record) {
       skippedMissingId += 1;
       continue;

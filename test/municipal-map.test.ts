@@ -26,6 +26,7 @@ describe("municipal washroom mapping", () => {
         Reason: "Closed for the Season",
         Comments: "None",
         Status: "0",
+        PostedDate: "2026-11-12T08:46:41",
         geometry: '{"coordinates": [[-79.46403823, 43.65900803]], "type": "MultiPoint"}',
       },
       ctx,
@@ -37,6 +38,8 @@ describe("municipal washroom mapping", () => {
     expect(record.fields.opening_hours?.raw).toBe("None");
     expect(record.fields.description?.value).toBe("Closed for the Season");
     expect(record.fields.status?.value).toBe("0");
+    expect(record.fields.posted_date?.value).toBe("2026-11-12");
+    expect(record.fields.posted_date?.source_key).toBe("PostedDate");
     expect(record.fields.lat?.value).toBeCloseTo(43.659008);
     expect(record.fields.lon?.value).toBeCloseTo(-79.464038);
     expect(record.fields.seasonal?.value).toBe("UNKNOWN");

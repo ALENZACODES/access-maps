@@ -63,7 +63,8 @@
         "building",
         "parent_id",
         "status",
-        "website"
+        "website",
+        "posted_date"
       ],
       "properties": {
         "name": {
@@ -178,6 +179,9 @@
           "$ref": "https://access-maps.local/schema/field-value.schema.json"
         },
         "website": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "posted_date": {
           "$ref": "https://access-maps.local/schema/field-value.schema.json"
         }
       }

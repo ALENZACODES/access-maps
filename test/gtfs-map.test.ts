@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { isGap, isPiece } from "../src/model/provenance.js";
-import { indexLevels, mapGtfsPathway, mapGtfsStop, mapWheelchairBoarding } from "../src/gtfs/map.js";
+import { indexLevels, mapGtfsPathway, mapGtfsStop, resolveWheelchairBoarding, type WheelchairStop } from "../src/gtfs/map.js";
 import type { Provenance } from "../src/model/provenance.js";
 import { GTFS_FEEDS } from "../src/gtfs/feeds.js";
 import { readRegistry } from "../src/registry.js";
@@ -13,20 +13,54 @@ const ctx: Provenance = {
 };
 
 describe("GTFS mapping", () => {
-  it("stores wheelchair_boarding 0 and empty as UNKNOWN and keeps the raw code", () => {
-    for (const raw of ["0", "", "  "]) {
-      const field = mapWheelchairBoarding(raw, ctx);
+  it("uses parentless stop meanings when the stop has no parent", () => {
+    const feed = feedOf({ s: { wheelchair_boarding: "0", location_type: "", parent_station: "" } });
+    for (const code of ["0", ""]) {
+      feed.set("s", { wheelchair_boarding: code, location_type: "", parent_station: "" });
+      const field = resolveWheelchairBoarding("s", feed, ctx);
       expect(field.value).toBe("UNKNOWN");
       expect(field.tier).toBe(1);
       expect(isPiece(field)).toBe(false);
       expect(isGap(field)).toBe(true);
     }
-    const accessible = mapWheelchairBoarding("1", ctx);
+    feed.set("s", { wheelchair_boarding: "1", location_type: "0", parent_station: "" });
+    const accessible = resolveWheelchairBoarding("s", feed, ctx);
     expect(accessible.value).toBe("some_vehicles_accessible");
     expect(accessible.raw).toBe("1");
     expect(isPiece(accessible)).toBe(true);
-    expect(mapWheelchairBoarding("2", ctx).value).toBe("boarding_not_possible");
-    expect(mapWheelchairBoarding("9", ctx).value).toBe("9");
+    feed.set("s", { wheelchair_boarding: "2", location_type: "", parent_station: "" });
+    expect(resolveWheelchairBoarding("s", feed, ctx).value).toBe("boarding_not_possible");
+    feed.set("s", { wheelchair_boarding: "9", location_type: "", parent_station: "" });
+    expect(resolveWheelchairBoarding("s", feed, ctx).value).toBe("9");
+  });
+
+  it("inherits 0 from the parent for child stops and names entrance access separately", () => {
+    const feed = feedOf({
+      station: { wheelchair_boarding: "1", location_type: "1", parent_station: "" },
+      platform: { wheelchair_boarding: "0", location_type: "0", parent_station: "station" },
+      path: { wheelchair_boarding: "1", location_type: "0", parent_station: "station" },
+      blocked: { wheelchair_boarding: "2", location_type: "4", parent_station: "station" },
+      door: { wheelchair_boarding: "1", location_type: "2", parent_station: "station" },
+      closed: { wheelchair_boarding: "2", location_type: "2", parent_station: "station" },
+      blankDoor: { wheelchair_boarding: "", location_type: "2", parent_station: "station" },
+      orphan: { wheelchair_boarding: "0", location_type: "0", parent_station: "missing" },
+    });
+    const inherited = resolveWheelchairBoarding("platform", feed, ctx);
+    expect(inherited.value).toBe("some_vehicles_accessible");
+    expect(inherited.derived).toBe(true);
+    expect(inherited.raw).toBe("0");
+    expect(isPiece(inherited)).toBe(false);
+    expect(resolveWheelchairBoarding("path", feed, ctx)).toMatchObject({
+      value: "accessible_path",
+      raw: "1",
+    });
+    expect(resolveWheelchairBoarding("blocked", feed, ctx).value).toBe("no_accessible_path");
+    expect(resolveWheelchairBoarding("door", feed, ctx).value).toBe("entrance_accessible");
+    expect(resolveWheelchairBoarding("closed", feed, ctx).value).toBe("entrance_not_accessible");
+    const inheritedEntrance = resolveWheelchairBoarding("blankDoor", feed, ctx);
+    expect(inheritedEntrance.value).toBe("some_vehicles_accessible");
+    expect(inheritedEntrance.derived).toBe(true);
+    expect(resolveWheelchairBoarding("orphan", feed, ctx).value).toBe("UNKNOWN");
   });
 
   it("applies the GTFS empty location_type default and joins a published level", () => {
@@ -78,6 +112,10 @@ describe("GTFS mapping", () => {
     expect(stop?.fields.level_name?.value).toBe("UNKNOWN");
     expect(stop?.fields.wheelchair_boarding?.value).toBe("UNKNOWN");
   });
+
+function feedOf(rows: Record<string, WheelchairStop>): Map<string, WheelchairStop> {
+  return new Map(Object.entries(rows));
+}
 
   it("maps a pathway without inventing geometry", () => {
     const pathway = mapGtfsPathway(
