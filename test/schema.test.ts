@@ -113,6 +113,15 @@ describe("JSON schemas", () => {
     expect(new Set(ids).size).toBe(ids.length);
   });
 
+  it("pins the service-alert schema to access-main c89241d", () => {
+    const pin = JSON.parse(readFileSync(new URL("../schema/upstream-pin.json", import.meta.url), "utf8")) as { commit: string };
+    expect(pin.commit).toBe("c89241dcd405f0885982bd5398c893a8a6ab6c15");
+    const local = readFileSync(new URL("../schema/service-alert.schema.json", import.meta.url));
+    const upstream = readFileSync(new URL("../schema/upstream/service-alert.schema.json", import.meta.url));
+    expect(Buffer.compare(local, upstream)).toBe(0);
+    expect(JSON.parse(local.toString("utf8")).$id).toBe("https://access-maps.local/schema/service-alert.schema.json");
+  });
+
   it("validates every committed TTC accessibility alert", () => {
     const gzip = readFileSync(new URL("../data/alerts/gtfs-rt-ttc-accessibility/alerts.ndjson.gz", import.meta.url));
     const lines = gunzipSync(gzip).toString("utf8").split("\n").filter((line) => line.trim());

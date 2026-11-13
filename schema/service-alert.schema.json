@@ -36,8 +36,14 @@
     },
     "header_text": { "type": "string", "minLength": 1 },
     "header_language": { "type": "string", "minLength": 1 },
-    "stop_ids": { "type": "array", "items": { "type": "string", "minLength": 1 } },
-    "route_ids": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "stop_ids": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "route_ids": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
     "active_periods": {
       "type": "array",
       "items": {

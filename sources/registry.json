@@ -208,7 +208,7 @@
       "retrieved_at": "2026-11-13",
       "tier": 4,
       "tier_note": "Tier 4 is a live operator status snapshot. It is not an App measurement and it is not counted as a piece. The committed file is stale until npm run fetch:ttc-alerts is run again.",
-      "notes": "CKAN package ttc-gtfs-realtime-gtfs-rt, license_id open-government-licence-toronto. The accessibility text endpoint is listed from https://gtfsrt.ttc.ca. Equipment is elevator or escalator only when the header text contains that word. There is no scheduled workflow."
+      "notes": "CKAN package ttc-gtfs-realtime-gtfs-rt, license_id open-government-licence-toronto. The accessibility text endpoint is listed from https://gtfsrt.ttc.ca. Equipment is elevator or escalator when the header names it in English (elevator, escalator) or French (ascenseur, escalier mécanique). The phrase hors service does not name equipment by itself. There is no scheduled workflow."
     },
     {
       "id": "kingston-public-washrooms",

@@ -1,6 +1,8 @@
 # Schema source
 
-`ALENZACODES/access-main` package `@access-main/schema` is the source of truth for schema shapes and verification tier ids. The pin is commit `5d7c17d2a8404a87bede3cef515f1e538e40c183` on `main`, recorded in `schema/upstream-pin.json`. That commit is the squash merge of pull request 1.
+`ALENZACODES/access-main` package `@access-main/schema` is the source of truth for schema shapes and verification tier ids. The pin is commit `c89241dcd405f0885982bd5398c893a8a6ab6c15` on `main`, recorded in `schema/upstream-pin.json`. That commit is the merge of pull request 5.
+
+`schema/service-alert.schema.json` is `packages/schema/schema/import/service-alert.schema.json` from that commit. `schema/upstream/service-alert.schema.json` is the same document. The two files match, including whitespace.
 
 Import records in this repository use the same field-value envelope as `packages/schema/schema/import/field-value.schema.json` at that commit. The tier on each imported field is an integer: 0 open-data import, 1 operator claim, 2 peer-verified, 3 trained surveyor, 4 live feed. The canonical provenance object in access-main also allows tier `E` for a desk check. This import does not emit tier `E`.
 

@@ -100,6 +100,13 @@ describe("TTC accessibility alerts", () => {
     expect(unknown?.equipment).toBe("UNKNOWN");
     expect(unknown?.header_text).toContain("film shoot");
     expect(equipmentClass("The elevator and the escalator are both out")).toBe("elevator_and_escalator");
+    expect(equipmentClass("Ascenseur hors service")).toBe("elevator");
+    expect(equipmentClass("Les ascenseurs sont hors service")).toBe("elevator");
+    expect(equipmentClass("Escalier mécanique hors service")).toBe("escalator");
+    expect(equipmentClass("Escaliers mécaniques hors service")).toBe("escalator");
+    expect(equipmentClass("Escalier mecanique hors service")).toBe("escalator");
+    expect(equipmentClass("Ascenseur et escalier mécanique hors service")).toBe("elevator_and_escalator");
+    expect(equipmentClass("Hors service")).toBe("UNKNOWN");
     expect(alerts[0]?.tier).toBe(4);
     expect(alerts[0]?.feed_timestamp).toBe(1794598340);
   });

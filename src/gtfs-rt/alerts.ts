@@ -32,11 +32,16 @@ export interface AlertContext {
   retrieved_at: string;
 }
 
-/** Elevator or escalator only when the published header uses that word. */
+/**
+ * Elevator or escalator when the header names that equipment.
+ * English: elevator, escalator. French: ascenseur, escalier mécanique.
+ * Accents are ignored, so "mecanique" matches "mécanique".
+ * "hors service" is the out-of-service phrase. It does not name equipment by itself.
+ */
 export function equipmentClass(header: string): Equipment {
-  const text = header.toLowerCase();
-  const elevator = /\belevators?\b/.test(text);
-  const escalator = /\bescalators?\b/.test(text);
+  const text = header.toLowerCase().normalize("NFD").replace(/\p{M}/gu, "");
+  const elevator = /\b(?:elevators?|ascenseurs?)\b/.test(text);
+  const escalator = /\b(?:escalators?|escaliers?[\s-]+mecaniques?)\b/.test(text);
   if (elevator && escalator) return "elevator_and_escalator";
   if (elevator) return "elevator";
   if (escalator) return "escalator";
