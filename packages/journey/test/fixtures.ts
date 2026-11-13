@@ -5,6 +5,7 @@ import type {
   JourneyDataSource,
   Provenance,
   TransitTrip,
+  VerificationTier,
 } from "../src/index.js";
 
 export function provenance(over: Partial<Provenance> = {}): Provenance {
@@ -20,7 +21,7 @@ export function provenance(over: Partial<Provenance> = {}): Provenance {
 
 export function field(
   value: FieldValue["value"],
-  tier: Provenance["tier"] = 0,
+  tier: VerificationTier = 0,
   source = "fixture",
 ): FieldValue {
   return {

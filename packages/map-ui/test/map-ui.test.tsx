@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 import { describe, expect, it } from "vitest";
-import { AccessibleMap, JourneyResult } from "../src/index.js";
+import { AccessibleMap, JourneyResult, mapCopyLocaleKeys } from "../src/index.js";
 
 const features: MapFeature[] = [
   {
@@ -13,6 +13,10 @@ const features: MapFeature[] = [
     status: "unknown. No elevator record.",
     statusCode: "unknown",
     source: "gtfs-fixture",
+    licence: "fixture-not-a-real-dataset",
+    retrievedAt: "2026-11-13",
+    prototypeLabel: "Tier 1. Imported or reported record, unverified by the App. Not a survey.",
+    odbl: false,
     tier: 1,
     lon: -79.4,
     lat: 43.7,
@@ -24,7 +28,11 @@ const features: MapFeature[] = [
     status: "unknown. Not recommended.",
     statusCode: "unknown",
     source: "fixture",
-    tier: 0,
+    licence: "fixture-not-a-real-dataset",
+    retrievedAt: "2026-11-13",
+    prototypeLabel: "Unknown. This is not a verification tier.",
+    odbl: false,
+    tier: null,
     lon: -79.39,
     lat: 43.7,
   },
@@ -35,6 +43,10 @@ const features: MapFeature[] = [
     status: "not-step-free. Out of service.",
     statusCode: "not-step-free",
     source: "elevator-fixture",
+    licence: "fixture-not-a-real-dataset",
+    retrievedAt: "2026-11-13",
+    prototypeLabel: "Tier 4. Imported or reported record, unverified by the App. Not a survey.",
+    odbl: false,
     tier: 4,
     lon: -79.395,
     lat: 43.7,
@@ -62,6 +74,13 @@ describe("AccessibleMap", () => {
     expect(document.activeElement).toBe(buttons[2]);
     expect(screen.getByText("▲ Not step-free")).toBeTruthy();
     expect(screen.getByRole("link", { name: /Skip the map canvas/ })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Pan up" })).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Show on map" })).toBeTruthy();
+  });
+
+  it("uses the same keys in French and English", () => {
+    const keys = mapCopyLocaleKeys();
+    expect([...keys.fr].sort()).toEqual([...keys.en].sort());
   });
 
   it("uses French chrome for the list", () => {
@@ -159,8 +178,35 @@ describe("JourneyResult", () => {
     expect(warning).toBeTruthy();
     const listButtons = screen.getAllByRole("button").filter((button) => button.closest(".feature-list"));
     expect(listButtons.length).toBeGreaterThan(0);
-    expect(screen.getByRole("link", { name: "911" }).getAttribute("href")).toBe("tel:911");
+    const emergency = screen.getByRole("link", { name: "911" });
+    expect(emergency.getAttribute("href")).toBe("tel:911");
+    const article = emergency.closest("article");
+    expect(article?.firstElementChild).toBe(emergency.parentElement);
     await user.click(screen.getByRole("button", { name: "Load another plan" }));
     expect(document.activeElement).toBe(screen.getByRole("heading", { name: "Journey results" }));
+  });
+
+  it("does not show English labels on a French plan", () => {
+    const plan = planJourney({
+      locale: "fr",
+      data: { stops: [], paths: [], venues: [], washrooms: [] },
+      origin: { id: "home", name: "Domicile", lon: -79.4, lat: 43.7 },
+      destination: { id: "clinic", name: "Clinique", lon: -79.39, lat: 43.7 },
+      departAt: "2026-06-15T08:00:00-04:00",
+      now: "2026-06-15T07:00:00-04:00",
+      winterMode: false,
+      profile: { chair: "manual" },
+    });
+    const view = render(<JourneyResult plan={plan} />);
+    expect(screen.getByRole("heading", { name: "Résultats du trajet" })).toBeTruthy();
+    expect(screen.getAllByRole("heading", { name: /Approche|Sortie du domicile/ }).length).toBeGreaterThan(0);
+    const page = view.container.textContent ?? "";
+    expect(page).not.toContain("Gradient:");
+    expect(page).not.toContain("Steps:");
+    expect(page).not.toContain("Door width");
+    expect(page).not.toContain("home-exit");
+    expect(page).not.toContain("unknown.");
+    expect(page).not.toContain("not-step-free.");
+    expect(screen.getAllByText(/Pente:/).length).toBeGreaterThan(0);
   });
 });

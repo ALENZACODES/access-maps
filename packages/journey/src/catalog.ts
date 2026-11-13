@@ -124,6 +124,8 @@ export interface BarrierReport {
   kind: "snow" | "construction" | "closure";
   blocksPassage: boolean;
   observedAt: string;
+  /** When set, the report stops blocking at this time. Otherwise snow expires after 72 hours and other reports after 14 days. */
+  expiresAt?: string | null;
   provenance: Provenance;
 }
 

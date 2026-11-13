@@ -15,15 +15,15 @@ export type {
   TransferPoint,
   WashroomDetail,
 } from "./catalog.js";
-export { copy, FRENCH_REVIEW, statusSentence } from "./explain.js";
+export { copy, copyLocaleKeys, FRENCH_REVIEW, prototypeLabel, statusSentence } from "./explain.js";
 export { isWinterDate, haversineMetres } from "./geo.js";
 export { assertHonest } from "./invariants.js";
 export { applyOffline } from "./offline.js";
 export { planJourney, type PlanInput } from "./plan.js";
-export { asImportedRecord, UNKNOWN, type FieldValue, type ImportedRecord } from "./records.js";
+export { asImportedRecord, provenanceFromField, UNKNOWN, type FieldValue, type ImportedRecord } from "./records.js";
 export { assertEngineAllowed, createHttpRouter, GraphRouter, routeWithFetch, StraightLineRouter } from "./router.js";
 export type { RouterAdapter, RouterRequest, RouterResult } from "./router.js";
-export { resolveStepFree } from "./stepfree.js";
+export { claimFromTier, resolveStepFree, surveyComplete } from "./stepfree.js";
 export { toMapFeatures, type MapFeature } from "./view.js";
 export type {
   ChainReport,
@@ -38,6 +38,8 @@ export type {
   RoutingPreference,
   StepFreeAssessment,
   StepFreeStatus,
+  SurveyRecord,
+  VerificationTier,
   Warning,
 } from "./types.js";
 export { DEFAULT_PROFILE } from "./types.js";

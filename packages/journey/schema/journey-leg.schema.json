@@ -27,7 +27,9 @@
         "sourceId": { "type": "string" },
         "licence": { "type": "string" },
         "retrievedAt": { "type": "string" },
-        "tier": { "enum": [0, 1, 2, 3, 4] }
+        "tier": {
+          "anyOf": [{ "enum": [0, 1, 2, 3, 4] }, { "type": "null" }]
+        }
       }
     }
   }

@@ -23,6 +23,7 @@ const COPY = {
     elevatorOut: "An elevator on this access is out of service, and no step-free alternate is recorded.",
     elevatorUnknown: "Elevator status is not recorded. A station flag is not a status check.",
     elevatorStale: "The elevator status is too old to treat as current. It is unknown, not working.",
+    elevatorFuture: "An elevator timestamp is in the future. That status is unknown, not in service.",
     elevatorLastChecked: (when: string) => `Elevator status was last checked ${when}.`,
     snowBlocked: "A snow blockage is recorded on this access.",
     construction: "A construction closure is recorded on this access.",
@@ -82,6 +83,26 @@ const COPY = {
     statusUnknown: "status unknown",
     phoneUnknown: "Help phone: UNKNOWN.",
     alternateMissing: "No verified step-free alternate is recorded.",
+    entranceNotMeasured: "The entrance is not measured. A venue tag is not an entrance survey.",
+    entranceDepth: (name: string, steps: string, ramp: string, door: string) =>
+      `${name}. Steps: ${steps}. Ramp: ${ramp}. Door width: ${door}.`,
+    washroomFacts: (name: string, side: string, adult: string, access: string) =>
+      `${name}. Transfer side: ${side}. Adult change table: ${adult}. Access: ${access}.`,
+    parkingFacts: (name: string, van: string, width: string, aisle: string, payment: string, distance: string, cutoff: string) =>
+      `${name}. Van-accessible: ${van}. Width mm: ${width}. Aisle mm: ${aisle}. Payment: ${payment}. Distance to entrance: ${distance}. Reservation cutoff: ${cutoff}.`,
+    bookingFacts: (days: string, bookBy: string, pickup: string, wait: string, noShow: string) =>
+      `Booking window: ${days} days. Book by: ${bookBy}. Pickup window: ${pickup} minutes. Driver wait: ${wait} minutes. No-show policy: ${noShow}.`,
+    barrierRecorded: (reason: string, observedAt: string, ageHours: string) =>
+      `${reason} Recorded ${observedAt}. Age ${ageHours} hours.`,
+    feedLine: (name: string, state: string, when: string) => `Operator feed for ${name}: ${state} at ${when}.`,
+    reportLine: (state: string, when: string) => `User report: ${state} at ${when}.`,
+    rampNo: "A ramp=no value is recorded.",
+    tierUnknown: "Unknown. This is not a verification tier.",
+    tierLabel: (tier: number) =>
+      `Tier ${tier}. Imported or reported record, unverified by the App. Not a survey.`,
+    yes: "yes",
+    no: "no",
+    paymentWord: (payment: string) => payment,
   },
   fr: {
     scheduled: "Horaire",
@@ -99,6 +120,7 @@ const COPY = {
     elevatorOut: "Un ascenseur de cet accès est hors service, et aucun autre chemin sans marches n'est enregistré.",
     elevatorUnknown: "L'état de l'ascenseur n'est pas enregistré. L'indicateur de la station ne remplace pas une vérification.",
     elevatorStale: "L'état de l'ascenseur est trop ancien pour être traité comme actuel. Il est inconnu, pas en service.",
+    elevatorFuture: "L'horodatage d'un ascenseur est dans le futur. Cet état est inconnu, pas en service.",
     elevatorLastChecked: (when: string) => `État de l'ascenseur vérifié pour la dernière fois ${when}.`,
     snowBlocked: "Un blocage par la neige est enregistré sur cet accès.",
     construction: "Une fermeture pour travaux est enregistrée sur cet accès.",
@@ -158,8 +180,44 @@ const COPY = {
     statusUnknown: "état inconnu",
     phoneUnknown: "Téléphone d'aide : INCONNU.",
     alternateMissing: "Aucun autre chemin sans marches vérifié n'est enregistré.",
+    entranceNotMeasured: "L'entrée n'est pas mesurée. Une étiquette du lieu n'est pas un relevé de l'entrée.",
+    entranceDepth: (name: string, steps: string, ramp: string, door: string) =>
+      `${name}. Marches : ${steps}. Rampe : ${ramp}. Largeur de porte : ${door}.`,
+    washroomFacts: (name: string, side: string, adult: string, access: string) =>
+      `${name}. Côté de transfert : ${side}. Table à langer pour adulte : ${adult}. Accès : ${access}.`,
+    parkingFacts: (name: string, van: string, width: string, aisle: string, payment: string, distance: string, cutoff: string) =>
+      `${name}. Fourgonnette : ${van}. Largeur mm : ${width}. Allée mm : ${aisle}. Paiement : ${payment}. Distance jusqu'à l'entrée : ${distance}. Limite de réservation : ${cutoff}.`,
+    bookingFacts: (days: string, bookBy: string, pickup: string, wait: string, noShow: string) =>
+      `Fenêtre de réservation : ${days} jours. Réserver avant : ${bookBy}. Fenêtre de prise en charge : ${pickup} minutes. Attente du conducteur : ${wait} minutes. Politique d'absence : ${noShow}.`,
+    barrierRecorded: (reason: string, observedAt: string, ageHours: string) =>
+      `${reason} Enregistré ${observedAt}. Âge ${ageHours} heures.`,
+    feedLine: (name: string, state: string, when: string) => `Flux de l'exploitant pour ${name} : ${state} à ${when}.`,
+    reportLine: (state: string, when: string) => `Signalement : ${state} à ${when}.`,
+    rampNo: "La valeur ramp=no est enregistrée.",
+    tierUnknown: "Inconnu. Ce n'est pas un niveau de vérification.",
+    tierLabel: (tier: number) =>
+      `Niveau ${tier}. Fiche importée ou signalée, non vérifiée par l'application. Pas un relevé.`,
+    yes: "oui",
+    no: "non",
+    paymentWord: (payment: string) => {
+      if (payment === "app-only") return "application seulement";
+      if (payment === "card") return "carte";
+      if (payment === "cash") return "comptant";
+      if (payment === "attendant") return "préposé";
+      return "INCONNU";
+    },
   },
 } as const;
+
+export function copyLocaleKeys(): { en: string[]; fr: string[] } {
+  return { en: Object.keys(COPY.en), fr: Object.keys(COPY.fr) };
+}
+
+export function prototypeLabel(locale: Locale, tier: number | null): string {
+  const text = copy(locale);
+  if (tier === null) return text.tierUnknown;
+  return text.tierLabel(tier);
+}
 
 export type Copy = (typeof COPY)["en"];
 
@@ -177,7 +235,7 @@ export function statusSentence(locale: Locale, assessment: StepFreeAssessment): 
     stairs: text.steps,
     "wheelchair-no": text.wheelchairNo,
     "boarding-not-accessible": text.boardingNo,
-    "ramp-no": text.noEvidence,
+    "ramp-no": text.rampNo,
     "summer-not-winter": text.summerNotWinter,
     surveyed: text.notAppVerified,
     "operator-claim": text.notAppVerified,
@@ -185,6 +243,11 @@ export function statusSentence(locale: Locale, assessment: StepFreeAssessment): 
     "elevator-out": text.elevatorOut,
     "elevator-unknown": text.elevatorUnknown,
     "elevator-stale": text.elevatorStale,
+    "elevator-future": text.elevatorFuture,
+    "status-conflict": text.elevatorOut,
+    "entrance-not-measured": text.entranceNotMeasured,
+    "tier-without-survey": text.notAppVerified,
+    "contributed-report": text.notAppVerified,
     "snow-blocked": text.snowBlocked,
     construction: text.construction,
     "grade-over-limit": text.gradeOver,

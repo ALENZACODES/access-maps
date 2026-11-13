@@ -8,13 +8,23 @@ export type StepFreeStatus = "step-free" | "unknown" | "not-step-free";
 
 export type VerificationTier = 0 | 1 | 2 | 3 | 4;
 
+/** A tier-3 survey is App-verified only when all four of these are present. */
+export interface SurveyRecord {
+  protocol: string;
+  verifierRole: string;
+  method: string;
+  surveyedAt: string;
+}
+
 export interface Provenance {
   sourceId: string;
   licence: string;
-  /** ISO date (YYYY-MM-DD) or full timestamp for a status observation. */
+  /** ISO date, or UNKNOWN when no retrieval date was supplied. */
   retrievedAt: string;
-  tier: VerificationTier;
+  /** Null when no tier was supplied. Unknown is not tier 0. */
+  tier: VerificationTier | null;
   note?: string;
+  survey?: SurveyRecord | null;
 }
 
 export interface StepFreeAssessment {

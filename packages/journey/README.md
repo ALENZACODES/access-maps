@@ -4,7 +4,9 @@ Door-to-door journey-chain engine for the App. It plans legs over catalog record
 
 Step-free status is `step-free`, `unknown`, or `not-step-free`. A missing fact stays unknown. A straight-line distance is labelled straight-line and is not a route. Operator and open-data flags are not App surveys. Paratransit is a link and a policy summary, never a confirmed trip. Times are scheduled.
 
-Routing engines that may be called as separate services are self-hosted Valhalla, OSRM, and GraphHopper. Their pedestrian geometry is not treated as step-free. OpenTripPlanner and OpenRouteService are rejected by name and are not vendored.
+`createHttpRouter` is a stub. Its synchronous `route()` does not call the network and returns a straight-line gap. `routeWithFetch` posts to a placeholder `/access-route` path, not the Valhalla, OSRM, or GraphHopper request APIs, and `planJourney` does not call it. A real self-hosted service would send the origin and destination off the device. That path is not connected, so this package does not present a privacy notice for it. Pedestrian geometry from those engines would not be treated as step-free.
+
+OpenTripPlanner (LGPL) and OpenRouteService (GPL) are rejected by name and are not vendored. The plan allows a self-hosted Valhalla, OSRM, or GraphHopper service. Those two projects are excluded because their licences do not fit this repository.
 
 The open-data files under `data/` are produced by another change. This package does not write them. `JourneyDataSource` is the read interface. Tests use fixtures.
 

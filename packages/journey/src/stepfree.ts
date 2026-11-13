@@ -1,4 +1,4 @@
-import type { Provenance, StepFreeAssessment, StepFreeStatus, VerificationTier } from "./types.js";
+import type { Provenance, StepFreeAssessment, StepFreeStatus, SurveyRecord, VerificationTier } from "./types.js";
 
 export interface StepEvidenceInput {
   stairs: number | null;
@@ -12,6 +12,8 @@ export interface StepEvidenceInput {
   winterDowngrade: boolean;
   tier: VerificationTier | null;
   evidenceLabel: string | null;
+  /** True only when protocol, verifier role, method, and survey date are all recorded. */
+  surveyed?: boolean;
 }
 
 const EMPTY: StepFreeAssessment = {
@@ -24,7 +26,7 @@ const EMPTY: StepFreeAssessment = {
 
 /**
  * Resolve step-free status from evidence that was actually supplied.
- * An empty input is unknown. A positive tag is a claim, not an App survey, unless tier is 3.
+ * An empty input is unknown. A positive tag is a claim. Tier 3 is App-verified only with survey evidence.
  */
 export function resolveStepFree(input: StepEvidenceInput | undefined): StepFreeAssessment {
   if (!input) return { ...EMPTY, reasons: ["no-evidence"], evidence: [] };
@@ -86,14 +88,35 @@ export function resolveStepFree(input: StepEvidenceInput | undefined): StepFreeA
   if (input.ramp === "yes") evidence.push("ramp:yes");
   if (input.stairs === 0) evidence.push("steps:0");
 
-  const tier = input.tier;
+  const claim = claimFromTier(input.tier, input.surveyed === true);
   return {
     status: "step-free",
-    appVerified: tier === 3,
-    tier,
-    reasons: [tier === 3 ? "surveyed" : tier === 1 ? "operator-claim" : "open-data-claim"],
+    appVerified: claim.appVerified,
+    tier: input.tier,
+    reasons: [claim.reason],
     evidence,
   };
+}
+
+export function surveyComplete(survey: SurveyRecord | null | undefined): boolean {
+  if (!survey) return false;
+  return [survey.protocol, survey.verifierRole, survey.method, survey.surveyedAt].every((part) => {
+    const trimmed = part.trim();
+    return trimmed.length > 0 && trimmed.toUpperCase() !== "UNKNOWN";
+  });
+}
+
+/** Tier 3 without a protocol, role, method, and date is not an App survey. */
+export function claimFromTier(
+  tier: VerificationTier | null,
+  surveyed: boolean,
+): { appVerified: boolean; reason: string } {
+  if (tier === 3 && surveyed) return { appVerified: true, reason: "surveyed" };
+  if (tier === 3) return { appVerified: false, reason: "tier-without-survey" };
+  if (tier === 1) return { appVerified: false, reason: "operator-claim" };
+  if (tier === 2) return { appVerified: false, reason: "contributed-report" };
+  if (tier === 4) return { appVerified: false, reason: "status-feed" };
+  return { appVerified: false, reason: "open-data-claim" };
 }
 
 export function unknownAssessment(reason: string, evidence: string[] = [], tier: VerificationTier | null = null): StepFreeAssessment {

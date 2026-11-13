@@ -7,7 +7,7 @@ import type {
   TransitTrip,
   TransferPoint,
 } from "./catalog.js";
-import { copy } from "./explain.js";
+import { copy, statusSentence } from "./explain.js";
 import { formatMetres, haversineMetres, hoursBetween, isWinterDate, type Coord } from "./geo.js";
 import { assertHonest } from "./invariants.js";
 import { applyOffline } from "./offline.js";
@@ -19,7 +19,7 @@ import {
   type ImportedRecord,
 } from "./records.js";
 import { GraphRouter, type RouterAdapter, type RouterResult } from "./router.js";
-import { barrier, resolveStepFree, unknownAssessment } from "./stepfree.js";
+import { barrier, claimFromTier, resolveStepFree, surveyComplete, unknownAssessment } from "./stepfree.js";
 import { assessElevatorsAtStop } from "./elevators.js";
 import { detectSystemEvents, systemEventWarning } from "./elevators.js";
 import type {
@@ -86,7 +86,7 @@ export function planJourney(input: PlanInput): JourneyPlan {
   const winter =
     input.winterMode === true || (input.winterMode !== false && isWinterDate(now));
   const preference = input.preference ?? "fewest-transfers";
-  const world = buildWorld(input.data, { winter, profile });
+  const world = buildWorld(input.data, { winter, profile, now });
   const router = input.router ?? new GraphRouter(world.segments);
   const ids = createIds();
   const originVenue = venueById(world, input.origin.venueId);
@@ -229,10 +229,10 @@ export function planJourney(input: PlanInput): JourneyPlan {
     offline: null,
     emergency: { phone: "911", text: text.emergency },
   };
-  assertHonest(plan);
+  assertHonest(plan, catalogPhrases(input));
   if (input.offline) {
     plan = applyOffline(plan, now);
-    assertHonest(plan);
+    assertHonest(plan, catalogPhrases(input));
   }
   return plan;
 }
@@ -454,7 +454,7 @@ function finishJourney(
     .join(" ");
   return {
     id: ctx.ids.next(),
-    summary: legs.map((leg) => leg.mode).join(" → "),
+    summary: legs.map((leg) => modeLabel(ctx.locale, leg.mode)).join(" → "),
     legs,
     explanation,
     weakestLink: { legId: weakestLeg?.id ?? "none", text: weakestText },
@@ -499,16 +499,23 @@ function homeLeg(ctx: BuildContext): Leg {
 
 function stationLeg(ctx: BuildContext, stop: StopPoint): Leg {
   const text = copy(ctx.locale);
-  const snow = barriersForStop(ctx.world.source, stop.id);
+  const snow = barriersForStop(ctx.world.source, stop.id, ctx.now);
   const elevators = elevatorsForStop(ctx.world.source, stop.id);
   let assessment: StepFreeAssessment;
   let note = "";
   let warnings: Warning[] = [];
   let spoF = false;
   let phones: string[] = [];
+  let provenance = provenanceFromField(stop.record.fields.wheelchair_boarding, text.elevatorUnknown);
   if (snow.length > 0) {
-    assessment = barrier("snow-blocked", snow[0]?.provenance.tier ?? 0, snow.map((item) => item.id));
-    note = text.snowBlocked;
+    assessment = barrier("snow-blocked", snow[0]?.provenance.tier ?? null, snow.map((item) => item.id));
+    const snowAge = hoursBetween(snow[0]?.observedAt ?? "", ctx.now);
+    note = text.barrierRecorded(
+      text.snowBlocked,
+      snow[0]?.observedAt ?? text.unknown,
+      snowAge === null ? text.unknown : String(Math.round(snowAge)),
+    );
+    provenance = snow[0]?.provenance ?? provenance;
   } else if (stop.boarding === "no") {
     assessment = barrier("boarding-not-accessible", stop.record.fields.wheelchair_boarding?.tier ?? 1, [
       `${stop.id}:boarding-2`,
@@ -521,20 +528,24 @@ function stationLeg(ctx: BuildContext, stop: StopPoint): Leg {
     warnings = access.warnings;
     spoF = access.singlePointOfFailure;
     phones = access.phones;
+    provenance = access.provenance;
   } else {
     const noted = (ctx.world.source.stopAccess ?? []).find((item) => item.stopId === stop.id);
     if (noted?.status === "step-free" && noted.evidence) {
+      const claim = claimFromTier(noted.provenance.tier, surveyComplete(noted.provenance.survey));
       assessment = {
         status: "step-free",
-        appVerified: noted.provenance.tier === 3,
+        appVerified: claim.appVerified,
         tier: noted.provenance.tier,
-        reasons: [noted.provenance.tier === 1 ? "operator-claim" : "open-data-claim"],
+        reasons: [claim.reason],
         evidence: [noted.evidence],
       };
       note = noted.evidence;
+      provenance = noted.provenance;
     } else if (noted?.status === "not-step-free") {
       assessment = barrier("blocked", noted.provenance.tier, [noted.evidence]);
       note = noted.evidence || text.noEvidence;
+      provenance = noted.provenance;
     } else {
       const evidence = stop.boarding === "yes" ? [`${stop.id}:boarding-1`] : [];
       assessment = unknownAssessment(
@@ -559,7 +570,7 @@ function stationLeg(ctx: BuildContext, stop: StopPoint): Leg {
     surface: "UNKNOWN",
     gradient: "UNKNOWN",
     timing: null,
-    provenance: provenanceFromField(stop.record.fields.wheelchair_boarding, note),
+    provenance,
     note,
     agencyId: null,
     transitMode: null,
@@ -585,7 +596,7 @@ function transitLeg(ctx: BuildContext, option: TransitOption): Leg {
   } else if (trip.wheelchairAccessible === "2") {
     assessment = barrier("boarding-not-accessible", trip.provenance.tier, [`${trip.id}:wheelchair_accessible-2`]);
   } else {
-    assessment = unknownAssessment("no-evidence", [`${trip.id}:wheelchair_accessible-0`], trip.provenance.tier);
+    assessment = unknownAssessment("no-evidence", [`${trip.id}:wheelchair_accessible-unknown`], trip.provenance.tier);
   }
   const text = copy(ctx.locale);
   return baseLeg(ctx, {
@@ -635,6 +646,7 @@ function movementLeg(
       : formatMetres(spec.result.distanceMetres);
   const distanceSentence =
     spec.result.kind === "straight-line" ? text.straightLine(distanceText) : `${distanceText}.`;
+  const barrierSentence = barrierClause(ctx.locale, assessment);
   return baseLeg(ctx, {
     mode: spec.mode,
     chainLeg: spec.chainLeg,
@@ -650,13 +662,13 @@ function movementLeg(
     gradient: spec.result.gradient,
     timing: null,
     provenance: {
-      sourceId: spec.result.engine,
-      licence: spec.result.engine === "graph" ? "catalog-path" : "not-a-dataset",
-      retrievedAt: ctx.now.slice(0, 10),
-      tier: assessment.tier ?? 0,
-      note: spec.result.note,
+      sourceId: spec.result.kind === "route" ? spec.result.engine : UNKNOWN,
+      licence: spec.result.kind === "route" ? "catalog-path" : UNKNOWN,
+      retrievedAt: UNKNOWN,
+      tier: assessment.tier,
+      note: distanceSentence,
     },
-    note: `${distanceSentence} ${text.surface(spec.result.surface)} ${text.gradient(spec.result.gradient)}`,
+    note: `${distanceSentence} ${text.surface(spec.result.surface)} ${text.gradient(spec.result.gradient)}${barrierSentence}`,
     agencyId: null,
     transitMode: null,
     links: [],
@@ -673,7 +685,7 @@ function entranceLeg(ctx: BuildContext, depth: DestinationDepth): Leg {
     toName: ctx.input.destination.name,
     from: ctx.input.destination,
     to: ctx.input.destination,
-    stepFree: placeAssessment(ctx.destinationVenue, false),
+    stepFree: entranceAssessment(ctx.destinationVenue),
     distanceKind: "unknown",
     distanceMetres: null,
     surface: "UNKNOWN",
@@ -723,13 +735,7 @@ function washroomLeg(ctx: BuildContext, depth: DestinationDepth): Leg {
     from: ctx.input.destination,
     to: ctx.input.destination,
     stepFree: depth.washroom.usable
-      ? {
-          status: "step-free",
-          appVerified: depth.washroom.provenance?.tier === 3,
-          tier: depth.washroom.provenance?.tier ?? 0,
-          reasons: ["open-data-claim"],
-          evidence: [depth.washroom.text],
-        }
+      ? washroomClaim(depth)
       : unknownAssessment("no-evidence"),
     distanceKind: "unknown",
     distanceMetres: null,
@@ -798,12 +804,13 @@ function paratransitLeg(ctx: BuildContext, system: ParatransitDirectoryEntry, ch
         ? `${note} Les arrêts non prévus ne sont pas permis par cet exploitant.`
         : `${note} Unscheduled stops are not permitted by this operator.`;
   }
-  if (system.pickupWindowMinutes !== null) {
-    note =
-      ctx.locale === "fr"
-        ? `${note} Fenêtre de prise en charge : ${system.pickupWindowMinutes} minutes.`
-        : `${note} Pickup window: ${system.pickupWindowMinutes} minutes.`;
-  }
+  note = `${note} ${text.bookingFacts(
+    system.bookingWindowDays === null ? text.unknown : String(system.bookingWindowDays),
+    ctx.input.departAt,
+    system.pickupWindowMinutes === null ? text.unknown : String(system.pickupWindowMinutes),
+    system.driverWaitMinutes === null ? text.unknown : String(system.driverWaitMinutes),
+    system.noShowPolicy ?? text.unknown,
+  )}`;
   if (!ctx.profile.registrations.includes(system.id)) {
     warnings.push({
       code: "registration-gap",
@@ -875,9 +882,9 @@ function handoffLeg(ctx: BuildContext, transfer: TransferPoint | undefined): Leg
       : transfer?.stepFree === "yes"
         ? {
             status: "step-free" as const,
-            appVerified: transfer.provenance.tier === 3,
+            appVerified: claimFromTier(transfer.provenance.tier, surveyComplete(transfer.provenance.survey)).appVerified,
             tier: transfer.provenance.tier,
-            reasons: ["open-data-claim"],
+            reasons: [claimFromTier(transfer.provenance.tier, surveyComplete(transfer.provenance.survey)).reason],
             evidence: [transfer.id],
           }
         : unknownAssessment("no-evidence", transfer ? [transfer.id] : []);
@@ -933,7 +940,7 @@ function destinationDepth(ctx: BuildContext, endpoint: Endpoint, venue: Imported
   const parking = nearestParking(ctx, endpoint);
   return {
     entrance: {
-      text: `${endpoint.name}. Steps: ${stepCount}. Ramp: ${ramp}. Door width: ${doorWidth}.`,
+      text: `${text.entranceDepth(endpoint.name, stepCount, ramp, doorWidth)} ${entranceAssessment(venue).reasons.includes("entrance-not-measured") ? text.entranceNotMeasured : ""}`.trim(),
       stepCount,
       ramp,
       doorWidth,
@@ -987,10 +994,12 @@ function describeWashroom(
     sentence = text.washroomTransfer;
   } else {
     usable = true;
-    sentence = `${readString(found.record, "name")}. Transfer side: ${sideLabel}. Adult change table: ${adult}. Access: ${access}.`;
+    sentence = text.washroomFacts(readString(found.record, "name"), sideLabel, adult, access);
   }
+  const phoneField = readString(found.record, "phone");
+  const callPhone = phoneField === UNKNOWN ? phone : phoneField;
   if (!usable) {
-    sentence = `${sentence} ${readString(found.record, "name")}. Transfer side: ${sideLabel}. Adult change table: ${adult}. Access: ${access}. ${phone === UNKNOWN ? "" : phone}`.trim();
+    sentence = `${sentence} ${text.washroomFacts(readString(found.record, "name"), sideLabel, adult, access)} ${callPhone === UNKNOWN ? "" : callPhone}`.trim();
   }
   return {
     text: sentence,
@@ -1012,10 +1021,18 @@ function nearestParking(ctx: BuildContext, endpoint: Endpoint): DestinationDepth
   }
   if (!best) return null;
   const bay = best.bay;
-  const van = bay.vanAccessible === null ? "UNKNOWN" : bay.vanAccessible ? "yes" : "no";
+  const van = bay.vanAccessible === null ? text.unknown : bay.vanAccessible ? text.yes : text.no;
   const distance = bay.distanceToEntranceMetres === null ? formatMetres(best.metres) : formatMetres(bay.distanceToEntranceMetres);
   return {
-    text: `${bay.name}. Van-accessible: ${van}. Width mm: ${bay.widthMm ?? "UNKNOWN"}. Aisle mm: ${bay.aisleMm ?? "UNKNOWN"}. Payment: ${bay.payment}. Distance to entrance: ${distance}. Reservation cutoff: ${bay.reservationCutoff ?? "UNKNOWN"}.`,
+    text: text.parkingFacts(
+      bay.name,
+      van,
+      bay.widthMm === null ? text.unknown : String(bay.widthMm),
+      bay.aisleMm === null ? text.unknown : String(bay.aisleMm),
+      text.paymentWord(bay.payment),
+      distance,
+      bay.reservationCutoff ?? text.unknown,
+    ),
     provenance: bay.provenance,
   };
 }
@@ -1327,7 +1344,7 @@ function paratransitJourneys(
 
 function routeBetween(ctx: BuildContext, from: Coord, to: Coord): RouterResult {
   const router = ctx.router ?? new GraphRouter(ctx.world.segments);
-  return router.route({ from, to, reportBarriers: true });
+  return router.route({ from, to, reportBarriers: true, locale: ctx.locale });
 }
 
 function placeAssessment(venue: ImportedRecord | undefined, winterDowngrade: boolean): StepFreeAssessment {
@@ -1345,15 +1362,43 @@ function placeAssessment(venue: ImportedRecord | undefined, winterDowngrade: boo
     blocked: false,
     blockReason: null,
     winterDowngrade,
-    tier: venue.fields.wheelchair?.tier ?? venue.fields.step_count?.tier ?? 0,
+    tier: venue.fields.wheelchair?.tier ?? venue.fields.step_count?.tier ?? null,
     evidenceLabel: venue.id,
+    surveyed: surveyComplete(venue.fields.wheelchair?.survey ?? venue.fields.step_count?.survey),
+  });
+}
+
+function entranceAssessment(venue: ImportedRecord | undefined): StepFreeAssessment {
+  if (!venue) return unknownAssessment("entrance-not-measured");
+  const steps = readNumber(venue, "step_count");
+  const door = readString(venue, "door_width");
+  const wheelchair = readString(venue, "wheelchair").toLowerCase();
+  const ramp = readString(venue, "ramp").toLowerCase();
+  const tier = venue.fields.step_count?.tier ?? venue.fields.door_width?.tier ?? venue.fields.wheelchair?.tier ?? null;
+  if (steps !== null && steps > 0) return barrier("stairs", tier, [venue.id, `steps:${steps}`]);
+  if (wheelchair === "no") return barrier("wheelchair-no", tier, [venue.id, "wheelchair:no"]);
+  const measured = steps !== null && door !== UNKNOWN;
+  if (!measured) return unknownAssessment("entrance-not-measured", [venue.id], tier);
+  return resolveStepFree({
+    stairs: steps,
+    wheelchair: wheelchair === "yes" ? "yes" : "unknown",
+    boarding: "unknown",
+    ramp: ramp === "yes" ? "yes" : ramp === "no" ? "no" : "unknown",
+    inclinePercent: null,
+    widthMm: null,
+    blocked: false,
+    blockReason: null,
+    winterDowngrade: false,
+    tier,
+    evidenceLabel: venue.id,
+    surveyed: surveyComplete(venue.fields.step_count?.survey ?? venue.fields.door_width?.survey),
   });
 }
 
 function placeNote(locale: Locale, venue: ImportedRecord | undefined): string {
   const text = copy(locale);
   if (!venue) return text.homeUnknown;
-  return `${readString(venue, "name")}. Steps: ${readString(venue, "step_count")}. Ramp: ${readString(venue, "ramp")}.`;
+  return text.entranceDepth(readString(venue, "name"), readString(venue, "step_count"), readString(venue, "ramp"), readString(venue, "door_width"));
 }
 
 function chainReport(locale: Locale, legs: Leg[], returnLegs: Leg[], fares: FareLine[]): ChainReport {
@@ -1596,14 +1641,65 @@ function baseLeg(ctx: BuildContext, init: LegInit): Leg {
   };
 }
 
-function emptyProvenance(now: string, note: string): Provenance {
+function emptyProvenance(_now: string, note: string): Provenance {
   return {
-    sourceId: "none",
-    licence: "not-a-dataset",
-    retrievedAt: now.slice(0, 10),
-    tier: 0,
+    sourceId: UNKNOWN,
+    licence: UNKNOWN,
+    retrievedAt: UNKNOWN,
+    tier: null,
     note,
   };
+}
+
+function modeLabel(locale: Locale, mode: LegMode): string {
+  const headingText = heading(locale, mode, "a", "b");
+  return headingText.split(":")[0] ?? mode;
+}
+
+function barrierClause(locale: Locale, assessment: StepFreeAssessment): string {
+  const observed = assessment.evidence.find((item) => item.startsWith("barrier-observed:"));
+  if (!observed) return "";
+  const age = assessment.evidence.find((item) => item.startsWith("barrier-age-hours:"));
+  const text = copy(locale);
+  return ` ${text.barrierRecorded(
+    statusSentence(locale, assessment),
+    observed.slice("barrier-observed:".length),
+    age ? age.slice("barrier-age-hours:".length) : text.unknown,
+  )}`;
+}
+
+function washroomClaim(depth: DestinationDepth): StepFreeAssessment {
+  const claim = claimFromTier(depth.washroom.provenance?.tier ?? null, surveyComplete(depth.washroom.provenance?.survey));
+  return {
+    status: "step-free",
+    appVerified: claim.appVerified,
+    tier: depth.washroom.provenance?.tier ?? null,
+    reasons: [claim.reason],
+    evidence: [depth.washroom.provenance?.sourceId ?? "washroom"],
+  };
+}
+
+function catalogPhrases(input: PlanInput): string[] {
+  const phrases = [input.origin.name, input.destination.name];
+  for (const record of [...input.data.stops, ...input.data.paths, ...input.data.venues, ...input.data.washrooms]) {
+    const name = record.fields.name?.value;
+    if (typeof name === "string") phrases.push(name);
+  }
+  for (const asset of input.data.elevators ?? []) phrases.push(asset.name, asset.operatorName);
+  for (const system of input.data.paratransit ?? []) phrases.push(system.name);
+  for (const bay of input.data.parking ?? []) phrases.push(bay.name);
+  for (const service of input.data.trips ?? []) phrases.push(service.routeName, service.agencyName);
+  for (const service of input.data.intercity ?? []) phrases.push(service.name, service.fromName, service.toName);
+  for (const note of input.data.ridehail ?? []) {
+    phrases.push(note.summary);
+    for (const taxi of note.taxis) {
+      phrases.push(taxi.name);
+      if (taxi.leadTimeNote) phrases.push(taxi.leadTimeNote);
+    }
+  }
+  for (const rule of input.data.fares ?? []) phrases.push(rule.agencyName);
+  for (const report of input.data.barriers ?? []) phrases.push(report.id);
+  return phrases;
 }
 
 function createIds(): { next: () => string } {

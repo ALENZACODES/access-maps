@@ -65,7 +65,7 @@ export function FeatureList({
               <span className="feature-name">{feature.name}</span>
               <span className={`status status-${feature.statusCode}`}>{statusLabel(locale, feature.statusCode)}</span>
               <span className="feature-detail">
-                {text.source}: {feature.source}. {text.tier}: {feature.tier ?? "UNKNOWN"}. {feature.status}
+                {text.source}: {feature.source}. {text.licence}: {feature.licence}. {text.retrieved}: {feature.retrievedAt}. {feature.prototypeLabel}. {feature.status}
               </span>
             </button>
           </li>

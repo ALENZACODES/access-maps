@@ -93,6 +93,120 @@ describe("FM-01 elevator outage with no alternate", () => {
     expect(plan.noGo).toBeTruthy();
     expect(texts(plan)).not.toMatch(/\blive\b/i);
     expect(texts(plan)).not.toMatch(/real-time/i);
+    expect(access?.provenance.sourceId).toBe("fixture");
+    expect(access?.provenance.tier).toBe(4);
+    expect(access?.provenance.sourceId).not.toBe("gtfs-fixture");
+  });
+
+  it("does not call the station step-free when one of two elevators is out", () => {
+    const plan = planJourney({
+      data: source({
+        ...data,
+        elevators: [
+          elevator({
+            id: "street",
+            name: "Street elevator",
+            stopId: "st-clair",
+            networkId: "scenario-subway",
+            status: { state: "working", observedAt: "2026-06-15T06:40:00-04:00", source: "feed", provenance: provenance({ tier: 4, sourceId: "elevator-feed" }) },
+          }),
+          elevator({
+            id: "platform",
+            name: "Platform elevator",
+            stopId: "st-clair",
+            networkId: "scenario-subway",
+            status: { state: "out", observedAt: "2026-06-15T06:42:00-04:00", source: "feed", provenance: provenance({ tier: 4, sourceId: "elevator-feed" }) },
+          }),
+        ],
+      }),
+      origin: home,
+      destination: place,
+      departAt: SUMMER_DEPART,
+      now: SUMMER_NOW,
+      winterMode: false,
+      profile: { chair: "power" },
+    });
+    const access = [...plan.journeys, ...plan.blocked]
+      .flatMap((journey) => journey.legs)
+      .find((leg) => leg.mode === "station-access" && leg.title.includes("St. Clair"));
+    expect(access?.stepFree.status).toBe("not-step-free");
+    expect(access?.note).toContain("Street elevator");
+    expect(access?.note).toContain("Platform elevator");
+    expect(access?.provenance.sourceId).toBe("elevator-feed");
+    expect(access?.singlePointOfFailure).toBe(false);
+  });
+
+  it("treats a fresh user report of an outage as the barrier and shows both sources", () => {
+    const plan = planJourney({
+      data: source({
+        ...data,
+        elevators: [
+          elevator({
+            id: "e-st-clair",
+            name: "Scenario elevator St. Clair West",
+            stopId: "st-clair",
+            networkId: "scenario-subway",
+            helpPhone: "000-000-0000",
+            status: {
+              state: "working",
+              observedAt: "2026-06-15T06:40:00-04:00",
+              source: "feed",
+              provenance: provenance({ tier: 4, sourceId: "elevator-feed" }),
+              userReport: {
+                state: "out",
+                observedAt: "2026-06-15T06:45:00-04:00",
+                provenance: provenance({ tier: 4, sourceId: "user-report" }),
+              },
+            },
+          }),
+        ],
+      }),
+      origin: home,
+      destination: place,
+      departAt: SUMMER_DEPART,
+      now: SUMMER_NOW,
+      winterMode: false,
+      profile: { chair: "power" },
+    });
+    const access = [...plan.journeys, ...plan.blocked]
+      .flatMap((journey) => journey.legs)
+      .find((leg) => leg.mode === "station-access" && leg.title.includes("St. Clair"));
+    expect(access?.stepFree.status).toBe("not-step-free");
+    expect(access?.note).toContain("2026-06-15T06:40:00-04:00");
+    expect(access?.note).toContain("2026-06-15T06:45:00-04:00");
+    expect(access?.provenance.sourceId).toBe("user-report");
+  });
+
+  it("does not treat a future-dated elevator status as in service", () => {
+    const plan = planJourney({
+      data: source({
+        ...data,
+        elevators: [
+          elevator({
+            id: "e-st-clair",
+            name: "Scenario elevator St. Clair West",
+            stopId: "st-clair",
+            status: {
+              state: "working",
+              observedAt: "2026-06-16T07:00:00-04:00",
+              source: "feed",
+              provenance: provenance({ tier: 4, sourceId: "elevator-feed" }),
+            },
+          }),
+        ],
+      }),
+      origin: home,
+      destination: place,
+      departAt: SUMMER_DEPART,
+      now: SUMMER_NOW,
+      winterMode: false,
+      profile: { chair: "power" },
+    });
+    const access = [...plan.journeys, ...plan.blocked]
+      .flatMap((journey) => journey.legs)
+      .find((leg) => leg.mode === "station-access" && leg.title.includes("St. Clair"));
+    expect(access?.stepFree.status).toBe("unknown");
+    expect(access?.stepFree.reasons).toContain("elevator-future");
   });
 });
 
@@ -205,6 +319,30 @@ describe("FM-03 washroom label without measurements", () => {
     expect(plan.warnings.some((warning) => warning.code === "washroom" && warning.beforeCommit)).toBe(true);
     expect(texts(plan)).not.toMatch(/catheter/i);
   });
+
+  it("does not recommend a wheelchair tag that has no measurements, and shows the call-ahead phone", () => {
+    const plan = planJourney({
+      data: source({
+        washrooms: [
+          washroom("wc", "Scenario washroom", place.lon, place.lat, {
+            wheelchair: field("yes"),
+            phone: field("000-777-0000"),
+          }),
+        ],
+      }),
+      origin: home,
+      destination: place,
+      departAt: SUMMER_DEPART,
+      now: SUMMER_NOW,
+      winterMode: false,
+      profile: { chair: "power", transferSide: "left" },
+    });
+    const depth = plan.journeys[0]?.depth ?? plan.blocked[0]?.depth;
+    expect(depth?.washroom.usable).toBe(false);
+    expect(depth?.washroom.text).toContain("000-777-0000");
+    expect(depth?.washroom.text.toLowerCase()).toContain("call ahead");
+    expect(depth?.washroom.transferSide).toBe("UNKNOWN");
+  });
 });
 
 describe("FM-04 paratransit window and shared ride", () => {
@@ -246,6 +384,11 @@ describe("FM-04 paratransit window and shared ride", () => {
     expect(leg?.links[0]?.phone).toBe("000-333-0000");
     expect(leg?.links[0]?.href).toBe("https://example.test/book");
     expect(leg?.note.toLowerCase()).toContain("no guarantee");
+    expect(leg?.note).toContain("Booking window: 3 days");
+    expect(leg?.note).toContain(`Book by: ${depart}`);
+    expect(leg?.note).toContain("Pickup window: 30 minutes");
+    expect(leg?.note).toContain("Driver wait: 5 minutes");
+    expect(leg?.note).toContain("No-show policy: scenario policy");
     expect(leg?.note.toLowerCase()).not.toContain("booked");
     expect(info?.warnings.some((warning) => warning.code === "washroom-interval" || warning.code === "travel-time")).toBe(true);
     expect(info?.returnJourney.explanation.toLowerCase()).toContain("not a confirmed trip");
@@ -325,7 +468,13 @@ describe("FM-06 on-demand wheelchair vehicle supply", () => {
     });
     expect(plan.supplyNotes[0]?.text.toLowerCase()).toContain("not a fallback");
     expect(plan.supplyNotes[0]?.phones).toContain("000-444-0000");
-    expect(plan.journeys.some((journey) => journey.summary.toLowerCase().includes("wav"))).toBe(false);
+    expect(plan.supplyNotes[0]?.text).toContain("000-444-0000");
+    expect(plan.supplyNotes[0]?.text).toContain("90 minutes");
+    expect(
+      [...plan.journeys, ...plan.blocked].some((journey) =>
+        journey.legs.some((leg) => leg.note.includes("000-444-0000") || leg.links.some((link) => link.phone === "000-444-0000")),
+      ),
+    ).toBe(false);
     expect(texts(plan)).not.toMatch(/\bin range\b/i);
   });
 });
@@ -602,6 +751,101 @@ describe("FM-12 last 200 metres", () => {
     expect(approach?.stepFree.reasons).toContain("construction");
     expect(tripJourney?.presentedAsStepFree).toBe(false);
     expect(plan.journeys).not.toContain(tripJourney);
+  });
+
+  it("does not treat a station flag plus a venue tag as a step-free approach or entrance", () => {
+    const plan = planJourney({
+      data: source({
+        stops: [stop("station", "Scenario accessible station", home.lon, home.lat, "1")],
+        venues: [venue("place", "Scenario theatre", place.lon, place.lat, { wheelchair: field("yes") })],
+        trips: [
+          trip({
+            id: "in",
+            mode: "subway",
+            wheelchairAccessible: "1",
+            stopTimes: [
+              { stopId: "station", arrival: "19:00", departure: "19:00" },
+              { stopId: "station", arrival: "19:05", departure: "19:05" },
+            ],
+          }),
+        ],
+      }),
+      origin: { ...home, venueId: undefined },
+      destination: { ...place, venueId: "place" },
+      departAt: SUMMER_DEPART,
+      now: SUMMER_NOW,
+      winterMode: false,
+      profile: { chair: "power" },
+    });
+    const tripJourney = [...plan.journeys, ...plan.blocked].find((journey) => journey.legs.some((leg) => leg.mode === "transit"));
+    const approach = tripJourney?.legs.find((leg) => leg.mode === "approach");
+    const entrance = tripJourney?.legs.find((leg) => leg.mode === "entrance");
+    expect(approach?.stepFree.status).not.toBe("step-free");
+    expect(entrance?.stepFree.status).toBe("unknown");
+    expect(entrance?.stepFree.reasons).toContain("entrance-not-measured");
+    expect(tripJourney?.presentedAsStepFree).toBe(false);
+  });
+
+  it("does not keep an expired barrier, and a current barrier says why it blocks", () => {
+    const expired = planJourney({
+      data: source({
+        paths: [
+          path("sidewalk", [
+            [home.lon, home.lat],
+            [place.lon, place.lat],
+          ], { wheelchair: field("yes"), step_count: field(0) }),
+        ],
+        barriers: [
+          {
+            id: "old-hoarding",
+            pathId: "sidewalk",
+            kind: "construction",
+            blocksPassage: true,
+            observedAt: "2025-01-01T12:00:00-05:00",
+            provenance: provenance({ tier: 2 }),
+          },
+        ],
+      }),
+      origin: home,
+      destination: place,
+      departAt: SUMMER_DEPART,
+      now: SUMMER_NOW,
+      winterMode: false,
+      profile: { chair: "manual" },
+    });
+    const oldApproach = [...expired.journeys, ...expired.blocked].flatMap((journey) => journey.legs).find((leg) => leg.mode === "approach");
+    expect(oldApproach?.stepFree.reasons).not.toContain("construction");
+
+    const current = planJourney({
+      data: source({
+        paths: [
+          path("sidewalk", [
+            [home.lon, home.lat],
+            [place.lon, place.lat],
+          ], { wheelchair: field("yes"), step_count: field(0) }),
+        ],
+        barriers: [
+          {
+            id: "fresh-hoarding",
+            pathId: "sidewalk",
+            kind: "construction",
+            blocksPassage: true,
+            observedAt: SUMMER_NOW,
+            provenance: provenance({ tier: 2 }),
+          },
+        ],
+      }),
+      origin: home,
+      destination: place,
+      departAt: SUMMER_DEPART,
+      now: SUMMER_NOW,
+      winterMode: false,
+      profile: { chair: "manual" },
+    });
+    const approach = [...current.journeys, ...current.blocked].flatMap((journey) => journey.legs).find((leg) => leg.mode === "approach");
+    expect(approach?.stepFree.status).toBe("not-step-free");
+    expect(approach?.note.toLowerCase()).toContain("construction");
+    expect(approach?.note).toContain(SUMMER_NOW);
   });
 });
 

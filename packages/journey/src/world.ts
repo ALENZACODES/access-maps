@@ -4,7 +4,7 @@ import type {
   JourneyDataSource,
   SeasonalNote,
 } from "./catalog.js";
-import { coordKey, haversineMetres, type Coord } from "./geo.js";
+import { coordKey, haversineMetres, hoursBetween, type Coord } from "./geo.js";
 import {
   parseInclinePercent,
   parseWidthMm,
@@ -16,7 +16,7 @@ import {
   UNKNOWN,
   type ImportedRecord,
 } from "./records.js";
-import { barrier, resolveStepFree, type StepEvidenceInput } from "./stepfree.js";
+import { barrier, resolveStepFree, surveyComplete, type StepEvidenceInput } from "./stepfree.js";
 import type { EquipmentProfile, StepFreeAssessment } from "./types.js";
 import type { PreparedSegment } from "./router.js";
 
@@ -35,9 +35,24 @@ export interface RoutingWorld {
   segments: PreparedSegment[];
 }
 
+const SNOW_MAX_HOURS = 72;
+const WORKS_MAX_HOURS = 24 * 14;
+
+/** A future-dated report is not current. Snow expires after 72 hours. Other reports expire after 14 days. */
+export function barrierIsCurrent(report: BarrierReport, nowIso: string): boolean {
+  const age = hoursBetween(report.observedAt, nowIso);
+  if (age === null || age < 0) return false;
+  if (report.expiresAt) {
+    const remaining = hoursBetween(nowIso, report.expiresAt);
+    return remaining !== null && remaining >= 0;
+  }
+  const limit = report.kind === "snow" ? SNOW_MAX_HOURS : WORKS_MAX_HOURS;
+  return age <= limit;
+}
+
 export function buildWorld(
   source: JourneyDataSource,
-  options: { winter: boolean; profile: EquipmentProfile },
+  options: { winter: boolean; profile: EquipmentProfile; now: string },
 ): RoutingWorld {
   const stops = new Map<string, StopPoint>();
   for (const record of source.stops) {
@@ -53,7 +68,7 @@ export function buildWorld(
   }
   const venues = new Map(source.venues.map((venue) => [venue.id, venue]));
   const segments = source.paths.flatMap((path) =>
-    prepareSegment(path, source, options.winter, options.profile),
+    prepareSegment(path, source, options.winter, options.profile, options.now),
   );
   return { source, stops, venues, segments };
 }
@@ -63,6 +78,7 @@ function prepareSegment(
   source: JourneyDataSource,
   winter: boolean,
   profile: EquipmentProfile,
+  nowIso: string,
 ): PreparedSegment[] {
   const geometry = readGeometry(path);
   if (!geometry || geometry.length < 2) return [];
@@ -75,7 +91,9 @@ function prepareSegment(
   const inclineToken = readString(path, "incline");
   const incline = parseInclinePercent(inclineToken);
   const gradient = inclineToken === UNKNOWN ? "UNKNOWN" : inclineToken;
-  const barrierReport = blockingBarrier(source.barriers ?? [], path.id);
+  const barrierReport = (source.barriers ?? []).find(
+    (report) => report.blocksPassage && report.pathId === path.id && barrierIsCurrent(report, nowIso),
+  );
   const seasonal = (source.seasonal ?? []).find((note) => note.pathId === path.id);
   const winterDowngrade = winter && !seasonal?.winterChecked;
   const input: StepEvidenceInput = {
@@ -88,11 +106,23 @@ function prepareSegment(
     blocked: Boolean(barrierReport),
     blockReason: barrierReport ? barrierReport.kind === "snow" ? "snow-blocked" : "construction" : null,
     winterDowngrade,
-    tier: path.fields.wheelchair?.tier ?? path.fields.surface?.tier ?? 0,
+    tier: path.fields.wheelchair?.tier ?? path.fields.surface?.tier ?? null,
+    surveyed: surveyComplete(path.fields.wheelchair?.survey ?? path.fields.step_count?.survey),
     evidenceLabel: path.id,
   };
   let assessment = resolveStepFree(input);
   assessment = applyBodyLimits(assessment, incline, input.widthMm, profile, path);
+  if (barrierReport) {
+    const age = hoursBetween(barrierReport.observedAt, nowIso);
+    assessment = {
+      ...assessment,
+      evidence: [
+        ...assessment.evidence,
+        `barrier-observed:${barrierReport.observedAt}`,
+        `barrier-age-hours:${age === null ? UNKNOWN : String(Math.round(age))}`,
+      ],
+    };
+  }
   return [
     {
       id: path.id,
@@ -104,7 +134,7 @@ function prepareSegment(
       assessment,
       surface,
       gradient,
-      provenanceNote: path.fields.wheelchair?.source_id ?? path.fields.surface?.source_id ?? "none",
+      provenanceNote: path.fields.wheelchair?.source_id ?? path.fields.surface?.source_id ?? UNKNOWN,
     },
   ];
 }
@@ -134,10 +164,6 @@ function yesNo(value: string): "yes" | "no" | "unknown" {
   return "unknown";
 }
 
-function blockingBarrier(reports: BarrierReport[], pathId: string): BarrierReport | undefined {
-  return reports.find((report) => report.blocksPassage && report.pathId === pathId);
-}
-
 function applyBodyLimits(
   assessment: StepFreeAssessment,
   incline: number | null,
@@ -150,13 +176,13 @@ function applyBodyLimits(
     profile.maxGradePercent !== null &&
     Math.abs(incline) > profile.maxGradePercent
   ) {
-    return barrier("grade-over-limit", path.fields.incline?.tier ?? 0, [
+    return barrier("grade-over-limit", path.fields.incline?.tier ?? null, [
       ...assessment.evidence,
       `incline:${incline}`,
     ]);
   }
   if (widthMm !== null && profile.widthMm !== null && widthMm < profile.widthMm) {
-    return barrier("width-under-chair", path.fields.width?.tier ?? 0, [
+    return barrier("width-under-chair", path.fields.width?.tier ?? null, [
       ...assessment.evidence,
       `width-mm:${widthMm}`,
     ]);
@@ -168,8 +194,10 @@ export function elevatorsForStop(source: JourneyDataSource, stopId: string): Ele
   return (source.elevators ?? []).filter((elevator) => elevator.stopId === stopId);
 }
 
-export function barriersForStop(source: JourneyDataSource, stopId: string): BarrierReport[] {
-  return (source.barriers ?? []).filter((report) => report.blocksPassage && report.stopId === stopId);
+export function barriersForStop(source: JourneyDataSource, stopId: string, nowIso: string): BarrierReport[] {
+  return (source.barriers ?? []).filter(
+    (report) => report.blocksPassage && report.stopId === stopId && barrierIsCurrent(report, nowIso),
+  );
 }
 
 export function seasonalForPath(notes: SeasonalNote[] | undefined, pathId: string): SeasonalNote | undefined {

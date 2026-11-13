@@ -20,6 +20,7 @@ export interface RouterRequest {
   to: Coord;
   /** When true, a barrier path is still returned so the closure stays visible. */
   reportBarriers: boolean;
+  locale?: "en" | "fr";
 }
 
 export interface RouterResult {
@@ -217,9 +218,13 @@ export interface NormalizedEngineResponse {
 }
 
 /**
- * Calls a self-hosted Valhalla, OSRM, or GraphHopper HTTP service.
- * The response is not treated as step-free. Stock wheelchair profiles were not verified.
- * OpenTripPlanner and OpenRouteService are rejected by name and are not imported.
+ * Stub for a self-hosted Valhalla, OSRM, or GraphHopper service.
+ * `route()` does not call the network. It returns a straight-line gap and does not mark it step-free.
+ * `routeWithFetch` is a separate helper. It posts to a placeholder `/access-route` path, not the
+ * Valhalla, OSRM, or GraphHopper request APIs. `planJourney` does not call it.
+ * Sending an origin and destination to a real service would leave the device. That path is not wired,
+ * so this package does not show a privacy notice for it.
+ * OpenTripPlanner (LGPL) and OpenRouteService (GPL) are rejected by name and are not vendored.
  */
 export function createHttpRouter(options: {
   engine: "valhalla" | "osrm" | "graphhopper";

@@ -1,5 +1,5 @@
 import type { Coord } from "./geo.js";
-import type { Provenance, VerificationTier } from "./types.js";
+import type { Provenance, SurveyRecord, VerificationTier } from "./types.js";
 
 /**
  * Field shape from the open-data lane (schema/field-value.schema.json on the data pull request).
@@ -11,6 +11,8 @@ export interface FieldValue {
   licence: string;
   retrieved_at: string;
   tier: VerificationTier;
+  /** Present only when a survey protocol, role, method, and date were recorded together. */
+  survey?: SurveyRecord | null;
   source_key?: string;
   raw?: string | number | null;
   derived?: boolean;
@@ -90,10 +92,10 @@ export function readGeometry(record: ImportedRecord | undefined): Coord[] | null
 export function provenanceFromField(field: FieldValue | undefined, fallbackNote: string): Provenance {
   if (!field) {
     return {
-      sourceId: "none",
-      licence: "not-a-dataset",
-      retrievedAt: "1970-01-01",
-      tier: 0,
+      sourceId: UNKNOWN,
+      licence: UNKNOWN,
+      retrievedAt: UNKNOWN,
+      tier: null,
       note: fallbackNote,
     };
   }
@@ -102,6 +104,7 @@ export function provenanceFromField(field: FieldValue | undefined, fallbackNote:
     licence: field.licence,
     retrievedAt: field.retrieved_at,
     tier: field.tier,
+    ...(field.survey ? { survey: field.survey } : {}),
     ...(field.source_key ? { note: field.source_key } : {}),
   };
 }

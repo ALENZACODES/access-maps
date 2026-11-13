@@ -12,9 +12,16 @@ const FORBIDDEN: Array<[RegExp, string]> = [
   [/\bguaranteed\b/i, "guaranteed"],
 ];
 
-/** Throws when a plan contradicts the honesty rules. Called at the end of every plan. */
-export function assertHonest(plan: JourneyPlan): void {
-  const texts = collectText(plan);
+/**
+ * Throws when App-authored copy contradicts the honesty rules.
+ * Catalog and place names are removed before the word scan so a name like
+ * "Live Music Hall" does not block the plan.
+ */
+export function assertHonest(plan: JourneyPlan, catalogPhrases: string[] = []): void {
+  const phrases = [...new Set(catalogPhrases.map((phrase) => phrase.trim()).filter((phrase) => phrase.length >= 3))].sort(
+    (a, b) => b.length - a.length,
+  );
+  const texts = collectText(plan).map((text) => scrubCatalog(text, phrases));
   for (const text of texts) {
     for (const [pattern, label] of FORBIDDEN) {
       if (pattern.test(text)) {
@@ -62,6 +69,12 @@ function checkLegs(legs: Leg[], presented: boolean, id: string): void {
   if (presented !== actually) {
     throw new Error(`${id} presentedAsStepFree=${presented} but legs say ${actually}.`);
   }
+}
+
+function scrubCatalog(text: string, phrases: string[]): string {
+  let out = text;
+  for (const phrase of phrases) out = out.split(phrase).join(" ");
+  return out;
 }
 
 function collectText(plan: JourneyPlan): string[] {

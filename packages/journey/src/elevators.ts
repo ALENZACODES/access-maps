@@ -1,8 +1,9 @@
 import { hoursBetween } from "./geo.js";
 import { barrier, unknownAssessment } from "./stepfree.js";
 import type { ElevatorAsset } from "./catalog.js";
-import type { StepFreeAssessment, Warning } from "./types.js";
+import type { Provenance, StepFreeAssessment, Warning } from "./types.js";
 import { copy, type Copy } from "./explain.js";
+import { UNKNOWN } from "./records.js";
 import type { Locale } from "./types.js";
 
 const FRESH_HOURS = 1;
@@ -12,6 +13,8 @@ const CORRELATION_COUNT = 3;
 
 export interface StopAccessResult {
   assessment: StepFreeAssessment;
+  /** Provenance of the observation that decided the status. Not the GTFS boarding field. */
+  provenance: Provenance;
   singlePointOfFailure: boolean;
   warnings: Warning[];
   note: string;
@@ -20,32 +23,85 @@ export interface StopAccessResult {
   outNetworkIds: string[];
 }
 
+type AgedState = "working" | "out" | "unknown";
+
 export interface EffectiveElevator {
   asset: ElevatorAsset;
-  state: "working" | "out" | "unknown";
+  state: AgedState;
   stale: boolean;
+  future: boolean;
   lastChecked: boolean;
   conflict: boolean;
+  /** True when an out state comes from an observation that is not future-dated and not older than four hours. */
+  freshOut: boolean;
+  provenance: Provenance;
+  feedState: AgedState;
+  reportState: AgedState | null;
+}
+
+function ageObservation(
+  observedAt: string,
+  raw: "working" | "out" | "unknown",
+  nowIso: string,
+): { state: AgedState; stale: boolean; future: boolean; lastChecked: boolean } {
+  const age = hoursBetween(observedAt, nowIso);
+  if (age === null || age < 0 || raw === "unknown") {
+    return { state: "unknown", stale: false, future: age !== null && age < 0, lastChecked: false };
+  }
+  if (age > STALE_HOURS) {
+    return { state: "unknown", stale: true, future: false, lastChecked: false };
+  }
+  return { state: raw, stale: false, future: false, lastChecked: age > FRESH_HOURS };
 }
 
 export function effectiveElevator(asset: ElevatorAsset, nowIso: string): EffectiveElevator {
   const status = asset.status;
-  if (!status || status.source === "none" || status.state === "unknown") {
-    return { asset, state: "unknown", stale: false, lastChecked: false, conflict: false };
+  if (!status || status.source === "none") {
+    return {
+      asset,
+      state: "unknown",
+      stale: false,
+      future: false,
+      lastChecked: false,
+      conflict: false,
+      freshOut: false,
+      provenance: asset.provenance,
+      feedState: "unknown",
+      reportState: null,
+    };
   }
-  const age = hoursBetween(status.observedAt, nowIso);
-  if (age === null || age > STALE_HOURS) {
-    return { asset, state: "unknown", stale: true, lastChecked: false, conflict: false };
-  }
+  const feed = ageObservation(status.observedAt, status.state, nowIso);
+  const report = status.userReport
+    ? ageObservation(status.userReport.observedAt, status.userReport.state, nowIso)
+    : null;
+  const reportSaysOut = report?.state === "out";
+  const feedSaysOut = feed.state === "out";
+  const state: AgedState = reportSaysOut || feedSaysOut ? "out" : feed.state === "working" && (!report || report.state === "working") ? "working" : "unknown";
   const conflict = Boolean(
-    status.userReport && status.userReport.state !== status.state,
+    report &&
+      ((feed.state === "working" && report.state === "out") ||
+        (feed.state === "out" && report.state === "working") ||
+        (feed.state !== "unknown" && report.state !== "unknown" && feed.state !== report.state)),
   );
+  const provenance =
+    reportSaysOut && status.userReport
+      ? status.userReport.provenance
+      : status.provenance;
+  const freshOut =
+    state === "out" &&
+    ((feed.state === "out" && !feed.stale && !feed.future) ||
+      (report?.state === "out" && !report.stale && !report.future));
   return {
     asset,
-    state: status.state,
-    stale: false,
-    lastChecked: age > FRESH_HOURS,
+    state,
+    stale: feed.stale || Boolean(report?.stale),
+    future: feed.future || Boolean(report?.future),
+    lastChecked: state === "working" && (feed.lastChecked || Boolean(report?.lastChecked)),
     conflict,
+    freshOut,
+    provenance,
+    feedState: feed.state,
+    reportState: report ? report.state : null,
   };
 }
 
@@ -58,6 +114,7 @@ export function assessElevatorsAtStop(
   if (elevators.length === 0) {
     return {
       assessment: unknownAssessment("elevator-unknown"),
+      provenance: unknownProvenance(text.elevatorUnknown),
       singlePointOfFailure: false,
       warnings: [],
       note: text.elevatorUnknown,
@@ -93,26 +150,37 @@ export function assessElevatorsAtStop(
   }
 
   const outNetworkIds = out.map((item) => item.asset.networkId);
+  const described = effective.map((item) => describeElevator(text, item)).join(" ");
+  const deciding = out[0] ?? effective.find((item) => item.state !== "working") ?? effective[0];
 
-  if (working.length === 0 && out.length > 0) {
-    const named = out.map((item) => item.asset.name).join(", ");
+  if (out.length > 0) {
+    const conflict = effective.some((item) => item.conflict);
     return {
-      assessment: barrier("elevator-out", out[0]?.asset.provenance.tier ?? 4, [`elevators-out:${named}`]),
+      assessment: barrier(
+        conflict ? "status-conflict" : "elevator-out",
+        deciding?.provenance.tier ?? null,
+        out.map((item) => `elevator-out:${item.asset.id}`),
+      ),
+      provenance: deciding?.provenance ?? unknownProvenance(text.elevatorOut),
       singlePointOfFailure: single,
       warnings,
-      note: `${text.elevatorOut} ${named}. ${phoneNote} ${text.alternateMissing}`,
+      note: `${text.elevatorOut} ${described} ${phoneNote} ${text.alternateMissing}`,
       phones,
       outNetworkIds,
     };
   }
 
-  if (working.length === 0) {
+  if (working.length !== elevators.length) {
+    const future = effective.some((item) => item.future);
     const stale = effective.some((item) => item.stale);
+    const reason = future ? "elevator-future" : stale ? "elevator-stale" : "elevator-unknown";
+    const lead = future ? text.elevatorFuture : stale ? text.elevatorStale : text.elevatorUnknown;
     return {
-      assessment: unknownAssessment(stale ? "elevator-stale" : "elevator-unknown", [], effective[0]?.asset.provenance.tier ?? null),
+      assessment: unknownAssessment(reason, [], deciding?.provenance.tier ?? null),
+      provenance: deciding?.provenance ?? unknownProvenance(lead),
       singlePointOfFailure: single,
       warnings,
-      note: `${stale ? text.elevatorStale : text.elevatorUnknown} ${phoneNote}`,
+      note: `${lead} ${described} ${phoneNote}`,
       phones,
       outNetworkIds,
     };
@@ -120,31 +188,47 @@ export function assessElevatorsAtStop(
 
   const lastChecked = working.some((item) => item.lastChecked);
   const when = working[0]?.asset.status?.observedAt ?? "";
-  const names = working.map((item) => `${item.asset.name}: ${text.inService}`).join("; ");
-  const outNames = out.map((item) => `${item.asset.name}: ${text.outOfService}`).join("; ");
-  const note = [
-    names,
-    outNames,
-    lastChecked ? text.elevatorLastChecked(when) : "",
-    phoneNote,
-    text.notAppVerified,
-  ]
-    .filter(Boolean)
-    .join(" ");
-
   return {
     assessment: {
       status: "step-free",
       appVerified: false,
-      tier: working[0]?.asset.status?.provenance.tier ?? 4,
+      tier: deciding?.provenance.tier ?? null,
       reasons: ["operator-claim"],
       evidence: working.map((item) => `elevator-working:${item.asset.id}`),
     },
+    provenance: deciding?.provenance ?? unknownProvenance(text.inService),
     singlePointOfFailure: single,
     warnings,
-    note,
+    note: [described, lastChecked ? text.elevatorLastChecked(when) : "", phoneNote, text.notAppVerified]
+      .filter(Boolean)
+      .join(" "),
     phones,
     outNetworkIds,
+  };
+}
+
+function describeElevator(text: Copy, item: EffectiveElevator): string {
+  const status = item.asset.status;
+  const feedWhen = status?.observedAt ?? UNKNOWN;
+  const feed = text.feedLine(item.asset.name, stateWord(text, item.feedState), feedWhen);
+  if (!status?.userReport || item.reportState === null) return feed;
+  const report = text.reportLine(stateWord(text, item.reportState), status.userReport.observedAt);
+  return `${feed} ${report}`;
+}
+
+function stateWord(text: Copy, state: AgedState): string {
+  if (state === "working") return text.inService;
+  if (state === "out") return text.outOfService;
+  return text.statusUnknown;
+}
+
+function unknownProvenance(note: string): Provenance {
+  return {
+    sourceId: UNKNOWN,
+    licence: UNKNOWN,
+    retrievedAt: UNKNOWN,
+    tier: null,
+    note,
   };
 }
 
@@ -158,7 +242,7 @@ export interface SystemEvent {
 export function detectSystemEvents(elevators: ElevatorAsset[], nowIso: string): SystemEvent[] {
   const freshOut = elevators
     .map((asset) => ({ asset, effective: effectiveElevator(asset, nowIso) }))
-    .filter((item) => item.effective.state === "out" && !item.effective.stale);
+    .filter((item) => item.effective.freshOut);
 
   const byNetwork = new Map<string, typeof freshOut>();
   for (const item of freshOut) {
