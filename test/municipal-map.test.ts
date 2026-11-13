@@ -37,13 +37,56 @@ describe("municipal washroom mapping", () => {
     expect(record.fields.opening_hours?.value).toBe("UNKNOWN");
     expect(record.fields.opening_hours?.raw).toBe("None");
     expect(record.fields.description?.value).toBe("Closed for the Season");
-    expect(record.fields.status?.value).toBe("0");
+    expect(record.fields.status?.value).toBe("closed");
+    expect(record.fields.status?.raw).toBe("0");
+    expect(record.fields.status?.derived).toBeUndefined();
     expect(record.fields.posted_date?.value).toBe("2026-11-12");
     expect(record.fields.posted_date?.source_key).toBe("PostedDate");
     expect(record.fields.lat?.value).toBeCloseTo(43.659008);
     expect(record.fields.lon?.value).toBeCloseTo(-79.464038);
     expect(record.fields.seasonal?.value).toBe("UNKNOWN");
     expect(record.fields.wheelchair?.tier).toBe(0);
+  });
+
+  it("maps Toronto status codes from the datastore field note and expires an old snapshot", () => {
+    const current = mapTorontoParkWashroom(
+      {
+        ASSET_ID: "3",
+        Status: "1",
+        PostedDate: "2026-11-01T08:00:00",
+        geometry: '{"type":"Point","coordinates":[-79.3,43.7]}',
+      },
+      ctx,
+    );
+    expect(current.fields.status?.value).toBe("open");
+    expect(current.fields.status?.raw).toBe("1");
+    expect(current.fields.status?.derived).toBeUndefined();
+
+    const alert = mapTorontoParkWashroom(
+      {
+        ASSET_ID: "29442",
+        Status: "2",
+        PostedDate: "2026-08-25T12:00:00",
+        geometry: '{"type":"Point","coordinates":[-79.3,43.7]}',
+      },
+      ctx,
+    );
+    expect(alert.fields.status?.value).toBe("service_alert");
+    expect(alert.fields.status?.raw).toBe("2");
+    expect(alert.fields.status?.derived).toBe(true);
+    expect(alert.fields.posted_date?.value).toBe("2026-08-25");
+
+    const undocumented = mapTorontoParkWashroom(
+      {
+        ASSET_ID: "4",
+        Status: "9",
+        PostedDate: "2026-11-13T00:00:00",
+        geometry: '{"type":"Point","coordinates":[-79.3,43.7]}',
+      },
+      ctx,
+    );
+    expect(undocumented.fields.status?.value).toBe("UNKNOWN");
+    expect(undocumented.fields.status?.raw).toBe("9");
   });
 
   it("preserves an explicit None in accessible features", () => {

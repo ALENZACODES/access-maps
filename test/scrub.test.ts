@@ -42,6 +42,75 @@ describe("personal contact scrub", () => {
     expect(clean.fields.wheelchair?.value).toBe("yes");
   });
 
+  it("keeps OSM ids and digit-heavy URLs, and still strips real phones and emails", () => {
+    expect(containsPersonalContact("osm:node/1595860550")).toBe(false);
+    expect(containsPersonalContact("https://www.walmart.ca/en/ip/6000206074206")).toBe(false);
+    expect(containsPersonalContact("https://www.facebook.com/100064866123456")).toBe(false);
+    expect(containsPersonalContact("1595860550")).toBe(false);
+    expect(containsPersonalContact("+1 519 555 0100")).toBe(true);
+    expect(containsPersonalContact("(519) 555-0100")).toBe(true);
+    expect(containsPersonalContact("519-555-0100")).toBe(true);
+    expect(containsPersonalContact("+15195550100")).toBe(true);
+    expect(containsPersonalContact("ben@example.com")).toBe(true);
+
+    const record = buildRecord(
+      "washroom",
+      "osm:node/1",
+      "n43.5_w079.5",
+      {
+        parent_id: fv("osm:node/1595860550", ctx, { source_key: "osm_id" }),
+        website: fv("https://www.walmart.ca/en/ip/6000206074206", ctx, { source_key: "website" }),
+        operator: fv("ben@example.com", ctx, { source_key: "operator" }),
+        opening_hours: fv("Mo-Fr 09:00-17:00; +1 519 555 0100", ctx, { source_key: "opening_hours", raw: "Mo-Fr 09:00-17:00; +1 519 555 0100" }),
+      },
+      ctx,
+    );
+    const clean = scrubRecord(record);
+    const encoded = JSON.stringify(clean);
+    expect(clean.fields.parent_id?.value).toBe("osm:node/1595860550");
+    expect(clean.fields.website?.value).toBe("https://www.walmart.ca/en/ip/6000206074206");
+    expect(clean.fields.operator?.value).toBe("UNKNOWN");
+    expect(clean.fields.opening_hours?.value).toBe("Mo-Fr 09:00-17:00");
+    expect(encoded).not.toContain("ben@example.com");
+    expect(encoded).not.toContain("519 555 0100");
+    expect(encoded).not.toContain("519-555-0100");
+    expect(encoded).toContain("1595860550");
+    expect(encoded).toContain("6000206074206");
+
+    const disguised = buildRecord(
+      "venue",
+      "osm:node/4425602130",
+      "n43.5_w079.5",
+      {
+        website: fv("https://goldenbeautydrybar@gmail.com", ctx, { source_key: "website" }),
+        operator: fv("https://519-766-0055", ctx, { source_key: "contact:website" }),
+      },
+      ctx,
+    );
+    const stripped = scrubRecord(disguised);
+    expect(stripped.fields.website?.value).toBe("UNKNOWN");
+    expect(stripped.fields.operator?.value).toBe("UNKNOWN");
+    expect(JSON.stringify(stripped)).not.toContain("gmail.com");
+    expect(JSON.stringify(stripped)).not.toContain("519-766-0055");
+  });
+
+  it("scrubs a phone on a path record and keeps a long numeric identifier", () => {
+    const record = buildRecord(
+      "path",
+      "osm:way/12345678901",
+      "n43.5_w079.5",
+      {
+        signposted_as: fv("Trail +1-519-555-0100", ctx, { source_key: "name" }),
+        from_ref: fv("osm:node/1595860550", ctx, { source_key: "osm_id" }),
+      },
+      ctx,
+    );
+    const clean = scrubRecord(record);
+    expect(clean.fields.signposted_as?.value).toBe("Trail");
+    expect(clean.fields.from_ref?.value).toBe("osm:node/1595860550");
+    expect(JSON.stringify(clean)).not.toContain("519-555-0100");
+  });
+
   it("replaces unicode line separators so a value stays on one NDJSON line", () => {
     const record = buildRecord(
       "venue",

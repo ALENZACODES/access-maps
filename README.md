@@ -31,6 +31,10 @@ A coordinate copied from a parent venue onto a washroom that exists only because
 
 OSM `amenity=doctors` and `amenity=dentist`, and individual healthcare practitioner categories, do not keep `name`, `operator`, `brand`, or `website`. Phone and email tags are dropped. OSM contributor usernames are not exported (`osmium export -a type,id`).
 
+Every imported record, including paths, then passes through the same value scrubber. A phone match needs a leading `+` or separators between the groups, such as `+1 519 555 0100` or `519-555-0100`. A run of digits inside an OSM id, a URL, or another structured identifier is not a phone. An email address is removed. When a phone or email sits inside a longer value, such as opening hours, only the contact is removed and the rest is kept. The original contact is not kept in `raw`.
+
+City of Toronto park washroom `Status` uses the datastore field note on resource `1c7d1063-2562-4de3-8cd3-4cef48419f6f`: `0` is `closed`, `1` is `open`, and `2` is `service_alert`. The code stays in `raw`. `posted_date` is the date prefix of `PostedDate`. The City refreshes that dataset daily and does not publish a numeric expiry. A status whose posted date is more than 30 days before `retrieved_at` stays as the mapped word and is marked `derived`, so the piece count does not treat it as a current fact. Thirty days is the status-snapshot window. A code the field note does not define stays `UNKNOWN`, with the code in `raw`.
+
 ## Counting
 
 A piece is one field on one record whose value is not `UNKNOWN` and whose `derived` flag is not true. `UNKNOWN` values are gaps. Photos, reviews, and tags are not pieces. A fact stored on a washroom record is not also stored on the venue.
@@ -39,7 +43,7 @@ Section 5.6 counts only tier 2 and tier 3 values toward 500,000. This import's v
 
 [COUNTS.md](COUNTS.md) also lists accessibility facts separately from names, addresses, and geometry. `toilets:wheelchair` is stored on the washroom `wheelchair` field. Tier 4 alert rows are not pieces.
 
-OSM data is ODbL share-alike and stays in `data/*/osm-ontario/`. Other sources stay in their own directories. Code licence: [LICENSE](LICENSE). Data licences: [DATA-LICENCE.md](DATA-LICENCE.md). Schema tier ids follow `@access-main/schema` on `cursor/schema-package-61db`; see [schema/SOURCE.md](schema/SOURCE.md).
+OSM data is ODbL share-alike and stays in `data/*/osm-ontario/`. Other sources stay in their own directories. Code licence: [LICENSE](LICENSE). Data licences: [DATA-LICENCE.md](DATA-LICENCE.md). Schema checks use `@access-main/schema` at `main` commit `5d7c17d2a8404a87bede3cef515f1e538e40c183`; see [schema/SOURCE.md](schema/SOURCE.md).
 
 ## Layout
 
@@ -75,7 +79,7 @@ Washroom fields from a venue, such as `toilets:wheelchair`, are emitted as a sep
 
 `npm test` covers OSM tag mapping and `UNKNOWN`, GTFS codes, municipal columns, counting rules, CSV parsing, and Ajv validation. `npm run lint` is `tsc --noEmit`.
 
-`.github/workflows/ci.yml` runs on `pull_request` only: lint, vitest, and Ajv validation of a sample of the committed data plus the source registry. There is no schedule.
+`.github/workflows/ci.yml` runs on `pull_request` only: `npm run check:schema` (the pinned access-main Ajv validator over every import record), lint, vitest, and Ajv validation of a sample of the committed data plus the source registry. There is no schedule.
 
 ## Sources not imported
 

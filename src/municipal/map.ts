@@ -22,7 +22,7 @@ export function mapTorontoParkWashroom(row: Record<string, string>, ctx: Provena
       website: published(row, "URL", ctx, BLANK),
       address: published(row, "ADDRESS", ctx, BLANK),
       description: joinColumns(row, ["Comments", "Reason"], ctx, BLANK),
-      status: published(row, "Status", ctx, new Set()),
+      status: torontoParkStatus(row, ctx),
       posted_date: postedDate(row, ctx),
       published_accessibility: published(row, "ACCESSIBLE_FEATURES", ctx, new Set(["", "unknown", "n/a", "na", "null"])),
     },
@@ -331,6 +331,54 @@ function stableNumber(raw: string): string {
   const rounded = Math.round(value);
   if (Math.abs(value - rounded) < 1e-6) return String(rounded);
   return String(value);
+}
+
+/**
+ * City of Toronto CKAN datastore field note for washroom-facilities Status
+ * (resource 1c7d1063-2562-4de3-8cd3-4cef48419f6f), read 2026-11-13:
+ * 0 = closed, 1 = open, 2 = service alert.
+ * PostedDate is "Date status was posted". The package refresh rate is Daily.
+ * The City does not publish a numeric expiry. A posted status older than 30 days
+ * is outside the status-snapshot window (the same window as
+ * @access-main/schema STATUS_SNAPSHOT_DAYS) and is marked derived so it is
+ * not counted as a current piece. The mapped word stays in value. The code stays in raw.
+ */
+export const TORONTO_PARK_STATUS: Record<string, string> = {
+  "0": "closed",
+  "1": "open",
+  "2": "service_alert",
+};
+
+export const PARK_STATUS_SNAPSHOT_DAYS = 30;
+
+export function torontoParkStatus(row: Record<string, string>, ctx: Provenance): FieldValue {
+  if (!("Status" in row)) return unknownField(ctx);
+  const raw = (row.Status ?? "").trim();
+  const meaning = TORONTO_PARK_STATUS[raw];
+  if (!meaning) return unknownField(ctx, { source_key: "Status", raw });
+  const posted = postedDay(row);
+  const age = posted ? daysBetween(posted, ctx.retrieved_at) : null;
+  const field = fv(meaning, ctx, { source_key: "Status", raw });
+  if (age !== null && age > PARK_STATUS_SNAPSHOT_DAYS) field.derived = true;
+  return field;
+}
+
+function postedDay(row: Record<string, string>): string | null {
+  const match = /^(\d{4}-\d{2}-\d{2})/.exec((row.PostedDate ?? "").trim());
+  return match?.[1] ?? null;
+}
+
+function daysBetween(from: string, to: string): number | null {
+  const start = utcDay(from);
+  const end = utcDay(to);
+  if (!start || !end) return null;
+  return Math.floor((end.getTime() - start.getTime()) / 86_400_000);
+}
+
+function utcDay(value: string): Date | null {
+  const match = /^(\d{4})-(\d{2})-(\d{2})/.exec(value);
+  if (!match) return null;
+  return new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3])));
 }
 
 function postedDate(row: Record<string, string>, ctx: Provenance): FieldValue {

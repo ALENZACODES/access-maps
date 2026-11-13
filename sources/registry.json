@@ -163,7 +163,7 @@
       "retrieved_at": "2026-11-13",
       "tier": 0,
       "tier_note": "Municipal open data is tier 0. It is not shown as verified.",
-      "notes": "The catalogue page states Open Government Licence – Toronto. The CKAN package washroom-facilities has license_id null; the catalogue page is the licence confirmation. ACCESSIBLE_FEATURES is stored as published text and is not translated into wheelchair=yes."
+      "notes": "The catalogue page states Open Government Licence – Toronto. The CKAN package washroom-facilities has license_id null; the catalogue page is the licence confirmation. ACCESSIBLE_FEATURES is stored as published text and is not translated into wheelchair=yes. The datastore field note for Status is 0 = closed, 1 = open, 2 = service alert. PostedDate is the date that status was posted. A status older than 30 days is kept and marked derived so it is not counted as a current piece."
     },
     {
       "id": "toronto-street-washrooms",
