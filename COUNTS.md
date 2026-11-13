@@ -7,19 +7,19 @@ Tier 0 and tier 1 values count as 0 toward the 250,000 verified venue field-valu
 Verified toward 500,000 is 0. None of those verified field-values exist in this import.
 Open-data or operator-claimed physical accessibility facts (tier 0 and tier 1 only): **698,375**.
 Context fields, reported separately (access, crossing, lit, fee, and the other context fields below): **494,045**.
-All other populated values: **5,765,623**.
-All populated pieces together: **6,958,043**.
-Total UNKNOWN gaps: **43,945,704**.
+All other populated values: **5,766,520**.
+All populated pieces together: **6,958,940**.
+Total UNKNOWN gaps: **43,944,541**.
 UNKNOWN gaps on accessibility fields: **24,197,679**.
-Derived values excluded from both totals: **3,566**.
+Derived values excluded from both totals: **3,832**.
 Records: **1,417,632**.
 
 The illustrative targets are 250,000 venue, 100,000 path, 50,000 transit, and 100,000 washroom verified field-values. Shortfall is the target minus verified values.
 
 | Tranche | Records | Physical accessibility facts (tier 0–1) | Context fields | Other populated | Verified (tier 2–3) | UNKNOWN gaps | Illustrative target | Shortfall |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| venue | 540944 | 99349 | 95723 | 2729376 | 0 | 20336144 | 250000 | 250000 |
-| washroom | 6377 | 3000 | 2932 | 23213 | 0 | 215992 | 100000 | 100000 |
+| venue | 540944 | 99349 | 95723 | 2729461 | 0 | 20336059 | 250000 | 250000 |
+| washroom | 6377 | 3000 | 2932 | 24025 | 0 | 214914 | 100000 | 100000 |
 | path | 846525 | 575981 | 395390 | 2891649 | 0 | 23225780 | 100000 | 100000 |
 | transit | 23786 | 20045 | 0 | 121385 | 0 | 167788 | 50000 | 50000 |
 
@@ -27,12 +27,12 @@ The illustrative targets are 250,000 venue, 100,000 path, 50,000 transit, and 10
 
 An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.
 
-Physical accessibility facts, context fields, and the remaining pieces add up to the total: 698,375 + 494,045 + 5,765,623 = 6,958,043.
+Physical accessibility facts, context fields, and the remaining pieces add up to the total: 698,375 + 494,045 + 5,766,520 = 6,958,940.
 
 | Tranche | Physical accessibility pieces | Context pieces | Remaining pieces |
 | --- | ---: | ---: | ---: |
-| venue | 99349 | 95723 | 2729376 |
-| washroom | 3000 | 2932 | 23213 |
+| venue | 99349 | 95723 | 2729461 |
+| washroom | 3000 | 2932 | 24025 |
 | path | 575981 | 395390 | 2891649 |
 | transit | 20045 | 0 | 121385 |
 
@@ -132,8 +132,8 @@ Populated accessibility facts by field:
 
 | Tranche | Tier 0 | Tier 1 | Tier 2 | Tier 3 | Tier 4 |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| venue | 2924448 | 0 | 0 | 0 | 0 |
-| washroom | 29145 | 0 | 0 | 0 | 0 |
+| venue | 2924533 | 0 | 0 | 0 | 0 |
+| washroom | 29957 | 0 | 0 | 0 | 0 |
 | path | 3863020 | 0 | 0 | 0 | 0 |
 | transit | 0 | 141430 | 0 | 0 | 0 |
 
@@ -154,10 +154,10 @@ Populated accessibility facts by field:
 | kingston-accessible-features | 1003 | 8198 | 277 | 34763 | 8198 | 0 | 2026-11-13 |
 | kingston-public-washrooms | 48 | 432 | 0 | 1440 | 432 | 0 | 2026-11-13 |
 | mto-picnic-parks | 168 | 1005 | 0 | 6219 | 1005 | 0 | 2026-11-13 |
-| osm-ontario | 1392049 | 6800847 | 677579 | 43718683 | 6800847 | 0 | 2026-11-13 |
+| osm-ontario | 1392049 | 6802010 | 677579 | 43717520 | 6802010 | 0 | 2026-11-13 |
 | sudbury-fieldhouses | 61 | 480 | 0 | 2143 | 480 | 0 | 2026-11-13 |
 | toronto-crem-washrooms | 119 | 1309 | 119 | 3332 | 1309 | 0 | 2026-11-13 |
-| toronto-park-washrooms | 355 | 4006 | 355 | 9839 | 4006 | 0 | 2026-11-13 |
+| toronto-park-washrooms | 355 | 3740 | 355 | 9839 | 3740 | 0 | 2026-11-13 |
 | toronto-street-washrooms | 4 | 24 | 0 | 132 | 24 | 0 | 2026-11-13 |
 
 ## Largest UNKNOWN gaps by field
