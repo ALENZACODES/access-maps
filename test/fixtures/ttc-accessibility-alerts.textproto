@@ -1,0 +1,57 @@
+header {
+  gtfs_realtime_version: "2.0"
+  incrementality: FULL_DATASET
+  timestamp: 1794598340
+}
+entity {
+  id: "80239"
+  alert {
+    active_period {
+      start: 1795102200
+      end: 1795120200
+    }
+    informed_entity {
+      stop_id: "15659"
+    }
+    effect: ACCESSIBILITY_ISSUE
+    header_text {
+      translation {
+        text: "Finch West: Escalator 11S1E out of service from concourse to Line 1 platform while we perform maintenance."
+        language: "en"
+      }
+    }
+  }
+}
+entity {
+  id: "80207"
+  alert {
+    active_period {
+      start: 1794579243
+    }
+    informed_entity {
+      stop_id: "16069"
+    }
+    effect: ACCESSIBILITY_ISSUE
+    header_text {
+      translation {
+        text: "Cedarvale: Elevator ELV02-B out of service between Line 5 platform and upper concourse while we perform maintenance."
+        language: "en"
+      }
+    }
+  }
+}
+entity {
+  id: "synthetic-colon"
+  alert {
+    active_period {
+      start: 1794579243
+    }
+    effect: ACCESSIBILITY_ISSUE
+    header_text {
+      translation {
+        text: "Station notice: platform closed for a film shoot. No equipment class is named."
+        language: "en"
+      }
+    }
+  }
+}

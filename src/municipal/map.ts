@@ -1,3 +1,4 @@
+import { utm17nToWgs84, webMercatorToWgs84 } from "../geo/project.js";
 import { cell } from "../io/csv.js";
 import { buildRecord, coordinateField, regionFromPoint, roundCoord, type DataRecord } from "../model/records.js";
 import { fv, unknownField, type FieldValue, type Provenance } from "../model/provenance.js";
@@ -124,6 +125,192 @@ function joinColumns(row: Record<string, string>, keys: string[], ctx: Provenanc
   }
   const joined = present.map((item) => `${item.key}=${item.raw}`).join(";");
   return fv(joined, ctx, { source_key: present.map((item) => item.key).join(","), raw: joined });
+}
+
+const KINGSTON_WASHROOM_TYPES = new Set([
+  "Accessible Mens Washroom",
+  "Accessible Womens Washroom",
+  "Accessible Family Washroom",
+]);
+
+const KINGSTON_TYPE_FIELD: Record<string, "kerb" | "ramp" | "automatic_door" | "elevator" | "speech_output" | "access" | "hearing_loop"> = {
+  "Sidewalk Curb Cut": "kerb",
+  Ramp: "ramp",
+  "Automated Door Opener": "automatic_door",
+  "Entrance to Access Interior Elevator": "elevator",
+  "Audible Traffic Control": "speech_output",
+  "Barrier-Free Routes": "access",
+  "Assistive Listening": "hearing_loop",
+};
+
+export function mapKingstonPublicWashroom(row: Record<string, string>, ctx: Provenance): DataRecord {
+  const point = webMercatorCell(row);
+  const address = splitCivicAddress(cell(row, "Address"));
+  const id = cell(row, "POI ID") || cell(row, "Object ID");
+  return buildRecord(
+    "washroom",
+    `kingston-public-washrooms:${id}`,
+    regionFromPoint(point?.lat ?? null, point?.lon ?? null),
+    {
+      name: published(row, "POI Name", ctx, BLANK),
+      lat: coordinateField(point?.lat ?? null, ctx, "x,y"),
+      lon: coordinateField(point?.lon ?? null, ctx, "x,y"),
+      facility_type: published(row, "POI Type Description", ctx, BLANK),
+      addr_housenumber: address.housenumber ? fv(address.housenumber, ctx, { source_key: "Address" }) : unknownField(ctx),
+      addr_street: address.street ? fv(address.street, ctx, { source_key: "Address" }) : unknownField(ctx),
+      operator: published(row, "Ownership", ctx, BLANK),
+      website: published(row, "URL", ctx, BLANK),
+      description: published(row, "Global ID", ctx, BLANK),
+    },
+    ctx,
+  );
+}
+
+export function mapKingstonAccessibleFeature(row: Record<string, string>, ctx: Provenance): DataRecord {
+  const point = webMercatorCell(row);
+  const type = cell(row, "Type");
+  const address = splitCivicAddress(cell(row, "Address"));
+  const comment = cell(row, "Comment");
+  const hours = /\b(a\.m\.|p\.m\.|open)\b/i.test(comment) ? comment.trim() : "";
+  const id = cell(row, "OBJECTID") || cell(row, "GlobalID");
+  if (KINGSTON_WASHROOM_TYPES.has(type)) {
+    return buildRecord(
+      "washroom",
+      `kingston-accessible-features:${id}`,
+      regionFromPoint(point?.lat ?? null, point?.lon ?? null),
+      {
+        name: published(row, "Facility Name", ctx, BLANK),
+        lat: coordinateField(point?.lat ?? null, ctx, "x,y"),
+        lon: coordinateField(point?.lon ?? null, ctx, "x,y"),
+        facility_type: fv(type, ctx, { source_key: "Type" }),
+        published_accessibility: fv(type, ctx, { source_key: "Type" }),
+        male: type === "Accessible Mens Washroom" ? fv("yes", ctx, { source_key: "Type", raw: type }) : unknownField(ctx),
+        female: type === "Accessible Womens Washroom" ? fv("yes", ctx, { source_key: "Type", raw: type }) : unknownField(ctx),
+        addr_housenumber: address.housenumber ? fv(address.housenumber, ctx, { source_key: "Address" }) : unknownField(ctx),
+        addr_street: address.street ? fv(address.street, ctx, { source_key: "Address" }) : unknownField(ctx),
+        opening_hours: hours ? fv(hours, ctx, { source_key: "Comment" }) : unknownField(ctx),
+        description: !hours && comment.trim() ? fv(comment.trim(), ctx, { source_key: "Comment" }) : unknownField(ctx),
+        status: published(row, "Status", ctx, BLANK),
+      },
+      ctx,
+    );
+  }
+  const accessField = KINGSTON_TYPE_FIELD[type];
+  const partial: Record<string, FieldValue> = {
+    name: published(row, "Facility Name", ctx, BLANK),
+    lat: coordinateField(point?.lat ?? null, ctx, "x,y"),
+    lon: coordinateField(point?.lon ?? null, ctx, "x,y"),
+    category: fv(type, ctx, { source_key: "Type" }),
+    category_group: fv("municipal_feature", ctx, { source_key: "dataset" }),
+    addr_housenumber: address.housenumber ? fv(address.housenumber, ctx, { source_key: "Address" }) : unknownField(ctx),
+    addr_street: address.street ? fv(address.street, ctx, { source_key: "Address" }) : unknownField(ctx),
+    opening_hours: hours ? fv(hours, ctx, { source_key: "Comment" }) : unknownField(ctx),
+    ref: published(row, "GlobalID", ctx, BLANK),
+  };
+  if (accessField) partial[accessField] = fv(type, ctx, { source_key: "Type" });
+  return buildRecord(
+    "venue",
+    `kingston-accessible-features:${id}`,
+    regionFromPoint(point?.lat ?? null, point?.lon ?? null),
+    partial,
+    ctx,
+  );
+}
+
+export function mapBramptonRecreationCentre(row: Record<string, string>, ctx: Provenance): DataRecord {
+  const point = webMercatorCell(row);
+  const address = splitCivicAddress(cell(row, "ADDRESS"));
+  return buildRecord(
+    "venue",
+    `brampton-recreation-centres:${cell(row, "OBJECTID")}`,
+    regionFromPoint(point?.lat ?? null, point?.lon ?? null),
+    {
+      name: published(row, "FACILITY NAME", ctx, BLANK),
+      lat: coordinateField(point?.lat ?? null, ctx, "x,y"),
+      lon: coordinateField(point?.lon ?? null, ctx, "x,y"),
+      category: published(row, "TYPE", ctx, BLANK),
+      category_group: fv("recreation_facility", ctx, { source_key: "dataset" }),
+      addr_housenumber: address.housenumber ? fv(address.housenumber, ctx, { source_key: "ADDRESS" }) : unknownField(ctx),
+      addr_street: address.street ? fv(address.street, ctx, { source_key: "ADDRESS" }) : unknownField(ctx),
+      website: published(row, "WEBSITE", ctx, BLANK),
+    },
+    ctx,
+  );
+}
+
+export function mapSudburyFieldhouse(row: Record<string, string>, ctx: Provenance): DataRecord {
+  const easting = Number(cell(row, "X"));
+  const northing = Number(cell(row, "Y"));
+  const point =
+    Number.isFinite(easting) && Number.isFinite(northing) ? utm17nToWgs84(easting, northing) : null;
+  const address = splitCivicAddress(cell(row, "ADDRESS") || cell(row, "FULL_ADDRE"));
+  return buildRecord(
+    "venue",
+    `sudbury-fieldhouses:${cell(row, "OBJECTID")}`,
+    regionFromPoint(point?.lat ?? null, point?.lon ?? null),
+    {
+      name: published(row, "FACILITY_N", ctx, BLANK),
+      lat: coordinateField(point?.lat ?? null, ctx, "X,Y"),
+      lon: coordinateField(point?.lon ?? null, ctx, "X,Y"),
+      category: published(row, "OCCUPANCY", ctx, BLANK),
+      category_group: fv("city_facility", ctx, { source_key: "dataset" }),
+      addr_housenumber: address.housenumber ? fv(address.housenumber, ctx, { source_key: "ADDRESS" }) : unknownField(ctx),
+      addr_street: address.street ? fv(address.street, ctx, { source_key: "ADDRESS" }) : unknownField(ctx),
+      ref: published(row, "FAC___", ctx, BLANK),
+    },
+    ctx,
+  );
+}
+
+export function mapMtoPicnicPark(
+  attributes: Record<string, string>,
+  lon: number,
+  lat: number,
+  ctx: Provenance,
+): DataRecord {
+  const code = stableNumber(cell(attributes, "MTOCODE"));
+  return buildRecord(
+    "venue",
+    `mto-picnic-parks:${code || "unknown"}`,
+    regionFromPoint(lat, lon),
+    {
+      name: published(attributes, "NAME", ctx, BLANK),
+      lat: coordinateField(lat, ctx, "shp"),
+      lon: coordinateField(lon, ctx, "shp"),
+      category: fv("picnic park", ctx, { source_key: "dataset" }),
+      category_group: fv("provincial", ctx, { source_key: "dataset" }),
+      ref: code ? fv(code, ctx, { source_key: "MTOCODE", raw: cell(attributes, "MTOCODE") }) : unknownField(ctx),
+    },
+    ctx,
+  );
+}
+
+export function splitCivicAddress(raw: string): { housenumber?: string; street: string } {
+  const trimmed = raw.trim();
+  const match = /^(\d+[A-Za-z]?)\s+(.+)$/.exec(trimmed);
+  if (!match) return { street: trimmed };
+  return { housenumber: match[1], street: match[2] ?? "" };
+}
+
+function webMercatorCell(row: Record<string, string>): { lon: number; lat: number } | null {
+  const xRaw = cell(row, "x") || cell(row, "X");
+  const yRaw = cell(row, "y") || cell(row, "Y");
+  if (!xRaw || !yRaw) return null;
+  const x = Number(xRaw);
+  const y = Number(yRaw);
+  if (!Number.isFinite(x) || !Number.isFinite(y)) return null;
+  if (Math.abs(x) <= 180 && Math.abs(y) <= 90) return { lon: x, lat: y };
+  return webMercatorToWgs84(x, y);
+}
+
+function stableNumber(raw: string): string {
+  const trimmed = raw.trim();
+  if (!trimmed) return "";
+  const value = Number(trimmed);
+  if (!Number.isFinite(value)) return trimmed;
+  const rounded = Math.round(value);
+  if (Math.abs(value - rounded) < 1e-6) return String(rounded);
+  return String(value);
 }
 
 function yesNo(row: Record<string, string>, key: string, ctx: Provenance): FieldValue {

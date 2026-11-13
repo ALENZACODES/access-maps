@@ -8,6 +8,7 @@ import type { Tranche } from "../model/records.js";
 export interface Validators {
   records: Record<Tranche, ValidateFunction>;
   source: ValidateFunction;
+  alert: ValidateFunction;
 }
 
 export function compileValidators(schemaDir: string): Validators {
@@ -27,6 +28,7 @@ export function compileValidators(schemaDir: string): Validators {
       transit: mustCompile(ajv, "https://access-maps.local/schema/transit-stop.schema.json"),
     },
     source: mustCompile(ajv, "https://access-maps.local/schema/source-registry-entry.schema.json"),
+    alert: mustCompile(ajv, "https://access-maps.local/schema/service-alert.schema.json"),
   };
 }
 

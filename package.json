@@ -13,12 +13,16 @@
     "import:osm": "tsx scripts/import-osm.ts",
     "import:gtfs": "tsx scripts/import-gtfs.ts",
     "import:municipal": "tsx scripts/import-municipal.ts",
+    "import:more": "tsx scripts/import-more-municipal.ts",
+    "fetch:ttc-alerts": "tsx scripts/fetch-ttc-alerts.ts",
+    "build:tiles": "tsx scripts/build-pmtiles.ts",
     "count": "tsx scripts/count.ts",
     "import": "tsx scripts/import-all.ts"
   },
   "dependencies": {
     "ajv": "^8.17.1",
-    "ajv-formats": "^3.0.1"
+    "ajv-formats": "^3.0.1",
+    "pmtiles": "^4.3.0"
   },
   "devDependencies": {
     "@types/node": "^22.19.1",

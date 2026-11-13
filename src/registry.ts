@@ -5,7 +5,7 @@ import type { Tier } from "./model/provenance.js";
 export interface SourceEntry {
   id: string;
   name: string;
-  kind: "osm" | "gtfs" | "municipal";
+  kind: "osm" | "gtfs" | "gtfs-rt" | "municipal" | "provincial";
   url: string;
   download_url: string;
   licence_name: string;

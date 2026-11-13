@@ -12,7 +12,8 @@ Tiers apply to each field, not to the whole record.
 | --- | --- |
 | 0 | Open-data import. OSM tags and municipal open-data columns. Shown as an open-data import, not as verified. |
 | 1 | Operator claim. Every static GTFS field, including `wheelchair_boarding`. Shown as an operator claim, not as verified. A tier 1 claim expires after 180 days. |
-| 2–4 | Peer verification, trained survey, and live operational feeds. None of those are in this import. |
+| 2–3 | Peer verification and trained survey. None of those are in this import. |
+| 4 | Live operator status. The TTC GTFS-RT accessibility alert snapshot is tier 4. It is stored separately and is not a piece. |
 
 `wheelchair_boarding` empty or `0` is stored as `UNKNOWN` because the GTFS specification defines that code as no accessibility information. Empty `location_type` is stored as `stop` because the specification defines empty as location type 0. Empty `is_bidirectional` on a pathway is stored as `yes` because the specification default is bidirectional. The original token is kept on `raw` when the stored value was normalized.
 
@@ -36,7 +37,9 @@ A piece is one field on one record whose value is not `UNKNOWN` and whose `deriv
 
 The 500,000 figure in the master plan is an illustration: 5,000 venues × 50 fields, 10,000 path segments × 10 fields, 5,000 transit stops × 10 fields, and 5,000 washrooms × 20 fields. This import reports the honest populated-field total in [COUNTS.md](COUNTS.md) and `counts.json`, with tier and retrieval-date breakdowns. It does not add filler to reach that illustration.
 
-The 2026-11-13 import has 6,948,433 pieces, 43,892,670 UNKNOWN gaps, and 1,416,313 records. Venue, path, and transit pieces are above those illustrative examples because Ontario has far more than 5,000–10,000 real features and their identity, location, and geometry fields are populated. The washroom tranche has 29,046 pieces, 70,954 under the illustrative 100,000: this import has 6,287 washroom records, and most washroom fields are untagged. Tier 0 accounts for the OSM and municipal pieces. Tier 1 accounts for the GTFS pieces (141,430).
+[COUNTS.md](COUNTS.md) splits pieces into accessibility facts and identity or geometry. An accessibility fact is a populated field such as wheelchair, step count, ramp, door width, kerb, surface, incline, elevator, or changing table. `toilets:wheelchair` is stored on the washroom `wheelchair` field. A name, category, address, coordinate, hour, or linestring is not an accessibility fact. The two groups add up to the piece total.
+
+The 2026-11-13 import's current totals, including the Kingston, Brampton, Sudbury, and Ministry of Transportation picnic-park records, are in [COUNTS.md](COUNTS.md). Venue, path, and transit pieces are above the illustrative examples because Ontario has far more than 5,000–10,000 real features and their identity, location, and geometry fields are populated. The washroom tranche remains under the illustrative 100,000 because most washroom fields are untagged. Tier 0 accounts for the OSM and municipal pieces. Tier 1 accounts for the static GTFS pieces. Tier 4 alert rows are not pieces.
 
 ## Layout
 
@@ -44,8 +47,10 @@ The 2026-11-13 import has 6,948,433 pieces, 43,892,670 UNKNOWN gaps, and 1,416,3
 - `sources/registry.json` — source name, URLs, licence, attribution, retrieval date, and tier.
 - `sources/gaps.json` — feeds that were not imported because the file or the licence could not be confirmed.
 - `data/{venues,washrooms,paths,transit}/{source_id}/*.ndjson.gz` — gzip NDJSON partitioned by 0.5-degree cell. Each file stays under 25 MB.
-- `src/` — tag mapping, GTFS parsing, municipal mapping, Ajv validation, and counting.
-- `scripts/` — importers.
+- `data/alerts/` — GTFS-RT accessibility alert snapshots. Not counted as pieces.
+- `data/tiles/odbl/` and `data/tiles/open/` — PMTiles vector overlays. OpenStreetMap stays in `odbl`. Each file stays under 50 MB.
+- `src/` — tag mapping, GTFS parsing, municipal mapping, Ajv validation, counting, and tiles.
+- `scripts/` — importers. `npm run fetch:ttc-alerts` and `npm run build:tiles` are on demand. There is no schedule.
 
 ## Re-run
 
@@ -60,7 +65,7 @@ npm run import
 npm run validate:sample
 ```
 
-`npm run import` runs the municipal, GTFS, and OSM importers, validates every record with Ajv, then rewrites `COUNTS.md` and `counts.json` by reading the gzip files back. Raw downloads stay in `.cache/` and are gitignored.
+`npm run import` runs the municipal, extra municipal, GTFS, and OSM importers, validates every record with Ajv, then rewrites `COUNTS.md` and `counts.json` by reading the gzip files back. Raw downloads stay in `.cache/` and are gitignored. `npm run fetch:ttc-alerts` replaces the TTC elevator and escalator alert snapshot. `npm run build:tiles` writes the offline overlays, including path segments that sit inside a single tile. `npm run build:tiles -- --points` writes points only. Each PMTiles file stays under 50 MB, and the OpenStreetMap overlay is a separate file from the other licences. This pipeline does not call Nominatim.
 
 The OSM importer keeps the Geofabrik extract, filters it with `osmium tags-filter`, and streams `osmium export -f geojsonseq -a type,id`. A closed way can be exported once as a line and once as an area. The second record with the same id is dropped. Area venues store a vertex-mean of the outer ring as `lat` and `lon` (`source_key` `geometry:vertex_mean`). That point is not a surveyed entrance. Path length is stored only when the source publishes it. Path geometry is the published linestring, rounded to six decimal places, with consecutive duplicate points removed. Multipart paths keep the longest part.
 
@@ -74,6 +79,8 @@ Washroom fields from a venue, such as `toilets:wheelchair`, are emitted as a sep
 
 ## Sources not imported
 
-See [sources/gaps.json](sources/gaps.json). OC Transpo's terms page did not return a licence. YRT requires a named-person download form. Ottawa public washrooms did not expose a confirmed licence on the dataset record. GO and UP Express `stop_amenities.txt` has an undocumented integer `washroom` column, so that file was not interpreted.
+See [sources/gaps.json](sources/gaps.json). OC Transpo's terms page did not return a licence. YRT requires a named-person download form. Ottawa public washrooms, Peel recreation trails, Guelph parks and sidewalks, Thunder Bay recreation facilities, and Barrie park amenities did not expose a confirmed open licence on 2026-11-13, so they were not imported. Ontario catalogue packages marked Licence Not Specified were not imported. City of London open-data terms and additional City of Mississauga datasets need legal review and were not added.
+
+GO Transit, UP Express, and MiWay rows already in this repository stay. Their terms still need legal review. The notes are in [sources/registry.json](sources/registry.json) and [ATTRIBUTION.md](ATTRIBUTION.md). GO and UP Express `stop_amenities.txt` has an undocumented integer `washroom` column, so that file was not interpreted.
 
 None of the downloaded GTFS feeds included `pathways.txt` or `levels.txt`. MiWay `level_id` is stored when the stop publishes it. `level_index` and `level_name` stay `UNKNOWN` unless a levels table is present.

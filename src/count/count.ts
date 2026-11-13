@@ -8,6 +8,7 @@ import {
   type DataRecord,
   type Tranche,
 } from "../model/records.js";
+import { ACCESSIBILITY_DEFINITION, ACCESSIBILITY_FIELDS, isAccessibilityField } from "./accessibility.js";
 import { isDerivedExcluded, isGap, isPiece, type FieldValue } from "../model/provenance.js";
 
 export interface Slice {
@@ -21,6 +22,9 @@ export interface Slice {
   pieces_by_retrieved_at: Record<string, number>;
   gaps_by_retrieved_at: Record<string, number>;
   gap_fields: Record<string, number>;
+  accessibility_pieces: number;
+  accessibility_gaps: number;
+  accessibility_by_field: Record<string, number>;
 }
 
 export interface SourceSlice {
@@ -31,6 +35,7 @@ export interface SourceSlice {
   pieces_by_tier: Record<string, number>;
   pieces_by_tranche: Record<string, number>;
   pieces_by_retrieved_at: Record<string, number>;
+  accessibility_pieces: number;
 }
 
 export interface Shortfall {
@@ -51,6 +56,11 @@ export interface CountReport {
   shortfalls: Shortfall[];
   illustrative_total_target: number;
   total_shortfall: number;
+  accessibility_pieces: number;
+  accessibility_gaps: number;
+  identity_pieces: number;
+  accessibility_definition: string;
+  accessibility_fields: Record<Tranche, readonly string[]>;
 }
 
 export function emptySlice(): Slice {
@@ -65,6 +75,9 @@ export function emptySlice(): Slice {
     pieces_by_retrieved_at: {},
     gaps_by_retrieved_at: {},
     gap_fields: {},
+    accessibility_pieces: 0,
+    accessibility_gaps: 0,
+    accessibility_by_field: {},
   };
 }
 
@@ -117,6 +130,8 @@ function finishReport(byTranche: Record<Tranche, Slice>, bySource: Record<string
   const gaps = TRANCHES.reduce((sum, tranche) => sum + byTranche[tranche].gaps, 0);
   const derived = TRANCHES.reduce((sum, tranche) => sum + byTranche[tranche].derived_excluded, 0);
   const recordsTotal = TRANCHES.reduce((sum, tranche) => sum + byTranche[tranche].records, 0);
+  const accessibilityPieces = TRANCHES.reduce((sum, tranche) => sum + byTranche[tranche].accessibility_pieces, 0);
+  const accessibilityGaps = TRANCHES.reduce((sum, tranche) => sum + byTranche[tranche].accessibility_gaps, 0);
   return {
     definition:
       "A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. The same fact is not stored on two tranches.",
@@ -124,6 +139,11 @@ function finishReport(byTranche: Record<Tranche, Slice>, bySource: Record<string
     pieces,
     gaps,
     derived_excluded: derived,
+    accessibility_pieces: accessibilityPieces,
+    accessibility_gaps: accessibilityGaps,
+    identity_pieces: pieces - accessibilityPieces,
+    accessibility_definition: ACCESSIBILITY_DEFINITION,
+    accessibility_fields: ACCESSIBILITY_FIELDS,
     by_tranche: byTranche,
     by_source: bySource,
     shortfalls,
@@ -157,6 +177,11 @@ function addField(
   const source = ensureSource(bySource, field.source_id);
   if (isPiece(field)) {
     slice.pieces += 1;
+    if (isAccessibilityField(tranche, fieldName)) {
+      slice.accessibility_pieces += 1;
+      bump(slice.accessibility_by_field, fieldName);
+      source.accessibility_pieces += 1;
+    }
     bump(slice.pieces_by_tier, String(field.tier));
     bump(slice.pieces_by_source, field.source_id);
     bump(slice.pieces_by_retrieved_at, field.retrieved_at);
@@ -168,6 +193,7 @@ function addField(
   }
   if (isGap(field)) {
     slice.gaps += 1;
+    if (isAccessibilityField(tranche, fieldName)) slice.accessibility_gaps += 1;
     bump(slice.gaps_by_tier, String(field.tier));
     bump(slice.gaps_by_retrieved_at, field.retrieved_at);
     bump(slice.gap_fields, fieldName);
@@ -191,6 +217,7 @@ function ensureSource(bySource: Record<string, SourceSlice>, sourceId: string): 
     pieces_by_tier: {},
     pieces_by_tranche: {},
     pieces_by_retrieved_at: {},
+    accessibility_pieces: 0,
   };
   bySource[sourceId] = created;
   return created;
@@ -207,7 +234,14 @@ export function renderCountsMarkdown(report: CountReport): string {
   lines.push(report.definition);
   lines.push("");
   lines.push(`Total pieces: **${report.pieces.toLocaleString("en-CA")}**.`);
+  lines.push(`Accessibility-fact pieces: **${report.accessibility_pieces.toLocaleString("en-CA")}**.`);
+  lines.push(
+    `Name, category, address, and geometry pieces: **${report.identity_pieces.toLocaleString("en-CA")}**.`,
+  );
   lines.push(`Total UNKNOWN gaps: **${report.gaps.toLocaleString("en-CA")}**.`);
+  lines.push(
+    `UNKNOWN gaps on accessibility fields: **${report.accessibility_gaps.toLocaleString("en-CA")}**.`,
+  );
   lines.push(`Derived values excluded from both totals: **${report.derived_excluded.toLocaleString("en-CA")}**.`);
   lines.push(`Records: **${report.records.toLocaleString("en-CA")}**.`);
   lines.push("");
@@ -242,6 +276,41 @@ export function renderCountsMarkdown(report: CountReport): string {
     );
   }
   lines.push("");
+  lines.push("## Accessibility facts");
+  lines.push("");
+  lines.push(report.accessibility_definition);
+  lines.push("");
+  lines.push(
+    `Accessibility facts and the other pieces add up to the total: ${report.accessibility_pieces.toLocaleString("en-CA")} + ${report.identity_pieces.toLocaleString("en-CA")} = ${report.pieces.toLocaleString("en-CA")}.`,
+  );
+  lines.push("");
+  lines.push("| Tranche | Accessibility pieces | Accessibility-field gaps | Other pieces |");
+  lines.push("| --- | ---: | ---: | ---: |");
+  for (const tranche of TRANCHES) {
+    const slice = report.by_tranche[tranche];
+    lines.push(
+      `| ${tranche} | ${slice.accessibility_pieces} | ${slice.accessibility_gaps} | ${slice.pieces - slice.accessibility_pieces} |`,
+    );
+  }
+  lines.push("");
+  lines.push("Fields counted as accessibility facts:");
+  lines.push("");
+  for (const tranche of TRANCHES) {
+    lines.push(`- ${tranche}: ${report.accessibility_fields[tranche].join(", ")}`);
+  }
+  lines.push("");
+  lines.push("Populated accessibility facts by field:");
+  lines.push("");
+  for (const tranche of TRANCHES) {
+    const ranked = Object.entries(report.by_tranche[tranche].accessibility_by_field).sort(
+      (a, b) => b[1] - a[1] || a[0].localeCompare(b[0]),
+    );
+    lines.push(`### ${tranche}`);
+    lines.push("");
+    if (ranked.length === 0) lines.push("No populated accessibility facts.");
+    else for (const [field, count] of ranked) lines.push(`- ${field}: ${count}`);
+    lines.push("");
+  }
   lines.push("## Pieces by tier");
   lines.push("");
   lines.push("| Tranche | Tier 0 | Tier 1 | Tier 2 | Tier 3 | Tier 4 |");
@@ -255,13 +324,15 @@ export function renderCountsMarkdown(report: CountReport): string {
   lines.push("");
   lines.push("## Pieces by source and retrieval date");
   lines.push("");
-  lines.push("| Source | Records | Pieces | Gaps | Tier 0 pieces | Tier 1 pieces | Retrieval dates |");
-  lines.push("| --- | ---: | ---: | ---: | ---: | ---: | --- |");
+  lines.push(
+    "| Source | Records | Pieces | Accessibility pieces | Gaps | Tier 0 pieces | Tier 1 pieces | Retrieval dates |",
+  );
+  lines.push("| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |");
   for (const source of Object.keys(report.by_source).sort()) {
     const slice = report.by_source[source];
     if (!slice) continue;
     lines.push(
-      `| ${source} | ${slice.records} | ${slice.pieces} | ${slice.gaps} | ${slice.pieces_by_tier["0"] ?? 0} | ${slice.pieces_by_tier["1"] ?? 0} | ${Object.keys(slice.pieces_by_retrieved_at).sort().join(", ")} |`,
+      `| ${source} | ${slice.records} | ${slice.pieces} | ${slice.accessibility_pieces} | ${slice.gaps} | ${slice.pieces_by_tier["0"] ?? 0} | ${slice.pieces_by_tier["1"] ?? 0} | ${Object.keys(slice.pieces_by_retrieved_at).sort().join(", ")} |`,
     );
   }
   lines.push("");

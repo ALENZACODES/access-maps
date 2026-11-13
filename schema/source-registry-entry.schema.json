@@ -31,7 +31,9 @@
       "enum": [
         "osm",
         "gtfs",
-        "municipal"
+        "gtfs-rt",
+        "municipal",
+        "provincial"
       ]
     },
     "url": {

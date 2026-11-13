@@ -12,7 +12,42 @@
   {
     "name": "City of Ottawa public washrooms",
     "url": "https://open.ottawa.ca/datasets/public-washrooms",
-    "reason": "The Open Ottawa dataset page loaded, and the embedded item licenseInfo was null. The linked open-data licence page did not return licence text during this run, so the dataset was not imported."
+    "reason": "The Open Ottawa dataset page loaded, and the embedded item licenseInfo was null. On 2026-11-13 the licence page https://ottawa.ca/en/city-hall/get-know-your-city/open-data#open-data-licence-version-2-0 returned an Incapsula interstitial instead of licence text. The dataset was not imported."
+  },
+  {
+    "name": "Peel Region Active Recreation and Trails",
+    "url": "https://data.peelregion.ca/pages/license",
+    "reason": "On 2026-11-13 the licence page returned HTML whose extracted text did not include a grant of rights. The CSV download returned a JSON status that the file was still being generated. UNKNOWN licence. Not imported."
+  },
+  {
+    "name": "City of Guelph parks, trails, sidewalks, and park locations",
+    "url": "https://explore.guelph.ca/pages/open-data-license",
+    "reason": "On 2026-11-13 the licence page returned HTTP 200 and the extracted text was only the page title. No grant of rights was visible. UNKNOWN licence. Not imported."
+  },
+  {
+    "name": "City of Thunder Bay recreation facilities",
+    "url": "https://www.thunderbay.ca/en/city-services/resources/City-of-Thunder-Bay-Open-Data-Licence.pdf",
+    "reason": "The catalogue links to an open-data licence PDF that returned HTTP 404 on 2026-11-13. Other thunderbay.ca open-data URLs also returned 404. UNKNOWN licence. Not imported."
+  },
+  {
+    "name": "City of Barrie park amenities",
+    "url": "https://opendata.barrie.ca/datasets/barrie::park-amenity",
+    "reason": "On 2026-11-13 the published licence text was a copyright notice and a warranty disclaimer. It did not grant a right to copy, modify, or redistribute. Not imported."
+  },
+  {
+    "name": "City of London trails, sidewalks, and parking",
+    "url": "https://www.london.ca/",
+    "reason": "The City of London Open Data Terms of Use grant a worldwide royalty-free non-exclusive licence to use, modify, and distribute, but the City may cancel or suspend the licence and the terms include an indemnity. Redistribution must pass the terms on. Same family as the MiWay terms. Legal review is required, so these datasets were not imported."
+  },
+  {
+    "name": "City of Mississauga public washrooms and community centres",
+    "url": "http://www5.mississauga.ca/research_catalogue/CityofMississauga_TermsofUse.pdf",
+    "reason": "The same City of Mississauga Terms of Use already flagged for MiWay. Revocable, indemnity, and a 'City of Toronto grants you' sentence. No additional Mississauga dataset was imported. Existing MiWay GTFS rows stay."
+  },
+  {
+    "name": "Ontario catalogue records with Licence Not Specified",
+    "url": "https://data.ontario.ca/",
+    "reason": "Packages whose catalogue licence was Licence Not Specified, including mapping-layer-data, ontario-parks-infrastructure-point-parkpnt, provincial-park-zones-parkzreg, and hospital classification lists, were not imported."
   },
   {
     "name": "GO Transit and UP Express stop_amenities.txt",

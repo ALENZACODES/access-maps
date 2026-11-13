@@ -43,7 +43,7 @@
       "retrieved_at": "2026-11-13",
       "tier": 1,
       "tier_note": "Static GTFS fields published by the operator are tier 1 operator claims, not verified observations. wheelchair_boarding 0 or empty is stored as UNKNOWN.",
-      "notes": "The Metrolinx open data page lists GO Transit GTFS under the Open Government Licence – Ontario – Metrolinx. stop_amenities.txt was not imported; see sources/gaps.json."
+      "notes": "The Metrolinx open data page lists GO Transit GTFS under the Open Government Licence – Ontario – Metrolinx. stop_amenities.txt was not imported; see sources/gaps.json. Legal review: the current GTFS download page is a Metrolinx Access and Use Agreement (limited, revocable, mandatory legend, no GO/UP/Metrolinx trademarks) that has not been reconciled with the Open Government Licence PDF. Existing rows stay under this licence_id. That conflict is not treated as resolved."
     },
     {
       "id": "gtfs-up-express",
@@ -58,7 +58,7 @@
       "retrieved_at": "2026-11-13",
       "tier": 1,
       "tier_note": "Static GTFS fields published by the operator are tier 1 operator claims, not verified observations. wheelchair_boarding 0 or empty is stored as UNKNOWN.",
-      "notes": "Listed beside GO Transit GTFS on the Metrolinx open data page under the same licence."
+      "notes": "Listed beside GO Transit GTFS on the Metrolinx open data page under the same licence. Legal review: the current GTFS download page is a Metrolinx Access and Use Agreement (limited, revocable, mandatory legend, no GO/UP/Metrolinx trademarks) that has not been reconciled with the Open Government Licence PDF. Existing rows stay under this licence_id. That conflict is not treated as resolved."
     },
     {
       "id": "gtfs-grt-bus",
@@ -103,7 +103,7 @@
       "retrieved_at": "2026-11-13",
       "tier": 1,
       "tier_note": "Static GTFS fields published by the operator are tier 1 operator claims, not verified observations. wheelchair_boarding 0 or empty is stored as UNKNOWN.",
-      "notes": "The developer page requires review of the City of Mississauga Terms of Use before use. Those terms grant a licence to use, modify, and distribute the datasets for any lawful purpose and require that redistribution include the terms URL. This is not an Open Government Licence."
+      "notes": "The developer page requires review of the City of Mississauga Terms of Use before use. Those terms grant a licence to use, modify, and distribute the datasets for any lawful purpose and require that redistribution include the terms URL. This is not an Open Government Licence. Legal review: the terms are revocable, include an indemnity, and a copy contains a 'City of Toronto grants you' sentence. Existing MiWay rows stay. No additional Mississauga dataset was imported."
     },
     {
       "id": "gtfs-brampton",
@@ -194,6 +194,96 @@
       "tier": 0,
       "tier_note": "Municipal open data is tier 0. It is not shown as verified.",
       "notes": "CKAN package corporate-real-estate-management-portfolio-washrooms, license_id open-government-licence-toronto. Accessible Washroom Yes/No is stored as wheelchair yes/no at tier 0, which records the city's column and is not a verification tier."
+    },
+    {
+      "id": "gtfs-rt-ttc-accessibility",
+      "name": "TTC GTFS-RT accessibility service alerts",
+      "kind": "gtfs-rt",
+      "url": "https://open.toronto.ca/dataset/ttc-gtfs-realtime-gtfs-rt/",
+      "download_url": "https://gtfsrt.ttc.ca/alerts/accessibility?format=text",
+      "licence_name": "Open Government Licence – Toronto",
+      "licence_url": "https://open.toronto.ca/open-data-licence/",
+      "licence_id": "OGL-Toronto-1.0",
+      "attribution": "Contains information licensed under the Open Government Licence – Toronto.",
+      "retrieved_at": "2026-11-13",
+      "tier": 4,
+      "tier_note": "Tier 4 is a live operator status snapshot. It is not an App measurement and it is not counted as a piece. The committed file is stale until npm run fetch:ttc-alerts is run again.",
+      "notes": "CKAN package ttc-gtfs-realtime-gtfs-rt, license_id open-government-licence-toronto. The accessibility text endpoint is listed from https://gtfsrt.ttc.ca. Equipment is elevator or escalator only when the header text contains that word. There is no scheduled workflow."
+    },
+    {
+      "id": "kingston-public-washrooms",
+      "name": "City of Kingston public washrooms",
+      "kind": "municipal",
+      "url": "https://opendatakingston.cityofkingston.ca/datasets/cityofkingston::public-washrooms",
+      "download_url": "https://opendatakingston.cityofkingston.ca/api/download/v1/items/098b174e91df414da0ce08cd0e2d7aa1/csv?layers=1",
+      "licence_name": "Open Data Licence – City of Kingston 1.0",
+      "licence_url": "https://www.cityofkingston.ca/documents/10180/144997/CityofKingston_OpenDataLicense.pdf",
+      "licence_id": "Kingston-Open-Data-Licence-1.0",
+      "attribution": "Contains information licensed under the Open Data Licence – City of Kingston.",
+      "retrieved_at": "2026-11-13",
+      "tier": 0,
+      "tier_note": "Municipal open data is tier 0. It is not shown as verified.",
+      "notes": "Licence PDF retrieved 2026-11-13. It is based on the Open Government Licence Ontario and grants a worldwide, royalty-free, perpetual, non-exclusive licence, including commercial use, with the attribution sentence above. The file has no wheelchair column, so wheelchair stays UNKNOWN. Coordinates are EPSG:3857 and are converted to WGS84."
+    },
+    {
+      "id": "kingston-accessible-features",
+      "name": "City of Kingston accessible features",
+      "kind": "municipal",
+      "url": "https://opendatakingston.cityofkingston.ca/datasets/cityofkingston::accessible-features-at-kingston-facilities",
+      "download_url": "https://opendatakingston.cityofkingston.ca/api/download/v1/items/f3d1b7e0c8b2462fa24e389a9a5b6c65/csv?layers=0",
+      "licence_name": "Open Data Licence – City of Kingston 1.0",
+      "licence_url": "https://www.cityofkingston.ca/documents/10180/144997/CityofKingston_OpenDataLicense.pdf",
+      "licence_id": "Kingston-Open-Data-Licence-1.0",
+      "attribution": "Contains information licensed under the Open Data Licence – City of Kingston.",
+      "retrieved_at": "2026-11-13",
+      "tier": 0,
+      "tier_note": "Municipal open data is tier 0. It is not shown as verified.",
+      "notes": "Same Kingston Open Data Licence as the public washrooms file. The hub CSV download stayed pending, so this import queried the feature service Accessible_Features_at_Kingston_Facilities in WGS84. Type is stored as the published string. Sidewalk Curb Cut, Ramp, Automated Door Opener, Entrance to Access Interior Elevator, Audible Traffic Control, Barrier-Free Routes, and Assistive Listening are stored on kerb, ramp, automatic_door, elevator, speech_output, access, and hearing_loop. Access Restriction stays a category only. Washroom types become washroom records. The word Accessible in a type name is not stored as wheelchair=yes. The hub CSV, when it is generated, uses EPSG:3857."
+    },
+    {
+      "id": "brampton-recreation-centres",
+      "name": "City of Brampton recreation centres",
+      "kind": "municipal",
+      "url": "https://geohub.brampton.ca/datasets/brampton::recreation-centres-1",
+      "download_url": "https://geohub.brampton.ca/api/download/v1/items/ff37167a92ce454bac4f5a42695df28d/csv?layers=6",
+      "licence_name": "CC BY",
+      "licence_url": "https://www.arcgis.com/sharing/rest/content/items/ff37167a92ce454bac4f5a42695df28d?f=json",
+      "licence_id": "CC-BY",
+      "attribution": "City of Brampton, Recreation Centres, CC BY.",
+      "retrieved_at": "2026-11-13",
+      "tier": 0,
+      "tier_note": "Municipal open data is tier 0. It is not shown as verified.",
+      "notes": "The ArcGIS item licenseInfo field is the string CC BY. The hub DCAT record also links https://creativecommons.org/licenses/by/4.0. The item itself does not state a version, so no version is asserted as the only statement. Amenity columns are not accessibility facts and are not mapped. Coordinates are EPSG:3857. wheelchair stays UNKNOWN."
+    },
+    {
+      "id": "sudbury-fieldhouses",
+      "name": "City of Greater Sudbury fieldhouses",
+      "kind": "municipal",
+      "url": "https://opendata.greatersudbury.ca/datasets/Sudbury::accessible-parks-layer",
+      "download_url": "https://opendata.greatersudbury.ca/api/download/v1/items/a5690304b87344378544b83a20d75052/csv?layers=3",
+      "licence_name": "Open Data Licence – City of Greater Sudbury",
+      "licence_url": "https://www.greatersudbury.ca/city-hall/open-government/open-data/licence/",
+      "licence_id": "Greater-Sudbury-Open-Data-Licence-1.0",
+      "attribution": "Contains information licensed under the Open Data Licence – City of Greater Sudbury.",
+      "retrieved_at": "2026-11-13",
+      "tier": 0,
+      "tier_note": "Municipal open data is tier 0. It is not shown as verified.",
+      "notes": "Licence page retrieved 2026-11-13. It adapts the Open Government Licence Ontario v1.0 and grants a worldwide, royalty-free, perpetual, non-exclusive licence, including commercial use. The hub title Accessible Parks (Layer) is the feature service layer Field_Houses. Columns describe facility buildings. There is no accessibility column, so wheelchair stays UNKNOWN. Coordinates are NAD83 UTM zone 17N converted with the GRS80 ellipsoid and no datum grid."
+    },
+    {
+      "id": "mto-picnic-parks",
+      "name": "Ministry of Transportation picnic parks",
+      "kind": "provincial",
+      "url": "https://data.ontario.ca/dataset/picnic-parks",
+      "download_url": "https://files.ontario.ca/opendata/mto_picnic_parks.zip",
+      "licence_name": "Open Government Licence – Ontario",
+      "licence_url": "https://www.ontario.ca/page/open-government-licence-ontario",
+      "licence_id": "OGL-Ontario-1.0",
+      "attribution": "Contains information licensed under the Open Government Licence – Ontario.",
+      "retrieved_at": "2026-11-13",
+      "tier": 0,
+      "tier_note": "Provincial open data is tier 0. It is not shown as verified.",
+      "notes": "data.ontario.ca package picnic-parks, license_id OGL-ON-1.0. Licence page retrieved 2026-11-13. Category picnic park is the dataset class, not an accessibility fact. The file has no washroom or wheelchair column, so those stay UNKNOWN. COMMENTS has no matching venue field and is not copied. operator stays UNKNOWN."
     }
   ]
 }

@@ -38,6 +38,8 @@ https://assets.metrolinx.com/image/upload/v1663237565/Documents/Metrolinx/Open-G
 
 Open data page: https://www.metrolinx.com/en/about-us/open-data
 
+Legal review is still required. The current GTFS download page is a Metrolinx Access and Use Agreement (limited, revocable, mandatory legend, no GO, UP, or Metrolinx trademarks). That agreement has not been reconciled with the Open Government Licence PDF. The existing rows are unchanged.
+
 ## Grand River Transit
 
 Contains information provided by the Regional Municipality of Waterloo under licence
@@ -53,6 +55,8 @@ These datasets are publicly available from the City of Mississauga under its Ter
 Terms: http://www5.mississauga.ca/research_catalogue/CityofMississauga_TermsofUse.pdf
 
 Developer page: https://www.mississauga.ca/miway-transit/developer-download/
+
+Legal review is still required. The terms are revocable, include an indemnity, and a copy contains a "City of Toronto grants you" sentence. No additional Mississauga dataset was imported.
 
 ## Brampton Transit
 
@@ -73,3 +77,51 @@ These data sets are available from the London Transit Commission under its Open 
 https://www.londontransit.ca/open-data/ltcs-open-data-terms-of-use/
 
 https://www.londontransit.ca/open-data/
+
+## TTC GTFS-RT accessibility alerts
+
+Contains information licensed under the Open Government Licence – Toronto.
+
+https://open.toronto.ca/open-data-licence/
+
+Feed: https://gtfsrt.ttc.ca/alerts/accessibility?format=text
+
+The committed file is a snapshot. It is not a live feed. Run `npm run fetch:ttc-alerts` to replace it. Equipment is recorded as an elevator or an escalator only when the header text says so.
+
+## City of Kingston
+
+Contains information licensed under the Open Data Licence – City of Kingston.
+
+https://www.cityofkingston.ca/documents/10180/144997/CityofKingston_OpenDataLicense.pdf
+
+Datasets: public washrooms and accessible features at Kingston facilities, retrieved 2026-11-13.
+
+## City of Brampton recreation centres
+
+City of Brampton, Recreation Centres, CC BY.
+
+The ArcGIS item states the licence as "CC BY" and does not publish a version: https://www.arcgis.com/sharing/rest/content/items/ff37167a92ce454bac4f5a42695df28d?f=json
+
+The hub catalogue also links https://creativecommons.org/licenses/by/4.0. Both statements are recorded. No version is asserted as the only statement.
+
+## City of Greater Sudbury
+
+Contains information licensed under the Open Data Licence – City of Greater Sudbury.
+
+https://www.greatersudbury.ca/city-hall/open-government/open-data/licence/
+
+The imported file is the Field_Houses layer. The hub title "Accessible Parks (Layer)" is not stored as a wheelchair fact.
+
+## Ministry of Transportation picnic parks
+
+Contains information licensed under the Open Government Licence – Ontario.
+
+https://www.ontario.ca/page/open-government-licence-ontario
+
+Dataset: https://data.ontario.ca/dataset/picnic-parks
+
+## Offline map tiles
+
+`data/tiles/odbl/` is OpenStreetMap data under the Open Database License (ODbL) 1.0. It is a separate file from every other licence.
+
+`data/tiles/open/` contains no OpenStreetMap data. Attribution for each `source_id` in that overlay is the section above for that source.

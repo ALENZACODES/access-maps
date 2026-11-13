@@ -1,132 +1,251 @@
 {
   "definition": "A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. The same fact is not stored on two tranches.",
-  "records": 1416313,
-  "pieces": 6948433,
-  "gaps": 43892670,
+  "records": 1417632,
+  "pieces": 6958879,
+  "gaps": 43938491,
   "derived_excluded": 3566,
+  "accessibility_pieces": 1192420,
+  "accessibility_gaps": 28222638,
+  "identity_pieces": 5766459,
+  "accessibility_definition": "An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, automatic door, and the other fields listed in this report. Names, categories, addresses, hours, operators, coordinates, and geometry are pieces too, and they are counted apart from accessibility facts. toilets:wheelchair is stored on the washroom wheelchair field.",
+  "accessibility_fields": {
+    "venue": [
+      "wheelchair",
+      "wheelchair_description",
+      "entrance",
+      "automatic_door",
+      "door",
+      "door_width",
+      "ramp",
+      "ramp_wheelchair",
+      "ramp_stroller",
+      "step_count",
+      "incline",
+      "kerb",
+      "kerb_height",
+      "tactile_paving",
+      "handrail",
+      "width",
+      "access",
+      "surface",
+      "smoothness",
+      "lit",
+      "braille",
+      "hearing_loop",
+      "speech_output",
+      "stroller",
+      "capacity_disabled",
+      "elevator"
+    ],
+    "washroom": [
+      "wheelchair",
+      "wheelchair_description",
+      "changing_table",
+      "changing_table_fee",
+      "changing_table_location",
+      "adult_changing_table",
+      "access",
+      "fee",
+      "unisex",
+      "male",
+      "female",
+      "locked",
+      "supervised",
+      "published_accessibility"
+    ],
+    "path": [
+      "foot",
+      "surface",
+      "smoothness",
+      "incline",
+      "width",
+      "kerb",
+      "tactile_paving",
+      "lit",
+      "wheelchair",
+      "wheelchair_description",
+      "step_count",
+      "handrail",
+      "access",
+      "max_slope",
+      "min_width",
+      "stair_count",
+      "crossing",
+      "ramp"
+    ],
+    "transit": [
+      "wheelchair_boarding"
+    ]
+  },
   "by_tranche": {
     "venue": {
-      "records": 539715,
-      "pieces": 2914937,
-      "gaps": 20292808,
+      "records": 540944,
+      "pieces": 2924561,
+      "gaps": 20336031,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 2914937
+        "0": 2924561
       },
       "gaps_by_tier": {
-        "0": 20292808
+        "0": 20336031
       },
       "pieces_by_source": {
-        "osm-ontario": 2914937
+        "brampton-recreation-centres": 312,
+        "kingston-accessible-features": 7827,
+        "mto-picnic-parks": 1005,
+        "osm-ontario": 2914937,
+        "sudbury-fieldhouses": 480
       },
       "pieces_by_retrieved_at": {
-        "2026-11-13": 2914937
+        "2026-11-13": 2924561
       },
       "gaps_by_retrieved_at": {
-        "2026-11-13": 20292808
+        "2026-11-13": 20336031
       },
       "gap_fields": {
-        "name": 385167,
-        "addr_housenumber": 465419,
-        "addr_street": 464388,
-        "addr_city": 496957,
-        "addr_postcode": 507638,
-        "addr_unit": 532632,
-        "opening_hours": 518310,
-        "level": 529047,
-        "operator": 494219,
-        "brand": 488378,
-        "website": 504779,
-        "wheelchair": 527045,
-        "wheelchair_description": 539012,
-        "entrance": 522082,
-        "automatic_door": 539668,
-        "door": 537680,
-        "door_width": 539715,
-        "ramp": 539714,
-        "ramp_wheelchair": 539715,
-        "ramp_stroller": 539715,
-        "step_count": 539715,
-        "incline": 539715,
-        "kerb": 539636,
-        "kerb_height": 539715,
-        "tactile_paving": 539702,
-        "handrail": 539715,
-        "width": 539685,
-        "access": 452005,
-        "surface": 477495,
-        "smoothness": 539583,
-        "lit": 531726,
-        "braille": 539715,
-        "hearing_loop": 539715,
-        "speech_output": 539714,
-        "stroller": 539664,
-        "capacity_disabled": 536218,
-        "indoor": 536823,
-        "elevator": 539713,
-        "ref": 531274
+        "addr_city": 498186,
+        "addr_postcode": 508867,
+        "addr_unit": 533861,
+        "opening_hours": 519532,
+        "level": 530276,
+        "operator": 495448,
+        "brand": 489607,
+        "wheelchair": 528274,
+        "wheelchair_description": 540241,
+        "entrance": 523311,
+        "automatic_door": 540851,
+        "door": 538909,
+        "door_width": 540944,
+        "ramp": 540915,
+        "ramp_wheelchair": 540944,
+        "ramp_stroller": 540944,
+        "step_count": 540944,
+        "incline": 540944,
+        "kerb": 540758,
+        "kerb_height": 540944,
+        "tactile_paving": 540931,
+        "handrail": 540944,
+        "width": 540914,
+        "access": 453210,
+        "surface": 478724,
+        "smoothness": 540812,
+        "lit": 532955,
+        "braille": 540944,
+        "hearing_loop": 540941,
+        "speech_output": 540903,
+        "stroller": 540893,
+        "capacity_disabled": 537447,
+        "indoor": 538052,
+        "elevator": 540931,
+        "ref": 531317,
+        "website": 505969,
+        "addr_housenumber": 465712,
+        "name": 385174,
+        "addr_street": 464556,
+        "category": 2
+      },
+      "accessibility_pieces": 195072,
+      "accessibility_gaps": 13869472,
+      "accessibility_by_field": {
+        "kerb": 186,
+        "automatic_door": 93,
+        "elevator": 13,
+        "access": 87734,
+        "ramp": 29,
+        "speech_output": 41,
+        "hearing_loop": 3,
+        "entrance": 17633,
+        "surface": 62220,
+        "wheelchair": 12670,
+        "lit": 7989,
+        "capacity_disabled": 3497,
+        "width": 30,
+        "stroller": 51,
+        "door": 2035,
+        "smoothness": 132,
+        "wheelchair_description": 703,
+        "tactile_paving": 13
       }
     },
     "washroom": {
-      "records": 6287,
-      "pieces": 29046,
-      "gaps": 206294,
+      "records": 6377,
+      "pieces": 29868,
+      "gaps": 208892,
       "derived_excluded": 3566,
       "pieces_by_tier": {
-        "0": 29046
+        "0": 29868
       },
       "gaps_by_tier": {
-        "0": 206294
+        "0": 208892
       },
       "pieces_by_source": {
+        "kingston-accessible-features": 390,
+        "kingston-public-washrooms": 432,
         "osm-ontario": 24062,
         "toronto-crem-washrooms": 1309,
         "toronto-park-washrooms": 3651,
         "toronto-street-washrooms": 24
       },
       "pieces_by_retrieved_at": {
-        "2026-11-13": 29046
+        "2026-11-13": 29868
       },
       "gaps_by_retrieved_at": {
-        "2026-11-13": 206294
+        "2026-11-13": 208892
       },
       "gap_fields": {
+        "wheelchair": 4291,
+        "wheelchair_description": 6308,
+        "changing_table": 5934,
+        "changing_table_fee": 6374,
+        "changing_table_location": 6373,
+        "adult_changing_table": 6376,
+        "access": 5270,
+        "fee": 5645,
+        "opening_hours": 5646,
+        "unisex": 5880,
+        "male": 6080,
+        "female": 6084,
+        "supervised": 6374,
+        "level": 6150,
+        "indoor": 6251,
+        "operator": 5810,
+        "addr_city": 6338,
+        "addr_postcode": 6376,
+        "address": 5904,
+        "description": 5824,
+        "locked": 6377,
+        "drinking_water": 6324,
+        "shower": 6355,
+        "disposal": 4870,
+        "capacity": 6372,
+        "seasonal": 6252,
+        "location": 5903,
+        "building": 5616,
+        "parent_id": 4594,
+        "website": 5962,
+        "addr_housenumber": 6239,
+        "published_accessibility": 5980,
+        "status": 5857,
         "name": 5697,
-        "wheelchair_description": 6218,
-        "changing_table": 5844,
-        "changing_table_fee": 6284,
-        "changing_table_location": 6283,
-        "adult_changing_table": 6286,
-        "fee": 5555,
-        "opening_hours": 5556,
-        "male": 6006,
-        "female": 6010,
-        "supervised": 6284,
-        "level": 6060,
-        "indoor": 6161,
-        "operator": 5768,
-        "addr_housenumber": 6236,
         "addr_street": 6233,
-        "addr_city": 6248,
-        "addr_postcode": 6286,
-        "address": 5814,
-        "description": 5807,
-        "locked": 6287,
-        "drinking_water": 6234,
-        "shower": 6265,
-        "capacity": 6282,
-        "seasonal": 6162,
-        "location": 5813,
-        "published_accessibility": 5932,
-        "building": 5526,
-        "parent_id": 4504,
-        "status": 5809,
-        "website": 5920,
-        "unisex": 5790,
-        "wheelchair": 4201,
-        "access": 5180,
-        "disposal": 4780,
         "facility_type": 973
+      },
+      "accessibility_pieces": 5932,
+      "accessibility_gaps": 83346,
+      "accessibility_by_field": {
+        "published_accessibility": 397,
+        "male": 297,
+        "female": 293,
+        "wheelchair": 2086,
+        "access": 1107,
+        "unisex": 497,
+        "changing_table": 443,
+        "fee": 732,
+        "supervised": 3,
+        "wheelchair_description": 69,
+        "changing_table_location": 4,
+        "adult_changing_table": 1,
+        "changing_table_fee": 3
       }
     },
     "path": {
@@ -179,6 +298,25 @@
         "ramp": 845153,
         "indoor": 843955,
         "tactile_paving": 747090
+      },
+      "accessibility_pieces": 971371,
+      "accessibility_gaps": 14266079,
+      "accessibility_by_field": {
+        "tactile_paving": 99435,
+        "kerb": 57242,
+        "crossing": 303536,
+        "foot": 34632,
+        "surface": 278258,
+        "wheelchair": 26627,
+        "incline": 14434,
+        "width": 67896,
+        "access": 13480,
+        "smoothness": 25985,
+        "lit": 43742,
+        "handrail": 2659,
+        "ramp": 1372,
+        "step_count": 2038,
+        "wheelchair_description": 35
       }
     },
     "transit": {
@@ -219,6 +357,11 @@
         "url": 22789,
         "wheelchair_boarding": 3741,
         "stop_code": 1097
+      },
+      "accessibility_pieces": 20045,
+      "accessibility_gaps": 3741,
+      "accessibility_by_field": {
+        "wheelchair_boarding": 20045
       }
     }
   },
@@ -238,7 +381,8 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-13": 6802019
-      }
+      },
+      "accessibility_pieces": 1171449
     },
     "gtfs-brampton": {
       "records": 2872,
@@ -253,7 +397,8 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-13": 16917
-      }
+      },
+      "accessibility_pieces": 2492
     },
     "gtfs-go-transit": {
       "records": 889,
@@ -268,7 +413,8 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-13": 6151
-      }
+      },
+      "accessibility_pieces": 889
     },
     "gtfs-grt-bus": {
       "records": 2265,
@@ -283,7 +429,8 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-13": 13750
-      }
+      },
+      "accessibility_pieces": 2251
     },
     "gtfs-grt-ion": {
       "records": 32,
@@ -298,7 +445,8 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-13": 159
-      }
+      },
+      "accessibility_pieces": 31
     },
     "gtfs-hsr": {
       "records": 2353,
@@ -313,7 +461,8 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-13": 13993
-      }
+      },
+      "accessibility_pieces": 0
     },
     "gtfs-ltc": {
       "records": 1947,
@@ -328,7 +477,8 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-13": 11625
-      }
+      },
+      "accessibility_pieces": 1896
     },
     "gtfs-miway": {
       "records": 4066,
@@ -343,7 +493,8 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-13": 22663
-      }
+      },
+      "accessibility_pieces": 3124
     },
     "gtfs-ttc": {
       "records": 9357,
@@ -358,7 +509,8 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-13": 56142
-      }
+      },
+      "accessibility_pieces": 9357
     },
     "gtfs-up-express": {
       "records": 5,
@@ -373,7 +525,89 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-13": 30
-      }
+      },
+      "accessibility_pieces": 5
+    },
+    "brampton-recreation-centres": {
+      "records": 39,
+      "pieces": 312,
+      "gaps": 1365,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 312
+      },
+      "pieces_by_tranche": {
+        "venue": 312
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 312
+      },
+      "accessibility_pieces": 0
+    },
+    "kingston-accessible-features": {
+      "records": 1003,
+      "pieces": 8217,
+      "gaps": 34702,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 8217
+      },
+      "pieces_by_tranche": {
+        "venue": 7827,
+        "washroom": 390
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 8217
+      },
+      "accessibility_pieces": 333
+    },
+    "mto-picnic-parks": {
+      "records": 168,
+      "pieces": 1005,
+      "gaps": 6219,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 1005
+      },
+      "pieces_by_tranche": {
+        "venue": 1005
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 1005
+      },
+      "accessibility_pieces": 0
+    },
+    "sudbury-fieldhouses": {
+      "records": 61,
+      "pieces": 480,
+      "gaps": 2143,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 480
+      },
+      "pieces_by_tranche": {
+        "venue": 480
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 480
+      },
+      "accessibility_pieces": 0
+    },
+    "kingston-public-washrooms": {
+      "records": 48,
+      "pieces": 432,
+      "gaps": 1392,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 432
+      },
+      "pieces_by_tranche": {
+        "washroom": 432
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-13": 432
+      },
+      "accessibility_pieces": 0
     },
     "toronto-crem-washrooms": {
       "records": 119,
@@ -388,7 +622,8 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-13": 1309
-      }
+      },
+      "accessibility_pieces": 238
     },
     "toronto-park-washrooms": {
       "records": 355,
@@ -403,7 +638,8 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-13": 3651
-      }
+      },
+      "accessibility_pieces": 355
     },
     "toronto-street-washrooms": {
       "records": 4,
@@ -418,21 +654,22 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-13": 24
-      }
+      },
+      "accessibility_pieces": 0
     }
   },
   "shortfalls": [
     {
       "tranche": "venue",
-      "pieces": 2914937,
+      "pieces": 2924561,
       "illustrative_target": 250000,
       "shortfall": 0
     },
     {
       "tranche": "washroom",
-      "pieces": 29046,
+      "pieces": 29868,
       "illustrative_target": 100000,
-      "shortfall": 70954
+      "shortfall": 70132
     },
     {
       "tranche": "path",
@@ -449,6 +686,16 @@
   ],
   "illustrative_total_target": 500000,
   "total_shortfall": 0,
+  "alerts": {
+    "records": 32,
+    "elevator": 3,
+    "escalator": 29,
+    "elevator_and_escalator": 0,
+    "unknown_equipment": 0,
+    "by_retrieved_at": {
+      "2026-11-13": 32
+    }
+  },
   "files": [
     {
       "file": "data/paths/osm-ontario/n41.5_w083.0.ndjson.gz",
@@ -2179,6 +2426,442 @@
       "bytes": 497
     },
     {
+      "file": "data/venues/brampton-recreation-centres/n43.5_w080.0.ndjson.gz",
+      "bytes": 4661
+    },
+    {
+      "file": "data/venues/kingston-accessible-features/n44.0_w076.5.ndjson.gz",
+      "bytes": 50755
+    },
+    {
+      "file": "data/venues/kingston-accessible-features/n44.0_w077.0.ndjson.gz",
+      "bytes": 38054
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n42.0_w082.5.ndjson.gz",
+      "bytes": 667
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n42.5_w079.5.ndjson.gz",
+      "bytes": 580
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n42.5_w080.0.ndjson.gz",
+      "bytes": 662
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n42.5_w082.0.ndjson.gz",
+      "bytes": 666
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n43.0_w080.5.ndjson.gz",
+      "bytes": 726
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n43.0_w081.0.ndjson.gz",
+      "bytes": 723
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n43.0_w081.5.ndjson.gz",
+      "bytes": 571
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n43.5_w078.5.ndjson.gz",
+      "bytes": 640
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n43.5_w079.0.ndjson.gz",
+      "bytes": 573
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n43.5_w079.5.ndjson.gz",
+      "bytes": 573
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n43.5_w080.0.ndjson.gz",
+      "bytes": 571
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n43.5_w080.5.ndjson.gz",
+      "bytes": 669
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n43.5_w081.0.ndjson.gz",
+      "bytes": 655
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n43.5_w081.5.ndjson.gz",
+      "bytes": 569
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.0_w076.0.ndjson.gz",
+      "bytes": 572
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.0_w077.0.ndjson.gz",
+      "bytes": 742
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.0_w078.0.ndjson.gz",
+      "bytes": 804
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.0_w079.0.ndjson.gz",
+      "bytes": 567
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.0_w080.0.ndjson.gz",
+      "bytes": 659
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.0_w080.5.ndjson.gz",
+      "bytes": 805
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.0_w081.0.ndjson.gz",
+      "bytes": 805
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.0_w082.0.ndjson.gz",
+      "bytes": 574
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.5_w075.5.ndjson.gz",
+      "bytes": 661
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.5_w076.0.ndjson.gz",
+      "bytes": 570
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.5_w076.5.ndjson.gz",
+      "bytes": 662
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.5_w077.0.ndjson.gz",
+      "bytes": 656
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.5_w077.5.ndjson.gz",
+      "bytes": 570
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.5_w078.0.ndjson.gz",
+      "bytes": 571
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.5_w078.5.ndjson.gz",
+      "bytes": 573
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.5_w079.5.ndjson.gz",
+      "bytes": 573
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.5_w080.0.ndjson.gz",
+      "bytes": 571
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.5_w081.0.ndjson.gz",
+      "bytes": 568
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n44.5_w081.5.ndjson.gz",
+      "bytes": 567
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.0_w074.5.ndjson.gz",
+      "bytes": 572
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.0_w076.5.ndjson.gz",
+      "bytes": 579
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.0_w077.5.ndjson.gz",
+      "bytes": 659
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.0_w078.5.ndjson.gz",
+      "bytes": 571
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.0_w079.0.ndjson.gz",
+      "bytes": 806
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.0_w079.5.ndjson.gz",
+      "bytes": 666
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.0_w080.0.ndjson.gz",
+      "bytes": 735
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.0_w081.5.ndjson.gz",
+      "bytes": 577
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.5_w074.5.ndjson.gz",
+      "bytes": 573
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.5_w077.0.ndjson.gz",
+      "bytes": 570
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.5_w077.5.ndjson.gz",
+      "bytes": 674
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.5_w078.0.ndjson.gz",
+      "bytes": 662
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.5_w079.5.ndjson.gz",
+      "bytes": 657
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.5_w080.0.ndjson.gz",
+      "bytes": 571
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.5_w080.5.ndjson.gz",
+      "bytes": 570
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.5_w082.0.ndjson.gz",
+      "bytes": 565
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.5_w082.5.ndjson.gz",
+      "bytes": 737
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n45.5_w083.0.ndjson.gz",
+      "bytes": 566
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w078.0.ndjson.gz",
+      "bytes": 569
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w078.5.ndjson.gz",
+      "bytes": 574
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w079.0.ndjson.gz",
+      "bytes": 655
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w079.5.ndjson.gz",
+      "bytes": 579
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w080.0.ndjson.gz",
+      "bytes": 562
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w080.5.ndjson.gz",
+      "bytes": 728
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w081.0.ndjson.gz",
+      "bytes": 567
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w081.5.ndjson.gz",
+      "bytes": 662
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w082.0.ndjson.gz",
+      "bytes": 572
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w083.0.ndjson.gz",
+      "bytes": 732
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w083.5.ndjson.gz",
+      "bytes": 563
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.0_w084.0.ndjson.gz",
+      "bytes": 651
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.5_w079.5.ndjson.gz",
+      "bytes": 566
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.5_w080.0.ndjson.gz",
+      "bytes": 658
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.5_w081.5.ndjson.gz",
+      "bytes": 567
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.5_w084.5.ndjson.gz",
+      "bytes": 657
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n46.5_w085.0.ndjson.gz",
+      "bytes": 673
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n47.0_w080.0.ndjson.gz",
+      "bytes": 574
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n47.0_w082.0.ndjson.gz",
+      "bytes": 664
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n47.5_w080.0.ndjson.gz",
+      "bytes": 733
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n47.5_w080.5.ndjson.gz",
+      "bytes": 566
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n47.5_w081.0.ndjson.gz",
+      "bytes": 662
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n47.5_w083.0.ndjson.gz",
+      "bytes": 573
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.0_w080.0.ndjson.gz",
+      "bytes": 567
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.0_w080.5.ndjson.gz",
+      "bytes": 735
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.0_w082.0.ndjson.gz",
+      "bytes": 569
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.0_w085.0.ndjson.gz",
+      "bytes": 562
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.0_w090.0.ndjson.gz",
+      "bytes": 564
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.5_w081.0.ndjson.gz",
+      "bytes": 813
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.5_w085.5.ndjson.gz",
+      "bytes": 577
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.5_w087.5.ndjson.gz",
+      "bytes": 569
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.5_w088.0.ndjson.gz",
+      "bytes": 570
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.5_w089.0.ndjson.gz",
+      "bytes": 566
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.5_w090.5.ndjson.gz",
+      "bytes": 567
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.5_w091.0.ndjson.gz",
+      "bytes": 569
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.5_w091.5.ndjson.gz",
+      "bytes": 570
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.5_w093.0.ndjson.gz",
+      "bytes": 568
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n48.5_w093.5.ndjson.gz",
+      "bytes": 568
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.0_w081.5.ndjson.gz",
+      "bytes": 806
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.0_w082.0.ndjson.gz",
+      "bytes": 571
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.0_w088.5.ndjson.gz",
+      "bytes": 657
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.0_w091.5.ndjson.gz",
+      "bytes": 569
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.0_w092.0.ndjson.gz",
+      "bytes": 572
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.0_w094.0.ndjson.gz",
+      "bytes": 660
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.0_w094.5.ndjson.gz",
+      "bytes": 571
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.5_w084.0.ndjson.gz",
+      "bytes": 568
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.5_w085.0.ndjson.gz",
+      "bytes": 570
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.5_w086.0.ndjson.gz",
+      "bytes": 572
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.5_w087.5.ndjson.gz",
+      "bytes": 570
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.5_w092.5.ndjson.gz",
+      "bytes": 663
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.5_w093.5.ndjson.gz",
+      "bytes": 569
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.5_w094.0.ndjson.gz",
+      "bytes": 570
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n49.5_w094.5.ndjson.gz",
+      "bytes": 571
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n50.0_w092.0.ndjson.gz",
+      "bytes": 564
+    },
+    {
+      "file": "data/venues/mto-picnic-parks/n50.0_w093.5.ndjson.gz",
+      "bytes": 574
+    },
+    {
       "file": "data/venues/osm-ontario/n41.0_w083.0.ndjson.gz",
       "bytes": 1308
     },
@@ -3897,6 +4580,42 @@
     {
       "file": "data/venues/osm-ontario/n55.5_w088.0.ndjson.gz",
       "bytes": 1033
+    },
+    {
+      "file": "data/venues/sudbury-fieldhouses/n00.0_w085.5.ndjson.gz",
+      "bytes": 939
+    },
+    {
+      "file": "data/venues/sudbury-fieldhouses/n46.0_w081.0.ndjson.gz",
+      "bytes": 1346
+    },
+    {
+      "file": "data/venues/sudbury-fieldhouses/n46.0_w081.5.ndjson.gz",
+      "bytes": 2067
+    },
+    {
+      "file": "data/venues/sudbury-fieldhouses/n46.5_w081.0.ndjson.gz",
+      "bytes": 2548
+    },
+    {
+      "file": "data/venues/sudbury-fieldhouses/n46.5_w081.5.ndjson.gz",
+      "bytes": 1533
+    },
+    {
+      "file": "data/washrooms/kingston-accessible-features/n44.0_w076.5.ndjson.gz",
+      "bytes": 2704
+    },
+    {
+      "file": "data/washrooms/kingston-accessible-features/n44.0_w077.0.ndjson.gz",
+      "bytes": 1358
+    },
+    {
+      "file": "data/washrooms/kingston-public-washrooms/n44.0_w076.5.ndjson.gz",
+      "bytes": 3907
+    },
+    {
+      "file": "data/washrooms/kingston-public-washrooms/n44.0_w077.0.ndjson.gz",
+      "bytes": 2841
     },
     {
       "file": "data/washrooms/osm-ontario/n41.5_w083.0.ndjson.gz",
