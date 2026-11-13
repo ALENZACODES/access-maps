@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://access-maps.local/schema/source-registry-entry.schema.json",
+  "title": "SourceRegistryEntry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "kind",
+    "url",
+    "download_url",
+    "licence_name",
+    "licence_url",
+    "licence_id",
+    "attribution",
+    "retrieved_at",
+    "tier"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "osm",
+        "gtfs",
+        "municipal"
+      ]
+    },
+    "url": {
+      "type": "string",
+      "minLength": 1
+    },
+    "download_url": {
+      "type": "string",
+      "minLength": 1
+    },
+    "licence_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "licence_url": {
+      "type": "string",
+      "minLength": 1
+    },
+    "licence_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "attribution": {
+      "type": "string",
+      "minLength": 1
+    },
+    "retrieved_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "tier": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "tier_note": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

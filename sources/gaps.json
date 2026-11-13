@@ -1,0 +1,22 @@
+[
+  {
+    "name": "OC Transpo static GTFS",
+    "url": "https://www.octranspo.com/en/plan-your-trip/travel-tools/developers/",
+    "reason": "A zip URL used by transit catalogs responded, but the publisher terms page https://www.octranspo.com/en/plan-your-trip/travel-tools/developers/dev-terms returned HTTP 403. The licence text could not be confirmed, so the feed was not imported."
+  },
+  {
+    "name": "York Region Transit GTFS",
+    "url": "https://www.yrt.ca/en/about-us/open-data.aspx",
+    "reason": "YRT publishes an Open Data Licence Agreement, and the download is behind a named-person request form. No anonymous file URL was available, so the feed was not retrieved."
+  },
+  {
+    "name": "City of Ottawa public washrooms",
+    "url": "https://open.ottawa.ca/datasets/public-washrooms",
+    "reason": "The Open Ottawa dataset page loaded, and the embedded item licenseInfo was null. The linked open-data licence page did not return licence text during this run, so the dataset was not imported."
+  },
+  {
+    "name": "GO Transit and UP Express stop_amenities.txt",
+    "url": "https://www.metrolinx.com/en/about-us/open-data",
+    "reason": "The downloaded GO and UP Express zips contain stop_amenities.txt with a washroom column coded as integers. No data dictionary was in the feed, so the codes were not interpreted and the file was not imported."
+  }
+]

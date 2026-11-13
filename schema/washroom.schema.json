@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://access-maps.local/schema/washroom.schema.json",
+  "title": "Washroom",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "tranche",
+    "region",
+    "fields"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tranche": {
+      "const": "washroom"
+    },
+    "region": {
+      "type": "string",
+      "minLength": 1
+    },
+    "fields": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "lat",
+        "lon",
+        "facility_type",
+        "wheelchair",
+        "wheelchair_description",
+        "changing_table",
+        "changing_table_fee",
+        "changing_table_location",
+        "adult_changing_table",
+        "access",
+        "fee",
+        "opening_hours",
+        "unisex",
+        "male",
+        "female",
+        "supervised",
+        "level",
+        "indoor",
+        "operator",
+        "addr_housenumber",
+        "addr_street",
+        "addr_city",
+        "addr_postcode",
+        "address",
+        "description",
+        "locked",
+        "drinking_water",
+        "shower",
+        "disposal",
+        "capacity",
+        "seasonal",
+        "location",
+        "published_accessibility",
+        "building",
+        "parent_id",
+        "status",
+        "website"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "lat": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "lon": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "facility_type": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "wheelchair": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "wheelchair_description": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "changing_table": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "changing_table_fee": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "changing_table_location": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "adult_changing_table": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "access": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "fee": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "opening_hours": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "unisex": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "male": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "female": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "supervised": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "level": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "indoor": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "operator": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "addr_housenumber": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "addr_street": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "addr_city": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "addr_postcode": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "address": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "description": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "locked": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "drinking_water": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "shower": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "disposal": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "capacity": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "seasonal": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "location": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "published_accessibility": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "building": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "parent_id": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "status": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "website": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        }
+      }
+    }
+  }
+}
