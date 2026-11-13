@@ -11,6 +11,14 @@ import { buildPmtiles, TileSizeError, type MapFeature } from "../src/tiles/build
 
 const FAMILIES = ["odbl", "other"] as const;
 
+/** Kept out of both tile archives until the terms in ATTRIBUTION.md are reconciled. */
+export const TILES_HELD_FOR_LEGAL_REVIEW = new Set([
+  "gtfs-go-transit",
+  "gtfs-up-express",
+  "gtfs-miway",
+  "gtfs-ltc",
+]);
+
 export async function buildOfflineTiles(repoRoot: string, includePaths = true): Promise<string[]> {
   const features = await collect(path.join(repoRoot, "data"), includePaths);
   const written: string[] = [];
@@ -54,7 +62,7 @@ function archiveOptions(family: "odbl" | "other") {
     description:
       family === "odbl"
         ? "Point overlay, and path segments short enough to sit in one tile, from the OpenStreetMap Ontario extract. This file is an ODbL layer and contains no other licence."
-        : "Point overlay from openly licensed Ontario datasets other than OpenStreetMap. This file contains no OpenStreetMap data.",
+        : "Point overlay from Ontario datasets with a confirmed open grant, other than OpenStreetMap. GO Transit, UP Express, MiWay, and London Transit are left out. Their terms are unreconciled or revocable. This file contains no OpenStreetMap data.",
     attribution:
       family === "odbl"
         ? "(c) OpenStreetMap contributors. Open Database License (ODbL) 1.0. https://www.openstreetmap.org/copyright"
@@ -85,12 +93,13 @@ async function collect(dataRoot: string, includePaths: boolean): Promise<MapFeat
 
 function toFeature(record: DataRecord, includePaths: boolean): MapFeature | null {
   const licence = record.fields.lat?.licence ?? record.fields.geometry?.licence ?? record.fields.name?.licence;
-  if (!licence) return null;
-  const family = licence === "ODbL-1.0" || record.fields.lat?.source_id === "osm-ontario" ? "odbl" : "other";
+  const sourceId = record.fields.lat?.source_id ?? record.fields.geometry?.source_id ?? record.fields.name?.source_id ?? "";
+  if (!licence || TILES_HELD_FOR_LEGAL_REVIEW.has(sourceId)) return null;
+  const family = licence === "ODbL-1.0" || sourceId === "osm-ontario" ? "odbl" : "other";
   const props: Record<string, string> = {
     id: record.id,
     tranche: record.tranche,
-    source_id: record.fields.lat?.source_id ?? record.fields.geometry?.source_id ?? "",
+    source_id: sourceId,
   };
   const name = textValue(record, "name");
   if (name) props.name = name.slice(0, 80);

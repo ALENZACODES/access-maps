@@ -43,7 +43,7 @@ function renderAlerts(summary: ReturnType<typeof summarizeAlerts>): string {
     "",
     "## GTFS-RT accessibility alerts",
     "",
-    "These are operator-published service alerts, not pieces. A stored copy is a snapshot. Run `npm run fetch:ttc-alerts` to replace it. Equipment is elevator or escalator only when the header text says so.",
+    "These are operator-published service alerts, not pieces. A stored copy is a snapshot. Run `npm run fetch:ttc-alerts` to replace it. Each row is one alert from the TTC accessibility endpoint, validated by schema/service-alert.schema.json. Equipment is elevator or escalator only when the header text says so.",
     "",
     `Alert records: **${summary.records.toLocaleString("en-CA")}**.`,
     `Elevator: **${summary.elevator.toLocaleString("en-CA")}**. Escalator: **${summary.escalator.toLocaleString("en-CA")}**. Both words: **${summary.elevator_and_escalator.toLocaleString("en-CA")}**. Equipment not stated: **${summary.unknown_equipment.toLocaleString("en-CA")}**.`,

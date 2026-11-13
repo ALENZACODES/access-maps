@@ -20,10 +20,12 @@ Attribution for the OSM layers: `(c) OpenStreetMap contributors`.
 
 ## Other datasets
 
-TTC and the City of Toronto washroom datasets use the Open Government Licence – Toronto. GO Transit and UP Express use the Open Government Licence – Ontario – Metrolinx. Grand River Transit uses the Region of Waterloo Open Data Licence v.2.0. Hamilton Street Railway uses the City of Hamilton Open Data Licence.
+TTC and the City of Toronto washroom datasets use the Open Government Licence – Toronto. Grand River Transit uses the Region of Waterloo Open Data Licence v.2.0. Hamilton Street Railway uses the City of Hamilton Open Data Licence.
 
-MiWay is published under the City of Mississauga Terms of Use, not an Open Government Licence. Those terms grant a licence to use, modify, and distribute the datasets for any lawful purpose, and they require redistribution to include the terms URL: http://www5.mississauga.ca/research_catalogue/CityofMississauga_TermsofUse.pdf
+GO Transit and UP Express are not recorded here as a plain open grant. The current GTFS download terms are a Metrolinx Access and Use Agreement: limited, revocable, with a mandatory legend, and they have not been reconciled with the Open Government Licence – Ontario – Metrolinx PDF. The existing rows stay. They are excluded from `data/tiles/open/`.
 
-London Transit is published under the London Transit Commission Open Data Terms of Use. Those terms grant a worldwide, royalty-free, perpetual, non-exclusive licence to copy, modify, publish, and distribute the information for any lawful purpose: https://www.londontransit.ca/open-data/ltcs-open-data-terms-of-use/
+MiWay is published under the City of Mississauga Terms of Use. Those terms are revocable, include an indemnity, and are not a plain open grant: http://www5.mississauga.ca/research_catalogue/CityofMississauga_TermsofUse.pdf The existing rows stay. They are excluded from `data/tiles/open/`.
+
+London Transit is published under the London Transit Commission Open Data Terms of Use: https://www.londontransit.ca/open-data/ltcs-open-data-terms-of-use/ Those terms are not treated as a settled open grant. Legal review is still required. LTC stops are excluded from `data/tiles/open/`.
 
 Brampton Transit publishes the GTFS item with `licenseInfo` set to the string `CC BY`. The item does not state a Creative Commons version. Redistribution follows that published statement and includes attribution. The item page is https://www.arcgis.com/home/item.html?id=a355aabd5a8c490186bdce559c9c75fb

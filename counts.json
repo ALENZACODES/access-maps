@@ -1,16 +1,19 @@
 {
   "definition": "A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. Section 5.6 counts only tier 2 and tier 3 values toward 500,000. Tier 0 and tier 1 accessibility facts are reported separately and are not verified.",
   "records": 1417632,
-  "pieces": 6958054,
-  "gaps": 43945693,
+  "pieces": 6958043,
+  "gaps": 43945704,
   "derived_excluded": 3566,
   "verified_toward_500k": 0,
-  "accessibility_fact_pieces": 1192420,
-  "other_populated_pieces": 5765634,
-  "accessibility_pieces": 1192420,
-  "accessibility_gaps": 28222638,
-  "identity_pieces": 5765634,
-  "accessibility_definition": "An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, automatic door, and the other fields listed in this report. Names, categories, addresses, hours, operators, coordinates, and geometry are pieces too, and they are counted apart from accessibility facts. toilets:wheelchair is stored on the washroom wheelchair field.",
+  "accessibility_fact_pieces": 698375,
+  "other_populated_pieces": 5765623,
+  "accessibility_pieces": 698375,
+  "accessibility_gaps": 24197679,
+  "identity_pieces": 5765623,
+  "context_pieces": 494045,
+  "context_gaps": 4024959,
+  "accessibility_definition": "An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.",
+  "context_definition": "Context fields are populated values that are not a physical access measurement: access, crossing, lit, foot, fee, changing_table_fee, unisex, male, female, locked, and supervised. They are not accessibility facts and they are not names or geometry.",
   "accessibility_fields": {
     "venue": [
       "wheelchair",
@@ -29,10 +32,8 @@
       "tactile_paving",
       "handrail",
       "width",
-      "access",
       "surface",
       "smoothness",
-      "lit",
       "braille",
       "hearing_loop",
       "speech_output",
@@ -44,69 +45,80 @@
       "wheelchair",
       "wheelchair_description",
       "changing_table",
-      "changing_table_fee",
       "changing_table_location",
       "adult_changing_table",
-      "access",
-      "fee",
-      "unisex",
-      "male",
-      "female",
-      "locked",
-      "supervised",
       "published_accessibility"
     ],
     "path": [
-      "foot",
       "surface",
       "smoothness",
       "incline",
       "width",
       "kerb",
       "tactile_paving",
-      "lit",
       "wheelchair",
       "wheelchair_description",
       "step_count",
       "handrail",
-      "access",
       "max_slope",
       "min_width",
       "stair_count",
-      "crossing",
       "ramp"
     ],
     "transit": [
       "wheelchair_boarding"
     ]
   },
+  "context_fields": {
+    "venue": [
+      "access",
+      "lit"
+    ],
+    "washroom": [
+      "access",
+      "fee",
+      "changing_table_fee",
+      "unisex",
+      "male",
+      "female",
+      "locked",
+      "supervised"
+    ],
+    "path": [
+      "foot",
+      "access",
+      "lit",
+      "crossing"
+    ],
+    "transit": []
+  },
   "by_tranche": {
     "venue": {
       "records": 540944,
-      "pieces": 2924459,
-      "accessibility_facts": 195072,
-      "other_populated": 2729387,
+      "pieces": 2924448,
+      "accessibility_facts": 99349,
+      "other_populated": 2729376,
       "verified": 0,
-      "gaps": 20336133,
+      "gaps": 20336144,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 2924459
+        "0": 2924448
       },
       "gaps_by_tier": {
-        "0": 20336133
+        "0": 20336144
       },
       "pieces_by_source": {
         "brampton-recreation-centres": 312,
-        "kingston-accessible-features": 7827,
+        "kingston-accessible-features": 7808,
         "mto-picnic-parks": 1005,
         "osm-ontario": 2914843,
-        "sudbury-fieldhouses": 472
+        "sudbury-fieldhouses": 480
       },
       "pieces_by_retrieved_at": {
-        "2026-11-13": 2924459
+        "2026-11-13": 2924448
       },
       "gaps_by_retrieved_at": {
-        "2026-11-13": 20336133
+        "2026-11-13": 20336144
       },
       "gap_fields": {
         "addr_city": 498186,
@@ -143,29 +155,25 @@
         "capacity_disabled": 537447,
         "indoor": 538052,
         "elevator": 540931,
-        "ref": 531317,
+        "ref": 531336,
         "website": 506055,
         "addr_housenumber": 465713,
         "name": 385174,
         "addr_street": 464556,
-        "lat": 4,
-        "lon": 4,
         "category": 2
       },
-      "accessibility_pieces": 195072,
-      "accessibility_gaps": 13869472,
+      "accessibility_pieces": 99349,
+      "accessibility_gaps": 12883307,
       "accessibility_by_field": {
         "kerb": 186,
         "automatic_door": 93,
         "elevator": 13,
-        "access": 87734,
         "ramp": 29,
         "speech_output": 41,
         "hearing_loop": 3,
         "entrance": 17633,
         "surface": 62220,
         "wheelchair": 12670,
-        "lit": 7989,
         "capacity_disabled": 3497,
         "width": 30,
         "stroller": 51,
@@ -173,12 +181,18 @@
         "smoothness": 132,
         "wheelchair_description": 703,
         "tactile_paving": 13
+      },
+      "context_pieces": 95723,
+      "context_gaps": 986165,
+      "context_by_field": {
+        "access": 87734,
+        "lit": 7989
       }
     },
     "washroom": {
       "records": 6377,
       "pieces": 29145,
-      "accessibility_facts": 5932,
+      "accessibility_facts": 3000,
       "other_populated": 23213,
       "verified": 0,
       "gaps": 215992,
@@ -242,28 +256,32 @@
         "addr_street": 6233,
         "facility_type": 973
       },
-      "accessibility_pieces": 5932,
-      "accessibility_gaps": 83346,
+      "accessibility_pieces": 3000,
+      "accessibility_gaps": 35262,
       "accessibility_by_field": {
         "published_accessibility": 397,
-        "male": 297,
-        "female": 293,
         "wheelchair": 2086,
-        "access": 1107,
-        "unisex": 497,
         "changing_table": 443,
-        "fee": 732,
-        "supervised": 3,
         "wheelchair_description": 69,
         "changing_table_location": 4,
-        "adult_changing_table": 1,
+        "adult_changing_table": 1
+      },
+      "context_pieces": 2932,
+      "context_gaps": 48084,
+      "context_by_field": {
+        "male": 297,
+        "female": 293,
+        "access": 1107,
+        "unisex": 497,
+        "fee": 732,
+        "supervised": 3,
         "changing_table_fee": 3
       }
     },
     "path": {
       "records": 846525,
       "pieces": 3863020,
-      "accessibility_facts": 971371,
+      "accessibility_facts": 575981,
       "other_populated": 2891649,
       "verified": 0,
       "gaps": 23225780,
@@ -314,24 +332,28 @@
         "indoor": 843955,
         "tactile_paving": 747090
       },
-      "accessibility_pieces": 971371,
-      "accessibility_gaps": 14266079,
+      "accessibility_pieces": 575981,
+      "accessibility_gaps": 11275369,
       "accessibility_by_field": {
         "tactile_paving": 99435,
         "kerb": 57242,
-        "crossing": 303536,
-        "foot": 34632,
         "surface": 278258,
         "wheelchair": 26627,
         "incline": 14434,
         "width": 67896,
-        "access": 13480,
         "smoothness": 25985,
-        "lit": 43742,
         "handrail": 2659,
         "ramp": 1372,
         "step_count": 2038,
         "wheelchair_description": 35
+      },
+      "context_pieces": 395390,
+      "context_gaps": 2990710,
+      "context_by_field": {
+        "crossing": 303536,
+        "foot": 34632,
+        "access": 13480,
+        "lit": 43742
       }
     },
     "transit": {
@@ -380,7 +402,10 @@
       "accessibility_gaps": 3741,
       "accessibility_by_field": {
         "wheelchair_boarding": 20045
-      }
+      },
+      "context_pieces": 0,
+      "context_gaps": 0,
+      "context_by_field": {}
     }
   },
   "by_source": {
@@ -400,7 +425,7 @@
       "pieces_by_retrieved_at": {
         "2026-11-13": 6800847
       },
-      "accessibility_pieces": 1171449
+      "accessibility_pieces": 677579
     },
     "gtfs-brampton": {
       "records": 2872,
@@ -564,20 +589,20 @@
     },
     "kingston-accessible-features": {
       "records": 1003,
-      "pieces": 8217,
-      "gaps": 34744,
+      "pieces": 8198,
+      "gaps": 34763,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 8217
+        "0": 8198
       },
       "pieces_by_tranche": {
-        "venue": 7827,
+        "venue": 7808,
         "washroom": 390
       },
       "pieces_by_retrieved_at": {
-        "2026-11-13": 8217
+        "2026-11-13": 8198
       },
-      "accessibility_pieces": 333
+      "accessibility_pieces": 277
     },
     "mto-picnic-parks": {
       "records": 168,
@@ -597,17 +622,17 @@
     },
     "sudbury-fieldhouses": {
       "records": 61,
-      "pieces": 472,
-      "gaps": 2151,
+      "pieces": 480,
+      "gaps": 2143,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 472
+        "0": 480
       },
       "pieces_by_tranche": {
-        "venue": 472
+        "venue": 480
       },
       "pieces_by_retrieved_at": {
-        "2026-11-13": 472
+        "2026-11-13": 480
       },
       "accessibility_pieces": 0
     },
@@ -641,7 +666,7 @@
       "pieces_by_retrieved_at": {
         "2026-11-13": 1309
       },
-      "accessibility_pieces": 238
+      "accessibility_pieces": 119
     },
     "toronto-park-washrooms": {
       "records": 355,
@@ -2449,11 +2474,11 @@
     },
     {
       "file": "data/venues/kingston-accessible-features/n44.0_w076.5.ndjson.gz",
-      "bytes": 50755
+      "bytes": 50622
     },
     {
       "file": "data/venues/kingston-accessible-features/n44.0_w077.0.ndjson.gz",
-      "bytes": 38054
+      "bytes": 37826
     },
     {
       "file": "data/venues/mto-picnic-parks/n42.0_w082.5.ndjson.gz",
@@ -4601,7 +4626,7 @@
     },
     {
       "file": "data/venues/sudbury-fieldhouses/n46.0_w081.0.ndjson.gz",
-      "bytes": 1346
+      "bytes": 1524
     },
     {
       "file": "data/venues/sudbury-fieldhouses/n46.0_w081.5.ndjson.gz",
@@ -4609,31 +4634,27 @@
     },
     {
       "file": "data/venues/sudbury-fieldhouses/n46.5_w081.0.ndjson.gz",
-      "bytes": 2548
+      "bytes": 2814
     },
     {
       "file": "data/venues/sudbury-fieldhouses/n46.5_w081.5.ndjson.gz",
-      "bytes": 1533
-    },
-    {
-      "file": "data/venues/sudbury-fieldhouses/unknown.ndjson.gz",
-      "bytes": 916
+      "bytes": 1698
     },
     {
       "file": "data/washrooms/kingston-accessible-features/n44.0_w076.5.ndjson.gz",
-      "bytes": 2785
+      "bytes": 2757
     },
     {
       "file": "data/washrooms/kingston-accessible-features/n44.0_w077.0.ndjson.gz",
-      "bytes": 1408
+      "bytes": 1383
     },
     {
       "file": "data/washrooms/kingston-public-washrooms/n44.0_w076.5.ndjson.gz",
-      "bytes": 3968
+      "bytes": 3505
     },
     {
       "file": "data/washrooms/kingston-public-washrooms/n44.0_w077.0.ndjson.gz",
-      "bytes": 2886
+      "bytes": 2528
     },
     {
       "file": "data/washrooms/osm-ontario/n41.5_w083.0.ndjson.gz",

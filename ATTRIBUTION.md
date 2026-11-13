@@ -34,13 +34,13 @@ Datasets:
 
 ## Metrolinx GO Transit and UP Express
 
-Contains information licensed under the Open Government Licence - Ontario - Metrolinx.
+These rows are not a plain open grant. The current GTFS download terms are a Metrolinx Access and Use Agreement: limited, revocable, with a mandatory legend, and with no right to use GO, UP, or Metrolinx trademarks. That agreement has not been reconciled with the Open Government Licence – Ontario – Metrolinx PDF:
 
 https://assets.metrolinx.com/image/upload/v1663237565/Documents/Metrolinx/Open-Government-Licence-Ontario-Metrolinx.pdf
 
 Open data page: https://www.metrolinx.com/en/about-us/open-data
 
-Legal review is still required. The current GTFS download page is a Metrolinx Access and Use Agreement (limited, revocable, mandatory legend, no GO, UP, or Metrolinx trademarks). That agreement has not been reconciled with the Open Government Licence PDF. The existing rows are unchanged.
+The existing rows stay. They are excluded from `data/tiles/open/`.
 
 ## Grand River Transit
 
@@ -52,13 +52,13 @@ GRT open data page: https://www.grt.ca/about-grt/open-data/
 
 ## MiWay
 
-These datasets are publicly available from the City of Mississauga under its Terms of Use.
+The City of Mississauga Terms of Use are revocable, include an indemnity, and a copy contains a "City of Toronto grants you" sentence. They are not a plain open grant.
 
 Terms: http://www5.mississauga.ca/research_catalogue/CityofMississauga_TermsofUse.pdf
 
 Developer page: https://www.mississauga.ca/miway-transit/developer-download/
 
-Legal review is still required. The terms are revocable, include an indemnity, and a copy contains a "City of Toronto grants you" sentence. No additional Mississauga dataset was imported.
+The existing rows stay. No additional Mississauga dataset was imported. MiWay stops are excluded from `data/tiles/open/`.
 
 ## Brampton Transit
 
@@ -74,7 +74,7 @@ https://www.hamilton.ca/city-council/data-maps/open-data/open-data-licence-terms
 
 ## London Transit Commission
 
-These data sets are available from the London Transit Commission under its Open Data Terms of Use.
+The London Transit Commission Open Data Terms of Use are not treated as a settled open grant. Legal review is still required. LTC stops are excluded from `data/tiles/open/`.
 
 https://www.londontransit.ca/open-data/ltcs-open-data-terms-of-use/
 
@@ -112,7 +112,7 @@ Contains information licensed under the Open Data Licence – City of Greater Su
 
 https://www.greatersudbury.ca/city-hall/open-government/open-data/licence/
 
-The imported file is the Field_Houses layer. The hub title "Accessible Parks (Layer)" is not stored as a wheelchair fact.
+The imported file is the Field_Houses layer. The hub title "Accessible Parks (Layer)" is not stored as a wheelchair fact. Four rows publish easting and northing 0 in the CSV. Their coordinates come from the city's feature service geometry, layer `AGOL_Recreation_Bilingual_For_Web_FGDB_V_3/FeatureServer/3`, requested in WGS84. The field `source_key` names that layer. A row stays UNKNOWN if that service does not return a coordinate in Ontario.
 
 ## Ministry of Transportation picnic parks
 
@@ -126,4 +126,4 @@ Dataset: https://data.ontario.ca/dataset/picnic-parks
 
 `data/tiles/odbl/` is OpenStreetMap data under the Open Database License (ODbL) 1.0. It is a separate file from every other licence.
 
-`data/tiles/open/` contains no OpenStreetMap data. Attribution for each `source_id` in that overlay is the section above for that source.
+`data/tiles/open/` contains no OpenStreetMap data. It also excludes GO Transit, UP Express, MiWay, and London Transit stops while the terms above still need legal review. Attribution for each `source_id` that remains in that overlay is the section above for that source.

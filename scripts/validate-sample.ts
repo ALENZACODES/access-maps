@@ -69,7 +69,6 @@ async function validateAlerts(file: string): Promise<number> {
     const id = parsed && typeof parsed === "object" && "id" in parsed && typeof parsed.id === "string" ? parsed.id : file;
     if (validators.alert(parsed) !== true) throw new Error(validationError(id, validators.alert.errors));
     count += 1;
-    if (count >= 20) break;
   }
   stream.close();
   return count;

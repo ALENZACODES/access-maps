@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import { gunzipSync } from "node:zlib";
 import { describe, expect, it } from "vitest";
 import fields from "../schema/fields.json";
 import { countRecords } from "../src/count/count.js";
@@ -109,5 +111,15 @@ describe("JSON schemas", () => {
     }
     const ids = registry.sources.map((source) => source.id);
     expect(new Set(ids).size).toBe(ids.length);
+  });
+
+  it("validates every committed TTC accessibility alert", () => {
+    const gzip = readFileSync(new URL("../data/alerts/gtfs-rt-ttc-accessibility/alerts.ndjson.gz", import.meta.url));
+    const lines = gunzipSync(gzip).toString("utf8").split("\n").filter((line) => line.trim());
+    expect(lines).toHaveLength(32);
+    for (const line of lines) {
+      const alert = JSON.parse(line) as { id: string };
+      expect(validators.alert(alert), alert.id).toBe(true);
+    }
   });
 });

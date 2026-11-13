@@ -161,7 +161,7 @@ export function mapKingstonPublicWashroom(row: Record<string, string>, ctx: Prov
       addr_street: address.street ? fv(address.street, ctx, { source_key: "Address" }) : unknownField(ctx),
       operator: published(row, "Ownership", ctx, BLANK),
       website: published(row, "URL", ctx, BLANK),
-      description: published(row, "Global ID", ctx, BLANK),
+      description: published(row, "Map Label", ctx, BLANK),
     },
     ctx,
   );
@@ -172,7 +172,7 @@ export function mapKingstonAccessibleFeature(row: Record<string, string>, ctx: P
   const type = cell(row, "Type");
   const address = splitCivicAddress(cell(row, "Address"));
   const comment = cell(row, "Comment");
-  const hours = /\b(a\.m\.|p\.m\.|open)\b/i.test(comment) ? comment.trim() : "";
+  const hours = isPublishedHours(comment) ? comment.trim() : "";
   const id = cell(row, "OBJECTID") || cell(row, "GlobalID");
   if (KINGSTON_WASHROOM_TYPES.has(type)) {
     return buildRecord(
@@ -239,14 +239,22 @@ export function mapBramptonRecreationCentre(row: Record<string, string>, ctx: Pr
   );
 }
 
-export function mapSudburyFieldhouse(row: Record<string, string>, ctx: Provenance): DataRecord {
+export function mapSudburyFieldhouse(
+  row: Record<string, string>,
+  ctx: Provenance,
+  servicePoint: { lon: number; lat: number } | null = null,
+): DataRecord {
   const easting = Number(cell(row, "X"));
   const northing = Number(cell(row, "Y"));
-  const projected =
-    Number.isFinite(easting) && Number.isFinite(northing) && (easting !== 0 || northing !== 0)
-      ? utm17nToWgs84(easting, northing)
-      : null;
-  const point = projected && inOntario(projected.lon, projected.lat) ? projected : null;
+  const csvHasPoint = Number.isFinite(easting) && Number.isFinite(northing) && (easting !== 0 || northing !== 0);
+  const projected = csvHasPoint ? utm17nToWgs84(easting, northing) : null;
+  const fromCsv = projected && inOntario(projected.lon, projected.lat) ? projected : null;
+  const fromService =
+    !fromCsv && servicePoint && inOntario(servicePoint.lon, servicePoint.lat) ? servicePoint : null;
+  const point = fromCsv ?? fromService;
+  const coordinateKey = fromService
+    ? "AGOL_Recreation_Bilingual_For_Web_FGDB_V_3/FeatureServer/3"
+    : "X,Y";
   const address = splitCivicAddress(cell(row, "ADDRESS") || cell(row, "FULL_ADDRE"));
   return buildRecord(
     "venue",
@@ -254,8 +262,8 @@ export function mapSudburyFieldhouse(row: Record<string, string>, ctx: Provenanc
     regionFromPoint(point?.lat ?? null, point?.lon ?? null),
     {
       name: published(row, "FACILITY_N", ctx, BLANK),
-      lat: coordinateField(point?.lat ?? null, ctx, "X,Y"),
-      lon: coordinateField(point?.lon ?? null, ctx, "X,Y"),
+      lat: coordinateField(point?.lat ?? null, ctx, coordinateKey),
+      lon: coordinateField(point?.lon ?? null, ctx, coordinateKey),
       category: published(row, "OCCUPANCY", ctx, BLANK),
       category_group: fv("city_facility", ctx, { source_key: "dataset" }),
       addr_housenumber: address.housenumber ? fv(address.housenumber, ctx, { source_key: "ADDRESS" }) : unknownField(ctx),
@@ -294,6 +302,10 @@ export function splitCivicAddress(raw: string): { housenumber?: string; street: 
   const match = /^(\d+[A-Za-z]?)\s+(.+)$/.exec(trimmed);
   if (!match) return { street: trimmed };
   return { housenumber: match[1], street: match[2] ?? "" };
+}
+
+function isPublishedHours(comment: string): boolean {
+  return /\bopen\b/i.test(comment) && /(?:a\.m\.|p\.m\.)/i.test(comment);
 }
 
 function webMercatorCell(row: Record<string, string>): { lon: number; lat: number } | null {

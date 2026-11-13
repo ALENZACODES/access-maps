@@ -43,7 +43,7 @@
       "retrieved_at": "2026-11-13",
       "tier": 1,
       "tier_note": "Static GTFS fields published by the operator are tier 1 operator claims, not verified observations. wheelchair_boarding 0 or empty is stored as UNKNOWN.",
-      "notes": "The Metrolinx open data page lists GO Transit GTFS under the Open Government Licence – Ontario – Metrolinx. stop_amenities.txt was not imported; see sources/gaps.json. Legal review: the current GTFS download page is a Metrolinx Access and Use Agreement (limited, revocable, mandatory legend, no GO/UP/Metrolinx trademarks) that has not been reconciled with the Open Government Licence PDF. Existing rows stay under this licence_id. That conflict is not treated as resolved."
+      "notes": "The current GTFS download terms are a Metrolinx Access and Use Agreement: limited, revocable, with a mandatory legend, and they have not been reconciled with the Open Government Licence – Ontario – Metrolinx PDF. This is not recorded as a plain open grant. Existing rows stay under this licence_id. GO stops are excluded from data/tiles/open. stop_amenities.txt was not imported; see sources/gaps.json."
     },
     {
       "id": "gtfs-up-express",
@@ -58,7 +58,7 @@
       "retrieved_at": "2026-11-13",
       "tier": 1,
       "tier_note": "Static GTFS fields published by the operator are tier 1 operator claims, not verified observations. wheelchair_boarding 0 or empty is stored as UNKNOWN.",
-      "notes": "Listed beside GO Transit GTFS on the Metrolinx open data page under the same licence. Legal review: the current GTFS download page is a Metrolinx Access and Use Agreement (limited, revocable, mandatory legend, no GO/UP/Metrolinx trademarks) that has not been reconciled with the Open Government Licence PDF. Existing rows stay under this licence_id. That conflict is not treated as resolved."
+      "notes": "Listed beside GO Transit GTFS. The current GTFS download terms are a Metrolinx Access and Use Agreement: limited, revocable, with a mandatory legend, and they have not been reconciled with the Open Government Licence – Ontario – Metrolinx PDF. This is not recorded as a plain open grant. Existing rows stay under this licence_id. UP Express stops are excluded from data/tiles/open."
     },
     {
       "id": "gtfs-grt-bus",
@@ -103,7 +103,7 @@
       "retrieved_at": "2026-11-13",
       "tier": 1,
       "tier_note": "Static GTFS fields published by the operator are tier 1 operator claims, not verified observations. wheelchair_boarding 0 or empty is stored as UNKNOWN.",
-      "notes": "The developer page requires review of the City of Mississauga Terms of Use before use. Those terms grant a licence to use, modify, and distribute the datasets for any lawful purpose and require that redistribution include the terms URL. This is not an Open Government Licence. Legal review: the terms are revocable, include an indemnity, and a copy contains a 'City of Toronto grants you' sentence. Existing MiWay rows stay. No additional Mississauga dataset was imported."
+      "notes": "The City of Mississauga Terms of Use are revocable, include an indemnity, and a copy contains a 'City of Toronto grants you' sentence. They are not a plain open grant and they are not an Open Government Licence. Existing MiWay rows stay. No additional Mississauga dataset was imported. MiWay stops are excluded from data/tiles/open."
     },
     {
       "id": "gtfs-brampton",
@@ -148,7 +148,7 @@
       "retrieved_at": "2026-11-13",
       "tier": 1,
       "tier_note": "Static GTFS fields published by the operator are tier 1 operator claims, not verified observations. wheelchair_boarding 0 or empty is stored as UNKNOWN.",
-      "notes": "The terms grant a worldwide, royalty-free, perpetual, non-exclusive licence to copy, modify, publish, and distribute the information for any lawful purpose. Acknowledgement is optional and is included here."
+      "notes": "The terms page is https://www.londontransit.ca/open-data/ltcs-open-data-terms-of-use/. Those terms are not treated as a settled open grant. Legal review is still required. LTC stops are excluded from data/tiles/open."
     },
     {
       "id": "toronto-park-washrooms",
@@ -223,7 +223,7 @@
       "retrieved_at": "2026-11-13",
       "tier": 0,
       "tier_note": "Municipal open data is tier 0. It is not shown as verified.",
-      "notes": "Licence PDF retrieved 2026-11-13. It is based on the Open Government Licence Ontario and grants a worldwide, royalty-free, perpetual, non-exclusive licence, including commercial use, with the attribution sentence above. The file has no wheelchair column, so wheelchair stays UNKNOWN. Coordinates are EPSG:3857 and are converted to WGS84."
+      "notes": "Licence PDF retrieved 2026-11-13. It is based on the Open Government Licence Ontario and grants a worldwide, royalty-free, perpetual, non-exclusive licence, including commercial use, with the attribution sentence above. The file has no wheelchair column, so wheelchair stays UNKNOWN. POI Type is the code 50. facility_type stores POI Type Description, Washroom. description stores Map Label, the human-readable label. Global ID is not stored as a description. Coordinates are EPSG:3857 and are converted to WGS84."
     },
     {
       "id": "kingston-accessible-features",
@@ -268,7 +268,7 @@
       "retrieved_at": "2026-11-13",
       "tier": 0,
       "tier_note": "Municipal open data is tier 0. It is not shown as verified.",
-      "notes": "Licence page retrieved 2026-11-13. It adapts the Open Government Licence Ontario v1.0 and grants a worldwide, royalty-free, perpetual, non-exclusive licence, including commercial use. The hub title Accessible Parks (Layer) is the feature service layer Field_Houses. Columns describe facility buildings. There is no accessibility column, so wheelchair stays UNKNOWN. Coordinates are NAD83 UTM zone 17N converted with the GRS80 ellipsoid and no datum grid."
+      "notes": "Licence page retrieved 2026-11-13. It adapts the Open Government Licence Ontario v1.0 and grants a worldwide, royalty-free, perpetual, non-exclusive licence, including commercial use. The hub title Accessible Parks (Layer) is the feature service layer Field_Houses. Columns describe facility buildings. There is no accessibility column, so wheelchair stays UNKNOWN. CSV coordinates are NAD83 UTM zone 17N converted with the GRS80 ellipsoid and no datum grid. Four rows publish X and Y as 0. Those coordinates are taken from AGOL_Recreation_Bilingual_For_Web_FGDB_V_3/FeatureServer/3 in WGS84, and source_key names that layer. If the service has no Ontario coordinate, lat and lon stay UNKNOWN and the record stays."
     },
     {
       "id": "mto-picnic-parks",

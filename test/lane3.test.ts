@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { Compression, PMTiles, TileType, zxyToTileId } from "pmtiles";
 import { isAccessibilityField, assertAccessibilityFieldsMatchSchema } from "../src/count/accessibility.js";
+import { TILES_HELD_FOR_LEGAL_REVIEW } from "../scripts/build-pmtiles.js";
 import { countRecords } from "../src/count/count.js";
 import { equipmentClass, parseAccessibilityAlerts } from "../src/gtfs-rt/alerts.js";
 import { utm17nToWgs84, webMercatorToWgs84 } from "../src/geo/project.js";
@@ -55,7 +56,23 @@ describe("accessibility facts", () => {
     expect(venue?.fields.wheelchair?.value).toBe("yes");
     expect(washroom?.fields.wheelchair?.value).toBe("yes");
     expect(report.accessibility_pieces).toBe(2);
-    expect(report.identity_pieces + report.accessibility_pieces).toBe(report.pieces);
+    expect(report.context_pieces).toBe(0);
+    expect(report.identity_pieces + report.context_pieces + report.accessibility_pieces).toBe(report.pieces);
+    const litPath = mapOsmElement(
+      {
+        osmType: "way",
+        osmId: "10",
+        tags: { highway: "footway", lit: "yes", surface: "asphalt", access: "permissive" },
+        geometry: { type: "LineString", coordinates: [[-79.4, 43.7], [-79.4, 43.701]] },
+      },
+      osm,
+    ).find((record) => record.tranche === "path");
+    const litReport = countRecords(litPath ? [litPath] : []);
+    expect(litReport.by_tranche.path.accessibility_by_field.surface).toBe(1);
+    expect(litReport.by_tranche.path.accessibility_by_field.lit).toBeUndefined();
+    expect(litReport.by_tranche.path.context_by_field.lit).toBe(1);
+    expect(litReport.by_tranche.path.context_by_field.access).toBe(1);
+    expect(litReport.accessibility_pieces).toBe(1);
     expect(report.by_tranche.venue.accessibility_by_field.wheelchair).toBe(1);
     expect(report.by_tranche.washroom.accessibility_by_field.wheelchair).toBe(1);
     const boarding = mapWheelchairBoarding("0", { ...osm, source_id: "gtfs-ttc", licence: "OGL-Toronto-1.0", tier: 1 });
@@ -107,6 +124,9 @@ describe("municipal coordinates and published facts", () => {
         Address: "153 ROBERT WALLACE DR",
         "POI Type Description": "Washroom",
         Ownership: "Municipal",
+        "Sub Description": "Washroom",
+        "Map Label": "Polson Park Washroom",
+        "Global ID": "f38737f1-fc0a-42b9-9567-ad0fba60e617",
         x: "-8519156.1218",
         y: "5501972.4683",
       },
@@ -114,6 +134,9 @@ describe("municipal coordinates and published facts", () => {
     );
     expect(washroom.tranche).toBe("washroom");
     expect(washroom.fields.wheelchair?.value).toBe("UNKNOWN");
+    expect(washroom.fields.description?.value).toBe("Polson Park Washroom");
+    expect(washroom.fields.description?.source_key).toBe("Map Label");
+    expect(JSON.stringify(washroom.fields.description)).not.toContain("f38737f1");
     const expected = webMercatorToWgs84(-8519156.1218, 5501972.4683);
     expect(washroom.fields.lon?.value).toBe(roundCoord(expected.lon));
     expect(washroom.fields.lat?.value).toBe(roundCoord(expected.lat));
@@ -210,6 +233,14 @@ describe("municipal coordinates and published facts", () => {
     expect(unlocated.fields.lat?.value).toBe("UNKNOWN");
     expect(unlocated.fields.lon?.value).toBe("UNKNOWN");
     expect(unlocated.fields.name?.value).toBe("Carol Richard Playground - Fieldhouse");
+    const cited = mapSudburyFieldhouse(
+      { OBJECTID: "59", X: "0", Y: "0", FACILITY_N: "Carol Richard Playground - Fieldhouse", ADDRESS: "" },
+      { ...city, source_id: "sudbury-fieldhouses", licence: "Greater-Sudbury-Open-Data-Licence-1.0" },
+      { lon: -81.01282241174695, lat: 46.62942174681167 },
+    );
+    expect(cited.fields.lon?.value).toBe(roundCoord(-81.01282241174695));
+    expect(cited.fields.lat?.value).toBe(roundCoord(46.62942174681167));
+    expect(cited.fields.lat?.source_key).toBe("AGOL_Recreation_Bilingual_For_Web_FGDB_V_3/FeatureServer/3");
   });
 
   it("reads a geographic point shapefile and refuses a projected one", () => {
@@ -275,6 +306,12 @@ describe("PMTiles overlay", () => {
       ),
     ).toThrow(/refusing to put/);
     expect(() => assertArchiveSize(MAX_PMTILES_BYTES)).toThrow(TileSizeError);
+    expect([...TILES_HELD_FOR_LEGAL_REVIEW].sort()).toEqual([
+      "gtfs-go-transit",
+      "gtfs-ltc",
+      "gtfs-miway",
+      "gtfs-up-express",
+    ]);
   });
 });
 

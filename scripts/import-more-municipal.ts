@@ -2,7 +2,7 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 import path from "node:path";
 import { acceptId, commitRecord, resetSourceDirs } from "../src/io/commit.js";
-import { parseCsv } from "../src/io/csv.js";
+import { cell, parseCsv } from "../src/io/csv.js";
 import { PartitionWriter } from "../src/io/partition-writer.js";
 import { readPointShapefileZip } from "../src/io/shp-points.js";
 import {
@@ -20,7 +20,12 @@ import { compileValidators } from "../src/validate/ajv.js";
 
 const USER_AGENT = "access-maps-pipeline/1.0 (Ontario open-data import; licence checked)";
 
-const JOBS: { id: string; tranches: Tranche[]; load: (file: Buffer, ctx: Provenance) => DataRecord[]; alternate?: () => Promise<Buffer> }[] = [
+const JOBS: {
+  id: string;
+  tranches: Tranche[];
+  load: (file: Buffer, ctx: Provenance) => DataRecord[] | Promise<DataRecord[]>;
+  alternate?: () => Promise<Buffer>;
+}[] = [
   {
     id: "kingston-public-washrooms",
     tranches: ["washroom"],
@@ -40,7 +45,11 @@ const JOBS: { id: string; tranches: Tranche[]; load: (file: Buffer, ctx: Provena
   {
     id: "sudbury-fieldhouses",
     tranches: ["venue"],
-    load: (file, ctx) => parseCsv(file.toString("utf8")).rows.map((row) => mapSudburyFieldhouse(row, ctx)),
+    load: async (file, ctx) => {
+      const rows = parseCsv(file.toString("utf8")).rows;
+      const service = await sudburyServiceGeometry();
+      return rows.map((row) => mapSudburyFieldhouse(row, ctx, service.get(cell(row, "OBJECTID")) ?? null));
+    },
   },
   {
     id: "mto-picnic-parks",
@@ -67,7 +76,7 @@ export async function importMoreMunicipal(repoRoot: string): Promise<{ sources: 
     };
     const seen = new Set<string>();
     let records = 0;
-    for (const record of job.load(file, ctx)) {
+    for (const record of await job.load(file, ctx)) {
       let next = record;
       if (!acceptId(seen, next.id)) {
         let suffix = 2;
@@ -82,6 +91,33 @@ export async function importMoreMunicipal(repoRoot: string): Promise<{ sources: 
   await writer.close();
   console.log(JSON.stringify({ sources }));
   return { sources };
+}
+
+const SUDBURY_GEOMETRY =
+  "https://services.arcgis.com/q3mIlR87lZlZsds3/ArcGIS/rest/services/AGOL_Recreation_Bilingual_For_Web_FGDB_V_3/FeatureServer/3/query";
+
+async function sudburyServiceGeometry(): Promise<Map<string, { lon: number; lat: number }>> {
+  const points = new Map<string, { lon: number; lat: number }>();
+  const query = new URL(SUDBURY_GEOMETRY);
+  query.searchParams.set("where", "1=1");
+  query.searchParams.set("outFields", "OBJECTID");
+  query.searchParams.set("returnGeometry", "true");
+  query.searchParams.set("outSR", "4326");
+  query.searchParams.set("f", "json");
+  const response = await fetch(query, { headers: { "User-Agent": USER_AGENT, Accept: "application/json" } });
+  if (!response.ok) return points;
+  const body = (await response.json()) as {
+    features?: { attributes?: { OBJECTID?: number | string }; geometry?: { x?: number; y?: number } }[];
+  };
+  for (const feature of body.features ?? []) {
+    const id = feature.attributes?.OBJECTID;
+    const lon = feature.geometry?.x;
+    const lat = feature.geometry?.y;
+    if (id === undefined || lon === undefined || lat === undefined) continue;
+    if (!Number.isFinite(lon) || !Number.isFinite(lat)) continue;
+    points.set(String(id), { lon, lat });
+  }
+  return points;
 }
 
 async function kingstonFeaturesFromService(): Promise<Buffer> {

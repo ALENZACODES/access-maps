@@ -13,7 +13,7 @@ Tiers apply to each field, not to the whole record.
 | 0 | Open-data import. OSM tags and municipal open-data columns. Shown as an open-data import, not as verified. |
 | 1 | Operator claim. Every static GTFS field, including `wheelchair_boarding`. Shown as an operator claim, not as verified. A tier 1 claim expires after 180 days. |
 | 2–3 | Peer verification and trained survey. None of those are in this import. |
-| 4 | Live operator status. The TTC GTFS-RT accessibility alert snapshot is tier 4. It is stored separately and is not a piece. |
+| 4 | Live operator status. The TTC GTFS-RT accessibility alert snapshot is tier 4. It is stored separately and is not a piece. `schema/service-alert.schema.json` validates every alert row. |
 
 `wheelchair_boarding` empty or `0` is stored as `UNKNOWN` because the GTFS specification defines that code as no accessibility information. Empty `location_type` is stored as `stop` because the specification defines empty as location type 0. Empty `is_bidirectional` on a pathway is stored as `yes` because the specification default is bidirectional. The original token is kept on `raw` when the stored value was normalized.
 
@@ -35,7 +35,7 @@ OSM `amenity=doctors` and `amenity=dentist`, and individual healthcare practitio
 
 A piece is one field on one record whose value is not `UNKNOWN` and whose `derived` flag is not true. `UNKNOWN` values are gaps. Photos, reviews, and tags are not pieces. A fact stored on a washroom record is not also stored on the venue.
 
-Section 5.6 counts only tier 2 and tier 3 values toward 500,000. This import's verified total is 0, so the shortfall is the full illustrative target in every tranche. The 2026-11-13 files contain 1,192,420 tier 0 or tier 1 accessibility-fact values and 5,765,634 other populated values. [COUNTS.md](COUNTS.md) has the tier split, the retrieval date, and the UNKNOWN gaps.
+Section 5.6 counts only tier 2 and tier 3 values toward 500,000. This import's verified total is 0, so the shortfall is the full illustrative target in every tranche. The 2026-11-13 files contain 698,375 tier 0 or tier 1 physical accessibility-fact values. Context fields, including access, crossing, lit, and fee, are 494,045 and are counted separately. Other populated values are 5,765,623. [COUNTS.md](COUNTS.md) has the tier split, the retrieval date, and the UNKNOWN gaps.
 
 [COUNTS.md](COUNTS.md) also lists accessibility facts separately from names, addresses, and geometry. `toilets:wheelchair` is stored on the washroom `wheelchair` field. Tier 4 alert rows are not pieces.
 
@@ -65,7 +65,7 @@ npm run import
 npm run validate:sample
 ```
 
-`npm run import` runs the municipal, extra municipal, GTFS, and OSM importers, validates every record with Ajv, then rewrites `COUNTS.md` and `counts.json` by reading the gzip files back. Raw downloads stay in `.cache/` and are gitignored. `npm run fetch:ttc-alerts` replaces the TTC elevator and escalator alert snapshot. `npm run build:tiles` writes the offline overlays, including path segments that sit inside a single tile. `npm run build:tiles -- --points` writes points only. Each PMTiles file stays under 50 MB, and the OpenStreetMap overlay is a separate file from the other licences. This pipeline does not call Nominatim.
+`npm run import` runs the municipal, extra municipal, GTFS, and OSM importers, validates every record with Ajv, then rewrites `COUNTS.md` and `counts.json` by reading the gzip files back. Raw downloads stay in `.cache/` and are gitignored. `npm run fetch:ttc-alerts` replaces the TTC accessibility alert snapshot. `schema/service-alert.schema.json` checks every row. `npm run build:tiles` writes the offline overlays, including path segments that sit inside a single tile. `npm run build:tiles -- --points` writes points only. Each PMTiles file stays under 50 MB. OpenStreetMap stays in `data/tiles/odbl/`. `data/tiles/open/` leaves out GO Transit, UP Express, MiWay, and London Transit. Their terms are unreconciled or revocable. This pipeline does not call Nominatim.
 
 The OSM importer keeps the Geofabrik extract, filters it with `osmium tags-filter`, and streams `osmium export -f geojsonseq -a type,id`. A closed way can be exported once as a line and once as an area. The second record with the same id is dropped. Area venues store a vertex-mean of the outer ring as `lat` and `lon` (`source_key` `geometry:vertex_mean`). That point is not a surveyed entrance. Path length is stored only when the source publishes it. Path geometry is the published linestring, rounded to six decimal places, with consecutive duplicate points removed. Multipart paths keep the longest part.
 
