@@ -6,18 +6,22 @@ import type {
 } from "./catalog.js";
 import { coordKey, haversineMetres, hoursBetween, type Coord } from "./geo.js";
 import {
+  isOsmField,
+  OSM_ATTRIBUTION,
   parseInclinePercent,
   parseWidthMm,
+  pathProvenance,
   readBoarding,
   readCoord,
   readGeometry,
   readNumber,
   readString,
   UNKNOWN,
+  type FieldValue,
   type ImportedRecord,
 } from "./records.js";
-import { barrier, resolveStepFree, surveyComplete, type StepEvidenceInput } from "./stepfree.js";
-import type { EquipmentProfile, StepFreeAssessment } from "./types.js";
+import { barrier, resolveStepFree, surveyComplete, unknownAssessment, type StepEvidenceInput } from "./stepfree.js";
+import type { EquipmentProfile, Provenance, StepFreeAssessment } from "./types.js";
 import type { PreparedSegment } from "./router.js";
 
 export interface StopPoint {
@@ -38,7 +42,7 @@ export interface RoutingWorld {
 const SNOW_MAX_HOURS = 72;
 const WORKS_MAX_HOURS = 24 * 14;
 
-/** A future-dated report is not current. Snow expires after 72 hours. Other reports expire after 14 days. */
+/** A future-dated report is not current (see barrierIsFutureDated: it makes the access unknown). Snow expires after 72 hours. Other reports expire after 14 days. */
 export function barrierIsCurrent(report: BarrierReport, nowIso: string): boolean {
   const age = hoursBetween(report.observedAt, nowIso);
   if (age === null || age < 0) return false;
@@ -48,6 +52,15 @@ export function barrierIsCurrent(report: BarrierReport, nowIso: string): boolean
   }
   const limit = report.kind === "snow" ? SNOW_MAX_HOURS : WORKS_MAX_HOURS;
   return age <= limit;
+}
+
+/**
+ * A report dated after `now` cannot be confirmed as current, and it cannot be ignored either.
+ * The access it names is unknown, the same way a future-dated elevator status is.
+ */
+export function barrierIsFutureDated(report: BarrierReport, nowIso: string): boolean {
+  const age = hoursBetween(report.observedAt, nowIso);
+  return age !== null && age < 0;
 }
 
 export function buildWorld(
@@ -94,6 +107,11 @@ function prepareSegment(
   const barrierReport = (source.barriers ?? []).find(
     (report) => report.blocksPassage && report.pathId === path.id && barrierIsCurrent(report, nowIso),
   );
+  const futureReport = barrierReport
+    ? undefined
+    : (source.barriers ?? []).find(
+        (report) => report.blocksPassage && report.pathId === path.id && barrierIsFutureDated(report, nowIso),
+      );
   const seasonal = (source.seasonal ?? []).find((note) => note.pathId === path.id);
   const winterDowngrade = winter && !seasonal?.winterChecked;
   const input: StepEvidenceInput = {
@@ -123,6 +141,25 @@ function prepareSegment(
       ],
     };
   }
+  if (futureReport && assessment.status !== "not-step-free") {
+    assessment = unknownAssessment(
+      "barrier-future",
+      [...assessment.evidence, `barrier-future:${futureReport.observedAt}`],
+      futureReport.provenance.tier,
+    );
+  }
+  const reason = assessment.reasons[0] ?? "";
+  let provenance: Provenance;
+  if (barrierReport && (reason === "snow-blocked" || reason === "construction")) {
+    provenance = barrierReport.provenance;
+  } else if (futureReport && reason === "barrier-future") {
+    provenance = futureReport.provenance;
+  } else {
+    provenance = pathProvenance(decidingField(path, reason), path.id);
+  }
+  const osmGeometry = path.fields.geometry
+    ? isOsmField(path.fields.geometry)
+    : Object.values(path.fields).some((item) => isOsmField(item));
   return [
     {
       id: path.id,
@@ -134,9 +171,34 @@ function prepareSegment(
       assessment,
       surface,
       gradient,
-      provenanceNote: path.fields.wheelchair?.source_id ?? path.fields.surface?.source_id ?? UNKNOWN,
+      provenance,
+      geometryAttribution: osmGeometry ? OSM_ATTRIBUTION : null,
     },
   ];
+}
+
+/** The path field that produced the status. Falls back to the first field the record has. */
+function decidingField(path: ImportedRecord, reason: string): FieldValue | undefined {
+  const fields = path.fields;
+  const byReason: Record<string, Array<FieldValue | undefined>> = {
+    stairs: [fields.step_count, fields.stair_count],
+    "wheelchair-no": [fields.wheelchair],
+    "ramp-no": [fields.ramp],
+    "grade-over-limit": [fields.incline],
+    "width-under-chair": [fields.width],
+  };
+  const candidates = [
+    ...(byReason[reason] ?? []),
+    fields.wheelchair,
+    fields.ramp,
+    fields.step_count,
+    fields.stair_count,
+    fields.surface,
+    fields.incline,
+    fields.width,
+    fields.geometry,
+  ];
+  return candidates.find((item) => item !== undefined);
 }
 
 function explicitKey(path: ImportedRecord, key: string): string | null {
@@ -197,6 +259,12 @@ export function elevatorsForStop(source: JourneyDataSource, stopId: string): Ele
 export function barriersForStop(source: JourneyDataSource, stopId: string, nowIso: string): BarrierReport[] {
   return (source.barriers ?? []).filter(
     (report) => report.blocksPassage && report.stopId === stopId && barrierIsCurrent(report, nowIso),
+  );
+}
+
+export function futureBarriersForStop(source: JourneyDataSource, stopId: string, nowIso: string): BarrierReport[] {
+  return (source.barriers ?? []).filter(
+    (report) => report.blocksPassage && report.stopId === stopId && barrierIsFutureDated(report, nowIso),
   );
 }
 

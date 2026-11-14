@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { prototypeLabel, toMapFeatures, type Journey, type JourneyPlan, type Leg } from "@access-maps/journey";
+import { displayValue, prototypeLabel, toMapFeatures, type Journey, type JourneyPlan, type Leg } from "@access-maps/journey";
 import { AccessibleMap } from "./AccessibleMap.js";
 import { mapCopy, statusLabel } from "./i18n.js";
 
@@ -127,7 +127,7 @@ function LegItem({
       <p className={`status status-${leg.stepFree.status}`}>{statusLabel(locale, leg.stepFree.status)}</p>
       <p>{leg.note}</p>
       <p>
-        {text.surface}: {leg.surface}. {text.gradient}: {leg.gradient}.
+        {text.surface}{text.colon} {displayValue(locale, leg.surface)}. {text.gradient}{text.colon} {displayValue(locale, leg.gradient)}.
       </p>
       {leg.timing ? (
         <p>
@@ -137,7 +137,9 @@ function LegItem({
         </p>
       ) : null}
       <p>
-        {text.source}: {leg.provenance.sourceId}. {text.licence}: {leg.provenance.licence}. {text.retrieved}: {leg.provenance.retrievedAt}. {prototypeLabel(locale, leg.provenance.tier)}.
+        {text.source}{text.colon} {displayValue(locale, leg.provenance.sourceId)}. {text.licence}{text.colon} {displayValue(locale, leg.provenance.licence)}.{" "}
+        {leg.provenance.attribution ? `${text.attribution}${text.colon} ${leg.provenance.attribution}. ` : ""}
+        {text.retrieved}{text.colon} {displayValue(locale, leg.provenance.retrievedOn ?? leg.provenance.retrievedAt)}. {prototypeLabel(locale, leg.provenance.tier)}
       </p>
       {leg.links.length > 0 ? (
         <ul>

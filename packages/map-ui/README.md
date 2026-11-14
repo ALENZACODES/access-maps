@@ -6,6 +6,6 @@ MapLibre GL components for the App. The feature list is the keyboard and screen-
 
 The demo (`npm run demo`) uses fixture coordinates. It is not an operator feed and not a survey.
 
-MapLibre GL is BSD-3-Clause. An OpenStreetMap basemap, when one is configured, must show © OpenStreetMap contributors and the ODbL. This package does not imply endorsement by MapLibre, OpenStreetMap, or any agency.
+MapLibre GL is BSD-3-Clause. When a leg's drawn line is OpenStreetMap path geometry, the map shows © OpenStreetMap contributors and the ODbL, and the leg's source line shows its licence, credit, retrieval date, and tier. A path from another source does not get that credit. An OpenStreetMap basemap, when one is configured, must show the same credit. This package does not imply endorsement by MapLibre, OpenStreetMap, or any agency.
 
 French chrome is a draft (`MAP_FRENCH_REVIEW`).

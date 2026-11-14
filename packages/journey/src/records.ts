@@ -100,12 +100,52 @@ export function provenanceFromField(field: FieldValue | undefined, fallbackNote:
     };
   }
   return {
-    sourceId: field.source_id,
-    licence: field.licence,
-    retrievedAt: field.retrieved_at,
-    tier: field.tier,
+    sourceId: isUnknownValue(field.source_id) ? UNKNOWN : field.source_id,
+    licence: isUnknownValue(field.licence) ? UNKNOWN : field.licence,
+    retrievedAt: isUnknownValue(field.retrieved_at) ? UNKNOWN : field.retrieved_at,
+    tier: field.tier ?? null,
     ...(field.survey ? { survey: field.survey } : {}),
     ...(field.source_key ? { note: field.source_key } : {}),
+  };
+}
+
+export const OSM_LICENCE = "ODbL-1.0";
+export const OSM_ATTRIBUTION = "© OpenStreetMap contributors";
+
+/**
+ * True when a field came from OpenStreetMap. The data lane names those sources `osm-…`
+ * (for example `osm-ontario`) and stamps them with the Open Database Licence.
+ */
+export function isOsmField(field: FieldValue | undefined): boolean {
+  if (!field) return false;
+  const source = String(field.source_id ?? "").trim().toLowerCase();
+  const licence = String(field.licence ?? "").trim().toLowerCase();
+  return (
+    /^(osm|openstreetmap)([-_:./]|$)/.test(source) ||
+    /^odbl\b/.test(licence) ||
+    licence.includes("open database licen")
+  );
+}
+
+function retrievalDate(value: string | undefined): string {
+  if (!value || isUnknownValue(value)) return UNKNOWN;
+  const match = /^(\d{4}-\d{2}-\d{2})(?:$|[T ])/.exec(value.trim());
+  return match?.[1] ?? UNKNOWN;
+}
+
+/**
+ * Provenance of a path field. An OpenStreetMap field carries the licence id, the credit line,
+ * the retrieval date and the tier, all from the record. A missing date or tier stays unknown.
+ */
+export function pathProvenance(field: FieldValue | undefined, fallbackNote: string): Provenance {
+  const base = provenanceFromField(field, fallbackNote);
+  if (!field || !isOsmField(field)) return base;
+  return {
+    ...base,
+    licence: OSM_LICENCE,
+    attribution: OSM_ATTRIBUTION,
+    retrievedOn: retrievalDate(field.retrieved_at),
+    tier: field.tier ?? null,
   };
 }
 

@@ -15,12 +15,22 @@ export type {
   TransferPoint,
   WashroomDetail,
 } from "./catalog.js";
-export { copy, copyLocaleKeys, FRENCH_REVIEW, prototypeLabel, statusSentence } from "./explain.js";
+export { copy, copyLocaleKeys, displayValue, FRENCH_REVIEW, prototypeLabel, statusSentence } from "./explain.js";
 export { isWinterDate, haversineMetres } from "./geo.js";
 export { assertHonest } from "./invariants.js";
 export { applyOffline } from "./offline.js";
 export { planJourney, type PlanInput } from "./plan.js";
-export { asImportedRecord, provenanceFromField, UNKNOWN, type FieldValue, type ImportedRecord } from "./records.js";
+export {
+  asImportedRecord,
+  isOsmField,
+  OSM_ATTRIBUTION,
+  OSM_LICENCE,
+  pathProvenance,
+  provenanceFromField,
+  UNKNOWN,
+  type FieldValue,
+  type ImportedRecord,
+} from "./records.js";
 export { assertEngineAllowed, createHttpRouter, GraphRouter, routeWithFetch, StraightLineRouter } from "./router.js";
 export type { RouterAdapter, RouterRequest, RouterResult } from "./router.js";
 export { claimFromTier, resolveStepFree, surveyComplete } from "./stepfree.js";
