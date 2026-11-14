@@ -7,11 +7,12 @@
   },
   "workspaces": [
     "packages/journey",
+    "packages/outages",
     "packages/map-ui"
   ],
   "scripts": {
-    "test": "npm test -w @access-maps/journey && npm test -w @access-maps/map-ui",
-    "lint": "npm run lint -w @access-maps/journey && npm run lint -w @access-maps/map-ui",
+    "test": "npm test -w @access-maps/journey && npm test -w @access-maps/outages && npm test -w @access-maps/map-ui",
+    "lint": "npm run lint -w @access-maps/journey && npm run lint -w @access-maps/outages && npm run lint -w @access-maps/map-ui",
     "demo": "npm run demo -w @access-maps/map-ui"
   }
 }

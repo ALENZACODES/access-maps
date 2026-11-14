@@ -14,13 +14,15 @@
   "scripts": {
     "lint": "tsc --noEmit",
     "test": "vitest run",
-    "demo": "vite --host 0.0.0.0 --port 5173"
+    "demo": "vite --host 0.0.0.0 --port 5173",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@access-maps/journey": "*",
     "maplibre-gl": "^5.15.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "@access-maps/outages": "*"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",
@@ -32,6 +34,8 @@
     "jsdom": "^26.0.0",
     "typescript": "^5.9.3",
     "vite": "^6.2.0",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "@playwright/test": "1.65.1",
+    "@axe-core/playwright": "^4.11.0"
   }
 }

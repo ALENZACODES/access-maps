@@ -1,0 +1,26 @@
+{
+  "name": "@access-maps/outages",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Elevator and escalator outage records, expiry, feed fallback, and alternatives. A missing status is unknown, never working.",
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": "./src/index.ts",
+    "./seed": "./seed/index.ts"
+  },
+  "scripts": {
+    "lint": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@access-maps/journey": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.1",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}
