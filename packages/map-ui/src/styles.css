@@ -78,6 +78,7 @@
 
 .map-toolbar button,
 .feature-list button,
+.route-switch button,
 .map-marker {
   min-height: 44px;
   min-width: 44px;
@@ -104,6 +105,7 @@
 
 .feature-list button:focus,
 .map-toolbar button:focus,
+.route-switch button:focus,
 .skip-link:focus,
 .journey-result a:focus,
 .journey-result h2:focus {
@@ -159,4 +161,55 @@
   .map-canvas {
     border: 1px solid CanvasText;
   }
+}
+
+.outage-journey,
+.station-outage {
+  color: #1c1915;
+  background: #fffdf8;
+  font-family: "Segoe UI", "Noto Sans", sans-serif;
+  line-height: 1.45;
+}
+
+.outage-journey a:focus,
+.station-outage a:focus {
+  outline: 3px solid #0b3a82;
+  outline-offset: 2px;
+}
+
+.route-switch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.route-switch button[aria-pressed="true"] {
+  border-width: 4px;
+  font-weight: 700;
+}
+
+.outage-facts {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+}
+
+.outage-facts div {
+  display: grid;
+  grid-template-columns: minmax(7rem, max-content) 1fr;
+  gap: 0.5rem;
+}
+
+.outage-facts dt {
+  font-weight: 700;
+}
+
+.outage-facts dd {
+  margin: 0;
+}
+
+.leg-outage {
+  border-left: 4px solid #8a1f11;
+  padding-left: 0.75rem;
 }
