@@ -1,0 +1,324 @@
+{
+  "id": "osm:node/238726675",
+  "tranche": "venue",
+  "region": "n43.5_w079.5",
+  "fields": {
+    "name": {
+      "value": "Shoppers Drug Mart",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0,
+      "source_key": "name"
+    },
+    "category_group": {
+      "value": "amenity",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0,
+      "source_key": "amenity"
+    },
+    "category": {
+      "value": "pharmacy",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0,
+      "source_key": "amenity"
+    },
+    "lat": {
+      "value": 43.666584,
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0,
+      "source_key": "geometry"
+    },
+    "lon": {
+      "value": -79.405123,
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0,
+      "source_key": "geometry"
+    },
+    "addr_housenumber": {
+      "value": "360",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0,
+      "source_key": "addr:housenumber"
+    },
+    "addr_street": {
+      "value": "Bloor Street West",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0,
+      "source_key": "addr:street"
+    },
+    "addr_city": {
+      "value": "Toronto",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0,
+      "source_key": "addr:city"
+    },
+    "addr_postcode": {
+      "value": "M5S 1X1",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0,
+      "source_key": "addr:postcode"
+    },
+    "addr_unit": {
+      "value": "A",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0,
+      "source_key": "addr:unit"
+    },
+    "opening_hours": {
+      "value": "Mo-Sa 08:00-24:00; Su 10:00-24:00",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0,
+      "source_key": "opening_hours"
+    },
+    "level": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "operator": {
+      "value": "Loblaw Companies Limited",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0,
+      "source_key": "operator"
+    },
+    "brand": {
+      "value": "Shoppers Drug Mart",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0,
+      "source_key": "brand"
+    },
+    "website": {
+      "value": "https://www.shoppersdrugmart.ca/en/store-locator/store/806",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0,
+      "source_key": "website"
+    },
+    "wheelchair": {
+      "value": "yes",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0,
+      "source_key": "wheelchair"
+    },
+    "wheelchair_description": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "entrance": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "automatic_door": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "door": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "door_width": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "ramp": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "ramp_wheelchair": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "ramp_stroller": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "step_count": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "incline": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "kerb": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "kerb_height": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "tactile_paving": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "handrail": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "width": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "access": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "surface": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "smoothness": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "lit": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "braille": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "hearing_loop": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "speech_output": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "stroller": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "capacity_disabled": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "indoor": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "elevator": {
+      "value": "UNKNOWN",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0
+    },
+    "ref": {
+      "value": "806",
+      "source_id": "osm-ontario",
+      "licence": "ODbL-1.0",
+      "retrieved_at": "2026-11-13",
+      "tier": 0,
+      "source_key": "ref"
+    }
+  }
+}
