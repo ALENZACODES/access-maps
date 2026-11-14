@@ -75,6 +75,17 @@ The OSM importer keeps the Geofabrik extract, filters it with `osmium tags-filte
 
 Washroom fields from a venue, such as `toilets:wheelchair`, are emitted as a separate washroom record (`osm:toilets-at:...`) and are not copied onto the venue. `amenity=toilets` is only a washroom. A cycleway or bridleway is imported only when `foot` is `yes` or `designated`.
 
+## Licence re-checks
+
+`npm run licence:recheck -- --as-of YYYY-MM-DD` prints a dated register with one row for every source in `sources/registry.json` and every dataset in `sources/gaps.json`. Add `--format json` for JSON, and `--fail-on-overdue` to exit 1 when a row is overdue.
+
+- A row is flagged only when the registry or gap text already says so (revocable terms, an indemnity, legal review, a missing licence version, an unreachable licence page, and so on), or when the source is in `TILES_HELD_FOR_LEGAL_REVIEW`. The register quotes the sentence that raised each flag.
+- Flagged rows are due 30 days after the last check. Other rows are due after 90 days. These intervals are this repository's defaults, not figures from a licence.
+- A gap with no date in its record is overdue now. It is not treated as checked.
+- The command reads files only. It does not fetch a licence page and does not say what a licence allows.
+
+A person records each re-check in `sources/licence-rechecks.json`: `subject` (registry id or gap name), `checked_on`, `checker_role` (a role, not a name), `url_checked`, `result` (`unchanged`, `changed`, or `unreachable`), `http_status` (required when unreachable), and `note`. The command stops and names any entry that does not meet those rules. The log starts empty.
+
 ## Tests and CI
 
 `npm test` covers OSM tag mapping and `UNKNOWN`, GTFS codes, municipal columns, counting rules, CSV parsing, and Ajv validation. `npm run lint` is `tsc --noEmit`.

@@ -18,7 +18,8 @@
     "fetch:ttc-alerts": "tsx scripts/fetch-ttc-alerts.ts",
     "build:tiles": "tsx scripts/build-pmtiles.ts",
     "count": "tsx scripts/count.ts",
-    "import": "tsx scripts/import-all.ts"
+    "import": "tsx scripts/import-all.ts",
+    "licence:recheck": "tsx scripts/licence-recheck.ts"
   },
   "dependencies": {
     "ajv": "^8.17.1",
