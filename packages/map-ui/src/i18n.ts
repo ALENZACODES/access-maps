@@ -31,9 +31,16 @@ const COPY = {
     gradient: "Gradient",
     selected: "Selected",
     resultsHeading: "Journey results",
+    option: "Option",
     blockedHeading: "Blocked options",
     returnHeading: "Return",
     warningsHeading: "Before you go",
+    stepFreeRequiredOn:
+      "Step-free required: on. A route with a recorded step or barrier is moved to Blocked options.",
+    stepFreeRequiredOff:
+      "Step-free required: off. A route with a recorded step or barrier stays in the results, and that leg is marked Not step-free.",
+    stepFreeNoEffect:
+      "No route in these results has a recorded step or barrier, so this setting does not change them. A leg marked Unknown is still unknown.",
     stepFree: "Step-free",
     unknown: "Unknown",
     notStepFree: "Not step-free",
@@ -72,9 +79,16 @@ const COPY = {
     gradient: "Pente",
     selected: "Sélectionné",
     resultsHeading: "Résultats du trajet",
+    option: "Option",
     blockedHeading: "Options bloquées",
     returnHeading: "Retour",
     warningsHeading: "Avant de partir",
+    stepFreeRequiredOn:
+      "Sans marches exigé\u00A0: activé. Un itinéraire avec une marche ou un obstacle enregistré passe dans Options bloquées.",
+    stepFreeRequiredOff:
+      "Sans marches exigé\u00A0: désactivé. Un itinéraire avec une marche ou un obstacle enregistré reste dans les résultats, et ce segment est marqué Avec marches ou obstacle.",
+    stepFreeNoEffect:
+      "Aucun itinéraire de ces résultats n'a de marche ou d'obstacle enregistré, donc ce réglage ne les change pas. Un segment marqué Inconnu reste inconnu.",
     stepFree: "Sans marches",
     unknown: "Inconnu",
     notStepFree: "Avec marches ou obstacle",

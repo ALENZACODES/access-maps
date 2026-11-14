@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { prototypeLabel, toMapFeatures, type Journey, type JourneyPlan, type Leg } from "@access-maps/journey";
 import { AccessibleMap } from "./AccessibleMap.js";
 import { mapCopy, statusLabel } from "./i18n.js";
@@ -8,10 +8,6 @@ export function JourneyResult({ plan }: { plan: JourneyPlan }) {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const features = toMapFeatures(plan);
 
-  useEffect(() => {
-    headingRef.current?.focus();
-  }, [plan.id]);
-
   const before = plan.warnings.filter((warning) => warning.beforeCommit);
   const urgent = [
     plan.offline?.banner,
@@ -20,6 +16,22 @@ export function JourneyResult({ plan }: { plan: JourneyPlan }) {
     ...before.map((warning) => warning.text),
     ...plan.supplyNotes.map((note) => note.text),
   ].filter((item): item is string => Boolean(item));
+  const urgentText = urgent.join(" ");
+  // The live region is always in the page and is filled after the result mounts,
+  // so screen readers announce it. A region that arrives already filled is often not read.
+  const [announcement, setAnnouncement] = useState("");
+
+  useEffect(() => {
+    headingRef.current?.focus();
+    setAnnouncement("");
+    const timer = setTimeout(() => setAnnouncement(urgentText), 50);
+    return () => clearTimeout(timer);
+  }, [plan.id, urgentText]);
+
+  const hasBarrier =
+    plan.blocked.length > 0 ||
+    plan.journeys.some((journey) => journey.legs.some((leg) => leg.stepFree.status === "not-step-free"));
+
   const drawsOsm = features.some((feature) => feature.odbl);
 
   return (
@@ -31,7 +43,13 @@ export function JourneyResult({ plan }: { plan: JourneyPlan }) {
       <h2 ref={headingRef} tabIndex={-1}>
         {text.resultsHeading}
       </h2>
-      {urgent.length > 0 ? <p className="sr-only" role="status">{urgent.join(" ")}</p> : null}
+      <p className="sr-only" role="status">
+        {announcement}
+      </p>
+      <p className="step-free-setting">
+        {plan.stepFreeRequired ? text.stepFreeRequiredOn : text.stepFreeRequiredOff}
+        {hasBarrier ? null : ` ${text.stepFreeNoEffect}`}
+      </p>
       {plan.offline ? <p>{plan.offline.banner}</p> : null}
       {plan.systemEvent ? <p>{plan.systemEvent.text}</p> : null}
       {plan.noGo ? <p>{plan.noGo.text}</p> : null}
@@ -48,14 +66,20 @@ export function JourneyResult({ plan }: { plan: JourneyPlan }) {
       {plan.supplyNotes.map((note) => (
         <p key={note.text}>{note.text}</p>
       ))}
-      {plan.journeys.map((journey) => (
-        <JourneyBlock key={journey.id} journey={journey} locale={plan.locale} heading="h3" />
+      {plan.journeys.map((journey, index) => (
+        <JourneyBlock key={journey.id} journey={journey} locale={plan.locale} heading="h3" number={index + 1} />
       ))}
       {plan.blocked.length > 0 ? (
         <section aria-labelledby="blocked-options">
           <h3 id="blocked-options">{text.blockedHeading}</h3>
-          {plan.blocked.map((journey) => (
-            <JourneyBlock key={journey.id} journey={journey} locale={plan.locale} heading="h4" />
+          {plan.blocked.map((journey, index) => (
+            <JourneyBlock
+              key={journey.id}
+              journey={journey}
+              locale={plan.locale}
+              heading="h4"
+              number={plan.journeys.length + index + 1}
+            />
           ))}
         </section>
       ) : null}
@@ -72,10 +96,13 @@ function JourneyBlock({
   journey,
   locale,
   heading,
+  number,
 }: {
   journey: Journey;
   locale: JourneyPlan["locale"];
   heading: "h3" | "h4";
+  /** Numbered so that two options with the same leg sequence have different names. */
+  number: number;
 }) {
   const text = mapCopy(locale);
   const Title = heading;
@@ -83,7 +110,9 @@ function JourneyBlock({
   const Sub = sub;
   return (
     <section aria-labelledby={journey.id}>
-      <Title id={journey.id}>{journey.summary}</Title>
+      <Title id={journey.id}>
+        {text.option} {number}. {journey.summary}
+      </Title>
       <p>{journey.explanation}</p>
       <p>
         <strong>{journey.weakestLink.text}</strong>

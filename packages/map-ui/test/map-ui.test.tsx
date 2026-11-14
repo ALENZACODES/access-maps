@@ -1,5 +1,5 @@
 import { planJourney, type MapFeature } from "@access-maps/journey";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 import { describe, expect, it } from "vitest";
@@ -174,8 +174,11 @@ describe("JourneyResult", () => {
     expect(screen.getAllByRole("heading", { name: /Approach/ }).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/Straight-line distance only/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/Scheduled/).length).toBeGreaterThan(0);
-    const warning = screen.getAllByRole("status").find((node) => /washroom/i.test(node.textContent ?? ""));
-    expect(warning).toBeTruthy();
+    // The live region is filled just after mount so that it is announced.
+    await waitFor(() => {
+      const warning = screen.getAllByRole("status").find((node) => /washroom/i.test(node.textContent ?? ""));
+      expect(warning).toBeTruthy();
+    });
     const listButtons = screen.getAllByRole("button").filter((button) => button.closest(".feature-list"));
     expect(listButtons.length).toBeGreaterThan(0);
     const emergency = screen.getByRole("link", { name: "911" });
