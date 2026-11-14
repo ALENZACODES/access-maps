@@ -1,0 +1,23 @@
+{
+  "name": "@access-maps/seed-audit",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Day 30 seed-data deep sample for the App: independent counts, a reproducible sample per file, provenance and tier checks, and a licence re-check list. It reads seed files and does not change them.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "audit": "tsx src/cli.ts audit",
+    "licences": "tsx src/cli.ts licences"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  },
+  "license": "MIT"
+}
