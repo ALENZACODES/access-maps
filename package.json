@@ -12,6 +12,7 @@
   "scripts": {
     "test": "npm test -w @access-maps/journey && npm test -w @access-maps/map-ui",
     "lint": "npm run lint -w @access-maps/journey && npm run lint -w @access-maps/map-ui",
-    "demo": "npm run demo -w @access-maps/map-ui"
+    "demo": "npm run demo -w @access-maps/map-ui",
+    "test:e2e": "npm run test:e2e -w @access-maps/map-ui"
   }
 }
