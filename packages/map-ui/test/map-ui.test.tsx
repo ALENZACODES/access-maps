@@ -181,9 +181,15 @@ describe("JourneyResult", () => {
     const emergency = screen.getByRole("link", { name: "911" });
     expect(emergency.getAttribute("href")).toBe("tel:911");
     const article = emergency.closest("article");
-    expect(article?.firstElementChild).toBe(emergency.parentElement);
+    const heading = screen.getByRole("heading", { name: "Journey results" });
+    // 911 stays at the top: the first thing after the results heading. Focus lands on the
+    // heading when results load, so 911 is the next Tab stop (Day 17 keyboard audit).
+    expect(article?.firstElementChild).toBe(heading);
+    expect(heading.nextElementSibling).toBe(emergency.parentElement);
     await user.click(screen.getByRole("button", { name: "Load another plan" }));
-    expect(document.activeElement).toBe(screen.getByRole("heading", { name: "Journey results" }));
+    expect(document.activeElement).toBe(heading);
+    await user.tab();
+    expect(document.activeElement).toBe(emergency);
   });
 
   it("does not show English labels on a French plan", () => {

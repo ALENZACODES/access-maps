@@ -1,0 +1,16 @@
+{
+  "name": "access-maps-e2e",
+  "private": true,
+  "type": "module",
+  "description": "Day 17 audit of the journey map UI with Playwright and axe. Kept outside the workspaces so it does not change the root lockfile.",
+  "scripts": {
+    "test:e2e": "playwright test",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^22.19.0",
+    "typescript": "^5.9.3"
+  }
+}

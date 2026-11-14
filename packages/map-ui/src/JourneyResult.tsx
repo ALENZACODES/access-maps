@@ -24,13 +24,14 @@ export function JourneyResult({ plan }: { plan: JourneyPlan }) {
 
   return (
     <article className="journey-result">
+      <h2 ref={headingRef} tabIndex={-1}>
+        {text.resultsHeading}
+      </h2>
+      {/* Focus lands on the heading when results load, so 911 follows it and is the next Tab stop. */}
       <p className="emergency-call">
         {text.emergency}: {plan.emergency.text}{" "}
         <a href="tel:911">911</a>
       </p>
-      <h2 ref={headingRef} tabIndex={-1}>
-        {text.resultsHeading}
-      </h2>
       {urgent.length > 0 ? <p className="sr-only" role="status">{urgent.join(" ")}</p> : null}
       {plan.offline ? <p>{plan.offline.banner}</p> : null}
       {plan.systemEvent ? <p>{plan.systemEvent.text}</p> : null}
