@@ -1,0 +1,23 @@
+{
+  "name": "@access-maps/places-shell",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Search over imported venue records for the access-main /places route. Unknown stays UNKNOWN. No record is added.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.1",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}
