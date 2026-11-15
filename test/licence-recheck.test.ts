@@ -67,11 +67,14 @@ describe("register on the committed sources", () => {
     }
   });
 
-  it("flags the Metrolinx and MiWay terms from their own notes", () => {
-    const go = register.rows.find((row) => row.subject === "gtfs-go-transit")!;
-    expect(go.flags.map((flag) => flag.code)).toEqual(expect.arrayContaining(["revocable", "not-reconciled", "not-plain-open-grant"]));
-    const miway = register.rows.find((row) => row.subject === "gtfs-miway")!;
-    expect(miway.flags.map((flag) => flag.code)).toEqual(expect.arrayContaining(["revocable", "indemnity"]));
+  it("flags Metrolinx rows held out of the open tiles, and keeps MiWay out of the registry", () => {
+    expect(registry.sources.some((source) => source.id === "gtfs-miway")).toBe(false);
+    expect(registry.sources.some((source) => source.id === "gtfs-go-transit")).toBe(false);
+    for (const id of ["metrolinx-go", "metrolinx-up"] as const) {
+      const row = register.rows.find((item) => item.subject === id)!;
+      expect(row.flagged, id).toBe(true);
+      expect(row.flags.map((flag) => flag.code)).toContain("held-from-open-tiles");
+    }
   });
 
   it("keeps every not-imported dataset at licence UNKNOWN", () => {
@@ -83,8 +86,8 @@ describe("register on the committed sources", () => {
   it("dates flagged rows 30 days and others 90 days from retrieval, with nothing re-checked yet", () => {
     const ttc = register.rows.find((row) => row.subject === "gtfs-ttc")!;
     expect(ttc).toMatchObject({ flagged: false, last_checked: "2026-11-13", due_on: "2027-02-11", state: "not due", last_result: "no re-check recorded" });
-    const go = register.rows.find((row) => row.subject === "gtfs-go-transit")!;
-    expect(go).toMatchObject({ due_on: "2026-12-13", interval_days: 30 });
+    const go = register.rows.find((row) => row.subject === "metrolinx-go")!;
+    expect(go).toMatchObject({ due_on: "2026-12-15", interval_days: 30 });
   });
 
   it("treats an undated gap as overdue now, not as checked", () => {
@@ -95,7 +98,7 @@ describe("register on the committed sources", () => {
 
   it("prints a register that names the evidence and makes no licence finding", () => {
     const markdown = registerMarkdown(register);
-    expect(markdown).toContain("| gtfs-go-transit | yes |");
+    expect(markdown).toContain("| metrolinx-go | yes |");
     expect(markdown).toContain("It does not say what a licence allows.");
     expect(markdown).toContain("listed in TILES_HELD_FOR_LEGAL_REVIEW");
     expect(markdown).not.toMatch(/\b(cleared|approved|compliant)\b/i);

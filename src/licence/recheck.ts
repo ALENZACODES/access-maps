@@ -222,7 +222,7 @@ export function buildRegister(registry: SourceRegistry, gaps: readonly GapEntry[
 
   for (const source of registry.sources) {
     const flags = flagsFromText(`${source.notes ?? ""} ${source.tier_note ?? ""}`);
-    if (held.has(source.id)) flags.push({ code: "held-from-open-tiles", evidence: "" });
+    if (held.has(source.id)) flags.push({ code: "held-from-open-tiles", evidence: "listed in TILES_HELD_FOR_LEGAL_REVIEW in scripts/build-pmtiles.ts." });
     add(
       { subject: source.id, kind: "imported", licence_id: source.licence_id, licence_url: source.licence_url, flags },
       isIsoDate(source.retrieved_at) ? source.retrieved_at : null,
