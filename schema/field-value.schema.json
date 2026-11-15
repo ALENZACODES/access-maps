@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://access-maps.local/schema/field-value.schema.json",
+  "title": "FieldValue",
+  "description": "One populated or explicitly unknown field. UNKNOWN is a value, not an omission. derived=true marks a copy kept for usability that the counting rules exclude.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "value",
+    "source_id",
+    "licence",
+    "retrieved_at",
+    "tier"
+  ],
+  "properties": {
+    "value": {
+      "description": "Published value, or the exact string UNKNOWN when the source did not state this fact.",
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "array",
+            "prefixItems": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "number"
+              }
+            ],
+            "items": false,
+            "minItems": 2,
+            "maxItems": 2
+          }
+        }
+      ]
+    },
+    "source_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "licence": {
+      "type": "string",
+      "minLength": 1,
+      "description": "licence_id from the source registry."
+    },
+    "retrieved_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "tier": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "source_key": {
+      "type": "string",
+      "description": "Original tag, column, or GTFS field name."
+    },
+    "raw": {
+      "description": "Original token when the stored value was normalized. Not a separate piece.",
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "derived": {
+      "type": "boolean",
+      "description": "True when this value is a copy of another feature and must not be counted."
+    }
+  }
+}
