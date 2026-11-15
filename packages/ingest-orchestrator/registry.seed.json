@@ -1,0 +1,98 @@
+[
+  {
+    "sourceId": "osm-geofabrik-ontario",
+    "name": "OpenStreetMap Ontario via Geofabrik",
+    "licence": "ODbL",
+    "licenceUrl": "https://www.openstreetmap.org/copyright",
+    "shareAlike": true,
+    "status": "confirmed",
+    "licenceConfirmedAt": "2026-11-15",
+    "licenceNote": "OSM attribution page identifies ODbL; retain ODbL-derived output in a separate silo.",
+    "cadenceHint": "Human review monthly; verify extract provenance before ingestion"
+  },
+  {
+    "sourceId": "ttc-gtfs",
+    "name": "TTC GTFS",
+    "licence": "UNKNOWN",
+    "licenceUrl": "",
+    "shareAlike": false,
+    "status": "held",
+    "heldReason": "Licence evidence not confirmed for this feed",
+    "cadenceHint": "Human review when licence evidence is available"
+  },
+  {
+    "sourceId": "ttc-accessibility-alerts",
+    "name": "TTC accessibility alerts",
+    "licence": "UNKNOWN",
+    "licenceUrl": "",
+    "shareAlike": false,
+    "status": "held",
+    "heldReason": "Licence and permitted reuse not confirmed; no live-status claims"
+  },
+  {
+    "sourceId": "d-importer",
+    "name": "D family importer hook",
+    "licence": "UNKNOWN",
+    "licenceUrl": "",
+    "shareAlike": false,
+    "status": "held",
+    "heldReason": "Stub; connect the owning lane and record source-specific licence evidence"
+  },
+  {
+    "sourceId": "h-importer",
+    "name": "H family importer hook",
+    "licence": "UNKNOWN",
+    "licenceUrl": "",
+    "shareAlike": false,
+    "status": "held",
+    "heldReason": "Stub; connect the owning lane and record source-specific licence evidence"
+  },
+  {
+    "sourceId": "j12-importer",
+    "name": "J12 importer hook",
+    "licence": "UNKNOWN",
+    "licenceUrl": "",
+    "shareAlike": false,
+    "status": "held",
+    "heldReason": "Stub; connect the owning lane and record source-specific licence evidence"
+  },
+  {
+    "sourceId": "go-transit",
+    "name": "GO Transit",
+    "licence": "UNKNOWN",
+    "licenceUrl": "",
+    "shareAlike": false,
+    "status": "held",
+    "heldReason": "Metrolinx Access and Use Agreement accepted 2026-11-15. Pack only via I14 metrolinx-go chunks/release files, not this orchestrator. No hook registered here.",
+    "licenceNote": "AUA accepted 2026-11-15. Official catalogue still also names OGL-Ontario-Metrolinx for the same zips; conflict recorded, not declared resolved."
+  },
+  {
+    "sourceId": "up-express",
+    "name": "UP Express",
+    "licence": "UNKNOWN",
+    "licenceUrl": "",
+    "shareAlike": false,
+    "status": "held",
+    "heldReason": "Metrolinx Access and Use Agreement accepted 2026-11-15. Pack only via I14 metrolinx-up chunks/release files, not this orchestrator. No hook registered here.",
+    "licenceNote": "AUA accepted 2026-11-15. Official catalogue still also names OGL-Ontario-Metrolinx for the same zips; conflict recorded, not declared resolved."
+  },
+  {
+    "sourceId": "miway",
+    "name": "MiWay",
+    "licence": "UNKNOWN",
+    "licenceUrl": "",
+    "shareAlike": false,
+    "status": "held",
+    "heldReason": "Licence unclear: terms href returned HTTP 500 and the PDF grantor is defective. MiWay stays out until a confirmed licence is recorded."
+  },
+  {
+    "sourceId": "ltc",
+    "name": "London Transit Commission (LTC)",
+    "licence": "UNKNOWN",
+    "licenceUrl": "",
+    "shareAlike": false,
+    "status": "held",
+    "heldReason": "Official LTC Open Data Terms of Use are confirmed (review 2026-11-15). Kept held here because this orchestrator has no LTC hook; I14/transit packing is the intended path.",
+    "licenceNote": "Confirmed under official LTC Open Data Terms of Use (2026-11-15)."
+  }
+]
