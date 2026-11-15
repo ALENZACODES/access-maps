@@ -16,14 +16,48 @@ const PATH_PATTERN = /^(venues|washrooms|paths|transit)\/([^/]+)\/([ns]\d{2,3}\.
 const TRANCHES: Tranche[] = ["venue", "washroom", "transit", "path"];
 const DIR_TO_TRANCHE = Object.fromEntries(Object.entries(TRANCHE_DIR).map(([key, value]) => [value, key])) as Record<string, Tranche>;
 
+export const METROLINX_AUA_LEGEND =
+  "Data used in this product or service is provided with the permission of Metrolinx. Metrolinx makes no representations or warranties of any kind, express or implied, with respect to the Data and assumes no responsibility for the accuracy or currency of the data used in this product or service.";
+export const METROLINX_OGL_LINE =
+  "Contains information licensed under the Open Government Licence - Ontario - Metrolinx.";
+export const METROLINX_PACK_ATTRIBUTION = `${METROLINX_AUA_LEGEND} ${METROLINX_OGL_LINE}`;
+export const METROLINX_PACK_LICENCE = "Metrolinx Access and Use Agreement (accepted 2026-11-15)";
+export const METROLINX_PACK_LICENCE_URL = "https://www.gotransit.com/en/partner-with-us/software-developers";
+export const METROLINX_ACCEPTED_ON = "2026-11-15";
+
+/** Held out of downloadable pack parts until confirmation is recorded. MiWay is already absent from the registry. */
+export const PACK_HELD_PENDING_CONFIRMATION = new Set(["gtfs-ltc"]);
+
 export function holdReason(source: SourceEntry): string | null {
   // Take the legal decision from the registry's terms, rather than assuming
   // all GTFS or all municipal records are licensed for web redistribution.
+  if (source.id === "gtfs-miway" || source.id.startsWith("gtfs-miway")) {
+    return "MiWay stays out: official terms are unconfirmed.";
+  }
+  if (PACK_HELD_PENDING_CONFIRMATION.has(source.id)) {
+    return "London Transit is held pending confirmation of the LTC Open Data Terms of Use before redistribution in the web pack.";
+  }
   const notes = `${source.notes ?? ""} ${source.tier_note ?? ""}`;
   if (/not been reconciled|revocable|legal review is still required|not treated as a settled open grant|held for legal review/i.test(notes)) {
     return `Licence terms require review: ${source.notes ?? source.licence_name}`;
   }
   return null;
+}
+
+export function assertMetrolinxPackProvenance(source: SourceEntry): void {
+  if (!source.id.startsWith("metrolinx-")) return;
+  const missing: string[] = [];
+  if (source.licence_id !== METROLINX_PACK_LICENCE && source.licence_name !== METROLINX_PACK_LICENCE) {
+    missing.push("licence");
+  }
+  if (source.licence_url !== METROLINX_PACK_LICENCE_URL) missing.push("licenceUrl");
+  if (source.retrieved_at !== METROLINX_ACCEPTED_ON) missing.push("retrieved");
+  if (!source.attribution.includes(METROLINX_AUA_LEGEND) || !source.attribution.includes(METROLINX_OGL_LINE)) {
+    missing.push("attribution");
+  }
+  if (missing.length) {
+    throw new Error(`Metrolinx pack provenance is incomplete for ${source.id}: ${missing.join(", ")}`);
+  }
 }
 
 export function normalizeName(value: string): string {
@@ -108,11 +142,13 @@ export async function buildWebPack(options: {
   const registry = readRegistry(repoRoot);
   const sources = registry.sources.map((source) => {
     const heldReason = holdReason(source);
+    const inWebPack = heldReason === null;
+    if (inWebPack) assertMetrolinxPackProvenance(source);
     return {
       sourceId: source.id, name: source.name, licence: source.licence_id,
       licenceUrl: source.licence_url, attribution: source.attribution,
       retrieved: source.retrieved_at, shareAlike: source.licence_id === "ODbL-1.0",
-      inWebPack: heldReason === null, heldReason,
+      inWebPack, heldReason,
     };
   });
   const allowed = new Set(sources.filter((source) => source.inWebPack).map((source) => source.sourceId));

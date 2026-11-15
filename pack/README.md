@@ -19,6 +19,23 @@ revocable or legally held terms remain in the manifest for disclosure but are
 excluded from all downloadable parts, indexes and counts. Recheck those terms
 before a later rebuild; do not override the hold by editing generated files.
 
+## Transit decisions for this pack
+
+- **GO Transit and UP Express** are included, in their own `data/transit/metrolinx-go/` and `data/transit/metrolinx-up/` parts only, so those files can be removed quickly if Metrolinx cancels. They are never mixed into other sources or into `tiles/open`. The official zips were accepted under the Metrolinx Access and Use Agreement on 15 November 2026 at 4:41:52 PM ET (America/Toronto), from https://www.gotransit.com/en/partner-with-us/software-developers. Manifest licence, URL and retrieval date are that acceptance provenance: `Metrolinx Access and Use Agreement (accepted 2026-11-15)`, the software-developers URL, retrieved `2026-11-15`. Never use Metrolinx, GO, or UP marks or logos. Plain-text agency names may be used only as needed for wayfinding. No endorsement.
+
+  Whenever these timetable rows are presented, show both of the following, prominently, not necessarily on every row, and on Data status / the attribution page:
+
+  Data used in this product or service is provided with the permission of Metrolinx. Metrolinx makes no representations or warranties of any kind, express or implied, with respect to the Data and assumes no responsibility for the accuracy or currency of the data used in this product or service.
+
+  Contains information licensed under the Open Government Licence - Ontario - Metrolinx.
+
+  Users must follow applicable laws when using the transit data.
+
+  Les utilisateurs doivent respecter les lois applicables lorsqu'ils utilisent les données de transport en commun.
+
+- **MiWay** is out. It is not in the source registry and must not appear in pack parts or counts.
+- **London Transit (gtfs-ltc)** is held pending confirmation of the LTC Open Data Terms of Use before redistribution in this pack. Imported `data/transit/gtfs-ltc/` rows, if present from the Ontario import, stay out of downloadable parts, indexes and counts.
+
 ## Licences and attribution
 
 Source-level licence, retrieval date and attribution are reproduced from
