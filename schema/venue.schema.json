@@ -1,0 +1,206 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://access-maps.local/schema/venue.schema.json",
+  "title": "Venue",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "tranche",
+    "region",
+    "fields"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tranche": {
+      "const": "venue"
+    },
+    "region": {
+      "type": "string",
+      "minLength": 1
+    },
+    "fields": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "category_group",
+        "category",
+        "lat",
+        "lon",
+        "addr_housenumber",
+        "addr_street",
+        "addr_city",
+        "addr_postcode",
+        "addr_unit",
+        "opening_hours",
+        "level",
+        "operator",
+        "brand",
+        "website",
+        "wheelchair",
+        "wheelchair_description",
+        "entrance",
+        "automatic_door",
+        "door",
+        "door_width",
+        "ramp",
+        "ramp_wheelchair",
+        "ramp_stroller",
+        "step_count",
+        "incline",
+        "kerb",
+        "kerb_height",
+        "tactile_paving",
+        "handrail",
+        "width",
+        "access",
+        "surface",
+        "smoothness",
+        "lit",
+        "braille",
+        "hearing_loop",
+        "speech_output",
+        "stroller",
+        "capacity_disabled",
+        "indoor",
+        "elevator",
+        "ref"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "category_group": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "category": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "lat": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "lon": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "addr_housenumber": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "addr_street": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "addr_city": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "addr_postcode": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "addr_unit": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "opening_hours": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "level": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "operator": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "brand": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "website": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "wheelchair": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "wheelchair_description": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "entrance": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "automatic_door": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "door": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "door_width": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "ramp": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "ramp_wheelchair": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "ramp_stroller": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "step_count": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "incline": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "kerb": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "kerb_height": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "tactile_paving": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "handrail": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "width": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "access": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "surface": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "smoothness": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "lit": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "braille": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "hearing_loop": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "speech_output": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "stroller": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "capacity_disabled": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "indoor": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "elevator": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "ref": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        }
+      }
+    }
+  }
+}

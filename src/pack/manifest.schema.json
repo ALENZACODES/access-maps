@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "builtAt", "sourceCommit", "sources", "regions", "tranches", "search", "tiles", "counts"],
+  "properties": {
+    "version": { "const": 1 },
+    "builtAt": { "type": "string", "format": "date-time" },
+    "sourceCommit": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "sources": { "type": "array", "items": { "$ref": "#/$defs/source" } },
+    "regions": { "type": "array", "items": { "$ref": "#/$defs/region" } },
+    "tranches": {
+      "type": "object", "required": ["venue", "washroom", "transit", "path"],
+      "additionalProperties": false,
+      "properties": {
+        "venue": { "$ref": "#/$defs/tranche" },
+        "washroom": { "$ref": "#/$defs/tranche" },
+        "transit": { "$ref": "#/$defs/tranche" },
+        "path": { "$ref": "#/$defs/tranche" }
+      }
+    },
+    "search": { "type": "object", "additionalProperties": { "$ref": "#/$defs/searchPart" } },
+    "tiles": { "type": "object", "additionalProperties": { "type": "object", "required": ["path", "bytes", "licence"], "additionalProperties": false,
+      "properties": { "path": { "type": "string" }, "bytes": { "$ref": "#/$defs/bytes" }, "licence": { "type": "string" } } } },
+    "counts": { "type": "object", "required": ["records", "byTranche", "bySource"], "additionalProperties": false,
+      "properties": { "records": { "$ref": "#/$defs/count" }, "byTranche": { "$ref": "#/$defs/counters" }, "bySource": { "$ref": "#/$defs/counters" } } }
+  },
+  "$defs": {
+    "count": { "type": "integer", "minimum": 0 },
+    "bytes": { "type": "integer", "minimum": 0, "maximum": 26214400 },
+    "counters": { "type": "object", "additionalProperties": { "$ref": "#/$defs/count" } },
+    "bbox": { "type": "array", "items": { "type": "number" }, "minItems": 4, "maxItems": 4 },
+    "part": { "type": "object", "required": ["path", "bytes", "sha256", "count", "sourceId"], "additionalProperties": false,
+      "properties": { "path": { "type": "string" }, "bytes": { "$ref": "#/$defs/bytes" }, "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "count": { "$ref": "#/$defs/count" }, "sourceId": { "type": "string" } } },
+    "searchPart": { "type": "object", "required": ["path", "bytes", "sha256", "count"], "additionalProperties": false,
+      "properties": { "path": { "type": "string" }, "bytes": { "$ref": "#/$defs/bytes" }, "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "count": { "$ref": "#/$defs/count" } } },
+    "tranche": { "type": "object", "required": ["cells"], "additionalProperties": false,
+      "properties": { "cells": { "type": "object", "additionalProperties": { "type": "object", "required": ["bbox", "parts"], "additionalProperties": false,
+        "properties": { "bbox": { "$ref": "#/$defs/bbox" }, "parts": { "type": "array", "items": { "$ref": "#/$defs/part" } } } } } } },
+    "region": { "type": "object", "required": ["id", "label", "bbox", "cells"], "additionalProperties": false,
+      "properties": { "id": { "type": "string" }, "label": { "type": "object", "required": ["en", "fr"], "additionalProperties": false,
+        "properties": { "en": { "type": "string" }, "fr": { "type": "string" } } }, "bbox": { "$ref": "#/$defs/bbox" }, "cells": { "type": "array", "items": { "type": "string" } } } },
+    "source": { "type": "object", "required": ["sourceId", "name", "licence", "licenceUrl", "attribution", "retrieved", "shareAlike", "inWebPack", "heldReason"], "additionalProperties": false,
+      "properties": { "sourceId": { "type": "string" }, "name": { "type": "string" }, "licence": { "type": "string" }, "licenceUrl": { "type": "string" }, "attribution": { "type": "string" }, "retrieved": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" }, "shareAlike": { "type": "boolean" }, "inWebPack": { "type": "boolean" }, "heldReason": { "type": ["string", "null"] } } }
+  }
+}
