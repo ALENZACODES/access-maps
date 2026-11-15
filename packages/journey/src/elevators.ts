@@ -209,7 +209,7 @@ export function assessElevatorsAtStop(
 
 function describeElevator(text: Copy, item: EffectiveElevator): string {
   const status = item.asset.status;
-  const feedWhen = status?.observedAt ?? UNKNOWN;
+  const feedWhen = status?.observedAt ?? text.unknown;
   const feed = text.feedLine(item.asset.name, stateWord(text, item.feedState), feedWhen);
   if (!status?.userReport || item.reportState === null) return feed;
   const report = text.reportLine(stateWord(text, item.reportState), status.userReport.observedAt);

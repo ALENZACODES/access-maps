@@ -103,6 +103,7 @@
   width: 100%;
 }
 
+.feature-list:focus,
 .feature-list button:focus,
 .map-toolbar button:focus,
 .route-switch button:focus,

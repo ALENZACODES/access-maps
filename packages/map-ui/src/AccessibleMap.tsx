@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef, useState } from "react";
 import type { MapFeature } from "@access-maps/journey";
 import { FeatureList } from "./FeatureList.js";
-import { mapCopy, statusLabel, type MapLocale } from "./i18n.js";
+import { mapCopy, statusText, type MapLocale } from "./i18n.js";
 
 type MapHandle = {
   zoomIn: (options?: { duration?: number }) => void;
@@ -162,7 +162,7 @@ export function AccessibleMap({
       <a className="skip-link" href={`#${listId}`}>
         {text.skip}
       </a>
-      <div className="map-toolbar">
+      <div className="map-toolbar" role="group" aria-label={text.mapControls}>
         <button type="button" onClick={() => zoom("in")}>{text.zoomIn}</button>
         <button type="button" onClick={() => zoom("out")}>{text.zoomOut}</button>
         <button type="button" onClick={() => pan(0, -80)}>{text.panUp}</button>
@@ -188,7 +188,7 @@ export function AccessibleMap({
       </div>
       <p className="selection-live" role="status">
         {selected
-          ? `${text.selected}: ${selected.name}. ${statusLabel(locale, selected.statusCode)}. ${selected.status}`
+          ? `${text.selected}${text.colon} ${selected.name}. ${statusText(locale, selected.statusCode)}. ${selected.status}`
           : ""}
         {mapMessage ? ` ${mapMessage}` : ""}
       </p>
