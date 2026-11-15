@@ -8,9 +8,7 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "noEmit": true,
-    "types": [
-      "node"
-    ],
+    "types": ["node"],
     "forceConsistentCasingInFileNames": true
   },
   "include": [
