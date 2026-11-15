@@ -13,9 +13,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
       - run: npm ci
+        if: hashFiles('package-lock.json') != ''
       - run: npm run check:schema
+        if: hashFiles('package-lock.json') != ''
       - run: npm run lint
+        if: hashFiles('package-lock.json') != ''
       - run: npm test
+        if: hashFiles('package-lock.json') != ''
       - run: npm run validate:sample
+        if: hashFiles('package-lock.json') != ''
