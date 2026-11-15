@@ -31,7 +31,7 @@ before a later rebuild; do not override the hold by editing generated files.
 
   Users must follow applicable laws when using the transit data.
 
-  Les utilisateurs doivent respecter les lois applicables lorsqu'ils utilisent les données de transport en commun.
+  Les utilisateurs doivent respecter les lois applicables lorsqu’ils utilisent les données de transport en commun.
 
 - **MiWay** is out. It is not in the source registry and must not appear in pack parts or counts.
 - **London Transit (gtfs-ltc)** is included in the web pack (`inWebPack` true). John Khan confirmed directly to QA on 15 November 2026 at 5:59 PM ET (America/Toronto) that London Transit data can go in. Licence: [LTC Open Data Terms of Use](https://www.londontransit.ca/open-data/ltcs-open-data-terms-of-use/), retrieved from the official open-data page at https://www.londontransit.ca/open-data/. Packed rows stay under `data/transit/gtfs-ltc/` and are never mixed into `metrolinx-*` files or `tiles/open`. Do not use LTC marks or logos, and do not claim endorsement.

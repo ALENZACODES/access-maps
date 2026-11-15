@@ -44,7 +44,7 @@ Contains information licensed under the Open Government Licence - Ontario - Metr
 
 Users must follow applicable laws when using the transit data.
 
-Les utilisateurs doivent respecter les lois applicables lorsqu'ils utilisent les données de transport en commun.
+Les utilisateurs doivent respecter les lois applicables lorsqu’ils utilisent les données de transport en commun.
 
 ## Grand River Transit
 

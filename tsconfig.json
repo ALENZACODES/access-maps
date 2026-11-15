@@ -9,7 +9,16 @@
     "resolveJsonModule": true,
     "noEmit": true,
     "types": ["node"],
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx"
   },
-  "include": ["src/**/*.ts", "scripts/**/*.ts", "test/**/*.ts"]
+  "include": [
+    "src/**/*.ts",
+    "scripts/**/*.ts",
+    "test/**/*.ts",
+    "packages/*/src/**/*.ts",
+    "packages/*/src/**/*.tsx",
+    "packages/*/test/**/*.ts",
+    "packages/*/test/**/*.tsx"
+  ]
 }
