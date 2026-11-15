@@ -1,0 +1,34 @@
+{
+  "name": "access-maps",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build:schemas": "node scripts/build-schemas.mjs",
+    "check:schema": "node scripts/check-schema-source.mjs",
+    "lint": "tsc --noEmit",
+    "test": "vitest run",
+    "validate:sample": "tsx scripts/validate-sample.ts",
+    "import:osm": "tsx scripts/import-osm.ts",
+    "import:gtfs": "tsx scripts/import-gtfs.ts",
+    "import:municipal": "tsx scripts/import-municipal.ts",
+    "import:more": "tsx scripts/import-more-municipal.ts",
+    "fetch:ttc-alerts": "tsx scripts/fetch-ttc-alerts.ts",
+    "build:tiles": "tsx scripts/build-pmtiles.ts",
+    "count": "tsx scripts/count.ts",
+    "import": "tsx scripts/import-all.ts"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "pmtiles": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}

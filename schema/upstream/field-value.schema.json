@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://access-maps.local/schema/field-value.schema.json",
+  "title": "FieldValue",
+  "description": "Copied from ALENZACODES/access-main packages/schema/schema/import/field-value.schema.json on branch cursor/schema-package-61db. Tier ids are the integers 0 through 4.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["value", "source_id", "licence", "retrieved_at", "tier"],
+  "properties": {
+    "tier": {
+      "type": "integer",
+      "enum": [0, 1, 2, 3, 4]
+    }
+  }
+}
