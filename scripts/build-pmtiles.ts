@@ -11,12 +11,10 @@ import { buildPmtiles, TileSizeError, type MapFeature } from "../src/tiles/build
 
 const FAMILIES = ["odbl", "other"] as const;
 
-/** Kept out of both tile archives until the terms in ATTRIBUTION.md are reconciled. */
+/** GO Transit and UP Express stay out of the mixed open overlay so those files can be removed quickly. */
 export const TILES_HELD_FOR_LEGAL_REVIEW = new Set([
-  "gtfs-go-transit",
-  "gtfs-up-express",
-  "gtfs-miway",
-  "gtfs-ltc",
+  "metrolinx-go",
+  "metrolinx-up",
 ]);
 
 export async function buildOfflineTiles(repoRoot: string, includePaths = true): Promise<string[]> {
@@ -62,7 +60,7 @@ function archiveOptions(family: "odbl" | "other") {
     description:
       family === "odbl"
         ? "Point overlay, and path segments short enough to sit in one tile, from the OpenStreetMap Ontario extract. This file is an ODbL layer and contains no other licence."
-        : "Point overlay from Ontario datasets with a confirmed open grant, other than OpenStreetMap. GO Transit, UP Express, MiWay, and London Transit are left out. Their terms are unreconciled or revocable. This file contains no OpenStreetMap data.",
+        : "Point overlay from Ontario datasets with a confirmed open grant, other than OpenStreetMap. GO Transit and UP Express timetable stops stay in their own metrolinx-* files and are left out of this overlay so they can be removed quickly. This file contains no OpenStreetMap data.",
     attribution:
       family === "odbl"
         ? "(c) OpenStreetMap contributors. Open Database License (ODbL) 1.0. https://www.openstreetmap.org/copyright"
