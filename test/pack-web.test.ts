@@ -77,13 +77,15 @@ afterEach(async () => {
 });
 
 describe("Ontario web pack", () => {
-  it("packs Metrolinx GO/UP with AUA provenance and holds LTC pending confirmation", () => {
+  it("packs Metrolinx GO/UP with AUA provenance and holds LTC for the availability-notice follow-up", () => {
     const registry = readRegistry(process.cwd());
     const ids = new Set(registry.sources.map((source) => source.id));
     expect(ids.has("gtfs-miway")).toBe(false);
     expect(ids.has("gtfs-go-transit")).toBe(false);
     expect(ids.has("gtfs-up-express")).toBe(false);
-    expect(holdReason(registry.sources.find((source) => source.id === "gtfs-ltc")!)).toMatch(/pending confirmation/);
+    expect(holdReason(registry.sources.find((source) => source.id === "gtfs-ltc")!)).toMatch(/availability notice/);
+    expect(registry.sources.find((source) => source.id === "metrolinx-go")!.notes).toMatch(/5:59 PM ET/);
+    expect(registry.sources.find((source) => source.id === "gtfs-ltc")!.notes).toMatch(/5:59 PM ET/);
     expect(holdReason(registry.sources.find((source) => source.id === "gtfs-ttc")!)).toBeNull();
     for (const id of ["metrolinx-go", "metrolinx-up"] as const) {
       const source = registry.sources.find((entry) => entry.id === id);
@@ -127,7 +129,7 @@ describe("Ontario web pack", () => {
     expect(manifest.sources.find((source) => source.sourceId === "gtfs-miway")).toBeUndefined();
     expect(manifest.sources.find((source) => source.sourceId === "gtfs-ltc")).toMatchObject({
       inWebPack: false,
-      heldReason: expect.stringMatching(/pending confirmation/),
+      heldReason: expect.stringMatching(/availability notice/),
     });
     const go = manifest.sources.find((source) => source.sourceId === "metrolinx-go");
     expect(go).toMatchObject({

@@ -24,8 +24,12 @@ export const METROLINX_PACK_ATTRIBUTION = `${METROLINX_AUA_LEGEND} ${METROLINX_O
 export const METROLINX_PACK_LICENCE = "Metrolinx Access and Use Agreement (accepted 2026-11-15)";
 export const METROLINX_PACK_LICENCE_URL = "https://www.gotransit.com/en/partner-with-us/software-developers";
 export const METROLINX_ACCEPTED_ON = "2026-11-15";
+/** ISO local time of John's direct confirmation to QA (America/Toronto). */
+export const JOHN_QA_CONFIRMATION_AT = "2026-11-15T17:59:00-05:00";
+export const JOHN_QA_CONFIRMATION_NOTE =
+  "John Khan confirmed directly to QA on 2026-11-15 at 5:59 PM ET (America/Toronto) that he accepted the Metrolinx Access and Use Agreement. At the same time he approved London Transit data. MiWay stays out.";
 
-/** Held out of downloadable pack parts until confirmation is recorded. MiWay is already absent from the registry. */
+/** LTC is approved, but held out of this pack until a follow-up adds the Terms of Use availability notice. MiWay is already absent from the registry. */
 export const PACK_HELD_PENDING_CONFIRMATION = new Set(["gtfs-ltc"]);
 
 export function holdReason(source: SourceEntry): string | null {
@@ -35,7 +39,7 @@ export function holdReason(source: SourceEntry): string | null {
     return "MiWay stays out: official terms are unconfirmed.";
   }
   if (PACK_HELD_PENDING_CONFIRMATION.has(source.id)) {
-    return "London Transit is held pending confirmation of the LTC Open Data Terms of Use before redistribution in the web pack.";
+    return "London Transit is held out of this web pack until a follow-up adds the LTC Terms of Use availability notice. John Khan confirmed directly to QA on 2026-11-15 at 5:59 PM ET (America/Toronto) that London Transit data can go in.";
   }
   const notes = `${source.notes ?? ""} ${source.tier_note ?? ""}`;
   if (/not been reconciled|revocable|legal review is still required|not treated as a settled open grant|held for legal review/i.test(notes)) {
