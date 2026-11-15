@@ -76,7 +76,7 @@ describe("Ontario web pack", () => {
     expect(valid(manifest), JSON.stringify(valid.errors)).toBe(true);
     expect(manifest.counts.records).toBe(2);
     expect(manifest.counts.bySource).toEqual({ "osm-ontario": 2 });
-    expect(manifest.tranches.venue.cells[cell].parts).toHaveLength(1);
+    expect(manifest.tranches.venue?.cells[cell]?.parts).toHaveLength(1);
     expect(manifest.sources.find((source) => source.sourceId === "gtfs-miway")).toMatchObject({ inWebPack: false });
     const index = JSON.parse(gunzipSync(await readFile(path.join(out, "search", `${cell}.json.gz`))).toString());
     expect(index).toHaveLength(2);

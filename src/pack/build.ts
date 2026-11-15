@@ -121,11 +121,15 @@ export async function buildWebPack(options: {
     const relative = path.relative(dataRoot, file).split(path.sep).join("/");
     const match = PATH_PATTERN.exec(relative);
     if (!match) throw new Error(`Unexpected partition path: ${relative}`);
-    const [, dir, sourceId, cell] = match;
+    const dir = match[1];
+    const sourceId = match[2];
+    const cell = match[3];
+    const tranche = dir ? DIR_TO_TRANCHE[dir] : undefined;
+    if (!dir || !sourceId || !cell || !tranche) throw new Error(`Unexpected partition path: ${relative}`);
     if (!registry.sources.some((source) => source.id === sourceId)) throw new Error(`Unregistered source: ${sourceId}`);
     if (!allowed.has(sourceId)) continue;
     const group = groups.get(cell) ?? [];
-    group.push({ file, relative, tranche: DIR_TO_TRANCHE[dir], sourceId });
+    group.push({ file, relative, tranche, sourceId });
     groups.set(cell, group);
   }
   const manifest: PackManifest = {
@@ -158,7 +162,9 @@ export async function buildWebPack(options: {
           count++;
           partCount++;
         }
-        const cellEntries = manifest.tranches[part.tranche].cells;
+        const trancheEntry = manifest.tranches[part.tranche];
+        if (!trancheEntry) throw new Error(`Missing tranche: ${part.tranche}`);
+        const cellEntries = trancheEntry.cells;
         const entry = cellEntries[cell] ?? { bbox: cellBBox(cell), parts: [] as PackPart[] };
         entry.parts.push({ path: part.relative, bytes, sha256, count: partCount, sourceId: part.sourceId });
         cellEntries[cell] = entry;

@@ -4,8 +4,9 @@ import { verifyWebPack } from "../src/pack/verify.js";
 function argument(name: string, fallback: string): string {
   const i = process.argv.indexOf(name);
   if (i < 0) return fallback;
-  if (!process.argv[i + 1]) throw new Error(`Missing value for ${name}`);
-  return process.argv[i + 1];
+  const value = process.argv[i + 1];
+  if (!value) throw new Error(`Missing value for ${name}`);
+  return value;
 }
 
 const data = argument("--data", "data");

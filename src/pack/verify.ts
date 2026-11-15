@@ -77,7 +77,11 @@ export async function verifyWebPack(options: { data: string; out: string }): Pro
   }
   if (Object.keys(searchCounts).some((cell) => !manifest.search[cell])) throw new Error("Missing search cell");
   if (total !== manifest.counts.records) throw new Error("Total count mismatch");
-  for (const [expected, actual] of [[manifest.counts.bySource, sourceCounts], [manifest.counts.byTranche, trancheCounts]]) {
+  const aggregates: Array<[Record<string, number>, Record<string, number>]> = [
+    [manifest.counts.bySource, sourceCounts],
+    [manifest.counts.byTranche, trancheCounts],
+  ];
+  for (const [expected, actual] of aggregates) {
     if (JSON.stringify(expected) !== JSON.stringify(actual)) {
       if (Object.keys(expected).length !== Object.keys(actual).length || Object.entries(expected).some(([key, n]) => actual[key] !== n)) {
         throw new Error("Aggregate count mismatch");
