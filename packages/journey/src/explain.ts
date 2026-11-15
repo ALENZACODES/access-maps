@@ -90,8 +90,14 @@ const COPY = {
       `${name}. Transfer side: ${side}. Adult change table: ${adult}. Access: ${access}.`,
     parkingFacts: (name: string, van: string, width: string, aisle: string, payment: string, distance: string, cutoff: string) =>
       `${name}. Van-accessible: ${van}. Width mm: ${width}. Aisle mm: ${aisle}. Payment: ${payment}. Distance to entrance: ${distance}. Reservation cutoff: ${cutoff}.`,
-    bookingFacts: (days: string, bookBy: string, pickup: string, wait: string, noShow: string) =>
-      `Booking window: ${days} days. Book by: ${bookBy}. Pickup window: ${pickup} minutes. Driver wait: ${wait} minutes. No-show policy: ${noShow}.`,
+    bookingFacts: (days: string, callAhead: string, pickup: string, wait: string, noShow: string) =>
+      `Booking window: ${days}. Booking cutoff: UNKNOWN. The operator's cutoff time is not in the data, so this plan does not show a deadline. ${callAhead} Pickup window: ${pickup}. Driver wait: ${wait}. No-show policy: ${noShow}.`,
+    cutoffCall: (phone: string) => `Call ${phone} to confirm the cutoff before you rely on this option.`,
+    cutoffNoPhone: "No operator phone is recorded. Confirm the cutoff with the operator before you rely on this option.",
+    dayCount: (count: number) => (count === 1 ? "1 day" : `${count} days`),
+    minuteCount: (count: number) => (count === 1 ? "1 minute" : `${count} minutes`),
+    barrierFuture:
+      "A barrier report on this access has a timestamp in the future. It cannot be confirmed as current, so this access is unknown, not step-free.",
     barrierRecorded: (reason: string, observedAt: string, ageHours: string) =>
       `${reason} Recorded ${observedAt}. Age ${ageHours} hours.`,
     feedLine: (name: string, state: string, when: string) => `Operator feed for ${name}: ${state} at ${when}.`,
@@ -102,11 +108,11 @@ const COPY = {
       `Tier ${tier}. Imported or reported record, unverified by the App. Not a survey.`,
     yes: "yes",
     no: "no",
-    paymentWord: (payment: string) => payment,
+    paymentWord: (payment: string) => (payment === "unknown" ? "UNKNOWN" : payment),
   },
   fr: {
     scheduled: "Horaire",
-    unknown: "INCONNU",
+    unknown: "Inconnu",
     straightLine: (distance: string) =>
       `Distance en ligne droite seulement : ${distance}. Ce n'est pas une distance de parcours.`,
     surface: (value: string) => `Surface : ${value}.`,
@@ -178,7 +184,7 @@ const COPY = {
     inService: "en service",
     outOfService: "hors service",
     statusUnknown: "état inconnu",
-    phoneUnknown: "Téléphone d'aide : INCONNU.",
+    phoneUnknown: "Téléphone d'aide : Inconnu.",
     alternateMissing: "Aucun autre chemin sans marches vérifié n'est enregistré.",
     entranceNotMeasured: "L'entrée n'est pas mesurée. Une étiquette du lieu n'est pas un relevé de l'entrée.",
     entranceDepth: (name: string, steps: string, ramp: string, door: string) =>
@@ -187,8 +193,14 @@ const COPY = {
       `${name}. Côté de transfert : ${side}. Table à langer pour adulte : ${adult}. Accès : ${access}.`,
     parkingFacts: (name: string, van: string, width: string, aisle: string, payment: string, distance: string, cutoff: string) =>
       `${name}. Fourgonnette : ${van}. Largeur mm : ${width}. Allée mm : ${aisle}. Paiement : ${payment}. Distance jusqu'à l'entrée : ${distance}. Limite de réservation : ${cutoff}.`,
-    bookingFacts: (days: string, bookBy: string, pickup: string, wait: string, noShow: string) =>
-      `Fenêtre de réservation : ${days} jours. Réserver avant : ${bookBy}. Fenêtre de prise en charge : ${pickup} minutes. Attente du conducteur : ${wait} minutes. Politique d'absence : ${noShow}.`,
+    bookingFacts: (days: string, callAhead: string, pickup: string, wait: string, noShow: string) =>
+      `Fenêtre de réservation : ${days}. Heure limite de réservation : Inconnu. L'heure limite de l'exploitant n'est pas dans les données, donc ce plan n'affiche pas d'échéance. ${callAhead} Fenêtre de prise en charge : ${pickup}. Attente du conducteur : ${wait}. Politique d'absence : ${noShow}.`,
+    cutoffCall: (phone: string) => `Appelez le ${phone} pour confirmer l'heure limite avant de compter sur cette option.`,
+    cutoffNoPhone: "Aucun téléphone de l'exploitant n'est enregistré. Confirmez l'heure limite auprès de l'exploitant avant de compter sur cette option.",
+    dayCount: (count: number) => (count === 1 ? "1 jour" : `${count} jours`),
+    minuteCount: (count: number) => (count === 1 ? "1 minute" : `${count} minutes`),
+    barrierFuture:
+      "Un signalement d'obstacle sur cet accès porte un horodatage dans le futur. Il ne peut pas être confirmé comme actuel, donc cet accès est inconnu, pas sans marches.",
     barrierRecorded: (reason: string, observedAt: string, ageHours: string) =>
       `${reason} Enregistré ${observedAt}. Âge ${ageHours} heures.`,
     feedLine: (name: string, state: string, when: string) => `Flux de l'exploitant pour ${name} : ${state} à ${when}.`,
@@ -204,7 +216,7 @@ const COPY = {
       if (payment === "card") return "carte";
       if (payment === "cash") return "comptant";
       if (payment === "attendant") return "préposé";
-      return "INCONNU";
+      return "Inconnu";
     },
   },
 } as const;
@@ -220,6 +232,16 @@ export function prototypeLabel(locale: Locale, tier: number | null): string {
 }
 
 export type Copy = (typeof COPY)["en"];
+
+/**
+ * The word shown for a value. `UNKNOWN` stays the data value everywhere. On screen it is
+ * written in the reader's language, so a French page does not show the English token.
+ */
+export function displayValue(locale: Locale, value: string | null | undefined): string {
+  if (value === null || value === undefined) return copy(locale).unknown;
+  const trimmed = value.trim();
+  return trimmed === "" || trimmed.toUpperCase() === "UNKNOWN" ? copy(locale).unknown : value;
+}
 
 export function copy(locale: Locale): Copy {
   return COPY[locale] as Copy;
@@ -253,6 +275,7 @@ export function statusSentence(locale: Locale, assessment: StepFreeAssessment): 
     "grade-over-limit": text.gradeOver,
     "width-under-chair": text.widthUnder,
     blocked: text.construction,
+    "barrier-future": text.barrierFuture,
   };
   return table[reason] ?? text.noEvidence;
 }

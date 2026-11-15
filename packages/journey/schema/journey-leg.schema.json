@@ -27,10 +27,25 @@
         "sourceId": { "type": "string" },
         "licence": { "type": "string" },
         "retrievedAt": { "type": "string" },
+        "retrievedOn": { "type": "string", "pattern": "^(\\d{4}-\\d{2}-\\d{2}|UNKNOWN)$" },
+        "attribution": { "type": "string", "minLength": 1 },
         "tier": {
           "anyOf": [{ "enum": [0, 1, 2, 3, 4] }, { "type": "null" }]
         }
+      },
+      "if": {
+        "properties": { "licence": { "const": "ODbL-1.0" } },
+        "required": ["licence"]
+      },
+      "then": {
+        "required": ["attribution", "retrievedOn", "tier"],
+        "properties": {
+          "attribution": { "const": "© OpenStreetMap contributors" },
+          "retrievedOn": { "type": "string" },
+          "tier": { "anyOf": [{ "enum": [0, 1, 2, 3, 4] }, { "type": "null" }] }
+        }
       }
-    }
+    },
+    "geometryAttribution": { "type": ["string", "null"] }
   }
 }

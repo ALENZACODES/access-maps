@@ -23,6 +23,9 @@ const COPY = {
     listLabel: "Map features",
     empty: "No features to list.",
     mapUnavailable: "The map canvas did not start. Use the feature list.",
+    mapControls: "Map controls",
+    colon: ":",
+    attribution: "Attribution",
     source: "Source",
     licence: "Licence",
     retrieved: "Retrieved",
@@ -64,6 +67,9 @@ const COPY = {
     listLabel: "Éléments de la carte",
     empty: "Aucun élément à lister.",
     mapUnavailable: "La carte ne s'est pas affichée. Utilisez la liste.",
+    mapControls: "Commandes de la carte",
+    colon: " :",
+    attribution: "Attribution",
     source: "Source",
     licence: "Licence",
     retrieved: "Récupéré",
@@ -98,6 +104,15 @@ export type MapCopy = { [K in keyof (typeof COPY)["en"]]: string };
 
 export function mapCopy(locale: MapLocale): MapCopy {
   return COPY[locale];
+}
+
+/** The status word without its symbol. Used where the text is read aloud. */
+export function statusText(locale: MapLocale, code: string): string {
+  const text = mapCopy(locale);
+  if (code === "step-free") return text.stepFree;
+  if (code === "not-step-free") return text.notStepFree;
+  if (code === "info") return text.info;
+  return text.unknown;
 }
 
 export function statusLabel(locale: MapLocale, code: string): string {

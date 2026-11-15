@@ -385,7 +385,12 @@ describe("FM-04 paratransit window and shared ride", () => {
     expect(leg?.links[0]?.href).toBe("https://example.test/book");
     expect(leg?.note.toLowerCase()).toContain("no guarantee");
     expect(leg?.note).toContain("Booking window: 3 days");
-    expect(leg?.note).toContain(`Book by: ${depart}`);
+    // The catalog has no cutoff field, so no deadline is shown. The departure time is not a deadline.
+    expect(leg?.note).not.toContain("Book by");
+    expect(leg?.note).not.toContain(depart);
+    expect(texts(info)).not.toContain("Book by");
+    expect(leg?.note).toContain("Booking cutoff: UNKNOWN");
+    expect(leg?.note).toContain("Call 000-333-0000 to confirm the cutoff");
     expect(leg?.note).toContain("Pickup window: 30 minutes");
     expect(leg?.note).toContain("Driver wait: 5 minutes");
     expect(leg?.note).toContain("No-show policy: scenario policy");

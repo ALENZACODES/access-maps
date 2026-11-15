@@ -1,5 +1,5 @@
 import { planJourney, type MapFeature } from "@access-maps/journey";
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 import { describe, expect, it } from "vitest";
@@ -207,6 +207,93 @@ describe("JourneyResult", () => {
     expect(page).not.toContain("home-exit");
     expect(page).not.toContain("unknown.");
     expect(page).not.toContain("not-step-free.");
-    expect(screen.getAllByText(/Pente:/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Pente :/).length).toBeGreaterThan(0);
+    // The data value UNKNOWN is shown as a French word, with French spacing before the colon.
+    expect(page).not.toMatch(/UNKNOWN|INCONNU/);
+    expect(page).toContain("Source : Inconnu.");
+    expect(page).toContain("Licence : Inconnu.");
+    expect(page).toContain("Récupéré : Inconnu.");
+    expect(page).not.toMatch(/Source:|Licence:|Récupéré:|Sélectionné:/);
+    expect(page).not.toContain("..");
+  });
+
+  const osmStamp = { source_id: "osm-ontario", licence: "ODbL-1.0", retrieved_at: "2026-10-01T04:12:00Z", tier: 0 as const };
+  const line: Array<[number, number]> = [
+    [-79.4, 43.7],
+    [-79.39, 43.7],
+  ];
+  function walkPlan(stamp: { source_id: string; licence: string; retrieved_at: string; tier: 0 }) {
+    return planJourney({
+      data: {
+        stops: [],
+        paths: [
+          {
+            id: "way/1001",
+            tranche: "path" as const,
+            region: "fixture",
+            fields: {
+              geometry: { value: line, ...stamp },
+              wheelchair: { value: "yes", ...stamp },
+              step_count: { value: 0, ...stamp },
+            },
+          },
+        ],
+        venues: [],
+        washrooms: [],
+      },
+      origin: { id: "home", name: "Home", lon: -79.4, lat: 43.7 },
+      destination: { id: "clinic", name: "Clinic", lon: -79.39, lat: 43.7 },
+      departAt: "2026-06-15T08:00:00-04:00",
+      now: "2026-06-15T07:00:00-04:00",
+      winterMode: false,
+      profile: { chair: "manual" },
+    });
+  }
+
+  it("shows the source, licence, credit, date, and tier on an OpenStreetMap walking leg", () => {
+    const view = render(<JourneyResult plan={walkPlan(osmStamp)} />);
+    const page = view.container.textContent ?? "";
+    expect(page).toContain(
+      "Source: osm-ontario. Licence: ODbL-1.0. Attribution: © OpenStreetMap contributors. Retrieved: 2026-10-01. Tier 0.",
+    );
+    expect(page).not.toContain("Source: graph");
+    expect(page).not.toContain("catalog-path");
+    expect(view.container.querySelector(".map-attribution")?.textContent).toContain("© OpenStreetMap contributors");
+    expect(page).not.toContain("..");
+  });
+
+  it("does not credit OpenStreetMap for a path from another source", () => {
+    const view = render(
+      <JourneyResult
+        plan={walkPlan({ source_id: "fixture", licence: "fixture-not-a-real-dataset", retrieved_at: "2026-11-13", tier: 0 })}
+      />,
+    );
+    expect(view.container.textContent ?? "").not.toContain("OpenStreetMap contributors");
+    expect(view.container.textContent ?? "").toContain("Source: fixture. Licence: fixture-not-a-real-dataset.");
+  });
+
+  it("groups the map controls and lets the skip link move focus to the list", () => {
+    const view = render(<JourneyResult plan={walkPlan(osmStamp)} />);
+    const group = within(view.container).getByRole("group", { name: "Map controls" });
+    expect(group.querySelectorAll("button").length).toBe(7);
+    const skip = view.container.querySelector<HTMLAnchorElement>(".skip-link");
+    const target = document.getElementById((skip?.getAttribute("href") ?? "").slice(1));
+    expect(target?.tagName).toBe("UL");
+    expect(target?.getAttribute("tabindex")).toBe("-1");
+    target?.focus();
+    expect(document.activeElement).toBe(target);
+  });
+
+  it("labels the control group in French and reads the status without its symbol", async () => {
+    const user = userEvent.setup();
+    const plan = { ...walkPlan(osmStamp), locale: "fr" as const };
+    const view = render(<JourneyResult plan={plan} />);
+    expect(within(view.container).getByRole("group", { name: "Commandes de la carte" })).toBeTruthy();
+    const first = view.container.querySelector<HTMLButtonElement>(".feature-list button");
+    expect(first).toBeTruthy();
+    if (first) await user.click(first);
+    const live = view.container.querySelector(".selection-live")?.textContent ?? "";
+    expect(live).toContain("Sélectionné :");
+    expect(live).not.toMatch(/[■▲●?] /);
   });
 });

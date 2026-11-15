@@ -1,6 +1,10 @@
 node_modules/
 dist/
+.cache/
 .vite/
 *.tsbuildinfo
+*.osm.pbf
+*.geojsonseq
+.DS_Store
 packages/map-ui/test-results/
 packages/map-ui/playwright-report/
