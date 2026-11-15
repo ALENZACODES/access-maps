@@ -2,6 +2,11 @@ name: ci
 
 on:
   pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
 
 jobs:
   test:
@@ -11,7 +16,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
+      - name: Require package-lock.json
+        run: |
+          if [ ! -f package-lock.json ]; then
+            echo "::error::package-lock.json is missing. Commit a lockfile so npm ci and the later npm steps can run."
+            exit 1
+          fi
       - run: npm ci
       - run: npm run check:schema
       - run: npm run lint
