@@ -31,34 +31,34 @@
       "notes": "City of Toronto Open Data package ttc-routes-and-schedules, license_id open-government-licence-toronto."
     },
     {
-      "id": "gtfs-go-transit",
-      "name": "Metrolinx GO Transit GTFS",
+      "id": "metrolinx-go",
+      "name": "GO Transit static GTFS",
       "kind": "gtfs",
-      "url": "https://www.metrolinx.com/en/about-us/open-data",
+      "url": "https://www.gotransit.com/en/partner-with-us/software-developers",
       "download_url": "https://assets.metrolinx.com/raw/upload/Documents/Metrolinx/Open%20Data/GO-GTFS.zip",
-      "licence_name": "Open Government Licence – Ontario – Metrolinx",
-      "licence_url": "https://assets.metrolinx.com/image/upload/v1663237565/Documents/Metrolinx/Open-Government-Licence-Ontario-Metrolinx.pdf",
-      "licence_id": "OGL-Ontario-Metrolinx-1.0",
-      "attribution": "Contains information licensed under the Open Government Licence - Ontario - Metrolinx.",
-      "retrieved_at": "2026-11-13",
+      "licence_name": "Metrolinx Access and Use Agreement (accepted 2026-11-15)",
+      "licence_url": "https://www.gotransit.com/en/partner-with-us/software-developers",
+      "licence_id": "Metrolinx Access and Use Agreement (accepted 2026-11-15)",
+      "attribution": "Data used in this product or service is provided with the permission of Metrolinx. Metrolinx makes no representations or warranties of any kind, express or implied, with respect to the Data and assumes no responsibility for the accuracy or currency of the data used in this product or service. Contains information licensed under the Open Government Licence - Ontario - Metrolinx.",
+      "retrieved_at": "2026-11-15",
       "tier": 1,
       "tier_note": "Static GTFS fields published by the operator are tier 1 operator claims, not verified observations. wheelchair_boarding 0 or empty is stored as UNKNOWN.",
-      "notes": "The current GTFS download terms are a Metrolinx Access and Use Agreement: limited, revocable, with a mandatory legend, and they have not been reconciled with the Open Government Licence – Ontario – Metrolinx PDF. This is not recorded as a plain open grant. Existing rows stay under this licence_id. GO stops are excluded from data/tiles/open. stop_amenities.txt was not imported; see sources/gaps.json."
+      "notes": "Accepted under the Metrolinx Access and Use Agreement on 2026-11-15 at 4:41:52 PM ET (America/Toronto) by downloading the official zip from the software-developers page. Packed rows live only under data/transit/metrolinx-go/ so they can be removed quickly if Metrolinx cancels. Never use Metrolinx, GO, or UP marks. Both the AUA s. 3 legend and the OGL-Ontario-Metrolinx line must be shown. Stops are kept out of data/tiles/open. stop_amenities.txt was not imported; see sources/gaps.json."
     },
     {
-      "id": "gtfs-up-express",
-      "name": "Metrolinx UP Express GTFS",
+      "id": "metrolinx-up",
+      "name": "UP Express static GTFS",
       "kind": "gtfs",
-      "url": "https://www.metrolinx.com/en/about-us/open-data",
+      "url": "https://www.gotransit.com/en/partner-with-us/software-developers",
       "download_url": "https://assets.metrolinx.com/raw/upload/Documents/Metrolinx/Open%20Data/UP-GTFS.zip",
-      "licence_name": "Open Government Licence – Ontario – Metrolinx",
-      "licence_url": "https://assets.metrolinx.com/image/upload/v1663237565/Documents/Metrolinx/Open-Government-Licence-Ontario-Metrolinx.pdf",
-      "licence_id": "OGL-Ontario-Metrolinx-1.0",
-      "attribution": "Contains information licensed under the Open Government Licence - Ontario - Metrolinx.",
-      "retrieved_at": "2026-11-13",
+      "licence_name": "Metrolinx Access and Use Agreement (accepted 2026-11-15)",
+      "licence_url": "https://www.gotransit.com/en/partner-with-us/software-developers",
+      "licence_id": "Metrolinx Access and Use Agreement (accepted 2026-11-15)",
+      "attribution": "Data used in this product or service is provided with the permission of Metrolinx. Metrolinx makes no representations or warranties of any kind, express or implied, with respect to the Data and assumes no responsibility for the accuracy or currency of the data used in this product or service. Contains information licensed under the Open Government Licence - Ontario - Metrolinx.",
+      "retrieved_at": "2026-11-15",
       "tier": 1,
       "tier_note": "Static GTFS fields published by the operator are tier 1 operator claims, not verified observations. wheelchair_boarding 0 or empty is stored as UNKNOWN.",
-      "notes": "Listed beside GO Transit GTFS. The current GTFS download terms are a Metrolinx Access and Use Agreement: limited, revocable, with a mandatory legend, and they have not been reconciled with the Open Government Licence – Ontario – Metrolinx PDF. This is not recorded as a plain open grant. Existing rows stay under this licence_id. UP Express stops are excluded from data/tiles/open."
+      "notes": "Accepted under the same Metrolinx Access and Use Agreement as the GO Transit zip, on 2026-11-15 at 4:41:53 PM ET (America/Toronto). Packed rows live only under data/transit/metrolinx-up/. Never use Metrolinx, GO, or UP marks. Both the AUA s. 3 legend and the OGL-Ontario-Metrolinx line must be shown. Stops are kept out of data/tiles/open."
     },
     {
       "id": "gtfs-grt-bus",
@@ -89,21 +89,6 @@
       "tier": 1,
       "tier_note": "Static GTFS fields published by the operator are tier 1 operator claims, not verified observations. wheelchair_boarding 0 or empty is stored as UNKNOWN.",
       "notes": "Static feed 2 from the same publishing tool. The downloaded routes.txt includes route 301, route_long_name ION light rail, route_type 0. agency_name remains Grand River Transit."
-    },
-    {
-      "id": "gtfs-miway",
-      "name": "MiWay GTFS scheduled data",
-      "kind": "gtfs",
-      "url": "https://www.mississauga.ca/miway-transit/developer-download/",
-      "download_url": "https://www.miapp.ca/GTFS/google_transit.zip",
-      "licence_name": "City of Mississauga Terms of Use",
-      "licence_url": "http://www5.mississauga.ca/research_catalogue/CityofMississauga_TermsofUse.pdf",
-      "licence_id": "City-of-Mississauga-Terms-of-Use",
-      "attribution": "These datasets are publicly available from the City of Mississauga under its Terms of Use.",
-      "retrieved_at": "2026-11-13",
-      "tier": 1,
-      "tier_note": "Static GTFS fields published by the operator are tier 1 operator claims, not verified observations. wheelchair_boarding 0 or empty is stored as UNKNOWN.",
-      "notes": "The City of Mississauga Terms of Use are revocable, include an indemnity, and a copy contains a 'City of Toronto grants you' sentence. They are not a plain open grant and they are not an Open Government Licence. Existing MiWay rows stay. No additional Mississauga dataset was imported. MiWay stops are excluded from data/tiles/open."
     },
     {
       "id": "gtfs-brampton",
@@ -141,14 +126,14 @@
       "kind": "gtfs",
       "url": "https://www.londontransit.ca/open-data/",
       "download_url": "https://www.londontransit.ca/gtfsfeed/google_transit.zip",
-      "licence_name": "London Transit Commission Open Data Terms of Use",
+      "licence_name": "LTC Open Data Terms of Use",
       "licence_url": "https://www.londontransit.ca/open-data/ltcs-open-data-terms-of-use/",
-      "licence_id": "LTC-Open-Data-Terms-of-Use",
+      "licence_id": "LTC Open Data Terms of Use",
       "attribution": "These data sets are available from the London Transit Commission under its Open Data Terms of Use.",
       "retrieved_at": "2026-11-13",
       "tier": 1,
       "tier_note": "Static GTFS fields published by the operator are tier 1 operator claims, not verified observations. wheelchair_boarding 0 or empty is stored as UNKNOWN.",
-      "notes": "The terms page is https://www.londontransit.ca/open-data/ltcs-open-data-terms-of-use/. Those terms are not treated as a settled open grant. Legal review is still required. LTC stops are excluded from data/tiles/open."
+      "notes": "Confirmed 2026-11-15 under the official LTC Open Data Terms of Use. The terms grant a worldwide, royalty-free, perpetual, non-exclusive licence to use, adapt, and distribute, including an offline copy. Do not use LTC marks or claim endorsement. Attribution is encouraged. Packed rows stay under data/transit/gtfs-ltc/ and are never mixed into metrolinx-* files."
     },
     {
       "id": "toronto-park-washrooms",

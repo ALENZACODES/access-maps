@@ -37,12 +37,12 @@
   {
     "name": "City of London trails, sidewalks, and parking",
     "url": "https://www.london.ca/",
-    "reason": "The City of London Open Data Terms of Use grant a worldwide royalty-free non-exclusive licence to use, modify, and distribute, but the City may cancel or suspend the licence and the terms include an indemnity. Redistribution must pass the terms on. Same family as the MiWay terms. Legal review is required, so these datasets were not imported."
+    "reason": "The City of London Open Data Terms of Use grant a worldwide royalty-free non-exclusive licence to use, modify, and distribute, but the City may cancel or suspend the licence and the terms include an indemnity. Redistribution must pass the terms on. Legal review is required, so these datasets were not imported."
   },
   {
     "name": "City of Mississauga public washrooms and community centres",
     "url": "http://www5.mississauga.ca/research_catalogue/CityofMississauga_TermsofUse.pdf",
-    "reason": "The same City of Mississauga Terms of Use already flagged for MiWay. Revocable, indemnity, and a 'City of Toronto grants you' sentence. No additional Mississauga dataset was imported. Existing MiWay GTFS rows stay."
+    "reason": "The official terms href on the MiWay developer page did not return the terms on 2026-11-15, and a still-hosted PDF names the City of Toronto in the grant sentence. MiWay GTFS was removed from this pack. No additional Mississauga dataset was imported."
   },
   {
     "name": "Ontario catalogue records with Licence Not Specified",
@@ -51,7 +51,7 @@
   },
   {
     "name": "GO Transit and UP Express stop_amenities.txt",
-    "url": "https://www.metrolinx.com/en/about-us/open-data",
-    "reason": "The downloaded GO and UP Express zips contain stop_amenities.txt with a washroom column coded as integers. No data dictionary was in the feed, so the codes were not interpreted and the file was not imported."
+    "url": "https://www.gotransit.com/en/partner-with-us/software-developers",
+    "reason": "The official GO Transit and UP Express zips downloaded on 2026-11-15 contain stop_amenities.txt with a washroom column coded as integers. No data dictionary was in the feed, so the codes were not interpreted and the file was not imported."
   }
 ]
