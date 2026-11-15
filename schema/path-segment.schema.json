@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://access-maps.local/schema/path-segment.schema.json",
+  "title": "PathSegment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "tranche",
+    "region",
+    "fields"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tranche": {
+      "const": "path"
+    },
+    "region": {
+      "type": "string",
+      "minLength": 1
+    },
+    "fields": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "footway",
+        "foot",
+        "surface",
+        "smoothness",
+        "incline",
+        "width",
+        "kerb",
+        "tactile_paving",
+        "lit",
+        "wheelchair",
+        "wheelchair_description",
+        "step_count",
+        "handrail",
+        "access",
+        "length_m",
+        "max_slope",
+        "min_width",
+        "stair_count",
+        "from_ref",
+        "to_ref",
+        "geometry",
+        "geometry_type",
+        "crossing",
+        "pathway_mode",
+        "bidirectional",
+        "oneway",
+        "traversal_time_s",
+        "signposted_as",
+        "reversed_signposted_as",
+        "ramp",
+        "indoor"
+      ],
+      "properties": {
+        "kind": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "footway": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "foot": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "surface": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "smoothness": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "incline": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "width": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "kerb": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "tactile_paving": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "lit": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "wheelchair": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "wheelchair_description": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "step_count": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "handrail": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "access": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "length_m": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "max_slope": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "min_width": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "stair_count": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "from_ref": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "to_ref": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "geometry": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "geometry_type": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "crossing": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "pathway_mode": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "bidirectional": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "oneway": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "traversal_time_s": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "signposted_as": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "reversed_signposted_as": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "ramp": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        },
+        "indoor": {
+          "$ref": "https://access-maps.local/schema/field-value.schema.json"
+        }
+      }
+    }
+  }
+}
