@@ -1,9 +1,11 @@
 import { planJourney, type MapFeature } from "@access-maps/journey";
-import { render, screen, waitFor, within } from "@testing-library/react";
+import { cleanup, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 import { AccessibleMap, JourneyResult, mapCopyLocaleKeys } from "../src/index.js";
+
+afterEach(() => cleanup());
 
 const features: MapFeature[] = [
   {
