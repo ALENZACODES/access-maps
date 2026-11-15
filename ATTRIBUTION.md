@@ -34,7 +34,7 @@ Datasets:
 
 ## GO Transit and UP Express
 
-The official static GTFS zips were accepted under the Metrolinx Access and Use Agreement on 15 November 2026 at 4:41:52 PM ET (America/Toronto), from https://www.gotransit.com/en/partner-with-us/software-developers. Packed rows live only in `data/transit/metrolinx-go/` and `data/transit/metrolinx-up/`. They are excluded from `data/tiles/open/`. Never use Metrolinx, GO, or UP marks or logos. Plain-text agency names may be used only as needed for wayfinding. No endorsement.
+The official static GTFS zips were accepted under the Metrolinx Access and Use Agreement on 15 November 2026 at 4:41:52 PM ET (America/Toronto), from https://www.gotransit.com/en/partner-with-us/software-developers. John Khan confirmed directly to QA on 15 November 2026 at 5:59 PM ET (America/Toronto) that he accepted the Metrolinx Access and Use Agreement. Packed rows live only in `data/transit/metrolinx-go/` and `data/transit/metrolinx-up/`. They are excluded from `data/tiles/open/`. Never use Metrolinx, GO, or UP marks or logos. Plain-text agency names may be used only as needed for wayfinding. No endorsement.
 
 Whenever these timetable rows are presented, show both of the following, prominently, not necessarily on every row, and on Data status / this page:
 
@@ -72,7 +72,7 @@ These data sets are available from LTC under the LTC Open Data Terms of Use: htt
 
 https://www.londontransit.ca/open-data/
 
-The terms were confirmed on 2026-11-15. Packed rows stay under `data/transit/gtfs-ltc/`. Do not use LTC marks or claim endorsement.
+The terms were confirmed on 2026-11-15. John Khan confirmed directly to QA on 15 November 2026 at 5:59 PM ET (America/Toronto) that London Transit data can go in. Packed rows stay under `data/transit/gtfs-ltc/`. Do not use LTC marks or claim endorsement.
 
 ## TTC GTFS-RT accessibility alerts
 
