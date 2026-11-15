@@ -2,7 +2,7 @@
 export const metrolinxAuaLegendEn = "Data used in this product or service is provided with the permission of Metrolinx. Metrolinx makes no representations or warranties of any kind, express or implied, with respect to the Data and assumes no responsibility for the accuracy or currency of the data used in this product or service.";
 export const metrolinxOglLineEn = "Contains information licensed under the Open Government Licence - Ontario - Metrolinx.";
 export const transitEndUserTermsEn = "You must follow all applicable laws when using the transit timetable data in the App.";
-export const transitEndUserTermsFr = "Vous devez respecter toutes les lois applicables lorsque vous utilisez les données d'horaires de transport en commun dans l'App.";
+export const transitEndUserTermsFr = "Vous devez respecter toutes les lois applicables lorsque vous utilisez les données d’horaires de transport en commun dans l’App.";
 
 export type WheelchairFlag = "0" | "1" | "2" | "UNKNOWN";
 export interface TimedDeparture {

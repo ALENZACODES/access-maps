@@ -245,13 +245,27 @@ export function buildTimetables(opts: BuildOptions): { parts: Part[]; sources: S
   return { parts, sources, skipped };
 }
 
+function requiredOption(args: string[], flag: string): string {
+  const i = args.indexOf(flag);
+  const value = i >= 0 ? args[i + 1] : undefined;
+  if (!value) throw new Error(`${flag} is required`);
+  return value;
+}
+
+function option(args: string[], flag: string, fallback: string): string {
+  const i = args.indexOf(flag);
+  return i < 0 ? fallback : args[i + 1] || fallback;
+}
+
 function main(): void {
   const args = process.argv.slice(2);
-  const option = (flag: string, fallback: string): string => { const i = args.indexOf(flag); return i < 0 ? fallback : args[i + 1] || fallback; };
-  const allowFile = resolve(option("--allowlist", "packages/timetables/src/licence-allowlist.json"));
-  const opts = { input: resolve(option("--input", "/workspace/shared/access-data/transit/metrolinx/2026-11-15")),
-    output: resolve(option("--output", ".")), allowlist: JSON.parse(readFileSync(allowFile, "utf8")) as Allowed[],
-    budgetBytes: Number(option("--budget-bytes", String(150 * 1024 * 1024))) };
+  const allowFile = resolve(option(args, "--allowlist", "packages/timetables/src/licence-allowlist.json"));
+  const opts = {
+    input: resolve(requiredOption(args, "--input")),
+    output: resolve(option(args, "--output", ".")),
+    allowlist: JSON.parse(readFileSync(allowFile, "utf8")) as Allowed[],
+    budgetBytes: Number(option(args, "--budget-bytes", String(150 * 1024 * 1024))),
+  };
   buildTimetables(opts);
 }
 if (process.argv[1] && /build-gtfs-timetables\.(?:ts|js)$/.test(process.argv[1])) main();

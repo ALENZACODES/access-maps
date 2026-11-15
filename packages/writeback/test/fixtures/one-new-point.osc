@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osmChange version="0.6" generator="the App">
+  <!-- the App 2026-11-15; © OpenStreetMap contributors, ODbL; Person checked entrance -->
+  <create>
+  <node id="-1" lat="43.7" lon="-79.4">
+    <tag k="created_by" v="the App (2026-11-15)"/>
+    <tag k="wheelchair" v="yes"/>
+  </node>
+  </create>
+</osmChange>

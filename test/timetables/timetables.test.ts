@@ -140,7 +140,7 @@ describe("fictional GTFS timetable pack", () => {
     expect(metrolinxAuaLegendEn).toBe("Data used in this product or service is provided with the permission of Metrolinx. Metrolinx makes no representations or warranties of any kind, express or implied, with respect to the Data and assumes no responsibility for the accuracy or currency of the data used in this product or service.");
     expect(metrolinxOglLineEn).toBe("Contains information licensed under the Open Government Licence - Ontario - Metrolinx.");
     expect(transitEndUserTermsEn).toBe("You must follow all applicable laws when using the transit timetable data in the App.");
-    expect(transitEndUserTermsFr).toBe("Vous devez respecter toutes les lois applicables lorsque vous utilisez les données d'horaires de transport en commun dans l'App.");
+    expect(transitEndUserTermsFr).toBe("Vous devez respecter toutes les lois applicables lorsque vous utilisez les données d’horaires de transport en commun dans l’App.");
   });
 });
 function requireGunzip(bytes: Buffer): string { return gunzipSync(bytes).toString("utf8"); }
