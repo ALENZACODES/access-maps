@@ -7,7 +7,7 @@ import type {
   TransitTrip,
   TransferPoint,
 } from "./catalog.js";
-import { copy, statusSentence } from "./explain.js";
+import { copy, displayValue, statusSentence } from "./explain.js";
 import { formatMetres, haversineMetres, hoursBetween, isWinterDate, type Coord } from "./geo.js";
 import { assertHonest } from "./invariants.js";
 import { applyOffline } from "./offline.js";
@@ -46,6 +46,7 @@ import {
   barriersForStop,
   buildWorld,
   elevatorsForStop,
+  futureBarriersForStop,
   venueById,
   type RoutingWorld,
   type StopPoint,
@@ -376,7 +377,7 @@ function buildIntercityJourney(
     const deadline = new Date(Date.parse(service.departure) - assistance.minimumNoticeHours * 3_600_000);
     const deadlineIso = Number.isNaN(deadline.getTime()) ? "UNKNOWN" : deadline.toISOString();
     const tooLate = Date.parse(ctx.now) > Date.parse(deadlineIso);
-    note = text.assistanceLate(deadlineIso, assistance.phone);
+    note = text.assistanceLate(displayValue(ctx.locale, deadlineIso), assistance.phone);
     if (tooLate) {
       assessment = barrier("assistance-window", service.provenance.tier, [service.id, `deadline:${deadlineIso}`]);
     } else {
@@ -440,7 +441,7 @@ function finishJourney(
   const presentedAsStepFree = fullyStepFree(legs);
   const roundTripStepFree = presentedAsStepFree && returnJourney.presentedAsStepFree;
   const weakestLeg = weakestLegOf(legs) ?? legs[0];
-  const weakestText = text.weakest(weakestLeg?.title ?? "UNKNOWN", weakestLeg?.note ?? text.noEvidence);
+  const weakestText = text.weakest(weakestLeg?.title ?? text.unknown, weakestLeg?.note ?? text.noEvidence);
   const unknownTitles = legs
     .filter((leg) => leg.stepFree.status === "unknown")
     .map((leg) => leg.title);
@@ -556,6 +557,16 @@ function stationLeg(ctx: BuildContext, stop: StopPoint): Leg {
       note = stop.boarding === "yes" ? text.boardingNotPath : text.elevatorUnknown;
     }
   }
+  const futureReport = futureBarriersForStop(ctx.world.source, stop.id, ctx.now)[0];
+  if (futureReport && assessment.status !== "not-step-free") {
+    assessment = unknownAssessment(
+      "barrier-future",
+      [...assessment.evidence, `barrier-future:${futureReport.observedAt}`],
+      futureReport.provenance.tier,
+    );
+    note = `${text.barrierFuture} ${note}`.trim();
+    provenance = futureReport.provenance;
+  }
   return baseLeg(ctx, {
     mode: "station-access",
     chainLeg: "ride",
@@ -661,14 +672,14 @@ function movementLeg(
     surface: spec.result.surface,
     gradient: spec.result.gradient,
     timing: null,
-    provenance: {
-      sourceId: spec.result.kind === "route" ? spec.result.engine : UNKNOWN,
-      licence: spec.result.kind === "route" ? "catalog-path" : UNKNOWN,
-      retrievedAt: UNKNOWN,
-      tier: assessment.tier,
-      note: distanceSentence,
-    },
-    note: `${distanceSentence} ${text.surface(spec.result.surface)} ${text.gradient(spec.result.gradient)}${barrierSentence}`,
+    // The deciding path record (or barrier report), carried through the router. The router's id is
+    // not a data source, and a straight-line gap has no record behind it.
+    provenance:
+      spec.result.kind === "route" && spec.result.provenance
+        ? spec.result.provenance
+        : emptyProvenance(ctx.now, distanceSentence),
+    geometryAttribution: spec.result.kind === "route" ? spec.result.geometryAttribution : null,
+    note: `${distanceSentence} ${text.surface(displayValue(ctx.locale, spec.result.surface))} ${text.gradient(displayValue(ctx.locale, spec.result.gradient))}${barrierSentence}`,
     agencyId: null,
     transitMode: null,
     links: [],
@@ -779,7 +790,6 @@ function activityLeg(ctx: BuildContext): Leg {
 function paratransitLeg(ctx: BuildContext, system: ParatransitDirectoryEntry, chainLeg: ChainLegId): Leg {
   const text = copy(ctx.locale);
   const warnings: Warning[] = [];
-  const phone = system.phone ?? "UNKNOWN";
   let note = `${text.paratransitLink} ${bookingSentence(ctx, system)}`;
   let assessment = unknownAssessment("no-evidence", [system.id], system.provenance.tier);
   if (system.weatherStatus?.state === "cancelled") {
@@ -804,11 +814,12 @@ function paratransitLeg(ctx: BuildContext, system: ParatransitDirectoryEntry, ch
         ? `${note} Les arrêts non prévus ne sont pas permis par cet exploitant.`
         : `${note} Unscheduled stops are not permitted by this operator.`;
   }
+  // The catalog has no booking-cutoff field. The departure time is not a deadline, so none is shown.
   note = `${note} ${text.bookingFacts(
-    system.bookingWindowDays === null ? text.unknown : String(system.bookingWindowDays),
-    ctx.input.departAt,
-    system.pickupWindowMinutes === null ? text.unknown : String(system.pickupWindowMinutes),
-    system.driverWaitMinutes === null ? text.unknown : String(system.driverWaitMinutes),
+    system.bookingWindowDays === null ? text.unknown : text.dayCount(system.bookingWindowDays),
+    system.phone ? text.cutoffCall(system.phone) : text.cutoffNoPhone,
+    system.pickupWindowMinutes === null ? text.unknown : text.minuteCount(system.pickupWindowMinutes),
+    system.driverWaitMinutes === null ? text.unknown : text.minuteCount(system.driverWaitMinutes),
     system.noShowPolicy ?? text.unknown,
   )}`;
   if (!ctx.profile.registrations.includes(system.id)) {
@@ -891,7 +902,7 @@ function handoffLeg(ctx: BuildContext, transfer: TransferPoint | undefined): Leg
   return baseLeg(ctx, {
     mode: "handoff",
     chainLeg: "ride",
-    title: heading(ctx.locale, "handoff", transfer?.name ?? "UNKNOWN", transfer?.name ?? "UNKNOWN"),
+    title: heading(ctx.locale, "handoff", transfer?.name ?? text.unknown, transfer?.name ?? text.unknown),
     fromName: transfer?.name ?? "UNKNOWN",
     toName: transfer?.name ?? "UNKNOWN",
     from: ctx.input.origin,
@@ -915,7 +926,7 @@ function handoffLeg(ctx: BuildContext, transfer: TransferPoint | undefined): Leg
 
 function bookingSentence(ctx: BuildContext, system: ParatransitDirectoryEntry): string {
   const text = copy(ctx.locale);
-  const phone = system.phone ?? "UNKNOWN";
+  const phone = system.phone ?? text.unknown;
   if (system.bookingWindowDays === null) {
     return `${text.bookingUnknown} ${phone}.`;
   }
@@ -940,7 +951,7 @@ function destinationDepth(ctx: BuildContext, endpoint: Endpoint, venue: Imported
   const parking = nearestParking(ctx, endpoint);
   return {
     entrance: {
-      text: `${text.entranceDepth(endpoint.name, stepCount, ramp, doorWidth)} ${entranceAssessment(venue).reasons.includes("entrance-not-measured") ? text.entranceNotMeasured : ""}`.trim(),
+      text: `${text.entranceDepth(endpoint.name, displayValue(ctx.locale, stepCount), displayValue(ctx.locale, ramp), displayValue(ctx.locale, doorWidth))} ${entranceAssessment(venue).reasons.includes("entrance-not-measured") ? text.entranceNotMeasured : ""}`.trim(),
       stepCount,
       ramp,
       doorWidth,
@@ -994,12 +1005,12 @@ function describeWashroom(
     sentence = text.washroomTransfer;
   } else {
     usable = true;
-    sentence = text.washroomFacts(readString(found.record, "name"), sideLabel, adult, access);
+    sentence = text.washroomFacts(displayValue(ctx.locale, readString(found.record, "name")), displayValue(ctx.locale, sideLabel), displayValue(ctx.locale, adult), displayValue(ctx.locale, access));
   }
   const phoneField = readString(found.record, "phone");
   const callPhone = phoneField === UNKNOWN ? phone : phoneField;
   if (!usable) {
-    sentence = `${sentence} ${text.washroomFacts(readString(found.record, "name"), sideLabel, adult, access)} ${callPhone === UNKNOWN ? "" : callPhone}`.trim();
+    sentence = `${sentence} ${text.washroomFacts(displayValue(ctx.locale, readString(found.record, "name")), displayValue(ctx.locale, sideLabel), displayValue(ctx.locale, adult), displayValue(ctx.locale, access))} ${callPhone === UNKNOWN ? "" : callPhone}`.trim();
   }
   return {
     text: sentence,
@@ -1160,8 +1171,8 @@ function fareWarnings(ctx: BuildContext, lines: FareLine[]): Warning[] {
 }
 
 function fareText(locale: Locale, rule: FareRule): string {
-  const card = rule.card ?? "UNKNOWN";
-  const proof = rule.proof ?? "UNKNOWN";
+  const card = rule.card ?? copy(locale).unknown;
+  const proof = rule.proof ?? copy(locale).unknown;
   if (locale === "fr") {
     return `${rule.agencyName}. Accompagnateur : ${rule.supportPerson}. Carte : ${card}. Preuve : ${proof}.`;
   }
@@ -1599,6 +1610,7 @@ interface LegInit {
   gradient: string;
   timing: ScheduledTiming | null;
   provenance: Provenance;
+  geometryAttribution?: string | null;
   note: string;
   warnings?: Warning[];
   singlePointOfFailure?: boolean;
@@ -1632,6 +1644,7 @@ function baseLeg(ctx: BuildContext, init: LegInit): Leg {
     gradient: init.gradient || "UNKNOWN",
     timing: init.timing,
     provenance: init.provenance,
+    geometryAttribution: init.geometryAttribution ?? null,
     note: init.note,
     warnings: init.warnings ?? [],
     singlePointOfFailure: init.singlePointOfFailure ?? false,
@@ -1657,10 +1670,12 @@ function modeLabel(locale: Locale, mode: LegMode): string {
 }
 
 function barrierClause(locale: Locale, assessment: StepFreeAssessment): string {
-  const observed = assessment.evidence.find((item) => item.startsWith("barrier-observed:"));
-  if (!observed) return "";
-  const age = assessment.evidence.find((item) => item.startsWith("barrier-age-hours:"));
   const text = copy(locale);
+  const observed = assessment.evidence.find((item) => item.startsWith("barrier-observed:"));
+  if (!observed) {
+    return assessment.reasons.includes("barrier-future") ? ` ${text.barrierFuture}` : "";
+  }
+  const age = assessment.evidence.find((item) => item.startsWith("barrier-age-hours:"));
   return ` ${text.barrierRecorded(
     statusSentence(locale, assessment),
     observed.slice("barrier-observed:".length),

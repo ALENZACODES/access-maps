@@ -1,6 +1,6 @@
 import { coordKey, formatMetres, haversineMetres, type Coord } from "./geo.js";
 import { combineAssessments, unknownAssessment } from "./stepfree.js";
-import type { StepFreeAssessment } from "./types.js";
+import type { Provenance, StepFreeAssessment } from "./types.js";
 
 export interface PreparedSegment {
   id: string;
@@ -12,7 +12,10 @@ export interface PreparedSegment {
   assessment: StepFreeAssessment;
   surface: string;
   gradient: string;
-  provenanceNote: string;
+  /** The record that decided this segment's status: the path field, or a barrier report. */
+  provenance: Provenance;
+  /** Credit owed for this segment's geometry, or null when the path is not OpenStreetMap data. */
+  geometryAttribution: string | null;
 }
 
 export interface RouterRequest {
@@ -33,6 +36,13 @@ export interface RouterResult {
   gradient: string;
   engine: string;
   note: string;
+  /**
+   * Provenance of the segment that decided `assessment`. Null when no catalog record was used
+   * (a straight-line gap or an external engine). The engine id is never a data source.
+   */
+  provenance: Provenance | null;
+  /** Credit owed for the drawn geometry, or null. */
+  geometryAttribution: string | null;
 }
 
 export interface RouterAdapter {
@@ -72,6 +82,8 @@ export class StraightLineRouter implements RouterAdapter {
       gradient: "UNKNOWN",
       engine: this.id,
       note: `straight-line ${formatMetres(metres)}`,
+      provenance: null,
+      geometryAttribution: null,
     };
   }
 }
@@ -132,6 +144,8 @@ export class GraphRouter implements RouterAdapter {
         gradient: "UNKNOWN",
         engine: this.id,
         note: "endpoints snap to one node",
+        provenance: null,
+        geometryAttribution: null,
       };
     }
 
@@ -177,6 +191,7 @@ export class GraphRouter implements RouterAdapter {
     if (!prev.has(endKey) && startKey !== endKey) return null;
 
     const segmentIds: string[] = [];
+    const used: PreparedSegment[] = [];
     const assessments: StepFreeAssessment[] = [];
     const geometry: Coord[] = [];
     let cursor: string | undefined = endKey;
@@ -186,6 +201,7 @@ export class GraphRouter implements RouterAdapter {
       const step = prev.get(cursor);
       if (!step) return null;
       segmentIds.push(step.segment.id);
+      used.push(step.segment);
       assessments.push(step.segment.assessment);
       geometry.push(step.segment.to);
       if (step.segment.surface !== "UNKNOWN") surfaces.add(step.segment.surface);
@@ -195,8 +211,12 @@ export class GraphRouter implements RouterAdapter {
     geometry.push(nodes.get(startKey) ?? request.from);
     geometry.reverse();
     segmentIds.reverse();
+    used.reverse();
 
     const assessment = combineAssessments(assessments);
+    // The combined status is the worst segment status, so the first segment with that status decided it.
+    const deciding = used.find((segment) => segment.assessment.status === assessment.status) ?? used[0];
+    const credited = used.find((segment) => segment.geometryAttribution !== null);
     return {
       kind: "route",
       distanceMetres: dist.get(endKey) ?? null,
@@ -207,6 +227,8 @@ export class GraphRouter implements RouterAdapter {
       gradient: gradients.size > 0 ? [...gradients].join(", ") : "UNKNOWN",
       engine: this.id,
       note: segmentIds.join(","),
+      provenance: deciding ? { ...deciding.provenance, note: deciding.id } : null,
+      geometryAttribution: credited?.geometryAttribution ?? null,
     };
   }
 }
@@ -309,6 +331,8 @@ export async function routeWithFetch(
     gradient: "UNKNOWN",
     engine: options.engine,
     note: "External pedestrian geometry is not step-free evidence.",
+    provenance: null,
+    geometryAttribution: null,
   };
 }
 

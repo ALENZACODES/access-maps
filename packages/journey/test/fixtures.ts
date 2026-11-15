@@ -33,6 +33,21 @@ export function field(
   };
 }
 
+/** A field stamped the way the open-data lane stamps an OpenStreetMap import. Scenario values only. */
+export function osmField(
+  value: FieldValue["value"],
+  retrievedAt = "2026-10-01T04:12:00Z",
+  tier: VerificationTier = 0,
+): FieldValue {
+  return {
+    value,
+    source_id: "osm-ontario",
+    licence: "ODbL-1.0",
+    retrieved_at: retrievedAt,
+    tier,
+  };
+}
+
 export function stop(
   id: string,
   name: string,

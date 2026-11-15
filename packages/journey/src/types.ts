@@ -25,6 +25,16 @@ export interface Provenance {
   tier: VerificationTier | null;
   note?: string;
   survey?: SurveyRecord | null;
+  /**
+   * Credit line the licence requires. Set only when the cited record is OpenStreetMap data,
+   * where it is "© OpenStreetMap contributors".
+   */
+  attribution?: string;
+  /**
+   * Calendar date (YYYY-MM-DD) the cited record was retrieved, taken from the record itself.
+   * UNKNOWN when the record has no usable date. Set alongside `attribution`.
+   */
+  retrievedOn?: string;
 }
 
 export interface StepFreeAssessment {
@@ -99,6 +109,11 @@ export interface Leg {
   gradient: string;
   timing: ScheduledTiming | null;
   provenance: Provenance;
+  /**
+   * Credit owed for the drawn path geometry, or null. This is separate from `provenance`:
+   * a barrier report can decide the status of a leg whose line is still OpenStreetMap data.
+   */
+  geometryAttribution: string | null;
   note: string;
   warnings: Warning[];
   singlePointOfFailure: boolean;

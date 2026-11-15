@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import type { MapFeature } from "@access-maps/journey";
+import { displayValue, type MapFeature } from "@access-maps/journey";
 import { mapCopy, statusLabel, type MapLocale } from "./i18n.js";
 
 export function FeatureList({
@@ -29,11 +29,15 @@ export function FeatureList({
   }
 
   if (features.length === 0) {
-    return <p>{text.empty}</p>;
+    return (
+      <p id={listId} tabIndex={-1}>
+        {text.empty}
+      </p>
+    );
   }
 
   return (
-    <ul id={listId} className="feature-list" aria-label={text.listLabel}>
+    <ul id={listId} className="feature-list" aria-label={text.listLabel} tabIndex={-1}>
       {features.map((feature, index) => {
         const selected = feature.id === selectedId;
         return (
@@ -65,7 +69,9 @@ export function FeatureList({
               <span className="feature-name">{feature.name}</span>
               <span className={`status status-${feature.statusCode}`}>{statusLabel(locale, feature.statusCode)}</span>
               <span className="feature-detail">
-                {text.source}: {feature.source}. {text.licence}: {feature.licence}. {text.retrieved}: {feature.retrievedAt}. {feature.prototypeLabel}. {feature.status}
+                {text.source}{text.colon} {displayValue(locale, feature.source)}. {text.licence}{text.colon} {displayValue(locale, feature.licence)}.{" "}
+                {feature.attribution ? `${text.attribution}${text.colon} ${feature.attribution}. ` : ""}
+                {text.retrieved}{text.colon} {displayValue(locale, feature.retrievedOn ?? feature.retrievedAt)}. {feature.prototypeLabel} {feature.status}
               </span>
             </button>
           </li>
