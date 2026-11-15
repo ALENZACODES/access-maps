@@ -104,7 +104,7 @@ describe("GTFS mapping", () => {
       },
       new Map(),
       ctx,
-      "gtfs-miway",
+      "gtfs-ltc",
     );
     expect(stop?.fields.location_type?.value).toBe("boarding_area");
     expect(stop?.fields.level_id?.value).toBe("missing");

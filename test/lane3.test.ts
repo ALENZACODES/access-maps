@@ -314,10 +314,8 @@ describe("PMTiles overlay", () => {
     ).toThrow(/refusing to put/);
     expect(() => assertArchiveSize(MAX_PMTILES_BYTES)).toThrow(TileSizeError);
     expect([...TILES_HELD_FOR_LEGAL_REVIEW].sort()).toEqual([
-      "gtfs-go-transit",
-      "gtfs-ltc",
-      "gtfs-miway",
-      "gtfs-up-express",
+      "metrolinx-go",
+      "metrolinx-up",
     ]);
   });
 });

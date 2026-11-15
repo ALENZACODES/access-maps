@@ -1,15 +1,15 @@
 {
   "definition": "A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. Section 5.6 counts only tier 2 and tier 3 values toward 500,000. Tier 0 and tier 1 accessibility facts are reported separately and are not verified.",
-  "records": 1417632,
-  "pieces": 6958940,
-  "gaps": 43944541,
+  "records": 1413566,
+  "pieces": 6936277,
+  "gaps": 43914346,
   "derived_excluded": 3832,
   "verified_toward_500k": 0,
-  "accessibility_fact_pieces": 698375,
-  "other_populated_pieces": 5766520,
-  "accessibility_pieces": 698375,
-  "accessibility_gaps": 24197679,
-  "identity_pieces": 5766520,
+  "accessibility_fact_pieces": 695251,
+  "other_populated_pieces": 5746981,
+  "accessibility_pieces": 695251,
+  "accessibility_gaps": 24196737,
+  "identity_pieces": 5746981,
   "context_pieces": 494045,
   "context_gaps": 4024959,
   "accessibility_definition": "An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.",
@@ -357,51 +357,52 @@
       }
     },
     "transit": {
-      "records": 23786,
-      "pieces": 141430,
-      "accessibility_facts": 20045,
-      "other_populated": 121385,
+      "records": 19720,
+      "pieces": 118767,
+      "accessibility_facts": 16921,
+      "other_populated": 101846,
       "verified": 0,
-      "gaps": 167788,
+      "gaps": 137593,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "1": 141430
+        "1": 118767
       },
       "gaps_by_tier": {
-        "1": 167788
+        "1": 137593
       },
       "pieces_by_source": {
         "gtfs-brampton": 16917,
-        "gtfs-go-transit": 6151,
         "gtfs-grt-bus": 13750,
         "gtfs-grt-ion": 159,
         "gtfs-hsr": 13993,
         "gtfs-ltc": 11625,
-        "gtfs-miway": 22663,
         "gtfs-ttc": 56142,
-        "gtfs-up-express": 30
+        "metrolinx-go": 6151,
+        "metrolinx-up": 30
       },
       "pieces_by_retrieved_at": {
-        "2026-11-13": 141430
+        "2026-11-13": 112586,
+        "2026-11-15": 6181
       },
       "gaps_by_retrieved_at": {
-        "2026-11-13": 167788
+        "2026-11-13": 132152,
+        "2026-11-15": 5441
       },
       "gap_fields": {
-        "parent_station": 23610,
-        "platform_code": 23629,
-        "level_id": 23786,
-        "level_index": 23786,
-        "level_name": 23786,
-        "description": 21564,
-        "url": 22789,
-        "wheelchair_boarding": 3741,
-        "stop_code": 1097
+        "parent_station": 19552,
+        "platform_code": 19706,
+        "level_id": 19720,
+        "level_index": 19720,
+        "level_name": 19720,
+        "description": 17498,
+        "url": 18723,
+        "wheelchair_boarding": 2799,
+        "stop_code": 155
       },
-      "accessibility_pieces": 20045,
-      "accessibility_gaps": 3741,
+      "accessibility_pieces": 16921,
+      "accessibility_gaps": 2799,
       "accessibility_by_field": {
-        "wheelchair_boarding": 20045
+        "wheelchair_boarding": 16921
       },
       "context_pieces": 0,
       "context_gaps": 0,
@@ -442,22 +443,6 @@
         "2026-11-13": 16917
       },
       "accessibility_pieces": 2492
-    },
-    "gtfs-go-transit": {
-      "records": 889,
-      "pieces": 6151,
-      "gaps": 5406,
-      "derived_excluded": 0,
-      "pieces_by_tier": {
-        "1": 6151
-      },
-      "pieces_by_tranche": {
-        "transit": 6151
-      },
-      "pieces_by_retrieved_at": {
-        "2026-11-13": 6151
-      },
-      "accessibility_pieces": 889
     },
     "gtfs-grt-bus": {
       "records": 2265,
@@ -523,22 +508,6 @@
       },
       "accessibility_pieces": 1896
     },
-    "gtfs-miway": {
-      "records": 4066,
-      "pieces": 22663,
-      "gaps": 30195,
-      "derived_excluded": 0,
-      "pieces_by_tier": {
-        "1": 22663
-      },
-      "pieces_by_tranche": {
-        "transit": 22663
-      },
-      "pieces_by_retrieved_at": {
-        "2026-11-13": 22663
-      },
-      "accessibility_pieces": 3124
-    },
     "gtfs-ttc": {
       "records": 9357,
       "pieces": 56142,
@@ -555,7 +524,23 @@
       },
       "accessibility_pieces": 9357
     },
-    "gtfs-up-express": {
+    "metrolinx-go": {
+      "records": 889,
+      "pieces": 6151,
+      "gaps": 5406,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "1": 6151
+      },
+      "pieces_by_tranche": {
+        "transit": 6151
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-15": 6151
+      },
+      "accessibility_pieces": 889
+    },
+    "metrolinx-up": {
       "records": 5,
       "pieces": 30,
       "gaps": 35,
@@ -567,7 +552,7 @@
         "transit": 30
       },
       "pieces_by_retrieved_at": {
-        "2026-11-13": 30
+        "2026-11-15": 30
       },
       "accessibility_pieces": 5
     },
@@ -2353,58 +2338,6 @@
       "bytes": 112091
     },
     {
-      "file": "data/transit/gtfs-go-transit/n42.5_w080.5.ndjson.gz",
-      "bytes": 452
-    },
-    {
-      "file": "data/transit/gtfs-go-transit/n43.0_w079.5.ndjson.gz",
-      "bytes": 925
-    },
-    {
-      "file": "data/transit/gtfs-go-transit/n43.0_w080.0.ndjson.gz",
-      "bytes": 3056
-    },
-    {
-      "file": "data/transit/gtfs-go-transit/n43.0_w080.5.ndjson.gz",
-      "bytes": 2098
-    },
-    {
-      "file": "data/transit/gtfs-go-transit/n43.0_w081.0.ndjson.gz",
-      "bytes": 796
-    },
-    {
-      "file": "data/transit/gtfs-go-transit/n43.5_w079.0.ndjson.gz",
-      "bytes": 3551
-    },
-    {
-      "file": "data/transit/gtfs-go-transit/n43.5_w079.5.ndjson.gz",
-      "bytes": 8857
-    },
-    {
-      "file": "data/transit/gtfs-go-transit/n43.5_w080.0.ndjson.gz",
-      "bytes": 13437
-    },
-    {
-      "file": "data/transit/gtfs-go-transit/n43.5_w080.5.ndjson.gz",
-      "bytes": 3902
-    },
-    {
-      "file": "data/transit/gtfs-go-transit/n44.0_w078.5.ndjson.gz",
-      "bytes": 632
-    },
-    {
-      "file": "data/transit/gtfs-go-transit/n44.0_w079.0.ndjson.gz",
-      "bytes": 458
-    },
-    {
-      "file": "data/transit/gtfs-go-transit/n44.0_w079.5.ndjson.gz",
-      "bytes": 3211
-    },
-    {
-      "file": "data/transit/gtfs-go-transit/n44.0_w080.0.ndjson.gz",
-      "bytes": 2376
-    },
-    {
       "file": "data/transit/gtfs-grt-bus/n43.0_w080.5.ndjson.gz",
       "bytes": 57226
     },
@@ -2438,19 +2371,11 @@
     },
     {
       "file": "data/transit/gtfs-ltc/n42.5_w081.5.ndjson.gz",
-      "bytes": 58096
+      "bytes": 58294
     },
     {
       "file": "data/transit/gtfs-ltc/n43.0_w081.5.ndjson.gz",
-      "bytes": 25894
-    },
-    {
-      "file": "data/transit/gtfs-miway/n43.0_w080.0.ndjson.gz",
-      "bytes": 1746
-    },
-    {
-      "file": "data/transit/gtfs-miway/n43.5_w080.0.ndjson.gz",
-      "bytes": 161361
+      "bytes": 25973
     },
     {
       "file": "data/transit/gtfs-ttc/n43.5_w079.5.ndjson.gz",
@@ -2461,12 +2386,64 @@
       "bytes": 93139
     },
     {
-      "file": "data/transit/gtfs-up-express/n43.5_w079.5.ndjson.gz",
-      "bytes": 550
+      "file": "data/transit/metrolinx-go/n42.5_w080.5.ndjson.gz",
+      "bytes": 468
     },
     {
-      "file": "data/transit/gtfs-up-express/n43.5_w080.0.ndjson.gz",
-      "bytes": 497
+      "file": "data/transit/metrolinx-go/n43.0_w079.5.ndjson.gz",
+      "bytes": 960
+    },
+    {
+      "file": "data/transit/metrolinx-go/n43.0_w080.0.ndjson.gz",
+      "bytes": 3194
+    },
+    {
+      "file": "data/transit/metrolinx-go/n43.0_w080.5.ndjson.gz",
+      "bytes": 2180
+    },
+    {
+      "file": "data/transit/metrolinx-go/n43.0_w081.0.ndjson.gz",
+      "bytes": 830
+    },
+    {
+      "file": "data/transit/metrolinx-go/n43.5_w079.0.ndjson.gz",
+      "bytes": 3739
+    },
+    {
+      "file": "data/transit/metrolinx-go/n43.5_w079.5.ndjson.gz",
+      "bytes": 9224
+    },
+    {
+      "file": "data/transit/metrolinx-go/n43.5_w080.0.ndjson.gz",
+      "bytes": 14083
+    },
+    {
+      "file": "data/transit/metrolinx-go/n43.5_w080.5.ndjson.gz",
+      "bytes": 4068
+    },
+    {
+      "file": "data/transit/metrolinx-go/n44.0_w078.5.ndjson.gz",
+      "bytes": 651
+    },
+    {
+      "file": "data/transit/metrolinx-go/n44.0_w079.0.ndjson.gz",
+      "bytes": 472
+    },
+    {
+      "file": "data/transit/metrolinx-go/n44.0_w079.5.ndjson.gz",
+      "bytes": 3375
+    },
+    {
+      "file": "data/transit/metrolinx-go/n44.0_w080.0.ndjson.gz",
+      "bytes": 2498
+    },
+    {
+      "file": "data/transit/metrolinx-up/n43.5_w079.5.ndjson.gz",
+      "bytes": 572
+    },
+    {
+      "file": "data/transit/metrolinx-up/n43.5_w080.0.ndjson.gz",
+      "bytes": 518
     },
     {
       "file": "data/venues/brampton-recreation-centres/n43.5_w080.0.ndjson.gz",
