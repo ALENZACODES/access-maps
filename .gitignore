@@ -4,3 +4,7 @@ dist/
 *.osm.pbf
 *.geojsonseq
 .DS_Store
+
+# Generated timetable shards (I14). Manifests live under pack/schedules/.
+data/schedules/
+release-assets/
