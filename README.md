@@ -88,3 +88,13 @@ See [sources/gaps.json](sources/gaps.json). OC Transpo's terms page did not retu
 GO Transit and UP Express rows are stored only under `data/transit/metrolinx-go/` and `data/transit/metrolinx-up/`, under the Metrolinx Access and Use Agreement accepted on 2026-11-15. John Khan confirmed that acceptance directly to QA on 2026-11-15 at 5:59 PM ET (America/Toronto). MiWay is not in this pack. Licence notes are in [sources/registry.json](sources/registry.json) and [ATTRIBUTION.md](ATTRIBUTION.md). GO and UP Express `stop_amenities.txt` has an undocumented integer `washroom` column, so that file was not interpreted.
 
 None of the downloaded GTFS feeds included `pathways.txt` or `levels.txt`. If a stop publishes `level_id`, that value is stored. `level_index` and `level_name` stay `UNKNOWN` unless a levels table is present.
+
+## Journey packages
+
+This branch also carries the door-to-door journey work that landed ahead of the open-data import:
+
+- `packages/journey` — TypeScript journey-chain engine. Step-free status defaults to unknown. Tests use fixtures.
+- `packages/map-ui` — React and MapLibre GL components. Every map feature is also a button in a list, with keyboard arrow keys and a polite status announcement.
+- `packages/journey-data` — Rolling routes and transit options over downloaded pack records. Scheduled times come from I14's published timetable chunks when those chunks are already on the device; missing chunks stay unknown and times are never invented. MiWay is held; GO, UP Express, and LTC are in.
+
+Imported records in `data/` follow the field-value shape (`value`, `source_id`, `licence`, `retrieved_at`, `tier`). The journey packages read that shape and do not edit the import pipelines. Unknown stays `UNKNOWN`.
