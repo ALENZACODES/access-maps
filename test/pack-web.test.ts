@@ -13,6 +13,11 @@ import {
   METROLINX_PACK_ATTRIBUTION,
   METROLINX_PACK_LICENCE,
   METROLINX_PACK_LICENCE_URL,
+  LTC_AVAILABILITY_NOTICE_EN,
+  LTC_AVAILABILITY_NOTICE_FR,
+  LTC_PACK_ATTRIBUTION,
+  LTC_PACK_LICENCE,
+  LTC_PACK_LICENCE_URL,
   buildWebPack,
   holdReason,
   normalizeName,
@@ -58,7 +63,7 @@ async function fixture(): Promise<{ data: string; out: string }> {
       METROLINX_PACK_LICENCE,
     )]],
     ["transit", "gtfs-ltc", [transitRecord(
-      "ltc-held",
+      "ltc-stop",
       "Dundas and Richmond",
       "gtfs-ltc",
       "LTC Open Data Terms of Use",
@@ -77,15 +82,24 @@ afterEach(async () => {
 });
 
 describe("Ontario web pack", () => {
-  it("packs Metrolinx GO/UP with AUA provenance and holds LTC for the availability-notice follow-up", () => {
+  it("packs Metrolinx GO/UP with AUA provenance and includes LTC with the Terms of Use notice", () => {
     const registry = readRegistry(process.cwd());
     const ids = new Set(registry.sources.map((source) => source.id));
     expect(ids.has("gtfs-miway")).toBe(false);
     expect(ids.has("gtfs-go-transit")).toBe(false);
     expect(ids.has("gtfs-up-express")).toBe(false);
-    expect(holdReason(registry.sources.find((source) => source.id === "gtfs-ltc")!)).toMatch(/availability notice/);
+    const ltc = registry.sources.find((source) => source.id === "gtfs-ltc")!;
+    expect(holdReason(ltc)).toBeNull();
+    expect(ltc.licence_url).toBe(LTC_PACK_LICENCE_URL);
+    expect(ltc.licence_id).toBe(LTC_PACK_LICENCE);
+    expect(ltc.attribution).toBe(LTC_PACK_ATTRIBUTION);
+    expect(ltc.attribution).toContain(LTC_AVAILABILITY_NOTICE_EN);
+    expect(ltc.attribution).toContain(LTC_AVAILABILITY_NOTICE_FR);
+    expect(LTC_AVAILABILITY_NOTICE_FR).toContain("\u00a0:");
+    expect(LTC_AVAILABILITY_NOTICE_FR).toContain("d\u2019utilisation");
+    expect(LTC_AVAILABILITY_NOTICE_FR).not.toMatch(/[!?;]/);
     expect(registry.sources.find((source) => source.id === "metrolinx-go")!.notes).toMatch(/5:59 PM ET/);
-    expect(registry.sources.find((source) => source.id === "gtfs-ltc")!.notes).toMatch(/5:59 PM ET/);
+    expect(ltc.notes).toMatch(/5:59 PM ET/);
     expect(holdReason(registry.sources.find((source) => source.id === "gtfs-ttc")!)).toBeNull();
     for (const id of ["metrolinx-go", "metrolinx-up"] as const) {
       const source = registry.sources.find((entry) => entry.id === id);
@@ -120,16 +134,20 @@ describe("Ontario web pack", () => {
     addFormats(ajv);
     const valid = ajv.compile(schema);
     expect(valid(manifest), JSON.stringify(valid.errors)).toBe(true);
-    expect(manifest.counts.records).toBe(3);
-    expect(manifest.counts.bySource).toEqual({ "metrolinx-go": 1, "osm-ontario": 2 });
+    expect(manifest.counts.records).toBe(4);
+    expect(manifest.counts.bySource).toEqual({ "gtfs-ltc": 1, "metrolinx-go": 1, "osm-ontario": 2 });
     expect(manifest.tranches.venue?.cells[cell]?.parts).toHaveLength(1);
     expect(manifest.tranches.transit?.cells[cell]?.parts).toEqual([
+      expect.objectContaining({ path: `transit/gtfs-ltc/${cell}.ndjson.gz`, sourceId: "gtfs-ltc", count: 1 }),
       expect.objectContaining({ path: `transit/metrolinx-go/${cell}.ndjson.gz`, sourceId: "metrolinx-go", count: 1 }),
     ]);
     expect(manifest.sources.find((source) => source.sourceId === "gtfs-miway")).toBeUndefined();
     expect(manifest.sources.find((source) => source.sourceId === "gtfs-ltc")).toMatchObject({
-      inWebPack: false,
-      heldReason: expect.stringMatching(/availability notice/),
+      inWebPack: true,
+      heldReason: null,
+      licence: LTC_PACK_LICENCE,
+      licenceUrl: LTC_PACK_LICENCE_URL,
+      attribution: LTC_PACK_ATTRIBUTION,
     });
     const go = manifest.sources.find((source) => source.sourceId === "metrolinx-go");
     expect(go).toMatchObject({
@@ -143,10 +161,11 @@ describe("Ontario web pack", () => {
     expect(go?.attribution).toContain(METROLINX_AUA_LEGEND);
     expect(go?.attribution).toContain(METROLINX_OGL_LINE);
     const index = JSON.parse(gunzipSync(await readFile(path.join(out, "search", `${cell}.json.gz`))).toString());
-    expect(index).toHaveLength(3);
-    expect(index[0]).toMatchObject({ name: "Exhibition GO", nameNorm: "exhibition go", lat: 43.7, lon: -79.4, tranche: "transit" });
-    expect(index[1]).toMatchObject({ name: "École", nameNorm: "ecole", lat: 43.7, lon: -79.4 });
-    expect(index[2]).toMatchObject({ name: null, nameNorm: "" });
+    expect(index).toHaveLength(4);
+    expect(index[0]).toMatchObject({ name: "Dundas and Richmond", nameNorm: "dundas and richmond", lat: 43.7, lon: -79.4, tranche: "transit" });
+    expect(index[1]).toMatchObject({ name: "Exhibition GO", nameNorm: "exhibition go", lat: 43.7, lon: -79.4, tranche: "transit" });
+    expect(index[2]).toMatchObject({ name: "École", nameNorm: "ecole", lat: 43.7, lon: -79.4 });
+    expect(index[3]).toMatchObject({ name: null, nameNorm: "" });
     await verifyWebPack({ data, out });
     const first = await readFile(path.join(out, "manifest.json"));
     const compressed = await readFile(path.join(out, "search", `${cell}.json.gz`));
