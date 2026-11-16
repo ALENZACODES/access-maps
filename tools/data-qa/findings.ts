@@ -648,6 +648,36 @@ export const LICENCE_FINDINGS: readonly LicenceFinding[] = [
     licence: "owner-permission-2026-11-16",
     reason: "Included on the repository owner's statement of 2026-11-16; no publisher licence was read for this layer. Not an open licence in the strict export allowlist.",
   },
+  {
+    sourceId: "oxford-county-trails",
+    licence: "owner-permission-2026-11-16",
+    reason: "Included on the repository owner's statement of 2026-11-16; no publisher licence was read for this layer. Not an open licence in the strict export allowlist.",
+  },
+  {
+    sourceId: "haldimand-accessible-parking",
+    licence: "owner-permission-2026-11-16",
+    reason: "Included on the repository owner's statement of 2026-11-16; no publisher licence was read for this layer. Not an open licence in the strict export allowlist.",
+  },
+  {
+    sourceId: "haldimand-sidewalks",
+    licence: "owner-permission-2026-11-16",
+    reason: "Included on the repository owner's statement of 2026-11-16; no publisher licence was read for this layer. Not an open licence in the strict export allowlist.",
+  },
+  {
+    sourceId: "haldimand-traffic-signals",
+    licence: "owner-permission-2026-11-16",
+    reason: "Included on the repository owner's statement of 2026-11-16; no publisher licence was read for this layer. Not an open licence in the strict export allowlist.",
+  },
+  {
+    sourceId: "haldimand-pedestrian-crossings",
+    licence: "owner-permission-2026-11-16",
+    reason: "Included on the repository owner's statement of 2026-11-16; no publisher licence was read for this layer. Not an open licence in the strict export allowlist.",
+  },
+  {
+    sourceId: "haldimand-trails",
+    licence: "owner-permission-2026-11-16",
+    reason: "Included on the repository owner's statement of 2026-11-16; no publisher licence was read for this layer. Not an open licence in the strict export allowlist.",
+  },
 ];
 
 export function isDocumentedLicence(sourceId: string, licence: string): boolean {
