@@ -20,8 +20,11 @@ Licences in the allowlist still require their own attribution and reuse complian
 `npm run check:strict-data` runs `checkStrictData` over `sources/registry.json`
 and every `data/**/*.ndjson.gz` record (and `pack/v1` when present). CI runs
 that command on pull requests and on pushes to `main`. It is not scheduled.
+The data-qa job and the check both fail closed if `data/` and `pack/v1` yield
+zero `.ndjson.gz` files.
 
-The job fails on undocumented violations. Licence identifiers that are in the
+The job fails on undocumented violations. A record whose `source_id` is
+`miway` or `gtfs-miway` fails. Licence identifiers that are in the
 repo but outside the strict export allowlist are listed in `FINDINGS.md`.
 Only an explicit wheelchair value of `yes` or `no` is mapped to `YES` or `NO`;
 anything else, including `limited` and conflicting tags, stays `UNKNOWN`.

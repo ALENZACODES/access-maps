@@ -246,6 +246,13 @@ export async function checkRepoData(options: RepoCheckOptions): Promise<CheckRep
     }
   }
 
+  // Fail closed: an empty checkout must not pass as if the pack had been checked.
+  if (files.length === 0) {
+    violations.push(
+      `${dataDir} and ${packDir}: data/ and pack/v1 yielded zero .ndjson.gz files; failing closed`,
+    );
+  }
+
   return {
     registry: sources.length,
     packRecords,
