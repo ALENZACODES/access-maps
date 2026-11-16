@@ -34,6 +34,7 @@ const exclusions = Object.freeze([
   'tools/data-qa/p15h-*.test.ts',
 ]);
 const offline = 'docs/attribution/offline-*.spec.ts';
+const attributionNode = 'docs/attribution/*.test.mjs';
 const workspaces = Object.freeze([
   '@access-maps/journey',
   '@access-maps/outages',
@@ -48,7 +49,7 @@ function individualCommands(testScript) {
 function testScriptCommands() {
   assert.equal(typeof script, 'string');
   const commands = individualCommands(script);
-  assert.ok(commands.length >= 5, 'Root script must run both QA runners and every workspace');
+  assert.ok(commands.length >= 6, 'Root script must run both QA runners and every workspace');
   return commands;
 }
 function assertOneScriptReference(name) {
@@ -87,7 +88,8 @@ describe('P15I root runner integration contract', () => {
     const commands = testScriptCommands();
     const expected = workspaces.map((name) => `npm test -w ${name}`);
     assert.equal(commands[3], 'node --test tools/data-qa/p15i-runner-config.test.mjs');
-    assert.deepEqual(commands.slice(4), expected);
+    assert.equal(commands[4], `node --test ${attributionNode}`);
+    assert.deepEqual(commands.slice(5), expected);
   });
 
   it('never sends any P15 Node suite through the root Vitest runner', () => {
@@ -105,6 +107,11 @@ describe('P15I root runner integration contract', () => {
     for (const workspace of ['packages/journey/**', 'packages/map-ui/**',
       'packages/journey-data/**', 'packages/conditions/**',
       'packages/outages/**']) assertVitestExclusion(workspace);
+  });
+
+  it('runs the attribution Node suites once, outside Vitest', () => {
+    assertOneScriptReference(attributionNode);
+    assert.ok(!vitestSource.includes('.test.mjs'));
   });
 
   it('retains offline attribution CLI and dedicated test commands', () => {

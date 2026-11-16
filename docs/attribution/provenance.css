@@ -1,0 +1,58 @@
+/* The workbench reuses the attribution page's accessible colour system. */
+.provenance-actions-panel { padding: 1rem; border: 2px solid var(--border); border-radius: .7rem; }
+.provenance-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-block: 1rem; }
+.provenance-actions button { min-height: 44px; min-width: 44px; }
+.provenance-field { display: grid; gap: .3rem; min-width: 0; margin-block: .85rem; }
+.provenance-field label { font-weight: 650; }
+.provenance-field input, .provenance-field select,
+.provenance-field textarea { min-height: 44px; width: 100%; max-width: 100%; border: 2px solid var(--border); border-radius: .4rem; padding: .55rem; color: var(--foreground); background: var(--background); font: inherit; }
+.provenance-field textarea { min-height: 7rem; resize: vertical; }
+.provenance-field input[type='file'] { padding: .5rem; }
+.provenance-field input[type='file']::file-selector-button { min-height: 44px; padding: .35rem .6rem; font: inherit; }
+.provenance-field .help { margin: 0; }
+.provenance-summary, .provenance-editor, .provenance-filters,
+.provenance-actions-panel { margin-block: 1.25rem; }
+.provenance-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr)); gap: .9rem; }
+.provenance-detail { min-width: 0; overflow-wrap: anywhere; }
+.provenance-detail dt { font-weight: 700; }
+.provenance-detail dd { margin: .15rem 0 0; }
+.provenance-list { list-style: none; margin: 0; padding: 0; }
+.provenance-card { background: var(--surface); border: 1px solid var(--border); border-radius: .75rem; padding: 1rem; margin-block: 1rem; }
+.provenance-card h3 { margin: 0 0 1rem; overflow-wrap: anywhere; }
+.provenance-card .provenance-actions { border-top: 1px solid var(--border); padding-top: 1rem; }
+.provenance-editor fieldset { border: 2px solid var(--border); border-radius: .7rem; padding: clamp(.85rem, 2vw, 1.5rem); min-width: 0; }
+.provenance-editor legend { font-weight: 700; padding-inline: .5rem; }
+.provenance-error { color: var(--foreground); border-inline-start: 4px solid var(--focus); padding-inline: 1rem; }
+.provenance-error:empty { display: none; }
+.provenance-pass, .provenance-fail { border-inline-start: 4px solid var(--border); padding: .85rem; font-weight: 700; }
+.provenance-fail { border-color: var(--focus); }
+.provenance-table { border-collapse: collapse; width: 100%; table-layout: fixed; }
+.provenance-table caption { text-align: start; font-weight: 700; padding-block: .7rem; }
+.provenance-table th, .provenance-table td { text-align: start; vertical-align: top; padding: .75rem; border-bottom: 1px solid var(--border); overflow-wrap: anywhere; }
+.provenance-table thead { border-bottom: 2px solid var(--border); }
+.provenance-table th:first-child { width: 24%; }
+.provenance-table th:nth-child(2) { width: 28%; }
+.provenance-filters { border-block: 1px solid var(--border); padding-block: 1rem; }
+nav { margin-block: .65rem; }
+nav a { display: inline-flex; min-height: 44px; align-items: center; }
+input:focus-visible, textarea:focus-visible, select:focus-visible,
+button:focus-visible, a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+@media (min-width: 52rem) {
+  .provenance-editor fieldset { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1.5rem; }
+  .provenance-editor legend, .provenance-editor fieldset > p { grid-column: 1 / -1; }
+  .provenance-field:has(textarea) { grid-column: 1 / -1; }
+  .provenance-filters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+}
+@media (max-width: 40rem) {
+  .provenance-table { min-width: 38rem; }
+  #audit-output { overflow-x: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .provenance-actions button { transition: none; }
+}
+@media print {
+  .provenance-actions-panel, .provenance-editor, .provenance-filters,
+  .provenance-card .provenance-actions, .language-switch, nav { display: none !important; }
+  .provenance-card { break-inside: avoid; }
+  .provenance-table th, .provenance-table td { border-color: #777; }
+}
