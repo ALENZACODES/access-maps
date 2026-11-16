@@ -1,0 +1,237 @@
+{
+  "title": "Ontario municipalities (census subdivisions) ranked 51 to 77 by 2021 Census population",
+  "source": {
+    "publisher": "Statistics Canada",
+    "table": "Table 98-10-0002-01 Population and dwelling counts: Canada, provinces and territories, census divisions and census subdivisions (municipalities)",
+    "url": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=9810000201",
+    "download_url": "https://www150.statcan.gc.ca/n1/tbl/csv/98100002-eng.zip",
+    "licence": "Statistics Canada Open Licence",
+    "licence_url": "https://www.statcan.gc.ca/en/reference/licence",
+    "retrieved_at": "2026-11-16",
+    "attribution": "Source: Statistics Canada, Table 98-10-0002-01 Population and dwelling counts: Canada, provinces and territories, census divisions and census subdivisions (municipalities), 2021 Census of Population, retrieved 2026-11-16. Reproduced and distributed on an \"as is\" basis with the permission of Statistics Canada.",
+    "licence_note": "Licence page read on 2026-11-16: it grants a worldwide, royalty-free, non-exclusive licence to use, reproduce, publish, freely distribute, or sell the Information, with the source acknowledgement above."
+  },
+  "method": "Rows of 98100002.csv whose DGUID starts with 2021A000535 (census subdivisions in Ontario) and whose Population, 2021 is filled were sorted by the column Population, 2021. The rank was checked against the table's own column Province/territory population rank, 2021 for every row listed. Ranks 51 to 75 are listed, plus ranks 76 and 77: St. Thomas (52) and Timmins (53) are handled by other lanes, so the next two municipalities down the list were taken to cover 25 new municipalities. None of ranks 51 to 77 is a First Nations reserve or an unorganized territory. A census subdivision is a lower-tier or single-tier municipality; counties and regional municipalities are census divisions and are not ranked here.",
+  "municipalities": [
+    {
+      "rank": 51,
+      "name": "Bradford West Gwillimbury",
+      "statcan_name": "Bradford West Gwillimbury",
+      "dguid": "2021A00053543014",
+      "population_2021": 42880,
+      "in_this_list": true
+    },
+    {
+      "rank": 52,
+      "name": "St. Thomas",
+      "statcan_name": "St. Thomas",
+      "dguid": "2021A00053534021",
+      "population_2021": 42840,
+      "in_this_list": false,
+      "note": "Skipped by this lane: handled by lane G5 under an owner permission."
+    },
+    {
+      "rank": 53,
+      "name": "Timmins",
+      "statcan_name": "Timmins",
+      "dguid": "2021A00053556027",
+      "population_2021": 41145,
+      "in_this_list": false,
+      "note": "Skipped by this lane: handled by lane G4 (sources/gaps.json entry City of Timmins open data and Timmins Transit GTFS)."
+    },
+    {
+      "rank": 54,
+      "name": "Lakeshore",
+      "statcan_name": "Lakeshore",
+      "dguid": "2021A00053537064",
+      "population_2021": 40410,
+      "in_this_list": true
+    },
+    {
+      "rank": 55,
+      "name": "Brant",
+      "statcan_name": "Brant",
+      "dguid": "2021A00053529005",
+      "population_2021": 39474,
+      "in_this_list": true
+    },
+    {
+      "rank": 56,
+      "name": "East Gwillimbury",
+      "statcan_name": "East Gwillimbury",
+      "dguid": "2021A00053519054",
+      "population_2021": 34637,
+      "in_this_list": true
+    },
+    {
+      "rank": 57,
+      "name": "Orillia",
+      "statcan_name": "Orillia",
+      "dguid": "2021A00053543052",
+      "population_2021": 33411,
+      "in_this_list": true
+    },
+    {
+      "rank": 58,
+      "name": "Stratford",
+      "statcan_name": "Stratford",
+      "dguid": "2021A00053531011",
+      "population_2021": 33232,
+      "in_this_list": true
+    },
+    {
+      "rank": 59,
+      "name": "Fort Erie",
+      "statcan_name": "Fort Erie",
+      "dguid": "2021A00053526003",
+      "population_2021": 32901,
+      "in_this_list": true
+    },
+    {
+      "rank": 60,
+      "name": "LaSalle",
+      "statcan_name": "LaSalle",
+      "dguid": "2021A00053537034",
+      "population_2021": 32721,
+      "in_this_list": true
+    },
+    {
+      "rank": 61,
+      "name": "Centre Wellington",
+      "statcan_name": "Centre Wellington",
+      "dguid": "2021A00053523025",
+      "population_2021": 31093,
+      "in_this_list": true
+    },
+    {
+      "rank": 62,
+      "name": "Orangeville",
+      "statcan_name": "Orangeville",
+      "dguid": "2021A00053522014",
+      "population_2021": 30167,
+      "in_this_list": true
+    },
+    {
+      "rank": 63,
+      "name": "Leamington",
+      "statcan_name": "Leamington",
+      "dguid": "2021A00053537003",
+      "population_2021": 29680,
+      "in_this_list": true
+    },
+    {
+      "rank": 64,
+      "name": "Grimsby",
+      "statcan_name": "Grimsby",
+      "dguid": "2021A00053526065",
+      "population_2021": 28883,
+      "in_this_list": true
+    },
+    {
+      "rank": 65,
+      "name": "King",
+      "statcan_name": "King",
+      "dguid": "2021A00053519049",
+      "population_2021": 27333,
+      "in_this_list": true
+    },
+    {
+      "rank": 66,
+      "name": "Woolwich",
+      "statcan_name": "Woolwich",
+      "dguid": "2021A00053530035",
+      "population_2021": 26999,
+      "in_this_list": true
+    },
+    {
+      "rank": 67,
+      "name": "Clarence-Rockland",
+      "statcan_name": "Clarence-Rockland",
+      "dguid": "2021A00053502036",
+      "population_2021": 26505,
+      "in_this_list": true
+    },
+    {
+      "rank": 68,
+      "name": "Lincoln",
+      "statcan_name": "Lincoln",
+      "dguid": "2021A00053526057",
+      "population_2021": 25719,
+      "in_this_list": true
+    },
+    {
+      "rank": 69,
+      "name": "Prince Edward County",
+      "statcan_name": "Prince Edward County",
+      "dguid": "2021A00053513020",
+      "population_2021": 25704,
+      "in_this_list": true
+    },
+    {
+      "rank": 70,
+      "name": "Wasaga Beach",
+      "statcan_name": "Wasaga Beach",
+      "dguid": "2021A00053543064",
+      "population_2021": 24862,
+      "in_this_list": true
+    },
+    {
+      "rank": 71,
+      "name": "Collingwood",
+      "statcan_name": "Collingwood",
+      "dguid": "2021A00053543031",
+      "population_2021": 24811,
+      "in_this_list": true
+    },
+    {
+      "rank": 72,
+      "name": "Strathroy-Caradoc",
+      "statcan_name": "Strathroy-Caradoc",
+      "dguid": "2021A00053539015",
+      "population_2021": 23871,
+      "in_this_list": true
+    },
+    {
+      "rank": 73,
+      "name": "Thorold",
+      "statcan_name": "Thorold",
+      "dguid": "2021A00053526037",
+      "population_2021": 23816,
+      "in_this_list": true
+    },
+    {
+      "rank": 74,
+      "name": "Amherstburg",
+      "statcan_name": "Amherstburg",
+      "dguid": "2021A00053537028",
+      "population_2021": 23524,
+      "in_this_list": true
+    },
+    {
+      "rank": 75,
+      "name": "Tecumseh",
+      "statcan_name": "Tecumseh",
+      "dguid": "2021A00053537048",
+      "population_2021": 23300,
+      "in_this_list": true
+    },
+    {
+      "rank": 76,
+      "name": "Oro-Medonte",
+      "statcan_name": "Oro-Medonte",
+      "dguid": "2021A00053543023",
+      "population_2021": 23017,
+      "in_this_list": true,
+      "note": "Ranked below 75; taken so that 25 new municipalities are covered after St. Thomas and Timmins were skipped."
+    },
+    {
+      "rank": 77,
+      "name": "Essa",
+      "statcan_name": "Essa",
+      "dguid": "2021A00053543021",
+      "population_2021": 22970,
+      "in_this_list": true,
+      "note": "Ranked below 75; taken so that 25 new municipalities are covered after St. Thomas and Timmins were skipped."
+    }
+  ]
+}

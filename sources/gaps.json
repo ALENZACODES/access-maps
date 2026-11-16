@@ -160,11 +160,6 @@
     "reason": "On 2026-11-13 the licence PDF linked from the catalogue returned HTTP 404. On 2026-11-16 the PDF link still returned HTTP 404, and the same Open Data Licence 1.0 text was read at https://www.thunderbay.ca/city-hall/thunder-bay-open-data/, so the licence is now recorded in the registry for other Thunder Bay layers. This CSV has a facility name, a street address, a PHONE column and no coordinates. Records are stored by 0.5-degree cell and this pipeline does not geocode, so the rows were not imported. The PHONE column was not read."
   },
   {
-    "name": "Durham Region Transit GTFS",
-    "url": "https://www.durhamregiontransit.com/",
-    "reason": "Not retrieved on 2026-11-16 and not imported in that pass. Durham Region's licence text was not read. Kingston Transit and GOVA Transit, which shared this entry, were retrieved on 2026-11-16 and are imported as gtfs-kingston and gtfs-gova."
-  },
-  {
     "name": "Thunder Bay Transit static GTFS",
     "url": "http://api.nextlift.ca/gtfs.zip",
     "reason": "Retrieved 2026-11-16 (HTTP 200, 731 stops with wheelchair_boarding filled). The City of Thunder Bay open-data catalogue lists the GTFS-realtime feeds on the same host and a Google Transit Source zip under its Open Data Licence, but the catalogue's own zip holds files dated 2019-11-08, and the catalogue's link to the transit developer page returned HTTP 404. No catalogue entry or City page that names this current static zip together with the licence was found, so the feed was not imported."
@@ -338,5 +333,85 @@
     "name": "Town of Milton facilities, City of Niagara Falls facilities and parking lots, and City of Welland parks, facilities and transit stops",
     "url": "https://discover-milton.hub.arcgis.com/",
     "reason": "Checked on 2026-11-16 under each publisher's Open Government Licence. Milton Town Facilities (19 points), Niagara Falls City Facilities (687 polygons), Niagara Falls Parking Lots (28 polygons), Welland Parks (87 polygons with amenity counts) and the Welland Transit Stops route layers have no accessibility column and were not imported. Niagara Falls Libraries and Welland Municipal Parking Lots were not inspected and not imported. Welland Municipal Facilities rows other than the three Public Washroom rows were not imported. Left out of the imports: 2 Milton park amenities whose status is Historic, 13 Niagara Falls trail rows with no status, 2 Niagara Falls sidewalk features with no geometry, and 31 Welland trail rows classed On-Road/Sidewalk. No Milton Transit GTFS file was found on the Town's hub."
+  },
+  {
+    "name": "Durham Region Transit Bus Boarding Points and other Durham Region layers",
+    "url": "https://opendata.durham.ca/",
+    "reason": "Checked on 2026-11-16 under the Region of Durham Open Data Licence v.1.0. Transit Bus Boarding Points (4,420 points, catalogue entry last modified 2020-11-30) has ACCESSIBLE and SHELTER columns whose codes are not documented on the layer, and it describes the same stops as the current GTFS feed, which is imported as gtfs-drt with the operator's wheelchair_boarding values. It was not imported. Community Services is an address list with a PHONE column and no accessibility column; it and the Government Offices, Healthcare Facilities, Senior Residences and Education layers were not mapped or imported. The GTFS-RT Service Alerts, Trip Updates and Vehicle Positions feeds were not retrieved. The catalogue has no dataset for accessible parking, washrooms, pedestrian signals, curb ramps, sidewalks or elevators."
+  },
+  {
+    "name": "City of Oshawa Park Locations, Municipal Parking and other layers",
+    "url": "https://city-oshawa.opendata.arcgis.com/",
+    "reason": "Checked on 2026-11-16 under the Open Government Licence - The Corporation of the City of Oshawa (version 2). Park Locations (141 polygons) has name, address and park class and no amenity or accessibility column. Municipal Parking (216 polygons) has NUMBER_OF_SPACES, rates and time limits and no accessible-space column. Neither was imported. The City's own catalogue entries (98 on 2026-11-16, mostly election results, service requests and planning maps) has no dataset for accessible parking, washrooms, pedestrian signals, curb ramps, sidewalks, elevators or playgrounds."
+  },
+  {
+    "name": "Town of Whitby catalogue entries without the open licence",
+    "url": "https://geohub-whitby.hub.arcgis.com/",
+    "reason": "Checked on 2026-11-16. 19 of the 65 catalogue entries name or link The Corporation of the Town of Whitby Open Government License; Town Facilities, Parks, Sidewalks and Trails from that group are imported. The other entries, including Open Park Amenities, Parks and Trails, Electric Vehicle Charging Station Locations and Bike Repair Stands, carry a copyright notice that says the maps and data are provided for personal, non-commercial use. They were not read or imported. On the imported Sidewalks layer 6 rows (2 AsphaltCycleTrack, 4 with no sidewalk type) were left out; on Trails 20 Storm-Service Lane rows and 2 rows with no line were left out."
+  },
+  {
+    "name": "Town of Ajax Parks, POI and other layers",
+    "url": "https://opendata.ajax.ca/",
+    "reason": "Checked on 2026-11-16 under the Town of Ajax Open Data Licence v.1.0. Parks (132 polygons) has name, type and area and no amenity or accessibility column. Ajax POI, Schools, Places of Worship, Cultural Inventory and Active Transportation were not mapped. On the imported Recreational Trails layer 17 removed or decommissioned sections were left out. The catalogue (49 entries) has no dataset for accessible parking, washrooms, pedestrian signals, curb ramps, sidewalks or elevators."
+  },
+  {
+    "name": "City of Pickering parks not in service and other layers",
+    "url": "https://opendata.pickering.ca/",
+    "reason": "Checked on 2026-11-16 under the City of Pickering Open Data Licence v.1.0. 23 of the 198 Parks rows have Status Planned, Under Construction, In Progress or Not In Service and were left out. The park amenity columns other than Washroom (parking, playground, trails, splash pad and others) have no matching field and were not stored. Points of Interest and Public Art were not mapped. The catalogue has no dataset for accessible parking, pedestrian signals, curb ramps, sidewalks or elevators."
+  },
+  {
+    "name": "Municipality of Clarington",
+    "url": "https://public-map-gallery-clarington.hub.arcgis.com/",
+    "reason": "Checked on 2026-11-16. https://www.clarington.net/en/town-hall/open-data.aspx returned HTTP 404 and no open-data portal was found. Clarington's Public Map Gallery hub lists 10 web applications (parking, active transportation, parks and outdoor facilities, sidewalk snow clearing and others). Their licence field says the layers are the intellectual property of the Municipality of Clarington and cannot be altered, edited or used without the Municipality's written consent. Redistribution is not permitted, so nothing was imported. Clarington stops served by Durham Region Transit are in gtfs-drt."
+  },
+  {
+    "name": "City of Barrie open data, re-checked 2026-11-16",
+    "url": "https://opendata.barrie.ca/",
+    "reason": "The City of Barrie open-data catalogue (134 entries on 2026-11-16) includes Sidewalk Walkway, Park Amenity, Transit Stops, City Facilities, Parking Device and City Owned Parking Lot. The licence field on those entries reads: Copyright City of Barrie. The City of Barrie does not warrant the accuracy, completeness, content, or currency of the information provided. Other entries carry a general website disclaimer. No entry states a licence that permits redistribution, and no open-data licence page was found on the hub. Nothing was imported."
+  },
+  {
+    "name": "Barrie Transit GTFS",
+    "url": "https://www.barrie.ca/services-payments/transportation-parking/barrie-transit/barrie-gtfs",
+    "reason": "Read on 2026-11-16. The Barrie GTFS Licence grants non-exclusive, limited and revocable rights to use, reproduce, and redistribute Barrie Transit Data, forbids use of Barrie Transit trademarks with the data, and says Barrie Transit keeps title and may stop providing the data at any time. The page asks a person to tick Yes, I agree with and accept the above and to pass a CAPTCHA before the download link is shown. That acceptance was not given by the pipeline, so the feed was not imported. The licence is revocable."
+  },
+  {
+    "name": "City of Kawartha Lakes and Lindsay Transit",
+    "url": "https://www.kawarthalakes.ca/lindsaytransit",
+    "reason": "Checked on 2026-11-16. No open-data portal or open-data licence page was found for the City of Kawartha Lakes. The City's ArcGIS Online account lists about 100 public feature services, including Park Facility Points, Sport Facility Site Points, Trails and Public Beaches. Their licence field is a disclaimer that the information is provided as is and is for reference only; it grants no redistribution rights. The Lindsay Transit page loaded (HTTP 200) and links no GTFS file. Nothing was imported."
+  },
+  {
+    "name": "City of Peterborough open data and Peterborough Transit",
+    "url": "https://data-ptbo.opendata.arcgis.com/pages/terms-of-use",
+    "reason": "Read on 2026-11-16 (ArcGIS item 8de5b6476f714f11b15468db847a18c3). The City of Peterborough Open Data Terms of Use license copying and use of the unmodified Open Datasets. Distribution is allowed only if the copyright notices are kept and the distributor gives each recipient a copy of the terms and obtains the recipient's agreement to abide by them. The City may suspend or terminate the licence. This pipeline converts every record to its own schema and cannot obtain each recipient's agreement, so nothing was imported. The catalogue has accessibility-relevant layers that were therefore left out: Accessible Parking in Downtown, Accessibility in Peterborough, Pedestrian Network Line, Point and Area, Curb, Parking Lots Downtown and Recreation. The catalogue lists a Transit Map and a transit web app and no GTFS file; no Peterborough Transit GTFS download or licence was found on https://www.peterborough.ca/living-in-peterborough/transit/."
+  },
+  {
+    "name": "County of Essex traffic signals, traffic warning signals, golf courses and on-road CWATS routes",
+    "url": "https://opendata.countyofessex.ca/",
+    "reason": "Checked 2026-11-16 under the Open Government Licence – County of Essex. Traffic Signals (43 points) has owner, number, name and facility id columns and no audible or accessible pedestrian signal column. Traffic Warning Signals (17 points) are flashing lights and stop-sign beacons. In Recreational Areas, 11 golf courses and 1 marina were left out; the other 181 rows are imported as essex-county-recreational-areas. In Existing CWATS trails, 178 of the 252 rows are bike lanes, paved shoulders, signed routes, cycle paths or the CSS type and were left out; the MUT and MUP rows are imported as essex-county-trails. Not imported."
+  },
+  {
+    "name": "Town of Tecumseh open-data layers",
+    "url": "https://tecumseh-essexcounty.opendata.arcgis.com/",
+    "reason": "Checked 2026-11-16. Tecumseh ranks 75th by 2021 Census population (sources/ontario-municipalities-51-75.json). The Town's hub lists 22 items from https://gisweb.tecumseh.ca/arcgis/rest/services/OpenDataMaps/, including Parks, Town Facilities, Sidewalks (Public), Walkways (Public), Trails, Transit Bus Stops, Traffic Signals and Parking: Public and Municipal Lots. Each item's licence field reads © Copyright Town of Tecumseh with a no-warranty sentence, or is blank, and no Town licence that grants a right to redistribute was found. The County of Essex hub also lists these items, but the County licence names the County of Essex as the Information Provider and does not cover rights the County is not authorized to license. Nothing imported from the Town. County of Essex layers that cover Tecumseh are imported (essex-county-*), and Transit Windsor's GTFS (windsor-transit-gtfs) is already in the repo."
+  },
+  {
+    "name": "Town of LaSalle open data",
+    "url": "https://forms.lasalle.ca/DoIT/Data-License-Agreement",
+    "reason": "Checked 2026-11-16. LaSalle ranks 60th by 2021 Census population (sources/ontario-municipalities-51-75.json). The Town's hub https://lasalle-essexcounty.opendata.arcgis.com lists no datasets. The Town releases GIS layers through a Data License Agreement form that asks for the requester's name, address, phone and email, limits use to a named project, forbids distribution without written permission and requires the data to be destroyed after the end date. Not an open licence; nothing imported from the Town. County of Essex layers that cover LaSalle are imported (essex-county-*)."
+  },
+  {
+    "name": "Municipality of Lakeshore open data",
+    "url": "https://lakeshore-essexcounty.opendata.arcgis.com/",
+    "reason": "Checked 2026-11-16. Lakeshore ranks 54th by 2021 Census population (sources/ontario-municipalities-51-75.json). The Municipality's hub lists no datasets, https://www.lakeshore.ca/open-data and /opendata returned HTTP 404, and no Municipality open-data licence was found. Nothing imported from the Municipality. County of Essex layers that cover Lakeshore are imported (essex-county-*)."
+  },
+  {
+    "name": "Municipality of Leamington open data",
+    "url": "https://leamington-essexcounty.opendata.arcgis.com/",
+    "reason": "Checked 2026-11-16. Leamington ranks 63rd by 2021 Census population (sources/ontario-municipalities-51-75.json). The Municipality's hub lists one item, SubjectParks (parks for tender, October 2021), with a blank licence field. Other Leamington layers in the County's ArcGIS organization, such as GPSBusStops and DogPark, are not in the hub and have a blank licence field; Leamington_Streets is marked CC BY-NC-ND, which does not permit commercial use or derivatives. No Municipality open-data licence was found; https://www.leamington.ca/open-data and /opendata returned HTTP 404. Nothing imported from the Municipality. County of Essex layers that cover Leamington are imported (essex-county-*), and Transit Windsor's GTFS (windsor-transit-gtfs), already in the repo, has stops in Leamington and Kingsville."
+  },
+  {
+    "name": "Town of Amherstburg open data",
+    "url": "https://amherstburg-open-data-essexcounty.hub.arcgis.com/",
+    "reason": "Checked 2026-11-16. Amherstburg ranks 74th by 2021 Census population (sources/ontario-municipalities-51-75.json). The Town's open-data hub lists one item, Amherstburg Municipal Boundary, with a blank licence field. A second hub, Amherstburg Parks and Paths, holds two story maps and no dataset. No Town open-data licence was found; https://www.amherstburg.ca/open-data and /opendata returned HTTP 404. Nothing imported from the Town. County of Essex layers that cover Amherstburg are imported (essex-county-*), and Transit Windsor's GTFS (windsor-transit-gtfs), already in the repo, has stops in Amherstburg."
   }
 ]
