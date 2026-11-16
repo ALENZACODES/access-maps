@@ -15,11 +15,6 @@
     "reason": "On 2026-11-13 the licence page returned HTML whose extracted text did not include a grant of rights. The CSV download returned a JSON status that the file was still being generated. UNKNOWN licence. Not imported."
   },
   {
-    "name": "City of Thunder Bay recreation facilities",
-    "url": "https://www.thunderbay.ca/en/city-services/resources/City-of-Thunder-Bay-Open-Data-Licence.pdf",
-    "reason": "The catalogue links to an open-data licence PDF that returned HTTP 404 on 2026-11-13. Other thunderbay.ca open-data URLs also returned 404. UNKNOWN licence. Not imported."
-  },
-  {
     "name": "City of Barrie park amenities",
     "url": "https://opendata.barrie.ca/datasets/barrie::park-amenity",
     "reason": "On 2026-11-13 the published licence text was a copyright notice and a warranty disclaimer. It did not grant a right to copy, modify, or redistribute. Not imported."
@@ -78,11 +73,6 @@
     "name": "City of Ottawa records without a coordinate",
     "url": "https://maps.ottawa.ca/arcgis/rest/services/Parks_Inventory/MapServer",
     "reason": "One parks inventory feature and one parking lot retrieved on 2026-11-16 have no usable point. Records are stored by 0.5-degree cell, so those two rows were not imported."
-  },
-  {
-    "name": "Kingston Transit, GOVA Transit (Greater Sudbury) and Durham Region Transit GTFS",
-    "url": "https://opendatakingston.cityofkingston.ca/",
-    "reason": "The City of Kingston and City of Greater Sudbury open-data licences are already recorded in the registry for other files. These GTFS feeds were not retrieved on 2026-11-16 and were not imported in this pass. Durham Region's licence text was not read."
   },
   {
     "name": "City of Brampton sidewalk segments and parks",
@@ -178,6 +168,51 @@
     "name": "City of Windsor parking lots, facility points, benches and picnic tables",
     "url": "https://open-data-portal-citywindsor.hub.arcgis.com/",
     "reason": "Checked on 2026-11-16 under the Open Government Licence - The Corporation of the City of Windsor, version 1.0 (text read at https://opendata.citywindsor.ca/Documents/OpenDataTermsofUse.pdf). The park parking lot layer (110 points) and municipal parking lot layer (34 points) have no accessible-space or accessibility column. Arena (4), library (11), indoor pool (4) and city facility building (15) points have a site name, address, site type and amenity column and no accessibility column. Bench (1,890), picnic table (343), splash pad (13), trail access point (528) and road parking lot access point (153) layers have no accessibility column. None of these were imported. Left out of the imported layers: 71 sidewalk rows published as Temp. Out-New Construction, 14 cycle-track or paved-shoulder rows, 65 path and trail rows that are not complete or are the Roadway type, and 1 bus stop (OBJECTID 385) whose published coordinates are NaN. The old catalogue at https://opendata.citywindsor.ca/ now points to the hub above."
+  },
+  {
+    "name": "City of Thunder Bay Recreation Facility List for Public Bookings",
+    "url": "https://opendata.thunderbay.ca/datasets/39cdc17b12ff43e0ab84a89bba1e1278",
+    "reason": "On 2026-11-13 the licence PDF linked from the catalogue returned HTTP 404. On 2026-11-16 the PDF link still returned HTTP 404, and the same Open Data Licence 1.0 text was read at https://www.thunderbay.ca/city-hall/thunder-bay-open-data/, so the licence is now recorded in the registry for other Thunder Bay layers. This CSV has a facility name, a street address, a PHONE column and no coordinates. Records are stored by 0.5-degree cell and this pipeline does not geocode, so the rows were not imported. The PHONE column was not read."
+  },
+  {
+    "name": "Durham Region Transit GTFS",
+    "url": "https://www.durhamregiontransit.com/",
+    "reason": "Not retrieved on 2026-11-16 and not imported in that pass. Durham Region's licence text was not read. Kingston Transit and GOVA Transit, which shared this entry, were retrieved on 2026-11-16 and are imported as gtfs-kingston and gtfs-gova."
+  },
+  {
+    "name": "Thunder Bay Transit static GTFS",
+    "url": "http://api.nextlift.ca/gtfs.zip",
+    "reason": "Retrieved 2026-11-16 (HTTP 200, 731 stops with wheelchair_boarding filled). The City of Thunder Bay open-data catalogue lists the GTFS-realtime feeds on the same host and a Google Transit Source zip under its Open Data Licence, but the catalogue's own zip holds files dated 2019-11-08, and the catalogue's link to the transit developer page returned HTTP 404. No catalogue entry or City page that names this current static zip together with the licence was found, so the feed was not imported."
+  },
+  {
+    "name": "City of Thunder Bay traffic signals, transit assets, park lands and school crosswalks",
+    "url": "https://opendata.thunderbay.ca/",
+    "reason": "Reachable on 2026-11-16 under the City of Thunder Bay Open Data Licence 1.0. Traffic Signals and Pedestrian Crossovers (800 points) has an id column only and no audible-signal column. Transit Assets (746 points) lists shelter and garbage-can types and no accessibility column. Park Lands (195) are polygons with a name and no amenity or accessibility column. School Crosswalks (81 lines) have a paint type and colour only. Not imported."
+  },
+  {
+    "name": "City of Kingston Sidewalk Surface, Paths, Parking Surfaces and Existing Pedestrian and Cycling Facilities",
+    "url": "https://opendatakingston.cityofkingston.ca/",
+    "reason": "Reachable on 2026-11-16 under the City of Kingston Open Data Licence. Sidewalk Surface (2,710), Paths (696) and Parking Surfaces (2,847) are surface polygons with a material column, not walkable lines, and the path schema stores lines. Existing Pedestrian and Cycling Facilities (255 lines) is a planning network and was not mapped in this pass. Bus Stops (798 points) repeats the GTFS stops, which are imported as gtfs-kingston. Not imported."
+  },
+  {
+    "name": "City of Kingston Points of Interest types outside parks, recreation, civic, parking and transit",
+    "url": "https://services1.arcgis.com/5GRYvurYYUwAecLQ/arcgis/rest/services/Points_of_interest/FeatureServer/0",
+    "reason": "1,708 of the 2,474 points retrieved on 2026-11-16 are types such as schools, places of worship, businesses, sports fields, monuments and utilities, or type Washroom, which is the separate kingston-public-washrooms source. The layer has no accessibility column. Those rows were not imported. The other 766 points are imported as kingston-points-of-interest."
+  },
+  {
+    "name": "City of Greater Sudbury walkway segments that are not active places to walk, and recreation routes",
+    "url": "https://services.arcgis.com/q3mIlR87lZlZsds3/arcgis/rest/services/Road_Dataset/FeatureServer/14",
+    "reason": "381 of the 5,837 Road Sidewalk Path Trail segments retrieved on 2026-11-16 are proposed, abandoned or removed, or are bike paths, shoulders or untyped lines. They were left out. The other 5,456 segments are imported as greater-sudbury-walkways. The Routes layer of RECREATION_VIEW_OPENDATA (293 lines) mixes trails with on-road cycling lanes, paved shoulders and a skating path and has no surface or accessibility column; it was not mapped in this pass. Not imported."
+  },
+  {
+    "name": "City of Thunder Bay recreation facilities",
+    "url": "https://www.thunderbay.ca/en/city-services/resources/City-of-Thunder-Bay-Open-Data-Licence.pdf",
+    "reason": "The catalogue links to an open-data licence PDF that returned HTTP 404 on 2026-11-13. Other thunderbay.ca open-data URLs also returned 404. UNKNOWN licence. Not imported."
+  },
+  {
+    "name": "Kingston Transit, GOVA Transit (Greater Sudbury) and Durham Region Transit GTFS",
+    "url": "https://opendatakingston.cityofkingston.ca/",
+    "reason": "The City of Kingston and City of Greater Sudbury open-data licences are already recorded in the registry for other files. These GTFS feeds were not retrieved on 2026-11-16 and were not imported in this pass. Durham Region's licence text was not read."
   },
   {
     "name": "City of Guelph parks, trails, sidewalks, and park locations",

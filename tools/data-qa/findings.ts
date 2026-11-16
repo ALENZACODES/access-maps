@@ -314,6 +314,61 @@ export const LICENCE_FINDINGS: readonly LicenceFinding[] = [
     reason: "Open Government Licence – The Corporation of the City of Windsor, version 1.0. Not in the strict export allowlist.",
   },
   {
+    sourceId: "kingston-parking-lots",
+    licence: "Kingston-Open-Data-Licence-1.0",
+    reason: "City of Kingston Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "kingston-trails",
+    licence: "Kingston-Open-Data-Licence-1.0",
+    reason: "City of Kingston Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "kingston-points-of-interest",
+    licence: "Kingston-Open-Data-Licence-1.0",
+    reason: "City of Kingston Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "gtfs-kingston",
+    licence: "Kingston-Open-Data-Licence-1.0",
+    reason: "City of Kingston Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "greater-sudbury-playgrounds",
+    licence: "Greater-Sudbury-Open-Data-Licence-1.0",
+    reason: "City of Greater Sudbury Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "greater-sudbury-recreation",
+    licence: "Greater-Sudbury-Open-Data-Licence-1.0",
+    reason: "City of Greater Sudbury Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "greater-sudbury-walkways",
+    licence: "Greater-Sudbury-Open-Data-Licence-1.0",
+    reason: "City of Greater Sudbury Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "gtfs-gova",
+    licence: "Greater-Sudbury-Open-Data-Licence-1.0",
+    reason: "City of Greater Sudbury Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "thunder-bay-sidewalks",
+    licence: "Thunder-Bay-Open-Data-Licence-1.0",
+    reason: "City of Thunder Bay Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "thunder-bay-trails",
+    licence: "Thunder-Bay-Open-Data-Licence-1.0",
+    reason: "City of Thunder Bay Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "thunder-bay-city-facilities",
+    licence: "Thunder-Bay-Open-Data-Licence-1.0",
+    reason: "City of Thunder Bay Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
     sourceId: "gtfs-drt",
     licence: "Durham-Region-Open-Data-Licence-1.0",
     reason: "Region of Durham Open Data Licence, version 1.0. Not in the strict export allowlist.",
