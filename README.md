@@ -43,6 +43,8 @@ Section 5.6 counts only tier 2 and tier 3 values toward 500,000. This import's v
 
 [COUNTS.md](COUNTS.md) also lists accessibility facts separately from names, addresses, and geometry. `toilets:wheelchair` is stored on the washroom `wheelchair` field. Tier 4 alert rows are not pieces.
 
+Route-condition reports from people (`packages/conditions`) are treated like tier 4 alert rows: they are not pieces and never count toward a verified total. Two or more independent reports may raise a report group to tier 2, but a report is a time-limited observation, not a standing accessibility fact; it expires on its decay schedule whatever its tier, and the interface says "confirmed by N reports", never "verified". The counter in `src/count` reads only the record files under `data/`, and reports are never written there, so no change to the counter is needed; the package also marks every group and routing fact with `counting` flags that are always false and its routing fact as `derived`.
+
 OSM data is ODbL share-alike and stays in `data/*/osm-ontario/`. Other sources stay in their own directories. Code licence: [LICENSE](LICENSE). Data licences: [DATA-LICENCE.md](DATA-LICENCE.md). Schema checks use `@access-main/schema` at `main` commit `c89241dcd405f0885982bd5398c893a8a6ab6c15`; see [schema/SOURCE.md](schema/SOURCE.md).
 
 ## Layout

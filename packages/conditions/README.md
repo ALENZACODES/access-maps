@@ -159,11 +159,38 @@ point reports.
 | "Present" later than that window | a new condition; counted normally |
 | Only expired reports | `expired` |
 
-Tier 2 here means only that independent people reported the same thing. The
-package never assigns tier 1, 3 or 4 to a report, and the interface never
-calls a report verified. Whether corroborated reports should count toward
-any verified total elsewhere is a product decision this package does not
-take.
+Tier 2 here is peer verification of an observation: independent people
+reported the same thing. The package never assigns tier 1, 3 or 4 to a
+report.
+
+### Counting and wording
+
+A route-condition report is a time-limited observation, not a standing
+accessibility fact. The following holds at every tier, tier 2 included:
+
+- **Never a piece, never verified.** A report, a report group and the routing
+  fact made from one add 0 to any piece count and 0 to any verified total,
+  the same treatment the repository gives tier 4 alert rows. Every
+  `ReportGroup` and `RoutingFact` carries `counting`, which is always
+  `REPORT_COUNTING` (`counts_as_piece: false`,
+  `counts_toward_verified: false`; both are the literal `false` and the object
+  is frozen). `reportCountContribution` and `tallyReportContributions` return
+  `{ pieces: 0, verified: 0 }` for any of them. Code that counts must use
+  these and must not read `tier` on a report as a reason to count it.
+- **Expiry does not depend on tier.** Each report expires on the decay
+  schedule for its kind. Confirmation by others adds no time; when the
+  reports behind a tier 2 group expire, the group is `expired`, tier 0, with
+  zero confidence.
+- **Wording.** The interface says "Confirmed by N reports" / « Confirmé par N
+  signalements » (`reportStrings.confirmedBy`, N being the independent
+  reports counted) and never uses "verified" for a report. The list also
+  states that reports expire and are not counted as accessibility facts.
+
+The repository counter (`src/count`) reads only the `DataRecord` files under
+`data/`; reports are saved on a device by the host and are never written
+there, so they do not reach it. As a second guard, the routing fact's
+field-value object is marked `derived: true`, which the repository rule
+excludes from pieces. `test/counting.test.ts` checks both.
 
 ### Routing facts
 
