@@ -19,6 +19,9 @@ export interface ReportStrings {
   kinds: Record<ReportKind, string>;
   states: Record<GroupState, string>;
   tiers: Record<ReportTier, string>;
+  /** Shown on a tier 2 group. The count is the independent reports counted. */
+  confirmedBy: (count: number) => string;
+  notCounted: string;
   parts: Record<ReportPart, string>;
   observations: Record<ReportObservation, string>;
   roles: Record<ReporterRole, string>;
@@ -79,8 +82,11 @@ export const reportStrings: Record<Language, ReportStrings> = {
     },
     tiers: {
       0: "Tier 0 — unconfirmed report",
-      2: "Tier 2 — reported independently by more than one person; not surveyed",
+      2: "Tier 2 — confirmed by more than one independent report; not surveyed",
     },
+    confirmedBy: (count) => `Confirmed by ${count} reports`,
+    notCounted:
+      "Route reports are time-limited observations. Each one expires, whether or not others confirm it, and none is counted as an accessibility fact.",
     parts: {
       supporting: "Counted",
       clearing: "Says it was cleared",
@@ -150,7 +156,7 @@ export const reportStrings: Record<Language, ReportStrings> = {
   fr: {
     heading: "Signalements d’itinéraire par des personnes",
     intro:
-      "Ce sont des observations consignées par des personnes. Ce ne sont pas des inspections, et un lieu sans signalement n’a pas été vérifié.",
+      "Ce sont des observations consignées par des personnes. Ce ne sont pas des inspections, et un lieu sans signalement n’a fait l’objet d’aucun contrôle.",
     empty:
       "Aucun signalement dans cette liste locale. Cela ne veut pas dire que le passage est dégagé.",
     unknown: "Inconnu",
@@ -173,8 +179,11 @@ export const reportStrings: Record<Language, ReportStrings> = {
     },
     tiers: {
       0: "Niveau 0 — signalement non confirmé",
-      2: "Niveau 2 — signalé indépendamment par plus d’une personne; sans relevé sur place",
+      2: "Niveau 2 — confirmé par plus d’un signalement indépendant; sans relevé sur place",
     },
+    confirmedBy: (count) => `Confirmé par ${count} signalements`,
+    notCounted:
+      "Les signalements d’itinéraire sont des observations limitées dans le temps. Chacun expire, qu’il soit confirmé ou non par d’autres, et aucun n’est compté comme un fait d’accessibilité.",
     parts: {
       supporting: "Compté",
       clearing: "Indique que c’est dégagé",

@@ -51,6 +51,8 @@ export interface ReportGroupView {
   /** False for expired, cleared and needs-check groups. */
   current: boolean;
   tier: string;
+  /** "Confirmed by N reports" for a tier 2 group, otherwise null. */
+  confirmedBy: string | null;
   lastObserved: string;
   /** Label and value for the expiry line; the label says "Expired" once past. */
   expiryLabel: string;
@@ -78,6 +80,8 @@ export function reportGroupViews(
       state: t.states[group.state],
       current,
       tier: t.tiers[group.tier],
+      confirmedBy:
+        group.tier === 2 ? t.confirmedBy(group.independent_reporters) : null,
       lastObserved:
         formatDateTime(group.latest_observed_at, language) ?? t.unknown,
       expiryLabel: group.state === "expired" ? t.expired : t.expires,

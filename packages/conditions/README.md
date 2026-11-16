@@ -159,11 +159,38 @@ point reports.
 | "Present" later than that window | a new condition; counted normally |
 | Only expired reports | `expired` |
 
-Tier 2 here means only that independent people reported the same thing. The
-package never assigns tier 1, 3 or 4 to a report, and the interface never
-calls a report verified. Whether corroborated reports should count toward
-any verified total elsewhere is a product decision this package does not
-take.
+Tier 2 here is peer verification of an observation: independent people
+reported the same thing. The package never assigns tier 1, 3 or 4 to a
+report.
+
+### Counting and wording
+
+A route-condition report is a time-limited observation, not a standing
+accessibility fact. The following holds at every tier, tier 2 included:
+
+- **Never a piece, never verified.** A report, a report group and the routing
+  fact made from one add 0 to any piece count and 0 to any verified total,
+  the same treatment the repository gives tier 4 alert rows. Every
+  `ReportGroup` and `RoutingFact` carries `counting`, which is always
+  `REPORT_COUNTING` (`counts_as_piece: false`,
+  `counts_toward_verified: false`; both are the literal `false` and the object
+  is frozen). `reportCountContribution` and `tallyReportContributions` return
+  `{ pieces: 0, verified: 0 }` for any of them. Code that counts must use
+  these and must not read `tier` on a report as a reason to count it.
+- **Expiry does not depend on tier.** Each report expires on the decay
+  schedule for its kind. Confirmation by others adds no time; when the
+  reports behind a tier 2 group expire, the group is `expired`, tier 0, with
+  zero confidence.
+- **Wording.** The interface says "Confirmed by N reports" / « Confirmé par N
+  signalements » (`reportStrings.confirmedBy`, N being the independent
+  reports counted) and never uses "verified" for a report. The list also
+  states that reports expire and are not counted as accessibility facts.
+
+The repository counter (`src/count`) reads only the `DataRecord` files under
+`data/`; reports are saved on a device by the host and are never written
+there, so they do not reach it. As a second guard, the routing fact's
+field-value object is marked `derived: true`, which the repository rule
+excludes from pieces. `test/counting.test.ts` checks both.
 
 ### Routing facts
 
@@ -238,9 +265,24 @@ French is a draft. Controls are native elements with labels, errors are
 linked to their fields and summarised in an alert, status changes use a
 polite live region, and control targets are at least 24 pixels.
 
-The unit tests read the stateless components' markup without a browser and
-without a React runtime: this package is not an npm workspace and no React
-runtime is installed at the repository root, so `test/jsx-stand-in.ts`
-supplies a minimal element factory for those tests. It is not a renderer.
-The two stateful wrappers, rendering with React itself and an axe run in a
-real browser are not covered here.
+After a rejected submission `RouteReportForm` moves focus to the error
+summary, so the errors are read next and the first field is one Tab away.
+After a saved report focus stays where it was and the status region
+announces the save.
+
+## Tests
+
+This package is an npm workspace with its own test run
+(`npm test -w @access-maps/conditions`, also part of the root `npm test`).
+The component tests render with React in a simulated DOM: the report form,
+the finder and the conditions list are operated through their controls in
+English and French, including Tab order, rejected and corrected submissions,
+announcements, focus after each action, and an axe run on each state.
+
+Limits of that environment: colour contrast and rendered target sizes are
+not computed (target sizes are read from the declared minimum sizes), the
+date-and-time control's value is set directly because the simulated DOM has
+no picker, and select options are chosen through the testing library rather
+than by arrow keys. The Playwright contract in
+`test/conditions.a11y.test.tsx` still needs a host route and is not part of
+this run.

@@ -6,6 +6,7 @@ export * from "./ConditionsList";
 export * from "./reportTypes";
 export * from "./reports";
 export * from "./routingFacts";
+export * from "./counting";
 export * from "./reportStrings";
 export * from "./wavTypes";
 export * from "./wav";

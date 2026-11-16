@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { Ref } from "react";
 import type { Language } from "./strings";
 import { reportStrings } from "./reportStrings";
 import type {
@@ -45,6 +46,7 @@ export function RouteReportsList({
     <section lang={language} aria-labelledby="route-reports-heading">
       <h2 id="route-reports-heading">{t.heading}</h2>
       <p>{t.intro}</p>
+      <p>{t.notCounted}</p>
       {views.length === 0 ? (
         <p>{t.empty}</p>
       ) : (
@@ -54,6 +56,7 @@ export function RouteReportsList({
               <h3>{view.heading}</h3>
               {view.sample && <p><strong>{t.sample}</strong></p>}
               <p><strong>{view.state}</strong></p>
+              {view.confirmedBy !== null && <p>{view.confirmedBy}</p>}
               <dl>
                 <dt>{t.tier}</dt>
                 <dd>{view.tier}</dd>
@@ -119,6 +122,8 @@ export interface RouteReportFormViewProps {
   issues?: readonly ReportIssue[];
   warnings?: readonly ReportWarningCode[];
   saved?: boolean;
+  /** Receives the error summary element so the host can move focus to it. */
+  errorSummaryRef?: Ref<HTMLDivElement>;
   onChange: (fields: ReportFormFields) => void;
   onSubmit: () => void;
 }
@@ -141,6 +146,7 @@ export function RouteReportFormView({
   issues = [],
   warnings = [],
   saved = false,
+  errorSummaryRef,
   onChange,
   onSubmit,
 }: RouteReportFormViewProps) {
@@ -181,7 +187,7 @@ export function RouteReportFormView({
       <h2 id="route-report-form-heading">{t.formHeading}</h2>
       <p>{t.formIntro}</p>
       {messages.size > 0 && (
-        <div role="alert">
+        <div role="alert" tabIndex={-1} ref={errorSummaryRef}>
           <p>{t.errorSummary}</p>
           <ul>
             {[...messages].map(([key, message]) => (
@@ -351,6 +357,14 @@ export function RouteReportForm({
   const [issues, setIssues] = useState<readonly ReportIssue[]>([]);
   const [warnings, setWarnings] = useState<readonly ReportWarningCode[]>([]);
   const [saved, setSaved] = useState(false);
+  const [rejected, setRejected] = useState(0);
+  const summary = useRef<HTMLDivElement>(null);
+
+  // After a rejected submission, focus moves to the error summary so the
+  // errors are the next thing read and the first field is one Tab away.
+  useEffect(() => {
+    if (rejected > 0) summary.current?.focus();
+  }, [rejected]);
 
   function submit(): void {
     const result = submitReportForm(fields, {
@@ -366,6 +380,7 @@ export function RouteReportForm({
       setIssues(result.errors);
       setWarnings([]);
       setSaved(false);
+      setRejected((count) => count + 1);
       return;
     }
     onSave(result.report);
@@ -383,6 +398,7 @@ export function RouteReportForm({
       issues={issues}
       warnings={warnings}
       saved={saved}
+      errorSummaryRef={summary}
       onChange={(next) => {
         setFields(next);
         setSaved(false);

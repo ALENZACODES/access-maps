@@ -1,3 +1,4 @@
+import { REPORT_COUNTING } from "./reportTypes";
 import type {
   ReportGroup,
   RoutingClaim,
@@ -89,6 +90,7 @@ export function routingFacts(
         tier: group.tier,
         derived: true,
       },
+      counting: REPORT_COUNTING,
       provenance: {
         report_ids: group.reports.map((item) => item.report.id),
         counted_report_ids: counted.map((item) => item.report.id),

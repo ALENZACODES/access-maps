@@ -16,6 +16,7 @@ import type {
   ReportWarningCode,
   RouteReport,
 } from "./reportTypes";
+import { REPORT_COUNTING } from "./reportTypes";
 import {
   PHOTO_MEDIA_TYPES,
   REPORTER_ROLES,
@@ -436,6 +437,7 @@ function assessGroup(
     state,
     tier:
       state === "active" && independent >= config.min_independent ? 2 : 0,
+    counting: REPORT_COUNTING,
     confidence: round(confidence),
     independent_reporters: independent,
     has_photo: counted.some((item) => item.report.photo !== undefined),
@@ -451,7 +453,9 @@ function assessGroup(
  * Groups reports of the same kind at the same place and applies the
  * corroboration rules:
  *
- * - enough independent current "present" reports raise the group to tier 2;
+ * - enough independent current "present" reports raise the group to tier 2,
+ *   which never makes it a piece or part of a verified total, and never
+ *   extends any report's expiry;
  * - a later "cleared" report supersedes earlier "present" reports;
  * - a "present" soon after someone else's "cleared" is a dispute, which
  *   keeps tier 0 and lowers confidence;
