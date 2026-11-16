@@ -56,6 +56,8 @@ Datasets, retrieved 2026-11-16 from https://maps.ottawa.ca/arcgis/rest/services/
 - Parks inventory point layers, Parks_Inventory/MapServer (layers 0, 1, 2, 3, 4, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 27, 28)
 - Parking Lots in City Parkland, Parks_Inventory/MapServer/14
 
+Also retrieved 2026-11-16: City Facilities for Recreation Activities (City_Facilities/MapServer/5), Public Drinking Water Fountains (Miscellaneous/MapServer/0), Parks and Greenspace (Parks_Inventory/MapServer/24), Existing Pedestrian Network (Pedestrian_Plan/MapServer/0), and Ottawa Public Library Locations 2024 (https://services.arcgis.com/G6F8XLCl5KtAlZ2G/arcgis/rest/services/Ottawa_Public_Library_Locations_2024/FeatureServer/0).
+
 The washroom Accessibility Rating and the parks ACCESSIBLE flag are the City's own values and are stored as published. They are not a wheelchair measurement by this project. The licence does not cover personal information or the City's names, crests and logos. Bench dedication names are not imported.
 
 ## GO Transit and UP Express
@@ -155,6 +157,26 @@ Open Data Licence 1.0: https://www.thunderbay.ca/city-hall/thunder-bay-open-data
 Datasets retrieved 2026-11-16 from https://opendata.thunderbay.ca/: Sidewalks, Trails, and Address of City Facilities.
 
 These layers have no accessibility column. The licence lets the City ask for its attribution statement to be removed.
+
+## City of Cornwall
+
+Contains information licensed under the Open Government Licence – City of Cornwall.
+
+Open Data Licence Version 2.0: https://media-003-ca.cdn.govstack.com/cornwall-ca/media/5i0aznnd/city-of-cornwall-open-government-licence.pdf
+
+Datasets retrieved 2026-11-16 from https://data-cornwallcity.opendata.arcgis.com/: Sidewalks Network, Recreational Paths and Bike Lanes (off-road paths only), Water Bottle Filling Stations, and CornwallTransit Bus Stops.
+
+These layers have no accessibility column. The bus-stop `wheelchair` code is not defined by the layer and is not stored as a boarding value.
+
+## City of Quinte West
+
+Contains information licensed under the Open Data Licence – City of Quinte West.
+
+Open Data Licence 1.0: https://www.arcgis.com/home/item.html?id=2d74bbcab91441209f5669908ec31ad6
+
+Datasets retrieved 2026-11-16 from the City's ArcGIS organization: Parks, and Trails and Sidewalks.
+
+These layers have no accessibility column. The trail surface is the City's own value and is stored as published.
 
 ## Ministry of Transportation picnic parks
 
