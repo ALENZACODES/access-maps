@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Search over imported venue records for the access-main /places route. Unknown stays UNKNOWN. No record is added.",
+  "description": "Search and place detail for the access-main /places route through createPlacesModule over a pack source. Unknown stays UNKNOWN. No record is added.",
   "license": "MIT",
   "engines": {
     "node": ">=22"
