@@ -16,7 +16,7 @@ OSM-derived records are only in these directories:
 
 Do not copy those records into a GTFS or municipal file. GTFS and municipal records stay in their own source directories, for example `data/transit/gtfs-ttc/` and `data/washrooms/toronto-park-washrooms/`. Those layers are not ODbL.
 
-Attribution for the OSM layers: `(c) OpenStreetMap contributors`.
+Attribution for the OSM layers: `© OpenStreetMap contributors`.
 
 ## Other datasets
 

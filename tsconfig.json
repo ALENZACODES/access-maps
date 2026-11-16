@@ -24,6 +24,7 @@
     "packages/*/test/**/*.tsx"
   ],
   "exclude": [
+    "packages/**/*.a11y.test.tsx",
     "packages/places-shell/**"
   ]
 }

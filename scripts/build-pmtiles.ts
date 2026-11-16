@@ -63,7 +63,7 @@ function archiveOptions(family: "odbl" | "other") {
         : "Point overlay from Ontario datasets with a confirmed open grant, other than OpenStreetMap. GO Transit and UP Express timetable stops stay in their own metrolinx-* files and are left out of this overlay so they can be removed quickly. This file contains no OpenStreetMap data.",
     attribution:
       family === "odbl"
-        ? "(c) OpenStreetMap contributors. Open Database License (ODbL) 1.0. https://www.openstreetmap.org/copyright"
+        ? "© OpenStreetMap contributors. Open Database License (ODbL) 1.0. https://www.openstreetmap.org/copyright"
         : "Open-data overlay. Attribution for each source_id is in ATTRIBUTION.md. This file contains no OpenStreetMap data.",
     minZoom: 0,
     maxZoom: 12,

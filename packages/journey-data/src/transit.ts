@@ -1,7 +1,7 @@
 import type { TimetableSource } from "./timetable-source.js";
 import { distance, position, text, type Point } from "./geometry.js";
 import type { PackRecord, PackSourceEntry } from "./pack-types.js";
-import type { Evidence } from "./route.js";
+import { prototypeLabel, type Evidence } from "./route.js";
 
 /** I14 owns timetable parsing and caching. This lane only consumes a normalised chunk. */
 export interface TimetableTrip {
@@ -52,10 +52,12 @@ export interface TransitOption {
 function evidence(record: PackRecord, fieldName: string, sources: PackSourceEntry[]): Evidence[] {
   const field = record.fields[fieldName];
   if (!field) return [];
+  const tier = field.tier ?? null;
   return [{
     recordId: record.id, field: fieldName, sourceId: field.source_id,
     sourceName: sources.find((source) => source.sourceId === field.source_id)?.name ?? field.source_id,
-    licence: field.licence, retrievedAt: field.retrieved_at, tier: field.tier ?? null,
+    licence: field.licence, retrievedAt: field.retrieved_at, tier,
+    prototype_label: prototypeLabel(tier),
   }];
 }
 export function elevatorAt(alert: ElevatorAlert | undefined, now: string): StopWithAccess["elevator"] {
@@ -67,7 +69,8 @@ export function elevatorAt(alert: ElevatorAlert | undefined, now: string): StopW
   return {
     state: fresh ? alert.state : "unknown", checkedAt: alert.checkedAt,
     evidence: { recordId: alert.id, field: "state", sourceId: alert.sourceId,
-      sourceName: alert.sourceName, licence: alert.licence, retrievedAt: alert.checkedAt, tier: alert.tier },
+      sourceName: alert.sourceName, licence: alert.licence, retrievedAt: alert.checkedAt, tier: alert.tier,
+      prototype_label: prototypeLabel(alert.tier) },
   };
 }
 export function nearbyStops(
@@ -107,7 +110,8 @@ export function scheduledOptions(
             ...(destination.elevator ? [destination.elevator.evidence] : []),
             { recordId: trip.id, field: "stopTimes", sourceId: chunk.sourceId,
               sourceName: chunk.sourceName, licence: chunk.licence,
-              retrievedAt: chunk.fetchedAt, tier: chunk.tier }],
+              retrievedAt: chunk.fetchedAt, tier: chunk.tier,
+              prototype_label: prototypeLabel(chunk.tier) }],
         });
       }
     }

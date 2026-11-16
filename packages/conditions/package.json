@@ -1,0 +1,23 @@
+{
+  "name": "@access-maps/conditions",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": "./src/index.ts",
+    "./ingest": "./src/ingest.ts",
+    "./schema": "./schema/condition.schema.json"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "files": [
+    "src",
+    "schema",
+    "README.md"
+  ]
+}

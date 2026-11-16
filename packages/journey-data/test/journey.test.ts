@@ -9,8 +9,8 @@ const destination = { lat: 43.65, lon: -79.378 };
 const osm: PackSourceEntry = { sourceId: "osm-ontario", name: "OpenStreetMap Ontario", licence: "ODbL-1.0", retrieved: "2026-11-14", inWebPack: true };
 const ttc: PackSourceEntry = { sourceId: "ttc-confirmed", name: "TTC feed", licence: "OGL-ON-1.0", retrieved: "2026-11-14", inWebPack: true };
 const held: PackSourceEntry = { sourceId: "miway", name: "MiWay", licence: "UNKNOWN", inWebPack: false, heldReason: "Licence unclear" };
-function field(value: string | number | Array<[number, number]>, source = osm.sourceId) {
-  return { value, source_id: source, licence: "ODbL-1.0", retrieved_at: "2026-11-14", tier: 1 as const };
+function field(value: string | number | Array<[number, number]>, source = osm.sourceId, tier: 0 | 1 | 2 | 3 | 4 = 1) {
+  return { value, source_id: source, licence: "ODbL-1.0", retrieved_at: "2026-11-14", tier };
 }
 function path(id: string, from: typeof origin, to: typeof origin, fields: Record<string, ReturnType<typeof field>> = {}): PackRecord {
   return { id, tranche: "path", region: "toronto", fields: {
@@ -55,6 +55,26 @@ describe("on-device rolling graph", () => {
     expect(result?.unknownSurfaceCount).toBe(1);
     expect(result?.evidence).toContainEqual(expect.objectContaining({ recordId: "p2", sourceName: "OpenStreetMap Ontario", tier: 1, retrievedAt: "2026-11-14" }));
     expect(result?.evidence.some((entry) => entry.attribution === "© OpenStreetMap contributors, ODbL")).toBe(true);
+    expect(result?.evidence.every((entry) => entry.prototype_label === "PROTOTYPE-UNVERIFIED")).toBe(true);
+  });
+  it("labels pack evidence as SEEDED-OPEN-DATA or PROTOTYPE-UNVERIFIED, never VERIFIED", () => {
+    const seeded = path("p2", middle, destination, { surface: field("asphalt", osm.sourceId, 0) });
+    const seededRoute = routeRolling([path("p1", origin, middle), seeded], origin, destination, request.profile, [osm]);
+    expect(seededRoute?.evidence.filter((entry) => entry.recordId === "p2" && entry.field === "surface")
+      .every((entry) => entry.prototype_label === "SEEDED-OPEN-DATA")).toBe(true);
+    expect(seededRoute?.evidence.every((entry) =>
+      entry.prototype_label === "SEEDED-OPEN-DATA" || entry.prototype_label === "PROTOTYPE-UNVERIFIED")).toBe(true);
+    const later = path("p2b", middle, destination, { surface: field("asphalt") });
+    const laterRoute = routeRolling([path("p1b", origin, middle), later], origin, destination, request.profile, [osm]);
+    expect(laterRoute?.evidence.filter((entry) => entry.recordId === "p2b")
+      .every((entry) => entry.prototype_label === "PROTOTYPE-UNVERIFIED")).toBe(true);
+    expect(JSON.stringify(seededRoute?.evidence)).not.toMatch(/"VERIFIED"/);
+    expect(JSON.stringify(laterRoute?.evidence)).not.toMatch(/"VERIFIED"/);
+    const alert = { id: "e1", stopId: "stop-a", state: "out" as const, checkedAt: "2026-11-15T11:00:00Z",
+      sourceId: "ttc-confirmed", sourceName: "TTC", licence: "OGL-ON-1.0", tier: 1 as const };
+    expect(elevatorAt(alert, request.now)?.evidence.prototype_label).toBe("PROTOTYPE-UNVERIFIED");
+    expect(elevatorAt({ ...alert, tier: 0 }, request.now)?.evidence.prototype_label).toBe("SEEDED-OPEN-DATA");
+    expect(JSON.stringify(elevatorAt(alert, request.now)?.evidence)).not.toMatch(/"VERIFIED"/);
   });
   it("rejects routes longer than 3 km and unrelated endpoint snaps", () => {
     expect(routeRolling([path("p", origin, middle)], origin, { lat: 43.7, lon: -79.38 }, request.profile)).toBeNull();
@@ -91,6 +111,28 @@ describe("recorded stops, elevator alerts and I14 schedules", () => {
     expect(result.originStops.some((item) => item.id === "held-stop")).toBe(false);
     expect(fetchSpy).not.toHaveBeenCalled();
     fetchSpy.mockRestore();
+  });
+  it("holds gtfs-miway even when the pack flags it as in the web pack", async () => {
+    const gtfsMiway: PackSourceEntry = {
+      sourceId: "gtfs-miway", name: "Mississauga Transit", licence: "UNKNOWN", inWebPack: true,
+    };
+    const records = [path("p1", origin, middle), path("p2", middle, destination),
+      stop("stop-a", origin, "1"), stop("stop-b", destination, "0"),
+      stop("held-stop", middle, "1", "gtfs-miway")];
+    const result = await createJourneyModule(fixtureSource(records, [osm, ttc, gtfsMiway]), {
+      timetable: {} as never,
+      readTimetableChunk: async () => ({
+        region: "toronto", sourceId: "gtfs-miway", sourceName: "Mississauga Transit",
+        licence: "UNKNOWN", fetchedAt: "2026-11-15", tier: 1,
+        trips: [{ id: "trip-miway", routeId: "route-m", stopTimes: [
+          { stopId: "held-stop", departure: "13:00:00", arrival: "13:00:00" },
+          { stopId: "stop-b", departure: "13:20:00", arrival: "13:20:00" },
+        ] }],
+      }),
+    }).plan(request);
+    expect(result.originStops.some((item) => item.id === "held-stop")).toBe(false);
+    expect(result.sources.some((source) => source.sourceId === "gtfs-miway" || source.sourceId === "miway")).toBe(false);
+    expect(result.transit.every((option) => option.sourceName !== "Mississauga Transit")).toBe(true);
   });
   it("names missing timetable region and does not invent times", async () => {
     const result = await createJourneyModule(fixtureSource(records)).plan({ ...request, locale: "fr" });
@@ -176,14 +218,14 @@ describe("I14 published chunk reader", () => {
   });
 
   it("accepts a GO timetable chunk and still holds MiWay", async () => {
-    const go: PackSourceEntry = { sourceId: "metrolinx-go", name: "GO Transit", licence: "Metrolinx AUA", retrieved: "2026-11-15", inWebPack: true };
+    const go: PackSourceEntry = { sourceId: "metrolinx-go", name: "GO Transit", licence: "Metrolinx Access and Use Agreement (accepted 2026-11-15)", retrieved: "2026-11-15", inWebPack: true };
     const records = [path("p1", origin, middle), path("p2", middle, destination),
       stop("stop-a", origin, "1"), stop("stop-b", destination, "0"), stop("held-stop", middle, "1", "miway")];
     const result = await createJourneyModule(fixtureSource(records, [osm, ttc, held, go]), {
       timetable: {} as never,
       readTimetableChunk: async () => ({
         region: "toronto", sourceId: "metrolinx-go", sourceName: "GO Transit",
-        licence: "Metrolinx AUA", fetchedAt: "2026-11-15", tier: 1,
+        licence: "Metrolinx Access and Use Agreement (accepted 2026-11-15)", fetchedAt: "2026-11-15", tier: 1,
         trips: [{ id: "trip-go", routeId: "route-go", stopTimes: [
           { stopId: "stop-a", departure: "13:00:00", arrival: "13:00:00" },
           { stopId: "stop-b", departure: "13:20:00", arrival: "13:20:00" },
