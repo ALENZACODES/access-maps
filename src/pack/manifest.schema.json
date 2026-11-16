@@ -22,6 +22,8 @@
     "search": { "type": "object", "additionalProperties": { "$ref": "#/$defs/searchPart" } },
     "tiles": { "type": "object", "additionalProperties": { "type": "object", "required": ["path", "bytes", "licence"], "additionalProperties": false,
       "properties": { "path": { "type": "string" }, "bytes": { "$ref": "#/$defs/bytes" }, "licence": { "type": "string" } } } },
+    "withheld": { "type": "array", "items": { "type": "object", "required": ["path", "sourceId", "tranche", "cell", "reason"], "additionalProperties": false,
+      "properties": { "path": { "type": "string" }, "sourceId": { "type": ["string", "null"] }, "tranche": { "enum": ["venue", "washroom", "transit", "path", null] }, "cell": { "type": ["string", "null"] }, "reason": { "type": "string", "minLength": 1 } } } },
     "counts": { "type": "object", "required": ["records", "byTranche", "bySource"], "additionalProperties": false,
       "properties": { "records": { "$ref": "#/$defs/count" }, "byTranche": { "$ref": "#/$defs/counters" }, "bySource": { "$ref": "#/$defs/counters" } } }
   },

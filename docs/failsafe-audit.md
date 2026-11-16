@@ -1,6 +1,6 @@
 # Fail-safe audit: one bad unit of data
 
-Date: 2026-11-16. Repository: access-maps, main at `4274cd0`.
+Date: 2026-11-16. Repository: access-maps. Import rows were probed on main at `4274cd0`; pack and tile rows on main at `af8f44a` (the pack and tile code did not change between the two).
 
 The question for every step: what happens today when exactly one unit is bad (one record, one file, one download, one source)? "Before" is what a probe observed when it ran against main at `4274cd0`. Nothing in the "Before" column comes from reading code alone. "After" is the behaviour on this branch, and the last column names the test that proves it. Sources will keep failing; the goal is that every failure stays inside the smallest unit, is logged, and never reaches a person as a fact.
 
@@ -43,17 +43,21 @@ A scratch script imported `commitRecord`, `resetSourceDirs`, `PartitionWriter`, 
 | 17 | File over the size limit | write | `close()` throws after the file is already in `data/` | File never moved in; previous file kept and reported | "a staged file over the size limit" |
 | 18 | Existing partition is corrupt and a run appends to it | write | Appends a new gzip member to an unreadable file | Corrupt file not carried forward; reported `unreadable_replaced` | "a corrupt existing file" |
 | 19 | Malformed JSON line in a data file | count | `countNdjsonGz` throws; `COUNTS.md` is not rewritten | Unchanged by design: counts are published facts and are not computed from part of the data. The import wrapper isolates the count step and the previous counts stay. | covered by row 16's wrapper test |
-| 20 | Malformed JSON line in a data file | pack | `buildWebPack` throws; no pack | see the pack follow-up PR | |
-| 21 | Truncated gzip | pack | Throws `unexpected end of file`; no pack | see the pack follow-up PR | |
-| 22 | Empty file (0 bytes) | pack | Throws `unexpected end of file`; no pack | see the pack follow-up PR | |
-| 23 | Record with unknown tranche | pack | Throws `Partition mismatch`; no pack | see the pack follow-up PR | |
-| 24 | `data/alerts/` present (current repository) | pack | Throws `Unexpected partition path: alerts/...` on the committed data | see the pack follow-up PR | |
-| 25 | Malformed line or truncated file | tiles | `build:tiles` throws on the first bad line | see the pack follow-up PR | |
-| 26 | Pack part with the wrong hash, record failing validation on the device | app | See `docs/failsafe-audit.md` in access-main | | |
+| 20 | Malformed JSON line in a data file | pack | `buildWebPack` throws; no pack | That part listed in `manifest.withheld` with the line number; other parts packed; `verify:web-pack` passes | `test/failsafe/pack-tiles.test.ts` "malformed JSON line" |
+| 21 | Truncated gzip | pack | Throws `unexpected end of file`; no pack | Part withheld; others packed | "truncated gzip" |
+| 22 | Empty file (0 bytes) | pack | Throws `unexpected end of file`; no pack | Part withheld; others packed | "empty file" |
+| 23 | Record with unknown tranche, in the wrong cell, out of range, or with no licence | pack | Throws `Partition mismatch` for the first two; the last two were packed | Part withheld with the record's line and reason | "unknown tranche in a record", "record in the wrong cell", "out-of-range coordinate", "missing licence" |
+| 24 | `data/alerts/` present (current repository) | pack | Throws `Unexpected partition path: alerts/...` on the committed data | Skipped; not a record partition | "alert snapshots next to the partitions" |
+| 25 | Malformed line or truncated file | tiles | `buildOfflineTiles` throws (`Expected property name`, `unexpected end of file`); no tile is written | File adds nothing and is reported; other files drawn; an invalid record is skipped and quarantined | "a truncated file adds nothing", "a malformed line drops that file", "an invalid record is skipped" |
+| 26 | Source in `data/` but not in `sources/registry.json` | pack | Throws `Unregistered source`; no pack | Part withheld (no licence to ship it); others packed | "a source missing from the registry" |
+| 27 | Overlay tile over 25 MiB (`data/tiles/odbl/places.pmtiles` is 26,842,801 bytes on main) | pack | After row 24 was fixed, the build on the committed data threw `Tile exceeds 25 MiB` | Tile withheld with its size; the record parts are packed | "an overlay tile over the size limit"; and the run on the committed data below |
+| 28 | Pack part with the wrong hash, record failing validation on the device | app | See `docs/failsafe-audit.md` in access-main | | |
 
 ## Committed data
 
 The new record check (`src/failsafe/record-check.ts`, including Ajv, the Ontario envelope, the region check and the source check) was run over every committed record on main at `4274cd0`: 1,599,133 records in 1,337 files, 0 rejected. Committed extents: latitude 41.441991 to 55.990752, longitude -95.29768 to -74.146943. The envelope is latitude 41 to 57.5 and longitude -96 to -73.5.
+
+The pack was then built from the committed data on main at `af8f44a` with this branch: `npm run build:web-pack -- --out <temporary directory>` finished with 1,711,289 records in 406 cells and one withheld entry (the 26,842,801-byte ODbL overlay tile), and `npm run verify:web-pack` on that output printed "Web pack verified". On main the same build stops at `data/alerts/` (row 24).
 
 ## Not contained
 

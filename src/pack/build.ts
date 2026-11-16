@@ -10,6 +10,8 @@ import { TRANCHE_DIR, type DataRecord, type Tranche } from "../model/records.js"
 import { cellBBox, makeRegions } from "./regions.js";
 import type { PackManifest, PackPart } from "./types.js";
 import { readRegistry, type SourceEntry } from "../registry.js";
+import { checkRecord } from "../failsafe/record-check.js";
+import { failsafeLog } from "../failsafe/report.js";
 
 const LIMIT = 25 * 1024 * 1024;
 const PATH_PATTERN = /^(venues|washrooms|paths|transit)\/([^/]+)\/([ns]\d{2,3}\.\d_[ew]\d{3}\.\d)(?:\.p\d+)?\.ndjson\.gz$/;
@@ -161,6 +163,54 @@ function sourceCommit(repoRoot: string): string {
   catch { return "2c01751faf39854bb849dae00b804cf881e72287"; }
 }
 
+const NON_PARTITION_DIRS = new Set(["alerts", "tiles", "schedules"]);
+
+export interface WithheldPart {
+  path: string;
+  sourceId: string | null;
+  tranche: Tranche | null;
+  cell: string | null;
+  reason: string;
+}
+
+type CheckedPart =
+  | { ok: true; bytes: number; sha256: string; hits: ReturnType<typeof searchHit>[] }
+  | { ok: false; reason: string };
+
+/** Reads one partition to the end and checks every record. Any fault withholds the whole part. */
+async function checkPart(file: string, tranche: Tranche, cell: string, sourceId: string): Promise<CheckedPart> {
+  let bytes: number;
+  let sha256: string;
+  try {
+    ({ bytes, sha256 } = await digest(file));
+  } catch (error) {
+    return { ok: false, reason: (error as Error).message };
+  }
+  if (bytes === 0) return { ok: false, reason: "file is empty (0 bytes)" };
+  const hits: ReturnType<typeof searchHit>[] = [];
+  const stream = createReadStream(file).pipe(createGunzip());
+  const lines = createInterface({ input: stream, crlfDelay: Infinity });
+  let lineNumber = 0;
+  try {
+    for await (const line of lines) {
+      lineNumber += 1;
+      if (!line.trim()) continue;
+      let record: unknown;
+      try { record = JSON.parse(line); }
+      catch { return { ok: false, reason: `line ${lineNumber} is not JSON` }; }
+      const check = checkRecord(record, { tranche, region: cell, sourceId });
+      if (!check.ok) return { ok: false, reason: `line ${lineNumber}: ${check.code}: ${check.reason}` };
+      hits.push(searchHit(record as DataRecord));
+    }
+  } catch (error) {
+    return { ok: false, reason: `gzip: ${(error as Error).message}` };
+  } finally {
+    lines.close();
+    stream.destroy();
+  }
+  return { ok: true, bytes, sha256, hits };
+}
+
 export async function buildWebPack(options: {
   data: string; out: string; repoRoot?: string; builtAt?: string; sourceCommit?: string;
 }): Promise<PackManifest> {
@@ -184,16 +234,28 @@ export async function buildWebPack(options: {
   });
   const allowed = new Set(sources.filter((source) => source.inWebPack).map((source) => source.sourceId));
   const groups = new Map<string, Array<{ file: string; relative: string; tranche: Tranche; sourceId: string }>>();
+  const withheld: WithheldPart[] = [];
+  const withhold = (part: WithheldPart): void => {
+    withheld.push(part);
+    failsafeLog().outcome({ step: "pack", source_id: part.sourceId ?? undefined, target: part.path, status: "withheld", reason: `withheld from the pack: ${part.reason}` });
+  };
   for await (const file of filesUnder(dataRoot)) {
     const relative = path.relative(dataRoot, file).split(path.sep).join("/");
+    // Alert snapshots and tiles are not record partitions and never go into the record pack.
+    if (NON_PARTITION_DIRS.has(relative.split("/")[0] ?? "")) continue;
     const match = PATH_PATTERN.exec(relative);
-    if (!match) throw new Error(`Unexpected partition path: ${relative}`);
-    const dir = match[1];
-    const sourceId = match[2];
-    const cell = match[3];
+    const dir = match?.[1];
+    const sourceId = match?.[2];
+    const cell = match?.[3];
     const tranche = dir ? DIR_TO_TRANCHE[dir] : undefined;
-    if (!dir || !sourceId || !cell || !tranche) throw new Error(`Unexpected partition path: ${relative}`);
-    if (!registry.sources.some((source) => source.id === sourceId)) throw new Error(`Unregistered source: ${sourceId}`);
+    if (!match || !dir || !sourceId || !cell || !tranche) {
+      withhold({ path: relative, sourceId: null, tranche: null, cell: null, reason: "unexpected partition path" });
+      continue;
+    }
+    if (!registry.sources.some((source) => source.id === sourceId)) {
+      withhold({ path: relative, sourceId, tranche, cell, reason: "source is not in sources/registry.json, so it has no licence" });
+      continue;
+    }
     if (!allowed.has(sourceId)) continue;
     const group = groups.get(cell) ?? [];
     group.push({ file, relative, tranche, sourceId });
@@ -205,6 +267,7 @@ export async function buildWebPack(options: {
     regions: makeRegions([...groups.keys()]),
     tranches: Object.fromEntries(TRANCHES.map((tranche) => [tranche, { cells: {} }])),
     search: {}, tiles: {}, counts: { records: 0, byTranche: {}, bySource: {} },
+    withheld,
   };
   await mkdir(path.join(out, "search"), { recursive: true });
   for (const cell of [...groups.keys()].sort()) {
@@ -218,16 +281,20 @@ export async function buildWebPack(options: {
     try {
       await write(gzip, "[");
       for (const part of parts) {
-        const { bytes, sha256 } = await digest(part.file);
-        let partCount = 0;
-        for await (const record of recordsIn(part.file)) {
-          if (record.tranche !== part.tranche || record.region !== cell) {
-            throw new Error(`Partition mismatch: ${part.relative}: ${record.id}`);
-          }
+        // Each part is read and checked in full before any of it is used. A
+        // part that fails is withheld with its reason; the other parts and
+        // cells are still packed.
+        const checked = await checkPart(part.file, part.tranche, cell, part.sourceId);
+        if (!checked.ok) {
+          withhold({ path: part.relative, sourceId: part.sourceId, tranche: part.tranche, cell, reason: checked.reason });
+          continue;
+        }
+        const { bytes, sha256 } = checked;
+        const partCount = checked.hits.length;
+        for (const hit of checked.hits) {
           if (count) await write(gzip, ",");
-          await write(gzip, JSON.stringify(searchHit(record)));
+          await write(gzip, JSON.stringify(hit));
           count++;
-          partCount++;
         }
         const trancheEntry = manifest.tranches[part.tranche];
         if (!trancheEntry) throw new Error(`Missing tranche: ${part.tranche}`);
@@ -249,6 +316,10 @@ export async function buildWebPack(options: {
       await rm(temp, { force: true });
       throw error;
     }
+    if (count === 0 && !Object.values(manifest.tranches).some((entry) => entry.cells[cell])) {
+      await rm(output, { force: true });
+      continue;
+    }
     manifest.search[cell] = {
       path: `pack/v1/search/${cell}.json.gz`, ...await digest(output), count,
     };
@@ -257,8 +328,9 @@ export async function buildWebPack(options: {
     const relative = `tiles/${key}/places.pmtiles`;
     try {
       const file = await stat(path.join(dataRoot, relative));
-      if (file.size > LIMIT) throw new Error(`Tile exceeds 25 MiB: ${relative}`);
-      manifest.tiles[key] = { path: relative, bytes: file.size, licence };
+      // An oversized overlay is left out with its reason; the record parts are still packed.
+      if (file.size > LIMIT) withhold({ path: relative, sourceId: null, tranche: null, cell: null, reason: `tile is ${file.size} bytes, over the ${LIMIT} byte limit` });
+      else manifest.tiles[key] = { path: relative, bytes: file.size, licence };
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
     }
