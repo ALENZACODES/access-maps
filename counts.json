@@ -1,17 +1,17 @@
 {
   "definition": "A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. Section 5.6 counts only tier 2 and tier 3 values toward 500,000. Tier 0 and tier 1 accessibility facts are reported separately and are not verified.",
-  "records": 1701210,
-  "pieces": 8418754,
-  "gaps": 51697271,
+  "records": 1711294,
+  "pieces": 8463543,
+  "gaps": 51975170,
   "derived_excluded": 4207,
   "verified_toward_500k": 0,
-  "accessibility_fact_pieces": 895699,
-  "other_populated_pieces": 7005953,
-  "accessibility_pieces": 895699,
-  "accessibility_gaps": 28119897,
-  "identity_pieces": 7005953,
+  "accessibility_fact_pieces": 910236,
+  "other_populated_pieces": 7036205,
+  "accessibility_pieces": 910236,
+  "accessibility_gaps": 28246536,
+  "identity_pieces": 7036205,
   "context_pieces": 517102,
-  "context_gaps": 5054478,
+  "context_gaps": 5094814,
   "accessibility_definition": "An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.",
   "context_definition": "Context fields are populated values that are not a physical access measurement: access, crossing, lit, foot, fee, changing_table_fee, unisex, male, female, locked, and supervised. They are not accessibility facts and they are not names or geometry.",
   "accessibility_fields": {
@@ -354,24 +354,26 @@
       }
     },
     "path": {
-      "records": 1095042,
-      "pieces": 5075691,
-      "accessibility_facts": 754789,
-      "other_populated": 3903326,
+      "records": 1105126,
+      "pieces": 5120480,
+      "accessibility_facts": 769326,
+      "other_populated": 3933578,
       "verified": 0,
-      "gaps": 29965653,
+      "gaps": 30243552,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 5075691
+        "0": 5120480
       },
       "gaps_by_tier": {
-        "0": 29965653
+        "0": 30243552
       },
       "pieces_by_source": {
         "ajax-recreational-trails": 6730,
         "brampton-recreational-trails": 20862,
         "brant-sidewalks": 6669,
         "brant-trails": 510,
+        "cambridge-sidewalks": 35174,
+        "cambridge-trails": 9615,
         "cornwall-recreational-paths": 1153,
         "cornwall-sidewalks": 9814,
         "essex-county-trails": 668,
@@ -411,51 +413,51 @@
         "windsor-sidewalks": 33512
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 1212671,
+        "2026-11-16": 1257460,
         "2026-11-13": 3863020
       },
       "gaps_by_retrieved_at": {
-        "2026-11-16": 6739873,
+        "2026-11-16": 7017772,
         "2026-11-13": 23225780
       },
       "gap_fields": {
-        "footway": 579315,
-        "foot": 1060410,
-        "smoothness": 1069057,
-        "incline": 1080608,
-        "kerb": 1037800,
-        "tactile_paving": 995607,
-        "wheelchair": 1068415,
-        "wheelchair_description": 1052775,
-        "step_count": 1093004,
-        "handrail": 1092331,
-        "access": 1081562,
-        "max_slope": 1095042,
-        "min_width": 1095042,
-        "stair_count": 1095042,
-        "from_ref": 1095042,
-        "to_ref": 1095042,
-        "crossing": 777493,
-        "pathway_mode": 1095042,
-        "bidirectional": 1095042,
-        "oneway": 1082723,
-        "traversal_time_s": 1095042,
-        "signposted_as": 1094148,
-        "reversed_signposted_as": 1095042,
-        "ramp": 1093670,
-        "indoor": 1092472,
-        "length_m": 1007988,
-        "lit": 1043127,
-        "width": 987737,
-        "surface": 719669,
+        "footway": 589399,
+        "foot": 1070494,
+        "smoothness": 1079141,
+        "incline": 1090692,
+        "kerb": 1047884,
+        "tactile_paving": 1005691,
+        "wheelchair": 1078499,
+        "wheelchair_description": 1062619,
+        "step_count": 1103088,
+        "handrail": 1102415,
+        "access": 1091646,
+        "max_slope": 1105126,
+        "min_width": 1105126,
+        "stair_count": 1105126,
+        "from_ref": 1105126,
+        "to_ref": 1105126,
+        "crossing": 787577,
+        "pathway_mode": 1105126,
+        "bidirectional": 1105126,
+        "oneway": 1092807,
+        "traversal_time_s": 1105126,
+        "signposted_as": 1104232,
+        "reversed_signposted_as": 1105126,
+        "ramp": 1103754,
+        "indoor": 1102556,
+        "length_m": 1018072,
+        "lit": 1053211,
+        "width": 988425,
+        "surface": 724852,
         "kind": 364
       },
-      "accessibility_pieces": 754789,
-      "accessibility_gaps": 14575799,
+      "accessibility_pieces": 769326,
+      "accessibility_gaps": 14702438,
       "accessibility_by_field": {
-        "surface": 375373,
-        "width": 107305,
-        "wheelchair_description": 42267,
+        "surface": 380274,
+        "width": 116701,
+        "wheelchair_description": 42507,
         "handrail": 2711,
         "tactile_paving": 99435,
         "kerb": 57242,
@@ -466,7 +468,7 @@
         "step_count": 2038
       },
       "context_pieces": 417576,
-      "context_gaps": 3962592,
+      "context_gaps": 4002928,
       "context_by_field": {
         "lit": 51915,
         "crossing": 317549,
@@ -604,6 +606,38 @@
         "2026-11-16": 510
       },
       "accessibility_pieces": 0
+    },
+    "cambridge-sidewalks": {
+      "records": 8188,
+      "pieces": 35174,
+      "gaps": 226842,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 35174
+      },
+      "pieces_by_tranche": {
+        "path": 35174
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 35174
+      },
+      "accessibility_pieces": 10610
+    },
+    "cambridge-trails": {
+      "records": 1896,
+      "pieces": 9615,
+      "gaps": 51057,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 9615
+      },
+      "pieces_by_tranche": {
+        "path": 9615
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 9615
+      },
+      "accessibility_pieces": 3927
     },
     "cornwall-recreational-paths": {
       "records": 221,
@@ -2659,6 +2693,18 @@
     {
       "file": "data/paths/brant-trails/n43.0_w080.5.ndjson.gz",
       "bytes": 93791
+    },
+    {
+      "file": "data/paths/cambridge-sidewalks/n43.0_w080.5.ndjson.gz",
+      "bytes": 548366
+    },
+    {
+      "file": "data/paths/cambridge-sidewalks/n43.0_w080.5.p02.ndjson.gz",
+      "bytes": 109702
+    },
+    {
+      "file": "data/paths/cambridge-trails/n43.0_w080.5.ndjson.gz",
+      "bytes": 221186
     },
     {
       "file": "data/paths/cornwall-recreational-paths/n45.0_w075.0.ndjson.gz",
