@@ -583,6 +583,21 @@ export const LICENCE_FINDINGS: readonly LicenceFinding[] = [
     licence: "Pickering-Open-Data-Licence-1.0",
     reason: "City of Pickering Open Data Licence, version 1.0. Not in the strict export allowlist.",
   },
+  {
+    sourceId: "essex-county-recreational-areas",
+    licence: "OGL-Essex-1.0",
+    reason: "Open Government Licence – County of Essex, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "essex-county-libraries",
+    licence: "OGL-Essex-1.0",
+    reason: "Open Government Licence – County of Essex, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "essex-county-trails",
+    licence: "OGL-Essex-1.0",
+    reason: "Open Government Licence – County of Essex, version 1.0. Not in the strict export allowlist.",
+  },
 ];
 
 export function isDocumentedLicence(sourceId: string, licence: string): boolean {

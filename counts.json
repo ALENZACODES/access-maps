@@ -1,17 +1,17 @@
 {
   "definition": "A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. Section 5.6 counts only tier 2 and tier 3 values toward 500,000. Tier 0 and tier 1 accessibility facts are reported separately and are not verified.",
-  "records": 1683955,
-  "pieces": 8330517,
-  "gaps": 51214619,
+  "records": 1685610,
+  "pieces": 8339867,
+  "gaps": 51261045,
   "derived_excluded": 4195,
   "verified_toward_500k": 0,
-  "accessibility_fact_pieces": 871126,
-  "other_populated_pieces": 6942459,
-  "accessibility_pieces": 871126,
-  "accessibility_gaps": 27886940,
-  "identity_pieces": 6942459,
+  "accessibility_fact_pieces": 873275,
+  "other_populated_pieces": 6949660,
+  "accessibility_pieces": 873275,
+  "accessibility_gaps": 27910521,
+  "identity_pieces": 6949660,
   "context_pieces": 516932,
-  "context_gaps": 4988640,
+  "context_gaps": 4994748,
   "accessibility_definition": "An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.",
   "context_definition": "Context fields are populated values that are not a physical access measurement: access, crossing, lit, foot, fee, changing_table_fee, unisex, male, female, locked, and supervised. They are not accessibility facts and they are not names or geometry.",
   "accessibility_fields": {
@@ -94,26 +94,29 @@
   },
   "by_tranche": {
     "venue": {
-      "records": 565434,
-      "pieces": 3104831,
+      "records": 565690,
+      "pieces": 3106334,
       "accessibility_facts": 115926,
-      "other_populated": 2892585,
+      "other_populated": 2894088,
       "verified": 0,
-      "gaps": 21208831,
+      "gaps": 21218336,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 3104831
+        "0": 3106334
       },
       "gaps_by_tier": {
-        "0": 21208831
+        "0": 21218336
       },
       "pieces_by_source": {
         "ajax-playgrounds": 486,
         "ajax-town-facilities": 440,
         "brampton-city-parking": 40,
         "brampton-recreation-centres": 312,
+        "brant-parks": 297,
         "cambridge-play-structures": 2864,
         "cornwall-water-bottle-filling-stations": 30,
+        "essex-county-libraries": 120,
+        "essex-county-recreational-areas": 1086,
         "greater-sudbury-playgrounds": 1354,
         "greater-sudbury-recreation": 4343,
         "guelph-parking-lots": 154,
@@ -162,57 +165,57 @@
         "windsor-playgrounds": 903
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 180298,
+        "2026-11-16": 181801,
         "2026-11-13": 2924533
       },
       "gaps_by_retrieved_at": {
-        "2026-11-16": 872772,
+        "2026-11-16": 882277,
         "2026-11-13": 20336059
       },
       "gap_fields": {
-        "addr_housenumber": 482118,
-        "addr_street": 480669,
-        "addr_city": 521860,
-        "addr_postcode": 533172,
-        "addr_unit": 558352,
-        "opening_hours": 543766,
-        "level": 554766,
-        "operator": 519070,
-        "brand": 514097,
-        "website": 526152,
-        "wheelchair": 552764,
-        "wheelchair_description": 550978,
-        "entrance": 547801,
-        "automatic_door": 565341,
-        "door": 563399,
-        "door_width": 565434,
-        "ramp": 565405,
-        "ramp_wheelchair": 565434,
-        "ramp_stroller": 565434,
-        "step_count": 565434,
-        "incline": 565434,
-        "kerb": 565248,
-        "kerb_height": 565434,
-        "tactile_paving": 565421,
-        "handrail": 565434,
-        "width": 565404,
-        "access": 477649,
-        "surface": 502338,
-        "smoothness": 565302,
-        "lit": 556899,
-        "braille": 565434,
-        "hearing_loop": 565431,
-        "speech_output": 563986,
-        "stroller": 565383,
-        "capacity_disabled": 561396,
-        "indoor": 562430,
-        "elevator": 565421,
-        "ref": 533723,
-        "category": 104,
+        "addr_housenumber": 482359,
+        "addr_street": 480910,
+        "addr_city": 521920,
+        "addr_postcode": 533428,
+        "addr_unit": 558608,
+        "opening_hours": 544022,
+        "level": 555022,
+        "operator": 519326,
+        "brand": 514353,
+        "website": 526408,
+        "wheelchair": 553020,
+        "wheelchair_description": 551234,
+        "entrance": 548057,
+        "automatic_door": 565597,
+        "door": 563655,
+        "door_width": 565690,
+        "ramp": 565661,
+        "ramp_wheelchair": 565690,
+        "ramp_stroller": 565690,
+        "step_count": 565690,
+        "incline": 565690,
+        "kerb": 565504,
+        "kerb_height": 565690,
+        "tactile_paving": 565677,
+        "handrail": 565690,
+        "width": 565660,
+        "access": 477905,
+        "surface": 502594,
+        "smoothness": 565558,
+        "lit": 557155,
+        "braille": 565690,
+        "hearing_loop": 565687,
+        "speech_output": 564242,
+        "stroller": 565639,
+        "capacity_disabled": 561652,
+        "indoor": 562686,
+        "elevator": 565677,
+        "ref": 533979,
+        "category": 107,
         "name": 389514
       },
       "accessibility_pieces": 115926,
-      "accessibility_gaps": 13454490,
+      "accessibility_gaps": 13460634,
       "accessibility_by_field": {
         "capacity_disabled": 4038,
         "wheelchair_description": 14456,
@@ -232,7 +235,7 @@
         "tactile_paving": 13
       },
       "context_pieces": 96320,
-      "context_gaps": 1034548,
+      "context_gaps": 1035060,
       "context_by_field": {
         "access": 87785,
         "lit": 8535
@@ -344,24 +347,27 @@
       }
     },
     "path": {
-      "records": 1079518,
-      "pieces": 5003081,
-      "accessibility_facts": 730252,
-      "other_populated": 3855253,
+      "records": 1080917,
+      "pieces": 5010928,
+      "accessibility_facts": 732401,
+      "other_populated": 3860951,
       "verified": 0,
-      "gaps": 29541495,
+      "gaps": 29578416,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 5003081
+        "0": 5010928
       },
       "gaps_by_tier": {
-        "0": 29541495
+        "0": 29578416
       },
       "pieces_by_source": {
         "ajax-recreational-trails": 6730,
         "brampton-recreational-trails": 20862,
+        "brant-sidewalks": 6669,
+        "brant-trails": 510,
         "cornwall-recreational-paths": 1153,
         "cornwall-sidewalks": 9814,
+        "essex-county-trails": 668,
         "greater-sudbury-walkways": 28586,
         "guelph-sidewalks": 26059,
         "guelph-trails": 8472,
@@ -395,51 +401,51 @@
         "windsor-sidewalks": 33512
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 1140061,
+        "2026-11-16": 1147908,
         "2026-11-13": 3863020
       },
       "gaps_by_retrieved_at": {
-        "2026-11-16": 6315715,
+        "2026-11-16": 6352636,
         "2026-11-13": 23225780
       },
       "gap_fields": {
-        "footway": 565023,
-        "foot": 1044886,
-        "smoothness": 1053533,
-        "incline": 1065084,
-        "kerb": 1022276,
-        "tactile_paving": 980083,
-        "wheelchair": 1052891,
-        "wheelchair_description": 1049525,
-        "step_count": 1077480,
-        "handrail": 1076807,
-        "access": 1066038,
-        "max_slope": 1079518,
-        "min_width": 1079518,
-        "stair_count": 1079518,
-        "from_ref": 1079518,
-        "to_ref": 1079518,
-        "crossing": 761969,
-        "pathway_mode": 1079518,
-        "bidirectional": 1079518,
-        "oneway": 1067199,
-        "traversal_time_s": 1079518,
-        "signposted_as": 1078893,
-        "reversed_signposted_as": 1079518,
-        "ramp": 1078146,
-        "indoor": 1076948,
-        "length_m": 992464,
-        "lit": 1027603,
-        "width": 972213,
-        "surface": 716408,
+        "footway": 565190,
+        "foot": 1046285,
+        "smoothness": 1054932,
+        "incline": 1066483,
+        "kerb": 1023675,
+        "tactile_paving": 981482,
+        "wheelchair": 1054290,
+        "wheelchair_description": 1049844,
+        "step_count": 1078879,
+        "handrail": 1078206,
+        "access": 1067437,
+        "max_slope": 1080917,
+        "min_width": 1080917,
+        "stair_count": 1080917,
+        "from_ref": 1080917,
+        "to_ref": 1080917,
+        "crossing": 763368,
+        "pathway_mode": 1080917,
+        "bidirectional": 1080917,
+        "oneway": 1068598,
+        "traversal_time_s": 1080917,
+        "signposted_as": 1080023,
+        "reversed_signposted_as": 1080917,
+        "ramp": 1079545,
+        "indoor": 1078347,
+        "length_m": 993863,
+        "lit": 1029002,
+        "width": 973612,
+        "surface": 716738,
         "kind": 364
       },
-      "accessibility_pieces": 730252,
-      "accessibility_gaps": 14383000,
+      "accessibility_pieces": 732401,
+      "accessibility_gaps": 14400437,
       "accessibility_by_field": {
-        "surface": 363110,
+        "surface": 364179,
         "width": 107305,
-        "wheelchair_description": 29993,
+        "wheelchair_description": 31073,
         "handrail": 2711,
         "tactile_paving": 99435,
         "kerb": 57242,
@@ -450,7 +456,7 @@
         "step_count": 2038
       },
       "context_pieces": 417576,
-      "context_gaps": 3900496,
+      "context_gaps": 3906092,
       "context_by_field": {
         "lit": 51915,
         "crossing": 317549,
@@ -557,6 +563,38 @@
       },
       "accessibility_pieces": 0
     },
+    "brant-sidewalks": {
+      "records": 1130,
+      "pieces": 6669,
+      "gaps": 29491,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 6669
+      },
+      "pieces_by_tranche": {
+        "path": 6669
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 6669
+      },
+      "accessibility_pieces": 2149
+    },
+    "brant-trails": {
+      "records": 102,
+      "pieces": 510,
+      "gaps": 2754,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 510
+      },
+      "pieces_by_tranche": {
+        "path": 510
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 510
+      },
+      "accessibility_pieces": 0
+    },
     "cornwall-recreational-paths": {
       "records": 221,
       "pieces": 1153,
@@ -588,6 +626,22 @@
         "2026-11-16": 9814
       },
       "accessibility_pieces": 3270
+    },
+    "essex-county-trails": {
+      "records": 167,
+      "pieces": 668,
+      "gaps": 4676,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 668
+      },
+      "pieces_by_tranche": {
+        "path": 668
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 668
+      },
+      "accessibility_pieces": 0
     },
     "greater-sudbury-walkways": {
       "records": 5456,
@@ -1407,6 +1461,22 @@
       },
       "accessibility_pieces": 0
     },
+    "brant-parks": {
+      "records": 60,
+      "pieces": 297,
+      "gaps": 2283,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 297
+      },
+      "pieces_by_tranche": {
+        "venue": 297
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 297
+      },
+      "accessibility_pieces": 0
+    },
     "cambridge-play-structures": {
       "records": 392,
       "pieces": 2864,
@@ -1436,6 +1506,38 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-16": 30
+      },
+      "accessibility_pieces": 0
+    },
+    "essex-county-libraries": {
+      "records": 15,
+      "pieces": 120,
+      "gaps": 525,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 120
+      },
+      "pieces_by_tranche": {
+        "venue": 120
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 120
+      },
+      "accessibility_pieces": 0
+    },
+    "essex-county-recreational-areas": {
+      "records": 181,
+      "pieces": 1086,
+      "gaps": 6697,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 1086
+      },
+      "pieces_by_tranche": {
+        "venue": 1086
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 1086
       },
       "accessibility_pieces": 0
     },
@@ -2411,12 +2513,28 @@
       "bytes": 599088
     },
     {
+      "file": "data/paths/brant-sidewalks/n43.0_w080.5.ndjson.gz",
+      "bytes": 96171
+    },
+    {
+      "file": "data/paths/brant-trails/n43.0_w080.5.ndjson.gz",
+      "bytes": 93791
+    },
+    {
       "file": "data/paths/cornwall-recreational-paths/n45.0_w075.0.ndjson.gz",
       "bytes": 41597
     },
     {
       "file": "data/paths/cornwall-sidewalks/n45.0_w075.0.ndjson.gz",
       "bytes": 150076
+    },
+    {
+      "file": "data/paths/essex-county-trails/n42.0_w083.0.ndjson.gz",
+      "bytes": 12358
+    },
+    {
+      "file": "data/paths/essex-county-trails/n42.0_w083.5.ndjson.gz",
+      "bytes": 15616
     },
     {
       "file": "data/paths/greater-sudbury-walkways/n46.0_w081.0.ndjson.gz",
@@ -4607,12 +4725,44 @@
       "bytes": 4661
     },
     {
+      "file": "data/venues/brant-parks/n43.0_w080.5.ndjson.gz",
+      "bytes": 4386
+    },
+    {
+      "file": "data/venues/brant-parks/n43.0_w081.0.ndjson.gz",
+      "bytes": 550
+    },
+    {
       "file": "data/venues/cambridge-play-structures/n43.0_w080.5.ndjson.gz",
       "bytes": 29041
     },
     {
       "file": "data/venues/cornwall-water-bottle-filling-stations/n45.0_w075.0.ndjson.gz",
       "bytes": 1077
+    },
+    {
+      "file": "data/venues/essex-county-libraries/n42.0_w083.0.ndjson.gz",
+      "bytes": 1619
+    },
+    {
+      "file": "data/venues/essex-county-libraries/n42.0_w083.5.ndjson.gz",
+      "bytes": 689
+    },
+    {
+      "file": "data/venues/essex-county-recreational-areas/n41.5_w083.0.ndjson.gz",
+      "bytes": 811
+    },
+    {
+      "file": "data/venues/essex-county-recreational-areas/n42.0_w082.5.ndjson.gz",
+      "bytes": 592
+    },
+    {
+      "file": "data/venues/essex-county-recreational-areas/n42.0_w083.0.ndjson.gz",
+      "bytes": 9376
+    },
+    {
+      "file": "data/venues/essex-county-recreational-areas/n42.0_w083.5.ndjson.gz",
+      "bytes": 4025
     },
     {
       "file": "data/venues/greater-sudbury-playgrounds/n46.0_w081.0.ndjson.gz",
