@@ -281,7 +281,7 @@ describe("R1 paratransit booking cutoff", () => {
 
   it("gives the same facts in French with no deadline", () => {
     const note = paratransitNote(plan(source({ venues, paratransit: [specialized()] }), { ...ends, locale: "fr" }));
-    expect(note).toContain("Heure limite de réservation : Inconnu");
+    expect(note).toContain("Heure limite de réservation\u00A0: Inconnu");
     expect(note).toContain("Appelez le 000-333-0000");
     expect(note).not.toContain("Réserver avant");
     expect(note).not.toContain("2026-06-15T10:00");
