@@ -11,6 +11,10 @@ const LICENCE_BY_PREFIX: Record<string, string> = {
   "york-region-": "York-Region-Open-Data-Licence-1.0",
   "markham-": "Markham-Open-Data-Licence-1.0",
   "newmarket-": "Newmarket-Open-Data-Licence-2.0",
+  "oshawa-": "OGL-Oshawa-2.0",
+  "whitby-": "OGL-Whitby-1.0",
+  "ajax-": "Ajax-Open-Data-Licence-1.0",
+  "pickering-": "Pickering-Open-Data-Licence-1.0",
 };
 
 describe("York and Durham city registry entries", () => {
@@ -48,7 +52,10 @@ describe("York and Durham city registry entries", () => {
       expect(source?.kind).toBe("gtfs");
       expect(source?.tier).toBe(1);
       expect(source?.retrieved_at).toBe("2026-11-16");
+      expect(source?.licence_id).toBe("Durham-Region-Open-Data-Licence-1.0");
+      expect(isDocumentedLicence(id, source!.licence_id), id).toBe(true);
     }
+    expect(YORK_DURHAM_GTFS_FEED_IDS).toEqual(["gtfs-drt"]);
   });
 });
 
