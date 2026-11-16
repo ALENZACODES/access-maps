@@ -443,6 +443,20 @@ Dataset, retrieved 2026-11-16: Accessible Features, https://www.lambtongis.ca/ar
 
 The listed features are the County's own phrases and are stored as published. They are not a wheelchair measurement by this project, and a feature the County does not list is stored as UNKNOWN, not as absent. The licence does not cover personal information or the County's names, crests and logos.
 
+## City of London datasets
+
+Contains data sets publicly available from the City of London under the City of London Open Data Terms of Use.
+
+City of London Open Data Terms of Use: https://london.maps.arcgis.com/sharing/rest/content/items/e31458fd0c7e41dd9f93144a9550781d/data
+
+The terms do not set out a required attribution statement: credit is not required, and the line above uses the wording the terms encourage ("these data sets are publicly available from the City under these Terms of Use"). The City may ask that a credit be removed. What the terms do require: anyone who receives these data sets from this project, in original or modified form, must be given the terms or the link above, and is bound by them. Do not imply that the City of London participates in, sponsors, approves or endorses this project, and do not use the City's marks or logos.
+
+Basis for inclusion: the repository owner stated in chat on 2026-11-16 that use of City of London data is permitted and instructed that it be included (licence id `owner-permission-2026-11-16` in `sources/registry.json`). The terms above were read the same day.
+
+Datasets, retrieved 2026-11-16 from https://maps.london.ca/server/rest/services/OpenData (catalogue https://opendata.london.ca): Park Amenities (`london-park-amenities`), Parking Inventory (`london-parking-inventory`), Off-Street Parking (`london-off-street-parking`), Libraries (`london-libraries`), Sidewalks (`london-sidewalks`), Walkways (`london-walkways`), Bicycle Routes and Walking Trails (`london-trails`).
+
+London Transit Commission GTFS is a separate source with its own terms; see the London Transit Commission section above.
+
 <!-- g6 municipalities 51-77 start -->
 ## County of Essex
 

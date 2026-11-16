@@ -210,11 +210,20 @@ export interface ImportedSource {
 type RawFeature = Parameters<typeof cityFeature>[0];
 
 export async function importCitiesG3(repoRoot: string, only: readonly string[] = []): Promise<{ sources: ImportedSource[] }> {
+  return runLayerJobs(repoRoot, G3_LAYER_JOBS, only);
+}
+
+/** Downloads (or reads from the cache), maps and writes every job in `jobs`, or only those named in `only`. */
+export async function runLayerJobs(
+  repoRoot: string,
+  jobs: readonly LayerJob[],
+  only: readonly string[] = [],
+): Promise<{ sources: ImportedSource[] }> {
   const registry = readRegistry(repoRoot);
   const validators = compileValidators(path.join(repoRoot, "schema"));
   const writer = new PartitionWriter(path.join(repoRoot, "data"));
   const sources: ImportedSource[] = [];
-  for (const job of G3_LAYER_JOBS) {
+  for (const job of jobs) {
     if (only.length > 0 && !only.includes(job.id)) continue;
     const source = requireSource(registry, job.id);
     if (source.kind !== "municipal" || source.tier !== 0) throw new Error(`${job.id} must be tier 0 municipal data`);
