@@ -469,6 +469,61 @@ export const LICENCE_FINDINGS: readonly LicenceFinding[] = [
     reason: "Open Data Licence for The Regional Municipality of Peel, Version 1.0. Not in the strict export allowlist.",
   },
   {
+    sourceId: "oakville-town-washrooms",
+    licence: "Oakville-Open-Data-Licence",
+    reason: "Town of Oakville Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "oakville-transit-gtfs",
+    licence: "Oakville-Open-Data-Licence",
+    reason: "Town of Oakville Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "milton-parking-lots",
+    licence: "OGL-Milton-2.0",
+    reason: "Open Government Licence – Milton, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "milton-park-amenities",
+    licence: "OGL-Milton-2.0",
+    reason: "Open Government Licence – Milton, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "milton-sidewalks",
+    licence: "OGL-Milton-2.0",
+    reason: "Open Government Licence – Milton, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "milton-trails",
+    licence: "OGL-Milton-2.0",
+    reason: "Open Government Licence – Milton, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "niagara-falls-sidewalks",
+    licence: "OGL-Niagara-Falls-1.0",
+    reason: "Open Government Licence – Niagara Falls, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "niagara-falls-trails",
+    licence: "OGL-Niagara-Falls-1.0",
+    reason: "Open Government Licence – Niagara Falls, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "niagara-falls-playgrounds",
+    licence: "OGL-Niagara-Falls-1.0",
+    reason: "Open Government Licence – Niagara Falls, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "welland-trails",
+    licence: "OGL-Welland-2.0",
+    reason: "Open Government Licence – City of Welland, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "welland-public-washrooms",
+    licence: "OGL-Welland-2.0",
+    reason: "Open Government Licence – City of Welland, version 2.0. Not in the strict export allowlist.",
+  },
+  {
     sourceId: "essex-county-recreational-areas",
     licence: "OGL-Essex-1.0",
     reason: "Open Government Licence – County of Essex, version 1.0. Not in the strict export allowlist.",
