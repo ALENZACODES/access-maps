@@ -5,6 +5,7 @@ import { acceptId, commitRecord, resetSourceDirs } from "../src/io/commit.js";
 import { PartitionWriter } from "../src/io/partition-writer.js";
 import { mapCambridgePlayStructure } from "../src/municipal/cities/cambridge.js";
 import { cityFeature, type CityFeature } from "../src/municipal/cities/g3-shared.js";
+import { mapLambtonAccessibleFacility, LAMBTON_FEATURE_COLUMNS, LAMBTON_WASHROOM_COLUMNS } from "../src/municipal/cities/lambton.js";
 import { mapGuelphParkingLot, mapGuelphRestroom, mapGuelphSidewalk, mapGuelphTrail } from "../src/municipal/cities/guelph.js";
 import {
   mapKitchenerAccessibleParking,
@@ -31,7 +32,8 @@ import { compileValidators } from "../src/validate/ajv.js";
 const USER_AGENT = "access-maps-pipeline/1.0 (Ontario open-data import; licence checked)";
 
 /**
- * Importer for the Kitchener, Waterloo, Cambridge, Guelph and Windsor open-data layers.
+ * Importer for the Kitchener, Waterloo, Cambridge, Guelph, Windsor and County of Lambton
+ * open-data layers.
  * Each layer job names the columns it requests; no other column is downloaded. The
  * registry download_url is the layer URL. The Guelph Transit and Transit Windsor GTFS
  * feeds are listed in src/gtfs/feeds.ts and imported by scripts/import-gtfs.ts.
@@ -39,9 +41,11 @@ const USER_AGENT = "access-maps-pipeline/1.0 (Ontario open-data import; licence 
 export interface LayerJob {
   id: string;
   tranche: Tranche;
+  /** Set when a job also writes a second tranche, such as a washroom record beside a venue. */
+  alsoWrites?: readonly Tranche[];
   /** Columns requested from the service. OBJECTID is always requested. */
   fields: readonly string[];
-  map: (feature: CityFeature, ctx: Provenance) => DataRecord | null;
+  map: (feature: CityFeature, ctx: Provenance) => DataRecord | DataRecord[] | null;
 }
 
 export const G3_LAYER_JOBS: readonly LayerJob[] = [
@@ -183,6 +187,13 @@ export const G3_LAYER_JOBS: readonly LayerJob[] = [
     fields: ["trail_type", "trail_width", "surface_material_type", "status", "is_all_ages_and_abilities"],
     map: mapWindsorTrail,
   },
+  {
+    id: "lambton-accessible-facilities",
+    tranche: "venue",
+    alsoWrites: ["washroom"],
+    fields: ["Facility", "Address", "City", "Desc_", "Facility_ID", ...LAMBTON_FEATURE_COLUMNS, ...LAMBTON_WASHROOM_COLUMNS],
+    map: mapLambtonAccessibleFacility,
+  },
 ];
 
 export interface ImportedSource {
@@ -208,26 +219,28 @@ export async function importCitiesG3(repoRoot: string, only: readonly string[] =
     const source = requireSource(registry, job.id);
     if (source.kind !== "municipal" || source.tier !== 0) throw new Error(`${job.id} must be tier 0 municipal data`);
     const features = await cachedLayer(repoRoot, job, source.download_url);
-    resetSourceDirs(path.join(repoRoot, "data"), source.id, [job.tranche]);
+    resetSourceDirs(path.join(repoRoot, "data"), source.id, [job.tranche, ...(job.alsoWrites ?? [])]);
     const ctx: Provenance = { source_id: source.id, licence: source.licence_id, retrieved_at: source.retrieved_at, tier: 0 };
     const seen = new Set<string>();
     let skipped = 0;
     let noGeometry = 0;
     let records = 0;
     for (const raw of features) {
-      const record = job.map(cityFeature(raw), ctx);
-      if (record === null) {
+      const mapped = job.map(cityFeature(raw), ctx);
+      if (mapped === null) {
         skipped += 1;
         continue;
       }
-      // A record with no usable geometry has no 0.5-degree cell to be stored in.
-      if (record.region === "unknown") {
-        noGeometry += 1;
-        continue;
+      for (const record of Array.isArray(mapped) ? mapped : [mapped]) {
+        // A record with no usable geometry has no 0.5-degree cell to be stored in.
+        if (record.region === "unknown") {
+          noGeometry += 1;
+          continue;
+        }
+        if (!acceptId(seen, record.id)) throw new Error(`${job.id}: duplicate id ${record.id}`);
+        await commitRecord(record, source.id, writer, validators);
+        records += 1;
       }
-      if (!acceptId(seen, record.id)) throw new Error(`${job.id}: duplicate id ${record.id}`);
-      await commitRecord(record, source.id, writer, validators);
-      records += 1;
     }
     sources.push({ source_id: source.id, fetched: features.length, records, skipped, no_geometry: noGeometry });
   }

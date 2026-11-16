@@ -423,6 +423,11 @@ export const LICENCE_FINDINGS: readonly LicenceFinding[] = [
     licence: "Ottawa-Open-Data-Licence-2.0",
     reason: "Open Government Licence – City of Ottawa, version 2.0. Not in the strict export allowlist.",
   },
+  {
+    sourceId: "lambton-accessible-facilities",
+    licence: "OGL-Lambton-2.0",
+    reason: "Open Government Licence - County of Lambton, version 2.0. Not in the strict export allowlist.",
+  },
 ];
 
 export function isDocumentedLicence(sourceId: string, licence: string): boolean {
