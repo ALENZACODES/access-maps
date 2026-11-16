@@ -212,3 +212,50 @@ UNKNOWN, 44-pixel targets, offline and keyboard metadata, live route imports,
 unsafe browser APIs, CLI exit codes and blocked publication. These are
 source-contract checks, not a substitute for manual browser and assistive
 technology reviews.
+
+## P18F: local publication change review
+
+The standalone route `docs/attribution/impact.html` is linked from the sources,
+provenance and publication surface pages. It compares two complete local
+release packages with `inventory` and `register` keys. The new route imports
+`impact-core.mjs`, `impact-audit.mjs` and `impact-messages.mjs` through its
+entry point. Users can switch English/French, filter the field-level changes,
+inspect which publication surfaces are affected, and export a local report.
+The route uses only local JavaScript/CSS assets, reads chosen files into
+memory, does not transmit their contents, and never persists them. Missing
+values retain the literal `UNKNOWN` value. It has 44-pixel control minimums,
+visible focus indicators, a skip link and live status announcements.
+
+The change audit is not just a visual difference tool. The candidate package
+also passes through the existing strict publication and provenance gates.
+Additionally, it blocks regressions such as a deleted included dataset or
+surface, loss of documented redistribution permission, changed known evidence
+to `UNKNOWN`, accessibility assessments becoming unknown or negative, target
+sizes falling below 44 pixels, and loss of offline delivery. Other changes to
+licences, source URLs, notices, publication routes and links are surfaced for
+review. No missing date is filled from the clock, and no accessibility of a
+place or route can be inferred from a passing report.
+
+The same audit runs from the command line for local or CI release workflows:
+
+```sh
+node docs/attribution/impact-cli.mjs previous.json candidate.json --date 2026-11-15
+node docs/attribution/impact-cli.mjs previous.json candidate.json --json
+```
+
+The CLI exits **0** when its checks pass, **1** when the candidate or a
+regression blocks publication, and **2** for invalid files or arguments. A
+release job can execute this command and stop on a nonzero status. The lane
+does not alter a CI configuration outside the allowed scope.
+
+Run the standalone tests with:
+
+```sh
+node --test docs/attribution/impact-*.test.mjs
+```
+
+They exercise field-by-field change detection, dependency links, missing
+values, licence and date regressions, access and offline requirements,
+translation parity, local route linkage, file safety and CLI exit statuses.
+For deployment, the host must actually serve the `docs/attribution/` static
+route and its assets; publishing outside this lane is not modified here.

@@ -351,7 +351,7 @@ export function mountDisclosureRoute(doc = document, win = window) {
     const header = node(doc, 'header');
     const nav = node(doc, 'nav');
     nav.setAttribute('aria-label', w.home);
-    for (const [path, label] of [['index.html', w.home], ['provenance.html', w.provenance]]) {
+    for (const [path, label] of [['index.html', w.home], ['provenance.html', w.provenance], ['impact.html', state.locale === 'fr' ? 'Examen des changements' : 'Change review']]) {
       const link = node(doc, 'a', { text: label });
       link.href = path;
       nav.appendChild(link);

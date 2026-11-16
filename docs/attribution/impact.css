@@ -1,0 +1,40 @@
+/* Local change-review route. Keeps the inherited readable colour palette. */
+#impact-root { max-width: 72rem; margin-inline: auto; padding: 1rem; }
+#impact-root * { box-sizing: border-box; }
+#impact-root .impact-header { padding-block: 1rem; border-bottom: 2px solid currentColor; }
+#impact-root nav { display: flex; flex-wrap: wrap; gap: .75rem; margin-block: 1rem; }
+#impact-root nav a, #impact-root button, #impact-root input, #impact-root select {
+  min-height: 44px;
+  min-width: 44px;
+  font: inherit;
+}
+#impact-root nav a { display: inline-flex; align-items: center; padding: .6rem .8rem; }
+#impact-root button { padding: .6rem 1rem; border: 2px solid currentColor; border-radius: .35rem; cursor: pointer; }
+#impact-root input, #impact-root select { padding: .5rem; border: 2px solid currentColor; border-radius: .25rem; width: 100%; max-width: 32rem; }
+#impact-root :focus-visible { outline: 3px solid currentColor; outline-offset: 3px; }
+#impact-root .impact-control { display: grid; gap: .4rem; margin-block: 1rem; }
+#impact-root .impact-documents, #impact-root .impact-summary, #impact-root .impact-findings,
+#impact-root .impact-changes, #impact-root .impact-filters { margin-block: 1.6rem; }
+#impact-root .impact-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+#impact-root .impact-metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: .75rem; }
+#impact-root .impact-metrics dt { font-weight: 700; }
+#impact-root .impact-metrics dd { margin: 0; overflow-wrap: anywhere; }
+#impact-root ol { padding-inline-start: 1.5rem; }
+#impact-root li { border-bottom: 1px solid currentColor; padding-block: 1rem; overflow-wrap: anywhere; }
+#impact-root li h3 { font-size: 1.1rem; margin-block: .25rem; }
+#impact-root li dl { display: grid; grid-template-columns: minmax(5rem, 9rem) minmax(0, 1fr); gap: .5rem; }
+#impact-root li dd { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+#impact-root .impact-blocked, #impact-root .impact-error { border-inline-start: .35rem solid currentColor; padding-inline-start: .8rem; }
+#impact-root .impact-warning { border-inline-start: .2rem solid currentColor; padding-inline-start: .8rem; }
+#impact-root .impact-live-status { min-height: 2rem; }
+@media (max-width: 40rem) {
+  #impact-root { padding: .75rem; }
+  #impact-root .impact-metrics { grid-template-columns: 1fr 1fr; }
+  #impact-root li dl { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #impact-root * { scroll-behavior: auto; transition: none; animation: none; }
+}
+@media (forced-colors: active) {
+  #impact-root button, #impact-root input, #impact-root select { border-color: ButtonText; }
+}

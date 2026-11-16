@@ -379,7 +379,9 @@ export function mountProvenance(doc, win) {
     attribution.href = 'index.html';
     const publication = create(doc, 'a', { text: state.locale === 'fr' ? 'Registre des surfaces' : 'Publication surfaces' });
     publication.href = 'disclosure.html';
-    append(nav, attribution, publication);
+    const impact = create(doc, 'a', { text: state.locale === 'fr' ? 'Examen des changements' : 'Change review' });
+    impact.href = 'impact.html';
+    append(nav, attribution, publication, impact);
     append(header, switchRow, nav,
       create(doc, 'h1', { text: words.title }),
       create(doc, 'p', { text: words.introduction }),

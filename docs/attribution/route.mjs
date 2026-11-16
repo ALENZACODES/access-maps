@@ -276,6 +276,9 @@ export function mountAttribution(doc, win) {
     const publication = element(doc, 'a', { text: locale === 'fr' ? 'Registre des surfaces' : 'Publication surfaces' });
     publication.href = 'disclosure.html';
     navigation.appendChild(publication);
+    const impact = element(doc, 'a', { text: locale === 'fr' ? 'Examen des changements' : 'Change review' });
+    impact.href = 'impact.html';
+    navigation.appendChild(impact);
     header.appendChild(navigation);
     const main = element(doc, 'main', { id: 'main-content', className: 'content' });
     main.tabIndex = -1;
