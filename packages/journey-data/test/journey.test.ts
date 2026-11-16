@@ -110,6 +110,28 @@ describe("recorded stops, elevator alerts and I14 schedules", () => {
     expect(fetchSpy).not.toHaveBeenCalled();
     fetchSpy.mockRestore();
   });
+  it("holds gtfs-miway even when the pack flags it as in the web pack", async () => {
+    const gtfsMiway: PackSourceEntry = {
+      sourceId: "gtfs-miway", name: "Mississauga Transit", licence: "UNKNOWN", inWebPack: true,
+    };
+    const records = [path("p1", origin, middle), path("p2", middle, destination),
+      stop("stop-a", origin, "1"), stop("stop-b", destination, "0"),
+      stop("held-stop", middle, "1", "gtfs-miway")];
+    const result = await createJourneyModule(fixtureSource(records, [osm, ttc, gtfsMiway]), {
+      timetable: {} as never,
+      readTimetableChunk: async () => ({
+        region: "toronto", sourceId: "gtfs-miway", sourceName: "Mississauga Transit",
+        licence: "UNKNOWN", fetchedAt: "2026-11-15", tier: 1,
+        trips: [{ id: "trip-miway", routeId: "route-m", stopTimes: [
+          { stopId: "held-stop", departure: "13:00:00", arrival: "13:00:00" },
+          { stopId: "stop-b", departure: "13:20:00", arrival: "13:20:00" },
+        ] }],
+      }),
+    }).plan(request);
+    expect(result.originStops.some((item) => item.id === "held-stop")).toBe(false);
+    expect(result.sources.some((source) => source.sourceId === "gtfs-miway" || source.sourceId === "miway")).toBe(false);
+    expect(result.transit.every((option) => option.sourceName !== "Mississauga Transit")).toBe(true);
+  });
   it("names missing timetable region and does not invent times", async () => {
     const result = await createJourneyModule(fixtureSource(records)).plan({ ...request, locale: "fr" });
     expect(result.transit).toEqual([]);

@@ -54,11 +54,13 @@ export interface JourneyDataOptions {
   /** Optional registry link; not substituted for missing scheduled times. */
   agencyPlannerUrl?: string;
 }
-/** MiWay stays out. GO, UP Express, and LTC are in (AUA accepted 2026-11-15; LTC terms OK). */
-const HELD = new Set(["miway"]);
+/** MiWay stays out, including the pack id gtfs-miway. GO, UP Express, and LTC are in (AUA accepted 2026-11-15; LTC terms OK). */
+const HELD_IDS = new Set(["miway", "gtfs-miway"]);
 function approved(source: PackSourceEntry | undefined): boolean {
   if (!source || source.inWebPack === false || source.heldReason) return false;
-  return !HELD.has(source.sourceId.trim().toLowerCase()) && !HELD.has(source.name.trim().toLowerCase());
+  const id = source.sourceId.trim().toLowerCase();
+  const name = source.name.trim().toLowerCase();
+  return !HELD_IDS.has(id) && name !== "miway";
 }
 function within(point: Point, bbox: [number, number, number, number]): boolean {
   return point.lon >= bbox[0] && point.lon <= bbox[2] && point.lat >= bbox[1] && point.lat <= bbox[3];
