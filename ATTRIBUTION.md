@@ -457,6 +457,14 @@ Datasets, retrieved 2026-11-16 from https://maps.london.ca/server/rest/services/
 
 London Transit Commission GTFS is a separate source with its own terms; see the London Transit Commission section above.
 
+## City of Cambridge trails and sidewalks
+
+Contains information from the City of Cambridge, included on the repository owner's permission of 2026-11-16.
+
+Datasets, retrieved 2026-11-16: Trails, https://maps.cambridge.ca/arcgispub03/rest/services/OpenData1/MapServer/11 (`cambridge-trails`), and the sidewalk rows of Pedestrian Network, https://maps.cambridge.ca/arcgispub03/rest/services/OpenData2/MapServer/3 (`cambridge-sidewalks`).
+
+Neither layer has a record in the City's open-data catalogue, and neither carries licence text. No publisher licence was read for them. They are included because the repository owner stated in chat on 2026-11-16 that their use is permitted (licence id `owner-permission-2026-11-16`). The City's ACCESSIBLE flag is stored as published and is not a wheelchair measurement by this project. Do not imply that the City endorses this project, and do not use the City's names, crests or logos.
+
 <!-- g6 municipalities 51-77 start -->
 ## County of Essex
 
