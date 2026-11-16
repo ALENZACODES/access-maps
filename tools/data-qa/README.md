@@ -14,3 +14,16 @@ interpret `UNKNOWN` as accessible or infer accessibility from other fields.
 
 This module validates only; it never fetches, publishes or schedules work.
 Licences in the allowlist still require their own attribution and reuse compliance.
+
+## Pack and registry gate
+
+`npm run check:strict-data` runs `checkStrictData` over `sources/registry.json`
+and every `data/**/*.ndjson.gz` record (and `pack/v1` when present). CI runs
+that command on pull requests and on pushes to `main`. It is not scheduled.
+
+The job fails on undocumented violations. Licence identifiers that are in the
+repo but outside the strict export allowlist are listed in `FINDINGS.md`.
+Only an explicit wheelchair value of `yes` or `no` is mapped to `YES` or `NO`;
+anything else, including `limited` and conflicting tags, stays `UNKNOWN`.
+MiWay must not appear as a `source_id`. Notes that mention MiWay being out
+are not used as the source field.
