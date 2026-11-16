@@ -4,3 +4,4 @@ export { JourneyResult } from "./JourneyResult.js";
 export { MAP_FRENCH_REVIEW, mapCopy, mapCopyLocaleKeys, statusLabel } from "./i18n.js";
 export type { MapLocale } from "./i18n.js";
 export { AttributionSources } from "./AttributionSources.js";
+export { OutageJourneyView, StationOutageStatus } from "./Outages.js";
