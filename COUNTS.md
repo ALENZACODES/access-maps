@@ -5,36 +5,36 @@ A piece is one field on one record whose value is not UNKNOWN and whose derived 
 Verified field-values toward the 500,000 target: **0**.
 Tier 0 and tier 1 values count as 0 toward the 250,000 verified venue field-values and toward the 500,000 verified total. Section 5.6 counts tier 2 and tier 3 only.
 Verified toward 500,000 is 0. None of those verified field-values exist in this import.
-Open-data or operator-claimed physical accessibility facts (tier 0 and tier 1 only): **830,973**.
-Context fields, reported separately (access, crossing, lit, fee, and the other context fields below): **508,603**.
-All other populated values: **6,606,532**.
-All populated pieces together: **7,946,108**.
-Total UNKNOWN gaps: **48,905,055**.
-UNKNOWN gaps on accessibility fields: **26,747,188**.
+Open-data or operator-claimed physical accessibility facts (tier 0 and tier 1 only): **854,292**.
+Context fields, reported separately (access, crossing, lit, fee, and the other context fields below): **515,926**.
+All other populated values: **6,902,244**.
+All populated pieces together: **8,272,462**.
+Total UNKNOWN gaps: **51,030,607**.
+UNKNOWN gaps on accessibility fields: **27,804,848**.
 Derived values excluded from both totals: **4,057**.
-Records: **1,599,133**.
+Records: **1,675,444**.
 
 The illustrative targets are 250,000 venue, 100,000 path, 50,000 transit, and 100,000 washroom verified field-values. Shortfall is the target minus verified values.
 
 | Tranche | Records | Physical accessibility facts (tier 0–1) | Context fields | Other populated | Verified (tier 2–3) | UNKNOWN gaps | Illustrative target | Shortfall |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| venue | 562064 | 113385 | 96164 | 2871172 | 0 | 21088031 | 250000 | 250000 |
-| washroom | 6913 | 3596 | 3036 | 27623 | 0 | 231295 | 100000 | 100000 |
-| path | 1001307 | 694624 | 409403 | 3557015 | 0 | 27380782 | 100000 | 100000 |
-| transit | 28849 | 19368 | 0 | 150722 | 0 | 204947 | 50000 | 50000 |
+| venue | 564916 | 115912 | 96320 | 2888690 | 0 | 21190466 | 250000 | 250000 |
+| washroom | 7010 | 3668 | 3036 | 28184 | 0 | 234445 | 100000 | 100000 |
+| path | 1073506 | 715344 | 416570 | 3828833 | 0 | 29391445 | 100000 | 100000 |
+| transit | 30012 | 19368 | 0 | 156537 | 0 | 214251 | 50000 | 50000 |
 
 ## Accessibility facts
 
 An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.
 
-Physical accessibility facts, context fields, and the remaining pieces add up to the total: 830,973 + 508,603 + 6,606,532 = 7,946,108.
+Physical accessibility facts, context fields, and the remaining pieces add up to the total: 854,292 + 515,926 + 6,902,244 = 8,272,462.
 
 | Tranche | Physical accessibility pieces | Context pieces | Remaining pieces |
 | --- | ---: | ---: | ---: |
-| venue | 113385 | 96164 | 2871172 |
-| washroom | 3596 | 3036 | 27623 |
-| path | 694624 | 409403 | 3557015 |
-| transit | 19368 | 0 | 150722 |
+| venue | 115912 | 96320 | 2888690 |
+| washroom | 3668 | 3036 | 28184 |
+| path | 715344 | 416570 | 3828833 |
+| transit | 19368 | 0 | 156537 |
 
 Context fields are populated values that are not a physical access measurement: access, crossing, lit, foot, fee, changing_table_fee, unisex, male, female, locked, and supervised. They are not accessibility facts and they are not names or geometry.
 
@@ -50,7 +50,7 @@ Populated context fields:
 ### venue
 
 - access: 87785
-- lit: 8379
+- lit: 8535
 
 ### washroom
 
@@ -65,7 +65,7 @@ Populated context fields:
 ### path
 
 - crossing: 317549
-- lit: 43742
+- lit: 50909
 - foot: 34632
 - access: 13480
 
@@ -84,11 +84,11 @@ Populated accessibility facts by field:
 
 ### venue
 
-- surface: 63017
+- surface: 63096
 - entrance: 17633
+- wheelchair_description: 14442
 - wheelchair: 12670
-- wheelchair_description: 12055
-- capacity_disabled: 3977
+- capacity_disabled: 4038
 - door: 2035
 - speech_output: 1448
 - kerb: 186
@@ -104,15 +104,15 @@ Populated accessibility facts by field:
 ### washroom
 
 - wheelchair: 2086
+- published_accessibility: 695
 - changing_table: 637
-- published_accessibility: 623
 - adult_changing_table: 177
 - wheelchair_description: 69
 - changing_table_location: 4
 
 ### path
 
-- surface: 336694
+- surface: 357414
 - width: 101644
 - tactile_paving: 99435
 - kerb: 57242
@@ -132,16 +132,18 @@ Populated accessibility facts by field:
 
 | Tranche | Tier 0 | Tier 1 | Tier 2 | Tier 3 | Tier 4 |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| venue | 3080721 | 0 | 0 | 0 | 0 |
-| washroom | 34255 | 0 | 0 | 0 | 0 |
-| path | 4661042 | 0 | 0 | 0 | 0 |
-| transit | 1232 | 168858 | 0 | 0 | 0 |
+| venue | 3100922 | 0 | 0 | 0 | 0 |
+| washroom | 34888 | 0 | 0 | 0 | 0 |
+| path | 4960747 | 0 | 0 | 0 | 0 |
+| transit | 1232 | 174673 | 0 | 0 | 0 |
 
 ## Pieces by source and retrieval date
 
 | Source | Records | Pieces | Accessibility pieces | Gaps | Tier 0 pieces | Tier 1 pieces | Retrieval dates |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| brampton-city-parking | 5 | 40 | 5 | 175 | 40 | 0 | 2026-11-16 |
 | brampton-recreation-centres | 39 | 312 | 0 | 1365 | 312 | 0 | 2026-11-13 |
+| brampton-recreational-trails | 6954 | 20862 | 0 | 201666 | 20862 | 0 | 2026-11-16 |
 | cambridge-play-structures | 392 | 2864 | 0 | 13992 | 2864 | 0 | 2026-11-16 |
 | cornwall-recreational-paths | 221 | 1153 | 441 | 5919 | 1153 | 0 | 2026-11-16 |
 | cornwall-sidewalks | 1636 | 9814 | 3270 | 42538 | 9814 | 0 | 2026-11-16 |
@@ -163,6 +165,12 @@ Populated accessibility facts by field:
 | guelph-sidewalks | 5236 | 26059 | 10351 | 141493 | 26059 | 0 | 2026-11-16 |
 | guelph-trails | 2118 | 8472 | 2118 | 59304 | 8472 | 0 | 2026-11-16 |
 | guelph-transit-gtfs | 622 | 3733 | 3 | 4353 | 0 | 3733 | 2026-11-16 |
+| hamilton-bus-stop-amenities | 2387 | 16709 | 2387 | 85932 | 16709 | 0 | 2026-11-16 |
+| hamilton-drinking-fountains | 157 | 1097 | 0 | 5654 | 1097 | 0 | 2026-11-16 |
+| hamilton-park-washrooms | 73 | 510 | 72 | 2337 | 510 | 0 | 2026-11-16 |
+| hamilton-pedestrian-features | 64 | 192 | 0 | 1856 | 192 | 0 | 2026-11-16 |
+| hamilton-sidewalks | 44444 | 177776 | 0 | 1244432 | 177776 | 0 | 2026-11-16 |
+| hamilton-trails | 1389 | 6944 | 1388 | 37504 | 6944 | 0 | 2026-11-16 |
 | kingston-accessible-features | 1003 | 8198 | 277 | 34763 | 8198 | 0 | 2026-11-13 |
 | kingston-parking-lots | 56 | 400 | 27 | 2008 | 400 | 0 | 2026-11-16 |
 | kingston-points-of-interest | 766 | 7600 | 0 | 25338 | 7600 | 0 | 2026-11-16 |
@@ -181,11 +189,20 @@ Populated accessibility facts by field:
 | markham-trails | 3075 | 15240 | 2994 | 83160 | 15240 | 0 | 2026-11-16 |
 | metrolinx-go | 889 | 6151 | 889 | 5406 | 0 | 6151 | 2026-11-15 |
 | metrolinx-up | 5 | 30 | 5 | 35 | 0 | 30 | 2026-11-15 |
+| milton-park-amenities | 164 | 1299 | 0 | 5753 | 1299 | 0 | 2026-11-16 |
+| milton-parking-lots | 57 | 567 | 56 | 1884 | 567 | 0 | 2026-11-16 |
+| milton-sidewalks | 5256 | 31329 | 5256 | 136863 | 31329 | 0 | 2026-11-16 |
+| milton-trails | 2107 | 10519 | 2107 | 56905 | 10519 | 0 | 2026-11-16 |
 | mto-picnic-parks | 168 | 1005 | 0 | 6219 | 1005 | 0 | 2026-11-13 |
 | newmarket-landmarks | 35 | 244 | 0 | 1261 | 244 | 0 | 2026-11-16 |
 | newmarket-park-features | 281 | 1715 | 0 | 10320 | 1715 | 0 | 2026-11-16 |
 | newmarket-trail-points | 268 | 1337 | 0 | 10143 | 1337 | 0 | 2026-11-16 |
 | newmarket-trails | 739 | 2956 | 739 | 20692 | 2956 | 0 | 2026-11-16 |
+| niagara-falls-playgrounds | 82 | 489 | 79 | 3037 | 489 | 0 | 2026-11-16 |
+| niagara-falls-sidewalks | 4099 | 20490 | 4094 | 110678 | 20490 | 0 | 2026-11-16 |
+| niagara-falls-trails | 43 | 221 | 32 | 1155 | 221 | 0 | 2026-11-16 |
+| oakville-town-washrooms | 21 | 105 | 0 | 714 | 105 | 0 | 2026-11-16 |
+| oakville-transit-gtfs | 1163 | 5815 | 0 | 9304 | 0 | 5815 | 2026-11-16 |
 | osm-ontario | 1392049 | 6802010 | 677579 | 43717520 | 6802010 | 0 | 2026-11-13 |
 | ottawa-drinking-fountains | 112 | 1120 | 0 | 3696 | 1120 | 0 | 2026-11-16 |
 | ottawa-library-locations | 34 | 340 | 0 | 1122 | 340 | 0 | 2026-11-16 |
@@ -195,6 +212,7 @@ Populated accessibility facts by field:
 | ottawa-pedestrian-network | 20297 | 75358 | 0 | 574146 | 75358 | 0 | 2026-11-16 |
 | ottawa-public-washrooms | 186 | 1988 | 545 | 5266 | 1988 | 0 | 2026-11-16 |
 | ottawa-recreation-facilities | 371 | 2840 | 0 | 13113 | 2840 | 0 | 2026-11-16 |
+| peel-trails | 7791 | 31164 | 7791 | 218148 | 31164 | 0 | 2026-11-16 |
 | quinte-west-parks | 126 | 872 | 0 | 4546 | 872 | 0 | 2026-11-16 |
 | quinte-west-trails | 132 | 799 | 139 | 3425 | 799 | 0 | 2026-11-16 |
 | sudbury-fieldhouses | 61 | 480 | 0 | 2143 | 480 | 0 | 2026-11-13 |
@@ -215,6 +233,8 @@ Populated accessibility facts by field:
 | waterloo-playgrounds | 83 | 580 | 82 | 2989 | 580 | 0 | 2026-11-16 |
 | waterloo-sidewalks | 5261 | 26283 | 5239 | 142069 | 26283 | 0 | 2026-11-16 |
 | waterloo-trails | 1576 | 7878 | 1575 | 42554 | 7878 | 0 | 2026-11-16 |
+| welland-public-washrooms | 3 | 18 | 0 | 99 | 18 | 0 | 2026-11-16 |
+| welland-trails | 52 | 208 | 52 | 1456 | 208 | 0 | 2026-11-16 |
 | windsor-bus-stops | 1425 | 9975 | 1425 | 51300 | 9975 | 0 | 2026-11-16 |
 | windsor-drinking-fountains | 16 | 96 | 0 | 592 | 96 | 0 | 2026-11-16 |
 | windsor-park-washrooms | 42 | 210 | 0 | 1428 | 210 | 0 | 2026-11-16 |
@@ -228,59 +248,59 @@ Populated accessibility facts by field:
 
 ### venue
 
-- braille: 562064
-- door_width: 562064
-- handrail: 562064
-- incline: 562064
-- kerb_height: 562064
-- ramp_stroller: 562064
-- ramp_wheelchair: 562064
-- step_count: 562064
-- hearing_loop: 562061
-- elevator: 562051
-- tactile_paving: 562051
-- ramp: 562035
+- braille: 564916
+- door_width: 564916
+- handrail: 564916
+- incline: 564916
+- kerb_height: 564916
+- ramp_stroller: 564916
+- ramp_wheelchair: 564916
+- step_count: 564916
+- hearing_loop: 564913
+- elevator: 564903
+- tactile_paving: 564903
+- ramp: 564887
 
 ### washroom
 
-- locked: 6913
-- changing_table_fee: 6910
-- supervised: 6910
-- changing_table_location: 6909
-- capacity: 6908
-- shower: 6891
-- drinking_water: 6860
-- wheelchair_description: 6844
-- addr_city: 6843
-- addr_postcode: 6821
-- indoor: 6787
-- adult_changing_table: 6736
+- locked: 7010
+- changing_table_fee: 7007
+- supervised: 7007
+- changing_table_location: 7006
+- capacity: 7005
+- shower: 6988
+- drinking_water: 6957
+- wheelchair_description: 6941
+- addr_city: 6940
+- addr_postcode: 6918
+- indoor: 6884
+- adult_changing_table: 6833
 
 ### path
 
-- bidirectional: 1001307
-- from_ref: 1001307
-- max_slope: 1001307
-- min_width: 1001307
-- pathway_mode: 1001307
-- reversed_signposted_as: 1001307
-- stair_count: 1001307
-- to_ref: 1001307
-- traversal_time_s: 1001307
-- signposted_as: 1000682
-- ramp: 999935
-- step_count: 999269
+- bidirectional: 1073506
+- from_ref: 1073506
+- max_slope: 1073506
+- min_width: 1073506
+- pathway_mode: 1073506
+- reversed_signposted_as: 1073506
+- stair_count: 1073506
+- to_ref: 1073506
+- traversal_time_s: 1073506
+- signposted_as: 1072881
+- ramp: 1072134
+- step_count: 1071468
 
 ### transit
 
-- level_id: 28849
-- level_index: 28849
-- level_name: 28849
-- platform_code: 28835
-- parent_station: 28681
-- url: 27852
-- description: 21180
-- wheelchair_boarding: 9481
+- level_id: 30012
+- level_index: 30012
+- level_name: 30012
+- platform_code: 29998
+- parent_station: 29844
+- url: 29015
+- description: 22343
+- wheelchair_boarding: 10644
 - stop_code: 2063
 - location_type: 308
 

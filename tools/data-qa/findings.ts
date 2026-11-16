@@ -428,6 +428,101 @@ export const LICENCE_FINDINGS: readonly LicenceFinding[] = [
     licence: "OGL-Lambton-2.0",
     reason: "Open Government Licence - County of Lambton, version 2.0. Not in the strict export allowlist.",
   },
+  {
+    sourceId: "hamilton-park-washrooms",
+    licence: "City-of-Hamilton-Open-Data-Licence",
+    reason: "City of Hamilton Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "hamilton-drinking-fountains",
+    licence: "City-of-Hamilton-Open-Data-Licence",
+    reason: "City of Hamilton Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "hamilton-bus-stop-amenities",
+    licence: "City-of-Hamilton-Open-Data-Licence",
+    reason: "City of Hamilton Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "hamilton-pedestrian-features",
+    licence: "City-of-Hamilton-Open-Data-Licence",
+    reason: "City of Hamilton Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "hamilton-trails",
+    licence: "City-of-Hamilton-Open-Data-Licence",
+    reason: "City of Hamilton Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "hamilton-sidewalks",
+    licence: "City-of-Hamilton-Open-Data-Licence",
+    reason: "City of Hamilton Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "brampton-recreational-trails",
+    licence: "CC-BY",
+    reason: "Creative Commons Attribution, version unspecified in the registry. Not the same identifier as allowlisted CC-BY-4.0.",
+  },
+  {
+    sourceId: "peel-trails",
+    licence: "Peel-Open-Data-Licence-1.0",
+    reason: "Open Data Licence for The Regional Municipality of Peel, Version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "oakville-town-washrooms",
+    licence: "Oakville-Open-Data-Licence",
+    reason: "Town of Oakville Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "oakville-transit-gtfs",
+    licence: "Oakville-Open-Data-Licence",
+    reason: "Town of Oakville Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "milton-parking-lots",
+    licence: "OGL-Milton-2.0",
+    reason: "Open Government Licence – Milton, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "milton-park-amenities",
+    licence: "OGL-Milton-2.0",
+    reason: "Open Government Licence – Milton, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "milton-sidewalks",
+    licence: "OGL-Milton-2.0",
+    reason: "Open Government Licence – Milton, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "milton-trails",
+    licence: "OGL-Milton-2.0",
+    reason: "Open Government Licence – Milton, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "niagara-falls-sidewalks",
+    licence: "OGL-Niagara-Falls-1.0",
+    reason: "Open Government Licence – Niagara Falls, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "niagara-falls-trails",
+    licence: "OGL-Niagara-Falls-1.0",
+    reason: "Open Government Licence – Niagara Falls, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "niagara-falls-playgrounds",
+    licence: "OGL-Niagara-Falls-1.0",
+    reason: "Open Government Licence – Niagara Falls, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "welland-trails",
+    licence: "OGL-Welland-2.0",
+    reason: "Open Government Licence – City of Welland, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "welland-public-washrooms",
+    licence: "OGL-Welland-2.0",
+    reason: "Open Government Licence – City of Welland, version 2.0. Not in the strict export allowlist.",
+  },
 ];
 
 export function isDocumentedLicence(sourceId: string, licence: string): boolean {

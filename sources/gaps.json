@@ -10,11 +10,6 @@
     "reason": "YRT publishes an Open Data Licence Agreement, and the download is behind a named-person request form. No anonymous file URL was available, so the feed was not retrieved."
   },
   {
-    "name": "Peel Region Active Recreation and Trails",
-    "url": "https://data.peelregion.ca/pages/license",
-    "reason": "On 2026-11-13 the licence page returned HTML whose extracted text did not include a grant of rights. The CSV download returned a JSON status that the file was still being generated. UNKNOWN licence. Not imported."
-  },
-  {
     "name": "City of Barrie park amenities",
     "url": "https://opendata.barrie.ca/datasets/barrie::park-amenity",
     "reason": "On 2026-11-13 the published licence text was a copyright notice and a warranty disclaimer. It did not grant a right to copy, modify, or redistribute. Not imported."
@@ -23,11 +18,6 @@
     "name": "City of London trails, sidewalks, and parking",
     "url": "https://www.london.ca/",
     "reason": "The City of London Open Data Terms of Use grant a worldwide royalty-free non-exclusive licence to use, modify, and distribute, but the City may cancel or suspend the licence and the terms include an indemnity. Redistribution must pass the terms on. Legal review is required, so these datasets were not imported. Re-read on 2026-11-16 at https://london.maps.arcgis.com/sharing/rest/content/items/e31458fd0c7e41dd9f93144a9550781d/data (linked from the catalogue records at https://opendata.london.ca): the terms are unchanged. The catalogue (236 records) lists Sidewalks, Walkways, Trails, Park Amenities, Off-Street Parking, On-Street Parking, Parking Inventory, Pedestrian Crossovers, Signalized Intersections, Libraries and Public Pools under those terms; none was retrieved. London Transit Commission GTFS is already imported as gtfs-ltc under LTC's own terms (retrieved 2026-11-13, not retrieved again in this pass)."
-  },
-  {
-    "name": "City of Mississauga public washrooms and community centres",
-    "url": "http://www5.mississauga.ca/research_catalogue/CityofMississauga_TermsofUse.pdf",
-    "reason": "The official terms href on the MiWay developer page did not return the terms on 2026-11-15, and a still-hosted PDF names the City of Toronto in the grant sentence. MiWay GTFS was removed from this pack. No additional Mississauga dataset was imported."
   },
   {
     "name": "Ontario catalogue records with Licence Not Specified",
@@ -73,11 +63,6 @@
     "name": "City of Ottawa records without a coordinate",
     "url": "https://maps.ottawa.ca/arcgis/rest/services/Parks_Inventory/MapServer",
     "reason": "One parks inventory feature and one parking lot retrieved on 2026-11-16 have no usable point. Records are stored by 0.5-degree cell, so those two rows were not imported."
-  },
-  {
-    "name": "City of Brampton sidewalk segments and parks",
-    "url": "https://services3.arcgis.com/rl7ACuZkiFsmDA2g/arcgis/rest/services/Sidewalks/FeatureServer/0",
-    "reason": "Counted at 429,007 sidewalk segments and 869 parks in the 2026-11-15 survey, with CC BY stated on the City item. Not retrieved on 2026-11-16 and not imported in this pass."
   },
   {
     "name": "Public Services and Procurement Canada building accessibility scores",
@@ -283,5 +268,75 @@
     "name": "Haldimand County open data",
     "url": "https://opendata-haldimand.hub.arcgis.com/",
     "reason": "Checked on 2026-11-16. The catalogue lists 11 records (lots and concessions, building footprints, parks, trails, boundary, water features, wards and roads), each with an empty licence field; the hub site item itself carries the text CC-BY-SA with no version and no link, and no licence page was found. Parks (62 polygons) has a name, size and address and no accessibility column. The HaldimandTrails service returned error 404 (Service not found). No accessibility-relevant file with a stated licence was found. Not imported."
+  },
+  {
+    "name": "Region of Peel Active Recreation, Points of Interest and on-road Trails segments",
+    "url": "https://data.peelregion.ca/pages/license",
+    "reason": "On 2026-11-16 the Open Data Licence for The Regional Municipality of Peel (Version 1.0) was read and the Trails layer is imported as peel-trails. Not imported: 1,539 Trails segments classed Bicycle Lane, Marked On Road Bicycle Route or On Road Connection, or with no class, because the line is the roadway or the class is not stated. Active Recreation (2,415 polygons of playing fields, playgrounds, arenas and pools) has no accessibility column and was not imported. Points of Interest (1,866 points) has no accessibility column, has a phone column, and its item licence note says one group of shelter records must not be shared externally, so it was not imported."
+  },
+  {
+    "name": "City of Mississauga open data (public washrooms, landmarks, parking facilities, community centres, libraries, arenas, pools, play sites, MiWay stops)",
+    "url": "https://mississauga.maps.arcgis.com/sharing/rest/content/items/961c790805c14d8da258ec91bf4117e3/data",
+    "reason": "Re-checked on 2026-11-16. The City of Mississauga Terms of Use PDF linked from the City's ArcGIS items (item 961c790805c14d8da258ec91bf4117e3, and the same 200,246-byte file at http://www5.mississauga.ca/research_catalogue/CityofMississauga_TermsofUse.pdf) returned HTTP 200 and names the City of Mississauga in the grant. It grants a world-wide, royalty-free, non-exclusive, revocable licence to use, modify and distribute the Datasets. It also requires anyone who distributes the Datasets to ensure each recipient agrees to and is bound by the terms, includes an indemnity, and lets the City cancel or suspend the licence without notice for any reason. These are the same conditions that hold the City of London datasets for legal review, so the hold stays. Some items state different terms: City Ice Rinks says the GIS data may not be modified or copied without written consent. Not imported: City Public Washrooms, City Landmarks (which includes accessible playgrounds), City Owned Parking Facilities, City Community Centres, City Libraries, City Arenas, City Municipal Pools, City Play Sites, City Spray Pads, MiWay Bus Stops and MiWay Bus Shelters at https://data.mississauga.ca/."
+  },
+  {
+    "name": "City of Brampton sidewalks, curbs, parks, libraries, facilities, signals and on-road trail segments",
+    "url": "https://services3.arcgis.com/rl7ACuZkiFsmDA2g/arcgis/rest/services/Sidewalks/FeatureServer/0",
+    "reason": "Checked on 2026-11-16, CC BY stated on each City item. Sidewalks has 429,007 lines with one column (DESCR, always SIDEWALK-PUBLIC); at the size of the 44,444-line Hamilton sidewalk import (6.4 MB) it would be far over the 10 MB limit for one city, so it was not retrieved. Curbs (282,376 lines) is the curb line, not curb ramps. Parks (869 polygons), Libraries (9), Supplementary City Facilities (31), Parking Lots (8,522 unnamed polygons), Traffic Signal Poles (3,862) and Transit Shelters (114) have no accessibility column. Bus Stops (2,869) repeats the GTFS stops already stored as gtfs-brampton. None of these were imported. 781 Recreational Trails segments typed ON STREET BIKE LANE, ON ROAD SIGNED ROUTE, APRON, CROSSWALK or CROSSROAD, or with no type, were left out of brampton-recreational-trails."
+  },
+  {
+    "name": "MiWay static GTFS",
+    "url": "https://www.mississauga.ca/miway-transit/developer-download/",
+    "reason": "MiWay is published by the City of Mississauga, whose Terms of Use were re-read on 2026-11-16: revocable licence, recipients must be bound by the terms, indemnity, and cancellation without notice. The feed stays held for legal review with the other City of Mississauga datasets. No MiWay file was retrieved on 2026-11-16."
+  },
+  {
+    "name": "City of Hamilton facilities, signals, crossovers and untyped trail segments",
+    "url": "https://open.hamilton.ca/",
+    "reason": "The hub host open.hamilton.ca answered HTTP 403 to the pipeline on 2026-11-16; the City's ArcGIS REST layers answered HTTP 200 and their items link the City of Hamilton Open Data Licence. Recreation and Community Centres (75 points), Arenas (25), Libraries (23), Spray Pads (70), Municipal Parking Lots (53 polygons), Parks (633 polygons), Traffic Signals (693) and Pedestrian Crossovers (215) have no accessibility column and were not imported; Arenas and Spray Pads also carry a phone column. No layer of accessible pedestrian signals, curb ramps or elevators was found among the publisher's items. 2,050 Trails segments typed On-road Route or with no trail type were left out of hamilton-trails."
+  },
+  {
+    "name": "Town of Caledon open data",
+    "url": "https://data-caledon.opendata.arcgis.com/",
+    "reason": "On 2026-11-16 the Town's hub listed five datasets: Caledon Voting Locations, Caledon Address Points, AMANDA Building Permits, Roads and Caledon Boundary. None has an accessibility-relevant column, and no washroom, parking, facility, park, signal, sidewalk or transit dataset was listed. Nothing was imported from the Town. Trails inside Caledon are covered by the Region of Peel Trails layer (peel-trails)."
+  },
+  {
+    "name": "Town of Oakville trails, accessible parking, stairs, sidewalks, parks and other Town Facilities rows",
+    "url": "https://portal-exploreoakville.opendata.arcgis.com/",
+    "reason": "Checked on 2026-11-16. The Town's portal footer links the Town of Oakville Open Data Licence, but the ArcGIS items for Trails (4,848 lines with surface, width and running, cross and maximum slope columns), Municipal Parking Lots, Sidewalks and Parks have an empty licence field, and the Accessible Parking (43 points) and Stairs (66 points) layers of the same AGO_Accessibility map service are not listed as portal datasets at all. The licence is not stated on those datasets, so they were not imported; the trail slope columns also have no stated unit. Town Facilities states the licence: its 21 Washroom rows are imported as oakville-town-washrooms, and the other 742 rows (playgrounds, parking lots, courts, fields, pools, libraries) have no accessibility column and were not imported."
+  },
+  {
+    "name": "City of Burlington open data and Burlington Transit",
+    "url": "https://opendata.burlington.ca/opendata-terms-of-use/City%20of%20Burlington%20-%20Open%20Data%20Terms%20of%20Use.pdf",
+    "reason": "The Terms of Use for Open Data Burlington (dated September 19, 2011) were read on 2026-11-16 (HTTP 200). They grant a worldwide, royalty-free, non-exclusive, revocable licence to use, reproduce, modify and distribute the datasets, and require anyone who distributes them to ensure each recipient agrees to and is bound by the terms. These are the conditions that hold the City of London and City of Mississauga datasets for legal review. Not imported: Burlington Transit Bus Stops, Facilities, Libraries, Parks, Parks Point, Parking Lots Downtown, Pedestrian Network, and the Burlington Transit GTFS zip (https://opendata.burlington.ca/gtfs-rt/GTFS_Data.zip answered HTTP 200 and was not kept)."
+  },
+  {
+    "name": "City of Brantford open data and Brantford Transit",
+    "url": "https://www.brantford.ca/your-government/open-data/open-data-licence/",
+    "reason": "The City of Brantford Open Data Licence was read on 2026-11-16 (HTTP 200). It grants a worldwide, royalty-free, perpetual, non-exclusive licence to Use the Information, but its termination clause lets the City cancel or suspend the licence without notice and for any reason, after which use must stop, and it includes a waiver of claims. A licence that can be cancelled at will needs legal review, as for the City of London terms. Not imported: City of Brantford Parks, Paths and Trails, Municipal Parking Lots, Sports Fields and Play Equipment Areas. No Brantford Transit GTFS file was retrieved."
+  },
+  {
+    "name": "Halton Region open data",
+    "url": "https://www.halton.ca/",
+    "reason": "No Halton Region open-data portal was found on 2026-11-16. The guessed hosts opendata.halton.ca and data-halton.opendata.arcgis.com did not serve a catalogue (no connection, and HTTP 401 from the hub search API), https://www.halton.ca/The-Region/Open-Data answered HTTP 404, and a web search returned no Halton Region catalogue. No file and no licence text were retrieved. Nothing imported."
+  },
+  {
+    "name": "Town of Halton Hills open data",
+    "url": "https://www.haltonhills.ca/",
+    "reason": "No Town of Halton Hills open-data portal was found on 2026-11-16. The guessed hosts opendata.haltonhills.ca and data-haltonhills.opendata.arcgis.com did not serve a catalogue (no connection, and HTTP 401 from the hub search API), and a web search returned only the Town's planning data reporting page. No file and no licence text were retrieved. Nothing imported."
+  },
+  {
+    "name": "City of St. Catharines Parks",
+    "url": "https://st-catharines-open-data-2-stcatharines.hub.arcgis.com/",
+    "reason": "On 2026-11-16 the City's hub search returned one relevant dataset, Parks Public (194 polygons), whose item states the Open Government Licence 2.0 (The Corporation of the City of St. Catharines). The layer has two columns, PARK_NAME and OBJECTID, and no accessibility-relevant column. No washroom, parking, facility, signal, sidewalk or trail dataset was listed. Nothing imported."
+  },
+  {
+    "name": "Niagara Region open data and Niagara Region Transit GTFS",
+    "url": "https://niagaraopendata.ca/dataset/niagara-region-transit-gtfs",
+    "reason": "niagaraopendata.ca answered HTTP 403 to the pipeline on 2026-11-16 for the home page, the dataset page and the CKAN API, so the Niagara Region Transit GTFS and the catalogue's licence text could not be retrieved. The Region's ArcGIS account lists Arenas, Libraries and Pedestrian Ferry layers; the Arenas item has an empty licence field and the other two were not checked. Nothing imported."
+  },
+  {
+    "name": "Town of Milton facilities, City of Niagara Falls facilities and parking lots, and City of Welland parks, facilities and transit stops",
+    "url": "https://discover-milton.hub.arcgis.com/",
+    "reason": "Checked on 2026-11-16 under each publisher's Open Government Licence. Milton Town Facilities (19 points), Niagara Falls City Facilities (687 polygons), Niagara Falls Parking Lots (28 polygons), Welland Parks (87 polygons with amenity counts) and the Welland Transit Stops route layers have no accessibility column and were not imported. Niagara Falls Libraries and Welland Municipal Parking Lots were not inspected and not imported. Welland Municipal Facilities rows other than the three Public Washroom rows were not imported. Left out of the imports: 2 Milton park amenities whose status is Historic, 13 Niagara Falls trail rows with no status, 2 Niagara Falls sidewalk features with no geometry, and 31 Welland trail rows classed On-Road/Sidewalk. No Milton Transit GTFS file was found on the Town's hub."
   }
 ]
