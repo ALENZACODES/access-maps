@@ -1,0 +1,19 @@
+{
+  "type": "FeatureCollection",
+  "synthetic": true,
+  "notice": "SYNTHETIC TEST DATA — not Ontario 511 data or a current road restriction",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "synthetic-511-001",
+        "type": "road_restriction",
+        "description": "SYNTHETIC: example temporary road restriction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-79.45, 43.85]
+      }
+    }
+  ]
+}
