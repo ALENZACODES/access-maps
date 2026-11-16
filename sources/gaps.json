@@ -478,5 +478,30 @@
     "name": "Town of East Gwillimbury open data",
     "url": "https://www.eastgwillimbury.ca/",
     "reason": "Checked 2026-11-16. East Gwillimbury ranks 56th by 2021 Census population (sources/ontario-municipalities-51-75.json). No Town open-data portal or licence was found: https://www.eastgwillimbury.ca/open-data and /opendata returned HTTP 404. The Town's public ArcGIS items (organization EastGwillMap), including Parks Layers for Public App, have a blank licence field, or text that limits general access to York Region staff, York Info Partners and their consultants. Nothing imported. York Region Transit stops are already imported (york-region-yrt-bus-stops)."
+  },
+  {
+    "name": "County of Prince Edward open data",
+    "url": "https://open-data-pec.hub.arcgis.com/",
+    "reason": "Checked 2026-11-16. Prince Edward County ranks 69th by 2021 Census population (sources/ontario-municipalities-51-75.json). The County's open-data hub lists 5 feature-service datasets under the Open Government Licence – The Corporation of the County of Prince Edward, Version 1.0 (stated in each item's licence field): Current Voting Ward Boundaries, Urban Boundary, Zoning 140-2025, Zoning Watercourses 140-2025 and Parcel Boundaries. None is a facility, washroom, parking, path, signal or transit layer, and none has an accessibility column. Nothing imported."
+  },
+  {
+    "name": "Niagara Open Data portal (Town of Fort Erie, Town of Grimsby, Town of Lincoln, City of Thorold) and Niagara Region Transit GTFS",
+    "url": "https://niagaraopendata.ca/",
+    "reason": "Checked 2026-11-16. Fort Erie (59th), Grimsby (64th), Lincoln (68th) and Thorold (73rd) rank in sources/ontario-municipalities-51-75.json. The shared Niagara Open Data portal (CKAN), which lists an Open Government Licence 2.0 page for the Town of Grimsby and the Niagara Region Transit GTFS dataset, answered HTTP 403 with a browser challenge page to every pipeline request (the API, the licence page and the home page), so no file or licence text could be retrieved from it by the pipeline. https://www.forterie.ca, https://www.grimsby.ca, https://www.lincoln.ca and https://www.thorold.ca answered HTTP 200; their /open-data and /opendata paths returned HTTP 404. Nothing imported."
+  },
+  {
+    "name": "Niagara Region Open Data hub",
+    "url": "https://open.niagararegion.ca/",
+    "reason": "Checked 2026-11-16. The Region's ArcGIS hub lists 45 items, including Libraries, Arenas, Beaches, Bike Routes and Pedestrian Ferry. Their ArcGIS items have a blank licence field, and the hub's home page shows a copyright line and no licence text; https://www.niagararegion.ca/government/opendata/ returned HTTP 404. No licence that permits redistribution was found. Nothing imported."
+  },
+  {
+    "name": "City of Clarence-Rockland and United Counties of Prescott and Russell open data",
+    "url": "https://www.clarence-rockland.com/",
+    "reason": "Checked 2026-11-16. Clarence-Rockland ranks 67th by 2021 Census population (sources/ontario-municipalities-51-75.json). No City or United Counties open-data portal or licence was found: https://www.clarence-rockland.com/open-data, /opendata, /en/open-data and /fr/donnees-ouvertes returned HTTP 404, the United Counties home page (https://en.prescott-russell.on.ca/) links no open-data or GIS data page, and ArcGIS searches found only third-party layers. Nothing imported."
+  },
+  {
+    "name": "Municipality of Strathroy-Caradoc and County of Middlesex open data",
+    "url": "https://data-middlesex.opendata.arcgis.com/",
+    "reason": "Checked 2026-11-16. Strathroy-Caradoc ranks 72nd by 2021 Census population (sources/ontario-municipalities-51-75.json). The Municipality's Maps page offers PDF maps and points to the County's mapping page; https://www.strathroy-caradoc.ca/open-data and /opendata returned HTTP 404. The County of Middlesex open-data hub lists three datasets (Middlesex County Address Points, Single Line Road Network, Municipal Boundaries) with a blank licence field; none is an accessibility-relevant layer. Nothing imported."
   }
 ]
