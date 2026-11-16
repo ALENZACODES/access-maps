@@ -1,17 +1,17 @@
 {
   "definition": "A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. Section 5.6 counts only tier 2 and tier 3 values toward 500,000. Tier 0 and tier 1 accessibility facts are reported separately and are not verified.",
-  "records": 1574431,
-  "pieces": 7839538,
-  "gaps": 48204011,
+  "records": 1599052,
+  "pieces": 7945398,
+  "gaps": 48902468,
   "derived_excluded": 3995,
   "verified_toward_500k": 0,
-  "accessibility_fact_pieces": 825712,
-  "other_populated_pieces": 6505223,
-  "accessibility_pieces": 825712,
-  "accessibility_gaps": 26390103,
-  "identity_pieces": 6505223,
+  "accessibility_fact_pieces": 830893,
+  "other_populated_pieces": 6605902,
+  "accessibility_pieces": 830893,
+  "accessibility_gaps": 26745882,
+  "identity_pieces": 6605902,
   "context_pieces": 508603,
-  "context_gaps": 4582511,
+  "context_gaps": 4675709,
   "accessibility_definition": "An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.",
   "context_definition": "Context fields are populated values that are not a physical access measurement: access, crossing, lit, foot, fee, changing_table_fee, unisex, male, female, locked, and supervised. They are not accessibility facts and they are not names or geometry.",
   "accessibility_fields": {
@@ -94,22 +94,23 @@
   },
   "by_tranche": {
     "venue": {
-      "records": 559987,
-      "pieces": 3062704,
-      "accessibility_facts": 112016,
-      "other_populated": 2854524,
+      "records": 562014,
+      "pieces": 3080208,
+      "accessibility_facts": 113347,
+      "other_populated": 2870697,
       "verified": 0,
-      "gaps": 21016737,
+      "gaps": 21086394,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 3062704
+        "0": 3080208
       },
       "gaps_by_tier": {
-        "0": 21016737
+        "0": 21086394
       },
       "pieces_by_source": {
         "brampton-recreation-centres": 312,
         "cambridge-play-structures": 2864,
+        "cornwall-water-bottle-filling-stations": 30,
         "greater-sudbury-playgrounds": 1354,
         "greater-sudbury-recreation": 4343,
         "guelph-parking-lots": 154,
@@ -126,8 +127,13 @@
         "newmarket-park-features": 1641,
         "newmarket-trail-points": 1282,
         "osm-ontario": 2914928,
+        "ottawa-drinking-fountains": 1120,
+        "ottawa-library-locations": 340,
         "ottawa-park-parking": 4694,
         "ottawa-parks-inventory": 51047,
+        "ottawa-parks": 12302,
+        "ottawa-recreation-facilities": 2840,
+        "quinte-west-parks": 872,
         "sudbury-fieldhouses": 480,
         "thunder-bay-city-facilities": 434,
         "toronto-accessible-parking-stalls": 3984,
@@ -143,58 +149,58 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-13": 2924533,
-        "2026-11-16": 138171
+        "2026-11-16": 155675
       },
       "gaps_by_retrieved_at": {
         "2026-11-13": 20336059,
-        "2026-11-16": 680678
+        "2026-11-16": 750335
       },
       "gap_fields": {
-        "addr_city": 516552,
-        "addr_postcode": 527811,
-        "addr_unit": 552905,
-        "opening_hours": 538431,
-        "level": 549319,
-        "operator": 513680,
-        "brand": 508650,
-        "wheelchair": 547317,
-        "wheelchair_description": 549301,
-        "entrance": 542354,
-        "automatic_door": 559894,
-        "door": 557952,
-        "door_width": 559987,
-        "ramp": 559958,
-        "ramp_wheelchair": 559987,
-        "ramp_stroller": 559987,
-        "step_count": 559987,
-        "incline": 559987,
-        "kerb": 559801,
-        "kerb_height": 559987,
-        "tactile_paving": 559974,
-        "handrail": 559987,
-        "width": 559957,
-        "access": 472202,
-        "surface": 496970,
-        "smoothness": 559855,
-        "lit": 551608,
-        "braille": 559987,
-        "hearing_loop": 559984,
-        "speech_output": 558539,
-        "stroller": 559936,
-        "capacity_disabled": 556010,
-        "indoor": 557095,
-        "elevator": 559974,
-        "ref": 532803,
-        "website": 521112,
-        "category": 41,
-        "addr_housenumber": 479405,
-        "addr_street": 478019,
+        "addr_city": 518545,
+        "addr_postcode": 529804,
+        "addr_unit": 554932,
+        "opening_hours": 540346,
+        "level": 551346,
+        "operator": 515707,
+        "brand": 510677,
+        "wheelchair": 549344,
+        "wheelchair_description": 549997,
+        "entrance": 544381,
+        "automatic_door": 561921,
+        "door": 559979,
+        "door_width": 562014,
+        "ramp": 561985,
+        "ramp_wheelchair": 562014,
+        "ramp_stroller": 562014,
+        "step_count": 562014,
+        "incline": 562014,
+        "kerb": 561828,
+        "kerb_height": 562014,
+        "tactile_paving": 562001,
+        "handrail": 562014,
+        "width": 561984,
+        "access": 474229,
+        "surface": 498997,
+        "smoothness": 561882,
+        "lit": 553635,
+        "braille": 562014,
+        "hearing_loop": 562011,
+        "speech_output": 560566,
+        "stroller": 561963,
+        "capacity_disabled": 558037,
+        "indoor": 559010,
+        "elevator": 562001,
+        "ref": 533318,
+        "website": 522784,
+        "category": 104,
+        "addr_housenumber": 479487,
+        "addr_street": 478049,
         "name": 389432
       },
-      "accessibility_pieces": 112016,
-      "accessibility_gaps": 13327672,
+      "accessibility_pieces": 113347,
+      "accessibility_gaps": 13374989,
       "accessibility_by_field": {
-        "wheelchair_description": 10686,
+        "wheelchair_description": 12017,
         "capacity_disabled": 3977,
         "kerb": 186,
         "automatic_door": 93,
@@ -212,7 +218,7 @@
         "tactile_paving": 13
       },
       "context_pieces": 96164,
-      "context_gaps": 1023810,
+      "context_gaps": 1027864,
       "context_by_field": {
         "access": 87785,
         "lit": 8379
@@ -318,20 +324,22 @@
       }
     },
     "path": {
-      "records": 979021,
-      "pieces": 4573918,
-      "accessibility_facts": 690774,
-      "other_populated": 3473741,
+      "records": 1001307,
+      "pieces": 4661042,
+      "accessibility_facts": 694624,
+      "other_populated": 3557015,
       "verified": 0,
-      "gaps": 26754754,
+      "gaps": 27380782,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 4573918
+        "0": 4661042
       },
       "gaps_by_tier": {
-        "0": 26754754
+        "0": 27380782
       },
       "pieces_by_source": {
+        "cornwall-recreational-paths": 1153,
+        "cornwall-sidewalks": 9814,
         "greater-sudbury-walkways": 28586,
         "guelph-sidewalks": 26059,
         "guelph-trails": 8472,
@@ -342,6 +350,8 @@
         "markham-trails": 15240,
         "newmarket-trails": 2956,
         "osm-ontario": 3863020,
+        "ottawa-pedestrian-network": 75358,
+        "quinte-west-trails": 799,
         "thunder-bay-sidewalks": 15480,
         "thunder-bay-trails": 2804,
         "toronto-pedestrian-network": 361756,
@@ -351,50 +361,50 @@
         "windsor-sidewalks": 33512
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 710898,
+        "2026-11-16": 798022,
         "2026-11-13": 3863020
       },
       "gaps_by_retrieved_at": {
-        "2026-11-16": 3528974,
+        "2026-11-16": 4155002,
         "2026-11-13": 23225780
       },
       "gap_fields": {
-        "foot": 944389,
-        "smoothness": 953036,
-        "incline": 964587,
-        "width": 877377,
-        "kerb": 921779,
-        "tactile_paving": 879586,
-        "lit": 935279,
-        "wheelchair": 952394,
-        "step_count": 976983,
-        "handrail": 976310,
-        "access": 965541,
-        "length_m": 898370,
-        "max_slope": 979021,
-        "min_width": 979021,
-        "stair_count": 979021,
-        "from_ref": 979021,
-        "to_ref": 979021,
-        "crossing": 661472,
-        "pathway_mode": 979021,
-        "bidirectional": 979021,
-        "oneway": 966702,
-        "traversal_time_s": 979021,
-        "signposted_as": 978577,
-        "reversed_signposted_as": 979021,
-        "ramp": 977649,
-        "indoor": 976451,
-        "footway": 537973,
-        "wheelchair_description": 954441,
-        "surface": 644315,
+        "footway": 544024,
+        "foot": 966675,
+        "smoothness": 975322,
+        "incline": 986873,
+        "width": 899663,
+        "kerb": 944065,
+        "tactile_paving": 901872,
+        "lit": 957565,
+        "wheelchair": 974680,
+        "step_count": 999269,
+        "handrail": 998596,
+        "access": 987827,
+        "length_m": 920656,
+        "max_slope": 1001307,
+        "min_width": 1001307,
+        "stair_count": 1001307,
+        "from_ref": 1001307,
+        "to_ref": 1001307,
+        "crossing": 683758,
+        "pathway_mode": 1001307,
+        "bidirectional": 1001307,
+        "oneway": 988988,
+        "traversal_time_s": 1001307,
+        "signposted_as": 1000682,
+        "reversed_signposted_as": 1001307,
+        "ramp": 999935,
+        "indoor": 998737,
+        "wheelchair_description": 974865,
+        "surface": 664613,
         "kind": 354
       },
-      "accessibility_pieces": 690774,
-      "accessibility_gaps": 13015520,
+      "accessibility_pieces": 694624,
+      "accessibility_gaps": 13323674,
       "accessibility_by_field": {
-        "surface": 334706,
-        "wheelchair_description": 24580,
+        "surface": 336694,
+        "wheelchair_description": 26442,
         "handrail": 2711,
         "width": 101644,
         "tactile_paving": 99435,
@@ -406,7 +416,7 @@
         "step_count": 2038
       },
       "context_pieces": 409403,
-      "context_gaps": 3506681,
+      "context_gaps": 3595825,
       "context_by_field": {
         "crossing": 317549,
         "foot": 34632,
@@ -415,20 +425,23 @@
       }
     },
     "transit": {
-      "records": 28541,
-      "pieces": 168858,
+      "records": 28849,
+      "pieces": 170090,
       "accessibility_facts": 19368,
-      "other_populated": 149490,
+      "other_populated": 150722,
       "verified": 0,
-      "gaps": 202175,
+      "gaps": 204947,
       "derived_excluded": 0,
       "pieces_by_tier": {
+        "0": 1232,
         "1": 168858
       },
       "gaps_by_tier": {
+        "0": 2772,
         "1": 202175
       },
       "pieces_by_source": {
+        "cornwall-transit-bus-stops": 1232,
         "gtfs-brampton": 16917,
         "gtfs-gova": 4484,
         "gtfs-grt-bus": 13750,
@@ -444,28 +457,29 @@
         "york-region-yrt-bus-stops": 29942
       },
       "pieces_by_retrieved_at": {
+        "2026-11-16": 51323,
         "2026-11-13": 112586,
-        "2026-11-16": 50091,
         "2026-11-15": 6181
       },
       "gaps_by_retrieved_at": {
+        "2026-11-16": 67354,
         "2026-11-13": 132152,
-        "2026-11-16": 64582,
         "2026-11-15": 5441
       },
       "gap_fields": {
-        "parent_station": 28373,
-        "platform_code": 28527,
-        "level_id": 28541,
-        "level_index": 28541,
-        "level_name": 28541,
-        "description": 20872,
-        "url": 27544,
-        "wheelchair_boarding": 9173,
+        "location_type": 308,
+        "parent_station": 28681,
+        "wheelchair_boarding": 9481,
+        "platform_code": 28835,
+        "level_id": 28849,
+        "level_index": 28849,
+        "level_name": 28849,
+        "description": 21180,
+        "url": 27852,
         "stop_code": 2063
       },
       "accessibility_pieces": 19368,
-      "accessibility_gaps": 9173,
+      "accessibility_gaps": 9481,
       "accessibility_by_field": {
         "wheelchair_boarding": 19368
       },
@@ -475,6 +489,38 @@
     }
   },
   "by_source": {
+    "cornwall-recreational-paths": {
+      "records": 221,
+      "pieces": 1153,
+      "gaps": 5919,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 1153
+      },
+      "pieces_by_tranche": {
+        "path": 1153
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 1153
+      },
+      "accessibility_pieces": 441
+    },
+    "cornwall-sidewalks": {
+      "records": 1636,
+      "pieces": 9814,
+      "gaps": 42538,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 9814
+      },
+      "pieces_by_tranche": {
+        "path": 9814
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 9814
+      },
+      "accessibility_pieces": 3270
+    },
     "greater-sudbury-walkways": {
       "records": 5456,
       "pieces": 28586,
@@ -637,6 +683,38 @@
       },
       "accessibility_pieces": 677579
     },
+    "ottawa-pedestrian-network": {
+      "records": 20297,
+      "pieces": 75358,
+      "gaps": 574146,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 75358
+      },
+      "pieces_by_tranche": {
+        "path": 75358
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 75358
+      },
+      "accessibility_pieces": 0
+    },
+    "quinte-west-trails": {
+      "records": 132,
+      "pieces": 799,
+      "gaps": 3425,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 799
+      },
+      "pieces_by_tranche": {
+        "path": 799
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 799
+      },
+      "accessibility_pieces": 139
+    },
     "thunder-bay-sidewalks": {
       "records": 3870,
       "pieces": 15480,
@@ -748,6 +826,22 @@
         "2026-11-16": 33512
       },
       "accessibility_pieces": 13370
+    },
+    "cornwall-transit-bus-stops": {
+      "records": 308,
+      "pieces": 1232,
+      "gaps": 2772,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 1232
+      },
+      "pieces_by_tranche": {
+        "transit": 1232
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 1232
+      },
+      "accessibility_pieces": 0
     },
     "gtfs-brampton": {
       "records": 2872,
@@ -986,6 +1080,22 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-16": 2864
+      },
+      "accessibility_pieces": 0
+    },
+    "cornwall-water-bottle-filling-stations": {
+      "records": 6,
+      "pieces": 30,
+      "gaps": 228,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 30
+      },
+      "pieces_by_tranche": {
+        "venue": 30
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 30
       },
       "accessibility_pieces": 0
     },
@@ -1232,6 +1342,38 @@
       },
       "accessibility_pieces": 0
     },
+    "ottawa-drinking-fountains": {
+      "records": 112,
+      "pieces": 1120,
+      "gaps": 3696,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 1120
+      },
+      "pieces_by_tranche": {
+        "venue": 1120
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 1120
+      },
+      "accessibility_pieces": 0
+    },
+    "ottawa-library-locations": {
+      "records": 34,
+      "pieces": 340,
+      "gaps": 1122,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 340
+      },
+      "pieces_by_tranche": {
+        "venue": 340
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 340
+      },
+      "accessibility_pieces": 0
+    },
     "ottawa-park-parking": {
       "records": 408,
       "pieces": 4694,
@@ -1263,6 +1405,54 @@
         "2026-11-16": 51047
       },
       "accessibility_pieces": 7113
+    },
+    "ottawa-parks": {
+      "records": 1378,
+      "pieces": 12302,
+      "gaps": 46952,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 12302
+      },
+      "pieces_by_tranche": {
+        "venue": 12302
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 12302
+      },
+      "accessibility_pieces": 1331
+    },
+    "ottawa-recreation-facilities": {
+      "records": 371,
+      "pieces": 2840,
+      "gaps": 13113,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 2840
+      },
+      "pieces_by_tranche": {
+        "venue": 2840
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 2840
+      },
+      "accessibility_pieces": 0
+    },
+    "quinte-west-parks": {
+      "records": 126,
+      "pieces": 872,
+      "gaps": 4546,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 872
+      },
+      "pieces_by_tranche": {
+        "venue": 872
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 872
+      },
+      "accessibility_pieces": 0
     },
     "sudbury-fieldhouses": {
       "records": 61,
@@ -1641,6 +1831,14 @@
     }
   },
   "files": [
+    {
+      "file": "data/paths/cornwall-recreational-paths/n45.0_w075.0.ndjson.gz",
+      "bytes": 41597
+    },
+    {
+      "file": "data/paths/cornwall-sidewalks/n45.0_w075.0.ndjson.gz",
+      "bytes": 150076
+    },
     {
       "file": "data/paths/greater-sudbury-walkways/n46.0_w081.0.ndjson.gz",
       "bytes": 175053
@@ -3338,6 +3536,42 @@
       "bytes": 576
     },
     {
+      "file": "data/paths/ottawa-pedestrian-network/n45.0_w075.5.ndjson.gz",
+      "bytes": 87613
+    },
+    {
+      "file": "data/paths/ottawa-pedestrian-network/n45.0_w076.0.ndjson.gz",
+      "bytes": 582454
+    },
+    {
+      "file": "data/paths/ottawa-pedestrian-network/n45.0_w076.0.p02.ndjson.gz",
+      "bytes": 531052
+    },
+    {
+      "file": "data/paths/ottawa-pedestrian-network/n45.0_w076.0.p03.ndjson.gz",
+      "bytes": 522281
+    },
+    {
+      "file": "data/paths/ottawa-pedestrian-network/n45.0_w076.0.p04.ndjson.gz",
+      "bytes": 47731
+    },
+    {
+      "file": "data/paths/ottawa-pedestrian-network/n45.0_w076.5.ndjson.gz",
+      "bytes": 8267
+    },
+    {
+      "file": "data/paths/ottawa-pedestrian-network/n45.5_w075.5.ndjson.gz",
+      "bytes": 5455
+    },
+    {
+      "file": "data/paths/ottawa-pedestrian-network/n45.5_w076.5.ndjson.gz",
+      "bytes": 1191
+    },
+    {
+      "file": "data/paths/quinte-west-trails/n44.0_w078.0.ndjson.gz",
+      "bytes": 32908
+    },
+    {
       "file": "data/paths/thunder-bay-sidewalks/n48.0_w089.5.ndjson.gz",
       "bytes": 256005
     },
@@ -3440,6 +3674,10 @@
     {
       "file": "data/paths/windsor-sidewalks/n42.0_w083.5.ndjson.gz",
       "bytes": 377523
+    },
+    {
+      "file": "data/transit/cornwall-transit-bus-stops/n45.0_w075.0.ndjson.gz",
+      "bytes": 11883
     },
     {
       "file": "data/transit/gtfs-brampton/n43.5_w080.0.ndjson.gz",
@@ -3616,6 +3854,10 @@
     {
       "file": "data/venues/cambridge-play-structures/n43.0_w080.5.ndjson.gz",
       "bytes": 29041
+    },
+    {
+      "file": "data/venues/cornwall-water-bottle-filling-stations/n45.0_w075.0.ndjson.gz",
+      "bytes": 1077
     },
     {
       "file": "data/venues/greater-sudbury-playgrounds/n46.0_w081.0.ndjson.gz",
@@ -5894,6 +6136,34 @@
       "bytes": 1033
     },
     {
+      "file": "data/venues/ottawa-drinking-fountains/n45.0_w075.5.ndjson.gz",
+      "bytes": 1345
+    },
+    {
+      "file": "data/venues/ottawa-drinking-fountains/n45.0_w076.0.ndjson.gz",
+      "bytes": 11058
+    },
+    {
+      "file": "data/venues/ottawa-drinking-fountains/n45.0_w076.5.ndjson.gz",
+      "bytes": 728
+    },
+    {
+      "file": "data/venues/ottawa-drinking-fountains/n45.5_w075.5.ndjson.gz",
+      "bytes": 752
+    },
+    {
+      "file": "data/venues/ottawa-library-locations/n45.0_w075.5.ndjson.gz",
+      "bytes": 826
+    },
+    {
+      "file": "data/venues/ottawa-library-locations/n45.0_w076.0.ndjson.gz",
+      "bytes": 3144
+    },
+    {
+      "file": "data/venues/ottawa-library-locations/n45.0_w076.5.ndjson.gz",
+      "bytes": 836
+    },
+    {
       "file": "data/venues/ottawa-park-parking/n45.0_w075.5.ndjson.gz",
       "bytes": 3968
     },
@@ -5928,6 +6198,50 @@
     {
       "file": "data/venues/ottawa-parks-inventory/n45.5_w075.5.ndjson.gz",
       "bytes": 6383
+    },
+    {
+      "file": "data/venues/ottawa-parks/n45.0_w075.5.ndjson.gz",
+      "bytes": 9954
+    },
+    {
+      "file": "data/venues/ottawa-parks/n45.0_w076.0.ndjson.gz",
+      "bytes": 106568
+    },
+    {
+      "file": "data/venues/ottawa-parks/n45.0_w076.5.ndjson.gz",
+      "bytes": 3670
+    },
+    {
+      "file": "data/venues/ottawa-parks/n45.5_w075.5.ndjson.gz",
+      "bytes": 1715
+    },
+    {
+      "file": "data/venues/ottawa-parks/n45.5_w076.5.ndjson.gz",
+      "bytes": 742
+    },
+    {
+      "file": "data/venues/ottawa-recreation-facilities/n45.0_w075.5.ndjson.gz",
+      "bytes": 3973
+    },
+    {
+      "file": "data/venues/ottawa-recreation-facilities/n45.0_w076.0.ndjson.gz",
+      "bytes": 33898
+    },
+    {
+      "file": "data/venues/ottawa-recreation-facilities/n45.0_w076.5.ndjson.gz",
+      "bytes": 2088
+    },
+    {
+      "file": "data/venues/ottawa-recreation-facilities/n45.5_w075.5.ndjson.gz",
+      "bytes": 1094
+    },
+    {
+      "file": "data/venues/quinte-west-parks/n44.0_w077.5.ndjson.gz",
+      "bytes": 1738
+    },
+    {
+      "file": "data/venues/quinte-west-parks/n44.0_w078.0.ndjson.gz",
+      "bytes": 9901
     },
     {
       "file": "data/venues/sudbury-fieldhouses/n46.0_w081.0.ndjson.gz",

@@ -368,6 +368,61 @@ export const LICENCE_FINDINGS: readonly LicenceFinding[] = [
     licence: "Thunder-Bay-Open-Data-Licence-1.0",
     reason: "City of Thunder Bay Open Data Licence. Not in the strict export allowlist.",
   },
+  {
+    sourceId: "cornwall-sidewalks",
+    licence: "Cornwall-Open-Data-Licence-2.0",
+    reason: "Open Government Licence – City of Cornwall, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "cornwall-recreational-paths",
+    licence: "Cornwall-Open-Data-Licence-2.0",
+    reason: "Open Government Licence – City of Cornwall, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "cornwall-water-bottle-filling-stations",
+    licence: "Cornwall-Open-Data-Licence-2.0",
+    reason: "Open Government Licence – City of Cornwall, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "cornwall-transit-bus-stops",
+    licence: "Cornwall-Open-Data-Licence-2.0",
+    reason: "Open Government Licence – City of Cornwall, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "quinte-west-parks",
+    licence: "Quinte-West-Open-Data-Licence-1.0",
+    reason: "City of Quinte West Open Data Licence 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "quinte-west-trails",
+    licence: "Quinte-West-Open-Data-Licence-1.0",
+    reason: "City of Quinte West Open Data Licence 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "ottawa-recreation-facilities",
+    licence: "Ottawa-Open-Data-Licence-2.0",
+    reason: "Open Government Licence – City of Ottawa, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "ottawa-library-locations",
+    licence: "Ottawa-Open-Data-Licence-2.0",
+    reason: "Open Government Licence – City of Ottawa, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "ottawa-drinking-fountains",
+    licence: "Ottawa-Open-Data-Licence-2.0",
+    reason: "Open Government Licence – City of Ottawa, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "ottawa-parks",
+    licence: "Ottawa-Open-Data-Licence-2.0",
+    reason: "Open Government Licence – City of Ottawa, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "ottawa-pedestrian-network",
+    licence: "Ottawa-Open-Data-Licence-2.0",
+    reason: "Open Government Licence – City of Ottawa, version 2.0. Not in the strict export allowlist.",
+  },
 ];
 
 export function isDocumentedLicence(sourceId: string, licence: string): boolean {

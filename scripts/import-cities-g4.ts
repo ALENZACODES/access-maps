@@ -6,8 +6,11 @@ import { PartitionWriter } from "../src/io/partition-writer.js";
 import { importGtfs } from "./import-gtfs.js";
 import { GTFS_FEEDS } from "../src/gtfs/feeds.js";
 import type { RawFeature } from "../src/municipal/cities/g4-helpers.js";
+import { CORNWALL_JOBS } from "../src/municipal/cities/cornwall.js";
 import { GREATER_SUDBURY_JOBS } from "../src/municipal/cities/greater-sudbury.js";
 import { KINGSTON_JOBS } from "../src/municipal/cities/kingston.js";
+import { OTTAWA_MORE_JOBS } from "../src/municipal/cities/ottawa.js";
+import { QUINTE_WEST_JOBS } from "../src/municipal/cities/quinte-west.js";
 import { THUNDER_BAY_JOBS } from "../src/municipal/cities/thunder-bay.js";
 import type { DataRecord, Tranche } from "../src/model/records.js";
 import type { Provenance } from "../src/model/provenance.js";
@@ -33,6 +36,9 @@ export const G4_LAYER_JOBS: readonly CityLayerJob[] = [
   ...KINGSTON_JOBS,
   ...GREATER_SUDBURY_JOBS,
   ...THUNDER_BAY_JOBS,
+  ...CORNWALL_JOBS,
+  ...QUINTE_WEST_JOBS,
+  ...OTTAWA_MORE_JOBS,
 ];
 
 export interface G4Imported {
