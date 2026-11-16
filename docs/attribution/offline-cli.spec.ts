@@ -8,6 +8,12 @@ import { fileURLToPath } from "node:url";
 import { executeOfflineCli, parseOfflineCliArguments, OfflineCliError } from "./offline-cli.js";
 import { fixtureBundle, fixtureRoute, withRoutes } from "./offline-fixtures.js";
 
+// The repository runs these sources with tsx. When compiled for a standalone
+// Node test run, use the emitted JavaScript counterpart instead.
+const sourceIsTypeScript = import.meta.url.endsWith(".ts");
+const cliUrl = new URL(sourceIsTypeScript ? "./offline-cli.ts" : "./offline-cli.js", import.meta.url);
+const nodeLoaderArgs = sourceIsTypeScript ? ["--import", "tsx"] : [];
+
 async function temporary<T>(run:(root:string)=>Promise<T>):Promise<T> {
   const root = await mkdtemp(join(tmpdir(),"offline-cli-"));
   try { return await run(root); }
@@ -239,21 +245,21 @@ test("the CLI does not persist reports to the user's directory", async () => {
 });
 
 test("the CLI executable path starts only when invoked as an entrypoint", async () => {
-  const source = fileURLToPath(new URL("./offline-cli.js",import.meta.url));
-  const child = spawnSync(process.execPath,["--input-type=module","-e",`import(${JSON.stringify(new URL("./offline-cli.js",import.meta.url).href)});`],{
+  const source = fileURLToPath(cliUrl);
+  const child = spawnSync(process.execPath,[...nodeLoaderArgs,"--input-type=module","-e",`import(${JSON.stringify(cliUrl.href)});`],{
     encoding:"utf8",timeout:10000,
   });
   assert.equal(child.status,0,child.stderr);
   assert.equal(child.stdout,"");
   assert.equal(child.stderr,"");
-  assert.ok(source.endsWith("offline-cli.js"));
+  assert.ok(/offline-cli\.(?:ts|js)$/u.test(source));
 });
 
 test("the CLI process returns zero for a valid manifest", async () => {
   await temporary(async (root) => {
     const path = await manifest(root);
-    const executable = fileURLToPath(new URL("./offline-cli.js",import.meta.url));
-    const child = spawnSync(process.execPath,[executable,path],{encoding:"utf8",timeout:10000});
+    const executable = fileURLToPath(cliUrl);
+    const child = spawnSync(process.execPath,[...nodeLoaderArgs,executable,path],{encoding:"utf8",timeout:10000});
     assert.equal(child.status,0,child.stderr);
     assert.ok(child.stdout.includes("release-one"));
     assert.equal(child.stderr,"");
@@ -263,16 +269,16 @@ test("the CLI process returns zero for a valid manifest", async () => {
 test("the CLI process returns one for a blocking manifest", async () => {
   await temporary(async (root) => {
     const path = await manifest(root,withRoutes(fixtureBundle(),[fixtureRoute({entry:"missing.html"})]));
-    const executable = fileURLToPath(new URL("./offline-cli.js",import.meta.url));
-    const child = spawnSync(process.execPath,[executable,path],{encoding:"utf8",timeout:10000});
+    const executable = fileURLToPath(cliUrl);
+    const child = spawnSync(process.execPath,[...nodeLoaderArgs,executable,path],{encoding:"utf8",timeout:10000});
     assert.equal(child.status,1,child.stderr);
     assert.ok(child.stdout.includes("ENTRY_MISSING"));
   });
 });
 
 test("the CLI process returns two for an absent manifest", () => {
-  const executable = fileURLToPath(new URL("./offline-cli.js",import.meta.url));
-  const child = spawnSync(process.execPath,[executable,"missing-bundle.json"],{encoding:"utf8",timeout:10000});
+  const executable = fileURLToPath(cliUrl);
+  const child = spawnSync(process.execPath,[...nodeLoaderArgs,executable,"missing-bundle.json"],{encoding:"utf8",timeout:10000});
   assert.equal(child.status,2);
   assert.ok(child.stderr.length > 0);
 });

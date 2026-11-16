@@ -48,3 +48,11 @@ The offline tests run as Node tests through `tsx --test`; they use `.spec.ts`
 filenames to avoid accidental discovery by the repository's Vitest runner.
 Root `npm test` invokes this set before workspace tests. These automated
 checks do not replace manual browser and assistive-technology evaluation.
+
+### CLI subprocess tests
+
+The process-level tests launch `offline-cli.ts` through the installed `tsx`
+Node loader when running repository sources. A separately compiled JavaScript
+run launches `offline-cli.js` instead. Do not hard-code a `.js` entry point
+when invoking the TypeScript source directly; that file is not published in
+this source tree.
