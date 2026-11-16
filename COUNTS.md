@@ -5,21 +5,21 @@ A piece is one field on one record whose value is not UNKNOWN and whose derived 
 Verified field-values toward the 500,000 target: **0**.
 Tier 0 and tier 1 values count as 0 toward the 250,000 verified venue field-values and toward the 500,000 verified total. Section 5.6 counts tier 2 and tier 3 only.
 Verified toward 500,000 is 0. None of those verified field-values exist in this import.
-Open-data or operator-claimed physical accessibility facts (tier 0 and tier 1 only): **817,381**.
+Open-data or operator-claimed physical accessibility facts (tier 0 and tier 1 only): **817,461**.
 Context fields, reported separately (access, crossing, lit, fee, and the other context fields below): **508,603**.
-All other populated values: **6,444,391**.
-All populated pieces together: **7,770,375**.
-Total UNKNOWN gaps: **47,853,855**.
-UNKNOWN gaps on accessibility fields: **26,215,828**.
-Derived values excluded from both totals: **3,995**.
-Records: **1,560,731**.
+All other populated values: **6,445,021**.
+All populated pieces together: **7,771,085**.
+Total UNKNOWN gaps: **47,856,442**.
+UNKNOWN gaps on accessibility fields: **26,217,134**.
+Derived values excluded from both totals: **4,057**.
+Records: **1,560,812**.
 
 The illustrative targets are 250,000 venue, 100,000 path, 50,000 transit, and 100,000 washroom verified field-values. Shortfall is the target minus verified values.
 
 | Tranche | Records | Physical accessibility facts (tier 0–1) | Context fields | Other populated | Verified (tier 2–3) | UNKNOWN gaps | Illustrative target | Shortfall |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| venue | 558426 | 111975 | 96164 | 2840434 | 0 | 20963745 | 250000 | 250000 |
-| washroom | 6882 | 3554 | 3036 | 27468 | 0 | 230345 | 100000 | 100000 |
+| venue | 558476 | 112013 | 96164 | 2840909 | 0 | 20965382 | 250000 | 250000 |
+| washroom | 6913 | 3596 | 3036 | 27623 | 0 | 231295 | 100000 | 100000 |
 | path | 968790 | 682484 | 409403 | 3434631 | 0 | 26474762 | 100000 | 100000 |
 | transit | 26633 | 19368 | 0 | 141858 | 0 | 185003 | 50000 | 50000 |
 
@@ -27,12 +27,12 @@ The illustrative targets are 250,000 venue, 100,000 path, 50,000 transit, and 10
 
 An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.
 
-Physical accessibility facts, context fields, and the remaining pieces add up to the total: 817,381 + 508,603 + 6,444,391 = 7,770,375.
+Physical accessibility facts, context fields, and the remaining pieces add up to the total: 817,461 + 508,603 + 6,445,021 = 7,771,085.
 
 | Tranche | Physical accessibility pieces | Context pieces | Remaining pieces |
 | --- | ---: | ---: | ---: |
-| venue | 111975 | 96164 | 2840434 |
-| washroom | 3554 | 3036 | 27468 |
+| venue | 112013 | 96164 | 2840909 |
+| washroom | 3596 | 3036 | 27623 |
 | path | 682484 | 409403 | 3434631 |
 | transit | 19368 | 0 | 141858 |
 
@@ -87,7 +87,7 @@ Populated accessibility facts by field:
 - surface: 63017
 - entrance: 17633
 - wheelchair: 12670
-- wheelchair_description: 10672
+- wheelchair_description: 10710
 - capacity_disabled: 3950
 - door: 2035
 - speech_output: 1448
@@ -104,9 +104,9 @@ Populated accessibility facts by field:
 ### washroom
 
 - wheelchair: 2086
-- changing_table: 627
-- published_accessibility: 592
-- adult_changing_table: 176
+- changing_table: 637
+- published_accessibility: 623
+- adult_changing_table: 177
 - wheelchair_description: 69
 - changing_table_location: 4
 
@@ -132,8 +132,8 @@ Populated accessibility facts by field:
 
 | Tranche | Tier 0 | Tier 1 | Tier 2 | Tier 3 | Tier 4 |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| venue | 3048573 | 0 | 0 | 0 | 0 |
-| washroom | 34058 | 0 | 0 | 0 | 0 |
+| venue | 3049086 | 0 | 0 | 0 | 0 |
+| washroom | 34255 | 0 | 0 | 0 | 0 |
 | path | 4526518 | 0 | 0 | 0 | 0 |
 | transit | 0 | 161226 | 0 | 0 | 0 |
 
@@ -164,6 +164,7 @@ Populated accessibility facts by field:
 | kitchener-public-washrooms | 95 | 758 | 0 | 2947 | 758 | 0 | 2026-11-16 |
 | kitchener-sidewalks | 17108 | 119683 | 51254 | 427773 | 119683 | 0 | 2026-11-16 |
 | kitchener-trails | 4322 | 30177 | 12892 | 108127 | 30177 | 0 | 2026-11-16 |
+| lambton-accessible-facilities | 81 | 710 | 80 | 2587 | 710 | 0 | 2026-11-16 |
 | markham-city-facilities | 82 | 574 | 0 | 2952 | 574 | 0 | 2026-11-16 |
 | markham-trails | 3075 | 15240 | 2994 | 83160 | 15240 | 0 | 2026-11-16 |
 | metrolinx-go | 889 | 6151 | 889 | 5406 | 0 | 6151 | 2026-11-15 |
@@ -205,33 +206,33 @@ Populated accessibility facts by field:
 
 ### venue
 
-- braille: 558426
-- door_width: 558426
-- handrail: 558426
-- incline: 558426
-- kerb_height: 558426
-- ramp_stroller: 558426
-- ramp_wheelchair: 558426
-- step_count: 558426
-- hearing_loop: 558423
-- elevator: 558413
-- tactile_paving: 558413
-- ramp: 558397
+- braille: 558476
+- door_width: 558476
+- handrail: 558476
+- incline: 558476
+- kerb_height: 558476
+- ramp_stroller: 558476
+- ramp_wheelchair: 558476
+- step_count: 558476
+- hearing_loop: 558473
+- elevator: 558463
+- tactile_paving: 558463
+- ramp: 558447
 
 ### washroom
 
-- locked: 6882
-- changing_table_fee: 6879
-- supervised: 6879
-- changing_table_location: 6878
-- capacity: 6877
-- shower: 6860
+- locked: 6913
+- changing_table_fee: 6910
+- supervised: 6910
+- changing_table_location: 6909
+- capacity: 6908
+- shower: 6891
+- drinking_water: 6860
+- wheelchair_description: 6844
 - addr_city: 6843
-- drinking_water: 6829
-- wheelchair_description: 6813
-- addr_postcode: 6790
-- indoor: 6756
-- adult_changing_table: 6706
+- addr_postcode: 6821
+- indoor: 6787
+- adult_changing_table: 6736
 
 ### path
 

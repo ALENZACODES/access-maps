@@ -313,6 +313,11 @@ export const LICENCE_FINDINGS: readonly LicenceFinding[] = [
     licence: "OGL-Windsor-1.0",
     reason: "Open Government Licence – The Corporation of the City of Windsor, version 1.0. Not in the strict export allowlist.",
   },
+  {
+    sourceId: "lambton-accessible-facilities",
+    licence: "OGL-Lambton-2.0",
+    reason: "Open Government Licence - County of Lambton, version 2.0. Not in the strict export allowlist.",
+  },
 ];
 
 export function isDocumentedLicence(sourceId: string, licence: string): boolean {
