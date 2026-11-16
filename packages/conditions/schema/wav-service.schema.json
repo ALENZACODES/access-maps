@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://access-maps.invalid/schemas/wav-service.json",
+  "title": "WavServiceDataset",
+  "description": "Accessible taxi and on-demand WAV services. Every field is a field-value object. UNKNOWN is a value. effectively_unavailable requires source_dated.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "version", "records"],
+  "properties": {
+    "format": { "const": "access-maps-wav-services" },
+    "version": { "const": 1 },
+    "records": { "type": "array", "items": { "$ref": "#/$defs/record" } }
+  },
+  "$defs": {
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "municipality", "service_name", "service_type", "availability",
+        "booking_phone", "booking_url", "service_hours"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "\\S" },
+        "synthetic": { "type": "boolean" },
+        "municipality": { "$ref": "#/$defs/field" },
+        "service_name": { "$ref": "#/$defs/field" },
+        "service_type": {
+          "allOf": [
+            { "$ref": "#/$defs/field" },
+            {
+              "type": "object",
+              "properties": {
+                "value": { "enum": ["accessible_taxi", "on_demand_wav", "UNKNOWN"] }
+              }
+            }
+          ]
+        },
+        "availability": {
+          "allOf": [
+            { "$ref": "#/$defs/field" },
+            {
+              "type": "object",
+              "properties": {
+                "value": {
+                  "enum": ["on_demand", "advance_booking_only", "limited", "effectively_unavailable", "UNKNOWN"]
+                }
+              }
+            },
+            {
+              "type": "object",
+              "if": {
+                "type": "object",
+                "properties": { "value": { "const": "effectively_unavailable" } },
+                "required": ["value"]
+              },
+              "then": {
+                "type": "object",
+                "required": ["source_dated"],
+                "properties": {
+                  "source_dated": { "type": "string", "format": "date" }
+                }
+              }
+            }
+          ]
+        },
+        "booking_phone": { "$ref": "#/$defs/field" },
+        "booking_url": { "$ref": "#/$defs/field" },
+        "service_hours": { "$ref": "#/$defs/field" }
+      }
+    },
+    "field": {
+      "type": "object",
+      "required": ["value", "source_id", "licence", "retrieved_at", "tier"],
+      "properties": {
+        "value": { "type": "string", "pattern": "\\S" },
+        "source_id": { "type": "string", "pattern": "\\S" },
+        "licence": { "type": "string", "pattern": "\\S" },
+        "retrieved_at": { "type": "string", "format": "date" },
+        "tier": { "type": "integer", "enum": [0, 1, 2, 3, 4] },
+        "source_key": { "type": "string" },
+        "source_dated": { "type": "string", "format": "date" }
+      },
+      "propertyNames": {
+        "enum": ["value", "source_id", "licence", "retrieved_at", "tier", "source_key", "source_dated"]
+      }
+    }
+  }
+}
