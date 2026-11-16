@@ -10,11 +10,6 @@
     "reason": "YRT publishes an Open Data Licence Agreement, and the download is behind a named-person request form. No anonymous file URL was available, so the feed was not retrieved."
   },
   {
-    "name": "Region of Peel Active Recreation, Points of Interest and on-road Trails segments",
-    "url": "https://data.peelregion.ca/pages/license",
-    "reason": "On 2026-11-16 the Open Data Licence for The Regional Municipality of Peel (Version 1.0) was read and the Trails layer is imported as peel-trails. Not imported: 1,539 Trails segments classed Bicycle Lane, Marked On Road Bicycle Route or On Road Connection, or with no class, because the line is the roadway or the class is not stated. Active Recreation (2,415 polygons of playing fields, playgrounds, arenas and pools) has no accessibility column and was not imported. Points of Interest (1,866 points) has no accessibility column, has a phone column, and its item licence note says one group of shelter records must not be shared externally, so it was not imported."
-  },
-  {
     "name": "City of Guelph parks, trails, sidewalks, and park locations",
     "url": "https://explore.guelph.ca/pages/open-data-license",
     "reason": "On 2026-11-13 the licence page returned HTTP 200 and the extracted text was only the page title. No grant of rights was visible. UNKNOWN licence. Not imported."
@@ -33,11 +28,6 @@
     "name": "City of London trails, sidewalks, and parking",
     "url": "https://www.london.ca/",
     "reason": "The City of London Open Data Terms of Use grant a worldwide royalty-free non-exclusive licence to use, modify, and distribute, but the City may cancel or suspend the licence and the terms include an indemnity. Redistribution must pass the terms on. Legal review is required, so these datasets were not imported."
-  },
-  {
-    "name": "City of Mississauga open data (public washrooms, landmarks, parking facilities, community centres, libraries, arenas, pools, play sites, MiWay stops)",
-    "url": "https://mississauga.maps.arcgis.com/sharing/rest/content/items/961c790805c14d8da258ec91bf4117e3/data",
-    "reason": "Re-checked on 2026-11-16. The City of Mississauga Terms of Use PDF linked from the City's ArcGIS items (item 961c790805c14d8da258ec91bf4117e3, and the same 200,246-byte file at http://www5.mississauga.ca/research_catalogue/CityofMississauga_TermsofUse.pdf) returned HTTP 200 and names the City of Mississauga in the grant. It grants a world-wide, royalty-free, non-exclusive, revocable licence to use, modify and distribute the Datasets. It also requires anyone who distributes the Datasets to ensure each recipient agrees to and is bound by the terms, includes an indemnity, and lets the City cancel or suspend the licence without notice for any reason. These are the same conditions that hold the City of London datasets for legal review, so the hold stays. Some items state different terms: City Ice Rinks says the GIS data may not be modified or copied without written consent. Not imported: City Public Washrooms, City Landmarks (which includes accessible playgrounds), City Owned Parking Facilities, City Community Centres, City Libraries, City Arenas, City Municipal Pools, City Play Sites, City Spray Pads, MiWay Bus Stops and MiWay Bus Shelters at https://data.mississauga.ca/."
   },
   {
     "name": "Ontario catalogue records with Licence Not Specified",
@@ -90,11 +80,6 @@
     "reason": "The City of Kingston and City of Greater Sudbury open-data licences are already recorded in the registry for other files. These GTFS feeds were not retrieved on 2026-11-16 and were not imported in this pass. Durham Region's licence text was not read."
   },
   {
-    "name": "City of Brampton sidewalks, curbs, parks, libraries, facilities, signals and on-road trail segments",
-    "url": "https://services3.arcgis.com/rl7ACuZkiFsmDA2g/arcgis/rest/services/Sidewalks/FeatureServer/0",
-    "reason": "Checked on 2026-11-16, CC BY stated on each City item. Sidewalks has 429,007 lines with one column (DESCR, always SIDEWALK-PUBLIC); at the size of the 44,444-line Hamilton sidewalk import (6.4 MB) it would be far over the 10 MB limit for one city, so it was not retrieved. Curbs (282,376 lines) is the curb line, not curb ramps. Parks (869 polygons), Libraries (9), Supplementary City Facilities (31), Parking Lots (8,522 unnamed polygons), Traffic Signal Poles (3,862) and Transit Shelters (114) have no accessibility column. Bus Stops (2,869) repeats the GTFS stops already stored as gtfs-brampton. None of these were imported. 781 Recreational Trails segments typed ON STREET BIKE LANE, ON ROAD SIGNED ROUTE, APRON, CROSSWALK or CROSSROAD, or with no type, were left out of brampton-recreational-trails."
-  },
-  {
     "name": "City of Kitchener and City of Waterloo sidewalks and parking lots",
     "url": "https://services1.arcgis.com/qAo1OsXi67t7XgmS/arcgis/rest/services/Sidewalks/FeatureServer/0",
     "reason": "The municipal open-data licence text for these two cities was not read on 2026-11-16. UNKNOWN licence. Not imported."
@@ -108,6 +93,66 @@
     "name": "Ontario Data Catalogue search for accessible places",
     "url": "https://data.ontario.ca/api/3/action/package_search?q=accessible",
     "reason": "Searched on 2026-11-16 (301 packages). The open results are programme and grant tables, such as EASE grant recipients and EnAbling Change recipients, or web-only map layers. No file with a per-place accessibility column was found, so nothing further was imported from this catalogue."
+  },
+  {
+    "name": "City of Markham Parks",
+    "url": "https://www.arcgis.com/home/item.html?id=d6d3ca08120741798181e187650defc0",
+    "reason": "Reachable on 2026-11-16 under the Open Data Licence - City of Markham (Version 1.0). 1,745 polygons with PARK_NAME, OWNERSHIP, USE_TYPE and YEAR. No amenity, washroom, parking or accessibility column. Not imported. The City of Markham catalogue (41 entries on 2026-11-16) has no dataset for accessible parking, washrooms, pedestrian signals, curb ramps, sidewalks, elevators, drinking fountains or playgrounds."
+  },
+  {
+    "name": "City of Markham Trails segments not marked public",
+    "url": "https://www.arcgis.com/home/item.html?id=c445d4d0a22041d2a961e919a8df59ed",
+    "reason": "391 of the 3,424 trail segments retrieved on 2026-11-16 have PUBLIC_ = No or blank. A path record is read as somewhere a person can travel, so they were left out. The 3,033 segments with PUBLIC_ = Yes are imported as markham-trails."
+  },
+  {
+    "name": "Town of Newmarket Parks, Municipal Parking and other Landmarks categories",
+    "url": "https://navigate-newmarket.hub.arcgis.com/pages/open-data",
+    "reason": "Reachable on 2026-11-16 under the Open Data Licence - Town of Newmarket (version 2.0). Parks (122 polygons) has a PARKING Y/N column and no accessibility column. Municipal Parking (108 polygons) has SPACES and SURFACE and no accessible-space column. Neither was imported. 524 of the 559 Landmarks points (schools, places of worship, cameras, ponds, parks, heritage buildings and other categories) were left out; the 35 municipal facility points are imported as newmarket-landmarks. The Newmarket catalogue (64 entries) has no dataset for accessible parking, pedestrian signals, curb ramps, sidewalks, elevators or drinking fountains."
+  },
+  {
+    "name": "York Region open data other than bus stops",
+    "url": "https://insights-york.opendata.arcgis.com/",
+    "reason": "Checked on 2026-11-16. The York Region catalogue (about 440 Region entries) is census tables, budgets, drinking water reports, traffic counts, planning maps and base mapping. Apart from Bus Stops from GTFS (imported as york-region-yrt-bus-stops) no entry has a washroom, accessible parking, facility accessibility, pedestrian signal, curb ramp or sidewalk column. Nothing else was imported. The York Region Transit GTFS zip was re-checked on 2026-11-16: https://www.yrt.ca/en/about-us/open-data.aspx still sends it only after a person agrees to the Open Data Licence Agreement and completes the YRT GTFS Data Online Form, and the Region's catalogue entry for the feed (ArcGIS item 583c66b9cd404cf38e4aa72ad3fcde6d) is only a link to that page, so the zip was not retrieved."
+  },
+  {
+    "name": "City of Vaughan open data",
+    "url": "https://www.vaughan.ca/",
+    "reason": "On 2026-11-16 https://www.vaughan.ca/, https://www.vaughan.ca/opendata and https://www.vaughan.ca/business/online-maps each returned HTTP 403 to the pipeline, and https://maps.vaughan.ca/ failed TLS certificate verification. No open-data portal or licence page could be read. The City's ArcGIS Online organisation (9LnN9037wYhPG904) lists 117 public feature services, including VAUGHAN_PARKS, PARKS_TRAILS and Library; their licence field is empty or absent on the items checked, so no licence that permits redistribution is stated. Nothing was imported."
+  },
+  {
+    "name": "City of Richmond Hill open data",
+    "url": "https://www.richmondhill.ca/",
+    "reason": "Checked on 2026-11-16. https://www.richmondhill.ca/en/find-or-learn-about/open-data.aspx returned HTTP 404 and no open-data portal or open-data licence page was found. The City's ArcGIS Online organisation (cu2HFDk7AqvG7e31) lists 58 public feature services. Where a licence field is filled it reads: This information is provided as a public resource of general information by the City of Richmond Hill. The information is provided for convenience only, and the City of Richmond Hill disclaims any responsibility for content, accuracy, currency or completeness. That is a disclaimer, not a licence to redistribute. Nothing was imported."
+  },
+  {
+    "name": "Town of Aurora Data Hub",
+    "url": "https://town-of-aurora-data-hub-aurora.hub.arcgis.com/",
+    "reason": "Checked on 2026-11-16. The hub's Legal Disclaimer page (ArcGIS item 0d7c69d73d244fb59abaf05cb50d0dba) says all information remains the property of the Town of Aurora and that the information on the website shall not be modified, distributed, reproduced, published, licensed, transferred, or sold for a commercial purpose. The hub catalogue (22 entries) is mostly web apps, including Accessibility in Aurora; the public feature service Aurora_Accessibility (item d4f2cf00772b4ab88694dc3627edc0de) has no licence field. Redistribution is not permitted, so nothing was imported."
+  },
+  {
+    "name": "Town of Whitchurch-Stouffville",
+    "url": "https://whitchurch-stouffville-census-hub-2021-townofws.hub.arcgis.com/",
+    "reason": "Checked on 2026-11-16. https://www.townofws.ca/opendata returned HTTP 404. The only ArcGIS hub found is a 2021 census hub (10 entries, no facility data). The Town's ArcGIS Online account lists 62 public feature services, including TOWS Facilities, TOWS Parks and TOWS Trails; where a licence field is filled it is a copyright notice and an as-is disclaimer of the Town, with no grant of redistribution rights. No open-data licence was found, so nothing was imported."
+  },
+  {
+    "name": "Town of Georgina",
+    "url": "https://navigategeorgina-georgina.hub.arcgis.com/",
+    "reason": "Checked on 2026-11-16. https://www.georgina.ca/opendata returned HTTP 404. The Georgina Web Mapping hub catalogue has 2 entries (Web Maps and Static Maps) and no datasets. The Town's ArcGIS Online organisation (H9DyU85EnErZGhsY) lists 119 public feature services, including Park Amenities and Trail; their licence field is empty or a note that the map is created from a subset of Town data. No open-data licence was found, so nothing was imported."
+  },
+  {
+    "name": "Region of Peel Active Recreation, Points of Interest and on-road Trails segments",
+    "url": "https://data.peelregion.ca/pages/license",
+    "reason": "On 2026-11-16 the Open Data Licence for The Regional Municipality of Peel (Version 1.0) was read and the Trails layer is imported as peel-trails. Not imported: 1,539 Trails segments classed Bicycle Lane, Marked On Road Bicycle Route or On Road Connection, or with no class, because the line is the roadway or the class is not stated. Active Recreation (2,415 polygons of playing fields, playgrounds, arenas and pools) has no accessibility column and was not imported. Points of Interest (1,866 points) has no accessibility column, has a phone column, and its item licence note says one group of shelter records must not be shared externally, so it was not imported."
+  },
+  {
+    "name": "City of Mississauga open data (public washrooms, landmarks, parking facilities, community centres, libraries, arenas, pools, play sites, MiWay stops)",
+    "url": "https://mississauga.maps.arcgis.com/sharing/rest/content/items/961c790805c14d8da258ec91bf4117e3/data",
+    "reason": "Re-checked on 2026-11-16. The City of Mississauga Terms of Use PDF linked from the City's ArcGIS items (item 961c790805c14d8da258ec91bf4117e3, and the same 200,246-byte file at http://www5.mississauga.ca/research_catalogue/CityofMississauga_TermsofUse.pdf) returned HTTP 200 and names the City of Mississauga in the grant. It grants a world-wide, royalty-free, non-exclusive, revocable licence to use, modify and distribute the Datasets. It also requires anyone who distributes the Datasets to ensure each recipient agrees to and is bound by the terms, includes an indemnity, and lets the City cancel or suspend the licence without notice for any reason. These are the same conditions that hold the City of London datasets for legal review, so the hold stays. Some items state different terms: City Ice Rinks says the GIS data may not be modified or copied without written consent. Not imported: City Public Washrooms, City Landmarks (which includes accessible playgrounds), City Owned Parking Facilities, City Community Centres, City Libraries, City Arenas, City Municipal Pools, City Play Sites, City Spray Pads, MiWay Bus Stops and MiWay Bus Shelters at https://data.mississauga.ca/."
+  },
+  {
+    "name": "City of Brampton sidewalks, curbs, parks, libraries, facilities, signals and on-road trail segments",
+    "url": "https://services3.arcgis.com/rl7ACuZkiFsmDA2g/arcgis/rest/services/Sidewalks/FeatureServer/0",
+    "reason": "Checked on 2026-11-16, CC BY stated on each City item. Sidewalks has 429,007 lines with one column (DESCR, always SIDEWALK-PUBLIC); at the size of the 44,444-line Hamilton sidewalk import (6.4 MB) it would be far over the 10 MB limit for one city, so it was not retrieved. Curbs (282,376 lines) is the curb line, not curb ramps. Parks (869 polygons), Libraries (9), Supplementary City Facilities (31), Parking Lots (8,522 unnamed polygons), Traffic Signal Poles (3,862) and Transit Shelters (114) have no accessibility column. Bus Stops (2,869) repeats the GTFS stops already stored as gtfs-brampton. None of these were imported. 781 Recreational Trails segments typed ON STREET BIKE LANE, ON ROAD SIGNED ROUTE, APRON, CROSSWALK or CROSSROAD, or with no type, were left out of brampton-recreational-trails."
   },
   {
     "name": "MiWay static GTFS",
