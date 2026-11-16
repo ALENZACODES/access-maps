@@ -11,6 +11,7 @@ export const MAX_QUERY_LENGTH = 1024;
 export const MESSAGES = Object.freeze({
   en: Object.freeze({
     pageTitle: 'Sources and licences',
+    workbench: 'Local dataset provenance workbench',
     appName: 'the App',
     skip: 'Skip to main content',
     intro: 'See where displayed information comes from and which terms apply. A source credit does not mean the information is current or complete.',
@@ -72,6 +73,7 @@ export const MESSAGES = Object.freeze({
   }),
   fr: Object.freeze({
     pageTitle: 'Sources et licences',
+    workbench: 'Atelier local de provenance des données',
     appName: 'l’App',
     skip: 'Aller au contenu principal',
     intro: 'Consultez la provenance des informations affichées et les conditions applicables. Une mention de source n’établit ni l’actualité ni l’exhaustivité des informations.',
@@ -108,7 +110,7 @@ export const MESSAGES = Object.freeze({
     details: 'Détails des sources',
     osmMap: 'Pour une carte utilisant les données OpenStreetMap, affichez aussi le crédit près de la carte.',
     noEndorsement: 'La présence d’un fournisseur ne suppose ni approbation ni soutien, et n’établit pas que les informations sont complètes.',
-    feedNotice: 'Vérifiez les conditions du flux particulier avant de distribuer ses données.',
+    feedNotice: 'Consultez les conditions du flux particulier avant de distribuer ses données.',
     sourceCount: 'sources sélectionnées',
     sourceCountOne: 'source sélectionnée',
     external: 'Ouvre un site externe',
@@ -176,7 +178,7 @@ export const SOURCES = Object.freeze({
     datasetAsOf: UNKNOWN,
     notes: Object.freeze({
       en: 'The section 3 GTFS legend and the Open Government Licence statement are distinct. Review the specific feed terms before release.',
-      fr: 'La mention de la section 3 du GTFS et celle de la licence gouvernementale ouverte sont distinctes. Vérifiez les conditions du flux avant diffusion.',
+      fr: 'La mention de la section 3 du GTFS et celle de la licence gouvernementale ouverte sont distinctes. Consultez les conditions du flux avant diffusion.',
     }),
     notices: Object.freeze({
       en: Object.freeze([METROLINX_AUA_LEGEND, METROLINX_OGL_NOTICE]),

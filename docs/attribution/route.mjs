@@ -268,6 +268,12 @@ export function mountAttribution(doc, win) {
       render(control.id);
     }, labels), heading, paragraph(doc, labels.intro),
     paragraph(doc, `${connectivityLabel}. ${labels.offlineHelp}`, 'connection'));
+    const workbench = element(doc, 'a', { text: labels.workbench });
+    workbench.href = 'provenance.html';
+    const navigation = element(doc, 'nav');
+    navigation.setAttribute('aria-label', labels.tools);
+    navigation.appendChild(workbench);
+    header.appendChild(navigation);
     const main = element(doc, 'main', { id: 'main-content', className: 'content' });
     main.tabIndex = -1;
     const update = (next, control) => {

@@ -73,3 +73,80 @@ fidelity, UNKNOWN behaviour, legal notice integrity, exports, CSP wiring,
 and minimum control dimensions. Review visual and assistive-technology
 behaviour in the target deployment as an additional step; static tests alone
 cannot establish WCAG conformance.
+
+
+## P18D: local provenance workbench and release gate
+
+`provenance.html` is a directly loadable page linked from the existing
+attribution route. Its executable entry point is `provenance-route.mjs`.
+It imports `provenance-core.mjs`, `provenance-audit.mjs`, and
+`provenance-messages.mjs`. The page uses `provenance.css` alongside the
+existing stylesheet. There is no remote API, analytics call or data fetch;
+`connect-src 'none'` and `form-action 'none'` are set in the page CSP.
+
+This page keeps a **volatile, local-only** register in browser memory.
+People enter a dataset ID, source name and HTTPS address, licence and terms
+address, acquisition and dataset dates, attribution notice, licence flags,
+and redistribution permission. `UNKNOWN` is a valid explicit value where
+evidence is unavailable. Records start as `held`, not included. An import
+replaces the in-memory register only after validating the whole file. Export
+saves a JSON copy to the device; text audit export records findings. Nothing
+persists unless the person deliberately saves an exported file. Selection,
+filtering and locale changes do not contact an endpoint. The page is usable
+without a connection when its local HTML, CSS and JS files are present.
+
+### Contract and release gate
+
+`provenance-core.mjs` enforces a versioned JSON schema, strict allowed fields,
+valid ISO dates (or UNKNOWN), HTTPS-only public links, typed yes/no/UNKNOWN
+flags, unique identifiers, and bounded import sizes. The parser fails closed:
+unknown keys, unsupported schema versions and malformed records are rejected.
+No licence type or date is inferred from the provider label.
+
+`provenance-audit.mjs` blocks release when any **included** source lacks
+required origin, licence, acquisition/terms dates, attribution notice, or
+redistribution permission. OSM records require an explicit ODbL flag and
+map credit. Metrolinx GTFS AUA and OGL are separate selections: their exact
+English notices are checked according to the selected licence, never
+combined by assumption. LTC source notices are checked; other sources
+must identify their own open licence. Unknown dataset dates remain UNKNOWN
+and are informational rather than fabricated; unknown permission blocks.
+Excluded and held datasets do not count as release candidates.
+
+Run the command-line release gate on an actual, operator-supplied inventory:
+
+```sh
+node docs/attribution/provenance-cli.mjs path/to/inventory.json --date 2026-11-15
+node docs/attribution/provenance-cli.mjs path/to/inventory.json --json
+```
+
+Exit code **0** means no blocking evidence gaps under these rules; **1**
+means a blocked release; **2** means invalid input, bad options or a read
+failure. The supplied `--date` is used for future-date comparisons; without
+it the comparison reference remains `UNKNOWN` (there is no system-clock
+inference). The CLI is not implicitly enabled in an unknown repository CI
+configuration. To wire it into a deployment job, invoke it against the
+actual release inventory. No generated inventory or provider feed is bundled.
+
+### Run the tests
+
+```sh
+node --test docs/attribution/attribution-utils.test.mjs   docs/attribution/provenance-*.test.mjs
+```
+
+The tests execute the same modules loaded by the live route and CLI. They
+check malformed imports, URL rejection, exact legal notices, language keys,
+UNKNOWN preservation, block-on-error behaviour, actual CLI exit codes,
+route wiring, CSP, semantic structure and CSS target minimums. The audit
+suite asserts that missing evidence produces an error: removing an audit
+check makes the tests fail. Automated source checks do not replace a
+manual keyboard, switch, screen-reader or contrast review in deployment.
+
+### Integration boundary
+
+The page is a real standalone static route at `docs/attribution/provenance.html`
+and linked from `docs/attribution/index.html` through `route.mjs`. A host SPA
+that does not publish `docs/attribution/` still needs its routing/publishing
+configuration wired separately; that configuration is not in this lane's
+allowed scope. The gate can be integrated into an existing CI job by calling
+the command above; the repository's CI configuration has not been edited.

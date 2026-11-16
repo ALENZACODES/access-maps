@@ -86,7 +86,7 @@ export function buildAttributionPage(
         METROLINX_AUA_END_USER_LAWS_FR,
       ],
       explanation: french
-        ? "La section 3 de l’accord d’utilisation du GTFS exige la mention anglaise exacte et bien visible. La ligne de la licence gouvernementale ouverte est distincte. Vérifier les conditions du flux utilisé avant sa publication."
+        ? "La section 3 de l’accord d’utilisation du GTFS exige la mention anglaise exacte et bien visible. La ligne de la licence gouvernementale ouverte est distincte. Consulter les conditions du flux utilisé avant sa publication."
         : "GTFS Access and Use Agreement section 3 requires the exact prominent English legend. The Open Government Licence line is separate. Check the terms for the particular feed before publishing.",
     },
     ltc: {
