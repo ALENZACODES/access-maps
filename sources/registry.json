@@ -809,6 +809,21 @@
       "tier": 0,
       "tier_note": "Municipal open data is tier 0. It is not shown as verified.",
       "notes": "Only the 3 rows whose SubType is Public Washroom are imported, of 56 points. The layer has no accessibility column, so wheelchair stays UNKNOWN. Licence text read on 2026-11-16 from the City's hub page item 751038db8be941e59fccb827c2d66c90 (the content of https://open-welland.hub.arcgis.com/pages/terms-of-use): it grants a worldwide, royalty-free, perpetual, non-exclusive licence to copy, modify, publish, translate, adapt, distribute or otherwise use the Information for any lawful purpose, asks for the attribution statement, and excludes personal information and the provider's names, crests and logos. The ArcGIS item licenseInfo links that page."
+    },
+    {
+      "id": "oakville-transit-gtfs",
+      "name": "Oakville Transit Route and Schedule Information (GTFS)",
+      "kind": "gtfs",
+      "url": "https://www.arcgis.com/home/item.html?id=d78a1c1ad6a940009de8b68839a8f606",
+      "download_url": "https://www.arcgis.com/sharing/rest/content/items/d78a1c1ad6a940009de8b68839a8f606/data",
+      "licence_name": "Town of Oakville Open Data Licence",
+      "licence_url": "https://www.oakville.ca/town-hall/town-studies-plans-projects/town-initiatives/open-data/open-data-licence/",
+      "licence_id": "Oakville-Open-Data-Licence",
+      "attribution": "Contains information licensed under the Open Government Licence — Town of Oakville.",
+      "retrieved_at": "2026-11-16",
+      "tier": 1,
+      "tier_note": "Static GTFS fields published by the operator are tier 1 operator claims, not verified observations. wheelchair_boarding 0 or empty is stored as UNKNOWN.",
+      "notes": "The zip (3,574,505 bytes) was retrieved on 2026-11-16 from the Town of Oakville ArcGIS item, whose licenseInfo links the Town of Oakville Open Data Licence. Licence text read the same day at the licence URL (HTTP 200): it grants a worldwide, royalty-free, perpetual, non-exclusive licence to copy, modify, publish, translate, adapt, distribute or otherwise use the Information. stops.txt has 1,163 stops and every wheelchair_boarding value is 0, so wheelchair_boarding is UNKNOWN on every stop. The feed has no pathways.txt or levels.txt."
     }
   ]
 }

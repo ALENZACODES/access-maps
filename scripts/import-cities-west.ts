@@ -2,7 +2,11 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 import path from "node:path";
 import { acceptId, commitRecord, resetSourceDirs } from "../src/io/commit.js";
+import { parseCsv } from "../src/io/csv.js";
 import { PartitionWriter } from "../src/io/partition-writer.js";
+import { findZipEntry, listZip, readZipText } from "../src/io/zip.js";
+import { GTFS_FEEDS } from "../src/gtfs/feeds.js";
+import { mapGtfsStop, wheelchairStopsFromRows } from "../src/gtfs/map.js";
 import { mapBramptonCityParking, mapBramptonTrail } from "../src/municipal/cities/brampton.js";
 import {
   mapHamiltonBusStopAmenity,
@@ -61,6 +65,9 @@ export const WEST_CITY_JOBS: readonly Job[] = [
   { id: "welland-public-washrooms", tranches: ["washroom"], map: mapWellandPublicWashroom },
 ];
 
+/** Static GTFS feeds of the transit agencies in these municipalities. Tier 1 operator claims. */
+export const WEST_GTFS_FEED_IDS: readonly string[] = ["oakville-transit-gtfs"];
+
 export interface ImportedSource {
   source_id: string;
   features: number;
@@ -72,7 +79,7 @@ export interface ImportedSource {
   duplicate_ids: number;
 }
 
-export async function importWestCities(repoRoot: string, only: readonly string[] = []): Promise<{ sources: ImportedSource[] }> {
+export async function importWestCities(repoRoot: string, only: readonly string[] = []): Promise<{ sources: ImportedSource[]; gtfs: ImportedGtfs[] }> {
   const registry = readRegistry(repoRoot);
   const validators = compileValidators(path.join(repoRoot, "schema"));
   const writer = new PartitionWriter(path.join(repoRoot, "data"));
@@ -112,9 +119,48 @@ export async function importWestCities(repoRoot: string, only: readonly string[]
     }
     sources.push({ source_id: source.id, features: features.length, records, skipped, no_coordinate: noCell, duplicate_ids: duplicateIds });
   }
+  const gtfs: ImportedGtfs[] = [];
+  for (const feed of GTFS_FEEDS.filter((item) => WEST_GTFS_FEED_IDS.includes(item.id))) {
+    if (only.length > 0 && !only.includes(feed.id)) continue;
+    const source = requireSource(registry, feed.id);
+    if (source.kind !== "gtfs" || source.tier !== 1) throw new Error(`${feed.id} must be a tier 1 gtfs source`);
+    const zipPath = path.join(repoRoot, feed.file);
+    if (!existsSync(zipPath)) {
+      mkdirSync(path.dirname(zipPath), { recursive: true });
+      const response = await fetch(source.download_url, { headers: { "User-Agent": USER_AGENT, Accept: "*/*" } });
+      if (!response.ok) throw new Error(`${source.download_url} HTTP ${response.status}`);
+      writeFileSync(zipPath, Buffer.from(await response.arrayBuffer()));
+    }
+    const stopsEntry = findZipEntry(listZip(zipPath), "stops.txt");
+    if (!stopsEntry) throw new Error(`${feed.id} has no stops.txt`);
+    resetSourceDirs(path.join(repoRoot, "data"), source.id, ["transit", "path"]);
+    const ctx: Provenance = { source_id: source.id, licence: source.licence_id, retrieved_at: source.retrieved_at, tier: 1 };
+    const rows = parseCsv(readZipText(zipPath, stopsEntry)).rows;
+    const wheelchairStops = wheelchairStopsFromRows(rows);
+    const seen = new Set<string>();
+    let stops = 0;
+    let skipped = 0;
+    for (const row of rows) {
+      const record = mapGtfsStop(row, new Map(), ctx, source.id, wheelchairStops);
+      if (!record || record.region === "unknown" || !acceptId(seen, record.id)) {
+        skipped += 1;
+        continue;
+      }
+      await commitRecord(record, source.id, writer, validators);
+      stops += 1;
+    }
+    gtfs.push({ source_id: source.id, stops, skipped });
+  }
   await writer.close();
-  console.log(JSON.stringify({ sources }));
-  return { sources };
+  console.log(JSON.stringify({ sources, gtfs }));
+  return { sources, gtfs };
+}
+
+export interface ImportedGtfs {
+  source_id: string;
+  stops: number;
+  /** Rows with no stop id, no usable coordinate, or a repeated stop id. */
+  skipped: number;
 }
 
 type RawFeature = { properties?: Record<string, unknown> | null; geometry?: unknown };

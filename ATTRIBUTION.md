@@ -219,6 +219,38 @@ Datasets, retrieved 2026-11-16:
 
 None of these layers has an accessibility column.
 
+## Town of Oakville datasets
+
+Contains information licensed under the Open Government Licence — Town of Oakville.
+
+https://www.oakville.ca/town-hall/town-studies-plans-projects/town-initiatives/open-data/open-data-licence/
+
+Datasets, retrieved 2026-11-16: Town Facilities (washroom rows), https://www.arcgis.com/home/item.html?id=ad818e6a80b941c89108d724a642d238, and Oakville Transit Route and Schedule Information (GTFS), https://www.arcgis.com/home/item.html?id=d78a1c1ad6a940009de8b68839a8f606
+
+## Town of Milton datasets
+
+Contains information licensed under the Open Government Licence – Milton.
+
+https://discover-milton.hub.arcgis.com/pages/disclaimer-and-terms-of-use
+
+Datasets, retrieved 2026-11-16 from https://api.milton.ca/arcgis/rest/services/Datasets/: Parking Lots, Park Amenities, Sidewalks and Trails.
+
+## City of Niagara Falls datasets
+
+Contains information licensed under the Open Government Licence – Niagara Falls.
+
+https://open.niagarafalls.ca/pages/terms-of-use
+
+Datasets, retrieved 2026-11-16 from https://services9.arcgis.com/oMFQlUUrLd1Uh1bd/arcgis/rest/services/: Sidewalks, Community Public Trails and Playgrounds.
+
+## City of Welland datasets
+
+Contains information licensed under the Open Government Licence – City of Welland.
+
+https://open-welland.hub.arcgis.com/pages/terms-of-use
+
+Datasets, retrieved 2026-11-16 from https://arcgisweb.welland.ca/serverprodpub/rest/services/OpenData/: City Wide Trails and Municipal Facilities (public washroom rows).
+
 ## Offline map tiles
 
 `data/tiles/odbl/` is OpenStreetMap data under the Open Database License (ODbL) 1.0. It is a separate file from every other licence.
