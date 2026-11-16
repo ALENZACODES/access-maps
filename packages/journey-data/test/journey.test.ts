@@ -216,14 +216,14 @@ describe("I14 published chunk reader", () => {
   });
 
   it("accepts a GO timetable chunk and still holds MiWay", async () => {
-    const go: PackSourceEntry = { sourceId: "metrolinx-go", name: "GO Transit", licence: "Metrolinx AUA", retrieved: "2026-11-15", inWebPack: true };
+    const go: PackSourceEntry = { sourceId: "metrolinx-go", name: "GO Transit", licence: "Metrolinx Access and Use Agreement (accepted 2026-11-15)", retrieved: "2026-11-15", inWebPack: true };
     const records = [path("p1", origin, middle), path("p2", middle, destination),
       stop("stop-a", origin, "1"), stop("stop-b", destination, "0"), stop("held-stop", middle, "1", "miway")];
     const result = await createJourneyModule(fixtureSource(records, [osm, ttc, held, go]), {
       timetable: {} as never,
       readTimetableChunk: async () => ({
         region: "toronto", sourceId: "metrolinx-go", sourceName: "GO Transit",
-        licence: "Metrolinx AUA", fetchedAt: "2026-11-15", tier: 1,
+        licence: "Metrolinx Access and Use Agreement (accepted 2026-11-15)", fetchedAt: "2026-11-15", tier: 1,
         trips: [{ id: "trip-go", routeId: "route-go", stopTimes: [
           { stopId: "stop-a", departure: "13:00:00", arrival: "13:00:00" },
           { stopId: "stop-b", departure: "13:20:00", arrival: "13:20:00" },
