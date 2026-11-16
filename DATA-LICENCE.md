@@ -26,6 +26,6 @@ GO Transit and UP Express packed rows are stored only under `data/transit/metrol
 
 MiWay GTFS is not in this pack. The official terms could not be confirmed.
 
-London Transit is published under the LTC Open Data Terms of Use: https://www.londontransit.ca/open-data/ltcs-open-data-terms-of-use/ Those terms were confirmed on 2026-11-15. John Khan confirmed directly to QA on 2026-11-15 at 5:59 PM ET (America/Toronto) that London Transit data can go in. Packed rows stay under `data/transit/gtfs-ltc/` and are never mixed into `metrolinx-*` files. Do not use LTC marks or claim endorsement.
+London Transit is published under the LTC Open Data Terms of Use: https://www.londontransit.ca/open-data/ltcs-open-data-terms-of-use/ Those terms were confirmed on 2026-11-15. John Khan confirmed directly to QA on 2026-11-15 at 5:59 PM ET (America/Toronto) that London Transit data can go in. The web pack includes these rows (`inWebPack` true) with the optional EN and FR availability notice and the terms link. Packed rows stay under `data/transit/gtfs-ltc/` and are never mixed into `metrolinx-*` files. Do not use LTC marks or logos, and do not claim endorsement.
 
 Brampton Transit publishes the GTFS item with `licenseInfo` set to the string `CC BY`. The item does not state a Creative Commons version. Redistribution follows that published statement and includes attribution. The item page is https://www.arcgis.com/home/item.html?id=a355aabd5a8c490186bdce559c9c75fb

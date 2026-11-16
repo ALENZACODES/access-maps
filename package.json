@@ -5,11 +5,19 @@
   "engines": {
     "node": ">=22"
   },
+  "workspaces": [
+    "packages/journey",
+    "packages/map-ui",
+    "packages/journey-data"
+  ],
   "scripts": {
     "build:schemas": "node scripts/build-schemas.mjs",
+    "build:timetables": "node --experimental-strip-types scripts/build-gtfs-timetables.ts",
     "check:schema": "node scripts/check-schema-source.mjs",
-    "lint": "tsc --noEmit && npm run lint -w @access-maps/journey && npm run lint -w @access-maps/map-ui",
-    "test": "vitest run && npm test -w @access-maps/journey && npm test -w @access-maps/map-ui",
+    "lint": "tsc --noEmit && npm run lint -w @access-maps/journey && npm run lint -w @access-maps/map-ui && npm run lint -w @access-maps/journey-data",
+    "test": "vitest run && npm test -w @access-maps/journey && npm test -w @access-maps/map-ui && npm test -w @access-maps/journey-data",
+    "demo": "npm run demo -w @access-maps/map-ui",
+    "test:e2e": "npm run test:e2e -w @access-maps/map-ui",
     "validate:sample": "tsx scripts/validate-sample.ts",
     "import:osm": "tsx scripts/import-osm.ts",
     "import:gtfs": "tsx scripts/import-gtfs.ts",
@@ -21,8 +29,7 @@
     "import": "tsx scripts/import-all.ts",
     "build:web-pack": "tsx scripts/build-web-pack.ts",
     "verify:web-pack": "tsx scripts/build-web-pack.ts --verify",
-    "demo": "npm run demo -w @access-maps/map-ui",
-    "test:e2e": "npm run test:e2e -w @access-maps/map-ui"
+    "licence:recheck": "tsx scripts/licence-recheck.ts"
   },
   "dependencies": {
     "ajv": "^8.17.1",
@@ -36,9 +43,5 @@
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
     "vitest": "^3.2.4"
-  },
-  "workspaces": [
-    "packages/journey",
-    "packages/map-ui"
-  ]
+  }
 }

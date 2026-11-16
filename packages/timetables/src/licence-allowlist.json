@@ -1,0 +1,29 @@
+[
+  {
+    "sourceId": "ltc",
+    "agency": "London Transit Commission",
+    "licence": "LTC Open Data Terms of Use",
+    "licenceUrl": "https://www.londontransit.ca/open-data/ltcs-open-data-terms-of-use/",
+    "attribution": "London Transit Commission",
+    "retrieved": "2026-11-15",
+    "zipFileName": "google_transit.zip"
+  },
+  {
+    "sourceId": "metrolinx-go",
+    "agency": "GO Transit",
+    "licence": "Metrolinx Access and Use Agreement (accepted 2026-11-15)",
+    "licenceUrl": "https://www.gotransit.com/en/partner-with-us/software-developers",
+    "attribution": "GO Transit",
+    "retrieved": "2026-11-15",
+    "zipFileName": "GO-GTFS.zip"
+  },
+  {
+    "sourceId": "metrolinx-up",
+    "agency": "UP Express",
+    "licence": "Metrolinx Access and Use Agreement (accepted 2026-11-15)",
+    "licenceUrl": "https://www.gotransit.com/en/partner-with-us/software-developers",
+    "attribution": "UP Express",
+    "retrieved": "2026-11-15",
+    "zipFileName": "UP-GTFS.zip"
+  }
+]

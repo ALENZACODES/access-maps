@@ -4,20 +4,6 @@ Unbranded Ontario accessibility open data for a spinal-cord-injury-first map. Th
 
 No transit agency, municipality, OpenStreetMap, or other publisher endorses this project. Attribution in [ATTRIBUTION.md](ATTRIBUTION.md) is licence compliance. The data is not medical advice and not an eligibility determination.
 
-
-## packages/journey
-
-TypeScript door-to-door journey-chain engine: step-free status that defaults to unknown, GTFS transit plus rolling and walking legs, a router adapter (in-catalog graph, straight-line gap, or a self-hosted Valhalla, OSRM, or GraphHopper HTTP service), elevator status, washroom waypoints, timing limits the person sets, winter mode, charging warnings, and paratransit as links only.
-
-OpenTripPlanner (LGPL) and OpenRouteService (GPL) are not vendored and are rejected if named as an engine.
-
-## packages/map-ui
-
-React and MapLibre GL components. Every map feature is also a button in a list, with keyboard arrow keys and a polite status announcement.
-
-Journey work reads imported records through `JourneyDataSource`. It does not edit `data/` or the import pipelines. Tests use fixtures, and unknown stays `UNKNOWN`.
-
-
 ## Verification tiers
 
 Tiers apply to each field, not to the whole record.
@@ -89,6 +75,18 @@ The OSM importer keeps the Geofabrik extract, filters it with `osmium tags-filte
 
 Washroom fields from a venue, such as `toilets:wheelchair`, are emitted as a separate washroom record (`osm:toilets-at:...`) and are not copied onto the venue. `amenity=toilets` is only a washroom. A cycleway or bridleway is imported only when `foot` is `yes` or `designated`.
 
+
+## Licence re-checks
+
+`npm run licence:recheck -- --as-of YYYY-MM-DD` prints a dated register with one row for every source in `sources/registry.json` and every dataset in `sources/gaps.json`. Add `--format json` for JSON, and `--fail-on-overdue` to exit 1 when a row is overdue.
+
+- A row is flagged only when the registry or gap text already says so (revocable terms, an indemnity, legal review, a missing licence version, an unreachable licence page, and so on), or when the source is in `TILES_HELD_FOR_LEGAL_REVIEW`. The register quotes the sentence that raised each flag.
+- Flagged rows are due 30 days after the last check. Other rows are due after 90 days. These intervals are this repository's defaults, not figures from a licence.
+- A gap with no date in its record is overdue now. It is not treated as checked.
+- The command reads files only. It does not fetch a licence page and does not say what a licence allows.
+
+A person records each re-check in `sources/licence-rechecks.json`: `subject` (registry id or gap name), `checked_on`, `checker_role` (a role, not a name), `url_checked`, `result` (`unchanged`, `changed`, or `unreachable`), `http_status` (required when unreachable), and `note`. The command stops and names any entry that does not meet those rules. The log starts empty.
+
 ## Tests and CI
 
 `npm test` covers OSM tag mapping and `UNKNOWN`, GTFS codes, municipal columns, counting rules, CSV parsing, and Ajv validation. `npm run lint` is `tsc --noEmit`.
@@ -102,3 +100,13 @@ See [sources/gaps.json](sources/gaps.json). OC Transpo's terms page did not retu
 GO Transit and UP Express rows are stored only under `data/transit/metrolinx-go/` and `data/transit/metrolinx-up/`, under the Metrolinx Access and Use Agreement accepted on 2026-11-15. John Khan confirmed that acceptance directly to QA on 2026-11-15 at 5:59 PM ET (America/Toronto). MiWay is not in this pack. Licence notes are in [sources/registry.json](sources/registry.json) and [ATTRIBUTION.md](ATTRIBUTION.md). GO and UP Express `stop_amenities.txt` has an undocumented integer `washroom` column, so that file was not interpreted.
 
 None of the downloaded GTFS feeds included `pathways.txt` or `levels.txt`. If a stop publishes `level_id`, that value is stored. `level_index` and `level_name` stay `UNKNOWN` unless a levels table is present.
+
+## Journey packages
+
+This branch also carries the door-to-door journey work that landed ahead of the open-data import:
+
+- `packages/journey` — TypeScript journey-chain engine. Step-free status defaults to unknown. Tests use fixtures.
+- `packages/map-ui` — React and MapLibre GL components. Every map feature is also a button in a list, with keyboard arrow keys and a polite status announcement.
+- `packages/journey-data` — Rolling routes and transit options over downloaded pack records. Scheduled times come from I14's published timetable chunks when those chunks are already on the device; missing chunks stay unknown and times are never invented. MiWay is held; GO, UP Express, and LTC are in.
+
+Imported records in `data/` follow the field-value shape (`value`, `source_id`, `licence`, `retrieved_at`, `tier`). The journey packages read that shape and do not edit the import pipelines. Unknown stays `UNKNOWN`.
