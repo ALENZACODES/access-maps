@@ -443,7 +443,6 @@ Dataset, retrieved 2026-11-16: Accessible Features, https://www.lambtongis.ca/ar
 
 The listed features are the County's own phrases and are stored as published. They are not a wheelchair measurement by this project, and a feature the County does not list is stored as UNKNOWN, not as absent. The licence does not cover personal information or the County's names, crests and logos.
 
-<<<<<<< HEAD
 ## City of London datasets
 
 Contains data sets publicly available from the City of London under the City of London Open Data Terms of Use.
@@ -457,7 +456,7 @@ Basis for inclusion: the repository owner stated in chat on 2026-11-16 that use 
 Datasets, retrieved 2026-11-16 from https://maps.london.ca/server/rest/services/OpenData (catalogue https://opendata.london.ca): Park Amenities (`london-park-amenities`), Parking Inventory (`london-parking-inventory`), Off-Street Parking (`london-off-street-parking`), Libraries (`london-libraries`), Sidewalks (`london-sidewalks`), Walkways (`london-walkways`), Bicycle Routes and Walking Trails (`london-trails`).
 
 London Transit Commission GTFS is a separate source with its own terms; see the London Transit Commission section above.
-=======
+
 <!-- g6 municipalities 51-77 start -->
 ## County of Essex
 
@@ -479,7 +478,6 @@ Datasets retrieved 2026-11-16 from the County of Brant open-data catalogue (http
 
 These layers have no accessibility column. CC0 requires no attribution; the line above is given as a courtesy.
 <!-- g6 municipalities 51-77 end -->
->>>>>>> origin/main
 
 ## Offline map tiles
 
