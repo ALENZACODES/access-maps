@@ -16,7 +16,7 @@ const help = `Usage: node tools/data-qa/p15d-cli.ts COMMAND OPTIONS
   compare --before old.json --after new.json --policy policy.json
           [--format json|en|fr] [--output report.txt]
   closure --input closure.json [--format json|en|fr] [--output report.txt]
-All inputs are local UTF-8 JSON. Output is written exclusively, never uploaded.
+${p15eHelp}All inputs are local UTF-8 JSON. Output is written exclusively, never uploaded.
 Return codes: 0 pass, 1 blocked, 2 invalid inputs or I/O failure.
 `;
 
@@ -91,6 +91,9 @@ async function parseFile(io: P15dIo, path: string): Promise<unknown> {
 }
 
 export async function runP15d(args: readonly string[], io: P15dIo): Promise<number> {
+  if (args[0] === 'evidence' || args[0] === 'locales' || args[0] === 'updates' || args[0] === 'credits') {
+    return runP15e(args, io);
+  }
   let request: P15dCommand | 'help';
   try { request = parseP15d(args); }
   catch (error) { io.err(`${error instanceof Error ? error.message : 'Bad options'}\n${help}`); return 2; }
