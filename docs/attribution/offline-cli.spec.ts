@@ -14,6 +14,13 @@ const sourceIsTypeScript = import.meta.url.endsWith(".ts");
 const cliUrl = new URL(sourceIsTypeScript ? "./offline-cli.ts" : "./offline-cli.js", import.meta.url);
 const nodeLoaderArgs = sourceIsTypeScript ? ["--import", "tsx"] : [];
 
+test("TypeScript CLI process tests use the source entry with the tsx loader", () => {
+  if (sourceIsTypeScript) {
+    assert.ok(cliUrl.pathname.endsWith("/offline-cli.ts"));
+    assert.deepEqual(nodeLoaderArgs, ["--import", "tsx"]);
+  }
+});
+
 async function temporary<T>(run:(root:string)=>Promise<T>):Promise<T> {
   const root = await mkdtemp(join(tmpdir(),"offline-cli-"));
   try { return await run(root); }
