@@ -584,6 +584,21 @@ export const LICENCE_FINDINGS: readonly LicenceFinding[] = [
     reason: "City of Pickering Open Data Licence, version 1.0. Not in the strict export allowlist.",
   },
   {
+    sourceId: "essex-county-recreational-areas",
+    licence: "OGL-Essex-1.0",
+    reason: "Open Government Licence – County of Essex, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "essex-county-libraries",
+    licence: "OGL-Essex-1.0",
+    reason: "Open Government Licence – County of Essex, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "essex-county-trails",
+    licence: "OGL-Essex-1.0",
+    reason: "Open Government Licence – County of Essex, version 1.0. Not in the strict export allowlist.",
+  },
+  {
     sourceId: "london-park-amenities",
     licence: "owner-permission-2026-11-16",
     reason: "Included on the repository owner's statement of 2026-11-16; City of London Open Data Terms of Use (pass-on of the terms required). Not an open licence in the strict export allowlist.",

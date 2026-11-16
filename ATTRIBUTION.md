@@ -443,6 +443,7 @@ Dataset, retrieved 2026-11-16: Accessible Features, https://www.lambtongis.ca/ar
 
 The listed features are the County's own phrases and are stored as published. They are not a wheelchair measurement by this project, and a feature the County does not list is stored as UNKNOWN, not as absent. The licence does not cover personal information or the County's names, crests and logos.
 
+<<<<<<< HEAD
 ## City of London datasets
 
 Contains data sets publicly available from the City of London under the City of London Open Data Terms of Use.
@@ -456,6 +457,29 @@ Basis for inclusion: the repository owner stated in chat on 2026-11-16 that use 
 Datasets, retrieved 2026-11-16 from https://maps.london.ca/server/rest/services/OpenData (catalogue https://opendata.london.ca): Park Amenities (`london-park-amenities`), Parking Inventory (`london-parking-inventory`), Off-Street Parking (`london-off-street-parking`), Libraries (`london-libraries`), Sidewalks (`london-sidewalks`), Walkways (`london-walkways`), Bicycle Routes and Walking Trails (`london-trails`).
 
 London Transit Commission GTFS is a separate source with its own terms; see the London Transit Commission section above.
+=======
+<!-- g6 municipalities 51-77 start -->
+## County of Essex
+
+Contains information licensed under the Open Government Licence – County of Essex.
+
+Open Government Licence – County of Essex 1.0: https://gisweb.countyofessex.ca/OpenData/County%20of%20Essex%20-%20Open%20Government%20Licence.pdf
+
+Datasets retrieved 2026-11-16 from https://cwserver.countyofessex.ca/arcgis/rest/services/OpenData/: Recreational Areas (parks, community centres, sports complexes and historic sites), County Libraries, and Existing CWATS trails (multi-use trails and paths only). They cover Amherstburg, Essex, Kingsville, Lakeshore, LaSalle, Leamington and Tecumseh.
+
+These layers have no accessibility column. The licence does not cover personal information or the County's names, crests and logos.
+
+## County of Brant
+
+Source: County of Brant Open Data (CC0).
+
+CC0 1.0 Universal: https://creativecommons.org/publicdomain/zero/1.0/
+
+Datasets retrieved 2026-11-16 from the County of Brant open-data catalogue (https://catalogue-Brant.hub.arcgis.com): Sidewalk, Brant Trail Network, and County of Brant Parks.
+
+These layers have no accessibility column. CC0 requires no attribution; the line above is given as a courtesy.
+<!-- g6 municipalities 51-77 end -->
+>>>>>>> origin/main
 
 ## Offline map tiles
 
