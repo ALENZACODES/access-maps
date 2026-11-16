@@ -169,10 +169,26 @@ export type GroupState =
 
 /**
  * Tier 0: unconfirmed user observation. Tier 2: the same condition reported
- * by enough independent people. This package never assigns tier 1, 3 or 4 to
- * a report.
+ * by enough independent people (peer verification of an observation). This
+ * package never assigns tier 1, 3 or 4 to a report.
  */
 export type ReportTier = 0 | 2;
+
+/**
+ * How a route-condition report is treated by any count. A report is a
+ * time-limited observation, not a standing accessibility fact: at every
+ * tier it is not a piece and it adds nothing to a verified total. Both
+ * flags are the literal `false`; there is no setting that changes them.
+ */
+export interface ReportCounting {
+  readonly counts_as_piece: false;
+  readonly counts_toward_verified: false;
+}
+
+export const REPORT_COUNTING: ReportCounting = Object.freeze({
+  counts_as_piece: false,
+  counts_toward_verified: false,
+});
 
 export interface ReportGroup {
   id: string;
@@ -182,6 +198,8 @@ export interface ReportGroup {
   licence: string;
   state: GroupState;
   tier: ReportTier;
+  /** Always {@link REPORT_COUNTING}: never a piece, never verified. */
+  counting: ReportCounting;
   confidence: number;
   independent_reporters: number;
   has_photo: boolean;
@@ -228,6 +246,8 @@ export interface RoutingFact {
     tier: ReportTier;
     derived: true;
   };
+  /** Always {@link REPORT_COUNTING}: never a piece, never verified. */
+  counting: ReportCounting;
   provenance: {
     report_ids: string[];
     counted_report_ids: string[];

@@ -46,6 +46,7 @@ export function RouteReportsList({
     <section lang={language} aria-labelledby="route-reports-heading">
       <h2 id="route-reports-heading">{t.heading}</h2>
       <p>{t.intro}</p>
+      <p>{t.notCounted}</p>
       {views.length === 0 ? (
         <p>{t.empty}</p>
       ) : (
@@ -55,6 +56,7 @@ export function RouteReportsList({
               <h3>{view.heading}</h3>
               {view.sample && <p><strong>{t.sample}</strong></p>}
               <p><strong>{view.state}</strong></p>
+              {view.confirmedBy !== null && <p>{view.confirmedBy}</p>}
               <dl>
                 <dt>{t.tier}</dt>
                 <dd>{view.tier}</dd>

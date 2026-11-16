@@ -97,13 +97,12 @@ describe("string catalogues", () => {
 
   it("never describe a report or an unverified tier as verified", () => {
     for (const language of LANGUAGES) {
-      const t = reportStrings[language];
-      const labels = [...leaves(t.tiers), ...leaves(t.states), ...leaves(t.parts)]
-        .join(" ")
-        .toLowerCase();
-      expect(labels).not.toContain("verified");
-      expect(labels).not.toContain("vérifié");
+      // Nothing a person reads about route reports uses the word.
+      const all = leaves(reportStrings[language]).join(" ").toLowerCase();
+      expect(all).not.toContain("verified");
+      expect(all).not.toContain("v\u00e9rifi\u00e9");
       expect(reportStrings[language].tiers[0]).toMatch(/unconfirmed|non confirmé/);
+      expect(reportStrings[language].tiers[2]).toMatch(/confirmed by|confirmé par/);
       expect(wavStrings[language].tiers[0]).toMatch(/not verified|non vérifié/);
       expect(wavStrings[language].tiers[1]).toMatch(/not verified|non vérifié/);
     }
@@ -123,6 +122,7 @@ describe("route report list", () => {
     const snow = bodies.find((value) => value.startsWith(t.kinds.snowbank)) ?? "";
     expect(snow).toContain(t.states.active);
     expect(snow).toContain(t.tiers[2]);
+    expect(snow).toContain(t.confirmedBy(2));
     expect(snow).toContain(t.sample);
     expect(snow).toContain("synthetic-test");
     expect(snow).toContain("CC0-1.0");
@@ -132,6 +132,9 @@ describe("route report list", () => {
     expect(ice).toContain(t.states.expired);
     expect(ice).toContain(t.tiers[0]);
     expect(ice).not.toContain(t.confidence);
+    expect(ice).not.toContain(t.confirmedBy(1).split(" ")[0]);
+    expect(section.textContent).toContain(t.notCounted);
+    expect((section.textContent ?? "").toLowerCase()).not.toMatch(/verified|vérifié/);
     expect(section.textContent).toContain(t.intro);
     await expectNoAxeViolations(view.container);
   });
