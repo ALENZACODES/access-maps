@@ -108,3 +108,135 @@ This lane does not edit the host shell.
 
 Regional packs are on-demand only. Do not add them to service-worker
 precache. The initial precache limit remains 4,141,875 bytes.
+
+## Route reports from people
+
+`RouteReport` is one person's observation of a route condition: a snowbank,
+a blocked curb cut, ice, a surface problem, a steep or tilted section, an
+obstruction or something else. `schema/route-report.schema.json` and
+`validateReport` apply the same rules.
+
+- `observed_at` is the time the person saw the condition and is kept exactly
+  as given. `observation.retrieved_at` is when the report was saved. A photo's
+  capture time never replaces `observed_at`; a difference of more than one
+  hour only produces a warning.
+- `observation` uses the field-value shape (`value`, `source_id`, `licence`,
+  `retrieved_at`, `tier`). A report is always tier 0; any other tier is
+  rejected.
+- Photo data is metadata only: a local handle, media type, capture time and
+  pixel size. No image bytes and no embedded position are kept.
+- The reporter role is self-declared, never checked and never changes a tier.
+- The licence that applies to reports saved on a device is supplied by the
+  host. This package does not decide it.
+
+### Freshness
+
+`reportFreshness` lowers a report's confidence with age on the curve set for
+its kind (`exponential`, `linear` or `step`) and marks it `expired` at the
+configured expiry. `DEFAULT_DECAY` holds adjustable product settings; they
+are not measurements of how long any condition lasts. Confidence is a
+relative weight from 0 to 1, not a probability.
+
+An expired report stays in every result, labelled expired, with zero
+confidence. A report dated in the future (beyond a five-minute clock
+allowance) or with an unreadable time is `needs_check`. Neither is treated as
+current.
+
+### Corroboration
+
+`corroborateReports` groups reports of the same kind, source and licence at
+the same segment id, feature id, or within `radius_m` (default 15 m) for
+point reports.
+
+| Situation | Result |
+| --- | --- |
+| One current report | `active`, tier 0 |
+| Current reports from at least `min_independent` (default 2, minimum 2) distinct reporters | `active`, tier 2 |
+| Several reports from one reporter | one voice; tier 0 |
+| Reports without a reporter reference | at most one voice in total, and none once a referenced reporter is counted |
+| A later "cleared" report | `reported_cleared`; earlier reports are `superseded` |
+| "Present" from someone else within `dispute_window_hours` (default 2) of a "cleared" | `disputed`; tier 0; confidence multiplied by `disputed_factor` |
+| "Present" later than that window | a new condition; counted normally |
+| Only expired reports | `expired` |
+
+Tier 2 here means only that independent people reported the same thing. The
+package never assigns tier 1, 3 or 4 to a report, and the interface never
+calls a report verified. Whether corroborated reports should count toward
+any verified total elsewhere is a product decision this package does not
+take.
+
+### Routing facts
+
+`routingFacts` turns each group into one fact for a planner:
+
+- `hint`: `penalty` for a current group, `avoid_if_possible` only for a tier 2
+  group of a kind in `may_avoid` with confidence at or above
+  `avoid_threshold`, otherwise `none`;
+- `penalty`: kind weight multiplied by confidence, zero when the hint is
+  `none`;
+- `fact`: the field-value shape with `derived: true`;
+- `provenance`: all report ids, the counted report ids, independent reporter
+  count, confidence, latest observation, expiry and whether a photo exists.
+
+`passable` is always `UNKNOWN`. A fact can make a way less attractive; it
+never states that a way can or cannot be used. A `reported_cleared` fact
+carries no bonus, and the absence of a fact means no report, not a clear way.
+`DEFAULT_ROUTING_WEIGHTS` holds adjustable settings, not measurements;
+whether a condition matters for a given person and device is the planner's
+decision.
+
+## Accessible taxi and on-demand accessible vehicles
+
+`WavServiceRecord` describes one service. Every field (`municipality`,
+`service_name`, `service_type`, `availability`, `booking_phone`,
+`booking_url`, `service_hours`) is a field-value object with its own
+`source_id`, `licence`, `retrieved_at` (YYYY-MM-DD) and `tier`.
+`schema/wav-service.schema.json` and `validateWavDataset` apply the same
+rules.
+
+Availability is a closed vocabulary: `on_demand`, `advance_booking_only`,
+`limited`, `effectively_unavailable`, `UNKNOWN`.
+`effectively_unavailable` is accepted only when the field also carries
+`source_dated`, the date the source itself gives for the statement, no later
+than `retrieved_at`. Without a dated source the value is `UNKNOWN`.
+
+`datasets/wav-services.json` is the real dataset and **contains no records**.
+No operator page has been read for it. Add a record only from a source that
+has actually been read, with its licence and retrieval date; the loader
+rejects any record marked synthetic.
+`fixtures/synthetic-wav-services.json` and
+`fixtures/synthetic-route-reports.json` are synthetic, labelled
+`synthetic: true`, used only by tests, and must never be shown as real
+services or observations. The interface prints a sample-data label on any
+synthetic record.
+
+`searchWav` filters by municipality, service type and positive availability
+values:
+
+- `UNKNOWN` never matches a positive filter, and a filter cannot ask for
+  `UNKNOWN` or `effectively_unavailable`;
+- a value retrieved more than 180 days ago (or with an unreadable or future
+  date) is `stale`: still listed without a filter, never matched as current;
+- an empty result has `coverage: "no_records"`, shown as unknown and never
+  as "no service exists".
+
+Results are ordered by name. Nothing is ranked or recommended, and the
+package does not book rides.
+
+## Report and finder components
+
+- `RouteReportsList` shows assessed groups with state, tier, expiry, source
+  and licence written as text.
+- `RouteReportFormView` is a stateless form; `RouteReportForm` holds its
+  state and hands the validated tier 0 report to `onSave`. The host supplies
+  the place and decides storage. No device location is read and nothing is
+  sent.
+- `WavFinderView` is a stateless finder; `WavFinder` holds the filter state.
+
+All text is in English and French (`reportStrings`, `wavStrings`); the
+French is a draft. Controls are native elements with labels, errors are
+linked to their fields and summarised in an alert, status changes use a
+polite live region, and control targets are at least 24 pixels.
+
+The unit tests read the stateless components' markup without a browser. The
+two stateful wrappers and an axe run in a real browser are not covered here.
