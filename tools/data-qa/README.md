@@ -30,3 +30,7 @@ Only an explicit wheelchair value of `yes` or `no` is mapped to `YES` or `NO`;
 anything else, including `limited` and conflicting tags, stays `UNKNOWN`.
 MiWay must not appear as a `source_id`. Notes that mention MiWay being out
 are not used as the source field.
+
+## Stale-date and missing-licence diagnostic
+
+`reportStaleAndMissingLicences` is a read-only report of missing or unsupported licences and stale observation dates. `npm run check:strict-data` prints a summary of registry-source findings. It does not rewrite records or replace the strict gate.
