@@ -93,6 +93,10 @@ const REGION_BOUNDS: Array<[string, number, number, number, number]> = [
   ["windsor", 42.20, 42.40, -83.20, -82.85],
   ["niagara", 42.80, 43.30, -79.50, -79.00]
 ];
+function isHeldMiWay(id: string, name = ""): boolean {
+  return [id, name].some((value) => value.trim().toLowerCase().includes("miway"));
+}
+
 function regions(stop: Row, override?: Record<string, string>): string[] {
   const stopId = stop.stop_id;
   if (stopId && override?.[stopId]) return [override[stopId]];
@@ -153,7 +157,7 @@ export function buildTimetables(opts: BuildOptions): { parts: Part[]; sources: S
   for (const allowed of allowlist) {
     if (!validId(allowed.sourceId) || !allowed.agency || !allowed.licence || !allowed.licenceUrl || !/^\d{4}-\d\d-\d\d$/.test(allowed.retrieved) || !/^[\w.-]+\.zip$/.test(allowed.zipFileName)) throw new Error(`Invalid allow-list row: ${allowed.sourceId}`);
     // Explicit legal gate: no other Metrolinx aliases, no MiWay, and no unreviewed source.
-    if (allowed.sourceId.includes("miway") || allowed.sourceId === "metrolinx" || (allowed.sourceId.startsWith("metrolinx-") && !["metrolinx-go", "metrolinx-up"].includes(allowed.sourceId))) {
+    if (isHeldMiWay(allowed.sourceId, allowed.agency) || allowed.sourceId === "metrolinx" || (allowed.sourceId.startsWith("metrolinx-") && !["metrolinx-go", "metrolinx-up"].includes(allowed.sourceId))) {
       skipped.push(`${allowed.sourceId}: licence not approved`); continue;
     }
     if (allowed.sourceId.startsWith("metrolinx-") && (allowed.licence !== "Metrolinx Access and Use Agreement (accepted 2026-11-15)" || allowed.licenceUrl !== "https://www.gotransit.com/en/partner-with-us/software-developers")) {
