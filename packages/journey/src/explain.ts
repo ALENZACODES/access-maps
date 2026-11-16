@@ -53,10 +53,10 @@ const COPY = {
     assistanceLate: (deadline: string, phone: string) =>
       `Assistance has to be requested by ${deadline}. Phone ${phone}. This option is not step-free without that request.`,
     windowClosed: (phone: string) =>
-      `The booking window for this departure is already closed. Phone ${phone}. There is no guarantee.`,
+      `The booking window for this departure is already closed. Phone ${phone}. A trip is not confirmed.`,
     windowFuture: (from: string, phone: string) =>
-      `Booking opens ${from}. Phone ${phone}. There is no guarantee.`,
-    callNow: (phone: string) => `Call now at ${phone}. There is no guarantee of a trip.`,
+      `Booking opens ${from}. Phone ${phone}. A trip is not confirmed.`,
+    callNow: (phone: string) => `Call now at ${phone}. A trip is not confirmed.`,
     registrationGap: (name: string) =>
       `Registration with ${name} is not in the profile. A separate application can take days. This is not one system.`,
     handoffUnverified: "Transfer-point shelter, washroom, and step-free status are not recorded.",
@@ -156,10 +156,10 @@ const COPY = {
     assistanceLate: (deadline: string, phone: string) =>
       `L’assistance doit être demandée avant ${deadline}. Téléphone ${phone}. Cette option n’est pas sans marches sans cette demande.`,
     windowClosed: (phone: string) =>
-      `La fenêtre de réservation pour ce départ est déjà fermée. Téléphone ${phone}. Il n’y a pas de garantie.`,
+      `La fenêtre de réservation pour ce départ est déjà fermée. Téléphone ${phone}. Ce n’est pas un trajet confirmé.`,
     windowFuture: (from: string, phone: string) =>
-      `La réservation ouvre ${from}. Téléphone ${phone}. Il n’y a pas de garantie.`,
-    callNow: (phone: string) => `Appelez maintenant au ${phone}. Le trajet n’est pas garanti.`,
+      `La réservation ouvre ${from}. Téléphone ${phone}. Ce n’est pas un trajet confirmé.`,
+    callNow: (phone: string) => `Appelez maintenant au ${phone}. Le trajet n’est pas confirmé.`,
     registrationGap: (name: string) =>
       `L’inscription à ${name} n’est pas dans le profil. Une demande séparée peut prendre des jours. Ce n’est pas un seul réseau.`,
     handoffUnverified: "L’abri, la toilette et l’accès sans marches du point de correspondance ne sont pas enregistrés.",
