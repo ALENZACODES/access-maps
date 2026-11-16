@@ -1,5 +1,6 @@
 import { importCitiesG3 } from "./import-cities-g3.js";
 import { importCitiesG4 } from "./import-cities-g4.js";
+import { importCitiesG5 } from "./import-cities-g5.js";
 import { importCitiesG6 } from "./import-cities-g6.js";
 import { importCityOpenData } from "./import-city-open-data.js";
 import { importWestCities } from "./import-cities-west.js";
@@ -16,6 +17,7 @@ await importMoreMunicipal(repoRoot);
 await importCityOpenData(repoRoot);
 await importWestCities(repoRoot);
 await importCitiesG3(repoRoot);
+await importCitiesG5(repoRoot);
 await importYorkDurhamCities(repoRoot);
 // Also downloads the Kingston Transit and GOVA Transit zips that importGtfs reads.
 await importCitiesG4(repoRoot);
