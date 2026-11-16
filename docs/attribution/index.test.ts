@@ -46,7 +46,7 @@ describe("attribution page data", () => {
     expect(page.entries[0]?.notices[0]).toBe(OSM_ATTRIBUTION_LINE);
     expect(OSM_ATTRIBUTION_LINE).toBe("© OpenStreetMap contributors");
     expect(page.entries[0]?.notices[0]).not.toMatch(/ODbL/);
-    expect(page.entries[0]?.notices.slice(1).join(" ")).toMatch(/ODbL 1\.0/);
+    expect(page.entries[0]?.notices.slice(1)).toContain("Open Database License (ODbL) 1.0");
   });
 
   it("has no MiWay source or copy in the attribution catalogue", () => {
