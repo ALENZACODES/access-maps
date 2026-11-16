@@ -283,7 +283,7 @@ describe("PMTiles overlay", () => {
         family: "odbl",
         name: "test",
         description: "ODbL layer kept separate from other licences.",
-        attribution: "(c) OpenStreetMap contributors",
+        attribution: "© OpenStreetMap contributors",
         maxZoom: 4,
       },
     );
