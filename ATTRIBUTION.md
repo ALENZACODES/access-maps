@@ -122,6 +122,10 @@ https://www.cityofkingston.ca/documents/10180/144997/CityofKingston_OpenDataLice
 
 Datasets: public washrooms and accessible features at Kingston facilities, retrieved 2026-11-13.
 
+Datasets retrieved 2026-11-16 from https://opendatakingston.cityofkingston.ca/: Parking Lot Areas, Trails, Points of Interest (parks, recreation, civic, parking and transit types), and Transit Bus Routes & Stops (GTFS-static, Kingston Transit).
+
+The parking-lot count of designated spaces and the trail ACCESSIBLE flag are the City's own values and are stored as published. They are not a wheelchair measurement by this project. Kingston Transit stop fields are operator claims.
+
 ## City of Brampton recreation centres
 
 City of Brampton, Recreation Centres, CC BY.
@@ -137,6 +141,20 @@ Contains information licensed under the Open Data Licence – City of Greater Su
 https://www.greatersudbury.ca/city-hall/open-government/open-data/licence/
 
 The imported file is the Field_Houses layer. The hub title "Accessible Parks (Layer)" is not stored as a wheelchair fact. Four rows publish easting and northing 0 in the CSV. Their coordinates come from the city's feature service geometry, layer `AGOL_Recreation_Bilingual_For_Web_FGDB_V_3/FeatureServer/3`, requested in WGS84. The field `source_key` names that layer. A row stays UNKNOWN if that service does not return a coordinate in Ontario.
+
+Datasets retrieved 2026-11-16 from https://opendata.greatersudbury.ca/: Parks and Playgrounds, Recreation, Road Sidewalk Path Trail (active sidewalks, walkways and trails), and Transit Schedule Data (GTFS, GOVA Transit).
+
+The playground Accessibility value (Full or Partial) is the City's own word and is stored as published. It is not a wheelchair measurement by this project. GOVA Transit stop fields are operator claims.
+
+## City of Thunder Bay
+
+Contains information licensed under the Open Data Licence – The Corporation of the City of Thunder Bay.
+
+Open Data Licence 1.0: https://www.thunderbay.ca/city-hall/thunder-bay-open-data/
+
+Datasets retrieved 2026-11-16 from https://opendata.thunderbay.ca/: Sidewalks, Trails, and Address of City Facilities.
+
+These layers have no accessibility column. The licence lets the City ask for its attribution statement to be removed.
 
 ## Ministry of Transportation picnic parks
 
