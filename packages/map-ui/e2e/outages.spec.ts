@@ -110,7 +110,7 @@ test("Day 12: the saved copy labels outage status last checked, not current", as
 test("French: the outage view renders in French and axe is clean", async ({ page }) => {
   await page.goto("/outages.html?lang=fr");
   await expect(page.locator("html")).toHaveAttribute("lang", "fr");
-  await expect(page.getByRole("heading", { level: 2, name: "Pannes d'ascenseurs et d'escaliers mécaniques" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 2, name: "Pannes d’ascenseurs et d’escaliers mécaniques" })).toBeVisible();
   await expect(page.getByText("Cette option évite Cedarvale.")).toBeVisible();
   await expect(page.getByRole("note", { name: "Panne sur ce tronçon" }).first()).toContainText("Ascenseur ELV02-B à Cedarvale : Hors service.");
   await axeClean(page);

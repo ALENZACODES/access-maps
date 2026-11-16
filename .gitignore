@@ -12,3 +12,5 @@ data/schedules/
 release-assets/
 test-results/
 playwright-report/
+packages/map-ui/test-results/
+packages/map-ui/playwright-report/

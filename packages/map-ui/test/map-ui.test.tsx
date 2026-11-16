@@ -1,9 +1,11 @@
 import { planJourney, type MapFeature } from "@access-maps/journey";
-import { render, screen, within } from "@testing-library/react";
+import { cleanup, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 import { AccessibleMap, JourneyResult, mapCopyLocaleKeys } from "../src/index.js";
+
+afterEach(() => cleanup());
 
 const features: MapFeature[] = [
   {
@@ -174,8 +176,11 @@ describe("JourneyResult", () => {
     expect(screen.getAllByRole("heading", { name: /Approach/ }).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/Straight-line distance only/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/Scheduled/).length).toBeGreaterThan(0);
-    const warning = screen.getAllByRole("status").find((node) => /washroom/i.test(node.textContent ?? ""));
-    expect(warning).toBeTruthy();
+    // The live region is filled just after mount so that it is announced.
+    await waitFor(() => {
+      const warning = screen.getAllByRole("status").find((node) => /washroom/i.test(node.textContent ?? ""));
+      expect(warning).toBeTruthy();
+    });
     const listButtons = screen.getAllByRole("button").filter((button) => button.closest(".feature-list"));
     expect(listButtons.length).toBeGreaterThan(0);
     const emergency = screen.getByRole("link", { name: "911" });
@@ -207,12 +212,12 @@ describe("JourneyResult", () => {
     expect(page).not.toContain("home-exit");
     expect(page).not.toContain("unknown.");
     expect(page).not.toContain("not-step-free.");
-    expect(screen.getAllByText(/Pente :/).length).toBeGreaterThan(0);
+    expect(page).toMatch(/Pente\u00A0:/);
     // The data value UNKNOWN is shown as a French word, with French spacing before the colon.
     expect(page).not.toMatch(/UNKNOWN|INCONNU/);
-    expect(page).toContain("Source : Inconnu.");
-    expect(page).toContain("Licence : Inconnu.");
-    expect(page).toContain("Récupéré : Inconnu.");
+    expect(page).toContain("Source\u00A0: Inconnu.");
+    expect(page).toContain("Licence\u00A0: Inconnu.");
+    expect(page).toContain("Récupéré\u00A0: Inconnu.");
     expect(page).not.toMatch(/Source:|Licence:|Récupéré:|Sélectionné:/);
     expect(page).not.toContain("..");
   });
@@ -293,7 +298,7 @@ describe("JourneyResult", () => {
     expect(first).toBeTruthy();
     if (first) await user.click(first);
     const live = view.container.querySelector(".selection-live")?.textContent ?? "";
-    expect(live).toContain("Sélectionné :");
+    expect(live).toContain("Sélectionné\u00A0:");
     expect(live).not.toMatch(/[■▲●?] /);
   });
 });

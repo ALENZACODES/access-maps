@@ -1,6 +1,12 @@
 import { distance, geometry, gradePercent, text, widthMm, type Point } from "./geometry.js";
 import type { PackRecord, PackSourceEntry } from "./pack-types.js";
 
+export type PrototypeLabel = "SEEDED-OPEN-DATA" | "PROTOTYPE-UNVERIFIED";
+
+export function prototypeLabel(tier: number | null): PrototypeLabel {
+  return tier === 0 ? "SEEDED-OPEN-DATA" : "PROTOTYPE-UNVERIFIED";
+}
+
 export interface Evidence {
   recordId: string;
   field: string;
@@ -9,6 +15,7 @@ export interface Evidence {
   licence: string;
   retrievedAt: string;
   tier: number | null;
+  prototype_label: PrototypeLabel;
   attribution?: string;
 }
 export interface RollProfile { stepFreeRequired: boolean; maxGradePercent?: number | null; widthMm?: number | null }
@@ -34,10 +41,12 @@ function evidenceFor(record: PackRecord, sources: PackSourceEntry[]): Evidence[]
   const sourceMap = new Map(sources.map((source) => [source.sourceId, source]));
   return Object.entries(record.fields).filter(([, field]) => field !== undefined).map(([fieldName, field]) => {
     const entry = sourceMap.get(field!.source_id);
+    const tier = field!.tier ?? null;
     return {
       recordId: record.id, field: fieldName, sourceId: field!.source_id,
       sourceName: entry?.name ?? field!.source_id, licence: field!.licence,
-      retrievedAt: field!.retrieved_at, tier: field!.tier ?? null,
+      retrievedAt: field!.retrieved_at, tier,
+      prototype_label: prototypeLabel(tier),
       ...(field!.licence.toLowerCase().includes("odbl") ? { attribution: "© OpenStreetMap contributors, ODbL" } : {}),
     };
   });
