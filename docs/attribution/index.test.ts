@@ -49,6 +49,26 @@ describe("attribution page data", () => {
     expect(page.entries[0]?.notices.slice(1)).toContain("Open Database License (ODbL) 1.0");
   });
 
+  it("uses the exact AUA applicable-laws lines from ATTRIBUTION.md", () => {
+    expect(METROLINX_AUA_END_USER_LAWS_EN).toBe(
+      "Users must follow applicable laws when using the transit data.",
+    );
+    expect(METROLINX_AUA_END_USER_LAWS_FR).toBe(
+      "Les utilisateurs doivent respecter les lois applicables lorsqu’ils utilisent les données de transport en commun.",
+    );
+    const page = buildAttributionPage("en", ["metrolinx"]);
+    expect(page.entries[0]?.notices).toContain(METROLINX_AUA_END_USER_LAWS_EN);
+    expect(page.entries[0]?.notices).toContain(METROLINX_AUA_END_USER_LAWS_FR);
+  });
+
+  it("does not use a vérifier form in the French Metrolinx explanation", () => {
+    const page = buildAttributionPage("fr", ["metrolinx"]);
+    expect(page.entries[0]?.explanation).toContain(
+      "Consulter les conditions du flux utilisé avant sa publication.",
+    );
+    expect(page.entries[0]?.explanation).not.toMatch(/v[eé]rif/i);
+  });
+
   it("has no MiWay source or copy in the attribution catalogue", () => {
     const page = buildAttributionPage("en", ["osm", "metrolinx", "ltc"]);
     const blob = JSON.stringify(page);
