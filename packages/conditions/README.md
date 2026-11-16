@@ -228,9 +228,71 @@ Availability is a closed vocabulary: `on_demand`, `advance_booking_only`,
 than `retrieved_at`. Without a dated source the value is `UNKNOWN`.
 
 `datasets/wav-services.json` is the real dataset and **contains no records**.
-No operator page has been read for it. Add a record only from a source that
-has actually been read, with its licence and retrieval date; the loader
-rejects any record marked synthetic.
+Add a record only from a source that has actually been read, with its licence
+and retrieval date; the loader rejects any record marked synthetic.
+
+### Why the dataset is still empty: official pages read on 2026-11-16
+
+Every field's `licence` is a `licence_id` from `sources/registry.json`, and
+this repository stores a source only once its licence is recorded there.
+The municipal and regional web pages below are ordinary web pages. None of
+them states a licence that allows its content to be redistributed, and none
+is in the registry. So no record was written from them, not even a name or a
+phone number. They are listed here as gaps, by address only, for the 50
+largest Ontario municipalities. Each was read on 2026-11-16 (UTC) and
+returned HTTP 200. Availability is not stated as a fact by any entry in this
+list, and nothing here says a vehicle can be had.
+
+Pages that say how to reach an accessible taxi or name companies with
+accessible vehicles:
+
+| Municipality | Publisher | Page |
+| --- | --- | --- |
+| Vaughan (the page also names Markham and the Township of King) | City of Vaughan | https://www.vaughan.ca/business/business-licensing-and-permits/accessible-taxis |
+| Kitchener, Cambridge, Waterloo | Region of Waterloo | https://www.regionofwaterloo.ca/programs-and-services/accessibility-supports/accessible-taxi-services/ |
+| Hamilton | City of Hamilton | https://www.hamilton.ca/home-neighbourhood/getting-around/driving-traffic/taxi-services-hamilton |
+| Hamilton | City of Hamilton | https://www.hamilton.ca/home-neighbourhood/hsr/accessible-transit/taxi-scrip-program |
+| Kingston | City of Kingston | https://www.cityofkingston.ca/roads-parking-and-transportation/taking-a-taxi/ |
+| Halton Hills | Town of Halton Hills | https://www.haltonhills.ca/Taxi-Programs |
+| Halton Hills | Town of Halton Hills | https://www.haltonhills.ca/Taxi-Scrip |
+| Guelph | City of Guelph | https://guelph.ca/living/getting-around/bus/mobility-service/taxiscrip/ |
+| Mississauga, Brampton (taxi companies listed by city) | Peel Region | https://peelregion.ca/transhelp/fares-payments/taxi-vouchers |
+
+Licensing or programme pages that mention accessible taxicabs and name no
+company to call:
+
+| Municipality | Publisher | Page |
+| --- | --- | --- |
+| Toronto | City of Toronto | https://www.toronto.ca/services-payments/permits-licences-bylaws/limousine-service-company-owner-driver/taxicab-or-limousine-driver-vehicle-for-hire-driver/accessibility-fund-program-for-taxicab-or-limousine-drivers/ |
+| London | City of London | https://london.ca/business-development/business-licences/vehicle-hire-licensing |
+| Oakville | Town of Oakville | https://www.oakville.ca/town-hall/policies-procedures/accessibility-policy/accessible-transportation-procedure/ |
+| Oshawa | City of Oshawa | https://www.oshawa.ca/business-development/business-licences-and-permits/vehicles-for-hire/ |
+| Whitby | Town of Whitby | https://www.whitby.ca/business-and-economy/business-licences-and-permits/limousine-and-taxi-licences/ |
+| Clarington | Municipality of Clarington | https://www.clarington.net/homes-and-property/permits-and-licences/vehicles-for-hire/ |
+| Chatham-Kent | Municipality of Chatham-Kent | https://www.chatham-kent.ca/apply/licences/Pages/Vehicle-for-Hire.aspx |
+
+Taxi licensing pages that were read and say nothing about accessible
+vehicles: Mississauga, Brampton, Windsor, Richmond Hill, Milton, Thunder Bay
+(by-law page), Brantford, Pickering, Belleville and St. Thomas. The Ajax
+accessibility and mobility page and the Whitchurch-Stouffville accessible
+transportation page were read and do not mention an accessible taxi.
+
+No official accessible-taxi page was found for: Ottawa (the city site
+returned an empty page to the reader), Markham (apart from the Vaughan page
+above), Burlington, Greater Sudbury, Barrie, St. Catharines, Niagara Falls,
+Welland (two Niagara Region licensing addresses returned HTTP 404), Caledon,
+Newmarket, Aurora, Georgina, Peterborough, Kawartha Lakes, Sarnia, Sault Ste.
+Marie, Norfolk County, North Bay, Cornwall, Quinte West, Timmins, Woodstock
+and Haldimand County. Pages were looked for in each municipal site's sitemap
+and, for Ottawa, London, Brampton and Niagara Region, by a web search for a
+page on the municipality's own site. "Not found" means only that; it is not a statement that no accessible
+taxi exists there.
+
+To turn one of these pages into a record, the publisher's terms for reuse
+have to be recorded in `sources/registry.json` first, the page read again,
+and each field written with that `licence_id`, the retrieval date and tier 1
+(operator claim). `availability` stays `UNKNOWN` unless the page itself
+states it, and `effectively_unavailable` needs the date the source carries.
 `fixtures/synthetic-wav-services.json` and
 `fixtures/synthetic-route-reports.json` are synthetic, labelled
 `synthetic: true`, used only by tests, and must never be shown as real
