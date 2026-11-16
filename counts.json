@@ -1,17 +1,17 @@
 {
   "definition": "A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. Section 5.6 counts only tier 2 and tier 3 values toward 500,000. Tier 0 and tier 1 accessibility facts are reported separately and are not verified.",
-  "records": 1670908,
-  "pieces": 8259457,
-  "gaps": 50886771,
+  "records": 1683955,
+  "pieces": 8330517,
+  "gaps": 51214619,
   "derived_excluded": 4195,
   "verified_toward_500k": 0,
-  "accessibility_fact_pieces": 859450,
-  "other_populated_pieces": 6890398,
-  "accessibility_pieces": 859450,
-  "accessibility_gaps": 27728239,
-  "identity_pieces": 6890398,
-  "context_pieces": 509609,
-  "context_gaps": 4948937,
+  "accessibility_fact_pieces": 871126,
+  "other_populated_pieces": 6942459,
+  "accessibility_pieces": 871126,
+  "accessibility_gaps": 27886940,
+  "identity_pieces": 6942459,
+  "context_pieces": 516932,
+  "context_gaps": 4988640,
   "accessibility_definition": "An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.",
   "context_definition": "Context fields are populated values that are not a physical access measurement: access, crossing, lit, foot, fee, changing_table_fee, unisex, male, female, locked, and supervised. They are not accessibility facts and they are not names or geometry.",
   "accessibility_fields": {
@@ -94,18 +94,18 @@
   },
   "by_tranche": {
     "venue": {
-      "records": 565131,
-      "pieces": 3102476,
-      "accessibility_facts": 115791,
-      "other_populated": 2890521,
+      "records": 565434,
+      "pieces": 3104831,
+      "accessibility_facts": 115926,
+      "other_populated": 2892585,
       "verified": 0,
-      "gaps": 21198157,
+      "gaps": 21208831,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 3102476
+        "0": 3104831
       },
       "gaps_by_tier": {
-        "0": 21198157
+        "0": 21208831
       },
       "pieces_by_source": {
         "ajax-playgrounds": 486,
@@ -128,10 +128,13 @@
         "kitchener-playgrounds": 3235,
         "lambton-accessible-facilities": 513,
         "markham-city-facilities": 574,
+        "milton-park-amenities": 1299,
+        "milton-parking-lots": 567,
         "mto-picnic-parks": 1005,
         "newmarket-landmarks": 244,
         "newmarket-park-features": 1641,
         "newmarket-trail-points": 1282,
+        "niagara-falls-playgrounds": 489,
         "oshawa-community-centres": 140,
         "osm-ontario": 2914928,
         "ottawa-drinking-fountains": 1120,
@@ -159,59 +162,59 @@
         "windsor-playgrounds": 903
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 177943,
+        "2026-11-16": 180298,
         "2026-11-13": 2924533
       },
       "gaps_by_retrieved_at": {
-        "2026-11-16": 862098,
+        "2026-11-16": 872772,
         "2026-11-13": 20336059
       },
       "gap_fields": {
-        "addr_housenumber": 482032,
-        "addr_street": 480584,
-        "addr_city": 521557,
-        "addr_postcode": 532869,
-        "addr_unit": 558049,
-        "opening_hours": 543463,
-        "level": 554463,
-        "operator": 518824,
-        "brand": 513794,
-        "website": 525849,
-        "wheelchair": 552461,
-        "wheelchair_description": 550675,
-        "entrance": 547498,
-        "automatic_door": 565038,
-        "door": 563096,
-        "door_width": 565131,
-        "ramp": 565102,
-        "ramp_wheelchair": 565131,
-        "ramp_stroller": 565131,
-        "step_count": 565131,
-        "incline": 565131,
-        "kerb": 564945,
-        "kerb_height": 565131,
-        "tactile_paving": 565118,
-        "handrail": 565131,
-        "width": 565101,
-        "access": 477346,
-        "surface": 502114,
-        "smoothness": 564999,
-        "lit": 556752,
-        "braille": 565131,
-        "hearing_loop": 565128,
-        "speech_output": 563683,
-        "stroller": 565080,
-        "capacity_disabled": 561149,
-        "indoor": 562127,
-        "elevator": 565118,
-        "ref": 533559,
+        "addr_housenumber": 482118,
+        "addr_street": 480669,
+        "addr_city": 521860,
+        "addr_postcode": 533172,
+        "addr_unit": 558352,
+        "opening_hours": 543766,
+        "level": 554766,
+        "operator": 519070,
+        "brand": 514097,
+        "website": 526152,
+        "wheelchair": 552764,
+        "wheelchair_description": 550978,
+        "entrance": 547801,
+        "automatic_door": 565341,
+        "door": 563399,
+        "door_width": 565434,
+        "ramp": 565405,
+        "ramp_wheelchair": 565434,
+        "ramp_stroller": 565434,
+        "step_count": 565434,
+        "incline": 565434,
+        "kerb": 565248,
+        "kerb_height": 565434,
+        "tactile_paving": 565421,
+        "handrail": 565434,
+        "width": 565404,
+        "access": 477649,
+        "surface": 502338,
+        "smoothness": 565302,
+        "lit": 556899,
+        "braille": 565434,
+        "hearing_loop": 565431,
+        "speech_output": 563986,
+        "stroller": 565383,
+        "capacity_disabled": 561396,
+        "indoor": 562430,
+        "elevator": 565421,
+        "ref": 533723,
         "category": 104,
-        "name": 389432
+        "name": 389514
       },
-      "accessibility_pieces": 115791,
-      "accessibility_gaps": 13447353,
+      "accessibility_pieces": 115926,
+      "accessibility_gaps": 13454490,
       "accessibility_by_field": {
-        "capacity_disabled": 3982,
+        "capacity_disabled": 4038,
         "wheelchair_description": 14456,
         "kerb": 186,
         "automatic_door": 93,
@@ -219,7 +222,7 @@
         "ramp": 29,
         "speech_output": 1448,
         "hearing_loop": 3,
-        "surface": 63017,
+        "surface": 63096,
         "entrance": 17633,
         "wheelchair": 12670,
         "width": 30,
@@ -228,26 +231,26 @@
         "smoothness": 132,
         "tactile_paving": 13
       },
-      "context_pieces": 96164,
-      "context_gaps": 1034098,
+      "context_pieces": 96320,
+      "context_gaps": 1034548,
       "context_by_field": {
         "access": 87785,
-        "lit": 8379
+        "lit": 8535
       }
     },
     "washroom": {
-      "records": 7055,
-      "pieces": 35105,
+      "records": 7079,
+      "pieces": 35228,
       "accessibility_facts": 3668,
-      "other_populated": 28401,
+      "other_populated": 28524,
       "verified": 0,
-      "gaps": 235845,
+      "gaps": 236658,
       "derived_excluded": 4195,
       "pieces_by_tier": {
-        "0": 35105
+        "0": 35228
       },
       "gaps_by_tier": {
-        "0": 235845
+        "0": 236658
       },
       "pieces_by_source": {
         "guelph-restrooms": 328,
@@ -258,6 +261,7 @@
         "lambton-accessible-facilities": 197,
         "newmarket-park-features": 74,
         "newmarket-trail-points": 55,
+        "oakville-town-washrooms": 105,
         "osm-ontario": 24062,
         "ottawa-public-washrooms": 1988,
         "pickering-parks": 125,
@@ -266,58 +270,59 @@
         "toronto-library-branches": 574,
         "toronto-park-washrooms": 3746,
         "toronto-street-washrooms": 24,
+        "welland-public-washrooms": 18,
         "whitby-parks": 215,
         "windsor-park-washrooms": 210
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 10221,
+        "2026-11-16": 10344,
         "2026-11-13": 24884
       },
       "gaps_by_retrieved_at": {
-        "2026-11-16": 34234,
+        "2026-11-16": 35047,
         "2026-11-13": 201611
       },
       "gap_fields": {
-        "wheelchair": 4969,
-        "wheelchair_description": 6986,
-        "changing_table": 6418,
-        "changing_table_fee": 7052,
-        "changing_table_location": 7051,
-        "adult_changing_table": 6878,
-        "access": 5853,
-        "fee": 6323,
-        "opening_hours": 6012,
-        "unisex": 6549,
-        "male": 6758,
-        "female": 6762,
-        "supervised": 7052,
-        "level": 6828,
-        "indoor": 6929,
-        "operator": 6488,
-        "addr_housenumber": 6650,
-        "addr_street": 6629,
-        "addr_city": 6985,
-        "addr_postcode": 6963,
+        "wheelchair": 4993,
+        "wheelchair_description": 7010,
+        "changing_table": 6442,
+        "changing_table_fee": 7076,
+        "changing_table_location": 7075,
+        "adult_changing_table": 6902,
+        "access": 5877,
+        "fee": 6347,
+        "opening_hours": 6036,
+        "unisex": 6573,
+        "male": 6782,
+        "female": 6786,
+        "supervised": 7076,
+        "level": 6852,
+        "indoor": 6953,
+        "operator": 6512,
+        "addr_housenumber": 6674,
+        "addr_street": 6653,
+        "addr_city": 7009,
+        "addr_postcode": 6987,
         "address": 6281,
-        "description": 6488,
-        "locked": 7055,
-        "drinking_water": 7002,
-        "shower": 7033,
-        "disposal": 5548,
-        "capacity": 7050,
-        "seasonal": 6744,
-        "location": 6441,
-        "published_accessibility": 6360,
-        "building": 5916,
-        "parent_id": 5090,
-        "status": 6535,
-        "website": 6631,
-        "posted_date": 6700,
+        "description": 6512,
+        "locked": 7079,
+        "drinking_water": 7026,
+        "shower": 7057,
+        "disposal": 5572,
+        "capacity": 7074,
+        "seasonal": 6768,
+        "location": 6465,
+        "published_accessibility": 6384,
+        "building": 5937,
+        "parent_id": 5114,
+        "status": 6559,
+        "website": 6655,
+        "posted_date": 6724,
         "name": 5699,
         "facility_type": 1137
       },
       "accessibility_pieces": 3668,
-      "accessibility_gaps": 38662,
+      "accessibility_gaps": 38806,
       "accessibility_by_field": {
         "published_accessibility": 695,
         "changing_table": 637,
@@ -327,7 +332,7 @@
         "changing_table_location": 4
       },
       "context_pieces": 3036,
-      "context_gaps": 53404,
+      "context_gaps": 53596,
       "context_by_field": {
         "male": 297,
         "female": 293,
@@ -339,18 +344,18 @@
       }
     },
     "path": {
-      "records": 1067961,
-      "pieces": 4940314,
-      "accessibility_facts": 718711,
-      "other_populated": 3811194,
+      "records": 1079518,
+      "pieces": 5003081,
+      "accessibility_facts": 730252,
+      "other_populated": 3855253,
       "verified": 0,
-      "gaps": 29234438,
+      "gaps": 29541495,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 4940314
+        "0": 5003081
       },
       "gaps_by_tier": {
-        "0": 29234438
+        "0": 29541495
       },
       "pieces_by_source": {
         "ajax-recreational-trails": 6730,
@@ -368,7 +373,11 @@
         "kitchener-sidewalks": 119683,
         "kitchener-trails": 30177,
         "markham-trails": 15240,
+        "milton-sidewalks": 31329,
+        "milton-trails": 10519,
         "newmarket-trails": 2956,
+        "niagara-falls-sidewalks": 20490,
+        "niagara-falls-trails": 221,
         "oshawa-trails": 897,
         "osm-ontario": 3863020,
         "ottawa-pedestrian-network": 75358,
@@ -379,55 +388,56 @@
         "toronto-pedestrian-network": 361756,
         "waterloo-sidewalks": 26283,
         "waterloo-trails": 7878,
+        "welland-trails": 208,
         "whitby-sidewalks": 28370,
         "whitby-trails": 6337,
         "windsor-paths-trails": 3242,
         "windsor-sidewalks": 33512
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 1077294,
+        "2026-11-16": 1140061,
         "2026-11-13": 3863020
       },
       "gaps_by_retrieved_at": {
-        "2026-11-16": 6008658,
+        "2026-11-16": 6315715,
         "2026-11-13": 23225780
       },
       "gap_fields": {
-        "footway": 562821,
-        "foot": 1033329,
-        "smoothness": 1041976,
-        "incline": 1053527,
-        "kerb": 1010719,
-        "tactile_paving": 968526,
-        "wheelchair": 1041334,
-        "wheelchair_description": 1037968,
-        "step_count": 1065923,
-        "handrail": 1065250,
-        "access": 1054481,
-        "max_slope": 1067961,
-        "min_width": 1067961,
-        "stair_count": 1067961,
-        "from_ref": 1067961,
-        "to_ref": 1067961,
-        "crossing": 750412,
-        "pathway_mode": 1067961,
-        "bidirectional": 1067961,
-        "oneway": 1055642,
-        "traversal_time_s": 1067961,
-        "signposted_as": 1067336,
-        "reversed_signposted_as": 1067961,
-        "ramp": 1066589,
-        "indoor": 1065391,
-        "length_m": 980950,
-        "lit": 1023213,
-        "width": 960656,
-        "surface": 716392,
-        "kind": 354
+        "footway": 565023,
+        "foot": 1044886,
+        "smoothness": 1053533,
+        "incline": 1065084,
+        "kerb": 1022276,
+        "tactile_paving": 980083,
+        "wheelchair": 1052891,
+        "wheelchair_description": 1049525,
+        "step_count": 1077480,
+        "handrail": 1076807,
+        "access": 1066038,
+        "max_slope": 1079518,
+        "min_width": 1079518,
+        "stair_count": 1079518,
+        "from_ref": 1079518,
+        "to_ref": 1079518,
+        "crossing": 761969,
+        "pathway_mode": 1079518,
+        "bidirectional": 1079518,
+        "oneway": 1067199,
+        "traversal_time_s": 1079518,
+        "signposted_as": 1078893,
+        "reversed_signposted_as": 1079518,
+        "ramp": 1078146,
+        "indoor": 1076948,
+        "length_m": 992464,
+        "lit": 1027603,
+        "width": 972213,
+        "surface": 716408,
+        "kind": 364
       },
-      "accessibility_pieces": 718711,
-      "accessibility_gaps": 14232743,
+      "accessibility_pieces": 730252,
+      "accessibility_gaps": 14383000,
       "accessibility_by_field": {
-        "surface": 351569,
+        "surface": 363110,
         "width": 107305,
         "wheelchair_description": 29993,
         "handrail": 2711,
@@ -439,30 +449,30 @@
         "ramp": 1372,
         "step_count": 2038
       },
-      "context_pieces": 410409,
-      "context_gaps": 3861435,
+      "context_pieces": 417576,
+      "context_gaps": 3900496,
       "context_by_field": {
-        "lit": 44748,
+        "lit": 51915,
         "crossing": 317549,
         "foot": 34632,
         "access": 13480
       }
     },
     "transit": {
-      "records": 30761,
-      "pieces": 181562,
+      "records": 31924,
+      "pieces": 187377,
       "accessibility_facts": 21280,
-      "other_populated": 160282,
+      "other_populated": 166097,
       "verified": 0,
-      "gaps": 218331,
+      "gaps": 227635,
       "derived_excluded": 0,
       "pieces_by_tier": {
         "0": 1232,
-        "1": 180330
+        "1": 186145
       },
       "gaps_by_tier": {
         "0": 2772,
-        "1": 215559
+        "1": 224863
       },
       "pieces_by_source": {
         "cornwall-transit-bus-stops": 1232,
@@ -478,33 +488,34 @@
         "guelph-transit-gtfs": 3733,
         "metrolinx-go": 6151,
         "metrolinx-up": 30,
+        "oakville-transit-gtfs": 5815,
         "windsor-transit-gtfs": 8784,
         "york-region-yrt-bus-stops": 29942
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 62795,
+        "2026-11-16": 68610,
         "2026-11-13": 112586,
         "2026-11-15": 6181
       },
       "gaps_by_retrieved_at": {
-        "2026-11-16": 80738,
+        "2026-11-16": 90042,
         "2026-11-13": 132152,
         "2026-11-15": 5441
       },
       "gap_fields": {
         "location_type": 308,
-        "parent_station": 30593,
-        "wheelchair_boarding": 9481,
-        "platform_code": 30747,
-        "level_id": 30761,
-        "level_index": 30761,
-        "level_name": 30761,
-        "description": 23092,
-        "url": 29764,
+        "parent_station": 31756,
+        "wheelchair_boarding": 10644,
+        "platform_code": 31910,
+        "level_id": 31924,
+        "level_index": 31924,
+        "level_name": 31924,
+        "description": 24255,
+        "url": 30927,
         "stop_code": 2063
       },
       "accessibility_pieces": 21280,
-      "accessibility_gaps": 9481,
+      "accessibility_gaps": 10644,
       "accessibility_by_field": {
         "wheelchair_boarding": 21280
       },
@@ -754,6 +765,38 @@
       },
       "accessibility_pieces": 2994
     },
+    "milton-sidewalks": {
+      "records": 5256,
+      "pieces": 31329,
+      "gaps": 136863,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 31329
+      },
+      "pieces_by_tranche": {
+        "path": 31329
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 31329
+      },
+      "accessibility_pieces": 5256
+    },
+    "milton-trails": {
+      "records": 2107,
+      "pieces": 10519,
+      "gaps": 56905,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 10519
+      },
+      "pieces_by_tranche": {
+        "path": 10519
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 10519
+      },
+      "accessibility_pieces": 2107
+    },
     "newmarket-trails": {
       "records": 739,
       "pieces": 2956,
@@ -769,6 +812,38 @@
         "2026-11-16": 2956
       },
       "accessibility_pieces": 739
+    },
+    "niagara-falls-sidewalks": {
+      "records": 4099,
+      "pieces": 20490,
+      "gaps": 110678,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 20490
+      },
+      "pieces_by_tranche": {
+        "path": 20490
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 20490
+      },
+      "accessibility_pieces": 4094
+    },
+    "niagara-falls-trails": {
+      "records": 43,
+      "pieces": 221,
+      "gaps": 1155,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 221
+      },
+      "pieces_by_tranche": {
+        "path": 221
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 221
+      },
+      "accessibility_pieces": 32
     },
     "oshawa-trails": {
       "records": 299,
@@ -931,6 +1006,22 @@
         "2026-11-16": 7878
       },
       "accessibility_pieces": 1575
+    },
+    "welland-trails": {
+      "records": 52,
+      "pieces": 208,
+      "gaps": 1456,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 208
+      },
+      "pieces_by_tranche": {
+        "path": 208
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 208
+      },
+      "accessibility_pieces": 52
     },
     "whitby-sidewalks": {
       "records": 3578,
@@ -1203,6 +1294,22 @@
         "2026-11-15": 30
       },
       "accessibility_pieces": 5
+    },
+    "oakville-transit-gtfs": {
+      "records": 1163,
+      "pieces": 5815,
+      "gaps": 9304,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "1": 5815
+      },
+      "pieces_by_tranche": {
+        "transit": 5815
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 5815
+      },
+      "accessibility_pieces": 0
     },
     "windsor-transit-gtfs": {
       "records": 1464,
@@ -1558,6 +1665,38 @@
       },
       "accessibility_pieces": 0
     },
+    "milton-park-amenities": {
+      "records": 164,
+      "pieces": 1299,
+      "gaps": 5753,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 1299
+      },
+      "pieces_by_tranche": {
+        "venue": 1299
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 1299
+      },
+      "accessibility_pieces": 0
+    },
+    "milton-parking-lots": {
+      "records": 57,
+      "pieces": 567,
+      "gaps": 1884,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 567
+      },
+      "pieces_by_tranche": {
+        "venue": 567
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 567
+      },
+      "accessibility_pieces": 56
+    },
     "mto-picnic-parks": {
       "records": 168,
       "pieces": 1005,
@@ -1623,6 +1762,22 @@
         "2026-11-16": 1337
       },
       "accessibility_pieces": 0
+    },
+    "niagara-falls-playgrounds": {
+      "records": 82,
+      "pieces": 489,
+      "gaps": 3037,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 489
+      },
+      "pieces_by_tranche": {
+        "venue": 489
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 489
+      },
+      "accessibility_pieces": 79
     },
     "oshawa-community-centres": {
       "records": 20,
@@ -2075,6 +2230,22 @@
       },
       "accessibility_pieces": 0
     },
+    "oakville-town-washrooms": {
+      "records": 21,
+      "pieces": 105,
+      "gaps": 714,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 105
+      },
+      "pieces_by_tranche": {
+        "washroom": 105
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 105
+      },
+      "accessibility_pieces": 0
+    },
     "ottawa-public-washrooms": {
       "records": 186,
       "pieces": 1988,
@@ -2152,6 +2323,22 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-16": 24
+      },
+      "accessibility_pieces": 0
+    },
+    "welland-public-washrooms": {
+      "records": 3,
+      "pieces": 18,
+      "gaps": 99,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 18
+      },
+      "pieces_by_tranche": {
+        "washroom": 18
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 18
       },
       "accessibility_pieces": 0
     },
@@ -2360,12 +2547,48 @@
       "bytes": 385288
     },
     {
+      "file": "data/paths/milton-sidewalks/n43.0_w080.0.ndjson.gz",
+      "bytes": 99726
+    },
+    {
+      "file": "data/paths/milton-sidewalks/n43.0_w080.5.ndjson.gz",
+      "bytes": 749
+    },
+    {
+      "file": "data/paths/milton-sidewalks/n43.5_w080.0.ndjson.gz",
+      "bytes": 232053
+    },
+    {
+      "file": "data/paths/milton-sidewalks/n43.5_w080.5.ndjson.gz",
+      "bytes": 3064
+    },
+    {
+      "file": "data/paths/milton-trails/n43.0_w080.0.ndjson.gz",
+      "bytes": 49984
+    },
+    {
+      "file": "data/paths/milton-trails/n43.5_w080.0.ndjson.gz",
+      "bytes": 100470
+    },
+    {
+      "file": "data/paths/milton-trails/n43.5_w080.5.ndjson.gz",
+      "bytes": 3193
+    },
+    {
       "file": "data/paths/newmarket-trails/n44.0_w079.5.ndjson.gz",
       "bytes": 82057
     },
     {
       "file": "data/paths/newmarket-trails/n44.0_w080.0.ndjson.gz",
       "bytes": 4388
+    },
+    {
+      "file": "data/paths/niagara-falls-sidewalks/n43.0_w079.5.ndjson.gz",
+      "bytes": 553484
+    },
+    {
+      "file": "data/paths/niagara-falls-trails/n43.0_w079.5.ndjson.gz",
+      "bytes": 35583
     },
     {
       "file": "data/paths/oshawa-trails/n43.5_w079.0.ndjson.gz",
@@ -4120,6 +4343,14 @@
       "bytes": 17150
     },
     {
+      "file": "data/paths/welland-trails/n42.5_w079.5.ndjson.gz",
+      "bytes": 6799
+    },
+    {
+      "file": "data/paths/welland-trails/n43.0_w079.5.ndjson.gz",
+      "bytes": 4299
+    },
+    {
       "file": "data/paths/whitby-sidewalks/n43.5_w079.0.ndjson.gz",
       "bytes": 372773
     },
@@ -4320,6 +4551,14 @@
       "bytes": 518
     },
     {
+      "file": "data/transit/oakville-transit-gtfs/n43.0_w080.0.ndjson.gz",
+      "bytes": 50473
+    },
+    {
+      "file": "data/transit/oakville-transit-gtfs/n43.5_w080.0.ndjson.gz",
+      "bytes": 3354
+    },
+    {
       "file": "data/transit/windsor-transit-gtfs/n42.0_w083.0.ndjson.gz",
       "bytes": 24999
     },
@@ -4518,6 +4757,30 @@
     {
       "file": "data/venues/markham-city-facilities/n43.5_w079.5.ndjson.gz",
       "bytes": 6797
+    },
+    {
+      "file": "data/venues/milton-park-amenities/n43.0_w080.0.ndjson.gz",
+      "bytes": 4160
+    },
+    {
+      "file": "data/venues/milton-park-amenities/n43.5_w080.0.ndjson.gz",
+      "bytes": 8000
+    },
+    {
+      "file": "data/venues/milton-park-amenities/n43.5_w080.5.ndjson.gz",
+      "bytes": 970
+    },
+    {
+      "file": "data/venues/milton-parking-lots/n43.0_w080.0.ndjson.gz",
+      "bytes": 1911
+    },
+    {
+      "file": "data/venues/milton-parking-lots/n43.5_w080.0.ndjson.gz",
+      "bytes": 3995
+    },
+    {
+      "file": "data/venues/milton-parking-lots/n43.5_w080.5.ndjson.gz",
+      "bytes": 866
     },
     {
       "file": "data/venues/mto-picnic-parks/n42.0_w082.5.ndjson.gz",
@@ -4966,6 +5229,10 @@
     {
       "file": "data/venues/newmarket-trail-points/n44.0_w080.0.ndjson.gz",
       "bytes": 1013
+    },
+    {
+      "file": "data/venues/niagara-falls-playgrounds/n43.0_w079.5.ndjson.gz",
+      "bytes": 5681
     },
     {
       "file": "data/venues/oshawa-community-centres/n43.5_w079.0.ndjson.gz",
@@ -7000,6 +7267,10 @@
       "bytes": 1291
     },
     {
+      "file": "data/washrooms/oakville-town-washrooms/n43.0_w080.0.ndjson.gz",
+      "bytes": 2113
+    },
+    {
       "file": "data/washrooms/osm-ontario/n41.5_w083.0.ndjson.gz",
       "bytes": 3072
     },
@@ -7738,6 +8009,14 @@
     {
       "file": "data/washrooms/toronto-street-washrooms/n43.5_w079.5.ndjson.gz",
       "bytes": 798
+    },
+    {
+      "file": "data/washrooms/welland-public-washrooms/n42.5_w079.5.ndjson.gz",
+      "bytes": 547
+    },
+    {
+      "file": "data/washrooms/welland-public-washrooms/n43.0_w079.5.ndjson.gz",
+      "bytes": 676
     },
     {
       "file": "data/washrooms/whitby-parks/n43.5_w079.0.ndjson.gz",

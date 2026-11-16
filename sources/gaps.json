@@ -295,6 +295,46 @@
     "reason": "On 2026-11-16 the Town's hub listed five datasets: Caledon Voting Locations, Caledon Address Points, AMANDA Building Permits, Roads and Caledon Boundary. None has an accessibility-relevant column, and no washroom, parking, facility, park, signal, sidewalk or transit dataset was listed. Nothing was imported from the Town. Trails inside Caledon are covered by the Region of Peel Trails layer (peel-trails)."
   },
   {
+    "name": "Town of Oakville trails, accessible parking, stairs, sidewalks, parks and other Town Facilities rows",
+    "url": "https://portal-exploreoakville.opendata.arcgis.com/",
+    "reason": "Checked on 2026-11-16. The Town's portal footer links the Town of Oakville Open Data Licence, but the ArcGIS items for Trails (4,848 lines with surface, width and running, cross and maximum slope columns), Municipal Parking Lots, Sidewalks and Parks have an empty licence field, and the Accessible Parking (43 points) and Stairs (66 points) layers of the same AGO_Accessibility map service are not listed as portal datasets at all. The licence is not stated on those datasets, so they were not imported; the trail slope columns also have no stated unit. Town Facilities states the licence: its 21 Washroom rows are imported as oakville-town-washrooms, and the other 742 rows (playgrounds, parking lots, courts, fields, pools, libraries) have no accessibility column and were not imported."
+  },
+  {
+    "name": "City of Burlington open data and Burlington Transit",
+    "url": "https://opendata.burlington.ca/opendata-terms-of-use/City%20of%20Burlington%20-%20Open%20Data%20Terms%20of%20Use.pdf",
+    "reason": "The Terms of Use for Open Data Burlington (dated September 19, 2011) were read on 2026-11-16 (HTTP 200). They grant a worldwide, royalty-free, non-exclusive, revocable licence to use, reproduce, modify and distribute the datasets, and require anyone who distributes them to ensure each recipient agrees to and is bound by the terms. These are the conditions that hold the City of London and City of Mississauga datasets for legal review. Not imported: Burlington Transit Bus Stops, Facilities, Libraries, Parks, Parks Point, Parking Lots Downtown, Pedestrian Network, and the Burlington Transit GTFS zip (https://opendata.burlington.ca/gtfs-rt/GTFS_Data.zip answered HTTP 200 and was not kept)."
+  },
+  {
+    "name": "City of Brantford open data and Brantford Transit",
+    "url": "https://www.brantford.ca/your-government/open-data/open-data-licence/",
+    "reason": "The City of Brantford Open Data Licence was read on 2026-11-16 (HTTP 200). It grants a worldwide, royalty-free, perpetual, non-exclusive licence to Use the Information, but its termination clause lets the City cancel or suspend the licence without notice and for any reason, after which use must stop, and it includes a waiver of claims. A licence that can be cancelled at will needs legal review, as for the City of London terms. Not imported: City of Brantford Parks, Paths and Trails, Municipal Parking Lots, Sports Fields and Play Equipment Areas. No Brantford Transit GTFS file was retrieved."
+  },
+  {
+    "name": "Halton Region open data",
+    "url": "https://www.halton.ca/",
+    "reason": "No Halton Region open-data portal was found on 2026-11-16. The guessed hosts opendata.halton.ca and data-halton.opendata.arcgis.com did not serve a catalogue (no connection, and HTTP 401 from the hub search API), https://www.halton.ca/The-Region/Open-Data answered HTTP 404, and a web search returned no Halton Region catalogue. No file and no licence text were retrieved. Nothing imported."
+  },
+  {
+    "name": "Town of Halton Hills open data",
+    "url": "https://www.haltonhills.ca/",
+    "reason": "No Town of Halton Hills open-data portal was found on 2026-11-16. The guessed hosts opendata.haltonhills.ca and data-haltonhills.opendata.arcgis.com did not serve a catalogue (no connection, and HTTP 401 from the hub search API), and a web search returned only the Town's planning data reporting page. No file and no licence text were retrieved. Nothing imported."
+  },
+  {
+    "name": "City of St. Catharines Parks",
+    "url": "https://st-catharines-open-data-2-stcatharines.hub.arcgis.com/",
+    "reason": "On 2026-11-16 the City's hub search returned one relevant dataset, Parks Public (194 polygons), whose item states the Open Government Licence 2.0 (The Corporation of the City of St. Catharines). The layer has two columns, PARK_NAME and OBJECTID, and no accessibility-relevant column. No washroom, parking, facility, signal, sidewalk or trail dataset was listed. Nothing imported."
+  },
+  {
+    "name": "Niagara Region open data and Niagara Region Transit GTFS",
+    "url": "https://niagaraopendata.ca/dataset/niagara-region-transit-gtfs",
+    "reason": "niagaraopendata.ca answered HTTP 403 to the pipeline on 2026-11-16 for the home page, the dataset page and the CKAN API, so the Niagara Region Transit GTFS and the catalogue's licence text could not be retrieved. The Region's ArcGIS account lists Arenas, Libraries and Pedestrian Ferry layers; the Arenas item has an empty licence field and the other two were not checked. Nothing imported."
+  },
+  {
+    "name": "Town of Milton facilities, City of Niagara Falls facilities and parking lots, and City of Welland parks, facilities and transit stops",
+    "url": "https://discover-milton.hub.arcgis.com/",
+    "reason": "Checked on 2026-11-16 under each publisher's Open Government Licence. Milton Town Facilities (19 points), Niagara Falls City Facilities (687 polygons), Niagara Falls Parking Lots (28 polygons), Welland Parks (87 polygons with amenity counts) and the Welland Transit Stops route layers have no accessibility column and were not imported. Niagara Falls Libraries and Welland Municipal Parking Lots were not inspected and not imported. Welland Municipal Facilities rows other than the three Public Washroom rows were not imported. Left out of the imports: 2 Milton park amenities whose status is Historic, 13 Niagara Falls trail rows with no status, 2 Niagara Falls sidewalk features with no geometry, and 31 Welland trail rows classed On-Road/Sidewalk. No Milton Transit GTFS file was found on the Town's hub."
+  },
+  {
     "name": "Durham Region Transit Bus Boarding Points and other Durham Region layers",
     "url": "https://opendata.durham.ca/",
     "reason": "Checked on 2026-11-16 under the Region of Durham Open Data Licence v.1.0. Transit Bus Boarding Points (4,420 points, catalogue entry last modified 2020-11-30) has ACCESSIBLE and SHELTER columns whose codes are not documented on the layer, and it describes the same stops as the current GTFS feed, which is imported as gtfs-drt with the operator's wheelchair_boarding values. It was not imported. Community Services is an address list with a PHONE column and no accessibility column; it and the Government Offices, Healthcare Facilities, Senior Residences and Education layers were not mapped or imported. The GTFS-RT Service Alerts, Trip Updates and Vehicle Positions feeds were not retrieved. The catalogue has no dataset for accessible parking, washrooms, pedestrian signals, curb ramps, sidewalks or elevators."
