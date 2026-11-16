@@ -47,6 +47,45 @@ Route-condition reports from people (`packages/conditions`) are treated like tie
 
 OSM data is ODbL share-alike and stays in `data/*/osm-ontario/`. Other sources stay in their own directories. Code licence: [LICENSE](LICENSE). Data licences: [DATA-LICENCE.md](DATA-LICENCE.md). Schema checks use `@access-main/schema` at `main` commit `c89241dcd405f0885982bd5398c893a8a6ab6c15`; see [schema/SOURCE.md](schema/SOURCE.md).
 
+## Project structure
+
+```text
+access-maps/
+├── .github/                  # CI workflows (5 files)
+├── data/                     # Source and generated data (1363 files)
+├── docs/                     # Documentation (76 files)
+├── e2e/                      # End-to-end tests (9 files)
+├── pack/                     # 5 files
+├── packages/
+│   ├── conditions/           # 36 files
+│   ├── ingest-orchestrator/  # 8 files
+│   ├── journey/              # Door-to-door journey-chain engine (29 files)
+│   ├── journey-data/         # Journey planning over downloaded packs and timetables (11 files)
+│   ├── map-ui/               # Accessible MapLibre components (26 files)
+│   ├── outages/              # Elevator and escalator outage records (19 files)
+│   ├── places-shell/         # Search and place detail for the access-main /places route (14 files)
+│   ├── profile-routing/      # 5 files
+│   ├── timetables/           # 3 files
+│   └── writeback/            # 6 files
+├── schema/                   # Data schemas (12 files)
+├── scripts/                  # Build and check scripts (19 files)
+├── sources/                  # 4 files
+├── src/                      # 53 files
+├── test/                     # Automated tests (40 files)
+├── tools/                    # Data tools (48 files)
+├── .gitignore
+├── ATTRIBUTION.md
+├── counts.json
+├── COUNTS.md
+├── DATA-LICENCE.md
+├── LICENSE                   # Licence
+├── package-lock.json
+├── package.json              # npm scripts and dependencies
+├── README.md                 # This file
+├── tsconfig.json             # TypeScript settings
+└── vitest.config.ts          # Test runner settings
+```
+
 ## Layout
 
 - `schema/` — JSON Schema draft 2020-12. Field lists live in `schema/fields.json`; `npm run build:schemas` rewrites the record schemas.
