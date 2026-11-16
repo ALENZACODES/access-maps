@@ -30,3 +30,12 @@ Only an explicit wheelchair value of `yes` or `no` is mapped to `YES` or `NO`;
 anything else, including `limited` and conflicting tags, stays `UNKNOWN`.
 MiWay must not appear as a `source_id`. Notes that mention MiWay being out
 are not used as the source field.
+
+## Licence validity and review
+
+`reportStaleAndMissingLicences` classifies registry licences. Missing, invalid,
+unrecognized, or expired licences fail `npm run check:strict-data`, unless the
+source is already held (currently MiWay). A licence that is still valid but due
+for review is printed as informational only, labelled
+"Informational: the licence is still valid, but it is due for review."
+The report does not rewrite records or replace the strict export/ODbL/held-feed gate.

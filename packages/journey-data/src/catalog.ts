@@ -31,7 +31,7 @@ export const messages = {
     unknownOther: (n: number) => `${n} segments avec d’autres caractéristiques d’accès inconnues`,
     lastChecked: (date: string) => `dernière vérification : ${date}`,
     stale: "État de l’ascenseur inconnu (vérification de plus de quatre heures)",
-    scheduled: "Horaire prévu, pas une arrivée en temps réel", departure: "Départ", arrival: "Arrivée",
+    scheduled: "Horaire prévu, pas une arrivée en direct", departure: "Départ", arrival: "Arrivée",
     provenance: "Sources", offline: "Hors ligne : seules les données téléchargées sont utilisées",
     barrier: "Une marche ou une bordure surélevée empêche ce parcours",
     unverified: "Une caractéristique inconnue ne confirme pas l’accessibilité",

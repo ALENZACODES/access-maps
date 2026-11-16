@@ -1,0 +1,37 @@
+name: Offline data QA
+
+on:
+  push:
+    paths:
+      - 'tools/data-qa/**'
+      - '.github/workflows/p15c-data-qa.yml'
+  pull_request:
+    paths:
+      - 'tools/data-qa/**'
+      - '.github/workflows/p15c-data-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  data-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Require package-lock.json
+        run: |
+          if [ ! -f package-lock.json ]; then
+            echo "::error::package-lock.json is missing. Commit a lockfile so npm ci and the later npm steps can run."
+            exit 1
+          fi
+      - run: npm ci
+      - name: Run offline data QA regression suite
+        run: npx tsx --test tools/data-qa/p15c-pipeline.test.ts tools/data-qa/p15c-cli.test.ts
+      - name: Check callable export gate entry point
+        run: npx tsx tools/data-qa/p15c-cli.ts --help
