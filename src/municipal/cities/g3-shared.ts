@@ -4,8 +4,8 @@ import { parseGeometry, pathPositions, representativePoint, type OsmGeometry } f
 import { splitCivicAddress } from "../map.js";
 
 /**
- * Helpers shared by the city mappers for Kitchener, Waterloo, Cambridge, Guelph and
- * Windsor (files retrieved on 2026-11-16).
+ * Helpers shared by the mappers for Kitchener, Waterloo, Cambridge, Guelph, Windsor and
+ * the County of Lambton (files retrieved on 2026-11-16).
  *
  * Rules every mapper built on these helpers follows:
  * - a field is filled only from a column the publisher filled; blank and placeholder
