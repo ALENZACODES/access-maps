@@ -2,7 +2,8 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { acceptId, commitRecord, resetSourceDirs } from "../src/io/commit.js";
 import { parseCsv } from "../src/io/csv.js";
-import { PartitionWriter } from "../src/io/partition-writer.js";
+import { PerSourceRun } from "../src/failsafe/per-source.js";
+import type { PartitionWriter } from "../src/io/partition-writer.js";
 import { findZipEntry, listZip, readZipText } from "../src/io/zip.js";
 import { GTFS_FEEDS } from "../src/gtfs/feeds.js";
 import { indexLevels, mapGtfsPathway, mapGtfsStop, wheelchairStopsFromRows } from "../src/gtfs/map.js";
@@ -17,18 +18,22 @@ export interface GtfsImportStats {
 export async function importGtfs(repoRoot: string, only: readonly string[] = []): Promise<GtfsImportStats> {
   const registry = readRegistry(repoRoot);
   const validators = compileValidators(path.join(repoRoot, "schema"));
-  const writer = new PartitionWriter(path.join(repoRoot, "data"));
+  const run = new PerSourceRun("importGtfs", path.join(repoRoot, "data"));
   const stats: GtfsImportStats = { sources: [] };
   for (const feed of GTFS_FEEDS) {
     if (only.length > 0 && !only.includes(feed.id)) continue;
-    const source = requireSource(registry, feed.id);
-    if (source.kind !== "gtfs" || source.tier !== 1) {
-      throw new Error(`${feed.id} must be a tier 1 gtfs source`);
-    }
-    resetSourceDirs(path.join(repoRoot, "data"), source.id, ["transit", "path"]);
-    stats.sources.push(await importFeed(repoRoot, source, feed.file, writer, validators));
+    // Each feed has its own writer: one that fails keeps its last known-good files and the others are still written.
+    const imported = await run.source(feed.id, ["transit", "path"], async (writer) => {
+      const source = requireSource(registry, feed.id);
+      if (source.kind !== "gtfs" || source.tier !== 1) {
+        throw new Error(`${feed.id} must be a tier 1 gtfs source`);
+      }
+      resetSourceDirs(path.join(repoRoot, "data"), source.id, ["transit", "path"]);
+      return importFeed(repoRoot, source, feed.file, writer, validators);
+    });
+    if (imported) stats.sources.push(imported);
   }
-  await writer.close();
+  run.finish();
   console.log(JSON.stringify(stats));
   return stats;
 }

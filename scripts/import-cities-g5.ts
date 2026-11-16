@@ -123,7 +123,7 @@ export const G5_LAYER_JOBS: readonly LayerJob[] = [
 ];
 
 export async function importCitiesG5(repoRoot: string, only: readonly string[] = []): Promise<{ sources: ImportedSource[] }> {
-  return runLayerJobs(repoRoot, G5_LAYER_JOBS, only);
+  return runLayerJobs(repoRoot, G5_LAYER_JOBS, only, "importCitiesG5");
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

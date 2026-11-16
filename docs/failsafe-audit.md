@@ -61,5 +61,12 @@ The pack was then built from the committed data on main at `af8f44a` with this b
 
 ## Not contained
 
-- Isolation is per importer step, not per source inside an importer. If one ArcGIS layer fails inside `import-cities-g3.ts`, the other layers of that step keep their previous files too (nothing is lost, but nothing from that step is refreshed). Per-source isolation needs each job loop to catch its own error; the import lanes own those files.
 - The count step fails closed on one corrupt file (row 19). That is deliberate.
+
+## Follow-up: one source, not one step
+
+Probe: three registered washroom sources run through `runLayerJobs` (the loop of `import-cities-g3.ts` and `import-cities-g5.ts`) inside `runIsolated`, each with one old record on disk and three fixture features in its cache; the second source throws on its second feature.
+
+Before (main at `68eb0fe`): all three sources kept only their old record. The first source's three new records were abandoned with the shared writer, and the third source never ran. The report listed `step_failed` for the whole step and `kept_last_known_good` for the first two sources only.
+
+After (this branch, same probe): the first and third sources were replaced with their three new records, the second kept its old record, and the report reads `replaced`, `step_failed` for `runLayerJobs/guelph-restrooms`, `kept_last_known_good` for its directory, `replaced`, then `step_failed` for the step, so the run still exits 1. Each source in a multi-source importer has its own writer inside `runIsolated` (`src/failsafe/per-source.ts`). With one source broken, the other sources are replaced, the broken source keeps its files byte for byte, and the report has `step_failed` for `<importer>/<source_id>` and `kept_last_known_good` for its directories. Tested for the Toronto washrooms (missing CSV), Ottawa (cut-short cache), GTFS (a file that is not a zip) and the city layer jobs used by `import-cities-g3.ts` and `import-cities-g5.ts` (a throw after one record). `import-osm.ts` is one source.

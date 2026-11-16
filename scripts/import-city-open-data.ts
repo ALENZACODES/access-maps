@@ -3,7 +3,7 @@ import { pathToFileURL } from "node:url";
 import path from "node:path";
 import { acceptId, commitRecord, resetSourceDirs } from "../src/io/commit.js";
 import { parseCsv } from "../src/io/csv.js";
-import { PartitionWriter } from "../src/io/partition-writer.js";
+import { PerSourceRun } from "../src/failsafe/per-source.js";
 import {
   arcFeature,
   mapOttawaParkFeature,
@@ -153,48 +153,52 @@ export async function importCityOpenData(
 ): Promise<{ sources: ImportedSource[] }> {
   const registry = readRegistry(repoRoot);
   const validators = compileValidators(path.join(repoRoot, "schema"));
-  const writer = new PartitionWriter(path.join(repoRoot, "data"));
+  const run = new PerSourceRun("importCityOpenData", path.join(repoRoot, "data"));
   const sources: ImportedSource[] = [];
   for (const job of CITY_JOBS) {
     if (only.length > 0 && !only.includes(job.id)) continue;
-    const source = requireSource(registry, job.id);
-    if (source.kind !== "municipal" || source.tier !== 0) throw new Error(`${job.id} must be tier 0 municipal data`);
-    const cache = await cached(repoRoot, job, source.download_url);
-    resetSourceDirs(path.join(repoRoot, "data"), source.id, job.tranches);
-    const ctx: Provenance = {
-      source_id: source.id,
-      licence: source.licence_id,
-      retrieved_at: source.retrieved_at,
-      tier: 0,
-    };
-    const loaded = job.load(cache, ctx);
-    const seen = new Set<string>();
-    let duplicateIds = 0;
-    let noCell = 0;
-    for (const record of loaded.records) {
-      // A record with no usable coordinate has no 0.5-degree cell to be stored in.
-      if (record.region === "unknown") {
-        noCell += 1;
-        continue;
+    // Each source has its own writer: one that fails keeps its last known-good files and the others are still written.
+    const imported = await run.source(job.id, job.tranches, async (writer) => {
+      const source = requireSource(registry, job.id);
+      if (source.kind !== "municipal" || source.tier !== 0) throw new Error(`${job.id} must be tier 0 municipal data`);
+      const cache = await cached(repoRoot, job, source.download_url);
+      resetSourceDirs(path.join(repoRoot, "data"), source.id, job.tranches);
+      const ctx: Provenance = {
+        source_id: source.id,
+        licence: source.licence_id,
+        retrieved_at: source.retrieved_at,
+        tier: 0,
+      };
+      const loaded = job.load(cache, ctx);
+      const seen = new Set<string>();
+      let duplicateIds = 0;
+      let noCell = 0;
+      for (const record of loaded.records) {
+        // A record with no usable coordinate has no 0.5-degree cell to be stored in.
+        if (record.region === "unknown") {
+          noCell += 1;
+          continue;
+        }
+        let next = record;
+        if (!acceptId(seen, next.id)) {
+          duplicateIds += 1;
+          let suffix = 2;
+          while (!acceptId(seen, `${record.id}#${suffix}`)) suffix += 1;
+          next = { ...record, id: `${record.id}#${suffix}` };
+        }
+        await commitRecord(next, source.id, writer, validators);
       }
-      let next = record;
-      if (!acceptId(seen, next.id)) {
-        duplicateIds += 1;
-        let suffix = 2;
-        while (!acceptId(seen, `${record.id}#${suffix}`)) suffix += 1;
-        next = { ...record, id: `${record.id}#${suffix}` };
-      }
-      await commitRecord(next, source.id, writer, validators);
-    }
-    sources.push({
-      source_id: source.id,
-      records: loaded.records.length - noCell,
-      skipped: loaded.skipped,
-      no_coordinate: noCell,
-      duplicate_ids: duplicateIds,
+      return {
+        source_id: source.id,
+        records: loaded.records.length - noCell,
+        skipped: loaded.skipped,
+        no_coordinate: noCell,
+        duplicate_ids: duplicateIds,
+      };
     });
+    if (imported) sources.push(imported);
   }
-  await writer.close();
+  run.finish();
   console.log(JSON.stringify({ sources }));
   return { sources };
 }

@@ -3,7 +3,7 @@ import { pathToFileURL } from "node:url";
 import path from "node:path";
 import { acceptId, commitRecord, resetSourceDirs } from "../src/io/commit.js";
 import { parseCsv } from "../src/io/csv.js";
-import { PartitionWriter } from "../src/io/partition-writer.js";
+import { PerSourceRun } from "../src/failsafe/per-source.js";
 import { findZipEntry, listZip, readZipText } from "../src/io/zip.js";
 import { GTFS_FEEDS } from "../src/gtfs/feeds.js";
 import { mapGtfsStop, wheelchairStopsFromRows } from "../src/gtfs/map.js";
@@ -82,76 +82,83 @@ export interface ImportedSource {
 export async function importWestCities(repoRoot: string, only: readonly string[] = []): Promise<{ sources: ImportedSource[]; gtfs: ImportedGtfs[] }> {
   const registry = readRegistry(repoRoot);
   const validators = compileValidators(path.join(repoRoot, "schema"));
-  const writer = new PartitionWriter(path.join(repoRoot, "data"));
+  const run = new PerSourceRun("importWestCities", path.join(repoRoot, "data"));
   const sources: ImportedSource[] = [];
   for (const job of WEST_CITY_JOBS) {
     if (only.length > 0 && !only.includes(job.id)) continue;
-    const source = requireSource(registry, job.id);
-    if (source.kind !== "municipal" || source.tier !== 0) throw new Error(`${job.id} must be tier 0 municipal data`);
-    const features = await cached(repoRoot, job.id, source.download_url);
-    resetSourceDirs(path.join(repoRoot, "data"), source.id, job.tranches);
-    const ctx: Provenance = { source_id: source.id, licence: source.licence_id, retrieved_at: source.retrieved_at, tier: 0 };
-    const seen = new Set<string>();
-    let records = 0;
-    let skipped = 0;
-    let noCell = 0;
-    let duplicateIds = 0;
-    for (const raw of features) {
-      const record = job.map(geoFeature(raw), ctx);
-      if (record === null) {
-        skipped += 1;
-        continue;
+    // Each source has its own writer: one that fails keeps its last known-good files and the others are still written.
+    const imported = await run.source(job.id, job.tranches, async (writer) => {
+      const source = requireSource(registry, job.id);
+      if (source.kind !== "municipal" || source.tier !== 0) throw new Error(`${job.id} must be tier 0 municipal data`);
+      const features = await cached(repoRoot, job.id, source.download_url);
+      resetSourceDirs(path.join(repoRoot, "data"), source.id, job.tranches);
+      const ctx: Provenance = { source_id: source.id, licence: source.licence_id, retrieved_at: source.retrieved_at, tier: 0 };
+      const seen = new Set<string>();
+      let records = 0;
+      let skipped = 0;
+      let noCell = 0;
+      let duplicateIds = 0;
+      for (const raw of features) {
+        const record = job.map(geoFeature(raw), ctx);
+        if (record === null) {
+          skipped += 1;
+          continue;
+        }
+        // A record with no usable coordinate has no 0.5-degree cell to be stored in.
+        if (record.region === "unknown") {
+          noCell += 1;
+          continue;
+        }
+        let next = record;
+        if (!acceptId(seen, next.id)) {
+          duplicateIds += 1;
+          let suffix = 2;
+          while (!acceptId(seen, `${record.id}#${suffix}`)) suffix += 1;
+          next = { ...record, id: `${record.id}#${suffix}` };
+        }
+        await commitRecord(next, source.id, writer, validators);
+        records += 1;
       }
-      // A record with no usable coordinate has no 0.5-degree cell to be stored in.
-      if (record.region === "unknown") {
-        noCell += 1;
-        continue;
-      }
-      let next = record;
-      if (!acceptId(seen, next.id)) {
-        duplicateIds += 1;
-        let suffix = 2;
-        while (!acceptId(seen, `${record.id}#${suffix}`)) suffix += 1;
-        next = { ...record, id: `${record.id}#${suffix}` };
-      }
-      await commitRecord(next, source.id, writer, validators);
-      records += 1;
-    }
-    sources.push({ source_id: source.id, features: features.length, records, skipped, no_coordinate: noCell, duplicate_ids: duplicateIds });
+      return { source_id: source.id, features: features.length, records, skipped, no_coordinate: noCell, duplicate_ids: duplicateIds };
+    });
+    if (imported) sources.push(imported);
   }
   const gtfs: ImportedGtfs[] = [];
   for (const feed of GTFS_FEEDS.filter((item) => WEST_GTFS_FEED_IDS.includes(item.id))) {
     if (only.length > 0 && !only.includes(feed.id)) continue;
-    const source = requireSource(registry, feed.id);
-    if (source.kind !== "gtfs" || source.tier !== 1) throw new Error(`${feed.id} must be a tier 1 gtfs source`);
-    const zipPath = path.join(repoRoot, feed.file);
-    if (!existsSync(zipPath)) {
-      mkdirSync(path.dirname(zipPath), { recursive: true });
-      const response = await fetch(source.download_url, { headers: { "User-Agent": USER_AGENT, Accept: "*/*" } });
-      if (!response.ok) throw new Error(`${source.download_url} HTTP ${response.status}`);
-      writeFileSync(zipPath, Buffer.from(await response.arrayBuffer()));
-    }
-    const stopsEntry = findZipEntry(listZip(zipPath), "stops.txt");
-    if (!stopsEntry) throw new Error(`${feed.id} has no stops.txt`);
-    resetSourceDirs(path.join(repoRoot, "data"), source.id, ["transit", "path"]);
-    const ctx: Provenance = { source_id: source.id, licence: source.licence_id, retrieved_at: source.retrieved_at, tier: 1 };
-    const rows = parseCsv(readZipText(zipPath, stopsEntry)).rows;
-    const wheelchairStops = wheelchairStopsFromRows(rows);
-    const seen = new Set<string>();
-    let stops = 0;
-    let skipped = 0;
-    for (const row of rows) {
-      const record = mapGtfsStop(row, new Map(), ctx, source.id, wheelchairStops);
-      if (!record || record.region === "unknown" || !acceptId(seen, record.id)) {
-        skipped += 1;
-        continue;
+    const imported = await run.source(feed.id, ["transit", "path"], async (writer) => {
+      const source = requireSource(registry, feed.id);
+      if (source.kind !== "gtfs" || source.tier !== 1) throw new Error(`${feed.id} must be a tier 1 gtfs source`);
+      const zipPath = path.join(repoRoot, feed.file);
+      if (!existsSync(zipPath)) {
+        mkdirSync(path.dirname(zipPath), { recursive: true });
+        const response = await fetch(source.download_url, { headers: { "User-Agent": USER_AGENT, Accept: "*/*" } });
+        if (!response.ok) throw new Error(`${source.download_url} HTTP ${response.status}`);
+        writeFileSync(zipPath, Buffer.from(await response.arrayBuffer()));
       }
-      await commitRecord(record, source.id, writer, validators);
-      stops += 1;
-    }
-    gtfs.push({ source_id: source.id, stops, skipped });
+      const stopsEntry = findZipEntry(listZip(zipPath), "stops.txt");
+      if (!stopsEntry) throw new Error(`${feed.id} has no stops.txt`);
+      resetSourceDirs(path.join(repoRoot, "data"), source.id, ["transit", "path"]);
+      const ctx: Provenance = { source_id: source.id, licence: source.licence_id, retrieved_at: source.retrieved_at, tier: 1 };
+      const rows = parseCsv(readZipText(zipPath, stopsEntry)).rows;
+      const wheelchairStops = wheelchairStopsFromRows(rows);
+      const seen = new Set<string>();
+      let stops = 0;
+      let skipped = 0;
+      for (const row of rows) {
+        const record = mapGtfsStop(row, new Map(), ctx, source.id, wheelchairStops);
+        if (!record || record.region === "unknown" || !acceptId(seen, record.id)) {
+          skipped += 1;
+          continue;
+        }
+        await commitRecord(record, source.id, writer, validators);
+        stops += 1;
+      }
+      return { source_id: source.id, stops, skipped };
+    });
+    if (imported) gtfs.push(imported);
   }
-  await writer.close();
+  run.finish();
   console.log(JSON.stringify({ sources, gtfs }));
   return { sources, gtfs };
 }

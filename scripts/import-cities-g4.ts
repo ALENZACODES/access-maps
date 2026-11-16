@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 import path from "node:path";
 import { acceptId, commitRecord, resetSourceDirs } from "../src/io/commit.js";
-import { PartitionWriter } from "../src/io/partition-writer.js";
+import { PerSourceRun } from "../src/failsafe/per-source.js";
 import { importGtfs } from "./import-gtfs.js";
 import { GTFS_FEEDS } from "../src/gtfs/feeds.js";
 import type { RawFeature } from "../src/municipal/cities/g4-helpers.js";
@@ -52,50 +52,57 @@ export interface G4Imported {
 export async function importCitiesG4(repoRoot: string, only: readonly string[] = []): Promise<{ sources: G4Imported[] }> {
   const registry = readRegistry(repoRoot);
   const validators = compileValidators(path.join(repoRoot, "schema"));
-  const writer = new PartitionWriter(path.join(repoRoot, "data"));
+  const run = new PerSourceRun("importCitiesG4", path.join(repoRoot, "data"));
   const sources: G4Imported[] = [];
   for (const job of G4_LAYER_JOBS) {
     if (only.length > 0 && !only.includes(job.id)) continue;
-    const source = requireSource(registry, job.id);
-    if (source.kind !== "municipal" || source.tier !== 0) throw new Error(`${job.id} must be tier 0 municipal data`);
-    const features = await cachedLayer(repoRoot, job.id, source.download_url);
-    resetSourceDirs(path.join(repoRoot, "data"), source.id, job.tranches);
-    const ctx: Provenance = { source_id: source.id, licence: source.licence_id, retrieved_at: source.retrieved_at, tier: 0 };
-    const seen = new Set<string>();
-    const stats: G4Imported = { source_id: source.id, records: 0, skipped: 0, no_coordinate: 0, duplicate_ids: 0 };
-    for (const feature of features) {
-      const mapped = job.map(feature, ctx);
-      if (mapped === null) {
-        stats.skipped += 1;
-        continue;
-      }
-      for (const record of Array.isArray(mapped) ? mapped : [mapped]) {
-        // A record with no usable coordinate has no 0.5-degree cell to be stored in.
-        if (record.region === "unknown") {
-          stats.no_coordinate += 1;
+    // Each source has its own writer: one that fails keeps its last known-good files and the others are still written.
+    const imported = await run.source(job.id, job.tranches, async (writer) => {
+      const source = requireSource(registry, job.id);
+      if (source.kind !== "municipal" || source.tier !== 0) throw new Error(`${job.id} must be tier 0 municipal data`);
+      const features = await cachedLayer(repoRoot, job.id, source.download_url);
+      resetSourceDirs(path.join(repoRoot, "data"), source.id, job.tranches);
+      const ctx: Provenance = { source_id: source.id, licence: source.licence_id, retrieved_at: source.retrieved_at, tier: 0 };
+      const seen = new Set<string>();
+      const stats: G4Imported = { source_id: source.id, records: 0, skipped: 0, no_coordinate: 0, duplicate_ids: 0 };
+      for (const feature of features) {
+        const mapped = job.map(feature, ctx);
+        if (mapped === null) {
+          stats.skipped += 1;
           continue;
         }
-        let next = record;
-        if (!acceptId(seen, next.id)) {
-          stats.duplicate_ids += 1;
-          let suffix = 2;
-          while (!acceptId(seen, `${record.id}#${suffix}`)) suffix += 1;
-          next = { ...record, id: `${record.id}#${suffix}` };
+        for (const record of Array.isArray(mapped) ? mapped : [mapped]) {
+          // A record with no usable coordinate has no 0.5-degree cell to be stored in.
+          if (record.region === "unknown") {
+            stats.no_coordinate += 1;
+            continue;
+          }
+          let next = record;
+          if (!acceptId(seen, next.id)) {
+            stats.duplicate_ids += 1;
+            let suffix = 2;
+            while (!acceptId(seen, `${record.id}#${suffix}`)) suffix += 1;
+            next = { ...record, id: `${record.id}#${suffix}` };
+          }
+          await commitRecord(next, source.id, writer, validators);
+          stats.records += 1;
         }
-        await commitRecord(next, source.id, writer, validators);
-        stats.records += 1;
       }
-    }
-    sources.push(stats);
+      return stats;
+    });
+    if (imported) sources.push(imported);
   }
   for (const id of G4_GTFS_FEEDS) {
     if (only.length > 0 && !only.includes(id)) continue;
-    const source = requireSource(registry, id);
-    const feed = GTFS_FEEDS.find((item) => item.id === id);
-    if (!feed) throw new Error(`${id} is not in GTFS_FEEDS`);
-    await cachedZip(path.join(repoRoot, feed.file), source.download_url);
+    // Only downloads the zip; scripts/import-gtfs.ts writes the feed. No directory is replaced here.
+    await run.source(id, [], async () => {
+      const source = requireSource(registry, id);
+      const feed = GTFS_FEEDS.find((item) => item.id === id);
+      if (!feed) throw new Error(`${id} is not in GTFS_FEEDS`);
+      await cachedZip(path.join(repoRoot, feed.file), source.download_url);
+    });
   }
-  await writer.close();
+  run.finish();
   console.log(JSON.stringify({ sources }));
   return { sources };
 }
