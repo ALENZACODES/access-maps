@@ -43,4 +43,18 @@ jobs:
             exit 1
           fi
       - run: npm ci
+      - name: Fail closed if data/ and pack/v1 yield zero files
+        run: |
+          files=0
+          for dir in data pack/v1; do
+            if [ -d "$dir" ]; then
+              found=$(find "$dir" -type f -name '*.ndjson.gz' | wc -l)
+              files=$((files + found))
+            fi
+          done
+          if [ "$files" -eq 0 ]; then
+            echo "::error::data/ and pack/v1 yielded zero .ndjson.gz files; failing closed."
+            exit 1
+          fi
+          echo "Found $files .ndjson.gz file(s) under data/ and pack/v1."
       - run: npm run check:strict-data

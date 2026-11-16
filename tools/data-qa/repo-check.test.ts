@@ -158,4 +158,88 @@ describe("checkRepoData", () => {
     });
     expect(failed.violations.join(" ")).toMatch(/licence/);
   });
+
+  it("fails a record whose source_id is miway or gtfs-miway", async () => {
+    const root = mkdtempSync(path.join(os.tmpdir(), "data-qa-miway-"));
+    writeFileSync(
+      path.join(root, "sources-registry.json"),
+      JSON.stringify({
+        sources: [
+          {
+            id: "osm-ontario",
+            name: "OpenStreetMap",
+            kind: "osm",
+            url: "https://example.invalid",
+            download_url: "https://example.invalid/file",
+            licence_name: "ODbL 1.0",
+            licence_url: "https://opendatacommons.org/licenses/odbl/1-0/",
+            licence_id: "ODbL-1.0",
+            attribution: "OpenStreetMap contributors",
+            retrieved_at: "2026-11-13",
+            tier: 0,
+          },
+        ],
+      }),
+    );
+    for (const sourceId of ["miway", "gtfs-miway"] as const) {
+      const dir = path.join(root, sourceId);
+      mkdirSync(dir, { recursive: true });
+      const record = JSON.stringify({
+        id: `${sourceId}:stop/1`,
+        tranche: "transit",
+        fields: {
+          wheelchair: {
+            value: "yes",
+            source_id: sourceId,
+            licence: "ODbL-1.0",
+            retrieved_at: "2026-11-13",
+          },
+        },
+      });
+      writeFileSync(path.join(dir, "held.ndjson.gz"), gzipSync(`${record}\n`));
+      const report = await checkRepoData({
+        root,
+        registryPath: path.join(root, "sources-registry.json"),
+        dataDir: dir,
+        packDir: path.join(root, "missing-pack"),
+      });
+      expect(report.files).toBe(1);
+      expect(report.violations.join(" "), sourceId).toMatch(/held feed/);
+    }
+  });
+
+  it("fails closed when data/ and pack/v1 yield zero files", async () => {
+    const root = mkdtempSync(path.join(os.tmpdir(), "data-qa-empty-"));
+    writeFileSync(
+      path.join(root, "sources-registry.json"),
+      JSON.stringify({
+        sources: [
+          {
+            id: "osm-ontario",
+            name: "OpenStreetMap",
+            kind: "osm",
+            url: "https://example.invalid",
+            download_url: "https://example.invalid/file",
+            licence_name: "ODbL 1.0",
+            licence_url: "https://opendatacommons.org/licenses/odbl/1-0/",
+            licence_id: "ODbL-1.0",
+            attribution: "OpenStreetMap contributors",
+            retrieved_at: "2026-11-13",
+            tier: 0,
+          },
+        ],
+      }),
+    );
+    const emptyData = path.join(root, "data");
+    mkdirSync(emptyData, { recursive: true });
+    const report = await checkRepoData({
+      root,
+      registryPath: path.join(root, "sources-registry.json"),
+      dataDir: emptyData,
+      packDir: path.join(root, "pack", "v1"),
+    });
+    expect(report.files).toBe(0);
+    expect(report.packRecords).toBe(0);
+    expect(report.violations.join(" ")).toMatch(/zero \.ndjson\.gz files; failing closed/);
+  });
 });

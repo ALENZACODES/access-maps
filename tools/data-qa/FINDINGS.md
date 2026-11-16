@@ -3,7 +3,7 @@
 `npm run check:strict-data` runs `checkStrictData` over `sources/registry.json`
 and every `data/**/*.ndjson.gz` pack record (and `pack/v1` when that directory
 exists). The job fails on undocumented violations. It does not fetch or
-publish anything, and it is not scheduled.
+publish anything, and it is not scheduled. The job and the check fail closed if `data/` and `pack/v1` yield zero `.ndjson.gz` files.
 
 ## Licence identifiers outside the strict export allowlist
 
