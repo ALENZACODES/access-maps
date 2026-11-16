@@ -82,7 +82,7 @@ Washroom fields from a venue, such as `toilets:wheelchair`, are emitted as a sep
 
 `npx tsx scripts/import-york-durham-cities.ts` reads the ArcGIS REST layers listed in `src/municipal/cities/york-durham-jobs.ts`. Each municipality has its own mapper in `src/municipal/cities/` and its own test in `test/cities/`. `npm run import` runs it after the city open-data importer.
 
-`npx tsx scripts/import-cities-g4.ts` reads the ArcGIS REST layers for Kingston, Greater Sudbury and Thunder Bay and downloads the Kingston Transit and GOVA Transit GTFS zips. Each city has its own mapper in `src/municipal/cities/` and its own test in `test/cities/`. `npm run import` runs it before the GTFS importer. Outside `npm run import`, run it with `NODE_USE_ENV_PROXY=1` when the network needs a proxy.
+`npx tsx scripts/import-cities-g4.ts` reads the ArcGIS REST layers for Kingston, Greater Sudbury, Thunder Bay, Cornwall, Quinte West and the second set of Ottawa layers, and downloads the Kingston Transit and GOVA Transit GTFS zips. Each city has its own mapper in `src/municipal/cities/` and its own test in `test/cities/`. `npm run import` runs it before the GTFS importer. Outside `npm run import`, run it with `NODE_USE_ENV_PROXY=1` when the network needs a proxy.
 
 - York Region's Bus Stops from GTFS layer is a tier 1 operator claim. Its "Yes / Part" boarding label is kept as published and is not stored as a yes.
 - A trail drawn in several parts is stored as one path record per part, so no part of the line is dropped. A length published for the whole trail is not repeated on the parts.
