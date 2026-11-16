@@ -524,6 +524,66 @@ export const LICENCE_FINDINGS: readonly LicenceFinding[] = [
     reason: "Open Government Licence – City of Welland, version 2.0. Not in the strict export allowlist.",
   },
   {
+    sourceId: "gtfs-drt",
+    licence: "Durham-Region-Open-Data-Licence-1.0",
+    reason: "Region of Durham Open Data Licence, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "oshawa-community-centres",
+    licence: "OGL-Oshawa-2.0",
+    reason: "Open Government Licence – The Corporation of the City of Oshawa, version 2. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "oshawa-trails",
+    licence: "OGL-Oshawa-2.0",
+    reason: "Open Government Licence – The Corporation of the City of Oshawa, version 2. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "whitby-town-facilities",
+    licence: "OGL-Whitby-1.0",
+    reason: "Open Government Licence – The Corporation of the Town of Whitby, version 1. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "whitby-parks",
+    licence: "OGL-Whitby-1.0",
+    reason: "Open Government Licence – The Corporation of the Town of Whitby, version 1. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "whitby-sidewalks",
+    licence: "OGL-Whitby-1.0",
+    reason: "Open Government Licence – The Corporation of the Town of Whitby, version 1. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "whitby-trails",
+    licence: "OGL-Whitby-1.0",
+    reason: "Open Government Licence – The Corporation of the Town of Whitby, version 1. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "ajax-town-facilities",
+    licence: "Ajax-Open-Data-Licence-1.0",
+    reason: "Town of Ajax Open Data Licence, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "ajax-playgrounds",
+    licence: "Ajax-Open-Data-Licence-1.0",
+    reason: "Town of Ajax Open Data Licence, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "ajax-recreational-trails",
+    licence: "Ajax-Open-Data-Licence-1.0",
+    reason: "Town of Ajax Open Data Licence, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "pickering-facilities",
+    licence: "Pickering-Open-Data-Licence-1.0",
+    reason: "City of Pickering Open Data Licence, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "pickering-parks",
+    licence: "Pickering-Open-Data-Licence-1.0",
+    reason: "City of Pickering Open Data Licence, version 1.0. Not in the strict export allowlist.",
+  },
+  {
     sourceId: "london-park-amenities",
     licence: "owner-permission-2026-11-16",
     reason: "Included on the repository owner's statement of 2026-11-16; City of London Open Data Terms of Use (pass-on of the terms required). Not an open licence in the strict export allowlist.",
