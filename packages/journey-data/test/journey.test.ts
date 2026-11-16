@@ -55,6 +55,24 @@ describe("on-device rolling graph", () => {
     expect(result?.unknownSurfaceCount).toBe(1);
     expect(result?.evidence).toContainEqual(expect.objectContaining({ recordId: "p2", sourceName: "OpenStreetMap Ontario", tier: 1, retrievedAt: "2026-11-14" }));
     expect(result?.evidence.some((entry) => entry.attribution === "© OpenStreetMap contributors, ODbL")).toBe(true);
+    expect(result?.evidence.every((entry) => entry.prototype_label === "PROTOTYPE-UNVERIFIED")).toBe(true);
+  });
+  it("labels pack evidence as SEEDED-OPEN-DATA or PROTOTYPE-UNVERIFIED, never VERIFIED", () => {
+    const seeded = path("p2", middle, destination, { surface: { ...field("asphalt"), tier: 0 } });
+    const seededRoute = routeRolling([path("p1", origin, middle), seeded], origin, destination, request.profile, [osm]);
+    expect(seededRoute?.evidence.filter((entry) => entry.recordId === "p2")
+      .every((entry) => entry.prototype_label === "SEEDED-OPEN-DATA")).toBe(true);
+    const later = path("p2b", middle, destination, { surface: field("asphalt") });
+    const laterRoute = routeRolling([path("p1b", origin, middle), later], origin, destination, request.profile, [osm]);
+    expect(laterRoute?.evidence.filter((entry) => entry.recordId === "p2b")
+      .every((entry) => entry.prototype_label === "PROTOTYPE-UNVERIFIED")).toBe(true);
+    expect(JSON.stringify(seededRoute?.evidence)).not.toMatch(/"VERIFIED"/);
+    expect(JSON.stringify(laterRoute?.evidence)).not.toMatch(/"VERIFIED"/);
+    const alert = { id: "e1", stopId: "stop-a", state: "out" as const, checkedAt: "2026-11-15T11:00:00Z",
+      sourceId: "ttc-confirmed", sourceName: "TTC", licence: "OGL-ON-1.0", tier: 1 as const };
+    expect(elevatorAt(alert, request.now)?.evidence.prototype_label).toBe("PROTOTYPE-UNVERIFIED");
+    expect(elevatorAt({ ...alert, tier: 0 }, request.now)?.evidence.prototype_label).toBe("SEEDED-OPEN-DATA");
+    expect(JSON.stringify(elevatorAt(alert, request.now)?.evidence)).not.toMatch(/"VERIFIED"/);
   });
   it("rejects routes longer than 3 km and unrelated endpoint snaps", () => {
     expect(routeRolling([path("p", origin, middle)], origin, { lat: 43.7, lon: -79.38 }, request.profile)).toBeNull();

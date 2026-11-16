@@ -10,7 +10,7 @@ import {
 } from "./transit.js";
 
 export type { PackSource, PackRecord, PackSourceEntry } from "./pack-types.js";
-export type { Evidence, RollProfile, RollRoute } from "./route.js";
+export { prototypeLabel, type Evidence, type PrototypeLabel, type RollProfile, type RollRoute } from "./route.js";
 export { routeRolling } from "./route.js";
 export { elevatorAt, nearbyStops, scheduledOptions } from "./transit.js";
 export type { ElevatorAlert, TimetableChunk, TimetableChunkReader, TransitOption } from "./transit.js";
