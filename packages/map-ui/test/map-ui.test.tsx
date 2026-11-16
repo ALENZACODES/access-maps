@@ -207,12 +207,12 @@ describe("JourneyResult", () => {
     expect(page).not.toContain("home-exit");
     expect(page).not.toContain("unknown.");
     expect(page).not.toContain("not-step-free.");
-    expect(screen.getAllByText(/Pente :/).length).toBeGreaterThan(0);
+    expect(page).toMatch(/Pente\u00A0:/);
     // The data value UNKNOWN is shown as a French word, with French spacing before the colon.
     expect(page).not.toMatch(/UNKNOWN|INCONNU/);
-    expect(page).toContain("Source : Inconnu.");
-    expect(page).toContain("Licence : Inconnu.");
-    expect(page).toContain("Récupéré : Inconnu.");
+    expect(page).toContain("Source\u00A0: Inconnu.");
+    expect(page).toContain("Licence\u00A0: Inconnu.");
+    expect(page).toContain("Récupéré\u00A0: Inconnu.");
     expect(page).not.toMatch(/Source:|Licence:|Récupéré:|Sélectionné:/);
     expect(page).not.toContain("..");
   });
@@ -293,7 +293,7 @@ describe("JourneyResult", () => {
     expect(first).toBeTruthy();
     if (first) await user.click(first);
     const live = view.container.querySelector(".selection-live")?.textContent ?? "";
-    expect(live).toContain("Sélectionné :");
+    expect(live).toContain("Sélectionné\u00A0:");
     expect(live).not.toMatch(/[■▲●?] /);
   });
 });

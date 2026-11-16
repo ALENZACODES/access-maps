@@ -109,4 +109,6 @@ This branch also carries the door-to-door journey work that landed ahead of the 
 - `packages/map-ui` — React and MapLibre GL components. Every map feature is also a button in a list, with keyboard arrow keys and a polite status announcement.
 - `packages/journey-data` — Rolling routes and transit options over downloaded pack records. Scheduled times come from I14's published timetable chunks when those chunks are already on the device; missing chunks stay unknown and times are never invented. MiWay is held; GO, UP Express, and LTC are in.
 
+OpenTripPlanner (LGPL) and OpenRouteService (GPL) are not vendored and are rejected if named as an engine.
+
 Imported records in `data/` follow the field-value shape (`value`, `source_id`, `licence`, `retrieved_at`, `tier`). The journey packages read that shape and do not edit the import pipelines. Unknown stays `UNKNOWN`.

@@ -53,7 +53,7 @@ const COPY = {
   fr: {
     mapHeading: "Carte et liste des éléments",
     instructions:
-      "La liste montre chaque élément de la carte. Utilisez Tab pour l'atteindre, puis les flèches pour vous déplacer. La carte est facultative.",
+      "La liste montre chaque élément de la carte. Utilisez Tab pour l’atteindre, puis les flèches pour vous déplacer. La carte est facultative.",
     skip: "Passer la carte et aller à la liste des éléments",
     zoomIn: "Zoom avant",
     zoomOut: "Zoom arrière",
@@ -66,9 +66,9 @@ const COPY = {
     showOnMap: "Montrer sur la carte",
     listLabel: "Éléments de la carte",
     empty: "Aucun élément à lister.",
-    mapUnavailable: "La carte ne s'est pas affichée. Utilisez la liste.",
+    mapUnavailable: "La carte ne s’est pas affichée. Utilisez la liste.",
     mapControls: "Commandes de la carte",
-    colon: " :",
+    colon: " :",
     attribution: "Attribution",
     source: "Source",
     licence: "Licence",
@@ -90,9 +90,9 @@ const COPY = {
     washroom: "Toilettes",
     parking: "Stationnement",
     attributionPlain:
-      "Canevas de carte par MapLibre GL (BSD-3-Clause). Cette démo utilise un fond uni, pas un service de tuiles. Aucune approbation d'un organisme, d'une municipalité ou d'un projet n'est sous-entendue.",
+      "Canevas de carte par MapLibre GL (BSD-3-Clause). Cette démo utilise un fond uni, pas un service de tuiles. Aucune approbation d’un organisme, d’une municipalité ou d’un projet n’est sous-entendue.",
     attributionOsm:
-      "© OpenStreetMap contributors. La géométrie des chemins du catalogue est une donnée OpenStreetMap sous l'Open Database Licence. Canevas par MapLibre GL (BSD-3-Clause). Aucune approbation n'est sous-entendue.",
+      "© OpenStreetMap contributors. La géométrie des chemins du catalogue est une donnée OpenStreetMap sous l’Open Database Licence. Canevas par MapLibre GL (BSD-3-Clause). Aucune approbation n’est sous-entendue.",
   },
 } as const;
 
