@@ -62,7 +62,7 @@ export const strings: Record<Language, Strings> = {
     tier: "Niveau de preuve",
     empty: "Aucune condition dans cette liste locale",
     drafts: "Brouillons non v\u00e9rifi\u00e9s",
-    verify: "J'ai v\u00e9rifi\u00e9 ce brouillon et j'autorise son exportation",
+    verify: "J’ai v\u00e9rifi\u00e9 ce brouillon et j’autorise son exportation",
     export: "Exporter les brouillons v\u00e9rifi\u00e9s (JSON)",
     noVerified: "S\u00e9lectionnez au moins un brouillon v\u00e9rifi\u00e9.",
     exported: "Fichier JSON pr\u00e9par\u00e9 pour enregistrement",

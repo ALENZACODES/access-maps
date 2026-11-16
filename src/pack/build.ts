@@ -38,10 +38,15 @@ export const LTC_AVAILABILITY_NOTICE_FR =
   "Les données de transport en commun sont disponibles auprès de la Commission de transport de London : elles sont offertes aux termes de ses conditions d’utilisation.";
 export const LTC_PACK_ATTRIBUTION = `${LTC_AVAILABILITY_NOTICE_EN}. ${LTC_AVAILABILITY_NOTICE_FR} ${LTC_PACK_LICENCE_URL}`;
 
+/** Hold any source whose id or name contains or starts with "miway", case-insensitive. */
+export function isHeldMiWay(id: string, name = ""): boolean {
+  return [id, name].some((value) => value.trim().toLowerCase().includes("miway"));
+}
+
 export function holdReason(source: SourceEntry): string | null {
   // Take the legal decision from the registry's terms, rather than assuming
   // all GTFS or all municipal records are licensed for web redistribution.
-  if (source.id === "gtfs-miway" || source.id.startsWith("gtfs-miway")) {
+  if (isHeldMiWay(source.id, source.name)) {
     return "MiWay stays out: official terms are unconfirmed.";
   }
   const notes = `${source.notes ?? ""} ${source.tier_note ?? ""}`;

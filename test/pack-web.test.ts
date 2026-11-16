@@ -20,12 +20,13 @@ import {
   LTC_PACK_LICENCE_URL,
   buildWebPack,
   holdReason,
+  isHeldMiWay,
   normalizeName,
   searchHit,
 } from "../src/pack/build.js";
 import { cellBBox, makeRegions, overlaps } from "../src/pack/regions.js";
 import { verifyWebPack } from "../src/pack/verify.js";
-import { readRegistry } from "../src/registry.js";
+import { readRegistry, type SourceEntry } from "../src/registry.js";
 import type { DataRecord } from "../src/model/records.js";
 
 const roots: string[] = [];
@@ -174,5 +175,42 @@ describe("Ontario web pack", () => {
     expect(await readFile(path.join(out, "search", `${cell}.json.gz`))).toEqual(compressed);
     await writeFile(path.join(out, "search", `${cell}.json.gz`), Buffer.from("corrupt"));
     await expect(verifyWebPack({ data, out })).rejects.toThrow();
+  });
+});
+
+function sampleSource(id: string, name: string): SourceEntry {
+  return {
+    id,
+    name,
+    kind: "gtfs",
+    url: "",
+    download_url: "",
+    licence_name: "UNKNOWN",
+    licence_url: "",
+    licence_id: "UNKNOWN",
+    attribution: "",
+    retrieved_at: "2026-11-15",
+    tier: 1,
+  };
+}
+
+describe("MiWay hold matching", () => {
+  it("holds any id or name that contains or starts with miway, case-insensitively", () => {
+    const held: Array<[string, string]> = [
+      ["miway", "Mississauga Transit"],
+      ["GTFS-MIWAY", "Transit"],
+      ["gtfs-miway-alerts", "Transit"],
+      ["agency-miway", "Something"],
+      ["mississauga-gtfs", "MiWay"],
+      ["mississauga-gtfs", "City of Mississauga MiWay"],
+    ];
+    for (const [id, name] of held) {
+      expect(isHeldMiWay(id, name), `${id} / ${name}`).toBe(true);
+      expect(holdReason(sampleSource(id, name)), `${id} / ${name}`).toMatch(/MiWay stays out/);
+    }
+    expect(isHeldMiWay("gtfs-ttc", "Toronto Transit Commission")).toBe(false);
+    expect(isHeldMiWay("metrolinx-go", "GO Transit")).toBe(false);
+    expect(isHeldMiWay("gtfs-ltc", "London Transit")).toBe(false);
+    expect(holdReason(sampleSource("gtfs-ttc", "Toronto Transit Commission"))).toBeNull();
   });
 });

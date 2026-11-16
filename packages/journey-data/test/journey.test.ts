@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { createJourneyModule, createPublishedTimetableAccess, routeRolling, elevatorAt } from "../src/index.js";
+import { createJourneyModule, createPublishedTimetableAccess, routeRolling, elevatorAt, isHeldMiWay } from "../src/index.js";
 import type { PackRecord, PackSource, PackSourceEntry } from "../src/pack-types.js";
 import type { TimetableChunk } from "../src/transit.js";
 
@@ -133,6 +133,41 @@ describe("recorded stops, elevator alerts and I14 schedules", () => {
     expect(result.originStops.some((item) => item.id === "held-stop")).toBe(false);
     expect(result.sources.some((source) => source.sourceId === "gtfs-miway" || source.sourceId === "miway")).toBe(false);
     expect(result.transit.every((option) => option.sourceName !== "Mississauga Transit")).toBe(true);
+  });
+  it("detects MiWay in an id or name, case-insensitively, including prefixes and containment", () => {
+    expect(isHeldMiWay("miway")).toBe(true);
+    expect(isHeldMiWay("gtfs-miway")).toBe(true);
+    expect(isHeldMiWay("GTFS-MIWAY")).toBe(true);
+    expect(isHeldMiWay("gtfs-miway-alerts")).toBe(true);
+    expect(isHeldMiWay("agency-miway")).toBe(true);
+    expect(isHeldMiWay("mississauga-gtfs", "MiWay")).toBe(true);
+    expect(isHeldMiWay("mississauga-gtfs", "City of Mississauga MiWay")).toBe(true);
+    expect(isHeldMiWay("  MIWAY-GTFS  ", "Transit")).toBe(true);
+    expect(isHeldMiWay("gtfs-ttc", "Toronto Transit Commission")).toBe(false);
+    expect(isHeldMiWay("metrolinx-go", "GO Transit")).toBe(false);
+    expect(isHeldMiWay("gtfs-ltc", "London Transit")).toBe(false);
+  });
+  it("holds a feed whose name contains MiWay even when the pack flags it as in the web pack", async () => {
+    const sneaky: PackSourceEntry = {
+      sourceId: "mississauga-gtfs", name: "City of Mississauga MiWay", licence: "UNKNOWN", inWebPack: true,
+    };
+    const records = [path("p1", origin, middle), path("p2", middle, destination),
+      stop("stop-a", origin, "1"), stop("stop-b", destination, "0"),
+      stop("held-stop", middle, "1", "mississauga-gtfs")];
+    const result = await createJourneyModule(fixtureSource(records, [osm, ttc, sneaky]), {
+      timetable: {} as never,
+      readTimetableChunk: async () => ({
+        region: "toronto", sourceId: "mississauga-gtfs", sourceName: "City of Mississauga MiWay",
+        licence: "UNKNOWN", fetchedAt: "2026-11-15", tier: 1,
+        trips: [{ id: "trip-miway", routeId: "route-m", stopTimes: [
+          { stopId: "held-stop", departure: "13:00:00", arrival: "13:00:00" },
+          { stopId: "stop-b", departure: "13:20:00", arrival: "13:20:00" },
+        ] }],
+      }),
+    }).plan(request);
+    expect(result.originStops.some((item) => item.id === "held-stop")).toBe(false);
+    expect(result.sources.some((source) => source.sourceId === "mississauga-gtfs")).toBe(false);
+    expect(result.transit.every((option) => option.sourceName !== "City of Mississauga MiWay")).toBe(true);
   });
   it("names missing timetable region and does not invent times", async () => {
     const result = await createJourneyModule(fixtureSource(records)).plan({ ...request, locale: "fr" });
