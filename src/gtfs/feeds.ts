@@ -8,4 +8,8 @@ export const GTFS_FEEDS = [
   { id: "gtfs-hsr", file: ".cache/gtfs/hsr.zip" },
   { id: "gtfs-ltc", file: ".cache/gtfs/ltc.zip" },
   { id: "oakville-transit-gtfs", file: ".cache/gtfs/oakville.zip" },
+  { id: "guelph-transit-gtfs", file: ".cache/gtfs/guelph-transit-gtfs.zip" },
+  { id: "windsor-transit-gtfs", file: ".cache/gtfs/windsor-transit-gtfs.zip" },
+  { id: "gtfs-kingston", file: ".cache/gtfs/gtfs-kingston.zip" },
+  { id: "gtfs-gova", file: ".cache/gtfs/gtfs-gova.zip" },
 ] as const;
