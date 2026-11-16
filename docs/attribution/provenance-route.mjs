@@ -377,7 +377,9 @@ export function mountProvenance(doc, win) {
     nav.setAttribute('aria-label', words.navigation);
     const attribution = create(doc, 'a', { text: words.attribution });
     attribution.href = 'index.html';
-    append(nav, attribution);
+    const publication = create(doc, 'a', { text: state.locale === 'fr' ? 'Registre des surfaces' : 'Publication surfaces' });
+    publication.href = 'disclosure.html';
+    append(nav, attribution, publication);
     append(header, switchRow, nav,
       create(doc, 'h1', { text: words.title }),
       create(doc, 'p', { text: words.introduction }),

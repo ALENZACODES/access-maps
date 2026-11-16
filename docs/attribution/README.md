@@ -150,3 +150,65 @@ that does not publish `docs/attribution/` still needs its routing/publishing
 configuration wired separately; that configuration is not in this lane's
 allowed scope. The gate can be integrated into an existing CI job by calling
 the command above; the repository's CI configuration has not been edited.
+
+## P18E: publication surface register
+
+The new standalone local page at `docs/attribution/disclosure.html` is linked
+from both the sources page and the provenance editor. Its entry point
+`disclosure-route.mjs` imports the strict contract (`disclosure-core.mjs`),
+publication audit (`disclosure-audit.mjs`) and bilingual messages
+(`disclosure-messages.mjs`). Files load from the same static origin; no API,
+remote tile provider, analytics script or browser storage is used. The HTML
+has a network-denying CSP and a no-script English/French fallback.
+
+The new **surface register** records where a dataset is used, local route,
+publication state, two language titles and credits, required legal notices,
+source IDs, delivery mode, explicit source/review dates, reported keyboard and
+screen reader assessments, and smallest documented interaction target. New
+surfaces begin held and every unavailable field remains `UNKNOWN`. A surface
+cannot be marked ready just because a source has a favourable licence; both
+the source inventory and the surface register are audited before publication.
+The browser accepts an inventory file, a surface-register file or a combined
+package. It exports the register, combined package and findings on demand. A
+selected import is parsed in full before replacing in-memory state. The
+original provider notices are displayed literally; translated explanatory
+text is separate.
+
+### Publication gate
+
+Call the same audit used by the browser from the command line:
+
+```sh
+node docs/attribution/disclosure-cli.mjs release-package.json --date 2026-11-15
+node docs/attribution/disclosure-cli.mjs inventory.json surfaces.json --json
+```
+
+Exit **0** means no blocking evidence gaps in the supplied files, **1** means
+publication blocked, and **2** means invalid input. The CLI does not use the
+system date when no date was supplied. The release gate blocks absent or held
+sources, missing credits or provider notices, missing licence IDs in either
+language, absent permission evidence, missing accessibility assessments,
+UNKNOWN target sizes, targets smaller than 44 pixels, and ODbL mixed with
+another licence in the same surface. An unknown dataset date stays UNKNOWN
+and is surfaced as an information finding; it is never filled automatically.
+A passing result does not establish current accessibility or external rights.
+
+To make this gate part of a repository release job, call the CLI with actual
+release documents and fail the job on its nonzero exit code. This lane does
+not change CI settings outside `docs/attribution/` and does not ship invented
+provider inventories. An offline deployment must publish the local HTML,
+CSS and JavaScript assets together. No service worker or scheduled activity
+is added.
+
+### Tests
+
+```sh
+node --test docs/attribution/disclosure-*.test.mjs
+```
+
+The 220 new Node tests cover strict parsing, mutation safety, export/import,
+combined package integrity, provider attribution notices, French text,
+UNKNOWN, 44-pixel targets, offline and keyboard metadata, live route imports,
+unsafe browser APIs, CLI exit codes and blocked publication. These are
+source-contract checks, not a substitute for manual browser and assistive
+technology reviews.

@@ -273,6 +273,9 @@ export function mountAttribution(doc, win) {
     const navigation = element(doc, 'nav');
     navigation.setAttribute('aria-label', labels.tools);
     navigation.appendChild(workbench);
+    const publication = element(doc, 'a', { text: locale === 'fr' ? 'Registre des surfaces' : 'Publication surfaces' });
+    publication.href = 'disclosure.html';
+    navigation.appendChild(publication);
     header.appendChild(navigation);
     const main = element(doc, 'main', { id: 'main-content', className: 'content' });
     main.tabIndex = -1;

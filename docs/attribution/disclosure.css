@@ -1,0 +1,39 @@
+/* Standalone, static publication register. Inherits the common palette. */
+#disclosure-root { max-width: 78rem; margin-inline: auto; padding: clamp(.75rem, 3vw, 2rem); }
+#disclosure-root header { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; align-items: center; }
+#disclosure-root nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+#disclosure-root nav a { min-height: 44px; display: inline-flex; align-items: center; }
+.disclosure-actions { display: flex; flex-wrap: wrap; gap: .7rem; margin-block: .8rem; }
+.disclosure-actions button, .disclosure-actions a { min-height: 44px; min-width: 44px; padding: .6rem .9rem; }
+.disclosure-io, .disclosure-summary, .disclosure-list, .disclosure-audit, .disclosure-editor { margin-block: 1.5rem; }
+.disclosure-io, .disclosure-editor { border: 2px solid var(--border); border-radius: .7rem; padding: 1rem; }
+.disclosure-field { display: grid; min-width: 0; gap: .3rem; margin-block: 1rem; }
+.disclosure-field label { font-weight: 650; }
+.disclosure-field input, .disclosure-field select, .disclosure-field textarea { min-height: 44px; width: 100%; max-width: 100%; padding: .55rem; font: inherit; border: 2px solid var(--border); border-radius: .35rem; background: var(--background); color: var(--foreground); }
+.disclosure-field textarea { min-height: 8rem; resize: vertical; }
+.disclosure-editor fieldset { min-width: 0; border: 1px solid var(--border); padding: 1rem; }
+.disclosure-editor legend { font-weight: 700; }
+.disclosure-filters { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: 1rem; }
+.disclosure-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); gap: 1rem; }
+.disclosure-card { border: 1px solid var(--border); border-radius: .7rem; padding: 1rem; min-width: 0; background: var(--surface); }
+.disclosure-card h3 { overflow-wrap: anywhere; }
+.disclosure-card .disclosure-actions { border-top: 1px solid var(--border); padding-block: 1rem; }
+.disclosure-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10rem), 1fr)); gap: 1rem; }
+.disclosure-fact { overflow-wrap: anywhere; }
+.disclosure-fact dt { font-weight: 700; }
+.disclosure-fact dd { margin-inline: 0; }
+.disclosure-text { white-space: pre-wrap; overflow-wrap: anywhere; }
+.disclosure-source-list, .disclosure-findings { padding-inline-start: 1.5rem; }
+.disclosure-source-list li, .disclosure-findings li { margin-block: .7rem; padding: .5rem; border-inline-start: 3px solid var(--border); overflow-wrap: anywhere; }
+.disclosure-source-list a { min-height: 44px; display: inline-flex; align-items: center; }
+.disclosure-pass, .disclosure-fail { border-inline-start: 4px solid var(--border); padding: .8rem; font-weight: 700; }
+.disclosure-fail { border-color: var(--focus); }
+.disclosure-error { padding: .8rem; border-inline-start: 4px solid var(--focus); }
+.disclosure-error:empty, .disclosure-status:empty { display: none; }
+.disclosure-status { min-height: 2.75rem; }
+.disclosure-actions button:focus-visible, .disclosure-source-list a:focus-visible,
+.disclosure-field input:focus-visible, .disclosure-field textarea:focus-visible,
+.disclosure-field select:focus-visible, #disclosure-root a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { #disclosure-root * { scroll-behavior: auto; animation-duration: .01ms; transition-duration: .01ms; } }
+@media (max-width: 38rem) { .disclosure-io, .disclosure-editor { padding: .75rem; } .disclosure-facts { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+@media print { #disclosure-root nav, .disclosure-actions, .disclosure-editor, .disclosure-filters, .disclosure-io { display: none !important; } .disclosure-card { break-inside: avoid; } }
