@@ -429,6 +429,46 @@ export const LICENCE_FINDINGS: readonly LicenceFinding[] = [
     reason: "Open Government Licence - County of Lambton, version 2.0. Not in the strict export allowlist.",
   },
   {
+    sourceId: "hamilton-park-washrooms",
+    licence: "City-of-Hamilton-Open-Data-Licence",
+    reason: "City of Hamilton Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "hamilton-drinking-fountains",
+    licence: "City-of-Hamilton-Open-Data-Licence",
+    reason: "City of Hamilton Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "hamilton-bus-stop-amenities",
+    licence: "City-of-Hamilton-Open-Data-Licence",
+    reason: "City of Hamilton Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "hamilton-pedestrian-features",
+    licence: "City-of-Hamilton-Open-Data-Licence",
+    reason: "City of Hamilton Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "hamilton-trails",
+    licence: "City-of-Hamilton-Open-Data-Licence",
+    reason: "City of Hamilton Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "hamilton-sidewalks",
+    licence: "City-of-Hamilton-Open-Data-Licence",
+    reason: "City of Hamilton Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "brampton-recreational-trails",
+    licence: "CC-BY",
+    reason: "Creative Commons Attribution, version unspecified in the registry. Not the same identifier as allowlisted CC-BY-4.0.",
+  },
+  {
+    sourceId: "peel-trails",
+    licence: "Peel-Open-Data-Licence-1.0",
+    reason: "Open Data Licence for The Regional Municipality of Peel, Version 1.0. Not in the strict export allowlist.",
+  },
+  {
     sourceId: "london-park-amenities",
     licence: "owner-permission-2026-11-16",
     reason: "Included on the repository owner's statement of 2026-11-16; City of London Open Data Terms of Use (pass-on of the terms required). Not an open licence in the strict export allowlist.",
