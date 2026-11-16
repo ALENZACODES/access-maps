@@ -32,6 +32,14 @@ export const METROLINX_AUA_SECTION_3_LEGEND =
 export const METROLINX_OGL_LINE =
   "Contains information licensed under the Open Government Licence - Ontario - Metrolinx.";
 
+/** End-user applicable-laws lines from the Metrolinx Access and Use Agreement. */
+export const METROLINX_AUA_END_USER_LAWS_EN =
+  "You must follow all applicable laws when using the transit data.";
+export const METROLINX_AUA_END_USER_LAWS_FR =
+  "Vous devez respecter toutes les lois applicables lorsque vous utilisez les données de transport en commun.";
+
+export const OSM_ATTRIBUTION_LINE = "© OpenStreetMap contributors";
+
 const OSM_URL = "https://www.openstreetmap.org/copyright";
 const METROLINX_AUA_URL =
   "https://www.gotransit.com/en/partner-with-us/software-developers";
@@ -58,7 +66,7 @@ export function buildAttributionPage(
       sourceUrl: OSM_URL,
       termsReviewedOn: "2026-11-15",
       datasetAsOf: "UNKNOWN",
-      notices: ["© OpenStreetMap contributors — ODbL 1.0"],
+      notices: [OSM_ATTRIBUTION_LINE, "Open Database License (ODbL) 1.0"],
       explanation: french
         ? "Données cartographiques d’OpenStreetMap. La licence ODbL s’applique aux données. Afficher aussi le crédit près de chaque carte qui utilise ces données."
         : "Map data from OpenStreetMap. Its data is under the ODbL. Also display attribution beside each map using this data.",
@@ -71,7 +79,12 @@ export function buildAttributionPage(
       sourceUrl: METROLINX_AUA_URL,
       termsReviewedOn: "2026-11-15",
       datasetAsOf: "UNKNOWN",
-      notices: [METROLINX_AUA_SECTION_3_LEGEND, METROLINX_OGL_LINE],
+      notices: [
+        METROLINX_AUA_SECTION_3_LEGEND,
+        METROLINX_OGL_LINE,
+        METROLINX_AUA_END_USER_LAWS_EN,
+        METROLINX_AUA_END_USER_LAWS_FR,
+      ],
       explanation: french
         ? "La section 3 de l’accord d’utilisation du GTFS exige la mention anglaise exacte et bien visible. La ligne de la licence gouvernementale ouverte est distincte. Vérifier les conditions du flux utilisé avant sa publication."
         : "GTFS Access and Use Agreement section 3 requires the exact prominent English legend. The Open Government Licence line is separate. Check the terms for the particular feed before publishing.",
