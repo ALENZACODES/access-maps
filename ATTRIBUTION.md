@@ -368,6 +368,16 @@ Datasets, retrieved 2026-11-16:
 
 Neither layer has an accessibility column. The credit is removed if the City asks.
 
+## County of Lambton accessible features
+
+Contains information licensed under the Open Government Licence - County of Lambton
+
+Open Government Licence - County of Lambton: https://county-lambton.opendata.arcgis.com/pages/open-data-license
+
+Dataset, retrieved 2026-11-16: Accessible Features, https://www.lambtongis.ca/arcgis_adaptor/rest/services/AccessibleFeatures/MapServer/1 (catalogue record Accessible Facilities at https://county-lambton.opendata.arcgis.com/maps/lambton::accessible-facilities).
+
+The listed features are the County's own phrases and are stored as published. They are not a wheelchair measurement by this project, and a feature the County does not list is stored as UNKNOWN, not as absent. The licence does not cover personal information or the County's names, crests and logos.
+
 ## Offline map tiles
 
 `data/tiles/odbl/` is OpenStreetMap data under the Open Database License (ODbL) 1.0. It is a separate file from every other licence.

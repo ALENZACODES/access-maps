@@ -1,17 +1,17 @@
 {
   "definition": "A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. Section 5.6 counts only tier 2 and tier 3 values toward 500,000. Tier 0 and tier 1 accessibility facts are reported separately and are not verified.",
-  "records": 1607563,
-  "pieces": 8003453,
-  "gaps": 49086480,
-  "derived_excluded": 4133,
+  "records": 1607644,
+  "pieces": 8004163,
+  "gaps": 49089067,
+  "derived_excluded": 4195,
   "verified_toward_500k": 0,
-  "accessibility_fact_pieces": 847727,
-  "other_populated_pieces": 6646117,
-  "accessibility_pieces": 847727,
-  "accessibility_gaps": 26827974,
-  "identity_pieces": 6646117,
+  "accessibility_fact_pieces": 847807,
+  "other_populated_pieces": 6646747,
+  "accessibility_pieces": 847807,
+  "accessibility_gaps": 26829280,
+  "identity_pieces": 6646747,
   "context_pieces": 509609,
-  "context_gaps": 4700339,
+  "context_gaps": 4700687,
   "accessibility_definition": "An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.",
   "context_definition": "Context fields are populated values that are not a physical access measurement: access, crossing, lit, foot, fee, changing_table_fee, unisex, male, female, locked, and supervised. They are not accessibility facts and they are not names or geometry.",
   "accessibility_fields": {
@@ -94,18 +94,18 @@
   },
   "by_tranche": {
     "venue": {
-      "records": 562532,
-      "pieces": 3084117,
-      "accessibility_facts": 113361,
-      "other_populated": 2874592,
+      "records": 562582,
+      "pieces": 3084630,
+      "accessibility_facts": 113399,
+      "other_populated": 2875067,
       "verified": 0,
-      "gaps": 21104759,
+      "gaps": 21106396,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 3084117
+        "0": 3084630
       },
       "gaps_by_tier": {
-        "0": 21104759
+        "0": 21106396
       },
       "pieces_by_source": {
         "ajax-playgrounds": 486,
@@ -123,6 +123,7 @@
         "kitchener-parking-lots": 507,
         "kitchener-playground-equipment": 308,
         "kitchener-playgrounds": 3235,
+        "lambton-accessible-facilities": 513,
         "markham-city-facilities": 574,
         "mto-picnic-parks": 1005,
         "newmarket-landmarks": 244,
@@ -155,59 +156,59 @@
         "windsor-playgrounds": 903
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 159584,
+        "2026-11-16": 160097,
         "2026-11-13": 2924533
       },
       "gaps_by_retrieved_at": {
-        "2026-11-16": 768700,
+        "2026-11-16": 770337,
         "2026-11-13": 20336059
       },
       "gap_fields": {
         "addr_housenumber": 479643,
         "addr_street": 478197,
         "addr_city": 519008,
-        "addr_postcode": 530270,
-        "addr_unit": 555450,
-        "opening_hours": 540864,
-        "level": 551864,
-        "operator": 516225,
-        "brand": 511195,
-        "website": 523275,
-        "wheelchair": 549862,
-        "wheelchair_description": 550501,
-        "entrance": 544899,
-        "automatic_door": 562439,
-        "door": 560497,
-        "door_width": 562532,
-        "ramp": 562503,
-        "ramp_wheelchair": 562532,
-        "ramp_stroller": 562532,
-        "step_count": 562532,
-        "incline": 562532,
-        "kerb": 562346,
-        "kerb_height": 562532,
-        "tactile_paving": 562519,
-        "handrail": 562532,
-        "width": 562502,
-        "access": 474747,
-        "surface": 499515,
-        "smoothness": 562400,
-        "lit": 554153,
-        "braille": 562532,
-        "hearing_loop": 562529,
-        "speech_output": 561084,
-        "stroller": 562481,
-        "capacity_disabled": 558555,
-        "indoor": 559528,
-        "elevator": 562519,
+        "addr_postcode": 530320,
+        "addr_unit": 555500,
+        "opening_hours": 540914,
+        "level": 551914,
+        "operator": 516275,
+        "brand": 511245,
+        "website": 523300,
+        "wheelchair": 549912,
+        "wheelchair_description": 550513,
+        "entrance": 544949,
+        "automatic_door": 562489,
+        "door": 560547,
+        "door_width": 562582,
+        "ramp": 562553,
+        "ramp_wheelchair": 562582,
+        "ramp_stroller": 562582,
+        "step_count": 562582,
+        "incline": 562582,
+        "kerb": 562396,
+        "kerb_height": 562582,
+        "tactile_paving": 562569,
+        "handrail": 562582,
+        "width": 562552,
+        "access": 474797,
+        "surface": 499565,
+        "smoothness": 562450,
+        "lit": 554203,
+        "braille": 562582,
+        "hearing_loop": 562579,
+        "speech_output": 561134,
+        "stroller": 562531,
+        "capacity_disabled": 558605,
+        "indoor": 559578,
+        "elevator": 562569,
         "ref": 533397,
         "category": 104,
         "name": 389432
       },
-      "accessibility_pieces": 113361,
-      "accessibility_gaps": 13387407,
+      "accessibility_pieces": 113399,
+      "accessibility_gaps": 13388569,
       "accessibility_by_field": {
-        "wheelchair_description": 12031,
+        "wheelchair_description": 12069,
         "capacity_disabled": 3977,
         "kerb": 186,
         "automatic_door": 93,
@@ -225,31 +226,32 @@
         "tactile_paving": 13
       },
       "context_pieces": 96164,
-      "context_gaps": 1028900,
+      "context_gaps": 1029000,
       "context_by_field": {
         "access": 87785,
         "lit": 8379
       }
     },
     "washroom": {
-      "records": 6951,
-      "pieces": 34398,
-      "accessibility_facts": 3554,
-      "other_populated": 27808,
+      "records": 6982,
+      "pieces": 34595,
+      "accessibility_facts": 3596,
+      "other_populated": 27963,
       "verified": 0,
-      "gaps": 232558,
-      "derived_excluded": 4133,
+      "gaps": 233508,
+      "derived_excluded": 4195,
       "pieces_by_tier": {
-        "0": 34398
+        "0": 34595
       },
       "gaps_by_tier": {
-        "0": 232558
+        "0": 233508
       },
       "pieces_by_source": {
         "guelph-restrooms": 328,
         "kingston-accessible-features": 390,
         "kingston-public-washrooms": 432,
         "kitchener-public-washrooms": 758,
+        "lambton-accessible-facilities": 197,
         "newmarket-park-features": 74,
         "newmarket-trail-points": 55,
         "osm-ontario": 24062,
@@ -264,64 +266,64 @@
         "windsor-park-washrooms": 210
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 9514,
+        "2026-11-16": 9711,
         "2026-11-13": 24884
       },
       "gaps_by_retrieved_at": {
-        "2026-11-16": 30947,
+        "2026-11-16": 31897,
         "2026-11-13": 201611
       },
       "gap_fields": {
-        "wheelchair": 4865,
-        "wheelchair_description": 6882,
-        "changing_table": 6324,
-        "changing_table_fee": 6948,
-        "changing_table_location": 6947,
-        "adult_changing_table": 6775,
-        "access": 5749,
-        "fee": 6219,
-        "opening_hours": 5908,
-        "unisex": 6445,
-        "male": 6654,
-        "female": 6658,
-        "supervised": 6948,
-        "level": 6724,
-        "indoor": 6825,
-        "operator": 6384,
-        "addr_housenumber": 6546,
-        "addr_street": 6525,
+        "wheelchair": 4896,
+        "wheelchair_description": 6913,
+        "changing_table": 6345,
+        "changing_table_fee": 6979,
+        "changing_table_location": 6978,
+        "adult_changing_table": 6805,
+        "access": 5780,
+        "fee": 6250,
+        "opening_hours": 5939,
+        "unisex": 6476,
+        "male": 6685,
+        "female": 6689,
+        "supervised": 6979,
+        "level": 6755,
+        "indoor": 6856,
+        "operator": 6415,
+        "addr_housenumber": 6577,
+        "addr_street": 6556,
         "addr_city": 6912,
-        "addr_postcode": 6859,
+        "addr_postcode": 6890,
         "address": 6281,
-        "description": 6384,
-        "locked": 6951,
-        "drinking_water": 6898,
-        "shower": 6929,
-        "disposal": 5444,
-        "capacity": 6946,
-        "seasonal": 6640,
-        "location": 6337,
+        "description": 6415,
+        "locked": 6982,
+        "drinking_water": 6929,
+        "shower": 6960,
+        "disposal": 5475,
+        "capacity": 6977,
+        "seasonal": 6671,
+        "location": 6368,
         "published_accessibility": 6359,
-        "building": 5885,
+        "building": 5916,
         "parent_id": 5017,
-        "status": 6431,
-        "website": 6527,
-        "posted_date": 6596,
+        "status": 6462,
+        "website": 6558,
+        "posted_date": 6627,
         "name": 5699,
         "facility_type": 1137
       },
-      "accessibility_pieces": 3554,
-      "accessibility_gaps": 38152,
+      "accessibility_pieces": 3596,
+      "accessibility_gaps": 38296,
       "accessibility_by_field": {
-        "published_accessibility": 592,
+        "published_accessibility": 623,
+        "changing_table": 637,
+        "adult_changing_table": 177,
         "wheelchair": 2086,
-        "changing_table": 627,
         "wheelchair_description": 69,
-        "changing_table_location": 4,
-        "adult_changing_table": 176
+        "changing_table_location": 4
       },
       "context_pieces": 3036,
-      "context_gaps": 52572,
+      "context_gaps": 52820,
       "context_by_field": {
         "male": 297,
         "female": 293,
@@ -1385,6 +1387,23 @@
         "2026-11-16": 3235
       },
       "accessibility_pieces": 582
+    },
+    "lambton-accessible-facilities": {
+      "records": 81,
+      "pieces": 710,
+      "gaps": 2587,
+      "derived_excluded": 62,
+      "pieces_by_tier": {
+        "0": 710
+      },
+      "pieces_by_tranche": {
+        "venue": 513,
+        "washroom": 197
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 710
+      },
+      "accessibility_pieces": 80
     },
     "markham-city-facilities": {
       "records": 82,
@@ -4236,6 +4255,26 @@
       "bytes": 769
     },
     {
+      "file": "data/venues/lambton-accessible-facilities/n42.5_w082.0.ndjson.gz",
+      "bytes": 1286
+    },
+    {
+      "file": "data/venues/lambton-accessible-facilities/n42.5_w082.5.ndjson.gz",
+      "bytes": 4270
+    },
+    {
+      "file": "data/venues/lambton-accessible-facilities/n42.5_w083.0.ndjson.gz",
+      "bytes": 864
+    },
+    {
+      "file": "data/venues/lambton-accessible-facilities/n43.0_w082.0.ndjson.gz",
+      "bytes": 1516
+    },
+    {
+      "file": "data/venues/lambton-accessible-facilities/n43.0_w082.5.ndjson.gz",
+      "bytes": 1731
+    },
+    {
       "file": "data/venues/markham-city-facilities/n43.5_w079.5.ndjson.gz",
       "bytes": 6797
     },
@@ -6682,6 +6721,26 @@
     {
       "file": "data/washrooms/kitchener-public-washrooms/n43.5_w080.5.ndjson.gz",
       "bytes": 834
+    },
+    {
+      "file": "data/washrooms/lambton-accessible-facilities/n42.5_w082.0.ndjson.gz",
+      "bytes": 879
+    },
+    {
+      "file": "data/washrooms/lambton-accessible-facilities/n42.5_w082.5.ndjson.gz",
+      "bytes": 2451
+    },
+    {
+      "file": "data/washrooms/lambton-accessible-facilities/n42.5_w083.0.ndjson.gz",
+      "bytes": 661
+    },
+    {
+      "file": "data/washrooms/lambton-accessible-facilities/n43.0_w082.0.ndjson.gz",
+      "bytes": 1046
+    },
+    {
+      "file": "data/washrooms/lambton-accessible-facilities/n43.0_w082.5.ndjson.gz",
+      "bytes": 790
     },
     {
       "file": "data/washrooms/newmarket-park-features/n44.0_w079.5.ndjson.gz",

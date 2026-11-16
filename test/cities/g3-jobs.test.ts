@@ -6,7 +6,7 @@ import { root } from "./g3-helpers.js";
 
 const NEVER_REQUESTED = /phone|fax|email|e_mail|contact|^source$|create_by|update_by|created_user|last_edited_user|inspectedby|memorial_name/i;
 
-describe("city import jobs for Kitchener, Waterloo, Cambridge, Guelph and Windsor", () => {
+describe("city import jobs for Kitchener, Waterloo, Cambridge, Guelph, Windsor and the County of Lambton", () => {
   const registry = readRegistry(root);
 
   it("each layer job has a tier 0 municipal registry entry retrieved on 2026-11-16 with a licence and attribution", () => {
@@ -39,7 +39,7 @@ describe("city import jobs for Kitchener, Waterloo, Cambridge, Guelph and Windso
   it("source ids start with the city slug and are unique", () => {
     const ids = [...G3_LAYER_JOBS.map((job) => job.id), ...G3_GTFS];
     expect(new Set(ids).size).toBe(ids.length);
-    for (const id of ids) expect(id).toMatch(/^(?:kitchener|waterloo|cambridge|guelph|windsor)-[a-z-]+$/);
+    for (const id of ids) expect(id).toMatch(/^(?:kitchener|waterloo|cambridge|guelph|windsor|lambton)-[a-z-]+$/);
   });
 
   it("no job requests a contact, editor or inspector column", () => {

@@ -1231,6 +1231,21 @@
       "notes": "Every row has WALK_TYPE SIDEWALK, MUP (multi-use pathway) or PATH, so each line is a place to walk off the roadway. The layer has no surface, width, slope or curb column, so those fields stay UNKNOWN. The ArcGIS item licenseInfo links https://ottawa.ca/en/city-hall/get-know-your-city/open-data#open-data-licence-version-2-0 (checked 2026-11-16). The licence text was read at https://www.ottawa.ca/opendata on 2026-11-16 for the first Ottawa sources in this registry."
     },
     {
+      "id": "lambton-accessible-facilities",
+      "name": "County of Lambton Accessible Features (Accessible Facilities)",
+      "kind": "municipal",
+      "url": "https://county-lambton.opendata.arcgis.com/maps/lambton::accessible-facilities",
+      "download_url": "https://www.lambtongis.ca/arcgis_adaptor/rest/services/AccessibleFeatures/MapServer/1",
+      "licence_name": "Open Government Licence - County of Lambton (Open Government License 2.0 - County of Lambton)",
+      "licence_url": "https://county-lambton.opendata.arcgis.com/pages/open-data-license",
+      "licence_id": "OGL-Lambton-2.0",
+      "attribution": "Contains information licensed under the Open Government Licence - County of Lambton",
+      "retrieved_at": "2026-11-16",
+      "tier": 0,
+      "tier_note": "Municipal open data is tier 0. It is not shown as verified.",
+      "notes": "50 County and municipal facilities, 20 of them in the City of Sarnia, with the accessibility features the County lists for each. Each filled ACC column holds the County's own phrase and is stored as a COLUMN=phrase pair in wheelchair_description. An empty column stays UNKNOWN and is not read as no. wheelchair, elevator and ramp stay UNKNOWN. When a washroom feature is listed, a washroom record is added at the facility point (derived coordinate) with the County's washroom phrase in published_accessibility; a listed baby or adult change table is stored as yes. DESC_HTML is not requested. Licence text read on 2026-11-16 from the County hub page Open Data License (ArcGIS item c7c87d629f604ecab2ace7115bce6780): it grants a worldwide, royalty-free, perpetual, non-exclusive licence to copy, modify, publish, translate, adapt, distribute or otherwise use the Information for any lawful purpose, asks for the attribution statement, and excludes personal information and County names, crests and logos. The catalogue record for this layer is the web map Accessible Facilities (ArcGIS item 2d8aa30ab7674595b39350103d0853df), whose own licence field is empty; the County's open-data home page says anyone can use the data on the platform and links that licence as the answer to How can I use the data."
+    },
+    {
       "id": "gtfs-drt",
       "name": "Durham Region Transit GTFS Static Schedule",
       "kind": "gtfs",

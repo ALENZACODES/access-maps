@@ -22,7 +22,7 @@
   {
     "name": "City of London trails, sidewalks, and parking",
     "url": "https://www.london.ca/",
-    "reason": "The City of London Open Data Terms of Use grant a worldwide royalty-free non-exclusive licence to use, modify, and distribute, but the City may cancel or suspend the licence and the terms include an indemnity. Redistribution must pass the terms on. Legal review is required, so these datasets were not imported."
+    "reason": "The City of London Open Data Terms of Use grant a worldwide royalty-free non-exclusive licence to use, modify, and distribute, but the City may cancel or suspend the licence and the terms include an indemnity. Redistribution must pass the terms on. Legal review is required, so these datasets were not imported. Re-read on 2026-11-16 at https://london.maps.arcgis.com/sharing/rest/content/items/e31458fd0c7e41dd9f93144a9550781d/data (linked from the catalogue records at https://opendata.london.ca): the terms are unchanged. The catalogue (236 records) lists Sidewalks, Walkways, Trails, Park Amenities, Off-Street Parking, On-Street Parking, Parking Inventory, Pedestrian Crossovers, Signalized Intersections, Libraries and Public Pools under those terms; none was retrieved. London Transit Commission GTFS is already imported as gtfs-ltc under LTC's own terms (retrieved 2026-11-13, not retrieved again in this pass)."
   },
   {
     "name": "City of Mississauga public washrooms and community centres",
@@ -243,6 +243,41 @@
     "name": "Town of Innisfil open data",
     "url": "https://opendata-innisfil.opendata.arcgis.com/",
     "reason": "Checked 2026-11-16. Innisfil ranks 50th by 2021 Census population (sources/ontario-top-50-municipalities.json). The Town's open-data hub answered HTTP 401 with the message that the subscription is canceled and the item is not accessible. The Town's ArcGIS organization lists two public feature services (Parks and one story layer) with a blank licence field. https://www.innisfil.ca/opendata returned HTTP 404. No licence text was available, so nothing was imported."
+  },
+  {
+    "name": "Municipality of Chatham-Kent open data",
+    "url": "https://opendata.chatham-kent.ca/",
+    "reason": "Checked on 2026-11-16. The catalogue lists 40 records: boundaries, wards, address points, land use and zoning, drainage, housing and immigration reports, apps and stories. None is a washroom, parking, facility, park amenity, sidewalk, signal or transit file, so there is no accessibility-relevant file to import. 39 of the 40 records have an empty licence field and one reads See open data website for the terms of use; the terms page was not read because nothing was importable. No Chatham-Kent transit GTFS feed is listed in the catalogue, and none was searched for elsewhere."
+  },
+  {
+    "name": "City of Sarnia open data and Sarnia Transit",
+    "url": "https://city-of-sarnia.hub.arcgis.com/",
+    "reason": "Checked on 2026-11-16 under the Open Government Licence - City of Sarnia (text read on the catalogue records). The catalogue lists 21 records: zoning layers, addresses, roads, sewers, watermains, hydrants, buildings, school crossings, bikeway facilities, bike comfortability and parks. Parks Open Data (107 polygons) has yes or no amenity columns and no accessibility column. No washroom, parking, facility, sidewalk or signal file is listed, so nothing was imported from the City. No Sarnia Transit GTFS record is in the catalogue and a web search on 2026-11-16 found no publisher download page for one; no feed was retrieved. County of Lambton accessible features for facilities in Sarnia are imported as lambton-accessible-facilities."
+  },
+  {
+    "name": "County of Lambton libraries map, points of interest and charging stations",
+    "url": "https://county-lambton.opendata.arcgis.com/",
+    "reason": "Checked on 2026-11-16 under the Open Government Licence - County of Lambton (text read at https://county-lambton.opendata.arcgis.com/pages/open-data-license). The catalogue lists 7 records. Points of Interest, Street Centreline and Address Points have no accessibility column and were not retrieved. Lambton Libraries is a web map with no data layer of its own in the catalogue. The Charging Stations and EV Charge Stations layers of the Accessible Features service are not accessibility data. The Accessible Features layer is imported as lambton-accessible-facilities."
+  },
+  {
+    "name": "City of Woodstock and County of Oxford",
+    "url": "https://public-OxfordCounty.opendata.arcgis.com/",
+    "reason": "Checked on 2026-11-16. No City of Woodstock open-data portal was found: a search of ArcGIS Online hub sites and a web search returned none, and the City transit pages publish route and schedule pages with no GTFS download found. The County of Oxford hub lists 21 records (parcels, addresses, roads, zoning, contours, trails and similar). 17 have an empty licence field and the others carry a reference-and-information notice that grants no right to copy or redistribute. Oxford County Trails (103 lines) has difficulty, facilities and material columns. UNKNOWN licence. Not imported."
+  },
+  {
+    "name": "City of St. Thomas and County of Elgin",
+    "url": "https://elgin-county-open-data-Elgin-County.hub.arcgis.com/",
+    "reason": "Checked on 2026-11-16. No City of St. Thomas open-data portal was found: a search of ArcGIS Online hub sites and a web search returned none, and no St. Thomas transit GTFS download was found. The County of Elgin open-data hub lists 14 records (boundaries, civic numbers, road networks, building footprints, library points, natural heritage, railway and trail lines). 13 have an empty licence field and one carries an as-is disclaimer that grants no right to copy or redistribute; no record title names washrooms, parking, sidewalks or accessibility, and the Elgin Library columns were not inspected. St. Thomas is a separated city outside the County's government. UNKNOWN licence. Not imported."
+  },
+  {
+    "name": "Norfolk County open data",
+    "url": "https://opendata.norfolkcounty.ca/",
+    "reason": "On 2026-11-16 https://opendata.norfolkcounty.ca/ and its catalogue feed returned HTTP 403 to the pipeline with a browser-challenge page (Just a moment...), so the catalogue and its licence could not be read. https://www.norfolkcounty.ca/ returned HTTP 200. An ArcGIS Online hub named Norfolk County, ON sits at a third-party address (norfolkon-realtermenergy.hub.arcgis.com) and was not used. No file was retrieved. Not imported."
+  },
+  {
+    "name": "Haldimand County open data",
+    "url": "https://opendata-haldimand.hub.arcgis.com/",
+    "reason": "Checked on 2026-11-16. The catalogue lists 11 records (lots and concessions, building footprints, parks, trails, boundary, water features, wards and roads), each with an empty licence field; the hub site item itself carries the text CC-BY-SA with no version and no link, and no licence page was found. Parks (62 polygons) has a name, size and address and no accessibility column. The HaldimandTrails service returned error 404 (Service not found). No accessibility-relevant file with a stated licence was found. Not imported."
   },
   {
     "name": "Durham Region Transit Bus Boarding Points and other Durham Region layers",

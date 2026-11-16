@@ -424,6 +424,11 @@ export const LICENCE_FINDINGS: readonly LicenceFinding[] = [
     reason: "Open Government Licence – City of Ottawa, version 2.0. Not in the strict export allowlist.",
   },
   {
+    sourceId: "lambton-accessible-facilities",
+    licence: "OGL-Lambton-2.0",
+    reason: "Open Government Licence - County of Lambton, version 2.0. Not in the strict export allowlist.",
+  },
+  {
     sourceId: "gtfs-drt",
     licence: "Durham-Region-Open-Data-Licence-1.0",
     reason: "Region of Durham Open Data Licence, version 1.0. Not in the strict export allowlist.",
