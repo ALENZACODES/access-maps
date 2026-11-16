@@ -1,4 +1,5 @@
 import { pathToFileURL } from "node:url";
+import { mapCambridgeSidewalk, mapCambridgeTrail } from "../src/municipal/cities/cambridge.js";
 import {
   mapLondonLibrary,
   mapLondonOffStreetParking,
@@ -11,7 +12,8 @@ import {
 import { runLayerJobs, type ImportedSource, type LayerJob } from "./import-cities-g3.js";
 
 /**
- * Importer for the City of London layers retrieved on 2026-11-16.
+ * Importer for the City of London layers and the City of Cambridge Trails and Pedestrian
+ * Network layers retrieved on 2026-11-16.
  *
  * These sources are included on the repository owner's statement of 2026-11-16 that their
  * use is permitted; sources/registry.json records that basis and, where the publisher has
@@ -60,6 +62,18 @@ export const G5_LAYER_JOBS: readonly LayerJob[] = [
     tranche: "path",
     fields: ["Type", "PathType", "Status"],
     map: mapLondonTrail,
+  },
+  {
+    id: "cambridge-trails",
+    tranche: "path",
+    fields: ["TRAIL_TYPE", "STATUS", "SURFACE_MATERIAL", "WIDTH", "ACCESSIBLE"],
+    map: mapCambridgeTrail,
+  },
+  {
+    id: "cambridge-sidewalks",
+    tranche: "path",
+    fields: ["ASSET_TYPE", "STATUS", "SURFACE_MATERIAL", "WIDTH"],
+    map: mapCambridgeSidewalk,
   },
 ];
 
