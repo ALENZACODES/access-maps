@@ -49,9 +49,12 @@ describe('stale-date and licence report', () => {
   });
 
   it('treats a still-valid licence past the review window as informational only', () => {
+    const policies: Record<string, LicencePolicy> = {
+      'OGL-ON-1.0': { id: 'OGL-ON-1.0', expiresOn: null, reviewEveryDays: 30 },
+    };
     const report = reportStaleAndMissingLicences([
       { ...record, observedOn: '2026-10-15' },
-    ], options);
+    ], { ...options, policies });
     expect(report.issues).toHaveLength(1);
     expect(report.issues[0]).toMatchObject({
       code: 'LICENCE_REVIEW_DUE',
