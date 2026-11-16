@@ -15,7 +15,7 @@
     "build:timetables": "node --experimental-strip-types scripts/build-gtfs-timetables.ts",
     "check:schema": "node scripts/check-schema-source.mjs",
     "lint": "tsc --noEmit && npm run lint -w @access-maps/journey && npm run lint -w @access-maps/map-ui && npm run lint -w @access-maps/journey-data && tsc --noEmit -p packages/places-shell/tsconfig.json",
-    "test": "vitest run && tsx --test tools/data-qa/p15c-pipeline.test.ts tools/data-qa/p15c-cli.test.ts tools/data-qa/p15d-release.test.ts tools/data-qa/p15d-pages.test.ts tools/data-qa/p15d-closure.test.ts tools/data-qa/p15d-cli.test.ts && npm test -w @access-maps/journey && npm test -w @access-maps/map-ui && npm test -w @access-maps/journey-data",
+    "test": "vitest run && tsx --test tools/data-qa/p15c-pipeline.test.ts tools/data-qa/p15c-cli.test.ts tools/data-qa/p15d-*.test.ts tools/data-qa/p15e-*.test.ts && npm test -w @access-maps/journey && npm test -w @access-maps/map-ui && npm test -w @access-maps/journey-data",
     "demo": "npm run demo -w @access-maps/map-ui",
     "test:e2e": "npm run test:e2e -w @access-maps/map-ui",
     "validate:sample": "tsx scripts/validate-sample.ts",
@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.19.1",
-    "@types/react": "^19.3.0",
+    "@types/react": "^19.3.1",
     "react": "^19.3.1",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",

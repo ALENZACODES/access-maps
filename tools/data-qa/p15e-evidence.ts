@@ -5,7 +5,7 @@ import {
   makeEmitter, requiredString, safeIdentifier, sameStamp, validAccess,
   validSilo, validSourceStamp, type AccessValue, type FindingReport, type SourceStamp,
   type SiloName,
-} from './p15e-core.ts';
+} from './p15e-core.js';
 
 export type Feature = 'entrance' | 'washroom' | 'lift' | 'parking' | 'path' | 'seating';
 export type EvidenceKind = 'OBSERVATION' | 'CORRECTION' | 'WITHDRAWAL';

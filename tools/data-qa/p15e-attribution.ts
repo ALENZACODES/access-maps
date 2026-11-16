@@ -4,7 +4,7 @@ import {
   hasPiiLikeText, hasUnsafeContent, heldSource, licenceAllowed, localReference,
   makeEmitter, requiredString, safeIdentifier, validSilo, validSourceStamp,
   type Finding, type FindingReport, type SiloName, type SourceStamp,
-} from './p15e-core.ts';
+} from './p15e-core.js';
 
 export interface AttributionAsset {
   readonly id: string;

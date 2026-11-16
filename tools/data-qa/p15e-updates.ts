@@ -5,7 +5,7 @@ import {
   safeIdentifier, validAccess, validSilo, validSourceStamp,
   type AccessValue, type Finding, type FindingReport, type SiloName,
   type SourceStamp,
-} from './p15e-core.ts';
+} from './p15e-core.js';
 
 export interface OfflineEntry {
   readonly id: string;

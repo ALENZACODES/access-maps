@@ -3,7 +3,7 @@ import {
   asArray, dictionary, exactFields, finish, hasPiiLikeText, hasUnsafeContent,
   localReference, makeEmitter, requiredString, safeIdentifier,
   type Finding, type FindingReport,
-} from './p15e-core.ts';
+} from './p15e-core.js';
 
 export type UIKind = 'text' | 'action' | 'status' | 'link' | 'heading' | 'description';
 export interface LocalizedEntry {
@@ -101,7 +101,7 @@ function punctuationIssues(text: string): Array<'FR_APOSTROPHE' | 'FR_COLON' | '
   for (let i = 0; i < text.length; i++) {
     const char = text[i];
     if (char === ':' && i > 0 && text[i - 1] !== '\u00a0') errors.push('FR_COLON');
-    if (';!?'.includes(char) && i > 0 && text[i - 1] !== '\u202f') errors.push('FR_PUNCT');
+    if (char !== undefined && ';!?'.includes(char) && i > 0 && text[i - 1] !== '\u202f') errors.push('FR_PUNCT');
     if (char === '«' && text[i + 1] !== '\u202f') errors.push('FR_GUILLEMET');
     if (char === '»' && text[i - 1] !== '\u202f') errors.push('FR_GUILLEMET');
   }

@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { auditLocaleCatalog, type LocaleCatalog, type LocalizedEntry } from './p15e-locales.ts';
+import { auditLocaleCatalog, type LocaleCatalog, type LocalizedEntry } from './p15e-locales.js';
 
 const label = (key: string, kind: LocalizedEntry['kind'], en: string, fr: string,
   targetPx?: number): LocalizedEntry => ({

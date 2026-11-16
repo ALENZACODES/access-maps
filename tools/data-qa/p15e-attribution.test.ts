@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { auditAttribution, type AttributionLedger } from './p15e-attribution.ts';
+import { auditAttribution, type AttributionLedger } from './p15e-attribution.js';
 
 const source = {
   source: 'Ontario open mapping', licence: 'OGL-ON-1.0',

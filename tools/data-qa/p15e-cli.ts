@@ -1,9 +1,9 @@
 /** Local-only P15E audit dispatcher, reachable from the existing P15D CLI. */
-import { auditAttribution } from './p15e-attribution.ts';
-import { auditEvidence } from './p15e-evidence.ts';
-import { auditLocaleCatalog } from './p15e-locales.ts';
-import { auditOfflineUpdate } from './p15e-updates.ts';
-import { textReport, type FindingReport, type Locale } from './p15e-core.ts';
+import { auditAttribution } from './p15e-attribution.js';
+import { auditEvidence } from './p15e-evidence.js';
+import { auditLocaleCatalog } from './p15e-locales.js';
+import { auditOfflineUpdate } from './p15e-updates.js';
+import { textReport, type FindingReport, type Locale } from './p15e-core.js';
 
 export type P15eCommand = 'evidence' | 'locales' | 'updates' | 'credits';
 export interface P15eRequest {

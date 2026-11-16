@@ -106,10 +106,3 @@ describe('P15D CLI command wiring', () => {
     assert.match(context.output.join(''), /NO_ENTRY/);
   });
 });
-
-// Imported by the already-wired CI regression test entry point.
-import './p15e-evidence.test.ts';
-import './p15e-locales.test.ts';
-import './p15e-updates.test.ts';
-import './p15e-cli.test.ts';
-import './p15e-attribution.test.ts';

@@ -1,5 +1,5 @@
 /** Shared strict parsing primitives for deterministic offline audit gates. */
-import { OPEN_LICENCES } from './index.ts';
+import { OPEN_LICENCES } from './index.js';
 
 export type Locale = 'en' | 'fr';
 export type SiloName = 'open' | 'odbl';

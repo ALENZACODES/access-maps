@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { parseP15e, runP15e } from './p15e-cli.ts';
-import { runP15d } from './p15d-cli.ts';
+import { parseP15e, runP15e } from './p15e-cli.js';
+import { runP15d } from './p15d-cli.js';
 
 function mock(files: Record<string, unknown>) {
   const output: string[] = [];

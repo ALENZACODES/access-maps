@@ -32,8 +32,8 @@ jobs:
           fi
       - run: npm ci
       - name: Run offline data QA regression suite
-        run: npx tsx --test tools/data-qa/p15c-pipeline.test.ts tools/data-qa/p15c-cli.test.ts tools/data-qa/p15d-release.test.ts tools/data-qa/p15d-pages.test.ts tools/data-qa/p15d-closure.test.ts tools/data-qa/p15d-cli.test.ts
+        run: npx tsx --test tools/data-qa/p15c-pipeline.test.ts tools/data-qa/p15c-cli.test.ts tools/data-qa/p15d-*.test.ts tools/data-qa/p15e-*.test.ts
       - name: Check callable export gate entry point
         run: npx tsx tools/data-qa/p15c-cli.ts --help
-      - name: Check P15D release, shell and closure gate entry point
+      - name: Check release, offline and evidence CLI entry point
         run: npx tsx tools/data-qa/p15d-cli.ts --help

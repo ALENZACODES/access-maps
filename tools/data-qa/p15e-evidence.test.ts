@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { auditEvidence, type Decision, type EvidencePackage, type Observation } from './p15e-evidence.ts';
+import { auditEvidence, type Decision, type EvidencePackage, type Observation } from './p15e-evidence.js';
 
 const stamp = {
   source: 'Town open mapping', licence: 'OGL-ON-1.0', observedOn: '2026-11-10',

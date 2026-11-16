@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 /** P15D release and offline shell checks, wired into the same on-push CI suite. */
 import { readFile, writeFile } from 'node:fs/promises';
+import { runP15e, p15eHelp } from './p15e-cli.js';
 import { auditOfflinePages, pageText, type PageInput } from './p15d-pages.js';
 import { compareOfflineReleases, releaseText, type ReleasePolicy } from './p15d-release.js';
 import { auditOfflineClosure, closureText, type ClosureOptions } from './p15d-closure.js';

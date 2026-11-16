@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { auditOfflineUpdate, type OfflineEntry, type OfflinePlan } from './p15e-updates.ts';
+import { auditOfflineUpdate, type OfflineEntry, type OfflinePlan } from './p15e-updates.js';
 
 const source = {
   source: 'Community open inventory', licence: 'OGL-ON-1.0',
