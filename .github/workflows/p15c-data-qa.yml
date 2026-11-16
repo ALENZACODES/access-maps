@@ -40,3 +40,8 @@ jobs:
 
       - name: Check P15G local publication gate
         run: npx tsx tools/data-qa/p15g-cli.ts --help
+
+      - name: Run offline publication regression suite
+        run: npx tsx --test tools/data-qa/p15h-*.test.ts
+      - name: Check offline regression CLI entry point
+        run: npx tsx tools/data-qa/p15h-cli.ts --help
