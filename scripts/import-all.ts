@@ -10,6 +10,7 @@ const repoRoot = process.cwd();
 await importMunicipal(repoRoot);
 await importMoreMunicipal(repoRoot);
 await importCityOpenData(repoRoot);
+// Also downloads the Kingston Transit and GOVA Transit zips that importGtfs reads.
 await importCitiesG4(repoRoot);
 await importGtfs(repoRoot);
 await importOsm(repoRoot);

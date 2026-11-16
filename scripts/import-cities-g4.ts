@@ -2,10 +2,9 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 import path from "node:path";
 import { acceptId, commitRecord, resetSourceDirs } from "../src/io/commit.js";
-import { parseCsv } from "../src/io/csv.js";
 import { PartitionWriter } from "../src/io/partition-writer.js";
-import { findZipEntry, listZip, readZipText } from "../src/io/zip.js";
-import { indexLevels, mapGtfsPathway, mapGtfsStop, wheelchairStopsFromRows } from "../src/gtfs/map.js";
+import { importGtfs } from "./import-gtfs.js";
+import { GTFS_FEEDS } from "../src/gtfs/feeds.js";
 import type { RawFeature } from "../src/municipal/cities/g4-helpers.js";
 import { GREATER_SUDBURY_JOBS } from "../src/municipal/cities/greater-sudbury.js";
 import { KINGSTON_JOBS } from "../src/municipal/cities/kingston.js";
@@ -24,7 +23,10 @@ export interface CityLayerJob {
   map: (feature: RawFeature, ctx: Provenance) => DataRecord | DataRecord[] | null;
 }
 
-/** Static GTFS feeds published by the cities in this file. Stops and pathways only, tier 1. */
+/**
+ * Static GTFS feeds published by the cities in this file. This script only downloads the
+ * zips; scripts/import-gtfs.ts maps them (tier 1) with every other feed in GTFS_FEEDS.
+ */
 export const G4_GTFS_FEEDS: readonly string[] = ["gtfs-kingston", "gtfs-gova"];
 
 export const G4_LAYER_JOBS: readonly CityLayerJob[] = [
@@ -83,37 +85,9 @@ export async function importCitiesG4(repoRoot: string, only: readonly string[] =
   for (const id of G4_GTFS_FEEDS) {
     if (only.length > 0 && !only.includes(id)) continue;
     const source = requireSource(registry, id);
-    if (source.kind !== "gtfs" || source.tier !== 1) throw new Error(`${id} must be a tier 1 gtfs source`);
-    const zipPath = await cachedZip(repoRoot, id, source.download_url);
-    resetSourceDirs(path.join(repoRoot, "data"), source.id, ["transit", "path"]);
-    const ctx: Provenance = { source_id: source.id, licence: source.licence_id, retrieved_at: source.retrieved_at, tier: 1 };
-    const entries = listZip(zipPath);
-    const stopsEntry = findZipEntry(entries, "stops.txt");
-    if (!stopsEntry) throw new Error(`${id} has no stops.txt`);
-    const levelsEntry = findZipEntry(entries, "levels.txt");
-    const pathwaysEntry = findZipEntry(entries, "pathways.txt");
-    const levels = levelsEntry ? indexLevels(parseCsv(readZipText(zipPath, levelsEntry)).rows) : new Map();
-    const stopRows = parseCsv(readZipText(zipPath, stopsEntry)).rows;
-    const wheelchairStops = wheelchairStopsFromRows(stopRows);
-    const seen = new Set<string>();
-    const stats: G4Imported = { source_id: source.id, records: 0, skipped: 0, no_coordinate: 0, duplicate_ids: 0 };
-    const rows: (DataRecord | null)[] = stopRows.map((row) => mapGtfsStop(row, levels, ctx, source.id, wheelchairStops));
-    if (pathwaysEntry) {
-      for (const row of parseCsv(readZipText(zipPath, pathwaysEntry)).rows) rows.push(mapGtfsPathway(row, ctx, source.id));
-    }
-    for (const record of rows) {
-      if (!record) {
-        stats.skipped += 1;
-        continue;
-      }
-      if (!acceptId(seen, `${record.tranche}:${record.id}`)) {
-        stats.duplicate_ids += 1;
-        continue;
-      }
-      await commitRecord(record, source.id, writer, validators);
-      stats.records += 1;
-    }
-    sources.push(stats);
+    const feed = GTFS_FEEDS.find((item) => item.id === id);
+    if (!feed) throw new Error(`${id} is not in GTFS_FEEDS`);
+    await cachedZip(path.join(repoRoot, feed.file), source.download_url);
   }
   await writer.close();
   console.log(JSON.stringify({ sources }));
@@ -131,17 +105,15 @@ async function cachedLayer(repoRoot: string, id: string, url: string): Promise<R
   return features;
 }
 
-async function cachedZip(repoRoot: string, id: string, url: string): Promise<string> {
-  const directory = path.join(repoRoot, ".cache", "gtfs");
-  mkdirSync(directory, { recursive: true });
-  const file = path.join(directory, `${id}.zip`);
-  if (existsSync(file)) return file;
+/** Downloads a GTFS zip to the path scripts/import-gtfs.ts reads, when the file is absent. */
+async function cachedZip(file: string, url: string): Promise<void> {
+  mkdirSync(path.dirname(file), { recursive: true });
+  if (existsSync(file)) return;
   const response = await fetch(url, { headers: { "User-Agent": USER_AGENT, Accept: "*/*" } });
   if (!response.ok) throw new Error(`${url} HTTP ${response.status}`);
   const body = Buffer.from(await response.arrayBuffer());
   if (body[0] !== 0x50 || body[1] !== 0x4b) throw new Error(`${url} did not return a zip file`);
   writeFileSync(file, body);
-  return file;
 }
 
 async function getJson(url: URL): Promise<Record<string, unknown>> {
@@ -188,5 +160,8 @@ async function fetchLayer(layer: string): Promise<RawFeature[]> {
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-  await importCitiesG4(process.cwd(), process.argv.slice(2));
+  const only = process.argv.slice(2);
+  await importCitiesG4(process.cwd(), only);
+  const feeds = G4_GTFS_FEEDS.filter((id) => only.length === 0 || only.includes(id));
+  if (feeds.length > 0) await importGtfs(process.cwd(), feeds);
 }
