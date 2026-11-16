@@ -124,3 +124,53 @@ export function buildAttributionPage(
     entries: selected,
   };
 }
+
+/** Release-evidence tools use the same source catalogue as the live map UI. */
+export {
+  parseReleaseEvidence,
+  parseReleaseJson,
+  canonicalReleaseJson,
+  createEmptyRelease,
+  updateSource,
+  updateSurface,
+  removeSource,
+  removeSurface,
+  sourceUsage,
+  unusedSources,
+  unknownDates,
+  EvidenceInputError,
+} from "./evidence-contract.js";
+export type {
+  ReleaseEvidence,
+  SourceEvidence,
+  SurfaceEvidence,
+  EvidenceState,
+  SourceFamily,
+  PublicationState,
+  DisplayMode,
+} from "./evidence-contract.js";
+export {
+  auditRelease,
+  findingsForSurface,
+  findingsForSource,
+  countByCode,
+  summarizeBlockingPaths,
+  canPublishSurface,
+} from "./evidence-audit.js";
+export type { AuditFinding, AuditResult, AuditOptions, AuditCode } from "./evidence-audit.js";
+export {
+  compareReleaseEvidence,
+  changesForSource,
+  changesForSurface,
+  listBlockingChanges,
+  distinctAffectedSurfaces,
+  changedFields,
+} from "./evidence-changes.js";
+export type { ComparisonResult, EvidenceChange, ChangeKind } from "./evidence-changes.js";
+export {
+  renderAuditText,
+  renderAuditHtml,
+  renderChangesText,
+  renderChangesHtml,
+  escapeHtml,
+} from "./evidence-report.js";
