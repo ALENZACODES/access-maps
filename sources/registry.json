@@ -1816,6 +1816,21 @@
       "notes": "PARK_TYPE is stored as the category. The stored point is the vertex mean of the park outline, not an entrance. The layer has no accessibility column, so every accessibility field stays UNKNOWN. The ArcGIS item's licence field reads CC0 on each County of Brant open-data item. The County's Open Data page (https://www.brant.ca/opendata), read on 2026-11-16, describes open data as data that can be freely used, reused and redistributed by anyone and links the County's open-data portal. CC0 1.0 Universal legal code read on 2026-11-16 at https://creativecommons.org/publicdomain/zero/1.0/legalcode.en: the affirmer waives all copyright and related rights in the work worldwide. No attribution is required; the attribution line is given as a courtesy."
     },
     {
+      "id": "orangeville-parks",
+      "name": "Town of Orangeville Parks (Parks and Recreation Areas)",
+      "kind": "municipal",
+      "url": "https://www.arcgis.com/home/item.html?id=887861850a3c402dae4f3ac8bff88e1f",
+      "download_url": "https://services3.arcgis.com/pCmV4YWmyIH9CmGq/arcgis/rest/services/Parks/FeatureServer/0",
+      "licence_name": "Open Government Licence – Orangeville 1.0",
+      "licence_url": "https://www.arcgis.com/sharing/rest/content/items/34a5906b55564294b59f737eb875a7bb/data",
+      "licence_id": "OGL-Orangeville-1.0",
+      "attribution": "Contains information licenced under the Open Government Licence – Orangeville.",
+      "retrieved_at": "2026-11-16",
+      "tier": 0,
+      "tier_note": "Municipal open data is tier 0. It is not shown as verified.",
+      "notes": "36 park points with a street address. ADACOMPLY and ACCESSPLAYGROUND are the Town's own Yes/No columns and are kept as COLUMN=value text in wheelchair_description; they are not turned into a wheelchair yes or no. When RESTROOM is Yes (6 parks), a washroom record is added at the park point with derived coordinates; RESTROOM No adds nothing. The other amenity columns (playground, sports fields, picnic, parking lot and similar) are not stored. Licence read on 2026-11-16: Open Government Licence – Orangeville, version 1.0, published on the Town's open-data site as ArcGIS item 34a5906b55564294b59f737eb875a7bb (https://www.arcgis.com/sharing/rest/content/items/34a5906b55564294b59f737eb875a7bb/data). It is based on the Open Government Licence – Ontario 1.0 and grants a worldwide, royalty-free, perpetual, non-exclusive licence to copy, modify, publish, translate, adapt, distribute or otherwise use the Information for any lawful purpose, including commercial purposes, with the attribution statement above. It excludes personal information and the Town's names, crests and logos. The item's licence field links Open Government Licence - Orangeville at https://data.orangeville.ca/opendata.html#licence; that page now says Data Orangeville has moved to https://opendata.orangeville.ca, where the licence PDF is listed."
+    },
+    {
       "id": "london-park-amenities",
       "name": "City of London Park Amenities",
       "kind": "municipal",

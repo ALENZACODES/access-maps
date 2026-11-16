@@ -413,5 +413,40 @@
     "name": "Town of Amherstburg open data",
     "url": "https://amherstburg-open-data-essexcounty.hub.arcgis.com/",
     "reason": "Checked 2026-11-16. Amherstburg ranks 74th by 2021 Census population (sources/ontario-municipalities-51-75.json). The Town's open-data hub lists one item, Amherstburg Municipal Boundary, with a blank licence field. A second hub, Amherstburg Parks and Paths, holds two story maps and no dataset. No Town open-data licence was found; https://www.amherstburg.ca/open-data and /opendata returned HTTP 404. Nothing imported from the Town. County of Essex layers that cover Amherstburg are imported (essex-county-*), and Transit Windsor's GTFS (windsor-transit-gtfs), already in the repo, has stops in Amherstburg."
+  },
+  {
+    "name": "Town of Orangeville trails, second parks layer, facility points and parking restrictions",
+    "url": "https://opendata.orangeville.ca/",
+    "reason": "Checked 2026-11-16. Orangeville ranks 62nd by 2021 Census population (sources/ontario-municipalities-51-75.json). The Town's open-data site lists Trail (168 lines, with ACCESSIBIL, SURFTYPE and WIDTH columns), Parks and Recreation Areas (a second copy of the 36 parks) and Facility Site Point. Their ArcGIS items have a blank licence field, and the site does not say that every listed dataset is under the Open Government Licence – Orangeville, so they were not imported. Facility Site Point answered Invalid URL (error 400) to a layer request. Parking Restrictions (239 lines) is under the Town's licence and holds no-parking street segments with no accessible-parking column. Only the Parks layer, whose item links the Town's licence, is imported as orangeville-parks. Orangeville Transit is published on the site only as a PDF map and a web map; no GTFS feed was found there."
+  },
+  {
+    "name": "County of Simcoe data portal",
+    "url": "https://gisportal.simcoe.ca/arcgis/apps/sites/#/county-of-simcoe-data-portal",
+    "reason": "Checked 2026-11-16. The County publishes the Open Government Licence – Simcoe County 1.0 at http://maps.simcoe.ca/openlicense.html (read 2026-11-16; Information Provider: The Corporation of the County of Simcoe). The County data portal's catalogue lists statistics pages, dashboards and OpenGIS web-map themes, and its Web Services page lists aerial imagery only; no downloadable feature dataset with an accessibility column is listed. The County's GIS portal also hosts lower-tier layers on https://maps2.simcoe.ca/arcgis/rest/services/ (Bradford West Gwillimbury, Wasaga Beach, Collingwood, Oro-Medonte, Orillia and others), including SimcoeCounty_Trails; those items have a blank licence field or a disclaimer, are not in the data portal's catalogue, and the County licence does not cover rights the County is not authorized to license. Nothing imported."
+  },
+  {
+    "name": "Town of Bradford West Gwillimbury GIS data",
+    "url": "https://www.townofbwg.com/en/living-in-bwg/gis-data-agreement.aspx",
+    "reason": "Checked 2026-11-16. Bradford West Gwillimbury ranks 51st by 2021 Census population (sources/ontario-municipalities-51-75.json). The Town releases GIS data through a GIS Data Agreement form that collects personal information and limits use to the project stated on the form; it is not an open licence. The Town's public layers on the County of Simcoe GIS portal (Sidewalks, Parks, and Parks, Trails and Points of Interest Interactive Map) carry a warning and liability waiver in their licence field, or a blank field, and no grant of rights. Nothing imported."
+  },
+  {
+    "name": "Town of Wasaga Beach open data",
+    "url": "https://www.wasagabeach.com/",
+    "reason": "Checked 2026-11-16. Wasaga Beach ranks 70th by 2021 Census population (sources/ontario-municipalities-51-75.json). No Town open-data portal or licence was found: https://www.wasagabeach.com/open-data and /opendata returned HTTP 404 and ArcGIS searches found no Town hub. The Town's layers on the County of Simcoe GIS portal (14 services, including WB_Parks_Recreation_Areas_Website, WB_ParkingOptions and Public Beach Access) have a blank licence field. Nothing imported."
+  },
+  {
+    "name": "Town of Collingwood open data",
+    "url": "https://www.collingwood.ca/",
+    "reason": "Checked 2026-11-16. Collingwood ranks 71st by 2021 Census population (sources/ontario-municipalities-51-75.json). No Town open-data portal or licence was found: https://www.collingwood.ca/open-data and /opendata returned HTTP 404, and data.collingwood.ca could not be reached (the proxy reported the host unreachable). The Town's layers on the County of Simcoe GIS portal, including Parking, Accessible Spaces, and Waterfront Access Points (map service, ArcGIS item c11b2df53d4346bb824539b277bceb64), have a blank licence field, so no right to redistribute is stated. Nothing imported."
+  },
+  {
+    "name": "Township of Oro-Medonte open data",
+    "url": "https://www.oro-medonte.ca/",
+    "reason": "Checked 2026-11-16. Oro-Medonte ranks 76th by 2021 Census population and is listed to replace a skipped municipality (sources/ontario-municipalities-51-75.json). No Township open-data portal or licence was found: https://www.oro-medonte.ca/open-data and /opendata returned HTTP 404 and ArcGIS searches found no Township hub. The Township's layers on the County of Simcoe GIS portal, such as Rail Trail and OM_CulturalHeritageResources, have a blank licence field. Nothing imported."
+  },
+  {
+    "name": "Township of Essa open data",
+    "url": "https://www.essatownship.on.ca/",
+    "reason": "Checked 2026-11-16. Essa ranks 77th by 2021 Census population and is listed to replace a skipped municipality (sources/ontario-municipalities-51-75.json). No Township open-data portal or licence was found: https://www.essatownship.on.ca/open-data and /opendata returned HTTP 404, ArcGIS searches found no Township hub, and none of the 5 services found for Essa on the County of Simcoe GIS portal has licence text. Nothing imported."
   }
 ]

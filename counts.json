@@ -1,17 +1,17 @@
 {
   "definition": "A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. Section 5.6 counts only tier 2 and tier 3 values toward 500,000. Tier 0 and tier 1 accessibility facts are reported separately and are not verified.",
-  "records": 1701168,
-  "pieces": 8418412,
-  "gaps": 51695843,
-  "derived_excluded": 4195,
+  "records": 1701210,
+  "pieces": 8418754,
+  "gaps": 51697271,
+  "derived_excluded": 4207,
   "verified_toward_500k": 0,
-  "accessibility_fact_pieces": 895663,
-  "other_populated_pieces": 7005647,
-  "accessibility_pieces": 895663,
-  "accessibility_gaps": 28119033,
-  "identity_pieces": 7005647,
+  "accessibility_fact_pieces": 895699,
+  "other_populated_pieces": 7005953,
+  "accessibility_pieces": 895699,
+  "accessibility_gaps": 28119897,
+  "identity_pieces": 7005953,
   "context_pieces": 517102,
-  "context_gaps": 5054358,
+  "context_gaps": 5054478,
   "accessibility_definition": "An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.",
   "context_definition": "Context fields are populated values that are not a physical access measurement: access, crossing, lit, foot, fee, changing_table_fee, unisex, male, female, locked, and supervised. They are not accessibility facts and they are not names or geometry.",
   "accessibility_fields": {
@@ -94,18 +94,18 @@
   },
   "by_tranche": {
     "venue": {
-      "records": 567054,
-      "pieces": 3119499,
-      "accessibility_facts": 115926,
-      "other_populated": 2907083,
+      "records": 567090,
+      "pieces": 3119817,
+      "accessibility_facts": 115962,
+      "other_populated": 2907365,
       "verified": 0,
-      "gaps": 21263823,
+      "gaps": 21265053,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 3119499
+        "0": 3119817
       },
       "gaps_by_tier": {
-        "0": 21263823
+        "0": 21265053
       },
       "pieces_by_source": {
         "ajax-playgrounds": 486,
@@ -142,6 +142,7 @@
         "newmarket-park-features": 1641,
         "newmarket-trail-points": 1282,
         "niagara-falls-playgrounds": 489,
+        "orangeville-parks": 318,
         "oshawa-community-centres": 140,
         "osm-ontario": 2914928,
         "ottawa-drinking-fountains": 1120,
@@ -169,60 +170,60 @@
         "windsor-playgrounds": 903
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 194966,
+        "2026-11-16": 195284,
         "2026-11-13": 2924533
       },
       "gaps_by_retrieved_at": {
-        "2026-11-16": 927764,
+        "2026-11-16": 928994,
         "2026-11-13": 20336059
       },
       "gap_fields": {
-        "addr_housenumber": 482565,
+        "addr_housenumber": 482568,
         "addr_street": 481116,
-        "addr_city": 521920,
-        "addr_postcode": 534792,
-        "addr_unit": 559972,
-        "opening_hours": 545386,
-        "level": 556386,
-        "operator": 519559,
-        "brand": 515717,
-        "website": 527772,
-        "wheelchair": 554384,
+        "addr_city": 521956,
+        "addr_postcode": 534828,
+        "addr_unit": 560008,
+        "opening_hours": 545422,
+        "level": 556422,
+        "operator": 519595,
+        "brand": 515753,
+        "website": 527808,
+        "wheelchair": 554420,
         "wheelchair_description": 552598,
-        "entrance": 549421,
-        "automatic_door": 566961,
-        "door": 565019,
-        "door_width": 567054,
-        "ramp": 567025,
-        "ramp_wheelchair": 567054,
-        "ramp_stroller": 567054,
-        "step_count": 567054,
-        "incline": 567054,
-        "kerb": 566868,
-        "kerb_height": 567054,
-        "tactile_paving": 567041,
-        "handrail": 567054,
-        "width": 567024,
-        "access": 479099,
-        "surface": 503958,
-        "smoothness": 566922,
-        "lit": 558519,
-        "braille": 567054,
-        "hearing_loop": 567051,
-        "speech_output": 565606,
-        "stroller": 567003,
-        "capacity_disabled": 563016,
-        "indoor": 564050,
-        "elevator": 567041,
-        "ref": 533979,
+        "entrance": 549457,
+        "automatic_door": 566997,
+        "door": 565055,
+        "door_width": 567090,
+        "ramp": 567061,
+        "ramp_wheelchair": 567090,
+        "ramp_stroller": 567090,
+        "step_count": 567090,
+        "incline": 567090,
+        "kerb": 566904,
+        "kerb_height": 567090,
+        "tactile_paving": 567077,
+        "handrail": 567090,
+        "width": 567060,
+        "access": 479135,
+        "surface": 503994,
+        "smoothness": 566958,
+        "lit": 558555,
+        "braille": 567090,
+        "hearing_loop": 567087,
+        "speech_output": 565642,
+        "stroller": 567039,
+        "capacity_disabled": 563052,
+        "indoor": 564086,
+        "elevator": 567077,
+        "ref": 533982,
         "category": 107,
         "name": 389514
       },
-      "accessibility_pieces": 115926,
-      "accessibility_gaps": 13493370,
+      "accessibility_pieces": 115962,
+      "accessibility_gaps": 13494198,
       "accessibility_by_field": {
         "capacity_disabled": 4038,
-        "wheelchair_description": 14456,
+        "wheelchair_description": 14492,
         "kerb": 186,
         "automatic_door": 93,
         "elevator": 13,
@@ -239,25 +240,25 @@
         "tactile_paving": 13
       },
       "context_pieces": 96490,
-      "context_gaps": 1037618,
+      "context_gaps": 1037690,
       "context_by_field": {
         "access": 87955,
         "lit": 8535
       }
     },
     "washroom": {
-      "records": 7148,
-      "pieces": 35845,
+      "records": 7154,
+      "pieces": 35869,
       "accessibility_facts": 3668,
-      "other_populated": 29141,
+      "other_populated": 29165,
       "verified": 0,
-      "gaps": 238732,
-      "derived_excluded": 4195,
+      "gaps": 238930,
+      "derived_excluded": 4207,
       "pieces_by_tier": {
-        "0": 35845
+        "0": 35869
       },
       "gaps_by_tier": {
-        "0": 238732
+        "0": 238930
       },
       "pieces_by_source": {
         "guelph-restrooms": 328,
@@ -270,6 +271,7 @@
         "newmarket-park-features": 74,
         "newmarket-trail-points": 55,
         "oakville-town-washrooms": 105,
+        "orangeville-parks": 24,
         "osm-ontario": 24062,
         "ottawa-public-washrooms": 1988,
         "pickering-parks": 125,
@@ -283,54 +285,54 @@
         "windsor-park-washrooms": 210
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 10961,
+        "2026-11-16": 10985,
         "2026-11-13": 24884
       },
       "gaps_by_retrieved_at": {
-        "2026-11-16": 37121,
+        "2026-11-16": 37319,
         "2026-11-13": 201611
       },
       "gap_fields": {
-        "wheelchair": 5062,
-        "wheelchair_description": 7079,
-        "changing_table": 6511,
-        "changing_table_fee": 7145,
-        "changing_table_location": 7144,
-        "adult_changing_table": 6971,
-        "access": 5946,
-        "fee": 6416,
-        "opening_hours": 6105,
-        "unisex": 6642,
-        "male": 6851,
-        "female": 6855,
-        "supervised": 7145,
-        "level": 6921,
-        "indoor": 7022,
-        "operator": 6516,
-        "addr_housenumber": 6674,
-        "addr_street": 6653,
-        "addr_city": 7009,
-        "addr_postcode": 7056,
+        "wheelchair": 5068,
+        "wheelchair_description": 7085,
+        "changing_table": 6517,
+        "changing_table_fee": 7151,
+        "changing_table_location": 7150,
+        "adult_changing_table": 6977,
+        "access": 5952,
+        "fee": 6422,
+        "opening_hours": 6111,
+        "unisex": 6648,
+        "male": 6857,
+        "female": 6861,
+        "supervised": 7151,
+        "level": 6927,
+        "indoor": 7028,
+        "operator": 6522,
+        "addr_housenumber": 6680,
+        "addr_street": 6659,
+        "addr_city": 7015,
+        "addr_postcode": 7062,
         "address": 6281,
-        "description": 6581,
-        "locked": 7148,
-        "drinking_water": 7095,
-        "shower": 7126,
-        "disposal": 5641,
-        "capacity": 7143,
-        "seasonal": 6837,
-        "location": 6534,
-        "published_accessibility": 6453,
-        "building": 6006,
+        "description": 6587,
+        "locked": 7154,
+        "drinking_water": 7101,
+        "shower": 7132,
+        "disposal": 5647,
+        "capacity": 7149,
+        "seasonal": 6843,
+        "location": 6540,
+        "published_accessibility": 6459,
+        "building": 6012,
         "parent_id": 5183,
-        "status": 6628,
-        "website": 6724,
-        "posted_date": 6793,
+        "status": 6634,
+        "website": 6730,
+        "posted_date": 6799,
         "name": 5699,
         "facility_type": 1137
       },
       "accessibility_pieces": 3668,
-      "accessibility_gaps": 39220,
+      "accessibility_gaps": 39256,
       "accessibility_by_field": {
         "published_accessibility": 695,
         "changing_table": 637,
@@ -340,7 +342,7 @@
         "changing_table_location": 4
       },
       "context_pieces": 3036,
-      "context_gaps": 54148,
+      "context_gaps": 54196,
       "context_by_field": {
         "male": 297,
         "female": 293,
@@ -2001,6 +2003,23 @@
         "2026-11-16": 489
       },
       "accessibility_pieces": 79
+    },
+    "orangeville-parks": {
+      "records": 42,
+      "pieces": 342,
+      "gaps": 1428,
+      "derived_excluded": 12,
+      "pieces_by_tier": {
+        "0": 342
+      },
+      "pieces_by_tranche": {
+        "venue": 318,
+        "washroom": 24
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 342
+      },
+      "accessibility_pieces": 36
     },
     "oshawa-community-centres": {
       "records": 20,
@@ -5562,6 +5581,10 @@
       "bytes": 5681
     },
     {
+      "file": "data/venues/orangeville-parks/n43.5_w080.5.ndjson.gz",
+      "bytes": 3451
+    },
+    {
       "file": "data/venues/oshawa-community-centres/n43.5_w079.0.ndjson.gz",
       "bytes": 2203
     },
@@ -7604,6 +7627,10 @@
     {
       "file": "data/washrooms/oakville-town-washrooms/n43.0_w080.0.ndjson.gz",
       "bytes": 2113
+    },
+    {
+      "file": "data/washrooms/orangeville-parks/n43.5_w080.5.ndjson.gz",
+      "bytes": 1012
     },
     {
       "file": "data/washrooms/osm-ontario/n41.5_w083.0.ndjson.gz",

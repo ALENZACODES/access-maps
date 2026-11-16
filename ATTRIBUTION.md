@@ -477,6 +477,16 @@ CC0 1.0 Universal: https://creativecommons.org/publicdomain/zero/1.0/
 Datasets retrieved 2026-11-16 from the County of Brant open-data catalogue (https://catalogue-Brant.hub.arcgis.com): Sidewalk, Brant Trail Network, and County of Brant Parks.
 
 These layers have no accessibility column. CC0 requires no attribution; the line above is given as a courtesy.
+
+## Town of Orangeville
+
+Contains information licenced under the Open Government Licence – Orangeville.
+
+Open Government Licence – Orangeville 1.0: https://www.arcgis.com/sharing/rest/content/items/34a5906b55564294b59f737eb875a7bb/data
+
+Dataset retrieved 2026-11-16 from the Town's open-data site (https://opendata.orangeville.ca): Parks (Parks and Recreation Areas).
+
+The ADACOMPLY and ACCESSPLAYGROUND values are the Town's own Yes/No columns and are stored as published. They are not a wheelchair measurement by this project. The licence does not cover personal information or the Town's names, crests and logos.
 <!-- g6 municipalities 51-77 end -->
 
 ## Offline map tiles
