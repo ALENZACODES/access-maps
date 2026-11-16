@@ -146,6 +146,39 @@ https://www.ontario.ca/page/open-government-licence-ontario
 
 Dataset: https://data.ontario.ca/dataset/picnic-parks
 
+## City of Hamilton datasets
+
+Contains public sector Data made available under the City of Hamilton's Open Data Licence
+
+https://www.hamilton.ca/city-council/data-maps/open-data/open-data-licence-terms-and-conditions
+
+Datasets, retrieved 2026-11-16 from https://services.arcgis.com/rYz782eMbySr2srL/arcgis/rest/services/:
+
+- Park Washrooms, Park_Washrooms/FeatureServer/46
+- Drinking Fountains, Drinking_Fountains_Layer_Test/FeatureServer/0
+- HSR Bus Stops, HSR_Bus_Stops/FeatureServer/2
+- Pedestrian Features, Pedestrian_Features/FeatureServer/5
+- Trails, Trails/FeatureServer/14
+- Road Sidewalk, Road_Sidewalk/FeatureServer/2
+
+The washroom AODA_ACCESSIBILITY column and the bus stop landing area columns are the City's own values and are stored as published. They are not a wheelchair measurement by this project.
+
+## City of Brampton parking garages and recreational trails
+
+City of Brampton, Public Parking Garages, CC BY 4.0. The ArcGIS item links https://creativecommons.org/licenses/by/4.0/: https://www.arcgis.com/home/item.html?id=a000ba5245f84e2dac8216b92a75802a
+
+City of Brampton, Recreational Trails, CC BY. The ArcGIS item states the licence as "CC BY" and does not publish a version: https://www.arcgis.com/home/item.html?id=7a4019577fcf4a4f86da22add04816cf
+
+Retrieved 2026-11-16. Trail segments were filtered to off-road types; no other change was made to the published values.
+
+## Region of Peel trails
+
+Contains public sector Information made available under The Regional Municipality of Peel's Open Data Licence - Version 1.0.
+
+https://data.peelregion.ca/pages/license
+
+Dataset: Trails, retrieved 2026-11-16 from https://services6.arcgis.com/ONZht79c8QWuX759/arcgis/rest/services/Trails/FeatureServer/0
+
 ## Offline map tiles
 
 `data/tiles/odbl/` is OpenStreetMap data under the Open Database License (ODbL) 1.0. It is a separate file from every other licence.

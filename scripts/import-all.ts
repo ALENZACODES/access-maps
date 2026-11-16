@@ -1,4 +1,5 @@
 import { importCityOpenData } from "./import-city-open-data.js";
+import { importWestCities } from "./import-cities-west.js";
 import { importGtfs } from "./import-gtfs.js";
 import { importMoreMunicipal } from "./import-more-municipal.js";
 import { importMunicipal } from "./import-municipal.js";
@@ -9,6 +10,7 @@ const repoRoot = process.cwd();
 await importMunicipal(repoRoot);
 await importMoreMunicipal(repoRoot);
 await importCityOpenData(repoRoot);
+await importWestCities(repoRoot);
 await importGtfs(repoRoot);
 await importOsm(repoRoot);
 await writeCounts(repoRoot);
