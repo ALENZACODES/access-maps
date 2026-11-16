@@ -44,7 +44,7 @@ Contains information licensed under the Open Government Licence - Ontario - Metr
 
 Users must follow applicable laws when using the transit data.
 
-Les utilisateurs doivent respecter les lois applicables lorsqu'ils utilisent les données de transport en commun.
+Les utilisateurs doivent respecter les lois applicables lorsqu’ils utilisent les données de transport en commun.
 
 ## Grand River Transit
 
@@ -68,11 +68,15 @@ https://www.hamilton.ca/city-council/data-maps/open-data/open-data-licence-terms
 
 ## London Transit Commission
 
-These data sets are available from LTC under the LTC Open Data Terms of Use: https://www.londontransit.ca/open-data/ltcs-open-data-terms-of-use/
+Transit data is available from London Transit Commission under its Terms of Use
+
+Les données de transport en commun sont disponibles auprès de la Commission de transport de London : elles sont offertes aux termes de ses conditions d’utilisation.
+
+https://www.londontransit.ca/open-data/ltcs-open-data-terms-of-use/
 
 https://www.londontransit.ca/open-data/
 
-The terms were confirmed on 2026-11-15. John Khan confirmed directly to QA on 15 November 2026 at 5:59 PM ET (America/Toronto) that London Transit data can go in. Packed rows stay under `data/transit/gtfs-ltc/`. Do not use LTC marks or claim endorsement.
+The terms were confirmed on 2026-11-15. John Khan confirmed directly to QA on 15 November 2026 at 5:59 PM ET (America/Toronto) that London Transit data can go in. Packed rows stay under `data/transit/gtfs-ltc/` and are included in the web pack. Do not use LTC marks or logos, and do not claim endorsement.
 
 ## TTC GTFS-RT accessibility alerts
 

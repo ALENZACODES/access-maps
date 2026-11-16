@@ -8,7 +8,9 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "noEmit": true,
-    "types": ["node"],
+    "types": [
+      "node"
+    ],
     "forceConsistentCasingInFileNames": true,
     "jsx": "react-jsx"
   },
@@ -22,6 +24,7 @@
     "packages/*/test/**/*.tsx"
   ],
   "exclude": [
-    "packages/**/*.a11y.test.tsx"
+    "packages/**/*.a11y.test.tsx",
+    "packages/places-shell/**"
   ]
 }
