@@ -118,7 +118,7 @@ describe("places shell adapter", () => {
         prototype_label: "SEEDED-OPEN-DATA",
         freshness: "unknown",
       },
-      attribution: "(c) OpenStreetMap contributors",
+      attribution: "© OpenStreetMap contributors",
       category: "pharmacy",
       city: "Toronto",
       tranche: "venue",

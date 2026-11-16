@@ -4,7 +4,7 @@ This repository redistributes derived open data. Attribution here is licence com
 
 ## OpenStreetMap
 
-(c) OpenStreetMap contributors
+© OpenStreetMap contributors
 
 Data from the Geofabrik Ontario extract, https://download.geofabrik.de/north-america/canada/ontario-latest.osm.pbf, retrieved 2026-11-13.
 
