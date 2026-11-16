@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { displayValue, prototypeLabel, toMapFeatures, type Journey, type JourneyPlan, type Leg } from "@access-maps/journey";
 import { AccessibleMap } from "./AccessibleMap.js";
+import { AttributionSources } from "./AttributionSources.js";
 import { mapCopy, statusLabel } from "./i18n.js";
 
 export function JourneyResult({ plan }: { plan: JourneyPlan }) {
@@ -88,6 +89,7 @@ export function JourneyResult({ plan }: { plan: JourneyPlan }) {
         locale={plan.locale}
         attribution={drawsOsm ? text.attributionOsm : text.attributionPlain}
       />
+      <AttributionSources plan={plan} />
     </article>
   );
 }

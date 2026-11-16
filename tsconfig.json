@@ -22,7 +22,8 @@
     "packages/*/src/**/*.tsx",
     "packages/*/test/**/*.ts",
     "packages/*/test/**/*.tsx",
-    "tools/**/*.ts"
+    "tools/**/*.ts",
+    "docs/**/*.ts"
   ],
   "exclude": [
     "packages/**/*.a11y.test.tsx",
