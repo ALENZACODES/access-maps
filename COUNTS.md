@@ -5,36 +5,36 @@ A piece is one field on one record whose value is not UNKNOWN and whose derived 
 Verified field-values toward the 500,000 target: **0**.
 Tier 0 and tier 1 values count as 0 toward the 250,000 verified venue field-values and toward the 500,000 verified total. Section 5.6 counts tier 2 and tier 3 only.
 Verified toward 500,000 is 0. None of those verified field-values exist in this import.
-Open-data or operator-claimed physical accessibility facts (tier 0 and tier 1 only): **714,352**.
+Open-data or operator-claimed physical accessibility facts (tier 0 and tier 1 only): **719,065**.
 Context fields, reported separately (access, crossing, lit, fee, and the other context fields below): **503,750**.
-All other populated values: **6,252,807**.
-All populated pieces together: **7,470,909**.
-Total UNKNOWN gaps: **46,686,778**.
-UNKNOWN gaps on accessibility fields: **25,694,606**.
+All other populated values: **6,300,102**.
+All populated pieces together: **7,522,917**.
+Total UNKNOWN gaps: **46,848,115**.
+UNKNOWN gaps on accessibility fields: **25,763,686**.
 Derived values excluded from both totals: **3,995**.
-Records: **1,512,551**.
+Records: **1,521,858**.
 
 The illustrative targets are 250,000 venue, 100,000 path, 50,000 transit, and 100,000 washroom verified field-values. Shortfall is the target minus verified values.
 
 | Tranche | Records | Physical accessibility facts (tier 0–1) | Context fields | Other populated | Verified (tier 2–3) | UNKNOWN gaps | Illustrative target | Shortfall |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| venue | 556764 | 109606 | 96113 | 2833982 | 0 | 20901151 | 250000 | 250000 |
-| washroom | 6654 | 3554 | 2941 | 26138 | 0 | 222878 | 100000 | 100000 |
-| path | 927505 | 584271 | 404696 | 3283209 | 0 | 25407984 | 100000 | 100000 |
-| transit | 21628 | 16921 | 0 | 109478 | 0 | 154765 | 50000 | 50000 |
+| venue | 557407 | 109606 | 96113 | 2837723 | 0 | 20925059 | 250000 | 250000 |
+| washroom | 6677 | 3554 | 2941 | 26267 | 0 | 223646 | 100000 | 100000 |
+| path | 931319 | 588004 | 404696 | 3297672 | 0 | 25511836 | 100000 | 100000 |
+| transit | 26455 | 17901 | 0 | 138440 | 0 | 187574 | 50000 | 50000 |
 
 ## Accessibility facts
 
 An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.
 
-Physical accessibility facts, context fields, and the remaining pieces add up to the total: 714,352 + 503,750 + 6,252,807 = 7,470,909.
+Physical accessibility facts, context fields, and the remaining pieces add up to the total: 719,065 + 503,750 + 6,300,102 = 7,522,917.
 
 | Tranche | Physical accessibility pieces | Context pieces | Remaining pieces |
 | --- | ---: | ---: | ---: |
-| venue | 109606 | 96113 | 2833982 |
-| washroom | 3554 | 2941 | 26138 |
-| path | 584271 | 404696 | 3283209 |
-| transit | 16921 | 0 | 109478 |
+| venue | 109606 | 96113 | 2837723 |
+| washroom | 3554 | 2941 | 26267 |
+| path | 588004 | 404696 | 3297672 |
+| transit | 17901 | 0 | 138440 |
 
 Context fields are populated values that are not a physical access measurement: access, crossing, lit, foot, fee, changing_table_fee, unisex, male, female, locked, and supervised. They are not accessibility facts and they are not names or geometry.
 
@@ -112,7 +112,7 @@ Populated accessibility facts by field:
 
 ### path
 
-- surface: 283397
+- surface: 287130
 - tactile_paving: 99435
 - width: 67896
 - kerb: 57242
@@ -126,16 +126,16 @@ Populated accessibility facts by field:
 
 ### transit
 
-- wheelchair_boarding: 16921
+- wheelchair_boarding: 17901
 
 ## Pieces by tier
 
 | Tranche | Tier 0 | Tier 1 | Tier 2 | Tier 3 | Tier 4 |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| venue | 3039701 | 0 | 0 | 0 | 0 |
-| washroom | 32633 | 0 | 0 | 0 | 0 |
-| path | 4272176 | 0 | 0 | 0 | 0 |
-| transit | 0 | 126399 | 0 | 0 | 0 |
+| venue | 3043442 | 0 | 0 | 0 | 0 |
+| washroom | 32762 | 0 | 0 | 0 | 0 |
+| path | 4290372 | 0 | 0 | 0 | 0 |
+| transit | 0 | 156341 | 0 | 0 | 0 |
 
 ## Pieces by source and retrieval date
 
@@ -158,9 +158,15 @@ Populated accessibility facts by field:
 | kingston-points-of-interest | 766 | 7600 | 0 | 25338 | 7600 | 0 | 2026-11-16 |
 | kingston-public-washrooms | 48 | 432 | 0 | 1440 | 432 | 0 | 2026-11-13 |
 | kingston-trails | 89 | 530 | 88 | 2318 | 530 | 0 | 2026-11-16 |
+| markham-city-facilities | 82 | 574 | 0 | 2952 | 574 | 0 | 2026-11-16 |
+| markham-trails | 3075 | 15240 | 2994 | 83160 | 15240 | 0 | 2026-11-16 |
 | metrolinx-go | 889 | 6151 | 889 | 5406 | 0 | 6151 | 2026-11-15 |
 | metrolinx-up | 5 | 30 | 5 | 35 | 0 | 30 | 2026-11-15 |
 | mto-picnic-parks | 168 | 1005 | 0 | 6219 | 1005 | 0 | 2026-11-13 |
+| newmarket-landmarks | 35 | 244 | 0 | 1261 | 244 | 0 | 2026-11-16 |
+| newmarket-park-features | 281 | 1715 | 0 | 10320 | 1715 | 0 | 2026-11-16 |
+| newmarket-trail-points | 268 | 1337 | 0 | 10143 | 1337 | 0 | 2026-11-16 |
+| newmarket-trails | 739 | 2956 | 739 | 20692 | 2956 | 0 | 2026-11-16 |
 | osm-ontario | 1392049 | 6802010 | 677579 | 43717520 | 6802010 | 0 | 2026-11-13 |
 | ottawa-park-parking | 408 | 4694 | 1047 | 12850 | 4694 | 0 | 2026-11-16 |
 | ottawa-parks-inventory | 7916 | 51047 | 7113 | 289341 | 51047 | 0 | 2026-11-16 |
@@ -179,64 +185,65 @@ Populated accessibility facts by field:
 | toronto-pedestrian-network | 70749 | 361756 | 0 | 1902212 | 361756 | 0 | 2026-11-16 |
 | toronto-street-washrooms | 4 | 24 | 0 | 132 | 24 | 0 | 2026-11-16 |
 | toronto-traffic-signals | 2563 | 16785 | 1407 | 93424 | 16785 | 0 | 2026-11-16 |
+| york-region-yrt-bus-stops | 4827 | 29942 | 980 | 32809 | 0 | 29942 | 2026-11-16 |
 
 ## Largest UNKNOWN gaps by field
 
 ### venue
 
-- braille: 556764
-- door_width: 556764
-- handrail: 556764
-- incline: 556764
-- kerb_height: 556764
-- ramp_stroller: 556764
-- ramp_wheelchair: 556764
-- step_count: 556764
-- hearing_loop: 556761
-- elevator: 556751
-- tactile_paving: 556751
-- ramp: 556735
+- braille: 557407
+- door_width: 557407
+- handrail: 557407
+- incline: 557407
+- kerb_height: 557407
+- ramp_stroller: 557407
+- ramp_wheelchair: 557407
+- step_count: 557407
+- hearing_loop: 557404
+- elevator: 557394
+- tactile_paving: 557394
+- ramp: 557378
 
 ### washroom
 
-- locked: 6654
-- changing_table_fee: 6651
-- supervised: 6651
-- changing_table_location: 6650
-- capacity: 6649
-- shower: 6632
-- addr_city: 6615
-- drinking_water: 6601
-- wheelchair_description: 6585
-- addr_postcode: 6562
-- indoor: 6528
-- adult_changing_table: 6478
+- locked: 6677
+- changing_table_fee: 6674
+- supervised: 6674
+- changing_table_location: 6673
+- capacity: 6672
+- shower: 6655
+- addr_city: 6638
+- drinking_water: 6624
+- wheelchair_description: 6608
+- addr_postcode: 6585
+- indoor: 6551
+- adult_changing_table: 6501
 
 ### path
 
-- bidirectional: 927505
-- from_ref: 927505
-- max_slope: 927505
-- min_width: 927505
-- pathway_mode: 927505
-- reversed_signposted_as: 927505
-- stair_count: 927505
-- to_ref: 927505
-- traversal_time_s: 927505
-- signposted_as: 927061
-- ramp: 926133
-- step_count: 925467
+- bidirectional: 931319
+- from_ref: 931319
+- max_slope: 931319
+- min_width: 931319
+- pathway_mode: 931319
+- reversed_signposted_as: 931319
+- stair_count: 931319
+- to_ref: 931319
+- traversal_time_s: 931319
+- signposted_as: 930875
+- ramp: 929947
+- step_count: 929281
 
 ### transit
 
-- level_id: 21628
-- level_index: 21628
-- level_name: 21628
-- platform_code: 21614
-- parent_station: 21460
-- url: 20631
+- level_id: 26455
+- level_index: 26455
+- level_name: 26455
+- platform_code: 26441
+- parent_station: 26287
+- url: 25458
 - description: 19406
-- wheelchair_boarding: 4707
+- wheelchair_boarding: 8554
 - stop_code: 2063
 
 ## GTFS-RT accessibility alerts

@@ -39,7 +39,7 @@ City of Toronto park washroom `Status` uses the datastore field note on resource
 
 A piece is one field on one record whose value is not `UNKNOWN` and whose `derived` flag is not true. `UNKNOWN` values are gaps. Photos, reviews, and tags are not pieces. A fact stored on a washroom record is not also stored on the venue.
 
-Section 5.6 counts only tier 2 and tier 3 values toward 500,000. This import's verified total is 0, so the shortfall is the full illustrative target in every tranche. The files, retrieved between 2026-11-13 and 2026-11-16, contain 714,352 tier 0 or tier 1 physical accessibility-fact values. Context fields, including access, crossing, lit, and fee, are 503,750 and are counted separately. Other populated values are 6,252,807. [COUNTS.md](COUNTS.md) has the tier split, the retrieval date, and the UNKNOWN gaps.
+Section 5.6 counts only tier 2 and tier 3 values toward 500,000. This import's verified total is 0, so the shortfall is the full illustrative target in every tranche. The files, retrieved between 2026-11-13 and 2026-11-16, contain 719,065 tier 0 or tier 1 physical accessibility-fact values. Context fields, including access, crossing, lit, and fee, are 503,750 and are counted separately. Other populated values are 6,300,102. [COUNTS.md](COUNTS.md) has the tier split, the retrieval date, and the UNKNOWN gaps.
 
 [COUNTS.md](COUNTS.md) also lists accessibility facts separately from names, addresses, and geometry. `toilets:wheelchair` is stored on the washroom `wheelchair` field. Tier 4 alert rows are not pieces.
 
@@ -71,12 +71,23 @@ npm run import
 npm run validate:sample
 ```
 
-`npm run import` runs the municipal, extra municipal, city open-data (`scripts/import-city-open-data.ts`, City of Toronto and City of Ottawa; `scripts/import-cities-g4.ts`, Kingston, Greater Sudbury and Thunder Bay, one mapper per city under `src/municipal/cities/`), GTFS, and OSM importers, validates every record with Ajv, then rewrites `COUNTS.md` and `counts.json` by reading the gzip files back. Raw downloads stay in `.cache/` and are gitignored. `npm run fetch:ttc-alerts` replaces the TTC accessibility alert snapshot. `schema/service-alert.schema.json` checks every row. `npm run build:tiles` writes the offline overlays, including path segments that sit inside a single tile. `npm run build:tiles -- --points` writes points only. Each PMTiles file stays under 50 MB. OpenStreetMap stays in `data/tiles/odbl/`. `data/tiles/open/` leaves out GO Transit and UP Express timetable stops, which stay in their own `metrolinx-*` files. This pipeline does not call Nominatim.
+`npm run import` runs the municipal, extra municipal, city open-data (`scripts/import-city-open-data.ts`, City of Toronto and City of Ottawa), GTFS, and OSM importers, validates every record with Ajv, then rewrites `COUNTS.md` and `counts.json` by reading the gzip files back. Raw downloads stay in `.cache/` and are gitignored. `npm run fetch:ttc-alerts` replaces the TTC accessibility alert snapshot. `schema/service-alert.schema.json` checks every row. `npm run build:tiles` writes the offline overlays, including path segments that sit inside a single tile. `npm run build:tiles -- --points` writes points only. Each PMTiles file stays under 50 MB. OpenStreetMap stays in `data/tiles/odbl/`. `data/tiles/open/` leaves out GO Transit and UP Express timetable stops, which stay in their own `metrolinx-*` files. This pipeline does not call Nominatim.
 
 The OSM importer keeps the Geofabrik extract, filters it with `osmium tags-filter`, and streams `osmium export -f geojsonseq -a type,id`. A closed way can be exported once as a line and once as an area. The second record with the same id is dropped. Area venues store a vertex-mean of the outer ring as `lat` and `lon` (`source_key` `geometry:vertex_mean`). That point is not a surveyed entrance. Path length is stored only when the source publishes it. Path geometry is the published linestring, rounded to six decimal places, with consecutive duplicate points removed. Multipart paths keep the longest part.
 
 Washroom fields from a venue, such as `toilets:wheelchair`, are emitted as a separate washroom record (`osm:toilets-at:...`) and are not copied onto the venue. `amenity=toilets` is only a washroom. A cycleway or bridleway is imported only when `foot` is `yes` or `designated`.
 
+
+## York Region and Durham Region municipalities
+
+`npx tsx scripts/import-york-durham-cities.ts` reads the ArcGIS REST layers listed in `src/municipal/cities/york-durham-jobs.ts`. Each municipality has its own mapper in `src/municipal/cities/` and its own test in `test/cities/`. `npm run import` runs it after the city open-data importer.
+
+`npx tsx scripts/import-cities-g4.ts` reads the ArcGIS REST layers for Kingston, Greater Sudbury and Thunder Bay and downloads the Kingston Transit and GOVA Transit GTFS zips. Each city has its own mapper in `src/municipal/cities/` and its own test in `test/cities/`. `npm run import` runs it before the GTFS importer. Outside `npm run import`, run it with `NODE_USE_ENV_PROXY=1` when the network needs a proxy.
+
+- York Region's Bus Stops from GTFS layer is a tier 1 operator claim. Its "Yes / Part" boarding label is kept as published and is not stored as a yes.
+- A trail drawn in several parts is stored as one path record per part, so no part of the line is dropped. A length published for the whole trail is not repeated on the parts.
+- A building or park-feature outline is stored at the vertex mean of its largest ring (`source_key` `geometry:vertex_mean`). That point is not a surveyed entrance.
+- For Vaughan, Richmond Hill, Aurora, Whitchurch-Stouffville and Georgina no licence that permits redistribution could be read on 2026-11-16, so nothing from them is imported. The reasons are in [sources/gaps.json](sources/gaps.json).
 
 ## Licence re-checks
 

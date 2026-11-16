@@ -20,11 +20,6 @@
     "reason": "On 2026-11-13 the licence page returned HTTP 200 and the extracted text was only the page title. No grant of rights was visible. UNKNOWN licence. Not imported."
   },
   {
-    "name": "City of Thunder Bay Recreation Facility List for Public Bookings",
-    "url": "https://opendata.thunderbay.ca/datasets/39cdc17b12ff43e0ab84a89bba1e1278",
-    "reason": "On 2026-11-13 the licence PDF linked from the catalogue returned HTTP 404. On 2026-11-16 the PDF link still returned HTTP 404, and the same Open Data Licence 1.0 text was read at https://www.thunderbay.ca/city-hall/thunder-bay-open-data/, so the licence is now recorded in the registry for other Thunder Bay layers. This CSV has a facility name, a street address, a PHONE column and no coordinates. Records are stored by 0.5-degree cell and this pipeline does not geocode, so the rows were not imported. The PHONE column was not read."
-  },
-  {
     "name": "City of Barrie park amenities",
     "url": "https://opendata.barrie.ca/datasets/barrie::park-amenity",
     "reason": "On 2026-11-13 the published licence text was a copyright notice and a warranty disclaimer. It did not grant a right to copy, modify, or redistribute. Not imported."
@@ -85,11 +80,6 @@
     "reason": "One parks inventory feature and one parking lot retrieved on 2026-11-16 have no usable point. Records are stored by 0.5-degree cell, so those two rows were not imported."
   },
   {
-    "name": "Durham Region Transit GTFS",
-    "url": "https://www.durhamregiontransit.com/",
-    "reason": "Not retrieved on 2026-11-16 and not imported in that pass. Durham Region's licence text was not read. Kingston Transit and GOVA Transit, which shared this entry, were retrieved on 2026-11-16 and are imported as gtfs-kingston and gtfs-gova."
-  },
-  {
     "name": "City of Brampton sidewalk segments and parks",
     "url": "https://services3.arcgis.com/rl7ACuZkiFsmDA2g/arcgis/rest/services/Sidewalks/FeatureServer/0",
     "reason": "Counted at 429,007 sidewalk segments and 869 parks in the 2026-11-15 survey, with CC BY stated on the City item. Not retrieved on 2026-11-16 and not imported in this pass."
@@ -108,6 +98,61 @@
     "name": "Ontario Data Catalogue search for accessible places",
     "url": "https://data.ontario.ca/api/3/action/package_search?q=accessible",
     "reason": "Searched on 2026-11-16 (301 packages). The open results are programme and grant tables, such as EASE grant recipients and EnAbling Change recipients, or web-only map layers. No file with a per-place accessibility column was found, so nothing further was imported from this catalogue."
+  },
+  {
+    "name": "City of Markham Parks",
+    "url": "https://www.arcgis.com/home/item.html?id=d6d3ca08120741798181e187650defc0",
+    "reason": "Reachable on 2026-11-16 under the Open Data Licence - City of Markham (Version 1.0). 1,745 polygons with PARK_NAME, OWNERSHIP, USE_TYPE and YEAR. No amenity, washroom, parking or accessibility column. Not imported. The City of Markham catalogue (41 entries on 2026-11-16) has no dataset for accessible parking, washrooms, pedestrian signals, curb ramps, sidewalks, elevators, drinking fountains or playgrounds."
+  },
+  {
+    "name": "City of Markham Trails segments not marked public",
+    "url": "https://www.arcgis.com/home/item.html?id=c445d4d0a22041d2a961e919a8df59ed",
+    "reason": "391 of the 3,424 trail segments retrieved on 2026-11-16 have PUBLIC_ = No or blank. A path record is read as somewhere a person can travel, so they were left out. The 3,033 segments with PUBLIC_ = Yes are imported as markham-trails."
+  },
+  {
+    "name": "Town of Newmarket Parks, Municipal Parking and other Landmarks categories",
+    "url": "https://navigate-newmarket.hub.arcgis.com/pages/open-data",
+    "reason": "Reachable on 2026-11-16 under the Open Data Licence - Town of Newmarket (version 2.0). Parks (122 polygons) has a PARKING Y/N column and no accessibility column. Municipal Parking (108 polygons) has SPACES and SURFACE and no accessible-space column. Neither was imported. 524 of the 559 Landmarks points (schools, places of worship, cameras, ponds, parks, heritage buildings and other categories) were left out; the 35 municipal facility points are imported as newmarket-landmarks. The Newmarket catalogue (64 entries) has no dataset for accessible parking, pedestrian signals, curb ramps, sidewalks, elevators or drinking fountains."
+  },
+  {
+    "name": "York Region open data other than bus stops",
+    "url": "https://insights-york.opendata.arcgis.com/",
+    "reason": "Checked on 2026-11-16. The York Region catalogue (about 440 Region entries) is census tables, budgets, drinking water reports, traffic counts, planning maps and base mapping. Apart from Bus Stops from GTFS (imported as york-region-yrt-bus-stops) no entry has a washroom, accessible parking, facility accessibility, pedestrian signal, curb ramp or sidewalk column. Nothing else was imported. The York Region Transit GTFS zip was re-checked on 2026-11-16: https://www.yrt.ca/en/about-us/open-data.aspx still sends it only after a person agrees to the Open Data Licence Agreement and completes the YRT GTFS Data Online Form, and the Region's catalogue entry for the feed (ArcGIS item 583c66b9cd404cf38e4aa72ad3fcde6d) is only a link to that page, so the zip was not retrieved."
+  },
+  {
+    "name": "City of Vaughan open data",
+    "url": "https://www.vaughan.ca/",
+    "reason": "On 2026-11-16 https://www.vaughan.ca/, https://www.vaughan.ca/opendata and https://www.vaughan.ca/business/online-maps each returned HTTP 403 to the pipeline, and https://maps.vaughan.ca/ failed TLS certificate verification. No open-data portal or licence page could be read. The City's ArcGIS Online organisation (9LnN9037wYhPG904) lists 117 public feature services, including VAUGHAN_PARKS, PARKS_TRAILS and Library; their licence field is empty or absent on the items checked, so no licence that permits redistribution is stated. Nothing was imported."
+  },
+  {
+    "name": "City of Richmond Hill open data",
+    "url": "https://www.richmondhill.ca/",
+    "reason": "Checked on 2026-11-16. https://www.richmondhill.ca/en/find-or-learn-about/open-data.aspx returned HTTP 404 and no open-data portal or open-data licence page was found. The City's ArcGIS Online organisation (cu2HFDk7AqvG7e31) lists 58 public feature services. Where a licence field is filled it reads: This information is provided as a public resource of general information by the City of Richmond Hill. The information is provided for convenience only, and the City of Richmond Hill disclaims any responsibility for content, accuracy, currency or completeness. That is a disclaimer, not a licence to redistribute. Nothing was imported."
+  },
+  {
+    "name": "Town of Aurora Data Hub",
+    "url": "https://town-of-aurora-data-hub-aurora.hub.arcgis.com/",
+    "reason": "Checked on 2026-11-16. The hub's Legal Disclaimer page (ArcGIS item 0d7c69d73d244fb59abaf05cb50d0dba) says all information remains the property of the Town of Aurora and that the information on the website shall not be modified, distributed, reproduced, published, licensed, transferred, or sold for a commercial purpose. The hub catalogue (22 entries) is mostly web apps, including Accessibility in Aurora; the public feature service Aurora_Accessibility (item d4f2cf00772b4ab88694dc3627edc0de) has no licence field. Redistribution is not permitted, so nothing was imported."
+  },
+  {
+    "name": "Town of Whitchurch-Stouffville",
+    "url": "https://whitchurch-stouffville-census-hub-2021-townofws.hub.arcgis.com/",
+    "reason": "Checked on 2026-11-16. https://www.townofws.ca/opendata returned HTTP 404. The only ArcGIS hub found is a 2021 census hub (10 entries, no facility data). The Town's ArcGIS Online account lists 62 public feature services, including TOWS Facilities, TOWS Parks and TOWS Trails; where a licence field is filled it is a copyright notice and an as-is disclaimer of the Town, with no grant of redistribution rights. No open-data licence was found, so nothing was imported."
+  },
+  {
+    "name": "Town of Georgina",
+    "url": "https://navigategeorgina-georgina.hub.arcgis.com/",
+    "reason": "Checked on 2026-11-16. https://www.georgina.ca/opendata returned HTTP 404. The Georgina Web Mapping hub catalogue has 2 entries (Web Maps and Static Maps) and no datasets. The Town's ArcGIS Online organisation (H9DyU85EnErZGhsY) lists 119 public feature services, including Park Amenities and Trail; their licence field is empty or a note that the map is created from a subset of Town data. No open-data licence was found, so nothing was imported."
+  },
+  {
+    "name": "City of Thunder Bay Recreation Facility List for Public Bookings",
+    "url": "https://opendata.thunderbay.ca/datasets/39cdc17b12ff43e0ab84a89bba1e1278",
+    "reason": "On 2026-11-13 the licence PDF linked from the catalogue returned HTTP 404. On 2026-11-16 the PDF link still returned HTTP 404, and the same Open Data Licence 1.0 text was read at https://www.thunderbay.ca/city-hall/thunder-bay-open-data/, so the licence is now recorded in the registry for other Thunder Bay layers. This CSV has a facility name, a street address, a PHONE column and no coordinates. Records are stored by 0.5-degree cell and this pipeline does not geocode, so the rows were not imported. The PHONE column was not read."
+  },
+  {
+    "name": "Durham Region Transit GTFS",
+    "url": "https://www.durhamregiontransit.com/",
+    "reason": "Not retrieved on 2026-11-16 and not imported in that pass. Durham Region's licence text was not read. Kingston Transit and GOVA Transit, which shared this entry, were retrieved on 2026-11-16 and are imported as gtfs-kingston and gtfs-gova."
   },
   {
     "name": "Thunder Bay Transit static GTFS",

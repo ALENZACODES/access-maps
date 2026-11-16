@@ -1,17 +1,17 @@
 {
   "definition": "A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. Section 5.6 counts only tier 2 and tier 3 values toward 500,000. Tier 0 and tier 1 accessibility facts are reported separately and are not verified.",
-  "records": 1512551,
-  "pieces": 7470909,
-  "gaps": 46686778,
+  "records": 1521858,
+  "pieces": 7522917,
+  "gaps": 46848115,
   "derived_excluded": 3995,
   "verified_toward_500k": 0,
-  "accessibility_fact_pieces": 714352,
-  "other_populated_pieces": 6252807,
-  "accessibility_pieces": 714352,
-  "accessibility_gaps": 25694606,
-  "identity_pieces": 6252807,
+  "accessibility_fact_pieces": 719065,
+  "other_populated_pieces": 6300102,
+  "accessibility_pieces": 719065,
+  "accessibility_gaps": 25763686,
+  "identity_pieces": 6300102,
   "context_pieces": 503750,
-  "context_gaps": 4373030,
+  "context_gaps": 4389756,
   "accessibility_definition": "An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.",
   "context_definition": "Context fields are populated values that are not a physical access measurement: access, crossing, lit, foot, fee, changing_table_fee, unisex, male, female, locked, and supervised. They are not accessibility facts and they are not names or geometry.",
   "accessibility_fields": {
@@ -94,18 +94,18 @@
   },
   "by_tranche": {
     "venue": {
-      "records": 556764,
-      "pieces": 3039701,
+      "records": 557407,
+      "pieces": 3043442,
       "accessibility_facts": 109606,
-      "other_populated": 2833982,
+      "other_populated": 2837723,
       "verified": 0,
-      "gaps": 20901151,
+      "gaps": 20925059,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 3039701
+        "0": 3043442
       },
       "gaps_by_tier": {
-        "0": 20901151
+        "0": 20925059
       },
       "pieces_by_source": {
         "brampton-recreation-centres": 312,
@@ -114,7 +114,11 @@
         "kingston-accessible-features": 7808,
         "kingston-parking-lots": 400,
         "kingston-points-of-interest": 7600,
+        "markham-city-facilities": 574,
         "mto-picnic-parks": 1005,
+        "newmarket-landmarks": 244,
+        "newmarket-park-features": 1641,
+        "newmarket-trail-points": 1282,
         "osm-ontario": 2914928,
         "ottawa-park-parking": 4694,
         "ottawa-parks-inventory": 51047,
@@ -128,56 +132,56 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-13": 2924533,
-        "2026-11-16": 115168
+        "2026-11-16": 118909
       },
       "gaps_by_retrieved_at": {
         "2026-11-13": 20336059,
-        "2026-11-16": 565092
+        "2026-11-16": 589000
       },
       "gap_fields": {
-        "addr_city": 513329,
-        "addr_postcode": 524588,
-        "addr_unit": 549682,
-        "opening_hours": 535231,
-        "level": 546096,
-        "operator": 510457,
-        "brand": 505427,
-        "wheelchair": 544094,
-        "wheelchair_description": 548084,
-        "entrance": 539131,
-        "automatic_door": 556671,
-        "door": 554729,
-        "door_width": 556764,
-        "ramp": 556735,
-        "ramp_wheelchair": 556764,
-        "ramp_stroller": 556764,
-        "step_count": 556764,
-        "incline": 556764,
-        "kerb": 556578,
-        "kerb_height": 556764,
-        "tactile_paving": 556751,
-        "handrail": 556764,
-        "width": 556734,
-        "access": 469030,
-        "surface": 494106,
-        "smoothness": 556632,
-        "lit": 548385,
-        "braille": 556764,
-        "hearing_loop": 556761,
-        "speech_output": 555316,
-        "stroller": 556713,
-        "capacity_disabled": 552832,
-        "indoor": 553872,
-        "elevator": 556751,
-        "ref": 532127,
-        "website": 517924,
-        "addr_housenumber": 477123,
-        "name": 389379,
-        "addr_street": 475769,
+        "addr_city": 513972,
+        "addr_postcode": 525231,
+        "addr_unit": 550325,
+        "opening_hours": 535874,
+        "level": 546739,
+        "operator": 511100,
+        "brand": 506070,
+        "wheelchair": 544737,
+        "wheelchair_description": 548727,
+        "entrance": 539774,
+        "automatic_door": 557314,
+        "door": 555372,
+        "door_width": 557407,
+        "ramp": 557378,
+        "ramp_wheelchair": 557407,
+        "ramp_stroller": 557407,
+        "step_count": 557407,
+        "incline": 557407,
+        "kerb": 557221,
+        "kerb_height": 557407,
+        "tactile_paving": 557394,
+        "handrail": 557407,
+        "width": 557377,
+        "access": 469673,
+        "surface": 494749,
+        "smoothness": 557275,
+        "lit": 549028,
+        "braille": 557407,
+        "hearing_loop": 557404,
+        "speech_output": 555959,
+        "stroller": 557356,
+        "capacity_disabled": 553475,
+        "indoor": 554515,
+        "elevator": 557394,
+        "ref": 532770,
+        "website": 518567,
+        "addr_housenumber": 477495,
+        "name": 389396,
+        "addr_street": 476140,
         "category": 2
       },
       "accessibility_pieces": 109606,
-      "accessibility_gaps": 13252730,
+      "accessibility_gaps": 13268162,
       "accessibility_by_field": {
         "wheelchair_description": 8680,
         "kerb": 186,
@@ -197,29 +201,31 @@
         "tactile_paving": 13
       },
       "context_pieces": 96113,
-      "context_gaps": 1017415,
+      "context_gaps": 1018701,
       "context_by_field": {
         "access": 87734,
         "lit": 8379
       }
     },
     "washroom": {
-      "records": 6654,
-      "pieces": 32633,
+      "records": 6677,
+      "pieces": 32762,
       "accessibility_facts": 3554,
-      "other_populated": 26138,
+      "other_populated": 26267,
       "verified": 0,
-      "gaps": 222878,
+      "gaps": 223646,
       "derived_excluded": 3995,
       "pieces_by_tier": {
-        "0": 32633
+        "0": 32762
       },
       "gaps_by_tier": {
-        "0": 222878
+        "0": 223646
       },
       "pieces_by_source": {
         "kingston-accessible-features": 390,
         "kingston-public-washrooms": 432,
+        "newmarket-park-features": 74,
+        "newmarket-trail-points": 55,
         "osm-ontario": 24062,
         "ottawa-public-washrooms": 1988,
         "toronto-community-centre-washrooms": 108,
@@ -230,53 +236,53 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-13": 24884,
-        "2026-11-16": 7749
+        "2026-11-16": 7878
       },
       "gaps_by_retrieved_at": {
         "2026-11-13": 201611,
-        "2026-11-16": 21267
+        "2026-11-16": 22035
       },
       "gap_fields": {
-        "wheelchair": 4568,
-        "wheelchair_description": 6585,
-        "changing_table": 6027,
-        "changing_table_fee": 6651,
-        "changing_table_location": 6650,
-        "adult_changing_table": 6478,
-        "access": 5547,
-        "fee": 5922,
-        "opening_hours": 5647,
-        "unisex": 6148,
-        "male": 6357,
-        "female": 6361,
-        "supervised": 6651,
-        "level": 6427,
-        "indoor": 6528,
-        "operator": 6087,
-        "addr_city": 6615,
-        "addr_postcode": 6562,
-        "address": 6090,
-        "description": 6087,
-        "locked": 6654,
-        "drinking_water": 6601,
-        "shower": 6632,
-        "disposal": 5147,
-        "capacity": 6649,
-        "seasonal": 6343,
-        "location": 6180,
+        "wheelchair": 4591,
+        "wheelchair_description": 6608,
+        "changing_table": 6050,
+        "changing_table_fee": 6674,
+        "changing_table_location": 6673,
+        "adult_changing_table": 6501,
+        "access": 5570,
+        "fee": 5945,
+        "opening_hours": 5670,
+        "unisex": 6171,
+        "male": 6380,
+        "female": 6384,
+        "supervised": 6674,
+        "level": 6450,
+        "indoor": 6551,
+        "operator": 6110,
+        "addr_city": 6638,
+        "addr_postcode": 6585,
+        "address": 6113,
+        "description": 6110,
+        "locked": 6677,
+        "drinking_water": 6624,
+        "shower": 6655,
+        "disposal": 5170,
+        "capacity": 6672,
+        "seasonal": 6366,
+        "location": 6203,
         "building": 5680,
-        "parent_id": 4789,
-        "website": 6230,
-        "posted_date": 6299,
-        "addr_housenumber": 6331,
-        "published_accessibility": 6062,
-        "status": 6134,
-        "name": 5697,
-        "addr_street": 6325,
+        "parent_id": 4812,
+        "website": 6253,
+        "posted_date": 6322,
+        "addr_housenumber": 6346,
+        "published_accessibility": 6085,
+        "status": 6157,
+        "addr_street": 6340,
+        "name": 5699,
         "facility_type": 1137
       },
       "accessibility_pieces": 3554,
-      "accessibility_gaps": 36370,
+      "accessibility_gaps": 36508,
       "accessibility_by_field": {
         "published_accessibility": 592,
         "wheelchair": 2086,
@@ -286,7 +292,7 @@
         "adult_changing_table": 176
       },
       "context_pieces": 2941,
-      "context_gaps": 50291,
+      "context_gaps": 50475,
       "context_by_field": {
         "male": 297,
         "female": 293,
@@ -298,71 +304,73 @@
       }
     },
     "path": {
-      "records": 927505,
-      "pieces": 4272176,
-      "accessibility_facts": 584271,
-      "other_populated": 3283209,
+      "records": 931319,
+      "pieces": 4290372,
+      "accessibility_facts": 588004,
+      "other_populated": 3297672,
       "verified": 0,
-      "gaps": 25407984,
+      "gaps": 25511836,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 4272176
+        "0": 4290372
       },
       "gaps_by_tier": {
-        "0": 25407984
+        "0": 25511836
       },
       "pieces_by_source": {
         "greater-sudbury-walkways": 28586,
         "kingston-trails": 530,
+        "markham-trails": 15240,
+        "newmarket-trails": 2956,
         "osm-ontario": 3863020,
         "thunder-bay-sidewalks": 15480,
         "thunder-bay-trails": 2804,
         "toronto-pedestrian-network": 361756
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 409156,
+        "2026-11-16": 427352,
         "2026-11-13": 3863020
       },
       "gaps_by_retrieved_at": {
-        "2026-11-16": 2182204,
+        "2026-11-16": 2286056,
         "2026-11-13": 23225780
       },
       "gap_fields": {
-        "foot": 892873,
-        "smoothness": 901520,
-        "incline": 913071,
-        "width": 859609,
-        "kerb": 870263,
-        "tactile_paving": 828070,
-        "lit": 883763,
-        "wheelchair": 900878,
-        "step_count": 925467,
-        "handrail": 924794,
-        "access": 914025,
-        "length_m": 856712,
-        "max_slope": 927505,
-        "min_width": 927505,
-        "stair_count": 927505,
-        "from_ref": 927505,
-        "to_ref": 927505,
-        "crossing": 614663,
-        "pathway_mode": 927505,
-        "bidirectional": 927505,
-        "oneway": 915186,
-        "traversal_time_s": 927505,
-        "signposted_as": 927061,
-        "reversed_signposted_as": 927505,
-        "ramp": 926133,
-        "indoor": 924935,
-        "footway": 512587,
-        "wheelchair_description": 924371,
-        "surface": 644108,
+        "foot": 896687,
+        "smoothness": 905334,
+        "incline": 916885,
+        "width": 863423,
+        "kerb": 874077,
+        "tactile_paving": 831884,
+        "lit": 887577,
+        "wheelchair": 904692,
+        "step_count": 929281,
+        "handrail": 928608,
+        "access": 917839,
+        "length_m": 857505,
+        "max_slope": 931319,
+        "min_width": 931319,
+        "stair_count": 931319,
+        "from_ref": 931319,
+        "to_ref": 931319,
+        "crossing": 618477,
+        "pathway_mode": 931319,
+        "bidirectional": 931319,
+        "oneway": 919000,
+        "traversal_time_s": 931319,
+        "signposted_as": 930875,
+        "reversed_signposted_as": 931319,
+        "ramp": 929947,
+        "indoor": 928749,
+        "footway": 516401,
+        "wheelchair_description": 928185,
+        "surface": 644189,
         "kind": 350
       },
-      "accessibility_pieces": 584271,
-      "accessibility_gaps": 12400799,
+      "accessibility_pieces": 588004,
+      "accessibility_gaps": 12450462,
       "accessibility_by_field": {
-        "surface": 283397,
+        "surface": 287130,
         "wheelchair_description": 3134,
         "handrail": 2711,
         "tactile_paving": 99435,
@@ -375,7 +383,7 @@
         "step_count": 2038
       },
       "context_pieces": 404696,
-      "context_gaps": 3305324,
+      "context_gaps": 3320580,
       "context_by_field": {
         "crossing": 312842,
         "foot": 34632,
@@ -384,18 +392,18 @@
       }
     },
     "transit": {
-      "records": 21628,
-      "pieces": 126399,
-      "accessibility_facts": 16921,
-      "other_populated": 109478,
+      "records": 26455,
+      "pieces": 156341,
+      "accessibility_facts": 17901,
+      "other_populated": 138440,
       "verified": 0,
-      "gaps": 154765,
+      "gaps": 187574,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "1": 126399
+        "1": 156341
       },
       "gaps_by_tier": {
-        "1": 154765
+        "1": 187574
       },
       "pieces_by_source": {
         "gtfs-brampton": 16917,
@@ -407,33 +415,34 @@
         "gtfs-ltc": 11625,
         "gtfs-ttc": 56142,
         "metrolinx-go": 6151,
-        "metrolinx-up": 30
+        "metrolinx-up": 30,
+        "york-region-yrt-bus-stops": 29942
       },
       "pieces_by_retrieved_at": {
         "2026-11-13": 112586,
-        "2026-11-16": 7632,
+        "2026-11-16": 37574,
         "2026-11-15": 6181
       },
       "gaps_by_retrieved_at": {
         "2026-11-13": 132152,
-        "2026-11-16": 17172,
+        "2026-11-16": 49981,
         "2026-11-15": 5441
       },
       "gap_fields": {
-        "parent_station": 21460,
-        "platform_code": 21614,
-        "level_id": 21628,
-        "level_index": 21628,
-        "level_name": 21628,
+        "parent_station": 26287,
+        "platform_code": 26441,
+        "level_id": 26455,
+        "level_index": 26455,
+        "level_name": 26455,
         "description": 19406,
-        "url": 20631,
-        "wheelchair_boarding": 4707,
+        "url": 25458,
+        "wheelchair_boarding": 8554,
         "stop_code": 2063
       },
-      "accessibility_pieces": 16921,
-      "accessibility_gaps": 4707,
+      "accessibility_pieces": 17901,
+      "accessibility_gaps": 8554,
       "accessibility_by_field": {
-        "wheelchair_boarding": 16921
+        "wheelchair_boarding": 17901
       },
       "context_pieces": 0,
       "context_gaps": 0,
@@ -472,6 +481,38 @@
         "2026-11-16": 530
       },
       "accessibility_pieces": 88
+    },
+    "markham-trails": {
+      "records": 3075,
+      "pieces": 15240,
+      "gaps": 83160,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 15240
+      },
+      "pieces_by_tranche": {
+        "path": 15240
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 15240
+      },
+      "accessibility_pieces": 2994
+    },
+    "newmarket-trails": {
+      "records": 739,
+      "pieces": 2956,
+      "gaps": 20692,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 2956
+      },
+      "pieces_by_tranche": {
+        "path": 2956
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 2956
+      },
+      "accessibility_pieces": 739
     },
     "osm-ontario": {
       "records": 1392049,
@@ -699,6 +740,22 @@
       },
       "accessibility_pieces": 5
     },
+    "york-region-yrt-bus-stops": {
+      "records": 4827,
+      "pieces": 29942,
+      "gaps": 32809,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "1": 29942
+      },
+      "pieces_by_tranche": {
+        "transit": 29942
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 29942
+      },
+      "accessibility_pieces": 980
+    },
     "brampton-recreation-centres": {
       "records": 39,
       "pieces": 312,
@@ -796,6 +853,22 @@
       },
       "accessibility_pieces": 0
     },
+    "markham-city-facilities": {
+      "records": 82,
+      "pieces": 574,
+      "gaps": 2952,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 574
+      },
+      "pieces_by_tranche": {
+        "venue": 574
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 574
+      },
+      "accessibility_pieces": 0
+    },
     "mto-picnic-parks": {
       "records": 168,
       "pieces": 1005,
@@ -809,6 +882,56 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-13": 1005
+      },
+      "accessibility_pieces": 0
+    },
+    "newmarket-landmarks": {
+      "records": 35,
+      "pieces": 244,
+      "gaps": 1261,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 244
+      },
+      "pieces_by_tranche": {
+        "venue": 244
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 244
+      },
+      "accessibility_pieces": 0
+    },
+    "newmarket-park-features": {
+      "records": 281,
+      "pieces": 1715,
+      "gaps": 10320,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 1715
+      },
+      "pieces_by_tranche": {
+        "venue": 1641,
+        "washroom": 74
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 1715
+      },
+      "accessibility_pieces": 0
+    },
+    "newmarket-trail-points": {
+      "records": 268,
+      "pieces": 1337,
+      "gaps": 10143,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 1337
+      },
+      "pieces_by_tranche": {
+        "venue": 1282,
+        "washroom": 55
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 1337
       },
       "accessibility_pieces": 0
     },
@@ -1116,6 +1239,18 @@
     {
       "file": "data/paths/kingston-trails/n44.0_w077.0.ndjson.gz",
       "bytes": 40995
+    },
+    {
+      "file": "data/paths/markham-trails/n43.5_w079.5.ndjson.gz",
+      "bytes": 385288
+    },
+    {
+      "file": "data/paths/newmarket-trails/n44.0_w079.5.ndjson.gz",
+      "bytes": 82057
+    },
+    {
+      "file": "data/paths/newmarket-trails/n44.0_w080.0.ndjson.gz",
+      "bytes": 4388
     },
     {
       "file": "data/paths/osm-ontario/n41.5_w083.0.ndjson.gz",
@@ -2918,6 +3053,22 @@
       "bytes": 518
     },
     {
+      "file": "data/transit/york-region-yrt-bus-stops/n43.5_w079.5.ndjson.gz",
+      "bytes": 125321
+    },
+    {
+      "file": "data/transit/york-region-yrt-bus-stops/n43.5_w080.0.ndjson.gz",
+      "bytes": 39406
+    },
+    {
+      "file": "data/transit/york-region-yrt-bus-stops/n44.0_w079.5.ndjson.gz",
+      "bytes": 32959
+    },
+    {
+      "file": "data/transit/york-region-yrt-bus-stops/n44.0_w080.0.ndjson.gz",
+      "bytes": 1255
+    },
+    {
       "file": "data/venues/brampton-recreation-centres/n43.5_w080.0.ndjson.gz",
       "bytes": 4661
     },
@@ -2984,6 +3135,10 @@
     {
       "file": "data/venues/kingston-points-of-interest/n44.0_w077.0.ndjson.gz",
       "bytes": 43314
+    },
+    {
+      "file": "data/venues/markham-city-facilities/n43.5_w079.5.ndjson.gz",
+      "bytes": 6797
     },
     {
       "file": "data/venues/mto-picnic-parks/n42.0_w082.5.ndjson.gz",
@@ -3408,6 +3563,30 @@
     {
       "file": "data/venues/mto-picnic-parks/n50.0_w093.5.ndjson.gz",
       "bytes": 574
+    },
+    {
+      "file": "data/venues/newmarket-landmarks/n44.0_w079.5.ndjson.gz",
+      "bytes": 3725
+    },
+    {
+      "file": "data/venues/newmarket-park-features/n44.0_w079.5.ndjson.gz",
+      "bytes": 19954
+    },
+    {
+      "file": "data/venues/newmarket-park-features/n44.0_w080.0.ndjson.gz",
+      "bytes": 934
+    },
+    {
+      "file": "data/venues/newmarket-trail-points/n43.5_w079.5.ndjson.gz",
+      "bytes": 586
+    },
+    {
+      "file": "data/venues/newmarket-trail-points/n44.0_w079.5.ndjson.gz",
+      "bytes": 16496
+    },
+    {
+      "file": "data/venues/newmarket-trail-points/n44.0_w080.0.ndjson.gz",
+      "bytes": 1013
     },
     {
       "file": "data/venues/osm-ontario/n41.0_w083.0.ndjson.gz",
@@ -5240,6 +5419,14 @@
     {
       "file": "data/washrooms/kingston-public-washrooms/n44.0_w077.0.ndjson.gz",
       "bytes": 2528
+    },
+    {
+      "file": "data/washrooms/newmarket-park-features/n44.0_w079.5.ndjson.gz",
+      "bytes": 1516
+    },
+    {
+      "file": "data/washrooms/newmarket-trail-points/n44.0_w079.5.ndjson.gz",
+      "bytes": 1291
     },
     {
       "file": "data/washrooms/osm-ontario/n41.5_w083.0.ndjson.gz",

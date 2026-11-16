@@ -164,6 +164,46 @@ https://www.ontario.ca/page/open-government-licence-ontario
 
 Dataset: https://data.ontario.ca/dataset/picnic-parks
 
+## The Regional Municipality of York
+
+Contains public sector information made available under The Regional Municipality of York's Open Data Licence.
+
+York Region Open Data Licence, version 1.0: https://www.arcgis.com/home/item.html?id=78cc02388af248c0b7a30eda6adfade0
+
+Dataset, retrieved 2026-11-16:
+
+- Bus Stops from GTFS, https://www.arcgis.com/home/item.html?id=ca904f8425814759a3dfa5951afff479
+
+The WHEELCHAIR_BOARDING label is the Region's own value. "No" is stored as published. "Yes / Part" is kept as the published label and is not stored as a yes. The licence does not cover personal information or public sector logos, trademarks, slogans and crests, and the credit is removed if the Region asks.
+
+## City of Markham
+
+Contains public sector Information made available under the City of Markham's Open Data Licence.
+
+Open Data Licence – City of Markham, version 1.0: https://data-markham.opendata.arcgis.com/pages/terms-of-use
+
+Datasets, retrieved 2026-11-16:
+
+- City Owned Facilities, https://www.arcgis.com/home/item.html?id=d8cee9f1183f4d8f9c731e777782f3a3
+- Trails (segments marked public), https://www.arcgis.com/home/item.html?id=c445d4d0a22041d2a961e919a8df59ed
+
+Neither layer has an accessibility column. The credit is removed if the City asks.
+
+## Town of Newmarket
+
+Contains information licensed under the Open Data Licence – Town Of Newmarket.
+
+Open Data Licence – Town of Newmarket, version 2.0: https://navigate-newmarket.hub.arcgis.com/pages/open-data-licence
+
+Datasets, retrieved 2026-11-16:
+
+- Park Features, https://www.arcgis.com/home/item.html?id=a33b7c99a40e4b7d811e75e89339fc8f
+- Trails, https://www.arcgis.com/home/item.html?id=6c330879911c471489476bc7a64a26bd
+- Trail Points, https://www.arcgis.com/home/item.html?id=8d259d7129b94f8ba227e1878f795103
+- Landmarks (municipal facility categories), https://www.arcgis.com/home/item.html?id=7931ff25803147b6a4cf0bccc76f93a7
+
+None of these layers has an accessibility column.
+
 ## Offline map tiles
 
 `data/tiles/odbl/` is OpenStreetMap data under the Open Database License (ODbL) 1.0. It is a separate file from every other licence.
