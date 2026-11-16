@@ -20,17 +20,43 @@ https://open.toronto.ca/open-data-licence/
 
 Dataset: https://open.toronto.ca/dataset/ttc-routes-and-schedules/
 
-## City of Toronto washroom datasets
+## City of Toronto datasets
 
 Contains information licensed under the Open Government Licence – Toronto.
 
 https://open.toronto.ca/open-data-licence/
 
-Datasets:
+Washroom datasets, retrieved 2026-11-16:
 
 - Park Washroom Facilities, https://open.toronto.ca/dataset/washroom-facilities/
 - Street Furniture - Automated Public Washroom, https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/street-furniture-public-washroom
 - Corporate Real Estate Management Portfolio Washrooms, https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/corporate-real-estate-management-portfolio-washrooms
+- Association of Community Centres, https://open.toronto.ca/dataset/association-of-community-centres/
+
+Other datasets, retrieved 2026-11-16:
+
+- Off-Street Parking – Surface Lots – Accessible Stalls, https://open.toronto.ca/dataset/off-street-parking-surface-lots-accessible-stalls/
+- Traffic Signals Tabular (Traffic Signal resource), https://open.toronto.ca/dataset/traffic-signals-tabular/
+- Library Branch General Information, https://open.toronto.ca/dataset/library-branch-general-information/
+- Parks Drinking Fountains, https://open.toronto.ca/dataset/parks-drinking-fountains/
+- Parks and Recreation Facilities, https://open.toronto.ca/dataset/parks-and-recreation-facilities/
+- Pedestrian Network, https://open.toronto.ca/dataset/pedestrian-network/
+
+The accessible-stall type is the City's estimate from aerial imagery and is stored as published. The traffic-signal audible flag is stored as published. Neither is a verified observation.
+
+## City of Ottawa datasets
+
+Contains information licensed under the Open Government Licence – City of Ottawa.
+
+Open Data Licence Version 2.0: https://www.ottawa.ca/opendata
+
+Datasets, retrieved 2026-11-16 from https://maps.ottawa.ca/arcgis/rest/services/:
+
+- Public Washrooms, PublicWashrooms/MapServer/0
+- Parks inventory point layers, Parks_Inventory/MapServer (layers 0, 1, 2, 3, 4, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 27, 28)
+- Parking Lots in City Parkland, Parks_Inventory/MapServer/14
+
+The washroom Accessibility Rating and the parks ACCESSIBLE flag are the City's own values and are stored as published. They are not a wheelchair measurement by this project. The licence does not cover personal information or the City's names, crests and logos. Bench dedication names are not imported.
 
 ## GO Transit and UP Express
 

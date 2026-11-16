@@ -103,6 +103,56 @@ export const LICENCE_FINDINGS: readonly LicenceFinding[] = [
     licence: "OGL-Ontario-1.0",
     reason: "Open Government Licence — Ontario, recorded as OGL-Ontario-1.0. The strict allowlist spells this OGL-ON-1.0, so the identifiers are not treated as equal.",
   },
+  {
+    sourceId: "toronto-accessible-parking-stalls",
+    licence: "OGL-Toronto-1.0",
+    reason: "Open Government Licence — Toronto. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "toronto-traffic-signals",
+    licence: "OGL-Toronto-1.0",
+    reason: "Open Government Licence — Toronto. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "toronto-library-branches",
+    licence: "OGL-Toronto-1.0",
+    reason: "Open Government Licence — Toronto. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "toronto-drinking-fountains",
+    licence: "OGL-Toronto-1.0",
+    reason: "Open Government Licence — Toronto. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "toronto-parks-recreation-facilities",
+    licence: "OGL-Toronto-1.0",
+    reason: "Open Government Licence — Toronto. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "toronto-community-centre-washrooms",
+    licence: "OGL-Toronto-1.0",
+    reason: "Open Government Licence — Toronto. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "toronto-pedestrian-network",
+    licence: "OGL-Toronto-1.0",
+    reason: "Open Government Licence — Toronto. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "ottawa-public-washrooms",
+    licence: "Ottawa-Open-Data-Licence-2.0",
+    reason: "Open Government Licence — City of Ottawa, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "ottawa-parks-inventory",
+    licence: "Ottawa-Open-Data-Licence-2.0",
+    reason: "Open Government Licence — City of Ottawa, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "ottawa-park-parking",
+    licence: "Ottawa-Open-Data-Licence-2.0",
+    reason: "Open Government Licence — City of Ottawa, version 2.0. Not in the strict export allowlist.",
+  },
 ];
 
 export function isDocumentedLicence(sourceId: string, licence: string): boolean {

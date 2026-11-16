@@ -14,13 +14,13 @@ OSM-derived records are only in these directories:
 - `data/washrooms/osm-ontario/`
 - `data/paths/osm-ontario/`
 
-Do not copy those records into a GTFS or municipal file. GTFS and municipal records stay in their own source directories, for example `data/transit/gtfs-ttc/` and `data/washrooms/toronto-park-washrooms/`. Those layers are not ODbL.
+Do not copy those records into a GTFS or municipal file. GTFS and municipal records stay in their own source directories, for example `data/transit/gtfs-ttc/`, `data/washrooms/toronto-park-washrooms/`, `data/paths/toronto-pedestrian-network/`, and `data/washrooms/ottawa-public-washrooms/`. Those layers are not ODbL.
 
 Attribution for the OSM layers: `© OpenStreetMap contributors`.
 
 ## Other datasets
 
-TTC and the City of Toronto washroom datasets use the Open Government Licence – Toronto. Grand River Transit uses the Region of Waterloo Open Data Licence v.2.0. Hamilton Street Railway uses the City of Hamilton Open Data Licence.
+TTC and the City of Toronto datasets (washrooms, accessible parking stalls, traffic signals, library branches, drinking fountains, parks and recreation facilities, and the pedestrian network) use the Open Government Licence – Toronto. The City of Ottawa datasets (public washrooms, parks inventory, and parking lots in City parkland) use the Open Government Licence – City of Ottawa, published as Open Data Licence Version 2.0 at https://www.ottawa.ca/opendata. Grand River Transit uses the Region of Waterloo Open Data Licence v.2.0. Hamilton Street Railway uses the City of Hamilton Open Data Licence.
 
 GO Transit and UP Express packed rows are stored only under `data/transit/metrolinx-go/` and `data/transit/metrolinx-up/`. They were accepted under the Metrolinx Access and Use Agreement on 2026-11-15. John Khan confirmed that acceptance directly to QA on 2026-11-15 at 5:59 PM ET (America/Toronto). The packed licence string is `Metrolinx Access and Use Agreement (accepted 2026-11-15)`. Those files are excluded from `data/tiles/open/` so they can be removed quickly if Metrolinx cancels. Never use Metrolinx, GO, or UP marks. Do not mix these rows into any other agency's files.
 
