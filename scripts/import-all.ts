@@ -1,3 +1,4 @@
+import { importCitiesG3 } from "./import-cities-g3.js";
 import { importCityOpenData } from "./import-city-open-data.js";
 import { importGtfs } from "./import-gtfs.js";
 import { importMoreMunicipal } from "./import-more-municipal.js";
@@ -10,6 +11,7 @@ const repoRoot = process.cwd();
 await importMunicipal(repoRoot);
 await importMoreMunicipal(repoRoot);
 await importCityOpenData(repoRoot);
+await importCitiesG3(repoRoot);
 await importYorkDurhamCities(repoRoot);
 await importGtfs(repoRoot);
 await importOsm(repoRoot);
