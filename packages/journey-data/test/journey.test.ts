@@ -9,8 +9,8 @@ const destination = { lat: 43.65, lon: -79.378 };
 const osm: PackSourceEntry = { sourceId: "osm-ontario", name: "OpenStreetMap Ontario", licence: "ODbL-1.0", retrieved: "2026-11-14", inWebPack: true };
 const ttc: PackSourceEntry = { sourceId: "ttc-confirmed", name: "TTC feed", licence: "OGL-ON-1.0", retrieved: "2026-11-14", inWebPack: true };
 const held: PackSourceEntry = { sourceId: "miway", name: "MiWay", licence: "UNKNOWN", inWebPack: false, heldReason: "Licence unclear" };
-function field(value: string | number | Array<[number, number]>, source = osm.sourceId) {
-  return { value, source_id: source, licence: "ODbL-1.0", retrieved_at: "2026-11-14", tier: 1 as const };
+function field(value: string | number | Array<[number, number]>, source = osm.sourceId, tier: 0 | 1 | 2 | 3 | 4 = 1) {
+  return { value, source_id: source, licence: "ODbL-1.0", retrieved_at: "2026-11-14", tier };
 }
 function path(id: string, from: typeof origin, to: typeof origin, fields: Record<string, ReturnType<typeof field>> = {}): PackRecord {
   return { id, tranche: "path", region: "toronto", fields: {
@@ -58,10 +58,12 @@ describe("on-device rolling graph", () => {
     expect(result?.evidence.every((entry) => entry.prototype_label === "PROTOTYPE-UNVERIFIED")).toBe(true);
   });
   it("labels pack evidence as SEEDED-OPEN-DATA or PROTOTYPE-UNVERIFIED, never VERIFIED", () => {
-    const seeded = path("p2", middle, destination, { surface: { ...field("asphalt"), tier: 0 } });
+    const seeded = path("p2", middle, destination, { surface: field("asphalt", osm.sourceId, 0) });
     const seededRoute = routeRolling([path("p1", origin, middle), seeded], origin, destination, request.profile, [osm]);
-    expect(seededRoute?.evidence.filter((entry) => entry.recordId === "p2")
+    expect(seededRoute?.evidence.filter((entry) => entry.recordId === "p2" && entry.field === "surface")
       .every((entry) => entry.prototype_label === "SEEDED-OPEN-DATA")).toBe(true);
+    expect(seededRoute?.evidence.every((entry) =>
+      entry.prototype_label === "SEEDED-OPEN-DATA" || entry.prototype_label === "PROTOTYPE-UNVERIFIED")).toBe(true);
     const later = path("p2b", middle, destination, { surface: field("asphalt") });
     const laterRoute = routeRolling([path("p1b", origin, middle), later], origin, destination, request.profile, [osm]);
     expect(laterRoute?.evidence.filter((entry) => entry.recordId === "p2b")

@@ -110,7 +110,8 @@ export function scheduledOptions(
             ...(destination.elevator ? [destination.elevator.evidence] : []),
             { recordId: trip.id, field: "stopTimes", sourceId: chunk.sourceId,
               sourceName: chunk.sourceName, licence: chunk.licence,
-              retrievedAt: chunk.fetchedAt, tier: chunk.tier }],
+              retrievedAt: chunk.fetchedAt, tier: chunk.tier,
+              prototype_label: prototypeLabel(chunk.tier) }],
         });
       }
     }
