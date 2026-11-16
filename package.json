@@ -12,6 +12,7 @@
   ],
   "scripts": {
     "build:schemas": "node scripts/build-schemas.mjs",
+    "build:timetables": "node --experimental-strip-types scripts/build-gtfs-timetables.ts",
     "check:schema": "node scripts/check-schema-source.mjs",
     "lint": "tsc --noEmit && npm run lint -w @access-maps/journey && npm run lint -w @access-maps/map-ui && npm run lint -w @access-maps/journey-data",
     "test": "vitest run && npm test -w @access-maps/journey && npm test -w @access-maps/map-ui && npm test -w @access-maps/journey-data",
