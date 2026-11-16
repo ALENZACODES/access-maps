@@ -36,6 +36,7 @@ const exclusions = Object.freeze([
 const offline = 'docs/attribution/offline-*.spec.ts';
 const workspaces = Object.freeze([
   '@access-maps/journey',
+  '@access-maps/outages',
   '@access-maps/map-ui',
   '@access-maps/journey-data',
   '@access-maps/conditions',
@@ -102,7 +103,8 @@ describe('P15I root runner integration contract', () => {
 
   it('leaves workspace-owned suites outside the root Vitest runner', () => {
     for (const workspace of ['packages/journey/**', 'packages/map-ui/**',
-      'packages/journey-data/**', 'packages/conditions/**']) assertVitestExclusion(workspace);
+      'packages/journey-data/**', 'packages/conditions/**',
+      'packages/outages/**']) assertVitestExclusion(workspace);
   });
 
   it('retains offline attribution CLI and dedicated test commands', () => {

@@ -6,10 +6,12 @@ export default defineConfig({
   testDir: "./e2e",
   fullyParallel: false,
   forbidOnly: Boolean(process.env.CI),
-  retries: 0,
+  retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? "github" : "list",
   use: {
     baseURL: `http://127.0.0.1:${port}`,
+    locale: "en-CA",
+    timezoneId: "America/Toronto",
     trace: "on-first-retry",
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],

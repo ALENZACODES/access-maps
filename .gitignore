@@ -10,5 +10,7 @@ dist/
 # Generated timetable shards (I14). Manifests live under pack/schedules/.
 data/schedules/
 release-assets/
+test-results/
+playwright-report/
 packages/map-ui/test-results/
 packages/map-ui/playwright-report/
