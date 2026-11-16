@@ -8,6 +8,9 @@ import { readFileSync } from "node:fs";
 import { checkRepoData } from "./repo-check.js";
 import { reportStaleAndMissingLicences } from "./stale-licence-report.js";
 
+/** The latest retrieval date in sources/registry.json. A later date in the registry is reported as a future date. */
+const LICENCE_AS_OF = "2026-11-16";
+
 export async function main(root = process.cwd()): Promise<number> {
   const resolvedRoot = path.resolve(root);
   const report = await checkRepoData({ root: resolvedRoot });
@@ -21,7 +24,7 @@ export async function main(root = process.cwd()): Promise<number> {
       licence: source.licence_id ?? "",
       observedOn: source.retrieved_at ?? "",
     })),
-    { asOf: "2026-11-15", maxAgeDays: 365 },
+    { asOf: LICENCE_AS_OF, maxAgeDays: 365 },
   );
   const summary = {
     registry: report.registry,

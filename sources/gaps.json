@@ -1,18 +1,13 @@
 [
   {
     "name": "OC Transpo static GTFS",
-    "url": "https://www.octranspo.com/en/plan-your-trip/travel-tools/developers/",
-    "reason": "A zip URL used by transit catalogs responded, but the publisher terms page https://www.octranspo.com/en/plan-your-trip/travel-tools/developers/dev-terms returned HTTP 403. The licence text could not be confirmed, so the feed was not imported."
+    "url": "https://www.octranspo.com/files/google_transit.zip",
+    "reason": "On 2026-11-16 the City of Ottawa open-data item OC Transpo Schedules (ArcGIS item af9fed684cb349ff8b6be075baf97683) pointed to this zip and linked the Open Data Licence Version 2.0, so the licence is stated. The zip itself returned HTTP 403 to the pipeline on 2026-11-16, and the developer terms page describes the separate live API licence as revocable with an indemnity. No file was retrieved, so the feed was not imported."
   },
   {
     "name": "York Region Transit GTFS",
     "url": "https://www.yrt.ca/en/about-us/open-data.aspx",
     "reason": "YRT publishes an Open Data Licence Agreement, and the download is behind a named-person request form. No anonymous file URL was available, so the feed was not retrieved."
-  },
-  {
-    "name": "City of Ottawa public washrooms",
-    "url": "https://open.ottawa.ca/datasets/public-washrooms",
-    "reason": "The Open Ottawa dataset page loaded, and the embedded item licenseInfo was null. On 2026-11-13 the licence page https://ottawa.ca/en/city-hall/get-know-your-city/open-data#open-data-licence-version-2-0 returned an Incapsula interstitial instead of licence text. The dataset was not imported."
   },
   {
     "name": "Peel Region Active Recreation and Trails",
@@ -53,5 +48,65 @@
     "name": "GO Transit and UP Express stop_amenities.txt",
     "url": "https://www.gotransit.com/en/partner-with-us/software-developers",
     "reason": "The official GO Transit and UP Express zips downloaded on 2026-11-15 contain stop_amenities.txt with a washroom column coded as integers. No data dictionary was in the feed, so the codes were not interpreted and the file was not imported."
+  },
+  {
+    "name": "Kaggle datasets on Ontario accessibility",
+    "url": "https://www.kaggle.com/datasets/johnnykhan1/toronto-accessibility-and-disability-data",
+    "reason": "Checked on 2026-11-16. The relevant Kaggle dataset, Toronto Accessibility and Disability Data, repackages City of Toronto open data (accessible parking stalls, park and civic-building washrooms, library branches, TTC stops). Its Kaggle licence field reads Other (specified in description). Nothing was imported from Kaggle: the same files were retrieved from the City of Toronto on 2026-11-16 and imported from the publisher, which states the licence itself. Without a login the Kaggle dataset search answered one query, with two results that both repackage Canadian public data, and returned HTTP 404 for five other queries, so the pipeline could not complete a wider search."
+  },
+  {
+    "name": "City of Toronto Museums and Cultural Centres washrooms",
+    "url": "https://open.toronto.ca/dataset/museums-and-cultural-centres/",
+    "reason": "Retrieved 2026-11-16 under the Open Government Licence - Toronto (10 rows with Washroom?, Accessible? and Gender Inclusive? columns). The file has an address and no coordinates. Records are stored by 0.5-degree cell and this pipeline does not geocode, so the rows were not imported."
+  },
+  {
+    "name": "City of Toronto Traffic Beacon and Pedestrian Crossover resources",
+    "url": "https://open.toronto.ca/dataset/traffic-signals-tabular/",
+    "reason": "Retrieved 2026-11-16 under the Open Government Licence - Toronto (358 beacons, 496 crossovers). Neither resource has an accessibility column. Not imported. The Traffic Signal resource of the same package is imported as toronto-traffic-signals."
+  },
+  {
+    "name": "City of Toronto Pedestrian Network segments without a stated sidewalk",
+    "url": "https://open.toronto.ca/dataset/pedestrian-network/",
+    "reason": "16,356 of the 87,105 segments retrieved on 2026-11-16 are published as having no sidewalk, a partial sidewalk, a laneway without a sidewalk, a roadway under development, or no description on a road. Their line is the roadway. A path record is read as somewhere a person can travel, so these segments were left out. The other 70,749 segments are imported as toronto-pedestrian-network."
+  },
+  {
+    "name": "City of Ottawa Pedestrian Network and Sidewalks",
+    "url": "https://maps.ottawa.ca/arcgis/rest/services/Pedestrian_Plan/MapServer/0",
+    "reason": "Reachable on 2026-11-16 and the City of Ottawa ArcGIS item links the Open Data Licence Version 2.0 (text read at https://www.ottawa.ca/opendata). The Pedestrian Network layer has 20,298 lines with a WALK_TYPE column and no surface, width, slope or curb column. The Sidewalks layer (TopographicMapping/MapServer/5) is polygons. Neither was mapped in this pass. Not imported."
+  },
+  {
+    "name": "City of Ottawa parks inventory layers 5, 7, 8, 23 and 24, drinking fountains, recreation facilities, library locations and O-Train stations",
+    "url": "https://maps.ottawa.ca/arcgis/rest/services/Parks_Inventory/MapServer",
+    "reason": "Reachable on 2026-11-16 and the City of Ottawa ArcGIS item links the Open Data Licence Version 2.0 (text read at https://www.ottawa.ca/opendata). Layer 5 is a joined table that the service did not page (HTTP 200 with error 400 on an ordered query). Layer 7 has no filled ACCESSIBLE value. Layers 8, 23 and 24 are lines or polygons. Public Drinking Water Fountains (112 points), City Facilities for Recreation Activities (371 points), library locations and O-Train station polygons have no accessibility column. None of these were mapped in this pass. Not imported."
+  },
+  {
+    "name": "City of Ottawa records without a coordinate",
+    "url": "https://maps.ottawa.ca/arcgis/rest/services/Parks_Inventory/MapServer",
+    "reason": "One parks inventory feature and one parking lot retrieved on 2026-11-16 have no usable point. Records are stored by 0.5-degree cell, so those two rows were not imported."
+  },
+  {
+    "name": "Kingston Transit, GOVA Transit (Greater Sudbury) and Durham Region Transit GTFS",
+    "url": "https://opendatakingston.cityofkingston.ca/",
+    "reason": "The City of Kingston and City of Greater Sudbury open-data licences are already recorded in the registry for other files. These GTFS feeds were not retrieved on 2026-11-16 and were not imported in this pass. Durham Region's licence text was not read."
+  },
+  {
+    "name": "City of Brampton sidewalk segments and parks",
+    "url": "https://services3.arcgis.com/rl7ACuZkiFsmDA2g/arcgis/rest/services/Sidewalks/FeatureServer/0",
+    "reason": "Counted at 429,007 sidewalk segments and 869 parks in the 2026-11-15 survey, with CC BY stated on the City item. Not retrieved on 2026-11-16 and not imported in this pass."
+  },
+  {
+    "name": "City of Kitchener and City of Waterloo sidewalks and parking lots",
+    "url": "https://services1.arcgis.com/qAo1OsXi67t7XgmS/arcgis/rest/services/Sidewalks/FeatureServer/0",
+    "reason": "The municipal open-data licence text for these two cities was not read on 2026-11-16. UNKNOWN licence. Not imported."
+  },
+  {
+    "name": "Public Services and Procurement Canada building accessibility scores",
+    "url": "https://open.canada.ca/data/en/dataset/aaf6462d-eab9-4165-9329-24095451121d",
+    "reason": "The open.canada.ca package states the Open Government Licence - Canada. The file is a one-off 2020 to 2021 assessment score per federal building, and the venue schema has no field for a score. Not retrieved on 2026-11-16 and not imported in this pass."
+  },
+  {
+    "name": "Ontario Data Catalogue search for accessible places",
+    "url": "https://data.ontario.ca/api/3/action/package_search?q=accessible",
+    "reason": "Searched on 2026-11-16 (301 packages). The open results are programme and grant tables, such as EASE grant recipients and EnAbling Change recipients, or web-only map layers. No file with a per-place accessibility column was found, so nothing further was imported from this catalogue."
   }
 ]
