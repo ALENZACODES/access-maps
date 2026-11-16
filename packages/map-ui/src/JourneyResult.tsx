@@ -89,7 +89,7 @@ export function JourneyResult({ plan }: { plan: JourneyPlan }) {
         locale={plan.locale}
         attribution={drawsOsm ? text.attributionOsm : text.attributionPlain}
       />
-          <AttributionSources plan={plan} />
+      <AttributionSources plan={plan} />
     </article>
   );
 }

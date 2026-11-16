@@ -1,4 +1,4 @@
-import { buildAttributionPage, type ProviderId } from "../../../docs/attribution/index.ts";
+import { buildAttributionPage, type ProviderId } from "../../../docs/attribution/index.js";
 import type { JourneyPlan } from "@access-maps/journey";
 
 function providersForPlan(plan: JourneyPlan): ProviderId[] {
