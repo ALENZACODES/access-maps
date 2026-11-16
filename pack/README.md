@@ -31,10 +31,20 @@ before a later rebuild; do not override the hold by editing generated files.
 
   Users must follow applicable laws when using the transit data.
 
-  Les utilisateurs doivent respecter les lois applicables lorsqu'ils utilisent les données de transport en commun.
+  Les utilisateurs doivent respecter les lois applicables lorsqu’ils utilisent les données de transport en commun.
 
 - **MiWay** is out. It is not in the source registry and must not appear in pack parts or counts.
-- **London Transit (gtfs-ltc)** was also approved by John Khan to QA on 15 November 2026 at 5:59 PM ET (America/Toronto). This pack still holds imported `data/transit/gtfs-ltc/` rows out of downloadable parts, indexes and counts until a follow-up adds the LTC Terms of Use availability notice.
+- **London Transit (gtfs-ltc)** is included in the web pack (`inWebPack` true). John Khan confirmed directly to QA on 15 November 2026 at 5:59 PM ET (America/Toronto) that London Transit data can go in. Licence: [LTC Open Data Terms of Use](https://www.londontransit.ca/open-data/ltcs-open-data-terms-of-use/), retrieved from the official open-data page at https://www.londontransit.ca/open-data/. Packed rows stay under `data/transit/gtfs-ltc/` and are never mixed into `metrolinx-*` files or `tiles/open`. Do not use LTC marks or logos, and do not claim endorsement.
+
+  Show this optional availability notice, in English and French, with the terms link, anywhere these rows are presented and on Data status / the attribution page:
+
+  Transit data is available from London Transit Commission under its Terms of Use
+
+  Les données de transport en commun sont disponibles auprès de la Commission de transport de London : elles sont offertes aux termes de ses conditions d’utilisation.
+
+  https://www.londontransit.ca/open-data/ltcs-open-data-terms-of-use/
+
+  The official static GTFS zip used for later I14 timetable packing is stored outside Git (SHA-256 `22d69ea78ddcd039c33e63ba2f272bbff1996226767442c50ac35cdefa308f98`, fetched 15 November 2026). Do not commit that zip or timetable chunks.
 
 ## Licences and attribution
 

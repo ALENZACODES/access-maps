@@ -1,0 +1,15 @@
+{
+  "id": "osm-ontario",
+  "name": "OpenStreetMap, Geofabrik Ontario extract",
+  "kind": "osm",
+  "url": "https://download.geofabrik.de/north-america/canada.html",
+  "download_url": "https://download.geofabrik.de/north-america/canada/ontario-latest.osm.pbf",
+  "licence_name": "Open Database License (ODbL) 1.0",
+  "licence_url": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "licence_id": "ODbL-1.0",
+  "attribution": "(c) OpenStreetMap contributors",
+  "retrieved_at": "2026-11-13",
+  "tier": 0,
+  "tier_note": "OpenStreetMap tags are tier 0 open-data imports. They are not shown as verified.",
+  "notes": "Extract file retrieved from Geofabrik. The data licence is ODbL. Contributor usernames are not stored. Phone and email tags are dropped."
+}

@@ -1,8 +1,14 @@
 node_modules/
 dist/
+.vite/
+*.tsbuildinfo
 .cache/
 .vite/
 *.tsbuildinfo
 *.osm.pbf
 *.geojsonseq
 .DS_Store
+
+# Generated timetable shards (I14). Manifests live under pack/schedules/.
+data/schedules/
+release-assets/
