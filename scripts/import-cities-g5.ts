@@ -1,6 +1,13 @@
 import { pathToFileURL } from "node:url";
 import { mapCambridgeSidewalk, mapCambridgeTrail } from "../src/municipal/cities/cambridge.js";
 import {
+  mapHaldimandAccessibleParking,
+  mapHaldimandPedestrianCrossing,
+  mapHaldimandSidewalk,
+  mapHaldimandTrafficSignal,
+  mapHaldimandTrail,
+} from "../src/municipal/cities/haldimand.js";
+import {
   mapLondonLibrary,
   mapLondonOffStreetParking,
   mapLondonParkAmenity,
@@ -9,11 +16,13 @@ import {
   mapLondonTrail,
   mapLondonWalkway,
 } from "../src/municipal/cities/london.js";
+import { mapOxfordTrail } from "../src/municipal/cities/oxford-county.js";
 import { runLayerJobs, type ImportedSource, type LayerJob } from "./import-cities-g3.js";
 
 /**
- * Importer for the City of London layers and the City of Cambridge Trails and Pedestrian
- * Network layers retrieved on 2026-11-16.
+ * Importer for the City of London layers, the City of Cambridge Trails and Pedestrian Network
+ * layers, the County of Oxford Trails layer (serving Woodstock) and Haldimand County layers
+ * retrieved on 2026-11-16.
  *
  * These sources are included on the repository owner's statement of 2026-11-16 that their
  * use is permitted; sources/registry.json records that basis and, where the publisher has
@@ -74,6 +83,42 @@ export const G5_LAYER_JOBS: readonly LayerJob[] = [
     tranche: "path",
     fields: ["ASSET_TYPE", "STATUS", "SURFACE_MATERIAL", "WIDTH"],
     map: mapCambridgeSidewalk,
+  },
+  {
+    id: "oxford-county-trails",
+    tranche: "path",
+    fields: ["TYPE", "FEATURE", "Status", "Material", "Difficulty"],
+    map: mapOxfordTrail,
+  },
+  {
+    id: "haldimand-accessible-parking",
+    tranche: "venue",
+    fields: ["Address", "Ownership", "ParkingType", "ByLaw", "Accessible"],
+    map: mapHaldimandAccessibleParking,
+  },
+  {
+    id: "haldimand-sidewalks",
+    tranche: "path",
+    fields: ["STATUS", "SURFTYPE", "WIDTH"],
+    map: mapHaldimandSidewalk,
+  },
+  {
+    id: "haldimand-traffic-signals",
+    tranche: "venue",
+    fields: ["Location", "Intersecti", "Town", "Subtype", "Removed_Da", "Audible", "Accessible"],
+    map: mapHaldimandTrafficSignal,
+  },
+  {
+    id: "haldimand-pedestrian-crossings",
+    tranche: "venue",
+    fields: ["Name", "Location", "Intersecti", "Town", "Removed_Da", "Audible", "Accessible"],
+    map: mapHaldimandPedestrianCrossing,
+  },
+  {
+    id: "haldimand-trails",
+    tranche: "path",
+    fields: ["Type", "Class", "Status", "OffRoad"],
+    map: mapHaldimandTrail,
   },
 ];
 
