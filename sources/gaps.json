@@ -448,5 +448,35 @@
     "name": "Township of Essa open data",
     "url": "https://www.essatownship.on.ca/",
     "reason": "Checked 2026-11-16. Essa ranks 77th by 2021 Census population and is listed to replace a skipped municipality (sources/ontario-municipalities-51-75.json). No Township open-data portal or licence was found: https://www.essatownship.on.ca/open-data and /opendata returned HTTP 404, ArcGIS searches found no Township hub, and none of the 5 services found for Essa on the County of Simcoe GIS portal has licence text. Nothing imported."
+  },
+  {
+    "name": "City of Orillia open data",
+    "url": "https://www.orillia.ca/",
+    "reason": "Checked 2026-11-16. Orillia ranks 57th by 2021 Census population (sources/ontario-municipalities-51-75.json). No City open-data portal or licence was found: https://www.orillia.ca/open-data and /opendata returned HTTP 404 and data.orillia.ca could not be reached (the proxy reported the host unreachable). The City's layers on the County of Simcoe GIS portal include City of Orillia Municipal Parks, whose licence field is a general-information disclaimer with no grant of rights; the other Orillia services have a blank licence field. Nothing imported."
+  },
+  {
+    "name": "City of Stratford open data",
+    "url": "https://www.stratford.ca/live-here/maps/",
+    "reason": "Checked 2026-11-16. Stratford ranks 58th by 2021 Census population (sources/ontario-municipalities-51-75.json). No City open-data portal or licence was found: https://www.stratford.ca/open-data and /opendata returned HTTP 404, the City's Maps page links only an interactive map on https://maps.stratford.ca/gisportal and a PDF map, and requests to maps.stratford.ca and data.stratford.ca were reset by the server. Nothing imported. No Stratford Transit GTFS publication with a licence statement was found."
+  },
+  {
+    "name": "Township of Centre Wellington and County of Wellington open data",
+    "url": "https://www.centrewellington.ca/",
+    "reason": "Checked 2026-11-16. Centre Wellington ranks 61st by 2021 Census population (sources/ontario-municipalities-51-75.json). No Township or County open-data portal or licence was found: https://www.centrewellington.ca/open-data and /opendata and https://www.wellington.ca/open-data, /opendata and /en/resident-services/opendata.aspx returned HTTP 404. The Township's ArcGIS services on gis.centrewellington.ca (parcels, zoning, tree inventory) have a blank licence field. The County's public ArcGIS layers (WellingtonPlanning organization, such as TrailsParks and PicnicLocations) have a blank licence field or only a title in it, with no grant of rights. Nothing imported."
+  },
+  {
+    "name": "Township of Woolwich GeoHUB",
+    "url": "https://woolwich-geohub-woolwich.hub.arcgis.com/",
+    "reason": "Checked 2026-11-16. Woolwich ranks 66th by 2021 Census population (sources/ontario-municipalities-51-75.json). The Township's GeoHUB lists 23 items, among them a Trails feature service (ArcGIS item 00e0f163a55c4f6fb8391f9a04c392bc), zoning, PDFs and story maps. The Trails item and the hub's Open Data page carry no licence text, and https://www.woolwich.ca/open-data and /opendata returned HTTP 404. Nothing imported. Grand River Transit, which serves Woolwich, is already imported (gtfs-grt-bus, gtfs-grt-ion), and the Region of Waterloo layers are covered by the existing Region of Waterloo gap."
+  },
+  {
+    "name": "Township of King open data",
+    "url": "https://www.king.ca/",
+    "reason": "Checked 2026-11-16. King ranks 65th by 2021 Census population (sources/ontario-municipalities-51-75.json). No Township open-data portal or licence was found: https://www.king.ca/open-data and /opendata returned HTTP 404. The Township's public ArcGIS items (organization kingarcgisonline), including ParksOpenData, Parks and NewTrails, have a blank licence field; the Municipal_Boundary item's licence text says data may be printed and analysed but that distribution must go through York Region Geomatics and that it cannot be used for commercial or third-party purposes. Nothing imported. York Region Transit stops are already imported (york-region-yrt-bus-stops); York Region's other open data is covered by the existing York Region gap."
+  },
+  {
+    "name": "Town of East Gwillimbury open data",
+    "url": "https://www.eastgwillimbury.ca/",
+    "reason": "Checked 2026-11-16. East Gwillimbury ranks 56th by 2021 Census population (sources/ontario-municipalities-51-75.json). No Town open-data portal or licence was found: https://www.eastgwillimbury.ca/open-data and /opendata returned HTTP 404. The Town's public ArcGIS items (organization EastGwillMap), including Parks Layers for Public App, have a blank licence field, or text that limits general access to York Region staff, York Info Partners and their consultants. Nothing imported. York Region Transit stops are already imported (york-region-yrt-bus-stops)."
   }
 ]
