@@ -39,7 +39,7 @@ City of Toronto park washroom `Status` uses the datastore field note on resource
 
 A piece is one field on one record whose value is not `UNKNOWN` and whose `derived` flag is not true. `UNKNOWN` values are gaps. Photos, reviews, and tags are not pieces. A fact stored on a washroom record is not also stored on the venue.
 
-Section 5.6 counts only tier 2 and tier 3 values toward 500,000. This import's verified total is 0, so the shortfall is the full illustrative target in every tranche. The files, retrieved between 2026-11-13 and 2026-11-16, contain 830,973 tier 0 or tier 1 physical accessibility-fact values. Context fields, including access, crossing, lit, and fee, are 508,603 and are counted separately. Other populated values are 6,606,532. [COUNTS.md](COUNTS.md) has the tier split, the retrieval date, and the UNKNOWN gaps.
+Section 5.6 counts only tier 2 and tier 3 values toward 500,000. This import's verified total is 0, so the shortfall is the full illustrative target in every tranche. The files, retrieved between 2026-11-13 and 2026-11-16, contain 833,122 tier 0 or tier 1 physical accessibility-fact values. Context fields, including access, crossing, lit, and fee, are 508,603 and are counted separately. Other populated values are 6,613,733. [COUNTS.md](COUNTS.md) has the tier split, the retrieval date, and the UNKNOWN gaps.
 
 [COUNTS.md](COUNTS.md) also lists accessibility facts separately from names, addresses, and geometry. `toilets:wheelchair` is stored on the washroom `wheelchair` field. Tier 4 alert rows are not pieces.
 
@@ -85,6 +85,10 @@ Washroom fields from a venue, such as `toilets:wheelchair`, are emitted as a sep
 `npx tsx scripts/import-york-durham-cities.ts` reads the ArcGIS REST layers listed in `src/municipal/cities/york-durham-jobs.ts`. Each municipality has its own mapper in `src/municipal/cities/` and its own test in `test/cities/`. `npm run import` runs it after the city open-data importer.
 
 `npx tsx scripts/import-cities-g4.ts` reads the ArcGIS REST layers for Kingston, Greater Sudbury, Thunder Bay, Cornwall, Quinte West and the second set of Ottawa layers, and downloads the Kingston Transit and GOVA Transit GTFS zips. Each city has its own mapper in `src/municipal/cities/` and its own test in `test/cities/`. `npm run import` runs it before the GTFS importer. Outside `npm run import`, run it with `NODE_USE_ENV_PROXY=1` when the network needs a proxy.
+
+<!-- g6 start -->
+`npx tsx scripts/import-cities-g6.ts` reads the ArcGIS REST layers for the municipalities ranked 51 to 77 by 2021 Census population ([sources/ontario-municipalities-51-75.json](sources/ontario-municipalities-51-75.json)) and the counties that serve them: the County of Essex and the County of Brant so far. Each publisher has its own mapper in `src/municipal/cities/` and its own test in `test/cities/`. `npm run import` runs it after the G4 importer. Outside `npm run import`, run it with `NODE_USE_ENV_PROXY=1` when the network needs a proxy. A line drawn in several parts is stored as one path record per part.
+<!-- g6 end -->
 
 - York Region's Bus Stops from GTFS layer is a tier 1 operator claim. Its "Yes / Part" boarding label is kept as published and is not stored as a yes.
 - A trail drawn in several parts is stored as one path record per part, so no part of the line is dropped. A length published for the whole trail is not repeated on the parts.

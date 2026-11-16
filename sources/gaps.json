@@ -283,5 +283,35 @@
     "name": "Haldimand County open data",
     "url": "https://opendata-haldimand.hub.arcgis.com/",
     "reason": "Checked on 2026-11-16. The catalogue lists 11 records (lots and concessions, building footprints, parks, trails, boundary, water features, wards and roads), each with an empty licence field; the hub site item itself carries the text CC-BY-SA with no version and no link, and no licence page was found. Parks (62 polygons) has a name, size and address and no accessibility column. The HaldimandTrails service returned error 404 (Service not found). No accessibility-relevant file with a stated licence was found. Not imported."
+  },
+  {
+    "name": "County of Essex traffic signals, traffic warning signals, golf courses and on-road CWATS routes",
+    "url": "https://opendata.countyofessex.ca/",
+    "reason": "Checked 2026-11-16 under the Open Government Licence – County of Essex. Traffic Signals (43 points) has owner, number, name and facility id columns and no audible or accessible pedestrian signal column. Traffic Warning Signals (17 points) are flashing lights and stop-sign beacons. In Recreational Areas, 11 golf courses and 1 marina were left out; the other 181 rows are imported as essex-county-recreational-areas. In Existing CWATS trails, 178 of the 252 rows are bike lanes, paved shoulders, signed routes, cycle paths or the CSS type and were left out; the MUT and MUP rows are imported as essex-county-trails. Not imported."
+  },
+  {
+    "name": "Town of Tecumseh open-data layers",
+    "url": "https://tecumseh-essexcounty.opendata.arcgis.com/",
+    "reason": "Checked 2026-11-16. Tecumseh ranks 75th by 2021 Census population (sources/ontario-municipalities-51-75.json). The Town's hub lists 22 items from https://gisweb.tecumseh.ca/arcgis/rest/services/OpenDataMaps/, including Parks, Town Facilities, Sidewalks (Public), Walkways (Public), Trails, Transit Bus Stops, Traffic Signals and Parking: Public and Municipal Lots. Each item's licence field reads © Copyright Town of Tecumseh with a no-warranty sentence, or is blank, and no Town licence that grants a right to redistribute was found. The County of Essex hub also lists these items, but the County licence names the County of Essex as the Information Provider and does not cover rights the County is not authorized to license. Nothing imported from the Town. County of Essex layers that cover Tecumseh are imported (essex-county-*), and Transit Windsor's GTFS (windsor-transit-gtfs) is already in the repo."
+  },
+  {
+    "name": "Town of LaSalle open data",
+    "url": "https://forms.lasalle.ca/DoIT/Data-License-Agreement",
+    "reason": "Checked 2026-11-16. LaSalle ranks 60th by 2021 Census population (sources/ontario-municipalities-51-75.json). The Town's hub https://lasalle-essexcounty.opendata.arcgis.com lists no datasets. The Town releases GIS layers through a Data License Agreement form that asks for the requester's name, address, phone and email, limits use to a named project, forbids distribution without written permission and requires the data to be destroyed after the end date. Not an open licence; nothing imported from the Town. County of Essex layers that cover LaSalle are imported (essex-county-*)."
+  },
+  {
+    "name": "Municipality of Lakeshore open data",
+    "url": "https://lakeshore-essexcounty.opendata.arcgis.com/",
+    "reason": "Checked 2026-11-16. Lakeshore ranks 54th by 2021 Census population (sources/ontario-municipalities-51-75.json). The Municipality's hub lists no datasets, https://www.lakeshore.ca/open-data and /opendata returned HTTP 404, and no Municipality open-data licence was found. Nothing imported from the Municipality. County of Essex layers that cover Lakeshore are imported (essex-county-*)."
+  },
+  {
+    "name": "Municipality of Leamington open data",
+    "url": "https://leamington-essexcounty.opendata.arcgis.com/",
+    "reason": "Checked 2026-11-16. Leamington ranks 63rd by 2021 Census population (sources/ontario-municipalities-51-75.json). The Municipality's hub lists one item, SubjectParks (parks for tender, October 2021), with a blank licence field. Other Leamington layers in the County's ArcGIS organization, such as GPSBusStops and DogPark, are not in the hub and have a blank licence field; Leamington_Streets is marked CC BY-NC-ND, which does not permit commercial use or derivatives. No Municipality open-data licence was found; https://www.leamington.ca/open-data and /opendata returned HTTP 404. Nothing imported from the Municipality. County of Essex layers that cover Leamington are imported (essex-county-*), and Transit Windsor's GTFS (windsor-transit-gtfs), already in the repo, has stops in Leamington and Kingsville."
+  },
+  {
+    "name": "Town of Amherstburg open data",
+    "url": "https://amherstburg-open-data-essexcounty.hub.arcgis.com/",
+    "reason": "Checked 2026-11-16. Amherstburg ranks 74th by 2021 Census population (sources/ontario-municipalities-51-75.json). The Town's open-data hub lists one item, Amherstburg Municipal Boundary, with a blank licence field. A second hub, Amherstburg Parks and Paths, holds two story maps and no dataset. No Town open-data licence was found; https://www.amherstburg.ca/open-data and /opendata returned HTTP 404. Nothing imported from the Town. County of Essex layers that cover Amherstburg are imported (essex-county-*), and Transit Windsor's GTFS (windsor-transit-gtfs), already in the repo, has stops in Amherstburg."
   }
 ]
