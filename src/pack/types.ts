@@ -28,4 +28,6 @@ export interface PackManifest {
   search: Record<string, Omit<PackPart, "sourceId">>;
   tiles: Record<string, { path: string; bytes: number; licence: string }>;
   counts: { records: number; byTranche: Record<string, number>; bySource: Record<string, number> };
+  /** Partitions left out of this build, with the reason. The app shows these places as unavailable. */
+  withheld?: Array<{ path: string; sourceId: string | null; tranche: string | null; cell: string | null; reason: string }>;
 }

@@ -17,10 +17,12 @@ export async function verifyWebPack(options: { data: string; out: string }): Pro
     const actual = await digest(file);
     if (actual.bytes !== part.bytes || actual.sha256 !== part.sha256) throw new Error(`Digest mismatch: ${file}`);
   }
+  const withheld = new Set((manifest.withheld ?? []).map((part) => part.path));
   for (const [tranche, group] of Object.entries(manifest.tranches)) {
     for (const [cell, entry] of Object.entries(group.cells)) {
       for (const part of entry.parts) {
         if (held.has(part.sourceId)) throw new Error(`Held source included: ${part.sourceId}`);
+        if (withheld.has(part.path)) throw new Error(`Withheld part included: ${part.path}`);
         const file = path.resolve(root, part.path);
         if (!file.startsWith(`${root}${path.sep}`)) throw new Error(`Unsafe path: ${part.path}`);
         await check(file, part);

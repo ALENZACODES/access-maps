@@ -1,4 +1,4 @@
-import { mkdirSync, readdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readdirSync } from "node:fs";
 import { createReadStream } from "node:fs";
 import { pathToFileURL } from "node:url";
 import path from "node:path";
@@ -8,6 +8,9 @@ import { isAccessibilityField } from "../src/count/accessibility.js";
 import { isPiece } from "../src/model/provenance.js";
 import { TRANCHE_DIR, type DataRecord, type Tranche } from "../src/model/records.js";
 import { buildPmtiles, TileSizeError, type MapFeature } from "../src/tiles/build.js";
+import { writeFileAtomic } from "../src/failsafe/files.js";
+import { checkRecord } from "../src/failsafe/record-check.js";
+import { failsafeLog } from "../src/failsafe/report.js";
 
 const FAMILIES = ["odbl", "other"] as const;
 
@@ -29,7 +32,7 @@ export async function buildOfflineTiles(repoRoot: string, includePaths = true): 
     try {
       const archive = buildPmtiles(group, options);
       const file = path.join(directory, "places.pmtiles");
-      writeFileSync(file, archive);
+      writeFileAtomic(file, archive);
       written.push(path.relative(repoRoot, file));
       console.log(JSON.stringify({ file: path.relative(repoRoot, file), bytes: archive.length, features: group.length }));
     } catch (error) {
@@ -44,7 +47,7 @@ export async function buildOfflineTiles(repoRoot: string, includePaths = true): 
       for (const [label, band] of [...bands.entries()].sort(([a], [b]) => a.localeCompare(b))) {
         const archive = buildPmtiles(band, options);
         const file = path.join(directory, `places-${label}.pmtiles`);
-        writeFileSync(file, archive);
+        writeFileAtomic(file, archive);
         written.push(path.relative(repoRoot, file));
         console.log(JSON.stringify({ file: path.relative(repoRoot, file), bytes: archive.length, features: band.length }));
       }
@@ -74,17 +77,43 @@ async function collect(dataRoot: string, includePaths: boolean): Promise<MapFeat
   const features: MapFeature[] = [];
   for (const tranche of Object.keys(TRANCHE_DIR) as Tranche[]) {
     const directory = path.join(dataRoot, TRANCHE_DIR[tranche]);
-    for (const file of listNdjson(directory)) {
-      const stream = readline.createInterface({
-        input: createReadStream(file).pipe(createGunzip()),
-        crlfDelay: Infinity,
-      });
-      for await (const line of stream) {
-        if (!line.trim()) continue;
-        const feature = toFeature(JSON.parse(line) as DataRecord, includePaths);
-        if (feature) features.push(feature);
+    for (const file of listNdjson(directory)) features.push(...await collectFile(file, tranche, includePaths));
+  }
+  return features;
+}
+
+/**
+ * Features from one partition. A file that does not decompress or has a line
+ * that is not JSON adds nothing and is reported; a record that fails its
+ * check is skipped and quarantined. Neither stops the other files.
+ */
+export async function collectFile(file: string, tranche: Tranche, includePaths: boolean): Promise<MapFeature[]> {
+  const sourceId = path.basename(path.dirname(file));
+  const features: MapFeature[] = [];
+  const input = createReadStream(file).pipe(createGunzip());
+  const stream = readline.createInterface({ input, crlfDelay: Infinity });
+  let lineNumber = 0;
+  try {
+    for await (const line of stream) {
+      lineNumber += 1;
+      if (!line.trim()) continue;
+      let record: unknown;
+      try { record = JSON.parse(line); }
+      catch { throw new Error(`line ${lineNumber} is not JSON`); }
+      const check = checkRecord(record, { tranche, sourceId });
+      if (!check.ok) {
+        failsafeLog().quarantine({ stage: "tiles", source_id: sourceId, tranche, file, id: (record as { id?: string }).id, code: check.code, reason: check.reason });
+        continue;
       }
+      const feature = toFeature(record as DataRecord, includePaths);
+      if (feature) features.push(feature);
     }
+  } catch (error) {
+    failsafeLog().outcome({ step: "tiles", source_id: sourceId, target: file, status: "withheld", reason: `file left out of the overlay: ${(error as Error).message}` });
+    return [];
+  } finally {
+    stream.close();
+    input.destroy();
   }
   return features;
 }
