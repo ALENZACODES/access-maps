@@ -29,7 +29,8 @@
     "import": "tsx scripts/import-all.ts",
     "build:web-pack": "tsx scripts/build-web-pack.ts",
     "verify:web-pack": "tsx scripts/build-web-pack.ts --verify",
-    "licence:recheck": "tsx scripts/licence-recheck.ts"
+    "licence:recheck": "tsx scripts/licence-recheck.ts",
+    "check:strict-data": "tsx tools/data-qa/check-repo-data.ts"
   },
   "dependencies": {
     "ajv": "^8.17.1",

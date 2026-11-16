@@ -27,3 +27,20 @@ jobs:
       - run: npm run lint
       - run: npm test
       - run: npm run validate:sample
+
+  data-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Require package-lock.json
+        run: |
+          if [ ! -f package-lock.json ]; then
+            echo "::error::package-lock.json is missing. Commit a lockfile so npm ci and the later npm steps can run."
+            exit 1
+          fi
+      - run: npm ci
+      - run: npm run check:strict-data
