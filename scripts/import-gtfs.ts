@@ -13,12 +13,14 @@ export interface GtfsImportStats {
   sources: { source_id: string; stops: number; pathways: number; skipped_duplicate: number; skipped_missing_id: number }[];
 }
 
-export async function importGtfs(repoRoot: string): Promise<GtfsImportStats> {
+/** Imports every feed in GTFS_FEEDS, or only the feeds named in `only`. */
+export async function importGtfs(repoRoot: string, only: readonly string[] = []): Promise<GtfsImportStats> {
   const registry = readRegistry(repoRoot);
   const validators = compileValidators(path.join(repoRoot, "schema"));
   const writer = new PartitionWriter(path.join(repoRoot, "data"));
   const stats: GtfsImportStats = { sources: [] };
   for (const feed of GTFS_FEEDS) {
+    if (only.length > 0 && !only.includes(feed.id)) continue;
     const source = requireSource(registry, feed.id);
     if (source.kind !== "gtfs" || source.tier !== 1) {
       throw new Error(`${feed.id} must be a tier 1 gtfs source`);

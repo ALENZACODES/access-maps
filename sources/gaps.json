@@ -10,16 +10,6 @@
     "reason": "YRT publishes an Open Data Licence Agreement, and the download is behind a named-person request form. No anonymous file URL was available, so the feed was not retrieved."
   },
   {
-    "name": "City of Guelph parks, trails, sidewalks, and park locations",
-    "url": "https://explore.guelph.ca/pages/open-data-license",
-    "reason": "On 2026-11-13 the licence page returned HTTP 200 and the extracted text was only the page title. No grant of rights was visible. UNKNOWN licence. Not imported."
-  },
-  {
-    "name": "City of Thunder Bay recreation facilities",
-    "url": "https://www.thunderbay.ca/en/city-services/resources/City-of-Thunder-Bay-Open-Data-Licence.pdf",
-    "reason": "The catalogue links to an open-data licence PDF that returned HTTP 404 on 2026-11-13. Other thunderbay.ca open-data URLs also returned 404. UNKNOWN licence. Not imported."
-  },
-  {
     "name": "City of Barrie park amenities",
     "url": "https://opendata.barrie.ca/datasets/barrie::park-amenity",
     "reason": "On 2026-11-13 the published licence text was a copyright notice and a warranty disclaimer. It did not grant a right to copy, modify, or redistribute. Not imported."
@@ -75,16 +65,6 @@
     "reason": "One parks inventory feature and one parking lot retrieved on 2026-11-16 have no usable point. Records are stored by 0.5-degree cell, so those two rows were not imported."
   },
   {
-    "name": "Kingston Transit, GOVA Transit (Greater Sudbury) and Durham Region Transit GTFS",
-    "url": "https://opendatakingston.cityofkingston.ca/",
-    "reason": "The City of Kingston and City of Greater Sudbury open-data licences are already recorded in the registry for other files. These GTFS feeds were not retrieved on 2026-11-16 and were not imported in this pass. Durham Region's licence text was not read."
-  },
-  {
-    "name": "City of Kitchener and City of Waterloo sidewalks and parking lots",
-    "url": "https://services1.arcgis.com/qAo1OsXi67t7XgmS/arcgis/rest/services/Sidewalks/FeatureServer/0",
-    "reason": "The municipal open-data licence text for these two cities was not read on 2026-11-16. UNKNOWN licence. Not imported."
-  },
-  {
     "name": "Public Services and Procurement Canada building accessibility scores",
     "url": "https://open.canada.ca/data/en/dataset/aaf6462d-eab9-4165-9329-24095451121d",
     "reason": "The open.canada.ca package states the Open Government Licence - Canada. The file is a one-off 2020 to 2021 assessment score per federal building, and the venue schema has no field for a score. Not retrieved on 2026-11-16 and not imported in this pass."
@@ -138,6 +118,76 @@
     "name": "Town of Georgina",
     "url": "https://navigategeorgina-georgina.hub.arcgis.com/",
     "reason": "Checked on 2026-11-16. https://www.georgina.ca/opendata returned HTTP 404. The Georgina Web Mapping hub catalogue has 2 entries (Web Maps and Static Maps) and no datasets. The Town's ArcGIS Online organisation (H9DyU85EnErZGhsY) lists 119 public feature services, including Park Amenities and Trail; their licence field is empty or a note that the map is created from a subset of Town data. No open-data licence was found, so nothing was imported."
+  },
+  {
+    "name": "City of Kitchener facility, parking, signal and network layers without an accessibility column",
+    "url": "https://open-kitchenergis.opendata.arcgis.com/",
+    "reason": "Checked on 2026-11-16 under the Open Government Licence - The Corporation of the City of Kitchener, version 1.0 (text read at https://www.kitchener.ca/en/council-and-city-administration/open-data-licence.aspx; this replaces the 2026-11-16 gap that recorded the Kitchener licence text as not read). Community Centres (16 points), Libraries (6), Arenas and Outdoor Ice Rinks (20), Pools and Splash Pads (17), Parking On Street (156 polygons), Traffic Lights (241), Bus Stop (1,178), ION Station (13) and Parks (541 polygons) have no accessibility column; Traffic Lights has no audible-signal column. Walkability (31,808 lines) is a combined network with no status column that repeats the Sidewalks and Trails lines. None of these were imported. Public washrooms, public parking lots, accessible parking points, playgrounds, playground equipment, sidewalks, trails and crosswalks are imported as kitchener-* sources. Rows not published as ACTIVE were left out: 3 washrooms, 1 parking lot, 4 accessible parking points and 3 playgrounds. 17 virtual network links (2 sidewalk, 3 trail, 12 crosswalk) and 2 lines filed under NETWORK LINKS (1 sidewalk, 1 crosswalk) were left out."
+  },
+  {
+    "name": "City of Waterloo recreation points, parks, walkability network and playground components",
+    "url": "https://data.waterloo.ca/",
+    "reason": "Checked on 2026-11-16 under the Waterloo Open Data User Licence (text read on the City hub page https://data.waterloo.ca/pages/open-data-licence; this replaces the 2026-11-16 gap that recorded the Waterloo licence text as not read). Recreation Points (173 points) and Parks (310 polygons, with a washroom count and no accessibility column) have no accessibility column. Walkability Network (8,359 lines) has only TYPE and STATUS columns. Playground Components (42 rows) lists only removed components and has no geometry. None of these were imported. One Sidewalks feature (OBJECTID 1615) is published as two identical points 0.02 m long, which is not a line, and was left out. Parking lots, playgrounds, sidewalks and trails are imported as waterloo-* sources."
+  },
+  {
+    "name": "City of Cambridge trails, pedestrian network, traffic lights, pools, libraries, community centres and arenas",
+    "url": "https://maps.cambridge.ca/arcgispub03/rest/services/OpenData1/MapServer/11",
+    "reason": "Checked on 2026-11-16. These layers are served from the City's OpenData1 and OpenData2 map services (Trails, 1,961 lines with ACCESSIBLE, surface and width columns; Pedestrian Network, 9,888 lines with surface and width columns), but none of them has a record in the City's open-data catalogue (https://geohub.cambridge.ca), so no catalogue record states the licence for them, and the layers themselves carry no copyright or licence text. UNKNOWN licence for these layers. Not imported. The City's Open Data Licence Version 2.0 was read the same day and covers the catalogued datasets."
+  },
+  {
+    "name": "City of Cambridge public parking lots, parks and splash pads",
+    "url": "https://open-kitchenergis.opendata.arcgis.com/datasets/cityofcambridge::public-parking-lots",
+    "reason": "Checked on 2026-11-16 under the Open Government Licence - City of Cambridge (Open Data Licence Version 2.0, text read). Public Parking Lots (130 polygons) publishes TOTAL_SPACES and no accessible-space or accessibility column. Parks (243 polygons) has only a name and status. The Splash Pads layer (OpenData1/MapServer/12) answered the layer request with error 500 on 2026-11-16. None of these were imported. Play Structures is imported as cambridge-play-structures."
+  },
+  {
+    "name": "Region of Waterloo stops, libraries and traffic layers",
+    "url": "https://rowopendata-rmw.opendata.arcgis.com/",
+    "reason": "Checked on 2026-11-16 under the Region of Waterloo Open Data Licence v.2.0 (text read at https://www.regionofwaterloo.ca/government-and-council/transparency-and-accountability/open-data/). GRT Stops (2,601 points) and ION Stops (35 points) have no accessibility column; the Grand River Transit GTFS feeds are already imported as gtfs-grt-bus and gtfs-grt-ion (retrieved 2026-11-13, not retrieved again in this pass). Of the 123 Region dataset titles in the catalogue, none names accessible pedestrian signals, curb ramps, elevators, washrooms or accessible parking; the traffic titles are Detection Areas, Handwells, Power Supply and Wiring, and their columns were not inspected. Nothing further was imported from the Region."
+  },
+  {
+    "name": "City of Guelph park locations, City facilities and bus stop layer",
+    "url": "https://explore.guelph.ca/",
+    "reason": "Checked on 2026-11-16 under the Open Government Licence - City of Guelph (Open Data Licence Version 2.0, text read from the City hub page; this replaces the 2026-11-13 gap that saw only the page title). Park Location (126 points) carries yes or no amenity columns, including Restroom, and no accessibility column. City Facilities (24 points) has a name, address and category only. Bus Stops (651 points) has no accessibility column, and the Guelph Transit GTFS stops are imported as guelph-transit-gtfs. None of these three layers were imported. 14 Sidewalks rows published as PROPOSED were left out. Restrooms, parking lot points, sidewalks and trails are imported as guelph-* sources. The Guelph Transit real-time feeds were not retrieved."
+  },
+  {
+    "name": "City of Windsor parking lots, facility points, benches and picnic tables",
+    "url": "https://open-data-portal-citywindsor.hub.arcgis.com/",
+    "reason": "Checked on 2026-11-16 under the Open Government Licence - The Corporation of the City of Windsor, version 1.0 (text read at https://opendata.citywindsor.ca/Documents/OpenDataTermsofUse.pdf). The park parking lot layer (110 points) and municipal parking lot layer (34 points) have no accessible-space or accessibility column. Arena (4), library (11), indoor pool (4) and city facility building (15) points have a site name, address, site type and amenity column and no accessibility column. Bench (1,890), picnic table (343), splash pad (13), trail access point (528) and road parking lot access point (153) layers have no accessibility column. None of these were imported. Left out of the imported layers: 71 sidewalk rows published as Temp. Out-New Construction, 14 cycle-track or paved-shoulder rows, 65 path and trail rows that are not complete or are the Roadway type, and 1 bus stop (OBJECTID 385) whose published coordinates are NaN. The old catalogue at https://opendata.citywindsor.ca/ now points to the hub above."
+  },
+  {
+    "name": "City of Thunder Bay Recreation Facility List for Public Bookings",
+    "url": "https://opendata.thunderbay.ca/datasets/39cdc17b12ff43e0ab84a89bba1e1278",
+    "reason": "On 2026-11-13 the licence PDF linked from the catalogue returned HTTP 404. On 2026-11-16 the PDF link still returned HTTP 404, and the same Open Data Licence 1.0 text was read at https://www.thunderbay.ca/city-hall/thunder-bay-open-data/, so the licence is now recorded in the registry for other Thunder Bay layers. This CSV has a facility name, a street address, a PHONE column and no coordinates. Records are stored by 0.5-degree cell and this pipeline does not geocode, so the rows were not imported. The PHONE column was not read."
+  },
+  {
+    "name": "Durham Region Transit GTFS",
+    "url": "https://www.durhamregiontransit.com/",
+    "reason": "Not retrieved on 2026-11-16 and not imported in that pass. Durham Region's licence text was not read. Kingston Transit and GOVA Transit, which shared this entry, were retrieved on 2026-11-16 and are imported as gtfs-kingston and gtfs-gova."
+  },
+  {
+    "name": "Thunder Bay Transit static GTFS",
+    "url": "http://api.nextlift.ca/gtfs.zip",
+    "reason": "Retrieved 2026-11-16 (HTTP 200, 731 stops with wheelchair_boarding filled). The City of Thunder Bay open-data catalogue lists the GTFS-realtime feeds on the same host and a Google Transit Source zip under its Open Data Licence, but the catalogue's own zip holds files dated 2019-11-08, and the catalogue's link to the transit developer page returned HTTP 404. No catalogue entry or City page that names this current static zip together with the licence was found, so the feed was not imported."
+  },
+  {
+    "name": "City of Thunder Bay traffic signals, transit assets, park lands and school crosswalks",
+    "url": "https://opendata.thunderbay.ca/",
+    "reason": "Reachable on 2026-11-16 under the City of Thunder Bay Open Data Licence 1.0. Traffic Signals and Pedestrian Crossovers (800 points) has an id column only and no audible-signal column. Transit Assets (746 points) lists shelter and garbage-can types and no accessibility column. Park Lands (195) are polygons with a name and no amenity or accessibility column. School Crosswalks (81 lines) have a paint type and colour only. Not imported."
+  },
+  {
+    "name": "City of Kingston Sidewalk Surface, Paths, Parking Surfaces and Existing Pedestrian and Cycling Facilities",
+    "url": "https://opendatakingston.cityofkingston.ca/",
+    "reason": "Reachable on 2026-11-16 under the City of Kingston Open Data Licence. Sidewalk Surface (2,710), Paths (696) and Parking Surfaces (2,847) are surface polygons with a material column, not walkable lines, and the path schema stores lines. Existing Pedestrian and Cycling Facilities (255 lines) is a planning network and was not mapped in this pass. Bus Stops (798 points) repeats the GTFS stops, which are imported as gtfs-kingston. Not imported."
+  },
+  {
+    "name": "City of Kingston Points of Interest types outside parks, recreation, civic, parking and transit",
+    "url": "https://services1.arcgis.com/5GRYvurYYUwAecLQ/arcgis/rest/services/Points_of_interest/FeatureServer/0",
+    "reason": "1,708 of the 2,474 points retrieved on 2026-11-16 are types such as schools, places of worship, businesses, sports fields, monuments and utilities, or type Washroom, which is the separate kingston-public-washrooms source. The layer has no accessibility column. Those rows were not imported. The other 766 points are imported as kingston-points-of-interest."
+  },
+  {
+    "name": "City of Greater Sudbury walkway segments that are not active places to walk, and recreation routes",
+    "url": "https://services.arcgis.com/q3mIlR87lZlZsds3/arcgis/rest/services/Road_Dataset/FeatureServer/14",
+    "reason": "381 of the 5,837 Road Sidewalk Path Trail segments retrieved on 2026-11-16 are proposed, abandoned or removed, or are bike paths, shoulders or untyped lines. They were left out. The other 5,456 segments are imported as greater-sudbury-walkways. The Routes layer of RECREATION_VIEW_OPENDATA (293 lines) mixes trails with on-road cycling lanes, paved shoulders and a skating path and has no surface or accessibility column; it was not mapped in this pass. Not imported."
   },
   {
     "name": "Region of Peel Active Recreation, Points of Interest and on-road Trails segments",

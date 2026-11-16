@@ -154,6 +154,221 @@ export const LICENCE_FINDINGS: readonly LicenceFinding[] = [
     reason: "Open Government Licence — City of Ottawa, version 2.0. Not in the strict export allowlist.",
   },
   {
+    sourceId: "york-region-yrt-bus-stops",
+    licence: "York-Region-Open-Data-Licence-1.0",
+    reason: "York Region Open Data Licence, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "markham-city-facilities",
+    licence: "Markham-Open-Data-Licence-1.0",
+    reason: "Open Data Licence – City of Markham, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "markham-trails",
+    licence: "Markham-Open-Data-Licence-1.0",
+    reason: "Open Data Licence – City of Markham, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "newmarket-park-features",
+    licence: "Newmarket-Open-Data-Licence-2.0",
+    reason: "Open Data Licence – Town of Newmarket, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "newmarket-trails",
+    licence: "Newmarket-Open-Data-Licence-2.0",
+    reason: "Open Data Licence – Town of Newmarket, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "newmarket-trail-points",
+    licence: "Newmarket-Open-Data-Licence-2.0",
+    reason: "Open Data Licence – Town of Newmarket, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "newmarket-landmarks",
+    licence: "Newmarket-Open-Data-Licence-2.0",
+    reason: "Open Data Licence – Town of Newmarket, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "kitchener-public-washrooms",
+    licence: "OGL-Kitchener-1.0",
+    reason: "Open Government Licence - The Corporation of the City of Kitchener, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "kitchener-parking-lots",
+    licence: "OGL-Kitchener-1.0",
+    reason: "Open Government Licence - The Corporation of the City of Kitchener, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "kitchener-accessible-parking",
+    licence: "OGL-Kitchener-1.0",
+    reason: "Open Government Licence - The Corporation of the City of Kitchener, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "kitchener-playgrounds",
+    licence: "OGL-Kitchener-1.0",
+    reason: "Open Government Licence - The Corporation of the City of Kitchener, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "kitchener-playground-equipment",
+    licence: "OGL-Kitchener-1.0",
+    reason: "Open Government Licence - The Corporation of the City of Kitchener, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "kitchener-sidewalks",
+    licence: "OGL-Kitchener-1.0",
+    reason: "Open Government Licence - The Corporation of the City of Kitchener, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "kitchener-trails",
+    licence: "OGL-Kitchener-1.0",
+    reason: "Open Government Licence - The Corporation of the City of Kitchener, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "kitchener-crosswalks",
+    licence: "OGL-Kitchener-1.0",
+    reason: "Open Government Licence - The Corporation of the City of Kitchener, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "waterloo-parking-lots",
+    licence: "Waterloo-Open-Data-User-Licence",
+    reason: "Waterloo Open Data User Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "waterloo-playgrounds",
+    licence: "Waterloo-Open-Data-User-Licence",
+    reason: "Waterloo Open Data User Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "waterloo-sidewalks",
+    licence: "Waterloo-Open-Data-User-Licence",
+    reason: "Waterloo Open Data User Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "waterloo-trails",
+    licence: "Waterloo-Open-Data-User-Licence",
+    reason: "Waterloo Open Data User Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "cambridge-play-structures",
+    licence: "OGL-Cambridge-2.0",
+    reason: "Open Government Licence – City of Cambridge, Open Data Licence Version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "guelph-restrooms",
+    licence: "OGL-Guelph-2.0",
+    reason: "Open Government Licence – City of Guelph, Open Data Licence Version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "guelph-parking-lots",
+    licence: "OGL-Guelph-2.0",
+    reason: "Open Government Licence – City of Guelph, Open Data Licence Version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "guelph-sidewalks",
+    licence: "OGL-Guelph-2.0",
+    reason: "Open Government Licence – City of Guelph, Open Data Licence Version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "guelph-trails",
+    licence: "OGL-Guelph-2.0",
+    reason: "Open Government Licence – City of Guelph, Open Data Licence Version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "windsor-park-washrooms",
+    licence: "OGL-Windsor-1.0",
+    reason: "Open Government Licence – The Corporation of the City of Windsor, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "windsor-playgrounds",
+    licence: "OGL-Windsor-1.0",
+    reason: "Open Government Licence – The Corporation of the City of Windsor, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "windsor-drinking-fountains",
+    licence: "OGL-Windsor-1.0",
+    reason: "Open Government Licence – The Corporation of the City of Windsor, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "windsor-bus-stops",
+    licence: "OGL-Windsor-1.0",
+    reason: "Open Government Licence – The Corporation of the City of Windsor, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "windsor-sidewalks",
+    licence: "OGL-Windsor-1.0",
+    reason: "Open Government Licence – The Corporation of the City of Windsor, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "windsor-paths-trails",
+    licence: "OGL-Windsor-1.0",
+    reason: "Open Government Licence – The Corporation of the City of Windsor, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "guelph-transit-gtfs",
+    licence: "OGL-Guelph-2.0",
+    reason: "Open Government Licence – City of Guelph, Open Data Licence Version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "windsor-transit-gtfs",
+    licence: "OGL-Windsor-1.0",
+    reason: "Open Government Licence – The Corporation of the City of Windsor, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "kingston-parking-lots",
+    licence: "Kingston-Open-Data-Licence-1.0",
+    reason: "City of Kingston Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "kingston-trails",
+    licence: "Kingston-Open-Data-Licence-1.0",
+    reason: "City of Kingston Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "kingston-points-of-interest",
+    licence: "Kingston-Open-Data-Licence-1.0",
+    reason: "City of Kingston Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "gtfs-kingston",
+    licence: "Kingston-Open-Data-Licence-1.0",
+    reason: "City of Kingston Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "greater-sudbury-playgrounds",
+    licence: "Greater-Sudbury-Open-Data-Licence-1.0",
+    reason: "City of Greater Sudbury Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "greater-sudbury-recreation",
+    licence: "Greater-Sudbury-Open-Data-Licence-1.0",
+    reason: "City of Greater Sudbury Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "greater-sudbury-walkways",
+    licence: "Greater-Sudbury-Open-Data-Licence-1.0",
+    reason: "City of Greater Sudbury Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "gtfs-gova",
+    licence: "Greater-Sudbury-Open-Data-Licence-1.0",
+    reason: "City of Greater Sudbury Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "thunder-bay-sidewalks",
+    licence: "Thunder-Bay-Open-Data-Licence-1.0",
+    reason: "City of Thunder Bay Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "thunder-bay-trails",
+    licence: "Thunder-Bay-Open-Data-Licence-1.0",
+    reason: "City of Thunder Bay Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "thunder-bay-city-facilities",
+    licence: "Thunder-Bay-Open-Data-Licence-1.0",
+    reason: "City of Thunder Bay Open Data Licence. Not in the strict export allowlist.",
+  },
+  {
     sourceId: "hamilton-park-washrooms",
     licence: "City-of-Hamilton-Open-Data-Licence",
     reason: "City of Hamilton Open Data Licence. Not in the strict export allowlist.",
@@ -192,41 +407,6 @@ export const LICENCE_FINDINGS: readonly LicenceFinding[] = [
     sourceId: "peel-trails",
     licence: "Peel-Open-Data-Licence-1.0",
     reason: "Open Data Licence for The Regional Municipality of Peel, Version 1.0. Not in the strict export allowlist.",
-  },
-  {
-    sourceId: "york-region-yrt-bus-stops",
-    licence: "York-Region-Open-Data-Licence-1.0",
-    reason: "York Region Open Data Licence, version 1.0. Not in the strict export allowlist.",
-  },
-  {
-    sourceId: "markham-city-facilities",
-    licence: "Markham-Open-Data-Licence-1.0",
-    reason: "Open Data Licence – City of Markham, version 1.0. Not in the strict export allowlist.",
-  },
-  {
-    sourceId: "markham-trails",
-    licence: "Markham-Open-Data-Licence-1.0",
-    reason: "Open Data Licence – City of Markham, version 1.0. Not in the strict export allowlist.",
-  },
-  {
-    sourceId: "newmarket-park-features",
-    licence: "Newmarket-Open-Data-Licence-2.0",
-    reason: "Open Data Licence – Town of Newmarket, version 2.0. Not in the strict export allowlist.",
-  },
-  {
-    sourceId: "newmarket-trails",
-    licence: "Newmarket-Open-Data-Licence-2.0",
-    reason: "Open Data Licence – Town of Newmarket, version 2.0. Not in the strict export allowlist.",
-  },
-  {
-    sourceId: "newmarket-trail-points",
-    licence: "Newmarket-Open-Data-Licence-2.0",
-    reason: "Open Data Licence – Town of Newmarket, version 2.0. Not in the strict export allowlist.",
-  },
-  {
-    sourceId: "newmarket-landmarks",
-    licence: "Newmarket-Open-Data-Licence-2.0",
-    reason: "Open Data Licence – Town of Newmarket, version 2.0. Not in the strict export allowlist.",
   },
 ];
 
