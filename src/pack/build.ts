@@ -29,17 +29,20 @@ export const JOHN_QA_CONFIRMATION_AT = "2026-11-15T17:59:00-05:00";
 export const JOHN_QA_CONFIRMATION_NOTE =
   "John Khan confirmed directly to QA on 2026-11-15 at 5:59 PM ET (America/Toronto) that he accepted the Metrolinx Access and Use Agreement. At the same time he approved London Transit data. MiWay stays out.";
 
-/** LTC is approved, but held out of this pack until a follow-up adds the Terms of Use availability notice. MiWay is already absent from the registry. */
-export const PACK_HELD_PENDING_CONFIRMATION = new Set(["gtfs-ltc"]);
+export const LTC_PACK_LICENCE = "LTC Open Data Terms of Use";
+export const LTC_PACK_LICENCE_URL = "https://www.londontransit.ca/open-data/ltcs-open-data-terms-of-use/";
+export const LTC_AVAILABILITY_NOTICE_EN =
+  "Transit data is available from London Transit Commission under its Terms of Use";
+/** FR typography: U+2019 in d’utilisation; U+00A0 before ':'. */
+export const LTC_AVAILABILITY_NOTICE_FR =
+  "Les données de transport en commun sont disponibles auprès de la Commission de transport de London : elles sont offertes aux termes de ses conditions d’utilisation.";
+export const LTC_PACK_ATTRIBUTION = `${LTC_AVAILABILITY_NOTICE_EN}. ${LTC_AVAILABILITY_NOTICE_FR} ${LTC_PACK_LICENCE_URL}`;
 
 export function holdReason(source: SourceEntry): string | null {
   // Take the legal decision from the registry's terms, rather than assuming
   // all GTFS or all municipal records are licensed for web redistribution.
   if (source.id === "gtfs-miway" || source.id.startsWith("gtfs-miway")) {
     return "MiWay stays out: official terms are unconfirmed.";
-  }
-  if (PACK_HELD_PENDING_CONFIRMATION.has(source.id)) {
-    return "London Transit is held out of this web pack until a follow-up adds the LTC Terms of Use availability notice. John Khan confirmed directly to QA on 2026-11-15 at 5:59 PM ET (America/Toronto) that London Transit data can go in.";
   }
   const notes = `${source.notes ?? ""} ${source.tier_note ?? ""}`;
   if (/not been reconciled|revocable|legal review is still required|not treated as a settled open grant|held for legal review/i.test(notes)) {
@@ -61,6 +64,22 @@ export function assertMetrolinxPackProvenance(source: SourceEntry): void {
   }
   if (missing.length) {
     throw new Error(`Metrolinx pack provenance is incomplete for ${source.id}: ${missing.join(", ")}`);
+  }
+}
+
+export function assertLtcPackProvenance(source: SourceEntry): void {
+  if (source.id !== "gtfs-ltc") return;
+  const missing: string[] = [];
+  if (source.licence_id !== LTC_PACK_LICENCE && source.licence_name !== LTC_PACK_LICENCE) {
+    missing.push("licence");
+  }
+  if (source.licence_url !== LTC_PACK_LICENCE_URL) missing.push("licenceUrl");
+  if (!source.attribution.includes(LTC_AVAILABILITY_NOTICE_EN)) missing.push("notice-en");
+  if (!source.attribution.includes(LTC_AVAILABILITY_NOTICE_FR)) missing.push("notice-fr");
+  if (!source.attribution.includes(LTC_PACK_LICENCE_URL)) missing.push("terms-url");
+  if (/logo|crest|mark|endors/i.test(source.attribution)) missing.push("marks-or-endorsement");
+  if (missing.length) {
+    throw new Error(`LTC pack provenance is incomplete for ${source.id}: ${missing.join(", ")}`);
   }
 }
 
@@ -147,7 +166,10 @@ export async function buildWebPack(options: {
   const sources = registry.sources.map((source) => {
     const heldReason = holdReason(source);
     const inWebPack = heldReason === null;
-    if (inWebPack) assertMetrolinxPackProvenance(source);
+    if (inWebPack) {
+      assertMetrolinxPackProvenance(source);
+      assertLtcPackProvenance(source);
+    }
     return {
       sourceId: source.id, name: source.name, licence: source.licence_id,
       licenceUrl: source.licence_url, attribution: source.attribution,
