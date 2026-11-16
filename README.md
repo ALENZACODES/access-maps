@@ -39,7 +39,7 @@ City of Toronto park washroom `Status` uses the datastore field note on resource
 
 A piece is one field on one record whose value is not `UNKNOWN` and whose `derived` flag is not true. `UNKNOWN` values are gaps. Photos, reviews, and tags are not pieces. A fact stored on a washroom record is not also stored on the venue.
 
-Section 5.6 counts only tier 2 and tier 3 values toward 500,000. This import's verified total is 0, so the shortfall is the full illustrative target in every tranche. The files, retrieved between 2026-11-13 and 2026-11-16, contain 910,236 tier 0 or tier 1 physical accessibility-fact values. Context fields, including access, crossing, lit, and fee, are 517,102 and are counted separately. Other populated values are 7,036,205. [COUNTS.md](COUNTS.md) has the tier split, the retrieval date, and the UNKNOWN gaps.
+Section 5.6 counts only tier 2 and tier 3 values toward 500,000. This import's verified total is 0, so the shortfall is the full illustrative target in every tranche. The files, retrieved between 2026-11-13 and 2026-11-16, contain 911,067 tier 0 or tier 1 physical accessibility-fact values. Context fields, including access, crossing, lit, and fee, are 517,102 and are counted separately. Other populated values are 7,038,610. [COUNTS.md](COUNTS.md) has the tier split, the retrieval date, and the UNKNOWN gaps.
 
 [COUNTS.md](COUNTS.md) also lists accessibility facts separately from names, addresses, and geometry. `toilets:wheelchair` is stored on the washroom `wheelchair` field. Tier 4 alert rows are not pieces.
 
