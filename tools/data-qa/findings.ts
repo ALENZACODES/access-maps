@@ -193,6 +193,41 @@ export const LICENCE_FINDINGS: readonly LicenceFinding[] = [
     licence: "Peel-Open-Data-Licence-1.0",
     reason: "Open Data Licence for The Regional Municipality of Peel, Version 1.0. Not in the strict export allowlist.",
   },
+  {
+    sourceId: "york-region-yrt-bus-stops",
+    licence: "York-Region-Open-Data-Licence-1.0",
+    reason: "York Region Open Data Licence, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "markham-city-facilities",
+    licence: "Markham-Open-Data-Licence-1.0",
+    reason: "Open Data Licence – City of Markham, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "markham-trails",
+    licence: "Markham-Open-Data-Licence-1.0",
+    reason: "Open Data Licence – City of Markham, version 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "newmarket-park-features",
+    licence: "Newmarket-Open-Data-Licence-2.0",
+    reason: "Open Data Licence – Town of Newmarket, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "newmarket-trails",
+    licence: "Newmarket-Open-Data-Licence-2.0",
+    reason: "Open Data Licence – Town of Newmarket, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "newmarket-trail-points",
+    licence: "Newmarket-Open-Data-Licence-2.0",
+    reason: "Open Data Licence – Town of Newmarket, version 2.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "newmarket-landmarks",
+    licence: "Newmarket-Open-Data-Licence-2.0",
+    reason: "Open Data Licence – Town of Newmarket, version 2.0. Not in the strict export allowlist.",
+  },
 ];
 
 export function isDocumentedLicence(sourceId: string, licence: string): boolean {
