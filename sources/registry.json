@@ -129,11 +129,11 @@
       "licence_name": "LTC Open Data Terms of Use",
       "licence_url": "https://www.londontransit.ca/open-data/ltcs-open-data-terms-of-use/",
       "licence_id": "LTC Open Data Terms of Use",
-      "attribution": "These data sets are available from the London Transit Commission under its Open Data Terms of Use.",
+      "attribution": "Transit data is available from London Transit Commission under its Terms of Use. Les données de transport en commun sont disponibles auprès de la Commission de transport de London : elles sont offertes aux termes de ses conditions d’utilisation. https://www.londontransit.ca/open-data/ltcs-open-data-terms-of-use/",
       "retrieved_at": "2026-11-13",
       "tier": 1,
       "tier_note": "Static GTFS fields published by the operator are tier 1 operator claims, not verified observations. wheelchair_boarding 0 or empty is stored as UNKNOWN.",
-      "notes": "Confirmed 2026-11-15 under the official LTC Open Data Terms of Use. The terms grant a worldwide, royalty-free, perpetual, non-exclusive licence to use, adapt, and distribute, including an offline copy. Do not use LTC marks or claim endorsement. Attribution is encouraged. Packed rows stay under data/transit/gtfs-ltc/ and are never mixed into metrolinx-* files. John Khan confirmed directly to QA on 2026-11-15 at 5:59 PM ET (America/Toronto) that London Transit data can go in. MiWay stays out."
+      "notes": "Confirmed 2026-11-15 under the official LTC Open Data Terms of Use. The terms grant a worldwide, royalty-free, perpetual, non-exclusive licence to use, adapt, and distribute, including an offline copy. Do not use LTC marks or claim endorsement. Attribution is encouraged. Packed rows stay under data/transit/gtfs-ltc/ and are never mixed into metrolinx-* files. John Khan confirmed directly to QA on 2026-11-15 at 5:59 PM ET (America/Toronto) that London Transit data can go in. MiWay stays out. Included in the web pack (inWebPack true) with the optional EN and FR Terms of Use availability notice and the official terms link. Do not use LTC marks or claim endorsement."
     },
     {
       "id": "toronto-park-washrooms",

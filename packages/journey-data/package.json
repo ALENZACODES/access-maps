@@ -1,0 +1,23 @@
+{
+  "name": "@access-maps/journey-data",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Journey planning over downloaded pack records and I14 timetable chunks. Times are never invented.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "lint": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.1",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}
