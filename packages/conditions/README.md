@@ -238,9 +238,24 @@ French is a draft. Controls are native elements with labels, errors are
 linked to their fields and summarised in an alert, status changes use a
 polite live region, and control targets are at least 24 pixels.
 
-The unit tests read the stateless components' markup without a browser and
-without a React runtime: this package is not an npm workspace and no React
-runtime is installed at the repository root, so `test/jsx-stand-in.ts`
-supplies a minimal element factory for those tests. It is not a renderer.
-The two stateful wrappers, rendering with React itself and an axe run in a
-real browser are not covered here.
+After a rejected submission `RouteReportForm` moves focus to the error
+summary, so the errors are read next and the first field is one Tab away.
+After a saved report focus stays where it was and the status region
+announces the save.
+
+## Tests
+
+This package is an npm workspace with its own test run
+(`npm test -w @access-maps/conditions`, also part of the root `npm test`).
+The component tests render with React in a simulated DOM: the report form,
+the finder and the conditions list are operated through their controls in
+English and French, including Tab order, rejected and corrected submissions,
+announcements, focus after each action, and an axe run on each state.
+
+Limits of that environment: colour contrast and rendered target sizes are
+not computed (target sizes are read from the declared minimum sizes), the
+date-and-time control's value is set directly because the simulated DOM has
+no picker, and select options are chosen through the testing library rather
+than by arrow keys. The Playwright contract in
+`test/conditions.a11y.test.tsx` still needs a host route and is not part of
+this run.
