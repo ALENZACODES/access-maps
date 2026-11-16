@@ -503,6 +503,16 @@ export const LICENCE_FINDINGS: readonly LicenceFinding[] = [
     licence: "owner-permission-2026-11-16",
     reason: "Included on the repository owner's statement of 2026-11-16; City of London Open Data Terms of Use (pass-on of the terms required). Not an open licence in the strict export allowlist.",
   },
+  {
+    sourceId: "cambridge-trails",
+    licence: "owner-permission-2026-11-16",
+    reason: "Included on the repository owner's statement of 2026-11-16; no publisher licence was read for this layer. Not an open licence in the strict export allowlist.",
+  },
+  {
+    sourceId: "cambridge-sidewalks",
+    licence: "owner-permission-2026-11-16",
+    reason: "Included on the repository owner's statement of 2026-11-16; no publisher licence was read for this layer. Not an open licence in the strict export allowlist.",
+  },
 ];
 
 export function isDocumentedLicence(sourceId: string, licence: string): boolean {

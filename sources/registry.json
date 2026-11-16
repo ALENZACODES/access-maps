@@ -1484,6 +1484,36 @@
       "tier": 0,
       "tier_note": "Municipal open data is tier 0. It is not shown as verified.",
       "notes": "Basis for inclusion: the repository owner stated in chat on 2026-11-16 that use of City of London data is permitted and instructed that it be included; that decision overrides the earlier hold recorded in sources/gaps.json. The City of London Open Data Terms of Use (PDF, linked as Terms of Use from this dataset's catalogue record) were read on 2026-11-16: they grant a world-wide, royalty-free, non-exclusive licence to use, modify and distribute the data sets for any lawful purpose; anyone who passes the data on must include a copy of the terms or their URL and bind recipients to them without adding restrictions; credit is not required but is encouraged, and the City may ask that a credit be removed; the City may change the terms or the data at any time and may cancel or suspend a user's access, which does not affect people who received the data from that user and comply with the terms; the terms also contain a no-warranty clause, an exclusion of liability, an indemnity, a ban on implying endorsement and a ban on using City marks. Path and trail lines in parks and open space. Type and PathType are kept together as the kind. The Status column is used only to mark Future paths: Future rows are left out and rows with a blank Status are imported. Rows of Type Road or Parking Lot, and rows with neither a Type nor a PathType, are left out. Every accessibility field stays UNKNOWN."
+    },
+    {
+      "id": "cambridge-trails",
+      "name": "City of Cambridge Trails",
+      "kind": "municipal",
+      "url": "https://maps.cambridge.ca/arcgispub03/rest/services/OpenData1/MapServer/11",
+      "download_url": "https://maps.cambridge.ca/arcgispub03/rest/services/OpenData1/MapServer/11",
+      "licence_name": "Repository owner permission of 2026-11-16 (no publisher licence read for this layer)",
+      "licence_url": "https://maps.cambridge.ca/images/opendata/Open%20data%20licence.pdf",
+      "licence_id": "owner-permission-2026-11-16",
+      "attribution": "Contains information from the City of Cambridge, included on the repository owner's permission of 2026-11-16. Contient des renseignements de la Ville de Cambridge, inclus avec l’autorisation du propriétaire du dépôt du 2026-11-16.",
+      "retrieved_at": "2026-11-16",
+      "tier": 0,
+      "tier_note": "Municipal data is tier 0. It is not shown as verified.",
+      "notes": "Basis for inclusion: the repository owner stated in chat on 2026-11-16 that use is permitted and instructed that this layer be included. No written licence granting redistribution was read for this dataset: the layer is served from the City's OpenData map service but has no record in the City's open-data catalogue (https://geohub.cambridge.ca), and the layer carries no copyright or licence text. The City's Open Data Licence Version 2.0 (licence_url) was read on 2026-11-16; it covers the City's catalogued datasets and nothing links it to this layer, so it is not claimed here. The earlier gap entry for this layer in sources/gaps.json is kept with an update. Trail lines. ACCESSIBLE is the City's YES or NO flag (coded-value domain YESNO) and is kept as ACCESSIBLE=YES or ACCESSIBLE=NO in wheelchair_description; a blank stays UNKNOWN and wheelchair is never derived from it. On 2026-11-16 the layer had 191 YES, 50 NO and 1,720 blank rows. TRAIL_TYPE is the kind, SURFACE_MATERIAL the surface, and WIDTH the width in metres (the map service states its units as metres); a blank or 0 width stays UNKNOWN. Only IN SERVICE rows are imported (all 1,961 were). Rows of TRAIL_TYPE ROAD (20), PARK ROAD (10) and PARKING LOT (35) are roadway or parking-lot lines and are left out. Name, ownership, location and street columns are not requested."
+    },
+    {
+      "id": "cambridge-sidewalks",
+      "name": "City of Cambridge Pedestrian Network (sidewalks)",
+      "kind": "municipal",
+      "url": "https://maps.cambridge.ca/arcgispub03/rest/services/OpenData2/MapServer/3",
+      "download_url": "https://maps.cambridge.ca/arcgispub03/rest/services/OpenData2/MapServer/3",
+      "licence_name": "Repository owner permission of 2026-11-16 (no publisher licence read for this layer)",
+      "licence_url": "https://maps.cambridge.ca/images/opendata/Open%20data%20licence.pdf",
+      "licence_id": "owner-permission-2026-11-16",
+      "attribution": "Contains information from the City of Cambridge, included on the repository owner's permission of 2026-11-16. Contient des renseignements de la Ville de Cambridge, inclus avec l’autorisation du propriétaire du dépôt du 2026-11-16.",
+      "retrieved_at": "2026-11-16",
+      "tier": 0,
+      "tier_note": "Municipal data is tier 0. It is not shown as verified.",
+      "notes": "Basis for inclusion: the repository owner stated in chat on 2026-11-16 that use is permitted and instructed that this layer be included. No written licence granting redistribution was read for this dataset: the layer is served from the City's OpenData map service but has no record in the City's open-data catalogue (https://geohub.cambridge.ca), and the layer carries no copyright or licence text. The City's Open Data Licence Version 2.0 (licence_url) was read on 2026-11-16; it covers the City's catalogued datasets and nothing links it to this layer, so it is not claimed here. The earlier gap entry for this layer in sources/gaps.json is kept with an update. Sidewalk lines from the Pedestrian Network. Only ASSET_TYPE SIDE_WALK rows are imported: the network's 1,501 TRAIL and 199 WALKWAY rows all share an ASSET_ID with a line in the Trails layer (checked 2026-11-16), which is imported as cambridge-trails with its ACCESSIBLE flag. SURFACE_MATERIAL is the surface and WIDTH the width in metres (the map service states its units as metres); a blank or 0 stays UNKNOWN. Only IN SERVICE rows are imported (all were). The layer has no accessibility column, so every accessibility field other than surface and width stays UNKNOWN."
     }
   ]
 }
