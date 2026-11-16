@@ -1,0 +1,433 @@
+{
+  "title": "Ontario's 50 largest municipalities (census subdivisions) by 2021 Census population",
+  "source": {
+    "publisher": "Statistics Canada",
+    "table": "Table 98-10-0002-01 Population and dwelling counts: Canada, provinces and territories, census divisions and census subdivisions (municipalities)",
+    "url": "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=9810000201",
+    "download_url": "https://www150.statcan.gc.ca/n1/tbl/csv/98100002-eng.zip",
+    "licence": "Statistics Canada Open Licence",
+    "licence_url": "https://www.statcan.gc.ca/en/reference/licence",
+    "retrieved_at": "2026-11-16",
+    "attribution": "Source: Statistics Canada, Table 98-10-0002-01 Population and dwelling counts: Canada, provinces and territories, census divisions and census subdivisions (municipalities), 2021 Census of Population, retrieved 2026-11-16. Reproduced and distributed on an \"as is\" basis with the permission of Statistics Canada.",
+    "licence_note": "Licence page read on 2026-11-16: it grants a worldwide, royalty-free, non-exclusive licence to use, reproduce, publish, freely distribute, or sell the Information, with the source acknowledgement above."
+  },
+  "method": "Rows of 98100002.csv whose DGUID starts with 2021A000535 (census subdivisions in Ontario) were sorted by the column Population, 2021. The rank was checked against the table's own column Province/territory population rank, 2021 for all 50 rows. A census subdivision is a lower-tier or single-tier municipality; regional municipalities and counties are census divisions and are not ranked here.",
+  "municipalities": [
+    {
+      "rank": 1,
+      "name": "Toronto",
+      "statcan_name": "Toronto",
+      "dguid": "2021A00053520005",
+      "population_2021": 2794356,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 2,
+      "name": "Ottawa",
+      "statcan_name": "Ottawa",
+      "dguid": "2021A00053506008",
+      "population_2021": 1017449,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 3,
+      "name": "Mississauga",
+      "statcan_name": "Mississauga",
+      "dguid": "2021A00053521005",
+      "population_2021": 717961,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 4,
+      "name": "Brampton",
+      "statcan_name": "Brampton",
+      "dguid": "2021A00053521010",
+      "population_2021": 656480,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 5,
+      "name": "Hamilton",
+      "statcan_name": "Hamilton",
+      "dguid": "2021A00053525005",
+      "population_2021": 569353,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 6,
+      "name": "London",
+      "statcan_name": "London",
+      "dguid": "2021A00053539036",
+      "population_2021": 422324,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 7,
+      "name": "Markham",
+      "statcan_name": "Markham",
+      "dguid": "2021A00053519036",
+      "population_2021": 338503,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 8,
+      "name": "Vaughan",
+      "statcan_name": "Vaughan",
+      "dguid": "2021A00053519028",
+      "population_2021": 323103,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 9,
+      "name": "Kitchener",
+      "statcan_name": "Kitchener",
+      "dguid": "2021A00053530013",
+      "population_2021": 256885,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 10,
+      "name": "Windsor",
+      "statcan_name": "Windsor",
+      "dguid": "2021A00053537039",
+      "population_2021": 229660,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 11,
+      "name": "Oakville",
+      "statcan_name": "Oakville",
+      "dguid": "2021A00053524001",
+      "population_2021": 213759,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 12,
+      "name": "Richmond Hill",
+      "statcan_name": "Richmond Hill",
+      "dguid": "2021A00053519038",
+      "population_2021": 202022,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 13,
+      "name": "Burlington",
+      "statcan_name": "Burlington",
+      "dguid": "2021A00053524002",
+      "population_2021": 186948,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 14,
+      "name": "Oshawa",
+      "statcan_name": "Oshawa",
+      "dguid": "2021A00053518013",
+      "population_2021": 175383,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 15,
+      "name": "Greater Sudbury",
+      "statcan_name": "Greater Sudbury / Grand Sudbury",
+      "dguid": "2021A00053553005",
+      "population_2021": 166004,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 16,
+      "name": "Barrie",
+      "statcan_name": "Barrie",
+      "dguid": "2021A00053543042",
+      "population_2021": 147829,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 17,
+      "name": "Guelph",
+      "statcan_name": "Guelph",
+      "dguid": "2021A00053523008",
+      "population_2021": 143740,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 18,
+      "name": "Whitby",
+      "statcan_name": "Whitby",
+      "dguid": "2021A00053518009",
+      "population_2021": 138501,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 19,
+      "name": "Cambridge",
+      "statcan_name": "Cambridge",
+      "dguid": "2021A00053530010",
+      "population_2021": 138479,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 20,
+      "name": "St. Catharines",
+      "statcan_name": "St. Catharines",
+      "dguid": "2021A00053526053",
+      "population_2021": 136803,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 21,
+      "name": "Milton",
+      "statcan_name": "Milton",
+      "dguid": "2021A00053524009",
+      "population_2021": 132979,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 22,
+      "name": "Kingston",
+      "statcan_name": "Kingston",
+      "dguid": "2021A00053510010",
+      "population_2021": 132485,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 23,
+      "name": "Ajax",
+      "statcan_name": "Ajax",
+      "dguid": "2021A00053518005",
+      "population_2021": 126666,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 24,
+      "name": "Waterloo",
+      "statcan_name": "Waterloo",
+      "dguid": "2021A00053530016",
+      "population_2021": 121436,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 25,
+      "name": "Thunder Bay",
+      "statcan_name": "Thunder Bay",
+      "dguid": "2021A00053558004",
+      "population_2021": 108843,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 26,
+      "name": "Brantford",
+      "statcan_name": "Brantford",
+      "dguid": "2021A00053529006",
+      "population_2021": 104688,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 27,
+      "name": "Chatham-Kent",
+      "statcan_name": "Chatham-Kent",
+      "dguid": "2021A00053536020",
+      "population_2021": 103988,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 28,
+      "name": "Clarington",
+      "statcan_name": "Clarington",
+      "dguid": "2021A00053518017",
+      "population_2021": 101427,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 29,
+      "name": "Pickering",
+      "statcan_name": "Pickering",
+      "dguid": "2021A00053518001",
+      "population_2021": 99186,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 30,
+      "name": "Niagara Falls",
+      "statcan_name": "Niagara Falls",
+      "dguid": "2021A00053526043",
+      "population_2021": 94415,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 31,
+      "name": "Newmarket",
+      "statcan_name": "Newmarket",
+      "dguid": "2021A00053519048",
+      "population_2021": 87942,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 32,
+      "name": "Peterborough",
+      "statcan_name": "Peterborough",
+      "dguid": "2021A00053515014",
+      "population_2021": 83651,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 33,
+      "name": "Kawartha Lakes",
+      "statcan_name": "Kawartha Lakes",
+      "dguid": "2021A00053516010",
+      "population_2021": 79247,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 34,
+      "name": "Caledon",
+      "statcan_name": "Caledon",
+      "dguid": "2021A00053521024",
+      "population_2021": 76581,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 35,
+      "name": "Sault Ste. Marie",
+      "statcan_name": "Sault Ste. Marie",
+      "dguid": "2021A00053557061",
+      "population_2021": 72051,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 36,
+      "name": "Sarnia",
+      "statcan_name": "Sarnia",
+      "dguid": "2021A00053538030",
+      "population_2021": 72047,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 37,
+      "name": "Norfolk County",
+      "statcan_name": "Norfolk County",
+      "dguid": "2021A00053528052",
+      "population_2021": 67490,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 38,
+      "name": "Halton Hills",
+      "statcan_name": "Halton Hills",
+      "dguid": "2021A00053524015",
+      "population_2021": 62951,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 39,
+      "name": "Aurora",
+      "statcan_name": "Aurora",
+      "dguid": "2021A00053519046",
+      "population_2021": 62057,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 40,
+      "name": "Welland",
+      "statcan_name": "Welland",
+      "dguid": "2021A00053526032",
+      "population_2021": 55750,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 41,
+      "name": "Belleville",
+      "statcan_name": "Belleville",
+      "dguid": "2021A00053512005",
+      "population_2021": 55071,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 42,
+      "name": "North Bay",
+      "statcan_name": "North Bay",
+      "dguid": "2021A00053548044",
+      "population_2021": 52662,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 43,
+      "name": "Whitchurch-Stouffville",
+      "statcan_name": "Whitchurch-Stouffville",
+      "dguid": "2021A00053519044",
+      "population_2021": 49864,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 44,
+      "name": "Haldimand County",
+      "statcan_name": "Haldimand County",
+      "dguid": "2021A00053528018",
+      "population_2021": 49216,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 45,
+      "name": "Cornwall",
+      "statcan_name": "Cornwall",
+      "dguid": "2021A00053501012",
+      "population_2021": 47845,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 46,
+      "name": "Georgina",
+      "statcan_name": "Georgina",
+      "dguid": "2021A00053519070",
+      "population_2021": 47642,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 47,
+      "name": "Woodstock",
+      "statcan_name": "Woodstock",
+      "dguid": "2021A00053532042",
+      "population_2021": 46705,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 48,
+      "name": "Quinte West",
+      "statcan_name": "Quinte West",
+      "dguid": "2021A00053512015",
+      "population_2021": 46560,
+      "in_city_lane_list": true
+    },
+    {
+      "rank": 49,
+      "name": "New Tecumseth",
+      "statcan_name": "New Tecumseth",
+      "dguid": "2021A00053543007",
+      "population_2021": 43948,
+      "in_city_lane_list": false
+    },
+    {
+      "rank": 50,
+      "name": "Innisfil",
+      "statcan_name": "Innisfil",
+      "dguid": "2021A00053543017",
+      "population_2021": 43326,
+      "in_city_lane_list": false
+    }
+  ],
+  "in_top_50_not_in_city_lane_list": [
+    "New Tecumseth",
+    "Innisfil"
+  ],
+  "in_city_lane_list_not_in_top_50": [
+    {
+      "name": "St. Thomas",
+      "rank": 52,
+      "population_2021": 42840
+    },
+    {
+      "name": "Timmins",
+      "rank": 53,
+      "population_2021": 41145
+    }
+  ]
+}

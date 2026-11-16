@@ -1,3 +1,4 @@
+import { importCitiesG4 } from "./import-cities-g4.js";
 import { importCityOpenData } from "./import-city-open-data.js";
 import { importGtfs } from "./import-gtfs.js";
 import { importMoreMunicipal } from "./import-more-municipal.js";
@@ -9,6 +10,7 @@ const repoRoot = process.cwd();
 await importMunicipal(repoRoot);
 await importMoreMunicipal(repoRoot);
 await importCityOpenData(repoRoot);
+await importCitiesG4(repoRoot);
 await importGtfs(repoRoot);
 await importOsm(repoRoot);
 await writeCounts(repoRoot);

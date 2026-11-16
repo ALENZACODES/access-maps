@@ -1,17 +1,17 @@
 {
   "definition": "A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. Section 5.6 counts only tier 2 and tier 3 values toward 500,000. Tier 0 and tier 1 accessibility facts are reported separately and are not verified.",
-  "records": 1498851,
-  "pieces": 7401746,
-  "gaps": 46336622,
+  "records": 1512551,
+  "pieces": 7470909,
+  "gaps": 46686778,
   "derived_excluded": 3995,
   "verified_toward_500k": 0,
-  "accessibility_fact_pieces": 706021,
-  "other_populated_pieces": 6191975,
-  "accessibility_pieces": 706021,
-  "accessibility_gaps": 25520331,
-  "identity_pieces": 6191975,
+  "accessibility_fact_pieces": 714352,
+  "other_populated_pieces": 6252807,
+  "accessibility_pieces": 714352,
+  "accessibility_gaps": 25694606,
+  "identity_pieces": 6252807,
   "context_pieces": 503750,
-  "context_gaps": 4328984,
+  "context_gaps": 4373030,
   "accessibility_definition": "An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.",
   "context_definition": "Context fields are populated values that are not a physical access measurement: access, crossing, lit, foot, fee, changing_table_fee, unisex, male, female, locked, and supervised. They are not accessibility facts and they are not names or geometry.",
   "accessibility_fields": {
@@ -94,27 +94,32 @@
   },
   "by_tranche": {
     "venue": {
-      "records": 555203,
-      "pieces": 3025570,
-      "accessibility_facts": 109565,
-      "other_populated": 2819892,
+      "records": 556764,
+      "pieces": 3039701,
+      "accessibility_facts": 109606,
+      "other_populated": 2833982,
       "verified": 0,
-      "gaps": 20848159,
+      "gaps": 20901151,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 3025570
+        "0": 3039701
       },
       "gaps_by_tier": {
-        "0": 20848159
+        "0": 20901151
       },
       "pieces_by_source": {
         "brampton-recreation-centres": 312,
+        "greater-sudbury-playgrounds": 1354,
+        "greater-sudbury-recreation": 4343,
         "kingston-accessible-features": 7808,
+        "kingston-parking-lots": 400,
+        "kingston-points-of-interest": 7600,
         "mto-picnic-parks": 1005,
         "osm-ontario": 2914928,
         "ottawa-park-parking": 4694,
         "ottawa-parks-inventory": 51047,
         "sudbury-fieldhouses": 480,
+        "thunder-bay-city-facilities": 434,
         "toronto-accessible-parking-stalls": 3984,
         "toronto-drinking-fountains": 7235,
         "toronto-library-branches": 1091,
@@ -123,76 +128,76 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-13": 2924533,
-        "2026-11-16": 101037
+        "2026-11-16": 115168
       },
       "gaps_by_retrieved_at": {
         "2026-11-13": 20336059,
-        "2026-11-16": 512100
+        "2026-11-16": 565092
       },
       "gap_fields": {
-        "addr_city": 512445,
-        "addr_postcode": 523027,
-        "addr_unit": 548121,
-        "opening_hours": 533670,
-        "level": 544535,
-        "operator": 509709,
-        "brand": 503866,
-        "wheelchair": 542533,
-        "wheelchair_description": 546537,
-        "entrance": 537570,
-        "automatic_door": 555110,
-        "door": 553168,
-        "door_width": 555203,
-        "ramp": 555174,
-        "ramp_wheelchair": 555203,
-        "ramp_stroller": 555203,
-        "step_count": 555203,
-        "incline": 555203,
-        "kerb": 555017,
-        "kerb_height": 555203,
-        "tactile_paving": 555190,
-        "handrail": 555203,
-        "width": 555173,
-        "access": 467469,
-        "surface": 492545,
-        "smoothness": 555071,
-        "lit": 546824,
-        "braille": 555203,
-        "hearing_loop": 555200,
-        "speech_output": 553755,
-        "stroller": 555152,
-        "capacity_disabled": 551298,
-        "indoor": 552311,
-        "elevator": 555190,
-        "ref": 531379,
-        "website": 517530,
-        "addr_housenumber": 476881,
-        "name": 389378,
-        "addr_street": 475705,
+        "addr_city": 513329,
+        "addr_postcode": 524588,
+        "addr_unit": 549682,
+        "opening_hours": 535231,
+        "level": 546096,
+        "operator": 510457,
+        "brand": 505427,
+        "wheelchair": 544094,
+        "wheelchair_description": 548084,
+        "entrance": 539131,
+        "automatic_door": 556671,
+        "door": 554729,
+        "door_width": 556764,
+        "ramp": 556735,
+        "ramp_wheelchair": 556764,
+        "ramp_stroller": 556764,
+        "step_count": 556764,
+        "incline": 556764,
+        "kerb": 556578,
+        "kerb_height": 556764,
+        "tactile_paving": 556751,
+        "handrail": 556764,
+        "width": 556734,
+        "access": 469030,
+        "surface": 494106,
+        "smoothness": 556632,
+        "lit": 548385,
+        "braille": 556764,
+        "hearing_loop": 556761,
+        "speech_output": 555316,
+        "stroller": 556713,
+        "capacity_disabled": 552832,
+        "indoor": 553872,
+        "elevator": 556751,
+        "ref": 532127,
+        "website": 517924,
+        "addr_housenumber": 477123,
+        "name": 389379,
+        "addr_street": 475769,
         "category": 2
       },
-      "accessibility_pieces": 109565,
-      "accessibility_gaps": 13215307,
+      "accessibility_pieces": 109606,
+      "accessibility_gaps": 13252730,
       "accessibility_by_field": {
+        "wheelchair_description": 8680,
         "kerb": 186,
         "automatic_door": 93,
         "elevator": 13,
         "ramp": 29,
         "speech_output": 1448,
         "hearing_loop": 3,
+        "capacity_disabled": 3932,
         "entrance": 17633,
         "surface": 62658,
         "wheelchair": 12670,
-        "capacity_disabled": 3905,
         "width": 30,
         "stroller": 51,
         "door": 2035,
         "smoothness": 132,
-        "wheelchair_description": 8666,
         "tactile_paving": 13
       },
       "context_pieces": 96113,
-      "context_gaps": 1014293,
+      "context_gaps": 1017415,
       "context_by_field": {
         "access": 87734,
         "lit": 8379
@@ -293,80 +298,84 @@
       }
     },
     "path": {
-      "records": 917274,
-      "pieces": 4224776,
-      "accessibility_facts": 575981,
-      "other_populated": 3244099,
+      "records": 927505,
+      "pieces": 4272176,
+      "accessibility_facts": 584271,
+      "other_populated": 3283209,
       "verified": 0,
-      "gaps": 25127992,
+      "gaps": 25407984,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 4224776
+        "0": 4272176
       },
       "gaps_by_tier": {
-        "0": 25127992
+        "0": 25407984
       },
       "pieces_by_source": {
+        "greater-sudbury-walkways": 28586,
+        "kingston-trails": 530,
         "osm-ontario": 3863020,
+        "thunder-bay-sidewalks": 15480,
+        "thunder-bay-trails": 2804,
         "toronto-pedestrian-network": 361756
       },
       "pieces_by_retrieved_at": {
-        "2026-11-13": 3863020,
-        "2026-11-16": 361756
+        "2026-11-16": 409156,
+        "2026-11-13": 3863020
       },
       "gaps_by_retrieved_at": {
-        "2026-11-13": 23225780,
-        "2026-11-16": 1902212
+        "2026-11-16": 2182204,
+        "2026-11-13": 23225780
       },
       "gap_fields": {
-        "footway": 510331,
-        "foot": 882642,
-        "surface": 639016,
-        "smoothness": 891289,
-        "incline": 902840,
-        "width": 849378,
-        "kerb": 860032,
-        "lit": 873532,
-        "wheelchair": 890647,
-        "wheelchair_description": 917239,
-        "step_count": 915236,
-        "handrail": 914615,
-        "access": 903794,
-        "length_m": 846481,
-        "max_slope": 917274,
-        "min_width": 917274,
-        "stair_count": 917274,
-        "from_ref": 917274,
-        "to_ref": 917274,
-        "crossing": 604432,
-        "pathway_mode": 917274,
-        "bidirectional": 917274,
-        "oneway": 904955,
-        "traversal_time_s": 917274,
-        "signposted_as": 917274,
-        "reversed_signposted_as": 917274,
-        "ramp": 915902,
-        "indoor": 914704,
-        "tactile_paving": 817839,
-        "kind": 348
+        "foot": 892873,
+        "smoothness": 901520,
+        "incline": 913071,
+        "width": 859609,
+        "kerb": 870263,
+        "tactile_paving": 828070,
+        "lit": 883763,
+        "wheelchair": 900878,
+        "step_count": 925467,
+        "handrail": 924794,
+        "access": 914025,
+        "length_m": 856712,
+        "max_slope": 927505,
+        "min_width": 927505,
+        "stair_count": 927505,
+        "from_ref": 927505,
+        "to_ref": 927505,
+        "crossing": 614663,
+        "pathway_mode": 927505,
+        "bidirectional": 927505,
+        "oneway": 915186,
+        "traversal_time_s": 927505,
+        "signposted_as": 927061,
+        "reversed_signposted_as": 927505,
+        "ramp": 926133,
+        "indoor": 924935,
+        "footway": 512587,
+        "wheelchair_description": 924371,
+        "surface": 644108,
+        "kind": 350
       },
-      "accessibility_pieces": 575981,
-      "accessibility_gaps": 12265855,
+      "accessibility_pieces": 584271,
+      "accessibility_gaps": 12400799,
       "accessibility_by_field": {
+        "surface": 283397,
+        "wheelchair_description": 3134,
+        "handrail": 2711,
         "tactile_paving": 99435,
         "kerb": 57242,
-        "surface": 278258,
         "wheelchair": 26627,
         "incline": 14434,
         "width": 67896,
         "smoothness": 25985,
-        "handrail": 2659,
         "ramp": 1372,
-        "step_count": 2038,
-        "wheelchair_description": 35
+        "step_count": 2038
       },
       "context_pieces": 404696,
-      "context_gaps": 3264400,
+      "context_gaps": 3305324,
       "context_by_field": {
         "crossing": 312842,
         "foot": 34632,
@@ -375,24 +384,26 @@
       }
     },
     "transit": {
-      "records": 19720,
-      "pieces": 118767,
+      "records": 21628,
+      "pieces": 126399,
       "accessibility_facts": 16921,
-      "other_populated": 101846,
+      "other_populated": 109478,
       "verified": 0,
-      "gaps": 137593,
+      "gaps": 154765,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "1": 118767
+        "1": 126399
       },
       "gaps_by_tier": {
-        "1": 137593
+        "1": 154765
       },
       "pieces_by_source": {
         "gtfs-brampton": 16917,
+        "gtfs-gova": 4484,
         "gtfs-grt-bus": 13750,
         "gtfs-grt-ion": 159,
         "gtfs-hsr": 13993,
+        "gtfs-kingston": 3148,
         "gtfs-ltc": 11625,
         "gtfs-ttc": 56142,
         "metrolinx-go": 6151,
@@ -400,25 +411,27 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-13": 112586,
+        "2026-11-16": 7632,
         "2026-11-15": 6181
       },
       "gaps_by_retrieved_at": {
         "2026-11-13": 132152,
+        "2026-11-16": 17172,
         "2026-11-15": 5441
       },
       "gap_fields": {
-        "parent_station": 19552,
-        "platform_code": 19706,
-        "level_id": 19720,
-        "level_index": 19720,
-        "level_name": 19720,
-        "description": 17498,
-        "url": 18723,
-        "wheelchair_boarding": 2799,
-        "stop_code": 155
+        "parent_station": 21460,
+        "platform_code": 21614,
+        "level_id": 21628,
+        "level_index": 21628,
+        "level_name": 21628,
+        "description": 19406,
+        "url": 20631,
+        "wheelchair_boarding": 4707,
+        "stop_code": 2063
       },
       "accessibility_pieces": 16921,
-      "accessibility_gaps": 2799,
+      "accessibility_gaps": 4707,
       "accessibility_by_field": {
         "wheelchair_boarding": 16921
       },
@@ -428,6 +441,38 @@
     }
   },
   "by_source": {
+    "greater-sudbury-walkways": {
+      "records": 5456,
+      "pieces": 28586,
+      "gaps": 146006,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 28586
+      },
+      "pieces_by_tranche": {
+        "path": 28586
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 28586
+      },
+      "accessibility_pieces": 8202
+    },
+    "kingston-trails": {
+      "records": 89,
+      "pieces": 530,
+      "gaps": 2318,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 530
+      },
+      "pieces_by_tranche": {
+        "path": 530
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 530
+      },
+      "accessibility_pieces": 88
+    },
     "osm-ontario": {
       "records": 1392049,
       "pieces": 6802010,
@@ -445,6 +490,38 @@
         "2026-11-13": 6802010
       },
       "accessibility_pieces": 677579
+    },
+    "thunder-bay-sidewalks": {
+      "records": 3870,
+      "pieces": 15480,
+      "gaps": 108360,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 15480
+      },
+      "pieces_by_tranche": {
+        "path": 15480
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 15480
+      },
+      "accessibility_pieces": 0
+    },
+    "thunder-bay-trails": {
+      "records": 816,
+      "pieces": 2804,
+      "gaps": 23308,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 2804
+      },
+      "pieces_by_tranche": {
+        "path": 2804
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 2804
+      },
+      "accessibility_pieces": 0
     },
     "toronto-pedestrian-network": {
       "records": 70749,
@@ -477,6 +554,22 @@
         "2026-11-13": 16917
       },
       "accessibility_pieces": 2492
+    },
+    "gtfs-gova": {
+      "records": 1121,
+      "pieces": 4484,
+      "gaps": 10089,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "1": 4484
+      },
+      "pieces_by_tranche": {
+        "transit": 4484
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 4484
+      },
+      "accessibility_pieces": 0
     },
     "gtfs-grt-bus": {
       "records": 2265,
@@ -523,6 +616,22 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-13": 13993
+      },
+      "accessibility_pieces": 0
+    },
+    "gtfs-kingston": {
+      "records": 787,
+      "pieces": 3148,
+      "gaps": 7083,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "1": 3148
+      },
+      "pieces_by_tranche": {
+        "transit": 3148
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 3148
       },
       "accessibility_pieces": 0
     },
@@ -606,6 +715,38 @@
       },
       "accessibility_pieces": 0
     },
+    "greater-sudbury-playgrounds": {
+      "records": 178,
+      "pieces": 1354,
+      "gaps": 6300,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 1354
+      },
+      "pieces_by_tranche": {
+        "venue": 1354
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 1354
+      },
+      "accessibility_pieces": 14
+    },
+    "greater-sudbury-recreation": {
+      "records": 499,
+      "pieces": 4343,
+      "gaps": 17114,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 4343
+      },
+      "pieces_by_tranche": {
+        "venue": 4343
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 4343
+      },
+      "accessibility_pieces": 0
+    },
     "kingston-accessible-features": {
       "records": 1003,
       "pieces": 8198,
@@ -622,6 +763,38 @@
         "2026-11-13": 8198
       },
       "accessibility_pieces": 277
+    },
+    "kingston-parking-lots": {
+      "records": 56,
+      "pieces": 400,
+      "gaps": 2008,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 400
+      },
+      "pieces_by_tranche": {
+        "venue": 400
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 400
+      },
+      "accessibility_pieces": 27
+    },
+    "kingston-points-of-interest": {
+      "records": 766,
+      "pieces": 7600,
+      "gaps": 25338,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 7600
+      },
+      "pieces_by_tranche": {
+        "venue": 7600
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 7600
+      },
+      "accessibility_pieces": 0
     },
     "mto-picnic-parks": {
       "records": 168,
@@ -684,6 +857,22 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-13": 480
+      },
+      "accessibility_pieces": 0
+    },
+    "thunder-bay-city-facilities": {
+      "records": 62,
+      "pieces": 434,
+      "gaps": 2232,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 434
+      },
+      "pieces_by_tranche": {
+        "venue": 434
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 434
       },
       "accessibility_pieces": 0
     },
@@ -904,6 +1093,30 @@
     }
   },
   "files": [
+    {
+      "file": "data/paths/greater-sudbury-walkways/n46.0_w081.0.ndjson.gz",
+      "bytes": 175053
+    },
+    {
+      "file": "data/paths/greater-sudbury-walkways/n46.0_w081.5.ndjson.gz",
+      "bytes": 153692
+    },
+    {
+      "file": "data/paths/greater-sudbury-walkways/n46.5_w081.0.ndjson.gz",
+      "bytes": 175919
+    },
+    {
+      "file": "data/paths/greater-sudbury-walkways/n46.5_w081.5.ndjson.gz",
+      "bytes": 81058
+    },
+    {
+      "file": "data/paths/kingston-trails/n44.0_w076.5.ndjson.gz",
+      "bytes": 13377
+    },
+    {
+      "file": "data/paths/kingston-trails/n44.0_w077.0.ndjson.gz",
+      "bytes": 40995
+    },
     {
       "file": "data/paths/osm-ontario/n41.5_w083.0.ndjson.gz",
       "bytes": 38375
@@ -2513,6 +2726,14 @@
       "bytes": 576
     },
     {
+      "file": "data/paths/thunder-bay-sidewalks/n48.0_w089.5.ndjson.gz",
+      "bytes": 256005
+    },
+    {
+      "file": "data/paths/thunder-bay-trails/n48.0_w089.5.ndjson.gz",
+      "bytes": 89384
+    },
+    {
       "file": "data/paths/toronto-pedestrian-network/n43.5_w079.5.ndjson.gz",
       "bytes": 462232
     },
@@ -2565,6 +2786,22 @@
       "bytes": 112091
     },
     {
+      "file": "data/transit/gtfs-gova/n46.0_w081.0.ndjson.gz",
+      "bytes": 8744
+    },
+    {
+      "file": "data/transit/gtfs-gova/n46.0_w081.5.ndjson.gz",
+      "bytes": 8989
+    },
+    {
+      "file": "data/transit/gtfs-gova/n46.5_w081.0.ndjson.gz",
+      "bytes": 10376
+    },
+    {
+      "file": "data/transit/gtfs-gova/n46.5_w081.5.ndjson.gz",
+      "bytes": 5485
+    },
+    {
       "file": "data/transit/gtfs-grt-bus/n43.0_w080.5.ndjson.gz",
       "bytes": 57226
     },
@@ -2595,6 +2832,14 @@
     {
       "file": "data/transit/gtfs-hsr/n43.0_w080.5.ndjson.gz",
       "bytes": 2777
+    },
+    {
+      "file": "data/transit/gtfs-kingston/n44.0_w076.5.ndjson.gz",
+      "bytes": 7335
+    },
+    {
+      "file": "data/transit/gtfs-kingston/n44.0_w077.0.ndjson.gz",
+      "bytes": 19068
     },
     {
       "file": "data/transit/gtfs-ltc/n42.5_w081.5.ndjson.gz",
@@ -2677,12 +2922,68 @@
       "bytes": 4661
     },
     {
+      "file": "data/venues/greater-sudbury-playgrounds/n46.0_w081.0.ndjson.gz",
+      "bytes": 3777
+    },
+    {
+      "file": "data/venues/greater-sudbury-playgrounds/n46.0_w081.5.ndjson.gz",
+      "bytes": 3915
+    },
+    {
+      "file": "data/venues/greater-sudbury-playgrounds/n46.0_w082.0.ndjson.gz",
+      "bytes": 625
+    },
+    {
+      "file": "data/venues/greater-sudbury-playgrounds/n46.5_w081.0.ndjson.gz",
+      "bytes": 6058
+    },
+    {
+      "file": "data/venues/greater-sudbury-playgrounds/n46.5_w081.5.ndjson.gz",
+      "bytes": 4412
+    },
+    {
+      "file": "data/venues/greater-sudbury-recreation/n46.0_w081.0.ndjson.gz",
+      "bytes": 9986
+    },
+    {
+      "file": "data/venues/greater-sudbury-recreation/n46.0_w081.5.ndjson.gz",
+      "bytes": 10668
+    },
+    {
+      "file": "data/venues/greater-sudbury-recreation/n46.0_w082.0.ndjson.gz",
+      "bytes": 820
+    },
+    {
+      "file": "data/venues/greater-sudbury-recreation/n46.5_w081.0.ndjson.gz",
+      "bytes": 18014
+    },
+    {
+      "file": "data/venues/greater-sudbury-recreation/n46.5_w081.5.ndjson.gz",
+      "bytes": 10504
+    },
+    {
       "file": "data/venues/kingston-accessible-features/n44.0_w076.5.ndjson.gz",
       "bytes": 50622
     },
     {
       "file": "data/venues/kingston-accessible-features/n44.0_w077.0.ndjson.gz",
       "bytes": 37826
+    },
+    {
+      "file": "data/venues/kingston-parking-lots/n44.0_w076.5.ndjson.gz",
+      "bytes": 4093
+    },
+    {
+      "file": "data/venues/kingston-parking-lots/n44.0_w077.0.ndjson.gz",
+      "bytes": 1912
+    },
+    {
+      "file": "data/venues/kingston-points-of-interest/n44.0_w076.5.ndjson.gz",
+      "bytes": 39023
+    },
+    {
+      "file": "data/venues/kingston-points-of-interest/n44.0_w077.0.ndjson.gz",
+      "bytes": 43314
     },
     {
       "file": "data/venues/mto-picnic-parks/n42.0_w082.5.ndjson.gz",
@@ -4879,6 +5180,10 @@
     {
       "file": "data/venues/sudbury-fieldhouses/n46.5_w081.5.ndjson.gz",
       "bytes": 1698
+    },
+    {
+      "file": "data/venues/thunder-bay-city-facilities/n48.0_w089.5.ndjson.gz",
+      "bytes": 6104
     },
     {
       "file": "data/venues/toronto-accessible-parking-stalls/n43.5_w079.5.ndjson.gz",
