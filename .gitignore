@@ -3,8 +3,6 @@ dist/
 .vite/
 *.tsbuildinfo
 .cache/
-.vite/
-*.tsbuildinfo
 *.osm.pbf
 *.geojsonseq
 .DS_Store

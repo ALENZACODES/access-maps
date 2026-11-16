@@ -4,20 +4,6 @@ Unbranded Ontario accessibility open data for a spinal-cord-injury-first map. Th
 
 No transit agency, municipality, OpenStreetMap, or other publisher endorses this project. Attribution in [ATTRIBUTION.md](ATTRIBUTION.md) is licence compliance. The data is not medical advice and not an eligibility determination.
 
-
-## packages/journey
-
-TypeScript door-to-door journey-chain engine: step-free status that defaults to unknown, GTFS transit plus rolling and walking legs, a router adapter (in-catalog graph, straight-line gap, or a self-hosted Valhalla, OSRM, or GraphHopper HTTP service), elevator status, washroom waypoints, timing limits the person sets, winter mode, charging warnings, and paratransit as links only.
-
-OpenTripPlanner (LGPL) and OpenRouteService (GPL) are not vendored and are rejected if named as an engine.
-
-## packages/map-ui
-
-React and MapLibre GL components. Every map feature is also a button in a list, with keyboard arrow keys and a polite status announcement.
-
-Journey work reads imported records through `JourneyDataSource`. It does not edit `data/` or the import pipelines. Tests use fixtures, and unknown stays `UNKNOWN`.
-
-
 ## Verification tiers
 
 Tiers apply to each field, not to the whole record.
