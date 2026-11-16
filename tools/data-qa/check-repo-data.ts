@@ -21,7 +21,7 @@ export async function main(root = process.cwd()): Promise<number> {
       licence: source.licence_id ?? "",
       observedOn: source.retrieved_at ?? "",
     })),
-    { asOf: "2026-11-15", maxAgeDays: 3650 },
+    { asOf: "2026-11-15", maxAgeDays: 365 },
   );
   const summary = {
     registry: report.registry,
@@ -29,19 +29,29 @@ export async function main(root = process.cwd()): Promise<number> {
     files: report.files,
     documentedLicenceHits: report.documentedLicenceHits,
     violations: report.violations.length,
-    staleLicenceIssues: diagnostic.issues.length,
-    staleLicenceClean: diagnostic.clean,
+    licenceBlocking: diagnostic.blocking.length,
+    licenceReviewDue: diagnostic.review.length,
+    licenceClean: diagnostic.clean,
   };
   console.log(JSON.stringify(summary, null, 2));
-  if (diagnostic.issues.length > 0) {
+  if (diagnostic.review.length > 0) {
     console.log(
-      `Stale-date/licence diagnostic (informational, maxAgeDays=${diagnostic.maxAgeDays}): ${diagnostic.issues.length} issue(s) over ${diagnostic.checked} registry sources.`,
+      `INFORMATIONAL (licence still valid, due for review; maxAgeDays=${diagnostic.maxAgeDays}): ${diagnostic.review.length} source(s) over ${diagnostic.checked} registry sources.`,
+    );
+    for (const issue of diagnostic.review) {
+      console.log(`  review: ${issue.source || `#${issue.index}`} — ${issue.en}`);
+    }
+  }
+  const errors = [...report.violations];
+  for (const issue of diagnostic.blocking) {
+    errors.push(
+      `${issue.source || `record ${issue.index}`}: ${issue.code} — ${issue.en}`,
     );
   }
-  if (report.violations.length > 0) {
-    for (const violation of report.violations.slice(0, 50)) console.error(violation);
-    if (report.violations.length > 50) {
-      console.error(`… and ${report.violations.length - 50} more`);
+  if (errors.length > 0) {
+    for (const violation of errors.slice(0, 50)) console.error(violation);
+    if (errors.length > 50) {
+      console.error(`… and ${errors.length - 50} more`);
     }
     return 1;
   }
