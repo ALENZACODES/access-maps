@@ -1,0 +1,50 @@
+{
+  "format": "access-maps-wav-services",
+  "version": 1,
+  "records": [
+    {
+      "id": "synthetic-wav:1",
+      "synthetic": true,
+      "municipality": { "value": "SYNTHETIC Testville", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-01", "tier": 1 },
+      "service_name": { "value": "SYNTHETIC Sample Cab A", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-01", "tier": 1 },
+      "service_type": { "value": "accessible_taxi", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-01", "tier": 1 },
+      "availability": { "value": "advance_booking_only", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-01", "tier": 1 },
+      "booking_phone": { "value": "UNKNOWN", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-01", "tier": 1 },
+      "booking_url": { "value": "https://synthetic.invalid/book", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-01", "tier": 1 },
+      "service_hours": { "value": "UNKNOWN", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-01", "tier": 1 }
+    },
+    {
+      "id": "synthetic-wav:2",
+      "synthetic": true,
+      "municipality": { "value": "SYNTHETIC Testville", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-01", "tier": 1 },
+      "service_name": { "value": "SYNTHETIC Sample Cab B", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-01", "tier": 1 },
+      "service_type": { "value": "on_demand_wav", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-01", "tier": 1 },
+      "availability": { "value": "UNKNOWN", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-01", "tier": 1 },
+      "booking_phone": { "value": "UNKNOWN", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-01", "tier": 1 },
+      "booking_url": { "value": "UNKNOWN", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-01", "tier": 1 },
+      "service_hours": { "value": "UNKNOWN", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-01", "tier": 1 }
+    },
+    {
+      "id": "synthetic-wav:3",
+      "synthetic": true,
+      "municipality": { "value": "SYNTHETIC Échantillon", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-01", "tier": 1 },
+      "service_name": { "value": "SYNTHETIC Sample Cab C", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-01", "tier": 1 },
+      "service_type": { "value": "accessible_taxi", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-01", "tier": 1 },
+      "availability": { "value": "effectively_unavailable", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-01", "tier": 1, "source_dated": "2026-10-20" },
+      "booking_phone": { "value": "UNKNOWN", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-01", "tier": 1 },
+      "booking_url": { "value": "UNKNOWN", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-01", "tier": 1 },
+      "service_hours": { "value": "UNKNOWN", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-01", "tier": 1 }
+    },
+    {
+      "id": "synthetic-wav:4",
+      "synthetic": true,
+      "municipality": { "value": "SYNTHETIC Testville", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2025-01-10", "tier": 1 },
+      "service_name": { "value": "SYNTHETIC Sample Cab D", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2025-01-10", "tier": 1 },
+      "service_type": { "value": "accessible_taxi", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2025-01-10", "tier": 1 },
+      "availability": { "value": "on_demand", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2025-01-10", "tier": 1 },
+      "booking_phone": { "value": "UNKNOWN", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2025-01-10", "tier": 1 },
+      "booking_url": { "value": "UNKNOWN", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2025-01-10", "tier": 1 },
+      "service_hours": { "value": "UNKNOWN", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2025-01-10", "tier": 1 }
+    }
+  ]
+}

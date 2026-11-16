@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://access-maps.invalid/schemas/route-report.json",
+  "title": "RouteReport",
+  "description": "One person's observation of a route condition. Always tier 0. observed_at is the time the person saw it; observation.retrieved_at is when the report was saved.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "kind", "location", "observed_at", "observation", "reporter"],
+  "properties": {
+    "id": { "type": "string", "pattern": "\\S" },
+    "kind": {
+      "enum": ["snowbank", "curb_cut_blocked", "ice", "surface", "gradient", "obstruction", "other"]
+    },
+    "location": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "point"],
+          "properties": {
+            "type": { "const": "point" },
+            "point": { "$ref": "#/$defs/point" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "segment_id"],
+          "properties": {
+            "type": { "const": "segment" },
+            "segment_id": { "type": "string", "pattern": "\\S" },
+            "point": { "$ref": "#/$defs/point" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "feature_id"],
+          "properties": {
+            "type": { "const": "feature" },
+            "feature_id": { "type": "string", "pattern": "\\S" },
+            "point": { "$ref": "#/$defs/point" }
+          }
+        }
+      ]
+    },
+    "observed_at": { "type": "string", "format": "date-time" },
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "source_id", "licence", "retrieved_at", "tier"],
+      "properties": {
+        "value": { "enum": ["present", "cleared"] },
+        "source_id": { "type": "string", "pattern": "\\S" },
+        "licence": { "type": "string", "pattern": "\\S" },
+        "retrieved_at": { "type": "string", "format": "date-time" },
+        "tier": { "const": 0 }
+      }
+    },
+    "reporter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "ref"],
+      "properties": {
+        "role": {
+          "enum": ["wheelchair_user", "mobility_aid_user", "companion", "passerby", "site_staff", "UNKNOWN"]
+        },
+        "ref": {
+          "oneOf": [
+            { "type": "string", "pattern": "\\S" },
+            { "type": "null" }
+          ]
+        }
+      }
+    },
+    "photo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["handle", "media_type", "captured_at"],
+      "properties": {
+        "handle": { "type": "string", "pattern": "\\S" },
+        "media_type": { "enum": ["image/jpeg", "image/png", "image/webp"] },
+        "captured_at": {
+          "oneOf": [
+            { "type": "string", "format": "date-time" },
+            { "type": "null" }
+          ]
+        },
+        "width_px": { "type": "integer", "minimum": 1 },
+        "height_px": { "type": "integer", "minimum": 1 },
+        "alt_text": { "type": "string" }
+      }
+    },
+    "note": { "type": "string", "maxLength": 500 },
+    "synthetic": { "type": "boolean" }
+  },
+  "$defs": {
+    "point": {
+      "type": "object",
+      "required": ["lat", "lon"],
+      "properties": {
+        "lat": { "type": "number", "minimum": -90, "maximum": 90 },
+        "lon": { "type": "number", "minimum": -180, "maximum": 180 }
+      },
+      "additionalProperties": false
+    }
+  }
+}

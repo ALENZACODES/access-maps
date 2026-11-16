@@ -1,0 +1,31 @@
+[
+  {
+    "id": "synthetic-report:a1",
+    "synthetic": true,
+    "kind": "snowbank",
+    "location": { "type": "point", "point": { "lat": 43.85, "lon": -79.45 } },
+    "observed_at": "2026-11-15T09:00:00.000Z",
+    "observation": { "value": "present", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-15T09:05:00.000Z", "tier": 0 },
+    "reporter": { "role": "wheelchair_user", "ref": "synthetic-person-a" },
+    "note": "SYNTHETIC note"
+  },
+  {
+    "id": "synthetic-report:b1",
+    "synthetic": true,
+    "kind": "snowbank",
+    "location": { "type": "point", "point": { "lat": 43.85005, "lon": -79.45 } },
+    "observed_at": "2026-11-15T10:00:00.000Z",
+    "observation": { "value": "present", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-15T10:01:00.000Z", "tier": 0 },
+    "reporter": { "role": "companion", "ref": "synthetic-person-b" },
+    "photo": { "handle": "local-photo-1", "media_type": "image/jpeg", "captured_at": "2026-11-15T10:00:30.000Z", "width_px": 1200, "height_px": 900 }
+  },
+  {
+    "id": "synthetic-report:c1",
+    "synthetic": true,
+    "kind": "ice",
+    "location": { "type": "segment", "segment_id": "synthetic-segment-7" },
+    "observed_at": "2026-11-13T10:00:00.000Z",
+    "observation": { "value": "present", "source_id": "synthetic-test", "licence": "CC0-1.0", "retrieved_at": "2026-11-13T10:00:00.000Z", "tier": 0 },
+    "reporter": { "role": "UNKNOWN", "ref": null }
+  }
+]
