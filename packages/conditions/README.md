@@ -238,5 +238,9 @@ French is a draft. Controls are native elements with labels, errors are
 linked to their fields and summarised in an alert, status changes use a
 polite live region, and control targets are at least 24 pixels.
 
-The unit tests read the stateless components' markup without a browser. The
-two stateful wrappers and an axe run in a real browser are not covered here.
+The unit tests read the stateless components' markup without a browser and
+without a React runtime: this package is not an npm workspace and no React
+runtime is installed at the repository root, so `test/jsx-stand-in.ts`
+supplies a minimal element factory for those tests. It is not a renderer.
+The two stateful wrappers, rendering with React itself and an axe run in a
+real browser are not covered here.

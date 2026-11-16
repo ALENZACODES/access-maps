@@ -1,4 +1,10 @@
 import { describe, expect, it, vi } from "vitest";
+
+// No React runtime is installed where these tests run. See jsx-stand-in.ts.
+vi.mock("react", () => import("./jsx-stand-in"));
+vi.mock("react/jsx-runtime", () => import("./jsx-stand-in"));
+vi.mock("react/jsx-dev-runtime", () => import("./jsx-stand-in"));
+
 import reportFixture from "../fixtures/synthetic-route-reports.json";
 import wavFixture from "../fixtures/synthetic-wav-services.json";
 import { corroborateReports, validateReport } from "../src/reports";
