@@ -77,6 +77,26 @@ describe("fictional GTFS timetable pack", () => {
     } finally { rmSync(f.dir, { recursive: true, force: true }); }
   });
 
+  it("holds MiWay by case-insensitive id or name, including prefixes and containment", () => {
+    const f = fixture();
+    try {
+      writeFileSync(join(f.input, "extra.zip"), zip(sampleTables));
+      const result = buildTimetables({
+        input: f.input,
+        output: f.output,
+        allowlist: [
+          license,
+          { ...license, sourceId: "gtfs-miway-extra", zipFileName: "extra.zip" },
+          { ...license, sourceId: "mississauga-transit", agency: "City of Mississauga MiWay", zipFileName: "extra.zip" },
+        ],
+      });
+      expect(result.parts.every((p) => p.sourceId === "sample")).toBe(true);
+      expect(result.skipped.some((message) => message.startsWith("gtfs-miway-extra"))).toBe(true);
+      expect(result.skipped.some((message) => message.startsWith("mississauga-transit"))).toBe(true);
+      expect(result.sources.some((s) => s.sourceId === "gtfs-miway-extra" || s.sourceId === "mississauga-transit")).toBe(false);
+    } finally { rmSync(f.dir, { recursive: true, force: true }); }
+  });
+
   it("separates Metrolinx assets and verifies exact bytes, sha256 and placement", () => {
     const f = fixture();
     try {
