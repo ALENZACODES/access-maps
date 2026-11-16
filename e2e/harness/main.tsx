@@ -83,7 +83,7 @@ createRoot(root).render(
       <h1>{locale === "fr" ? "Démonstration de trajet" : "Journey demo"}</h1>
       <p>
         {locale === "fr"
-          ? "Données de démonstration seulement. Rien sur cette page n'est un état d'exploitant ni un lieu relevé."
+          ? "Données de démonstration seulement. Rien sur cette page n’est un état d’exploitant ni un lieu relevé."
           : "Fixture data only. Nothing on this page is an operator status or a surveyed place."}
       </p>
       <JourneyResult plan={buildPlan(locale)} />
