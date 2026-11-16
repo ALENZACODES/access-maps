@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { outputFor, parseCli, runCli } from './p15c-cli.ts';
-import type { CliIo } from './p15c-cli.ts';
-import type { AuditResult } from './p15c-pipeline.ts';
+import { outputFor, parseCli, runCli } from './p15c-cli.js';
+import type { CliIo } from './p15c-cli.js';
+import type { AuditResult } from './p15c-pipeline.js';
 
 const good: AuditResult = {
   ok: true, schemaVersion: 1, asOf: '2026-11-15',
@@ -54,7 +54,7 @@ test('CLI rejects incomplete, duplicate and unknown options', () => {
     ['audit', '--root', '/tmp/x'],
     [],
   ];
-  for (const request of invalid) assert.throws(() => parseCli(request), undefined, JSON.stringify(request));
+  for (const request of invalid) assert.throws(() => parseCli(request), Error, JSON.stringify(request));
 });
 
 test('CLI print help and returns successful exit code', async () => {

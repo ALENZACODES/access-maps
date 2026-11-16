@@ -4,8 +4,8 @@ import { mkdtemp, mkdir, readFile, rm, symlink, writeFile } from 'node:fs/promis
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterEach, test } from 'node:test';
-import { auditOfflineBundle, renderAuditJson, renderAuditText } from './p15c-pipeline.ts';
-import type { AuditCode, AuditOptions } from './p15c-pipeline.ts';
+import { auditOfflineBundle, renderAuditJson, renderAuditText } from './p15c-pipeline.js';
+import type { AuditCode, AuditOptions } from './p15c-pipeline.js';
 
 const roots: string[] = [];
 const TODAY = '2026-11-15';

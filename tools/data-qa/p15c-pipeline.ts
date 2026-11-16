@@ -2,8 +2,8 @@
 import { createHash } from 'node:crypto';
 import { lstat, readFile, realpath } from 'node:fs/promises';
 import { dirname, isAbsolute, relative, resolve, sep } from 'node:path';
-import { checkStrictData, OPEN_LICENCES, type Silo } from './index.ts';
-import { reportStaleAndMissingLicences } from './stale-licence-report.ts';
+import { checkStrictData, OPEN_LICENCES, type Silo } from './index.js';
+import { reportStaleAndMissingLicences } from './stale-licence-report.js';
 
 export type IssueSeverity = 'ERROR' | 'NOTICE';
 export type AuditCode =
@@ -316,7 +316,7 @@ export async function auditOfflineBundle(options: AuditOptions): Promise<AuditRe
   // Missing or invalid metadata must never be repaired using the report output.
   const report = reportStaleAndMissingLicences(assets, { asOf: options.asOf, maxAgeDays: options.maxAgeDays });
   for (const issue of report.issues) {
-    const code: AuditCode = issue.code === 'DATE_STALE' || issue.code === 'DATE_FUTURE'
+    const code: AuditCode = issue.code === 'DATE_FUTURE'
       ? 'ASSET_STALE' : issue.code.startsWith('DATE_') ? 'ASSET_DATE'
         : issue.code.startsWith('LICENCE_') ? 'ASSET_LICENCE' : 'ASSET_SOURCE';
     const path = `$.assets[${issue.index}]`;

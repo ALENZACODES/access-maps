@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /** Local-only entry point; exits nonzero if an export must be blocked. */
 import { writeFile } from 'node:fs/promises';
-import { auditOfflineBundle, renderAuditJson, renderAuditText } from './p15c-pipeline.ts';
-import type { AuditOptions, AuditResult } from './p15c-pipeline.ts';
+import { auditOfflineBundle, renderAuditJson, renderAuditText } from './p15c-pipeline.js';
+import type { AuditOptions, AuditResult } from './p15c-pipeline.js';
 
 export interface CliRequest {
   readonly options: AuditOptions;
