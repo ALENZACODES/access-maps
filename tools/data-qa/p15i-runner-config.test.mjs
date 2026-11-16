@@ -38,6 +38,7 @@ const workspaces = Object.freeze([
   '@access-maps/journey',
   '@access-maps/map-ui',
   '@access-maps/journey-data',
+  '@access-maps/conditions',
 ]);
 
 function individualCommands(testScript) {
@@ -101,7 +102,7 @@ describe('P15I root runner integration contract', () => {
 
   it('leaves workspace-owned suites outside the root Vitest runner', () => {
     for (const workspace of ['packages/journey/**', 'packages/map-ui/**',
-      'packages/journey-data/**']) assertVitestExclusion(workspace);
+      'packages/journey-data/**', 'packages/conditions/**']) assertVitestExclusion(workspace);
   });
 
   it('retains offline attribution CLI and dedicated test commands', () => {
@@ -129,6 +130,6 @@ describe('P15I root runner integration contract', () => {
   it('does not omit a suite when changing the root test runner', () => {
     const commands = testScriptCommands();
     assert.equal(commands.filter((item) => item.startsWith('tsx --test ')).length, 2);
-    assert.equal(commands.filter((item) => item.startsWith('npm test -w ')).length, 3);
+    assert.equal(commands.filter((item) => item.startsWith('npm test -w ')).length, workspaces.length);
   });
 });
