@@ -5,21 +5,21 @@ A piece is one field on one record whose value is not UNKNOWN and whose derived 
 Verified field-values toward the 500,000 target: **0**.
 Tier 0 and tier 1 values count as 0 toward the 250,000 verified venue field-values and toward the 500,000 verified total. Section 5.6 counts tier 2 and tier 3 only.
 Verified toward 500,000 is 0. None of those verified field-values exist in this import.
-Open-data or operator-claimed physical accessibility facts (tier 0 and tier 1 only): **873,275**.
+Open-data or operator-claimed physical accessibility facts (tier 0 and tier 1 only): **873,311**.
 Context fields, reported separately (access, crossing, lit, fee, and the other context fields below): **516,932**.
-All other populated values: **6,949,660**.
-All populated pieces together: **8,339,867**.
-Total UNKNOWN gaps: **51,261,045**.
-UNKNOWN gaps on accessibility fields: **27,910,521**.
-Derived values excluded from both totals: **4,195**.
-Records: **1,685,610**.
+All other populated values: **6,949,966**.
+All populated pieces together: **8,340,209**.
+Total UNKNOWN gaps: **51,262,473**.
+UNKNOWN gaps on accessibility fields: **27,911,385**.
+Derived values excluded from both totals: **4,207**.
+Records: **1,685,652**.
 
 The illustrative targets are 250,000 venue, 100,000 path, 50,000 transit, and 100,000 washroom verified field-values. Shortfall is the target minus verified values.
 
 | Tranche | Records | Physical accessibility facts (tier 0–1) | Context fields | Other populated | Verified (tier 2–3) | UNKNOWN gaps | Illustrative target | Shortfall |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| venue | 565690 | 115926 | 96320 | 2894088 | 0 | 21218336 | 250000 | 250000 |
-| washroom | 7079 | 3668 | 3036 | 28524 | 0 | 236658 | 100000 | 100000 |
+| venue | 565726 | 115962 | 96320 | 2894370 | 0 | 21219566 | 250000 | 250000 |
+| washroom | 7085 | 3668 | 3036 | 28548 | 0 | 236856 | 100000 | 100000 |
 | path | 1080917 | 732401 | 417576 | 3860951 | 0 | 29578416 | 100000 | 100000 |
 | transit | 31924 | 21280 | 0 | 166097 | 0 | 227635 | 50000 | 50000 |
 
@@ -27,12 +27,12 @@ The illustrative targets are 250,000 venue, 100,000 path, 50,000 transit, and 10
 
 An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.
 
-Physical accessibility facts, context fields, and the remaining pieces add up to the total: 873,275 + 516,932 + 6,949,660 = 8,339,867.
+Physical accessibility facts, context fields, and the remaining pieces add up to the total: 873,311 + 516,932 + 6,949,966 = 8,340,209.
 
 | Tranche | Physical accessibility pieces | Context pieces | Remaining pieces |
 | --- | ---: | ---: | ---: |
-| venue | 115926 | 96320 | 2894088 |
-| washroom | 3668 | 3036 | 28524 |
+| venue | 115962 | 96320 | 2894370 |
+| washroom | 3668 | 3036 | 28548 |
 | path | 732401 | 417576 | 3860951 |
 | transit | 21280 | 0 | 166097 |
 
@@ -86,7 +86,7 @@ Populated accessibility facts by field:
 
 - surface: 63096
 - entrance: 17633
-- wheelchair_description: 14456
+- wheelchair_description: 14492
 - wheelchair: 12670
 - capacity_disabled: 4038
 - door: 2035
@@ -132,8 +132,8 @@ Populated accessibility facts by field:
 
 | Tranche | Tier 0 | Tier 1 | Tier 2 | Tier 3 | Tier 4 |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| venue | 3106334 | 0 | 0 | 0 | 0 |
-| washroom | 35228 | 0 | 0 | 0 | 0 |
+| venue | 3106652 | 0 | 0 | 0 | 0 |
+| washroom | 35252 | 0 | 0 | 0 | 0 |
 | path | 5010928 | 0 | 0 | 0 | 0 |
 | transit | 1232 | 186145 | 0 | 0 | 0 |
 
@@ -213,6 +213,7 @@ Populated accessibility facts by field:
 | niagara-falls-trails | 43 | 221 | 32 | 1155 | 221 | 0 | 2026-11-16 |
 | oakville-town-washrooms | 21 | 105 | 0 | 714 | 105 | 0 | 2026-11-16 |
 | oakville-transit-gtfs | 1163 | 5815 | 0 | 9304 | 0 | 5815 | 2026-11-16 |
+| orangeville-parks | 42 | 342 | 36 | 1428 | 342 | 0 | 2026-11-16 |
 | oshawa-community-centres | 20 | 140 | 0 | 720 | 140 | 0 | 2026-11-16 |
 | oshawa-trails | 299 | 897 | 0 | 8671 | 897 | 0 | 2026-11-16 |
 | osm-ontario | 1392049 | 6802010 | 677579 | 43717520 | 6802010 | 0 | 2026-11-13 |
@@ -266,33 +267,33 @@ Populated accessibility facts by field:
 
 ### venue
 
-- braille: 565690
-- door_width: 565690
-- handrail: 565690
-- incline: 565690
-- kerb_height: 565690
-- ramp_stroller: 565690
-- ramp_wheelchair: 565690
-- step_count: 565690
-- hearing_loop: 565687
-- elevator: 565677
-- tactile_paving: 565677
-- ramp: 565661
+- braille: 565726
+- door_width: 565726
+- handrail: 565726
+- incline: 565726
+- kerb_height: 565726
+- ramp_stroller: 565726
+- ramp_wheelchair: 565726
+- step_count: 565726
+- hearing_loop: 565723
+- elevator: 565713
+- tactile_paving: 565713
+- ramp: 565697
 
 ### washroom
 
-- locked: 7079
-- changing_table_fee: 7076
-- supervised: 7076
-- changing_table_location: 7075
-- capacity: 7074
-- shower: 7057
-- drinking_water: 7026
-- wheelchair_description: 7010
-- addr_city: 7009
-- addr_postcode: 6987
-- indoor: 6953
-- adult_changing_table: 6902
+- locked: 7085
+- changing_table_fee: 7082
+- supervised: 7082
+- changing_table_location: 7081
+- capacity: 7080
+- shower: 7063
+- drinking_water: 7032
+- wheelchair_description: 7016
+- addr_city: 7015
+- addr_postcode: 6993
+- indoor: 6959
+- adult_changing_table: 6908
 
 ### path
 

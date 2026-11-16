@@ -598,6 +598,11 @@ export const LICENCE_FINDINGS: readonly LicenceFinding[] = [
     licence: "OGL-Essex-1.0",
     reason: "Open Government Licence – County of Essex, version 1.0. Not in the strict export allowlist.",
   },
+  {
+    sourceId: "orangeville-parks",
+    licence: "OGL-Orangeville-1.0",
+    reason: "Open Government Licence – Orangeville, version 1.0. Not in the strict export allowlist.",
+  },
 ];
 
 export function isDocumentedLicence(sourceId: string, licence: string): boolean {

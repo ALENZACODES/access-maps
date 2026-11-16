@@ -6,6 +6,7 @@ import { PartitionWriter } from "../src/io/partition-writer.js";
 import type { RawFeature } from "../src/municipal/cities/g4-helpers.js";
 import { BRANT_JOBS } from "../src/municipal/cities/brant.js";
 import { ESSEX_COUNTY_JOBS } from "../src/municipal/cities/essex-county.js";
+import { ORANGEVILLE_JOBS } from "../src/municipal/cities/orangeville.js";
 import type { DataRecord, Tranche } from "../src/model/records.js";
 import type { Provenance } from "../src/model/provenance.js";
 import { readRegistry, requireSource } from "../src/registry.js";
@@ -21,7 +22,7 @@ export interface CityLayerJob {
 }
 
 /** Layers for the municipalities ranked 51 to 77 (sources/ontario-municipalities-51-75.json) and their counties. */
-export const G6_LAYER_JOBS: readonly CityLayerJob[] = [...ESSEX_COUNTY_JOBS, ...BRANT_JOBS];
+export const G6_LAYER_JOBS: readonly CityLayerJob[] = [...ESSEX_COUNTY_JOBS, ...BRANT_JOBS, ...ORANGEVILLE_JOBS];
 
 export interface G6Imported {
   source_id: string;
