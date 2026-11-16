@@ -2,7 +2,7 @@
   {
     "name": "OC Transpo static GTFS",
     "url": "https://www.octranspo.com/files/google_transit.zip",
-    "reason": "On 2026-11-16 the City of Ottawa open-data item OC Transpo Schedules (ArcGIS item af9fed684cb349ff8b6be075baf97683) pointed to this zip and linked the Open Data Licence Version 2.0, so the licence is stated. The zip itself returned HTTP 403 to the pipeline on 2026-11-16, and the developer terms page describes the separate live API licence as revocable with an indemnity. No file was retrieved, so the feed was not imported."
+    "reason": "On 2026-11-16 the City of Ottawa open-data item OC Transpo Schedules (ArcGIS item af9fed684cb349ff8b6be075baf97683) pointed to this zip and linked the Open Data Licence Version 2.0, so the licence is stated. The zip itself returned HTTP 403 to the pipeline on 2026-11-16, and the developer terms page describes the separate live API licence as revocable with an indemnity. No file was retrieved, so the feed was not imported. A second request for the zip on 2026-11-16 also returned HTTP 403. The feed stays out."
   },
   {
     "name": "York Region Transit GTFS",
@@ -60,14 +60,14 @@
     "reason": "16,356 of the 87,105 segments retrieved on 2026-11-16 are published as having no sidewalk, a partial sidewalk, a laneway without a sidewalk, a roadway under development, or no description on a road. Their line is the roadway. A path record is read as somewhere a person can travel, so these segments were left out. The other 70,749 segments are imported as toronto-pedestrian-network."
   },
   {
-    "name": "City of Ottawa Pedestrian Network and Sidewalks",
-    "url": "https://maps.ottawa.ca/arcgis/rest/services/Pedestrian_Plan/MapServer/0",
-    "reason": "Reachable on 2026-11-16 and the City of Ottawa ArcGIS item links the Open Data Licence Version 2.0 (text read at https://www.ottawa.ca/opendata). The Pedestrian Network layer has 20,298 lines with a WALK_TYPE column and no surface, width, slope or curb column. The Sidewalks layer (TopographicMapping/MapServer/5) is polygons. Neither was mapped in this pass. Not imported."
+    "name": "City of Ottawa Sidewalks (topographic polygons)",
+    "url": "https://maps.ottawa.ca/arcgis/rest/services/TopographicMapping/MapServer/5",
+    "reason": "Reachable on 2026-11-16 under the City of Ottawa Open Data Licence Version 2.0. The Sidewalks layer is polygons, and the path schema stores lines. Not imported. The Existing Pedestrian Network lines (Pedestrian_Plan/MapServer/0), which shared this entry, were retrieved on 2026-11-16 and are imported as ottawa-pedestrian-network."
   },
   {
-    "name": "City of Ottawa parks inventory layers 5, 7, 8, 23 and 24, drinking fountains, recreation facilities, library locations and O-Train stations",
+    "name": "City of Ottawa parks inventory layers 5, 7, 8 and 23, and O-Train stations",
     "url": "https://maps.ottawa.ca/arcgis/rest/services/Parks_Inventory/MapServer",
-    "reason": "Reachable on 2026-11-16 and the City of Ottawa ArcGIS item links the Open Data Licence Version 2.0 (text read at https://www.ottawa.ca/opendata). Layer 5 is a joined table that the service did not page (HTTP 200 with error 400 on an ordered query). Layer 7 has no filled ACCESSIBLE value. Layers 8, 23 and 24 are lines or polygons. Public Drinking Water Fountains (112 points), City Facilities for Recreation Activities (371 points), library locations and O-Train station polygons have no accessibility column. None of these were mapped in this pass. Not imported."
+    "reason": "Reachable on 2026-11-16 under the City of Ottawa Open Data Licence Version 2.0. Layer 5 is a joined view of City facilities that the service did not page; the same facilities are imported from City_Facilities/MapServer/5 as ottawa-recreation-facilities. Layer 7 (91 infrastructure points, such as light switch locations) has no filled ACCESSIBLE value. Layer 8 (1,092 dog-designation polygons) repeats the parks of layer 24, which is imported as ottawa-parks. Layer 23 (609 pathway-link polygons) has a blank ACCESSIBLE value on every row. O-Train station polygons have no accessibility column. Not imported. Public Drinking Water Fountains, City Facilities for Recreation Activities and library locations, which shared this entry, are imported as ottawa-drinking-fountains, ottawa-recreation-facilities and ottawa-library-locations."
   },
   {
     "name": "City of Ottawa records without a coordinate",
@@ -175,11 +175,6 @@
     "reason": "On 2026-11-13 the licence PDF linked from the catalogue returned HTTP 404. On 2026-11-16 the PDF link still returned HTTP 404, and the same Open Data Licence 1.0 text was read at https://www.thunderbay.ca/city-hall/thunder-bay-open-data/, so the licence is now recorded in the registry for other Thunder Bay layers. This CSV has a facility name, a street address, a PHONE column and no coordinates. Records are stored by 0.5-degree cell and this pipeline does not geocode, so the rows were not imported. The PHONE column was not read."
   },
   {
-    "name": "Durham Region Transit GTFS",
-    "url": "https://www.durhamregiontransit.com/",
-    "reason": "Not retrieved on 2026-11-16 and not imported in that pass. Durham Region's licence text was not read. Kingston Transit and GOVA Transit, which shared this entry, were retrieved on 2026-11-16 and are imported as gtfs-kingston and gtfs-gova."
-  },
-  {
     "name": "Thunder Bay Transit static GTFS",
     "url": "http://api.nextlift.ca/gtfs.zip",
     "reason": "Retrieved 2026-11-16 (HTTP 200, 731 stops with wheelchair_boarding filled). The City of Thunder Bay open-data catalogue lists the GTFS-realtime feeds on the same host and a Google Transit Source zip under its Open Data Licence, but the catalogue's own zip holds files dated 2019-11-08, and the catalogue's link to the transit developer page returned HTTP 404. No catalogue entry or City page that names this current static zip together with the licence was found, so the feed was not imported."
@@ -205,24 +200,49 @@
     "reason": "381 of the 5,837 Road Sidewalk Path Trail segments retrieved on 2026-11-16 are proposed, abandoned or removed, or are bike paths, shoulders or untyped lines. They were left out. The other 5,456 segments are imported as greater-sudbury-walkways. The Routes layer of RECREATION_VIEW_OPENDATA (293 lines) mixes trails with on-road cycling lanes, paved shoulders and a skating path and has no surface or accessibility column; it was not mapped in this pass. Not imported."
   },
   {
-    "name": "City of Thunder Bay recreation facilities",
-    "url": "https://www.thunderbay.ca/en/city-services/resources/City-of-Thunder-Bay-Open-Data-Licence.pdf",
-    "reason": "The catalogue links to an open-data licence PDF that returned HTTP 404 on 2026-11-13. Other thunderbay.ca open-data URLs also returned 404. UNKNOWN licence. Not imported."
+    "name": "Cornwall Transit static GTFS",
+    "url": "https://metrolinx.tmix.se/gtfs/gtfs-cornwall.zip",
+    "reason": "The City of Cornwall Open Data page (https://www.cornwall.ca/en/government-council/opendata/) lists this zip under Other Sources of Data and says it is hosted by a third party. The page's sentence about agreeing to the City's Open Government Licence sits above the portal and it is not clear that it covers this zip. Retrieved 2026-11-16 (HTTP 200, 309 stops, wheelchair_boarding 0 on the rows read) and not imported. The City's own open-data layer of the same stops is imported as cornwall-transit-bus-stops."
   },
   {
-    "name": "Kingston Transit, GOVA Transit (Greater Sudbury) and Durham Region Transit GTFS",
-    "url": "https://opendatakingston.cityofkingston.ca/",
-    "reason": "The City of Kingston and City of Greater Sudbury open-data licences are already recorded in the registry for other files. These GTFS feeds were not retrieved on 2026-11-16 and were not imported in this pass. Durham Region's licence text was not read."
+    "name": "City of Cornwall parking stall types, traffic and pedestrian signals, City parks and on-road cycling lines",
+    "url": "https://data-cornwallcity.opendata.arcgis.com/",
+    "reason": "Checked 2026-11-16. Municipal_Parking_Stall_Types (91 polygons, 18 of them with STALL_TYPE ACCESSIBLE and a stall count) and Traffic and Pedestrian Signals (73 points, no audible-signal column) are public ArcGIS layers that are not in the open-data portal's catalogue feed, and their items carry no licence text, so the City's licence statement was not taken to cover them. City Parks (53 polygons) is in the catalogue and has yes/no amenity columns and no accessibility column; the venue schema has no field for those amenity columns. 314 of the 535 Recreational Paths and Bike Lanes rows are on-road bicycle lanes, paved shoulders or mixed-traffic routes and were left out; the other 221 are imported as cornwall-recreational-paths. Not imported."
   },
   {
-    "name": "City of Guelph parks, trails, sidewalks, and park locations",
-    "url": "https://explore.guelph.ca/pages/open-data-license",
-    "reason": "On 2026-11-13 the licence page returned HTTP 200 and the extracted text was only the page title. No grant of rights was visible. UNKNOWN licence. Not imported."
+    "name": "City of Quinte West layers without a licence statement, traffic lights, road shoulders and Quinte Transit GTFS",
+    "url": "https://quintewest.maps.arcgis.com/",
+    "reason": "Checked 2026-11-16. City Facilities (112 polygons), City of Quinte West Parking Lots (82 polygons) and the Active Transportation lines are public ArcGIS layers whose items carry no licence text, so they were not imported. Traffic light locations (61 points) is under the City of Quinte West Open Data Licence 1.0 and has an id column only. 8 of the 140 Trails and Sidewalks rows are published as Wide Shoulder and were left out; the other 132 are imported as quinte-west-trails. Splash Pads (2), Ice Arena (2) and Boat Launches (8) have a name only and were not mapped in this pass. The Quinte Transit zip at https://myride.quintetransit.ca/gtfs/google_transit.zip answered HTTP 200 to a header request; no licence statement for it was found, and it was not downloaded. https://quintewest.ca/ returned HTTP 403 to the pipeline."
   },
   {
-    "name": "City of Kitchener and City of Waterloo sidewalks and parking lots",
-    "url": "https://services1.arcgis.com/qAo1OsXi67t7XgmS/arcgis/rest/services/Sidewalks/FeatureServer/0",
-    "reason": "The municipal open-data licence text for these two cities was not read on 2026-11-16. UNKNOWN licence. Not imported."
+    "name": "City of Sault Ste. Marie open data and Sault Transit GTFS",
+    "url": "https://saultstemarie.ca/",
+    "reason": "Checked 2026-11-16. No municipal open-data portal or open-data licence was found: https://saultstemarie.ca/opendata and /open-data returned HTTP 404, and web and ArcGIS searches found no City catalogue. A university library page lists City data received in 2022 under a data release agreement for academic use, which is not an open licence. The Sault Transit zip at https://metrolinx.tmix.se/gtfs/gtfs-saultstemarie.zip answered HTTP 200 to a header request; no licence statement for it was found, and it was not downloaded. Nothing imported."
+  },
+  {
+    "name": "City of North Bay Explore North Bay layers and North Bay Transit GTFS",
+    "url": "https://explore.northbay.ca/",
+    "reason": "Checked 2026-11-16. The City's ArcGIS hub lists layers such as North Bay Parks, North Bay Transit Stops, sidewalks, curbs, tactile plates and crosswalks for the Main Street project. Each item's licence field is a warranty disclaimer with no grant of rights, and the hub's Terms of Use link (https://northbay.ca/legal/) says all material on the City's website is protected by copyright. No licence that permits redistribution was found. The North Bay Transit zip at https://northbay.tmix.se/gtfs/gtfs.zip answered HTTP 200 to a header request; no licence statement for it was found, and it was not downloaded. Nothing imported."
+  },
+  {
+    "name": "City of Timmins open data and Timmins Transit GTFS",
+    "url": "https://www.timmins.ca/",
+    "reason": "Checked 2026-11-16. No municipal open-data portal or open-data licence was found: https://www.timmins.ca/open-data and /opendata returned HTTP 404, and web and ArcGIS searches found no City catalogue. The Timmins Transit zip at https://metrolinx.tmix.se/gtfs/gtfs-timmins.zip answered HTTP 200 to a header request; no licence statement for it was found, and it was not downloaded. Nothing imported. Timmins ranks 53rd by 2021 Census population (sources/ontario-top-50-municipalities.json)."
+  },
+  {
+    "name": "City of Belleville open-data hub and Belleville Transit GTFS",
+    "url": "https://opendata-bellevillegis.hub.arcgis.com/",
+    "reason": "Checked 2026-11-16. The hub lists 43 layers, including Transit Stops, Playgrounds And Splashpads, Community Facilities, Points of Interest and Active Transportation Network. The licence field is blank on 21 items and Unknown on 9; on 9 others, including Community Facilities, it says the information is for personal, non-commercial use only. No licence that permits redistribution was found. The Belleville Transit zip at https://metrolinx.tmix.se/gtfs/gtfs-belleville.zip answered HTTP 200 to a header request; no licence statement for it was found, and it was not downloaded. Nothing imported."
+  },
+  {
+    "name": "Town of New Tecumseth open data",
+    "url": "https://www.newtecumseth.ca/",
+    "reason": "Checked 2026-11-16. New Tecumseth ranks 49th by 2021 Census population (sources/ontario-top-50-municipalities.json). No municipal open-data portal or open-data licence was found: https://www.newtecumseth.ca/open-data and /opendata returned HTTP 404, and web and ArcGIS searches found no Town catalogue. Nothing imported."
+  },
+  {
+    "name": "Town of Innisfil open data",
+    "url": "https://opendata-innisfil.opendata.arcgis.com/",
+    "reason": "Checked 2026-11-16. Innisfil ranks 50th by 2021 Census population (sources/ontario-top-50-municipalities.json). The Town's open-data hub answered HTTP 401 with the message that the subscription is canceled and the item is not accessible. The Town's ArcGIS organization lists two public feature services (Parks and one story layer) with a blank licence field. https://www.innisfil.ca/opendata returned HTTP 404. No licence text was available, so nothing was imported."
   },
   {
     "name": "Durham Region Transit Bus Boarding Points and other Durham Region layers",
