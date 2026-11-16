@@ -3,7 +3,7 @@ import { pathToFileURL } from "node:url";
 import path from "node:path";
 import { acceptId, commitRecord, resetSourceDirs } from "../src/io/commit.js";
 import { cell, parseCsv } from "../src/io/csv.js";
-import { PartitionWriter } from "../src/io/partition-writer.js";
+import { PerSourceRun } from "../src/failsafe/per-source.js";
 import { readPointShapefileZip } from "../src/io/shp-points.js";
 import {
   mapBramptonRecreationCentre,
@@ -61,34 +61,38 @@ const JOBS: {
 export async function importMoreMunicipal(repoRoot: string): Promise<{ sources: { source_id: string; records: number }[] }> {
   const registry = readRegistry(repoRoot);
   const validators = compileValidators(path.join(repoRoot, "schema"));
-  const writer = new PartitionWriter(path.join(repoRoot, "data"));
+  const run = new PerSourceRun("importMoreMunicipal", path.join(repoRoot, "data"));
   const sources: { source_id: string; records: number }[] = [];
   for (const job of JOBS) {
-    const source = requireSource(registry, job.id);
-    if (source.tier !== 0) throw new Error(`${job.id} must be tier 0`);
-    const file = await download(repoRoot, source.id, source.download_url, job.alternate);
-    resetSourceDirs(path.join(repoRoot, "data"), source.id, job.tranches);
-    const ctx: Provenance = {
-      source_id: source.id,
-      licence: source.licence_id,
-      retrieved_at: source.retrieved_at,
-      tier: 0,
-    };
-    const seen = new Set<string>();
-    let records = 0;
-    for (const record of await job.load(file, ctx)) {
-      let next = record;
-      if (!acceptId(seen, next.id)) {
-        let suffix = 2;
-        while (!acceptId(seen, `${record.id}#${suffix}`)) suffix += 1;
-        next = { ...record, id: `${record.id}#${suffix}` };
+    // Each source has its own writer: one that fails keeps its last known-good files and the others are still written.
+    const imported = await run.source(job.id, job.tranches, async (writer) => {
+      const source = requireSource(registry, job.id);
+      if (source.tier !== 0) throw new Error(`${job.id} must be tier 0`);
+      const file = await download(repoRoot, source.id, source.download_url, job.alternate);
+      resetSourceDirs(path.join(repoRoot, "data"), source.id, job.tranches);
+      const ctx: Provenance = {
+        source_id: source.id,
+        licence: source.licence_id,
+        retrieved_at: source.retrieved_at,
+        tier: 0,
+      };
+      const seen = new Set<string>();
+      let records = 0;
+      for (const record of await job.load(file, ctx)) {
+        let next = record;
+        if (!acceptId(seen, next.id)) {
+          let suffix = 2;
+          while (!acceptId(seen, `${record.id}#${suffix}`)) suffix += 1;
+          next = { ...record, id: `${record.id}#${suffix}` };
+        }
+        await commitRecord(next, source.id, writer, validators);
+        records += 1;
       }
-      await commitRecord(next, source.id, writer, validators);
-      records += 1;
-    }
-    sources.push({ source_id: source.id, records });
+      return { source_id: source.id, records };
+    });
+    if (imported) sources.push(imported);
   }
-  await writer.close();
+  run.finish();
   console.log(JSON.stringify({ sources }));
   return { sources };
 }

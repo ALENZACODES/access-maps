@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 import path from "node:path";
 import { acceptId, commitRecord, resetSourceDirs } from "../src/io/commit.js";
-import { PartitionWriter } from "../src/io/partition-writer.js";
+import { PerSourceRun } from "../src/failsafe/per-source.js";
 import { mapCambridgePlayStructure } from "../src/municipal/cities/cambridge.js";
 import { cityFeature, type CityFeature } from "../src/municipal/cities/g3-shared.js";
 import { mapLambtonAccessibleFacility, LAMBTON_FEATURE_COLUMNS, LAMBTON_WASHROOM_COLUMNS } from "../src/municipal/cities/lambton.js";
@@ -210,7 +210,7 @@ export interface ImportedSource {
 type RawFeature = Parameters<typeof cityFeature>[0];
 
 export async function importCitiesG3(repoRoot: string, only: readonly string[] = []): Promise<{ sources: ImportedSource[] }> {
-  return runLayerJobs(repoRoot, G3_LAYER_JOBS, only);
+  return runLayerJobs(repoRoot, G3_LAYER_JOBS, only, "importCitiesG3");
 }
 
 /** Downloads (or reads from the cache), maps and writes every job in `jobs`, or only those named in `only`. */
@@ -218,42 +218,47 @@ export async function runLayerJobs(
   repoRoot: string,
   jobs: readonly LayerJob[],
   only: readonly string[] = [],
+  step = "runLayerJobs",
 ): Promise<{ sources: ImportedSource[] }> {
   const registry = readRegistry(repoRoot);
   const validators = compileValidators(path.join(repoRoot, "schema"));
-  const writer = new PartitionWriter(path.join(repoRoot, "data"));
+  const run = new PerSourceRun(step, path.join(repoRoot, "data"));
   const sources: ImportedSource[] = [];
   for (const job of jobs) {
     if (only.length > 0 && !only.includes(job.id)) continue;
-    const source = requireSource(registry, job.id);
-    if (source.kind !== "municipal" || source.tier !== 0) throw new Error(`${job.id} must be tier 0 municipal data`);
-    const features = await cachedLayer(repoRoot, job, source.download_url);
-    resetSourceDirs(path.join(repoRoot, "data"), source.id, [job.tranche, ...(job.alsoWrites ?? [])]);
-    const ctx: Provenance = { source_id: source.id, licence: source.licence_id, retrieved_at: source.retrieved_at, tier: 0 };
-    const seen = new Set<string>();
-    let skipped = 0;
-    let noGeometry = 0;
-    let records = 0;
-    for (const raw of features) {
-      const mapped = job.map(cityFeature(raw), ctx);
-      if (mapped === null) {
-        skipped += 1;
-        continue;
-      }
-      for (const record of Array.isArray(mapped) ? mapped : [mapped]) {
-        // A record with no usable geometry has no 0.5-degree cell to be stored in.
-        if (record.region === "unknown") {
-          noGeometry += 1;
+    // Each source has its own writer: one that fails keeps its last known-good files and the others are still written.
+    const imported = await run.source(job.id, [job.tranche, ...(job.alsoWrites ?? [])], async (writer) => {
+      const source = requireSource(registry, job.id);
+      if (source.kind !== "municipal" || source.tier !== 0) throw new Error(`${job.id} must be tier 0 municipal data`);
+      const features = await cachedLayer(repoRoot, job, source.download_url);
+      resetSourceDirs(path.join(repoRoot, "data"), source.id, [job.tranche, ...(job.alsoWrites ?? [])]);
+      const ctx: Provenance = { source_id: source.id, licence: source.licence_id, retrieved_at: source.retrieved_at, tier: 0 };
+      const seen = new Set<string>();
+      let skipped = 0;
+      let noGeometry = 0;
+      let records = 0;
+      for (const raw of features) {
+        const mapped = job.map(cityFeature(raw), ctx);
+        if (mapped === null) {
+          skipped += 1;
           continue;
         }
-        if (!acceptId(seen, record.id)) throw new Error(`${job.id}: duplicate id ${record.id}`);
-        await commitRecord(record, source.id, writer, validators);
-        records += 1;
+        for (const record of Array.isArray(mapped) ? mapped : [mapped]) {
+          // A record with no usable geometry has no 0.5-degree cell to be stored in.
+          if (record.region === "unknown") {
+            noGeometry += 1;
+            continue;
+          }
+          if (!acceptId(seen, record.id)) throw new Error(`${job.id}: duplicate id ${record.id}`);
+          await commitRecord(record, source.id, writer, validators);
+          records += 1;
+        }
       }
-    }
-    sources.push({ source_id: source.id, fetched: features.length, records, skipped, no_geometry: noGeometry });
+      return { source_id: source.id, fetched: features.length, records, skipped, no_geometry: noGeometry };
+    });
+    if (imported) sources.push(imported);
   }
-  await writer.close();
+  run.finish();
   console.log(JSON.stringify({ sources }));
   return { sources };
 }
