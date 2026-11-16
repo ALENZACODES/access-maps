@@ -497,6 +497,22 @@ Dataset retrieved 2026-11-16 from the Town's open-data site (https://opendata.or
 The ADACOMPLY and ACCESSPLAYGROUND values are the Town's own Yes/No columns and are stored as published. They are not a wheelchair measurement by this project. The licence does not cover personal information or the Town's names, crests and logos.
 <!-- g6 municipalities 51-77 end -->
 
+## County of Oxford trails (serving Woodstock)
+
+Contains information from the County of Oxford, included on the repository owner's permission of 2026-11-16.
+
+Dataset, retrieved 2026-11-16: Oxford County Trails, https://public.oxfordcounty.ca/gis/rest/services/OpenData/OXFORD_OpenData/MapServer/17 (`oxford-county-trails`).
+
+The catalogue record states no licence and no publisher licence was read. The layer is included because the repository owner stated in chat on 2026-11-16 that its use is permitted (licence id `owner-permission-2026-11-16`). The County's Difficulty text is stored as published and is not a wheelchair measurement by this project.
+
+## Haldimand County layers
+
+Contains information from Haldimand County, included on the repository owner's permission of 2026-11-16.
+
+Datasets, retrieved 2026-11-16 from https://gis.haldimandcounty.ca/server/rest/services: AccessibleParking (`haldimand-accessible-parking`), Sidewalk (`haldimand-sidewalks`), TrafficSignals (`haldimand-traffic-signals`), PedestrianCrossings (`haldimand-pedestrian-crossings`) and TrailNetwork_Existing_Network (`haldimand-trails`).
+
+These layers are not in the County's open-data catalogue, and no publisher licence was read for them. They are included because the repository owner stated in chat on 2026-11-16 that their use is permitted (licence id `owner-permission-2026-11-16`). The County's Audible and Accessible columns are stored as published flags. They are not a measurement by this project.
+
 ## Offline map tiles
 
 `data/tiles/odbl/` is OpenStreetMap data under the Open Database License (ODbL) 1.0. It is a separate file from every other licence.
