@@ -12,7 +12,15 @@ import {
   mapHamiltonSidewalk,
   mapHamiltonTrail,
 } from "../src/municipal/cities/hamilton.js";
+import { mapMiltonParkAmenity, mapMiltonParkingLot, mapMiltonSidewalk, mapMiltonTrail } from "../src/municipal/cities/milton.js";
+import {
+  mapNiagaraFallsPlayground,
+  mapNiagaraFallsSidewalk,
+  mapNiagaraFallsTrail,
+} from "../src/municipal/cities/niagara-falls.js";
+import { mapOakvilleTownWashroom } from "../src/municipal/cities/oakville.js";
 import { mapPeelTrail } from "../src/municipal/cities/peel-region.js";
+import { mapWellandPublicWashroom, mapWellandTrail } from "../src/municipal/cities/welland.js";
 import { geoFeature, type GeoFeature } from "../src/municipal/cities/west-gta-shared.js";
 import type { DataRecord, Tranche } from "../src/model/records.js";
 import type { Provenance } from "../src/model/provenance.js";
@@ -41,6 +49,16 @@ export const WEST_CITY_JOBS: readonly Job[] = [
   { id: "brampton-city-parking", tranches: ["venue"], map: mapBramptonCityParking },
   { id: "brampton-recreational-trails", tranches: ["path"], map: mapBramptonTrail },
   { id: "peel-trails", tranches: ["path"], map: mapPeelTrail },
+  { id: "oakville-town-washrooms", tranches: ["washroom"], map: mapOakvilleTownWashroom },
+  { id: "milton-parking-lots", tranches: ["venue"], map: mapMiltonParkingLot },
+  { id: "milton-park-amenities", tranches: ["venue"], map: mapMiltonParkAmenity },
+  { id: "milton-sidewalks", tranches: ["path"], map: mapMiltonSidewalk },
+  { id: "milton-trails", tranches: ["path"], map: mapMiltonTrail },
+  { id: "niagara-falls-sidewalks", tranches: ["path"], map: mapNiagaraFallsSidewalk },
+  { id: "niagara-falls-trails", tranches: ["path"], map: mapNiagaraFallsTrail },
+  { id: "niagara-falls-playgrounds", tranches: ["venue"], map: mapNiagaraFallsPlayground },
+  { id: "welland-trails", tranches: ["path"], map: mapWellandTrail },
+  { id: "welland-public-washrooms", tranches: ["washroom"], map: mapWellandPublicWashroom },
 ];
 
 export interface ImportedSource {
