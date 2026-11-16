@@ -85,7 +85,10 @@ Washroom fields from a venue, such as `toilets:wheelchair`, are emitted as a sep
 - York Region's Bus Stops from GTFS layer is a tier 1 operator claim. Its "Yes / Part" boarding label is kept as published and is not stored as a yes.
 - A trail drawn in several parts is stored as one path record per part, so no part of the line is dropped. A length published for the whole trail is not repeated on the parts.
 - A building or park-feature outline is stored at the vertex mean of its largest ring (`source_key` `geometry:vertex_mean`). That point is not a surveyed entrance.
-- For Vaughan, Richmond Hill, Aurora, Whitchurch-Stouffville and Georgina no licence that permits redistribution could be read on 2026-11-16, so nothing from them is imported. The reasons are in [sources/gaps.json](sources/gaps.json).
+- Durham Region Transit is imported from its GTFS zip (`gtfs-drt`, tier 1). Oshawa, Whitby, Ajax and Pickering layers are tier 0.
+- Whitby sidewalk ramp counts and Whitby's park "Accessible Amenities" flag are kept as published in `wheelchair_description`. They are not stored as a ramp or wheelchair value.
+- A washroom that a park layer only lists as an amenity (Whitby, Pickering) is a washroom record at the park point, marked `derived`. Pickering's amenity domain codes Yes as 0.
+- For Vaughan, Richmond Hill, Aurora, Whitchurch-Stouffville, Georgina, Clarington, Barrie and Kawartha Lakes no licence that permits redistribution could be read on 2026-11-16, so nothing from them is imported. Peterborough's terms allow distribution only of unmodified datasets with each recipient's agreement, and the Barrie Transit and York Region Transit GTFS zips need a person to accept terms first. The reasons are in [sources/gaps.json](sources/gaps.json).
 
 ## Licence re-checks
 

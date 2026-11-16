@@ -153,5 +153,55 @@
     "name": "Town of Georgina",
     "url": "https://navigategeorgina-georgina.hub.arcgis.com/",
     "reason": "Checked on 2026-11-16. https://www.georgina.ca/opendata returned HTTP 404. The Georgina Web Mapping hub catalogue has 2 entries (Web Maps and Static Maps) and no datasets. The Town's ArcGIS Online organisation (H9DyU85EnErZGhsY) lists 119 public feature services, including Park Amenities and Trail; their licence field is empty or a note that the map is created from a subset of Town data. No open-data licence was found, so nothing was imported."
+  },
+  {
+    "name": "Durham Region Transit Bus Boarding Points and other Durham Region layers",
+    "url": "https://opendata.durham.ca/",
+    "reason": "Checked on 2026-11-16 under the Region of Durham Open Data Licence v.1.0. Transit Bus Boarding Points (4,420 points, catalogue entry last modified 2020-11-30) has ACCESSIBLE and SHELTER columns whose codes are not documented on the layer, and it describes the same stops as the current GTFS feed, which is imported as gtfs-drt with the operator's wheelchair_boarding values. It was not imported. Community Services is an address list with a PHONE column and no accessibility column; it and the Government Offices, Healthcare Facilities, Senior Residences and Education layers were not mapped or imported. The GTFS-RT Service Alerts, Trip Updates and Vehicle Positions feeds were not retrieved. The catalogue has no dataset for accessible parking, washrooms, pedestrian signals, curb ramps, sidewalks or elevators."
+  },
+  {
+    "name": "City of Oshawa Park Locations, Municipal Parking and other layers",
+    "url": "https://city-oshawa.opendata.arcgis.com/",
+    "reason": "Checked on 2026-11-16 under the Open Government Licence - The Corporation of the City of Oshawa (version 2). Park Locations (141 polygons) has name, address and park class and no amenity or accessibility column. Municipal Parking (216 polygons) has NUMBER_OF_SPACES, rates and time limits and no accessible-space column. Neither was imported. The City's own catalogue entries (98 on 2026-11-16, mostly election results, service requests and planning maps) has no dataset for accessible parking, washrooms, pedestrian signals, curb ramps, sidewalks, elevators or playgrounds."
+  },
+  {
+    "name": "Town of Whitby catalogue entries without the open licence",
+    "url": "https://geohub-whitby.hub.arcgis.com/",
+    "reason": "Checked on 2026-11-16. 19 of the 65 catalogue entries name or link The Corporation of the Town of Whitby Open Government License; Town Facilities, Parks, Sidewalks and Trails from that group are imported. The other entries, including Open Park Amenities, Parks and Trails, Electric Vehicle Charging Station Locations and Bike Repair Stands, carry a copyright notice that says the maps and data are provided for personal, non-commercial use. They were not read or imported. On the imported Sidewalks layer 6 rows (2 AsphaltCycleTrack, 4 with no sidewalk type) were left out; on Trails 20 Storm-Service Lane rows and 2 rows with no line were left out."
+  },
+  {
+    "name": "Town of Ajax Parks, POI and other layers",
+    "url": "https://opendata.ajax.ca/",
+    "reason": "Checked on 2026-11-16 under the Town of Ajax Open Data Licence v.1.0. Parks (132 polygons) has name, type and area and no amenity or accessibility column. Ajax POI, Schools, Places of Worship, Cultural Inventory and Active Transportation were not mapped. On the imported Recreational Trails layer 17 removed or decommissioned sections were left out. The catalogue (49 entries) has no dataset for accessible parking, washrooms, pedestrian signals, curb ramps, sidewalks or elevators."
+  },
+  {
+    "name": "City of Pickering parks not in service and other layers",
+    "url": "https://opendata.pickering.ca/",
+    "reason": "Checked on 2026-11-16 under the City of Pickering Open Data Licence v.1.0. 23 of the 198 Parks rows have Status Planned, Under Construction, In Progress or Not In Service and were left out. The park amenity columns other than Washroom (parking, playground, trails, splash pad and others) have no matching field and were not stored. Points of Interest and Public Art were not mapped. The catalogue has no dataset for accessible parking, pedestrian signals, curb ramps, sidewalks or elevators."
+  },
+  {
+    "name": "Municipality of Clarington",
+    "url": "https://public-map-gallery-clarington.hub.arcgis.com/",
+    "reason": "Checked on 2026-11-16. https://www.clarington.net/en/town-hall/open-data.aspx returned HTTP 404 and no open-data portal was found. Clarington's Public Map Gallery hub lists 10 web applications (parking, active transportation, parks and outdoor facilities, sidewalk snow clearing and others). Their licence field says the layers are the intellectual property of the Municipality of Clarington and cannot be altered, edited or used without the Municipality's written consent. Redistribution is not permitted, so nothing was imported. Clarington stops served by Durham Region Transit are in gtfs-drt."
+  },
+  {
+    "name": "City of Barrie open data, re-checked 2026-11-16",
+    "url": "https://opendata.barrie.ca/",
+    "reason": "The City of Barrie open-data catalogue (134 entries on 2026-11-16) includes Sidewalk Walkway, Park Amenity, Transit Stops, City Facilities, Parking Device and City Owned Parking Lot. The licence field on those entries reads: Copyright City of Barrie. The City of Barrie does not warrant the accuracy, completeness, content, or currency of the information provided. Other entries carry a general website disclaimer. No entry states a licence that permits redistribution, and no open-data licence page was found on the hub. Nothing was imported."
+  },
+  {
+    "name": "Barrie Transit GTFS",
+    "url": "https://www.barrie.ca/services-payments/transportation-parking/barrie-transit/barrie-gtfs",
+    "reason": "Read on 2026-11-16. The Barrie GTFS Licence grants non-exclusive, limited and revocable rights to use, reproduce, and redistribute Barrie Transit Data, forbids use of Barrie Transit trademarks with the data, and says Barrie Transit keeps title and may stop providing the data at any time. The page asks a person to tick Yes, I agree with and accept the above and to pass a CAPTCHA before the download link is shown. That acceptance was not given by the pipeline, so the feed was not imported. The licence is revocable."
+  },
+  {
+    "name": "City of Kawartha Lakes and Lindsay Transit",
+    "url": "https://www.kawarthalakes.ca/lindsaytransit",
+    "reason": "Checked on 2026-11-16. No open-data portal or open-data licence page was found for the City of Kawartha Lakes. The City's ArcGIS Online account lists about 100 public feature services, including Park Facility Points, Sport Facility Site Points, Trails and Public Beaches. Their licence field is a disclaimer that the information is provided as is and is for reference only; it grants no redistribution rights. The Lindsay Transit page loaded (HTTP 200) and links no GTFS file. Nothing was imported."
+  },
+  {
+    "name": "City of Peterborough open data and Peterborough Transit",
+    "url": "https://data-ptbo.opendata.arcgis.com/pages/terms-of-use",
+    "reason": "Read on 2026-11-16 (ArcGIS item 8de5b6476f714f11b15468db847a18c3). The City of Peterborough Open Data Terms of Use license copying and use of the unmodified Open Datasets. Distribution is allowed only if the copyright notices are kept and the distributor gives each recipient a copy of the terms and obtains the recipient's agreement to abide by them. The City may suspend or terminate the licence. This pipeline converts every record to its own schema and cannot obtain each recipient's agreement, so nothing was imported. The catalogue has accessibility-relevant layers that were therefore left out: Accessible Parking in Downtown, Accessibility in Peterborough, Pedestrian Network Line, Point and Area, Curb, Parking Lots Downtown and Recreation. The catalogue lists a Transit Map and a transit web app and no GTFS file; no Peterborough Transit GTFS download or licence was found on https://www.peterborough.ca/living-in-peterborough/transit/."
   }
 ]

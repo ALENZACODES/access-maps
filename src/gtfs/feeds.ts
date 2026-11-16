@@ -7,4 +7,5 @@ export const GTFS_FEEDS = [
   { id: "gtfs-brampton", file: ".cache/gtfs/brampton.zip" },
   { id: "gtfs-hsr", file: ".cache/gtfs/hsr.zip" },
   { id: "gtfs-ltc", file: ".cache/gtfs/ltc.zip" },
+  { id: "gtfs-drt", file: ".cache/gtfs/drt.zip" },
 ] as const;

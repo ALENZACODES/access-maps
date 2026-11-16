@@ -186,6 +186,73 @@ Datasets, retrieved 2026-11-16:
 
 None of these layers has an accessibility column.
 
+## The Regional Municipality of Durham
+
+Contains public sector information made available under The Regional Municipality of Durham's Open Data Licence.
+
+Region of Durham Open Data Licence, version 1.0: https://www.durham.ca/en/regional-government/open-data.aspx
+
+Dataset, retrieved 2026-11-16:
+
+- Durham Region Transit GTFS Static Schedule, https://www.arcgis.com/home/item.html?id=931bc536b42e4b3aa72270dab4133c90
+
+`wheelchair_boarding` is the operator's own value and is a tier 1 operator claim. The licence does not cover personal information or public sector logos, trademarks, slogans and crests, and the credit is removed if the Region asks.
+
+## City of Oshawa
+
+Contains information licensed under the Open Government Licence – The Corporation of the City of Oshawa.
+
+https://map.oshawa.ca/OpenData/Open%20Government%20Licence%20version%202.0%20-%20Oshawa.pdf
+
+Datasets, retrieved 2026-11-16:
+
+- Oshawa Community Centres, https://www.arcgis.com/home/item.html?id=e444523281af4572b745dda31ae9aa70
+- Oshawa Trails, https://www.arcgis.com/home/item.html?id=727043b0db8846e29f3f971ac8292bd9
+
+Neither layer has an accessibility column.
+
+## Town of Whitby
+
+Contains information licensed under the Open Government Licence – The Corporation of the Town of Whitby.
+
+https://whitby.maps.arcgis.com/sharing/rest/content/items/223810efc31c40b3aff99dd74f809a97/data
+
+Datasets, retrieved 2026-11-16:
+
+- Town Facilities, https://www.arcgis.com/home/item.html?id=686a4bbbc7ae4d9aa8555caa07cc71b1
+- Parks, https://www.arcgis.com/home/item.html?id=fa9584c26e20401083665a6fd4ec9568
+- Sidewalks, https://www.arcgis.com/home/item.html?id=0c96c17244584c8fbaddd31307055be3
+- Trails, https://www.arcgis.com/home/item.html?id=4eb1e1d5d32b4c06adc898a20d850363
+
+The sidewalk ramp counts and the park "Accessible Amenities" flag are the Town's own values and are stored as published. They are not a wheelchair measurement by this project.
+
+## Town of Ajax
+
+Contains public sector Information made available under The Corporation of the Town of Ajax's Open Data Licence.
+
+https://townofajax.maps.arcgis.com/sharing/rest/content/items/22e2d8e248724d7cb0310dc2db675abd/data
+
+Datasets, retrieved 2026-11-16:
+
+- Town Facilities, https://www.arcgis.com/home/item.html?id=16a95539e7d04fab945c8f1564587fa9
+- Ajax Playgrounds, https://www.arcgis.com/home/item.html?id=89d1d77d654e42dd8e5292d501a31498
+- Recreational Trails, https://www.arcgis.com/home/item.html?id=3f209784f44f4f1ab337ca52b680ba56
+
+None of these layers has an accessibility column. The credit is removed if the Town asks.
+
+## City of Pickering
+
+Contains public sector Information made available under The City of Pickering's Open Data Licence.
+
+https://www.pickering.ca/media/depbgebg/opendatalicencepickeringv1_acc.pdf
+
+Datasets, retrieved 2026-11-16:
+
+- Pickering Facilities, https://www.arcgis.com/home/item.html?id=3b0c4830a24640c786e31241451fb466
+- Pickering Parks, https://www.arcgis.com/home/item.html?id=f65b5496d8f9486bb18460a113bb961d
+
+Neither layer has an accessibility column. The credit is removed if the City asks.
+
 ## Offline map tiles
 
 `data/tiles/odbl/` is OpenStreetMap data under the Open Database License (ODbL) 1.0. It is a separate file from every other licence.
