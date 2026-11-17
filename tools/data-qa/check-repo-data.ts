@@ -8,10 +8,23 @@ import { readFileSync } from "node:fs";
 import { checkRepoData } from "./repo-check.js";
 import { reportStaleAndMissingLicences } from "./stale-licence-report.js";
 
-/** The latest retrieval date in sources/registry.json. A later date in the registry is reported as a future date. */
-const LICENCE_AS_OF = "2026-11-17";
+/**
+ * The day a retrieval date is checked against: a registry date after it is reported as a
+ * future date. It is the current UTC date when the check runs, never a fixed day. UTC is
+ * used because it is never behind the Ontario date, so a source retrieved today in Ontario
+ * always passes. ACCESS_LICENCE_AS_OF (YYYY-MM-DD) overrides it, for example with the
+ * commit date in CI.
+ */
+export function licenceAsOf(now: Date = new Date(), env: NodeJS.ProcessEnv = process.env): string {
+  const override = env.ACCESS_LICENCE_AS_OF?.trim();
+  if (override) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(override)) throw new Error(`ACCESS_LICENCE_AS_OF must be YYYY-MM-DD, got ${override}`);
+    return override;
+  }
+  return now.toISOString().slice(0, 10);
+}
 
-export async function main(root = process.cwd()): Promise<number> {
+export async function main(root = process.cwd(), asOf: string = licenceAsOf()): Promise<number> {
   const resolvedRoot = path.resolve(root);
   const report = await checkRepoData({ root: resolvedRoot });
   const registryPath = path.join(resolvedRoot, "sources", "registry.json");
@@ -24,7 +37,7 @@ export async function main(root = process.cwd()): Promise<number> {
       licence: source.licence_id ?? "",
       observedOn: source.retrieved_at ?? "",
     })),
-    { asOf: LICENCE_AS_OF, maxAgeDays: 365 },
+    { asOf, maxAgeDays: 365 },
   );
   const summary = {
     registry: report.registry,

@@ -560,6 +560,14 @@ Retrieved 2026-11-16:
 - Seniors Active Living Centre locations, https://data.ontario.ca/dataset/seniors-active-living-centre-locations (`ontario-seniors-active-living-centres`)
 - Ontario's adult provincial correctional institutions, https://data.ontario.ca/dataset/ontario-s-correctional-institutions-locations (`ontario-correctional-institutions`)
 
+## Milton Transit
+
+Contains information licensed under the Open Government Licence – Milton.
+
+https://discover-milton.hub.arcgis.com/pages/disclaimer-and-terms-of-use
+
+GTFS zip https://metrolinx.tmix.se/gtfs/gtfs-milton.zip, linked from the Town of Milton item https://www.arcgis.com/home/item.html?id=6d91cda9496043a395710d0a73a7699f, retrieved 2026-11-17 (`milton-transit-gtfs`).
+
 ## Offline map tiles
 
 `data/tiles/odbl/` is OpenStreetMap data under the Open Database License (ODbL) 1.0. It is a separate file from every other licence.
