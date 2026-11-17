@@ -52,3 +52,44 @@ export function utm17nToWgs84(easting: number, northing: number): { lon: number;
       cosPhi;
   return { lon: (lon * 180) / Math.PI, lat: (lat * 180) / Math.PI };
 }
+
+/**
+ * NAD83 / Statistics Canada Lambert (EPSG:3347) metres to WGS84 degrees.
+ * Lambert Conic Conformal (2SP) on GRS80: standard parallels 49 and 77, false origin
+ * latitude 63.390675 and longitude -91.866667, false easting 6,200,000 m and false
+ * northing 3,000,000 m, as published in the GeoPackage spatial reference. Like
+ * utm17nToWgs84, no NAD83-to-WGS84 datum grid is applied.
+ */
+export function statcanLambertToWgs84(easting: number, northing: number): { lon: number; lat: number } {
+  const a = 6378137;
+  const f = 1 / 298.257222101;
+  const e = Math.sqrt(f * (2 - f));
+  const rad = Math.PI / 180;
+  const phi1 = 49 * rad;
+  const phi2 = 77 * rad;
+  const phiF = 63.390675 * rad;
+  const lambdaF = -91.8666666666667 * rad;
+  const eastingF = 6200000;
+  const northingF = 3000000;
+  const m = (phi: number) => Math.cos(phi) / Math.sqrt(1 - e * e * Math.sin(phi) ** 2);
+  const t = (phi: number) => Math.tan(Math.PI / 4 - phi / 2) / ((1 - e * Math.sin(phi)) / (1 + e * Math.sin(phi))) ** (e / 2);
+  const n = (Math.log(m(phi1)) - Math.log(m(phi2))) / (Math.log(t(phi1)) - Math.log(t(phi2)));
+  const F = m(phi1) / (n * t(phi1) ** n);
+  const rF = a * F * t(phiF) ** n;
+  const dx = easting - eastingF;
+  const dy = rF - (northing - northingF);
+  const r = Math.sign(n) * Math.sqrt(dx * dx + dy * dy);
+  const tPrime = (r / (a * F)) ** (1 / n);
+  const theta = Math.atan2(dx, dy);
+  let phi = Math.PI / 2 - 2 * Math.atan(tPrime);
+  for (let i = 0; i < 15; i += 1) {
+    const sinPhi = e * Math.sin(phi);
+    const next = Math.PI / 2 - 2 * Math.atan(tPrime * ((1 - sinPhi) / (1 + sinPhi)) ** (e / 2));
+    if (Math.abs(next - phi) < 1e-14) {
+      phi = next;
+      break;
+    }
+    phi = next;
+  }
+  return { lon: (theta / n + lambdaF) / rad, lat: phi / rad };
+}
