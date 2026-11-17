@@ -484,6 +484,11 @@ export const LICENCE_FINDINGS: readonly LicenceFinding[] = [
     reason: "Open Government Licence – Milton, version 2.0. Not in the strict export allowlist.",
   },
   {
+    sourceId: "milton-transit-gtfs",
+    licence: "OGL-Milton-2.0",
+    reason: "Open Government Licence – Milton, version 2.0. Not in the strict export allowlist.",
+  },
+  {
     sourceId: "milton-park-amenities",
     licence: "OGL-Milton-2.0",
     reason: "Open Government Licence – Milton, version 2.0. Not in the strict export allowlist.",

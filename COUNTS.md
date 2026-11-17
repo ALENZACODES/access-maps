@@ -7,12 +7,12 @@ Tier 0 and tier 1 values count as 0 toward the 250,000 verified venue field-valu
 Verified toward 500,000 is 0. None of those verified field-values exist in this import.
 Open-data or operator-claimed physical accessibility facts (tier 0 and tier 1 only): **916,402**.
 Context fields, reported separately (access, crossing, lit, fee, and the other context fields below): **517,102**.
-All other populated values: **7,702,728**.
-All populated pieces together: **9,136,232**.
-Total UNKNOWN gaps: **54,635,232**.
-UNKNOWN gaps on accessibility fields: **30,099,240**.
+All other populated values: **7,704,813**.
+All populated pieces together: **9,138,317**.
+Total UNKNOWN gaps: **54,638,568**.
+UNKNOWN gaps on accessibility fields: **30,099,657**.
 Derived values excluded from both totals: **4,207**.
-Records: **1,788,884**.
+Records: **1,789,301**.
 
 The illustrative targets are 250,000 venue, 100,000 path, 50,000 transit, and 100,000 washroom verified field-values. Shortfall is the target minus verified values.
 
@@ -21,20 +21,20 @@ The illustrative targets are 250,000 venue, 100,000 path, 50,000 transit, and 10
 | venue | 644351 | 121532 | 96490 | 3572902 | 0 | 23916169 | 250000 | 250000 |
 | washroom | 7154 | 3668 | 3036 | 29165 | 0 | 238930 | 100000 | 100000 |
 | path | 1105455 | 769922 | 417576 | 3934564 | 0 | 30252498 | 100000 | 100000 |
-| transit | 31924 | 21280 | 0 | 166097 | 0 | 227635 | 50000 | 50000 |
+| transit | 32341 | 21280 | 0 | 168182 | 0 | 230971 | 50000 | 50000 |
 
 ## Accessibility facts
 
 An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.
 
-Physical accessibility facts, context fields, and the remaining pieces add up to the total: 916,402 + 517,102 + 7,702,728 = 9,136,232.
+Physical accessibility facts, context fields, and the remaining pieces add up to the total: 916,402 + 517,102 + 7,704,813 = 9,138,317.
 
 | Tranche | Physical accessibility pieces | Context pieces | Remaining pieces |
 | --- | ---: | ---: | ---: |
 | venue | 121532 | 96490 | 3572902 |
 | washroom | 3668 | 3036 | 29165 |
 | path | 769922 | 417576 | 3934564 |
-| transit | 21280 | 0 | 166097 |
+| transit | 21280 | 0 | 168182 |
 
 Context fields are populated values that are not a physical access measurement: access, crossing, lit, foot, fee, changing_table_fee, unisex, male, female, locked, and supervised. They are not accessibility facts and they are not names or geometry.
 
@@ -135,7 +135,7 @@ Populated accessibility facts by field:
 | venue | 3790924 | 0 | 0 | 0 | 0 |
 | washroom | 35869 | 0 | 0 | 0 | 0 |
 | path | 5122062 | 0 | 0 | 0 | 0 |
-| transit | 1232 | 186145 | 0 | 0 | 0 |
+| transit | 1232 | 188230 | 0 | 0 | 0 |
 
 ## Pieces by source and retrieval date
 
@@ -217,6 +217,7 @@ Populated accessibility facts by field:
 | milton-parking-lots | 57 | 567 | 56 | 1884 | 567 | 0 | 2026-11-16 |
 | milton-sidewalks | 5256 | 31329 | 5256 | 136863 | 31329 | 0 | 2026-11-16 |
 | milton-trails | 2107 | 10519 | 2107 | 56905 | 10519 | 0 | 2026-11-16 |
+| milton-transit-gtfs | 417 | 2085 | 0 | 3336 | 0 | 2085 | 2026-11-16 |
 | mto-picnic-parks | 168 | 1005 | 0 | 6219 | 1005 | 0 | 2026-11-13 |
 | newmarket-landmarks | 35 | 244 | 0 | 1261 | 244 | 0 | 2026-11-16 |
 | newmarket-park-features | 281 | 1715 | 0 | 10320 | 1715 | 0 | 2026-11-16 |
@@ -343,14 +344,14 @@ Populated accessibility facts by field:
 
 ### transit
 
-- level_id: 31924
-- level_index: 31924
-- level_name: 31924
-- platform_code: 31910
-- parent_station: 31756
-- url: 30927
-- description: 24255
-- wheelchair_boarding: 10644
+- level_id: 32341
+- level_index: 32341
+- level_name: 32341
+- platform_code: 32327
+- parent_station: 32173
+- url: 31344
+- description: 24672
+- wheelchair_boarding: 11061
 - stop_code: 2063
 - location_type: 308
 

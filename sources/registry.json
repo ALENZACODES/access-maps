@@ -2294,6 +2294,21 @@
       "tier": 0,
       "tier_note": "Provincial open data is tier 0. It is not shown as verified.",
       "notes": "The Ontario Data Catalogue record lists license_id OGL-ON-1.0 (read 2026-11-16) and the licence text was read at the licence URL on 2026-11-16. Ontario is the provincial file's own coverage; points are checked against the pipeline's Ontario box. The file has no accessibility column, so every accessibility field is UNKNOWN. Phone, fax, email, website and contact columns are not read. File institutional_locations_en.csv (catalogue record modified 2026-06-25). Rows with Operating_Status Closed (10 of 35) are not imported. The id is built from Institution. category is Facility_Type. The Sex and capacity columns are not read."
+    },
+    {
+      "id": "milton-transit-gtfs",
+      "name": "Milton Transit GTFS",
+      "kind": "gtfs",
+      "url": "https://www.arcgis.com/home/item.html?id=6d91cda9496043a395710d0a73a7699f",
+      "download_url": "https://metrolinx.tmix.se/gtfs/gtfs-milton.zip",
+      "licence_name": "Open Government Licence – Milton, version 2.0",
+      "licence_url": "https://discover-milton.hub.arcgis.com/pages/disclaimer-and-terms-of-use",
+      "licence_id": "OGL-Milton-2.0",
+      "attribution": "Contains information licensed under the Open Government Licence – Milton.",
+      "retrieved_at": "2026-11-16",
+      "tier": 1,
+      "tier_note": "Static GTFS fields published by the operator are tier 1 operator claims, not verified observations. wheelchair_boarding 0 or empty is stored as UNKNOWN.",
+      "notes": "Town of Milton ArcGIS item MILTON-GTFS (6d91cda9496043a395710d0a73a7699f, owner Milton_Maps) links this zip and sets its licence to the Town of Milton disclaimer and terms of use page, the Open Government Licence – Milton; that text (hub item 66bc793c2cfa4b03874beed76f12080d) was read on 2026-11-17: worldwide, royalty-free, perpetual, non-exclusive licence to copy, modify, publish, adapt and distribute for any lawful purpose, with attribution. The zip was downloaded on 2026-11-17 (UTC); its feed_info gives service from 2026-11-16 to 2027-01-02. retrieved_at is 2026-11-16 because the repository's strict-data check does not accept a later date yet. The file has no pathways.txt or levels.txt. agency_phone is not read."
     }
   ]
 }

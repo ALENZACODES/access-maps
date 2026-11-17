@@ -553,5 +553,25 @@
     "name": "Ontario OPP detachments, Functional Assessment Centres and licensed child care facilities (no coordinates)",
     "url": "https://data.ontario.ca/dataset/licensed-child-care-facilities-in-ontario",
     "reason": "Checked 2026-11-16. ontario-provincial-police-detachments-and-bureaus-listing (CSV), approved-functional-assessment-centres-for-drivers (CSV) and licensed-child-care-facilities-in-ontario (October 2026 XLSX) are OGL-ON-1.0 but publish addresses without coordinates. This pipeline does not geocode, so they are not imported."
+  },
+  {
+    "name": "OC Transpo static GTFS, re-checked for lane O3",
+    "url": "https://www.octranspo.com/files/google_transit.zip",
+    "reason": "Re-checked 2026-11-17. The City of Ottawa item af9fed684cb349ff8b6be075baf97683 still points to https://www.octranspo.com/files/google_transit.zip under the Open Data Licence Version 2.0, and that URL returned HTTP 403 again; the OC Transpo developers page also returned HTTP 403. The Mobility Database lists a different download host for the feed, but no page from the City or OC Transpo that could be read links it, so it was not used. Not imported."
+  },
+  {
+    "name": "GTFS feeds hosted for Orangeville Transit, Simcoe County LINX, Temiskaming Transit and Ontario Northland",
+    "url": "https://files.mobilitydatabase.org/feeds_v2.csv",
+    "reason": "Checked 2026-11-17. The zips download (metrolinx.tmix.se and ontarionorthland.tmix.se), but no licence statement for them was found: the Mobility Database catalogue lists no licence URL, an ArcGIS search found no publisher item for them, and ontarionorthland.ca/en/gtfs and /en/open-data returned HTTP 404. Not imported. Milton Transit's zip on the same host is imported because the Town's own item links it with its licence."
+  },
+  {
+    "name": "Statistics Canada Canadian Public Transit Network Database",
+    "url": "https://www150.statcan.gc.ca/n1/pub/23-26-0003/232600032025001-eng.htm",
+    "reason": "Checked 2026-11-16. Released 2025-01-31 (corrected 2025-05-07) under the Open Government Licence – Canada, compiling GTFS feeds collected in 2024. Stops are operator claims that this repository stores as tier 1 with a 180-day expiry counted from retrieval; feeds from 2024 would appear current, and several Ontario feeds in it are ones this repository holds back (MiWay, York Region Transit, Barrie, Burlington, Brantford). Not imported; current feeds are taken from each agency."
+  },
+  {
+    "name": "PSPC building accessibility scores, Federal Heritage Designations and the Parks Canada list of parks and sites (no coordinates)",
+    "url": "https://open.canada.ca/data/dataset/aaf6462d-eab9-4165-9329-24095451121d",
+    "reason": "Checked 2026-11-16. Three Open Government Licence – Canada datasets were read: Total Accessibility Score of PSPC owned and lease purchased buildings (205 buildings, addresses and an accessibility score, no coordinates), Federal Heritage Designations (3,888 rows, no coordinates, and it includes designated persons) and List of National Parks and National Historic Sites (parksid.xml, names only). This pipeline does not geocode, so none is imported. No open.canada.ca dataset of Service Canada or Canada Post locations with coordinates was found."
   }
 ]
