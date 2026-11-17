@@ -4,6 +4,7 @@ import path from "node:path";
 import readline from "node:readline";
 import { createGunzip } from "node:zlib";
 import { countNdjsonGz, renderCountsMarkdown } from "../src/count/count.js";
+import { countDistinctPlaces, renderDistinctMarkdown } from "../src/count/distinct.js";
 import { summarizeAlerts, type ServiceAlert } from "../src/gtfs-rt/alerts.js";
 import { TRANCHE_DIR } from "../src/model/records.js";
 
@@ -12,6 +13,7 @@ export async function writeCounts(repoRoot: string): Promise<void> {
   const files = trancheFiles(dataRoot).sort();
   if (files.length === 0) throw new Error("no data/*.ndjson.gz files to count");
   const report = await countNdjsonGz(files);
+  const distinct = await countDistinctPlaces(dataRoot, files);
   const alerts = await readAlerts(path.join(dataRoot, "alerts"));
   const alertSummary = summarizeAlerts(alerts);
   const inventory = files.map((file) => ({
@@ -21,9 +23,9 @@ export async function writeCounts(repoRoot: string): Promise<void> {
   mkdirSync(dataRoot, { recursive: true });
   writeFileSync(
     path.join(repoRoot, "counts.json"),
-    `${JSON.stringify({ ...report, alerts: alertSummary, files: inventory }, null, 2)}\n`,
+    `${JSON.stringify({ ...report, distinct_places: distinct, alerts: alertSummary, files: inventory }, null, 2)}\n`,
   );
-  writeFileSync(path.join(repoRoot, "COUNTS.md"), `${renderCountsMarkdown(report)}${renderAlerts(alertSummary)}`);
+  writeFileSync(path.join(repoRoot, "COUNTS.md"), `${renderCountsMarkdown(report)}${renderDistinctMarkdown(distinct)}${renderAlerts(alertSummary)}`);
   console.log(
     JSON.stringify({
       pieces: report.pieces,
@@ -31,6 +33,9 @@ export async function writeCounts(repoRoot: string): Promise<void> {
       identity_pieces: report.identity_pieces,
       gaps: report.gaps,
       records: report.records,
+      distinct_places: distinct.distinct_places,
+      distinct_with_accessibility_fact: distinct.with_known_accessibility_fact,
+      links_current: distinct.links.current,
       alerts: alertSummary.records,
       shortfalls: report.shortfalls,
       files: inventory.length,

@@ -47,11 +47,16 @@ Route-condition reports from people (`packages/conditions`) are treated like tie
 
 OSM data is ODbL share-alike and stays in `data/*/osm-ontario/`. Other sources stay in their own directories. Code licence: [LICENSE](LICENSE). Data licences: [DATA-LICENCE.md](DATA-LICENCE.md). Schema checks use `@access-main/schema` at `main` commit `c89241dcd405f0885982bd5398c893a8a6ab6c15`; see [schema/SOURCE.md](schema/SOURCE.md).
 
+## Distinct places
+
+A real place can be in the data more than once, from different sources. `npm run match:places` links records of different sources that are the same place and writes `data/links/` (cluster and possible-duplicate files plus `index.json`); it never changes a record. `npm run count` then reports `distinct_places`: place records (venue, washroom, transit) with linked records counted once, the distinct places with at least one known accessibility fact, and what each source adds on its own. The web pack carries the links per cell so a place page can show every source's record side by side. Method, link format, evaluation (`npm run eval:places`) and limits: [docs/places-identity.md](docs/places-identity.md). The place-page change for access-tools: [docs/place-page-clusters.md](docs/place-page-clusters.md).
+
 ## Layout
 
 - `schema/` — JSON Schema draft 2020-12. Field lists live in `schema/fields.json`; `npm run build:schemas` rewrites the record schemas.
 - `sources/registry.json` — source name, URLs, licence, attribution, retrieval date, and tier.
 - `sources/gaps.json` — feeds that were not imported because the file or the licence could not be confirmed.
+- `data/links/` — same-place links between records of different sources (`.jsonl.gz`, not records). See [docs/places-identity.md](docs/places-identity.md).
 - `data/{venues,washrooms,paths,transit}/{source_id}/*.ndjson.gz` — gzip NDJSON partitioned by 0.5-degree cell. Each file stays under 25 MB.
 - `data/alerts/` — GTFS-RT accessibility alert snapshots. Not counted as pieces.
 - `data/tiles/odbl/` and `data/tiles/open/` — PMTiles vector overlays. OpenStreetMap stays in `odbl`. Each file stays under 50 MB.

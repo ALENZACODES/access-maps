@@ -1,0 +1,15 @@
+{
+  "pool": {
+    "rural/match-high": 4333,
+    "rural/match-low": 885,
+    "rural/possible": 6060,
+    "rural/rejected-other": 3060,
+    "rural/rejected-similar-name": 83,
+    "urban/match-high": 4049,
+    "urban/match-low": 954,
+    "urban/possible": 10393,
+    "urban/rejected-other": 10898,
+    "urban/rejected-similar-name": 151
+  },
+  "picked": 360
+}
