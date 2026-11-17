@@ -9,7 +9,7 @@ import { checkRepoData } from "./repo-check.js";
 import { reportStaleAndMissingLicences } from "./stale-licence-report.js";
 
 /** The latest retrieval date in sources/registry.json. A later date in the registry is reported as a future date. */
-const LICENCE_AS_OF = "2026-11-16";
+const LICENCE_AS_OF = "2026-11-17";
 
 export async function main(root = process.cwd()): Promise<number> {
   const resolvedRoot = path.resolve(root);
