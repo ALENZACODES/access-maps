@@ -538,14 +538,16 @@
         "york-region-yrt-bus-stops": 29942
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 70695,
+        "2026-11-16": 68610,
         "2026-11-13": 112586,
-        "2026-11-15": 6181
+        "2026-11-15": 6181,
+        "2026-11-17": 2085
       },
       "gaps_by_retrieved_at": {
-        "2026-11-16": 93378,
+        "2026-11-16": 90042,
         "2026-11-13": 132152,
-        "2026-11-15": 5441
+        "2026-11-15": 5441,
+        "2026-11-17": 3336
       },
       "gap_fields": {
         "location_type": 308,
@@ -1528,7 +1530,7 @@
         "transit": 2085
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 2085
+        "2026-11-17": 2085
       },
       "accessibility_pieces": 0
     },
@@ -5363,11 +5365,11 @@
     },
     {
       "file": "data/transit/milton-transit-gtfs/n43.0_w080.0.ndjson.gz",
-      "bytes": 3538
+      "bytes": 3589
     },
     {
       "file": "data/transit/milton-transit-gtfs/n43.5_w080.0.ndjson.gz",
-      "bytes": 11147
+      "bytes": 11244
     },
     {
       "file": "data/transit/oakville-transit-gtfs/n43.0_w080.0.ndjson.gz",
