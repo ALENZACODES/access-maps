@@ -508,5 +508,25 @@
     "name": "Foursquare Open Source Places (FSQ OS Places), Ontario",
     "url": "https://docs.foursquare.com/data-products/docs/access-fsq-os-places",
     "reason": "Checked 2026-11-16. The data is licensed under the Apache License 2.0 (LICENSE.txt and NOTICE.txt read from https://fsq-os-places-us-east-1.s3.amazonaws.com/ on 2026-11-16; NOTICE.txt asks that it be kept with any copy of the data), but no copy of the place records could be downloaded without signing in. The public S3 bucket fsq-os-places-us-east-1 now lists only LICENSE.txt and NOTICE.txt (release/ prefix: 0 keys), and the PMTiles path given on the access page (release/vector-tiles/latest/fsq-os-places.pmtiles) returned HTTP 404; the release notes say the public bucket was deprecated in October 2025 in favour of an Iceberg catalog on the Places Portal, which needs an account and access token. The Hugging Face copy (foursquare/fsq-os-places, release dt=2026-10-15) is gated: the parquet files returned HTTP 401 without a login, and access requires accepting extra terms that include letting the repository authors use the requester's organisation name and logo in marketing. Snowflake and Databricks Marketplace listings also need an account. No login was made. Nothing imported."
+  },
+  {
+    "name": "Statistics Canada LODE: rows from providers whose own terms this repository has not confirmed (ODHF, ODSRF, ODCAF)",
+    "url": "https://www.statcan.gc.ca/en/lode/databases",
+    "reason": "Checked 2026-11-16. The Open Government Licence – Canada does not grant third party rights the Information Provider is not authorized to license, and each LODE database lists every provider's own licence in its data sources file. Rows are therefore left out when this repository has already recorded that the provider's own terms cannot be relied on for redistribution: City of Mississauga (terms re-read 2026-11-16, see the Mississauga entries in this file; ODSRF 1,152 Ontario rows, ODCAF 35), City of Burlington (terms can be cancelled; ODSRF 17, ODCAF 11), City of Brantford (terms can be cancelled; ODSRF 392), City of Barrie (no licence permitting redistribution could be read on 2026-11-16; ODHF 12, ODSRF 6,575, ODCAF 4), City of London (the City's terms must travel with the data and bind each recipient, and only the London layers named in DATA-LICENCE.md are covered by the owner's statement; ODHF 10, ODSRF 1,913, ODCAF 4), Norfolk County (its portal answered HTTP 403 and its licence text was not read; ODHF 6, ODSRF 364, ODCAF 9). In ODCAF also: Middlesex County (listed under Middlesex County - Open Data Terms of Use, not read; 15 rows) and the City of Brampton rows (two of the three Brampton datasets are listed under Terms and Conditions - City of Brampton, not read, and a row cannot be tied to its dataset; 36 rows). Counts are Ontario rows in the files retrieved 2026-11-16."
+  },
+  {
+    "name": "Statistics Canada ODCAF: Canadian Museums Association listing and artist rows",
+    "url": "https://www.statcan.gc.ca/en/lode/databases/odcaf",
+    "reason": "Checked 2026-11-16. ODCAF_Metadata_v1.0.pdf says the database also includes a publicly available listing that is not open data, and Data_Sources.csv marks the Canadian Museums Association listing as type Other with licence n/a. Its 594 Ontario rows are not imported. The 10 remaining Ontario rows of facility type artist are not imported under the personal-data rule."
+  },
+  {
+    "name": "Statistics Canada ODSRF: Trails and pathways category",
+    "url": "https://www150.statcan.gc.ca/n1/pub/21-26-0002/212600022021001-eng.htm",
+    "reason": "Checked 2026-11-16. The 45,423 Ontario rows in the category Trails and pathways (after the provider exclusions) are trail and cycling lines, not places, and many repeat municipal trail layers already imported; they are not imported. 74 line-only rows in other categories have no single place anchor and are not imported either."
+  },
+  {
+    "name": "Statistics Canada ODEF: Ontario rows without a point",
+    "url": "https://www150.statcan.gc.ca/n1/pub/37-26-0001/372600012022001-eng.htm",
+    "reason": "Checked 2026-11-16. 1,668 of the 6,814 Ontario rows in odef_v3_0_1.csv have an empty geometry column, so they have no map cell and are not imported. ODCAF has 145 Ontario rows (after exclusions) with '..' coordinates, also not imported."
   }
 ]

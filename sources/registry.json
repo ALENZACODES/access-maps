@@ -2054,6 +2054,66 @@
       "tier": 0,
       "tier_note": "Municipal data is tier 0. It is not shown as verified.",
       "notes": "Basis for inclusion: the repository owner stated in chat on 2026-11-16 that use is permitted and instructed that this layer be included. No written licence granting redistribution was read for this dataset. Served from the County's public GIS server and not listed in the County's open-data catalogue. Haldimand County's open-data hub site item (ArcGIS item d16c768293b74ab29ca691487dfc68fa) has the licence field text CC-BY-SA with no version and no link, and no licence page was found; this layer is not listed in that catalogue, so that text is not claimed for it. Trail lines. Only rows with Status ACTIVE and OffRoad Y are imported; on-road cycling routes, rows in the planning stage and rows with Status N/A, OTHER or NOT MAINTAINED BY COUNTY are left out. Type and Class are kept together as the kind. The catalogued HaldimandTrails service answered Token Required on 2026-11-16 and was not used."
+    },
+    {
+      "id": "statcan-odhf",
+      "name": "Statistics Canada Open Database of Healthcare Facilities (ODHF) v2.0, Ontario rows",
+      "kind": "federal",
+      "url": "https://www150.statcan.gc.ca/n1/pub/13-26-0001/132600012020001-eng.htm",
+      "download_url": "https://www150.statcan.gc.ca/n1/pub/13-26-0001/2020001/zip/odhf_v2_gpkg.zip",
+      "licence_name": "Open Government Licence – Canada",
+      "licence_url": "https://open.canada.ca/en/open-government-licence-canada",
+      "licence_id": "OGL-Canada-2.0",
+      "attribution": "Contains information licensed under the Open Government Licence – Canada. Source: Statistics Canada, Open Database of Healthcare Facilities, version 2.0 (2026).",
+      "retrieved_at": "2026-11-16",
+      "tier": 0,
+      "tier_note": "Federal open data is tier 0. It is not shown as verified.",
+      "notes": "Linkable Open Data Environment database released 2026-09-24. The metadata document (ODHF_v2_metadata.pdf, read 2026-11-16) states that the ODHF is made available under the Open Government Licence – Canada; the licence text was read at the licence URL on 2026-11-16. The data sources CSV in the zip lists each provider's own licence. Ontario is the database's prov_terr column, which Statistics Canada assigns from its 2021 census subdivision boundaries. Geometry is NAD83 / Statistics Canada Lambert (EPSG:3347) and is converted to degrees without a datum grid; polygons are stored at the vertex mean of the largest outer ring (source_key geometry:vertex_mean), which is not a surveyed entrance. The file has no accessibility column, so every accessibility field is UNKNOWN. category is the database's type column; addr_city is its census subdivision name. A name that may name a person (Dr., MD, physician, surgeon, a professional corporation, or the Integrated Community Health Services Centre class) is not stored. The ownership and health_authority columns are not read. Rows from providers listed in sources/gaps.json under the matching 'Statistics Canada LODE' entry are left out; the reasons are there."
+    },
+    {
+      "id": "statcan-odsrf",
+      "name": "Statistics Canada Open Database of Sports and Recreational Facilities (ODSRF) v2.0, Ontario rows",
+      "kind": "federal",
+      "url": "https://www150.statcan.gc.ca/n1/pub/21-26-0002/212600022021001-eng.htm",
+      "download_url": "https://www150.statcan.gc.ca/n1/pub/21-26-0002/2021001/zip/odsrf_v2_gpkg.zip",
+      "licence_name": "Open Government Licence – Canada",
+      "licence_url": "https://open.canada.ca/en/open-government-licence-canada",
+      "licence_id": "OGL-Canada-2.0",
+      "attribution": "Contains information licensed under the Open Government Licence – Canada. Source: Statistics Canada, Open Database of Sports and Recreational Facilities, version 2.0 (2026).",
+      "retrieved_at": "2026-11-16",
+      "tier": 0,
+      "tier_note": "Federal open data is tier 0. It is not shown as verified.",
+      "notes": "Linkable Open Data Environment database released 2026-09-24. The metadata document (ODSRF_v2_metadata.pdf, read 2026-11-16) states that the ODSRF is made available under the Open Government Licence – Canada; the licence text was read at the licence URL on 2026-11-16. The data sources CSV in the zip lists each provider's own licence. Ontario is the database's prov_terr column, assigned by Statistics Canada from its 2021 census subdivision boundaries. Geometry is EPSG:3347, converted to degrees without a datum grid; polygons are stored at the vertex mean of the largest outer ring (geometry:vertex_mean), and a multi-point with several members at its first point (geometry:first_point). Rows in the category Trails and pathways are lines, not places, and are not imported; line-only rows in other categories have no anchor and are not imported. The accessible column is kept as the publisher's flag text in wheelchair_description, as accessible=<text as published>; it is not stored as a wheelchair value. amenities, material, width, status, year_built, ownership and description are not read. category is the database's type column. Rows from providers listed in sources/gaps.json under the matching 'Statistics Canada LODE' entry are left out; the reasons are there."
+    },
+    {
+      "id": "statcan-odef",
+      "name": "Statistics Canada Open Database of Educational Facilities (ODEF) v3.0.1, Ontario rows",
+      "kind": "federal",
+      "url": "https://www150.statcan.gc.ca/n1/pub/37-26-0001/372600012022001-eng.htm",
+      "download_url": "https://www150.statcan.gc.ca/n1/en/pub/37-26-0001/2022001/ODEF_v3.0.zip",
+      "licence_name": "Open Government Licence – Canada",
+      "licence_url": "https://open.canada.ca/en/open-government-licence-canada",
+      "licence_id": "OGL-Canada-2.0",
+      "attribution": "Contains information licensed under the Open Government Licence – Canada. Source: Statistics Canada, Open Database of Educational Facilities, version 3.0 (2024).",
+      "retrieved_at": "2026-11-16",
+      "tier": 0,
+      "tier_note": "Federal open data is tier 0. It is not shown as verified.",
+      "notes": "Linkable Open Data Environment database, version 3.0 released 2024-12-13, file odef_v3_0_1.csv (update of 2025-11-17). The metadata document (ODEF v3 Metadata.pdf, read 2026-11-16) states that the ODEF is made available under the Open Government Licence (footnote: https://open.canada.ca/en/open-government-licence-canada); the licence text was read on 2026-11-16. Ontario is the province_code column. Ontario providers are the Province of Ontario (data.ontario.ca school datasets) and Employment and Social Development Canada (designated educational institutions). Rows without a point in the geometry column are not imported. category is the facility_type column as published (for example Public, Catholic, Private); ref is the source's school_id. The file has no accessibility column, so every accessibility field is UNKNOWN."
+    },
+    {
+      "id": "statcan-odcaf",
+      "name": "Statistics Canada Open Database of Cultural and Art Facilities (ODCAF) v1.0, Ontario rows",
+      "kind": "federal",
+      "url": "https://www.statcan.gc.ca/en/lode/databases/odcaf",
+      "download_url": "https://www150.statcan.gc.ca/n1/en/pub/21-26-0001/2020001/ODCAF_V1.0.zip",
+      "licence_name": "Open Government Licence – Canada",
+      "licence_url": "https://open.canada.ca/en/open-government-licence-canada",
+      "licence_id": "OGL-Canada-2.0",
+      "attribution": "Contains information licensed under the Open Government Licence – Canada. Source: Statistics Canada, Open Database of Cultural and Art Facilities, version 1.0 (2020).",
+      "retrieved_at": "2026-11-16",
+      "tier": 0,
+      "tier_note": "Federal open data is tier 0. It is not shown as verified.",
+      "notes": "Linkable Open Data Environment database released 2020-10-02. The metadata document (ODCAF_Metadata_v1.0.pdf, read 2026-11-16) states that the ODCAF is made available under the Open Government Licence – Canada, and that it also includes a publicly available listing that is not open data; the Data_Sources.csv in the zip marks that listing (Canadian Museums Association) as type Other, and its rows are left out. Rows of facility type artist are left out under the personal-data rule. Ontario is the Prov_Terr column (on). The CSV is Windows-1252 text. Rows without Latitude and Longitude are not imported. category is ODCAF_Facility_Type. The file has no accessibility column, so every accessibility field is UNKNOWN. Rows from providers listed in sources/gaps.json under the matching 'Statistics Canada LODE' entry are left out; the reasons are there."
     }
   ]
 }
