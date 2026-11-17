@@ -137,6 +137,12 @@ describe("pair scoring", () => {
     expect(scorePair(bench("fixture-a", 0), bench("fixture-b", 30, "Benches")).decision).toBe("none");
   });
 
+  it("keeps an elementary and a secondary school at one spot apart", () => {
+    const school = (source: string, name: string) => point(fixture({ source, id: name, lat: LAT, lon: LON, name, category: "school" }));
+    expect(scorePair(school("fixture-a", "St. Example Catholic Elementary School"), school("fixture-b", "St Example Catholic Secondary School")).decision).toBe("none");
+    expect(scorePair(school("fixture-a", "St. Example Catholic Elementary School"), school("fixture-b", "St Example Catholic Elementary School")).decision).toBe("match");
+  });
+
   it("does not match opposite-side stops", () => {
     const stop = (source: string, name: string, metres: number) =>
       point(fixture({ source, id: name, tranche: "transit", lat: LAT + metresLat(metres), lon: LON, name }));

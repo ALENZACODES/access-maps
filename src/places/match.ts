@@ -232,6 +232,7 @@ export function scorePair(a: PlacePoint, b: PlacePoint, params: MatchParams = DE
   if (distance > radius) return none("too far apart");
   if (kindsConflict(a.kinds, b.kinds)) return none("names say different kinds of place");
   if (fineConflict(a.fine, b.fine)) return none("different kinds of feature");
+  if (levelConflict(a.name, b.name)) return none("names state different school levels");
   const transit = a.klass === "transit" || b.klass === "transit";
   const stopConflict = transit ? stopNameConflict(a.rawName, b.rawName) : "none";
   if (stopConflict === "different") return none("stop names say a different side, street or platform");
@@ -287,6 +288,15 @@ export function scorePair(a: PlacePoint, b: PlacePoint, params: MatchParams = DE
     return { ...evidence, decision: "possible", reason: "no distinctive name; the same kind of feature close by" };
   }
   return { ...evidence, decision: "none", reason: "no distinctive name" };
+}
+
+const LEVELS = new Set(["elementary", "primary", "junior", "middle", "intermediate", "secondary", "high", "senior"]);
+
+/** "Example Elementary School" and "Example Secondary School" at one address are two schools. */
+function levelConflict(a: readonly string[], b: readonly string[]): boolean {
+  const la = a.filter((token) => LEVELS.has(token));
+  const lb = b.filter((token) => LEVELS.has(token));
+  return la.length > 0 && lb.length > 0 && !la.some((token) => lb.includes(token));
 }
 
 /** Small features matched by position alone when they are the same type and within sameSpotM. */

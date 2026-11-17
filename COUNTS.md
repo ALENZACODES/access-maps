@@ -354,6 +354,127 @@ Populated accessibility facts by field:
 - stop_code: 2063
 - location_type: 308
 
+## Distinct places
+
+A place is a venue, washroom or transit record; paths are not places. Records from different sources that the same-place matcher links (data/links/same-place) count as one distinct place. Distinct places = place records in no link cluster + link clusters with at least one record present. Possible duplicates are not merged. A distinct place has a known accessibility fact when at least one of its records has a populated, non-derived accessibility field. "Only in this source" counts the distinct places whose every record comes from that source.
+
+Place records (venue, washroom, transit): **683,429**.
+Distinct places: **631,876**.
+Records joined by same-place links: **92,068** in **40,515** clusters.
+Distinct places with at least one known accessibility fact: **128,132**.
+Possible duplicates listed for review and not merged: **42,967**.
+The links were computed from exactly these record files (method same-place-v1).
+
+| Source | Place records | Distinct places only in this source | Distinct places shared with another source |
+| --- | ---: | ---: | ---: |
+| ajax-playgrounds | 81 | 0 | 81 |
+| ajax-town-facilities | 56 | 48 | 8 |
+| brampton-city-parking | 5 | 2 | 3 |
+| brampton-recreation-centres | 39 | 9 | 30 |
+| brant-parks | 60 | 21 | 39 |
+| cambridge-play-structures | 392 | 286 | 106 |
+| cornwall-transit-bus-stops | 308 | 308 | 0 |
+| cornwall-water-bottle-filling-stations | 6 | 5 | 1 |
+| essex-county-libraries | 15 | 12 | 3 |
+| essex-county-recreational-areas | 181 | 2 | 179 |
+| greater-sudbury-playgrounds | 178 | 71 | 107 |
+| greater-sudbury-recreation | 499 | 387 | 112 |
+| gtfs-brampton | 2872 | 2810 | 62 |
+| gtfs-drt | 1912 | 1908 | 4 |
+| gtfs-gova | 1121 | 1120 | 1 |
+| gtfs-grt-bus | 2265 | 2255 | 10 |
+| gtfs-grt-ion | 32 | 32 | 0 |
+| gtfs-hsr | 2353 | 36 | 2317 |
+| gtfs-kingston | 787 | 785 | 2 |
+| gtfs-ltc | 1947 | 1946 | 1 |
+| gtfs-ttc | 9357 | 9068 | 289 |
+| guelph-parking-lots | 17 | 9 | 8 |
+| guelph-restrooms | 68 | 54 | 14 |
+| guelph-transit-gtfs | 622 | 622 | 0 |
+| haldimand-accessible-parking | 133 | 132 | 1 |
+| haldimand-pedestrian-crossings | 16 | 16 | 0 |
+| haldimand-traffic-signals | 117 | 117 | 0 |
+| hamilton-bus-stop-amenities | 2387 | 72 | 2315 |
+| hamilton-drinking-fountains | 157 | 152 | 5 |
+| hamilton-park-washrooms | 73 | 66 | 7 |
+| kingston-accessible-features | 1003 | 896 | 107 |
+| kingston-parking-lots | 56 | 14 | 42 |
+| kingston-points-of-interest | 766 | 341 | 425 |
+| kingston-public-washrooms | 48 | 39 | 9 |
+| kitchener-accessible-parking | 53 | 51 | 2 |
+| kitchener-parking-lots | 51 | 39 | 12 |
+| kitchener-playground-equipment | 44 | 38 | 6 |
+| kitchener-playgrounds | 337 | 108 | 229 |
+| kitchener-public-washrooms | 95 | 90 | 5 |
+| lambton-accessible-facilities | 81 | 72 | 9 |
+| london-libraries | 17 | 2 | 15 |
+| london-off-street-parking | 21 | 1 | 20 |
+| london-park-amenities | 1225 | 818 | 407 |
+| london-parking-inventory | 170 | 147 | 23 |
+| markham-city-facilities | 82 | 46 | 36 |
+| metrolinx-go | 889 | 692 | 197 |
+| metrolinx-up | 5 | 2 | 3 |
+| milton-park-amenities | 164 | 19 | 145 |
+| milton-parking-lots | 57 | 52 | 5 |
+| mto-picnic-parks | 168 | 7 | 161 |
+| newmarket-landmarks | 35 | 19 | 16 |
+| newmarket-park-features | 281 | 174 | 107 |
+| newmarket-trail-points | 268 | 230 | 38 |
+| niagara-falls-playgrounds | 82 | 14 | 68 |
+| oakville-town-washrooms | 21 | 20 | 1 |
+| oakville-transit-gtfs | 1163 | 1148 | 15 |
+| ontario-alcohol-retail-locations | 9180 | 5257 | 3923 |
+| ontario-correctional-institutions | 25 | 13 | 12 |
+| ontario-courthouses | 79 | 69 | 10 |
+| ontario-fishing-access-points | 2432 | 47 | 2385 |
+| ontario-moh-service-locations | 11625 | 4156 | 7469 |
+| ontario-official-airports | 314 | 314 | 0 |
+| ontario-otn-access-points | 853 | 853 | 0 |
+| ontario-private-schools | 1673 | 1385 | 288 |
+| ontario-provincial-parks | 347 | 27 | 320 |
+| ontario-public-schools | 4943 | 224 | 4719 |
+| ontario-railway-stations | 171 | 158 | 13 |
+| ontario-seniors-active-living-centres | 299 | 108 | 191 |
+| orangeville-parks | 42 | 7 | 35 |
+| oshawa-community-centres | 20 | 5 | 15 |
+| osm-ontario | 545524 | 520701 | 24823 |
+| ottawa-drinking-fountains | 112 | 109 | 3 |
+| ottawa-library-locations | 34 | 16 | 18 |
+| ottawa-park-parking | 408 | 51 | 357 |
+| ottawa-parks | 1378 | 109 | 1269 |
+| ottawa-parks-inventory | 7916 | 2310 | 5606 |
+| ottawa-public-washrooms | 186 | 163 | 23 |
+| ottawa-recreation-facilities | 371 | 262 | 109 |
+| pickering-facilities | 28 | 12 | 16 |
+| pickering-parks | 201 | 54 | 147 |
+| quinte-west-parks | 126 | 88 | 38 |
+| statcan-odcaf | 1423 | 934 | 489 |
+| statcan-odef | 5146 | 375 | 4771 |
+| statcan-odhf | 11021 | 3837 | 7184 |
+| statcan-odsrf | 27464 | 13326 | 14138 |
+| sudbury-fieldhouses | 61 | 57 | 4 |
+| thunder-bay-city-facilities | 62 | 43 | 19 |
+| toronto-accessible-parking-stalls | 669 | 499 | 170 |
+| toronto-community-centre-washrooms | 9 | 9 | 0 |
+| toronto-crem-washrooms | 119 | 119 | 0 |
+| toronto-drinking-fountains | 802 | 469 | 333 |
+| toronto-library-branches | 182 | 79 | 103 |
+| toronto-park-washrooms | 355 | 117 | 238 |
+| toronto-parks-recreation-facilities | 1801 | 196 | 1605 |
+| toronto-street-washrooms | 4 | 1 | 3 |
+| toronto-traffic-signals | 2563 | 2563 | 0 |
+| waterloo-parking-lots | 31 | 22 | 9 |
+| waterloo-playgrounds | 83 | 0 | 83 |
+| welland-public-washrooms | 3 | 1 | 2 |
+| whitby-parks | 174 | 51 | 123 |
+| whitby-town-facilities | 27 | 10 | 17 |
+| windsor-bus-stops | 1425 | 69 | 1356 |
+| windsor-drinking-fountains | 16 | 16 | 0 |
+| windsor-park-washrooms | 42 | 35 | 7 |
+| windsor-playgrounds | 131 | 1 | 130 |
+| windsor-transit-gtfs | 1464 | 108 | 1356 |
+| york-region-yrt-bus-stops | 4827 | 4496 | 331 |
+
 ## GTFS-RT accessibility alerts
 
 These are operator-published service alerts, not pieces. A stored copy is a snapshot. Run `npm run fetch:ttc-alerts` to replace it. Each row is one alert from the TTC accessibility endpoint, validated by schema/service-alert.schema.json. Equipment is elevator or escalator only when the header text says so.

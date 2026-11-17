@@ -41,7 +41,7 @@ const PATTERNS: ReadonlyArray<[PlaceClass, RegExp]> = [
   ["culture", /museum|gallery|theatre|theater|arts?_centre|\barts?\b|historic|attraction|cultural|artwork|cinema/],
   ["civic", /townhall|town hall|city hall|civic|municipal|government|courthouse|post_office|post office|administration|service ?ontario|service canada/],
   ["finance", /\bbank\b|\batm\b|credit union|money|financial/],
-  ["shop", /\bshop\b|store|retail|\bmall\b|market|supermarket|convenience|boutique/],
+  ["shop", /\bshop\b|store|retail|\bmall\b|market|supermarket|convenience|boutique|alcohol|liquor|\bbeer\b|\bwine\b/],
 ];
 
 /** Classes that describe a large area, where two sources may put the point far apart. */
