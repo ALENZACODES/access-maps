@@ -62,7 +62,7 @@ The count reads every link file through `index.json` and stops if a file does no
 
 **Labels.** One person labelled each pair by reading both records (names, categories, addresses, identifiers, distance) without the score: "same" when both describe one physical place or feature; "different" for a part and its whole (a court in a park, a washroom in a library, a platform in a station), stops on different sides or streets, or different items; "unsure" when the records cannot tell. For unnamed small features of the same type the records cannot settle it, so the rule was: same within 5 m, unsure from 5 to 30 m. Those labels encode a judgement, not ground truth; results are reported with and without them.
 
-**Two sets.** The figures below are for the links committed with this change, computed from main after the Statistics Canada and Province of Ontario imports (#72 to #74). The labelled pairs were drawn from the data before those imports. The tuning set (360 pairs, 285 judged) was labelled first and the rules were adjusted on it, so its figures are in-sample. The held-out set (200 pairs drawn later with another seed; the 17 already in the tuning set were dropped, leaving 183, 127 judged) was labelled before it was scored.
+**Two sets.** The figures below are for the links committed with this change, computed from main after the Statistics Canada, Province of Ontario and Overture imports (#72 to #75). The labelled pairs were drawn from the data before those imports. The tuning set (360 pairs, 285 judged) was labelled first and the rules were adjusted on it, so its figures are in-sample. The held-out set (200 pairs drawn later with another seed; the 17 already in the tuning set were dropped, leaving 183, 127 judged) was labelled before it was scored.
 
 | Set | Judged | TP | FP | FN | TN | Precision | Recall | Weighted precision | Weighted recall |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -85,7 +85,7 @@ Limits:
 
 - The sample is drawn from candidate pairs. A pair the candidate rules never consider (farther apart than the radius, or with incompatible classes) is in neither recall nor precision.
 - 412 judged pairs give wide intervals; zero false merges in 127 held-out pairs is consistent with a false-merge rate of a few percent.
-- The labelled pairs were drawn before the Overture, Foursquare and government-database imports. Those sources bring other taxonomies and many chain stores; the figures above do not cover them.
+- The labelled pairs were drawn before the government-database and Overture imports. Those sources bring other taxonomies and many chain stores; the figures above do not cover them. A spot check of 25 Overture-OSM clusters (every 727th of 18,196, read by one person) found 24 clearly the same place and 1 uncertain (a park and a beach of the same name at the same point); that is a spot check, not a measured precision.
 
 ## Web pack
 

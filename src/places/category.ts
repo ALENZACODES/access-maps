@@ -11,7 +11,7 @@ export type PlaceClass =
   | "washroom" | "transit" | "emergency" | "fuel" | "parking" | "drinking_water" | "playground"
   | "sport_field" | "sport_venue" | "community" | "library" | "school" | "worship" | "health" | "food"
   | "lodging" | "camp" | "park" | "trail_access" | "culture" | "civic" | "shop" | "finance" | "entrance"
-  | "street_furniture" | "crossing" | "mobility" | "unknown";
+  | "street_furniture" | "crossing" | "mobility" | "personal_care" | "automotive" | "office" | "unknown";
 
 /** Ordered: the first pattern that matches wins. Specific words come before broad ones. */
 const PATTERNS: ReadonlyArray<[PlaceClass, RegExp]> = [
@@ -29,18 +29,21 @@ const PATTERNS: ReadonlyArray<[PlaceClass, RegExp]> = [
   ["library", /librar|biblioth/],
   ["school", /school|college|universit|kindergarten|ecole|^education$/],
   ["worship", /worship|church|mosque|temple|synagogue|eglise|chapel|cathedral|gurdwara/],
-  ["health", /hospital|clinic|doctor|dentist|dental|pharmac|chemist|drugstore|health|physio|optometr|optician|medical|veterinar|hearing_aid|chiropract/],
+  ["health", /hospital|clinic|doctor|dentist|dental|pharmac|chemist|drugstore|health|physio|optometr|optician|medical|veterinar|hearing_aid|chiropract|physical_therapy|physiotherap|massage|naturopath|outpatient|senior_living|retirement_home|long-term care|nursing/],
   ["sport_venue", /arena|sports_centre|sports centre|stadium|sportsplex|recreation complex|sports complex|fitness|\bgym\b|dojo|curling|indoor/],
   ["community", /community|recreation (centre|center|complex|facility)|seniors|field ?house|youth centre|civic cent|social_centre|social_facility|events_venue|town facility|city facility|county or municipal facility|childcare|child care|daycare|earlyon|change (house|room|facilit|pavil)|clubhouse/],
   ["sport_field", /pitch|sports?\b|\btrack\b|skat|soccer|baseball|tennis|basketball|volleyball|pickleball|bocci|bocce|lawn bowl|\brink|\bpool|swimming|wading|piscine|diamond|court\b|courts\b|ice_rink|cricket|football|multi use pad|boat (launch|ramp|dock)|slipway|^marine$/],
-  ["food", /restaurant|fast_food|\bcafe\b|coffee|\bbar\b|\bpub\b|ice_cream|food|bakery|\bdeli\b|dining|eat_and_drink|brewery|winery/],
+  ["personal_care", /hairdresser|hair_salon|hair salon|barber|beauty|nail_salon|nail salon|tattoo|\bspa\b|tanning/],
+  ["automotive", /car_repair|automotive|auto_dealer|auto_body|car dealer|tire_dealer|tyres|car_wash|auto_detailing|^car$/],
+  ["office", /real_estate|attorney|law_firm|lawyer|professional_service|corporate_or_business_office|insurance|accountant|employment_agency|advertising_agency/],
+  ["food", /restaurant|fast_food|\bcafe\b|coffee|\bbar\b|\bpub\b|ice_cream|food|bakery|eatery|sandwich|diner|\bdeli\b|dining|eat_and_drink|brewery|winery/],
   ["camp", /camp_site|camp_pitch|campground|camping|caravan/],
-  ["lodging", /hotel|motel|hostel|guest_house|chalet|lodging|bed and breakfast|accommodation/],
+  ["lodging", /hotel|motel|hostel|guest_house|chalet|lodging|bed and breakfast|bed_and_breakfast|accommodation/],
   ["trail_access", /trail access|access point|trail head|trailhead|trail connection/],
   ["park", /\bparks?\b|parkette|garden|nature|conservation|open space|natural area|picnic|reserve|beach|viewpoint|green ?space|dog_park|village green|waterfront|golf|active recreation|passive recreation/],
   ["culture", /museum|gallery|theatre|theater|arts?_centre|\barts?\b|historic|attraction|cultural|artwork|cinema/],
   ["civic", /townhall|town hall|city hall|civic|municipal|government|courthouse|post_office|post office|administration|service ?ontario|service canada/],
-  ["finance", /\bbank\b|\batm\b|credit union|money|financial/],
+  ["finance", /\bbank\b|bank_or_credit|\batm\b|credit union|money|financial/],
   ["shop", /\bshop\b|store|retail|\bmall\b|market|supermarket|convenience|boutique|alcohol|liquor|\bbeer\b|\bwine\b/],
 ];
 

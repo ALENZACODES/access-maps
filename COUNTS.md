@@ -361,11 +361,11 @@ Populated accessibility facts by field:
 
 A place is a venue, washroom or transit record; paths are not places. Records from different sources that the same-place matcher links (data/links/same-place) count as one distinct place. Distinct places = place records in no link cluster + link clusters with at least one record present. Possible duplicates are not merged. A distinct place has a known accessibility fact when at least one of its records has a populated, non-derived accessibility field. "Only in this source" counts the distinct places whose every record comes from that source.
 
-Place records (venue, washroom, transit): **683,429**.
-Distinct places: **631,876**.
-Records joined by same-place links: **92,068** in **40,515** clusters.
-Distinct places with at least one known accessibility fact: **128,132**.
-Possible duplicates listed for review and not merged: **42,967**.
+Place records (venue, washroom, transit): **809,056**.
+Distinct places: **734,997**.
+Records joined by same-place links: **133,155** in **59,096** clusters.
+Distinct places with at least one known accessibility fact: **128,133**.
+Possible duplicates listed for review and not merged: **61,768**.
 The links were computed from exactly these record files (method same-place-v1).
 
 | Source | Place records | Distinct places only in this source | Distinct places shared with another source |
@@ -374,20 +374,20 @@ The links were computed from exactly these record files (method same-place-v1).
 | ajax-town-facilities | 56 | 48 | 8 |
 | brampton-city-parking | 5 | 2 | 3 |
 | brampton-recreation-centres | 39 | 9 | 30 |
-| brant-parks | 60 | 21 | 39 |
+| brant-parks | 60 | 19 | 41 |
 | cambridge-play-structures | 392 | 286 | 106 |
 | cornwall-transit-bus-stops | 308 | 308 | 0 |
 | cornwall-water-bottle-filling-stations | 6 | 5 | 1 |
-| essex-county-libraries | 15 | 12 | 3 |
+| essex-county-libraries | 15 | 8 | 7 |
 | essex-county-recreational-areas | 181 | 2 | 179 |
 | greater-sudbury-playgrounds | 178 | 71 | 107 |
 | greater-sudbury-recreation | 499 | 387 | 112 |
 | gtfs-brampton | 2872 | 2810 | 62 |
 | gtfs-drt | 1912 | 1908 | 4 |
 | gtfs-gova | 1121 | 1120 | 1 |
-| gtfs-grt-bus | 2265 | 2255 | 10 |
+| gtfs-grt-bus | 2265 | 2251 | 14 |
 | gtfs-grt-ion | 32 | 32 | 0 |
-| gtfs-hsr | 2353 | 36 | 2317 |
+| gtfs-hsr | 2353 | 35 | 2318 |
 | gtfs-kingston | 787 | 785 | 2 |
 | gtfs-ltc | 1947 | 1946 | 1 |
 | gtfs-ttc | 9357 | 9068 | 289 |
@@ -409,13 +409,13 @@ The links were computed from exactly these record files (method same-place-v1).
 | kitchener-playground-equipment | 44 | 38 | 6 |
 | kitchener-playgrounds | 337 | 108 | 229 |
 | kitchener-public-washrooms | 95 | 90 | 5 |
-| lambton-accessible-facilities | 81 | 72 | 9 |
-| london-libraries | 17 | 2 | 15 |
+| lambton-accessible-facilities | 81 | 62 | 19 |
+| london-libraries | 17 | 3 | 14 |
 | london-off-street-parking | 21 | 1 | 20 |
-| london-park-amenities | 1225 | 818 | 407 |
+| london-park-amenities | 1225 | 798 | 427 |
 | london-parking-inventory | 170 | 147 | 23 |
 | markham-city-facilities | 82 | 46 | 36 |
-| metrolinx-go | 889 | 692 | 197 |
+| metrolinx-go | 889 | 688 | 201 |
 | metrolinx-up | 5 | 2 | 3 |
 | milton-park-amenities | 164 | 19 | 145 |
 | milton-parking-lots | 57 | 52 | 5 |
@@ -425,22 +425,22 @@ The links were computed from exactly these record files (method same-place-v1).
 | newmarket-trail-points | 268 | 230 | 38 |
 | niagara-falls-playgrounds | 82 | 14 | 68 |
 | oakville-town-washrooms | 21 | 20 | 1 |
-| oakville-transit-gtfs | 1163 | 1148 | 15 |
-| ontario-alcohol-retail-locations | 9180 | 5257 | 3923 |
-| ontario-correctional-institutions | 25 | 13 | 12 |
-| ontario-courthouses | 79 | 69 | 10 |
+| oakville-transit-gtfs | 1163 | 1147 | 16 |
+| ontario-alcohol-retail-locations | 9180 | 4628 | 4552 |
+| ontario-correctional-institutions | 25 | 10 | 15 |
+| ontario-courthouses | 79 | 66 | 13 |
 | ontario-fishing-access-points | 2432 | 47 | 2385 |
-| ontario-moh-service-locations | 11625 | 4156 | 7469 |
-| ontario-official-airports | 314 | 314 | 0 |
+| ontario-moh-service-locations | 11625 | 3817 | 7808 |
+| ontario-official-airports | 314 | 313 | 1 |
 | ontario-otn-access-points | 853 | 853 | 0 |
-| ontario-private-schools | 1673 | 1385 | 288 |
+| ontario-private-schools | 1673 | 1307 | 366 |
 | ontario-provincial-parks | 347 | 27 | 320 |
-| ontario-public-schools | 4943 | 224 | 4719 |
-| ontario-railway-stations | 171 | 158 | 13 |
-| ontario-seniors-active-living-centres | 299 | 108 | 191 |
+| ontario-public-schools | 4943 | 219 | 4724 |
+| ontario-railway-stations | 171 | 154 | 17 |
+| ontario-seniors-active-living-centres | 299 | 102 | 197 |
 | orangeville-parks | 42 | 7 | 35 |
 | oshawa-community-centres | 20 | 5 | 15 |
-| osm-ontario | 545524 | 520701 | 24823 |
+| osm-ontario | 545524 | 504175 | 41349 |
 | ottawa-drinking-fountains | 112 | 109 | 3 |
 | ottawa-library-locations | 34 | 16 | 18 |
 | ottawa-park-parking | 408 | 51 | 357 |
@@ -448,13 +448,16 @@ The links were computed from exactly these record files (method same-place-v1).
 | ottawa-parks-inventory | 7916 | 2310 | 5606 |
 | ottawa-public-washrooms | 186 | 163 | 23 |
 | ottawa-recreation-facilities | 371 | 262 | 109 |
+| overture-places | 106084 | 85265 | 20819 |
+| overture-places-alltheplaces | 2302 | 1712 | 590 |
+| overture-places-foursquare | 17241 | 15559 | 1682 |
 | pickering-facilities | 28 | 12 | 16 |
 | pickering-parks | 201 | 54 | 147 |
 | quinte-west-parks | 126 | 88 | 38 |
-| statcan-odcaf | 1423 | 934 | 489 |
-| statcan-odef | 5146 | 375 | 4771 |
-| statcan-odhf | 11021 | 3837 | 7184 |
-| statcan-odsrf | 27464 | 13326 | 14138 |
+| statcan-odcaf | 1423 | 921 | 502 |
+| statcan-odef | 5146 | 361 | 4785 |
+| statcan-odhf | 11021 | 3746 | 7275 |
+| statcan-odsrf | 27464 | 13087 | 14377 |
 | sudbury-fieldhouses | 61 | 57 | 4 |
 | thunder-bay-city-facilities | 62 | 43 | 19 |
 | toronto-accessible-parking-stalls | 669 | 499 | 170 |

@@ -3091,11 +3091,11 @@
   "total_shortfall": 500000,
   "distinct_places": {
     "definition": "A place is a venue, washroom or transit record; paths are not places. Records from different sources that the same-place matcher links (data/links/same-place) count as one distinct place. Distinct places = place records in no link cluster + link clusters with at least one record present. Possible duplicates are not merged. A distinct place has a known accessibility fact when at least one of its records has a populated, non-derived accessibility field. \"Only in this source\" counts the distinct places whose every record comes from that source.",
-    "place_records": 683429,
-    "distinct_places": 631876,
-    "records_joined_by_links": 92068,
-    "clusters": 40515,
-    "with_known_accessibility_fact": 128132,
+    "place_records": 809056,
+    "distinct_places": 734997,
+    "records_joined_by_links": 133155,
+    "clusters": 59096,
+    "with_known_accessibility_fact": 128133,
     "by_source": {
       "ajax-playgrounds": {
         "records": 81,
@@ -3119,8 +3119,8 @@
       },
       "brant-parks": {
         "records": 60,
-        "only_in_this_source": 21,
-        "shared_with_other_sources": 39
+        "only_in_this_source": 19,
+        "shared_with_other_sources": 41
       },
       "cambridge-play-structures": {
         "records": 392,
@@ -3139,8 +3139,8 @@
       },
       "essex-county-libraries": {
         "records": 15,
-        "only_in_this_source": 12,
-        "shared_with_other_sources": 3
+        "only_in_this_source": 8,
+        "shared_with_other_sources": 7
       },
       "essex-county-recreational-areas": {
         "records": 181,
@@ -3174,8 +3174,8 @@
       },
       "gtfs-grt-bus": {
         "records": 2265,
-        "only_in_this_source": 2255,
-        "shared_with_other_sources": 10
+        "only_in_this_source": 2251,
+        "shared_with_other_sources": 14
       },
       "gtfs-grt-ion": {
         "records": 32,
@@ -3184,8 +3184,8 @@
       },
       "gtfs-hsr": {
         "records": 2353,
-        "only_in_this_source": 36,
-        "shared_with_other_sources": 2317
+        "only_in_this_source": 35,
+        "shared_with_other_sources": 2318
       },
       "gtfs-kingston": {
         "records": 787,
@@ -3294,13 +3294,13 @@
       },
       "lambton-accessible-facilities": {
         "records": 81,
-        "only_in_this_source": 72,
-        "shared_with_other_sources": 9
+        "only_in_this_source": 62,
+        "shared_with_other_sources": 19
       },
       "london-libraries": {
         "records": 17,
-        "only_in_this_source": 2,
-        "shared_with_other_sources": 15
+        "only_in_this_source": 3,
+        "shared_with_other_sources": 14
       },
       "london-off-street-parking": {
         "records": 21,
@@ -3309,8 +3309,8 @@
       },
       "london-park-amenities": {
         "records": 1225,
-        "only_in_this_source": 818,
-        "shared_with_other_sources": 407
+        "only_in_this_source": 798,
+        "shared_with_other_sources": 427
       },
       "london-parking-inventory": {
         "records": 170,
@@ -3324,8 +3324,8 @@
       },
       "metrolinx-go": {
         "records": 889,
-        "only_in_this_source": 692,
-        "shared_with_other_sources": 197
+        "only_in_this_source": 688,
+        "shared_with_other_sources": 201
       },
       "metrolinx-up": {
         "records": 5,
@@ -3374,23 +3374,23 @@
       },
       "oakville-transit-gtfs": {
         "records": 1163,
-        "only_in_this_source": 1148,
-        "shared_with_other_sources": 15
+        "only_in_this_source": 1147,
+        "shared_with_other_sources": 16
       },
       "ontario-alcohol-retail-locations": {
         "records": 9180,
-        "only_in_this_source": 5257,
-        "shared_with_other_sources": 3923
+        "only_in_this_source": 4628,
+        "shared_with_other_sources": 4552
       },
       "ontario-correctional-institutions": {
         "records": 25,
-        "only_in_this_source": 13,
-        "shared_with_other_sources": 12
+        "only_in_this_source": 10,
+        "shared_with_other_sources": 15
       },
       "ontario-courthouses": {
         "records": 79,
-        "only_in_this_source": 69,
-        "shared_with_other_sources": 10
+        "only_in_this_source": 66,
+        "shared_with_other_sources": 13
       },
       "ontario-fishing-access-points": {
         "records": 2432,
@@ -3399,13 +3399,13 @@
       },
       "ontario-moh-service-locations": {
         "records": 11625,
-        "only_in_this_source": 4156,
-        "shared_with_other_sources": 7469
+        "only_in_this_source": 3817,
+        "shared_with_other_sources": 7808
       },
       "ontario-official-airports": {
         "records": 314,
-        "only_in_this_source": 314,
-        "shared_with_other_sources": 0
+        "only_in_this_source": 313,
+        "shared_with_other_sources": 1
       },
       "ontario-otn-access-points": {
         "records": 853,
@@ -3414,8 +3414,8 @@
       },
       "ontario-private-schools": {
         "records": 1673,
-        "only_in_this_source": 1385,
-        "shared_with_other_sources": 288
+        "only_in_this_source": 1307,
+        "shared_with_other_sources": 366
       },
       "ontario-provincial-parks": {
         "records": 347,
@@ -3424,18 +3424,18 @@
       },
       "ontario-public-schools": {
         "records": 4943,
-        "only_in_this_source": 224,
-        "shared_with_other_sources": 4719
+        "only_in_this_source": 219,
+        "shared_with_other_sources": 4724
       },
       "ontario-railway-stations": {
         "records": 171,
-        "only_in_this_source": 158,
-        "shared_with_other_sources": 13
+        "only_in_this_source": 154,
+        "shared_with_other_sources": 17
       },
       "ontario-seniors-active-living-centres": {
         "records": 299,
-        "only_in_this_source": 108,
-        "shared_with_other_sources": 191
+        "only_in_this_source": 102,
+        "shared_with_other_sources": 197
       },
       "orangeville-parks": {
         "records": 42,
@@ -3449,8 +3449,8 @@
       },
       "osm-ontario": {
         "records": 545524,
-        "only_in_this_source": 520701,
-        "shared_with_other_sources": 24823
+        "only_in_this_source": 504175,
+        "shared_with_other_sources": 41349
       },
       "ottawa-drinking-fountains": {
         "records": 112,
@@ -3487,6 +3487,21 @@
         "only_in_this_source": 262,
         "shared_with_other_sources": 109
       },
+      "overture-places": {
+        "records": 106084,
+        "only_in_this_source": 85265,
+        "shared_with_other_sources": 20819
+      },
+      "overture-places-alltheplaces": {
+        "records": 2302,
+        "only_in_this_source": 1712,
+        "shared_with_other_sources": 590
+      },
+      "overture-places-foursquare": {
+        "records": 17241,
+        "only_in_this_source": 15559,
+        "shared_with_other_sources": 1682
+      },
       "pickering-facilities": {
         "records": 28,
         "only_in_this_source": 12,
@@ -3504,23 +3519,23 @@
       },
       "statcan-odcaf": {
         "records": 1423,
-        "only_in_this_source": 934,
-        "shared_with_other_sources": 489
+        "only_in_this_source": 921,
+        "shared_with_other_sources": 502
       },
       "statcan-odef": {
         "records": 5146,
-        "only_in_this_source": 375,
-        "shared_with_other_sources": 4771
+        "only_in_this_source": 361,
+        "shared_with_other_sources": 4785
       },
       "statcan-odhf": {
         "records": 11021,
-        "only_in_this_source": 3837,
-        "shared_with_other_sources": 7184
+        "only_in_this_source": 3746,
+        "shared_with_other_sources": 7275
       },
       "statcan-odsrf": {
         "records": 27464,
-        "only_in_this_source": 13326,
-        "shared_with_other_sources": 14138
+        "only_in_this_source": 13087,
+        "shared_with_other_sources": 14377
       },
       "sudbury-fieldhouses": {
         "records": 61,
@@ -3636,9 +3651,9 @@
     "links": {
       "method": "same-place-v1",
       "current": true,
-      "input_digest": "fbedd2f6e9f6bddd8d92e77abe22ee9d6018ec65d30422ec30f4142e31bc3b59",
-      "data_digest": "fbedd2f6e9f6bddd8d92e77abe22ee9d6018ec65d30422ec30f4142e31bc3b59",
-      "possible_duplicates": 42967,
+      "input_digest": "8722c8e012946064f544a430ee00f2df091c4701ae79f60e78ce798d2a746207",
+      "data_digest": "8722c8e012946064f544a430ee00f2df091c4701ae79f60e78ce798d2a746207",
+      "possible_duplicates": 61768,
       "links_to_missing_records": 0
     }
   },
