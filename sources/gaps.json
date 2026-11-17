@@ -503,5 +503,10 @@
     "name": "Municipality of Strathroy-Caradoc and County of Middlesex open data",
     "url": "https://data-middlesex.opendata.arcgis.com/",
     "reason": "Checked 2026-11-16. Strathroy-Caradoc ranks 72nd by 2021 Census population (sources/ontario-municipalities-51-75.json). The Municipality's Maps page offers PDF maps and points to the County's mapping page; https://www.strathroy-caradoc.ca/open-data and /opendata returned HTTP 404. The County of Middlesex open-data hub lists three datasets (Middlesex County Address Points, Single Line Road Network, Municipal Boundaries) with a blank licence field; none is an accessibility-relevant layer. Nothing imported."
+  },
+  {
+    "name": "Foursquare Open Source Places (FSQ OS Places), Ontario",
+    "url": "https://docs.foursquare.com/data-products/docs/access-fsq-os-places",
+    "reason": "Checked 2026-11-16. The data is licensed under the Apache License 2.0 (LICENSE.txt and NOTICE.txt read from https://fsq-os-places-us-east-1.s3.amazonaws.com/ on 2026-11-16; NOTICE.txt asks that it be kept with any copy of the data), but no copy of the place records could be downloaded without signing in. The public S3 bucket fsq-os-places-us-east-1 now lists only LICENSE.txt and NOTICE.txt (release/ prefix: 0 keys), and the PMTiles path given on the access page (release/vector-tiles/latest/fsq-os-places.pmtiles) returned HTTP 404; the release notes say the public bucket was deprecated in October 2025 in favour of an Iceberg catalog on the Places Portal, which needs an account and access token. The Hugging Face copy (foursquare/fsq-os-places, release dt=2026-10-15) is gated: the parquet files returned HTTP 401 without a login, and access requires accepting extra terms that include letting the repository authors use the requester's organisation name and logo in marketing. Snowflake and Databricks Marketplace listings also need an account. No login was made. Nothing imported."
   }
 ]
