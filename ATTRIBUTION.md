@@ -566,6 +566,20 @@ Retrieved 2026-11-16:
 
 `data/tiles/open/` contains no OpenStreetMap data. It also excludes GO Transit and UP Express stops, which stay in their own `metrolinx-*` files. Attribution for each `source_id` that remains in that overlay is the section above for that source.
 
+<!-- overture start -->
+## Overture Maps Foundation places
+
+Overture Maps Foundation, overturemaps.org. Places theme, release 2026-10-21.0, s3://overturemaps-us-west-2/release/2026-10-21.0/theme=places/type=place/, accessed 2026-11-16.
+
+- Data from Meta, Microsoft, PinMeTo, Krick, RenderSEO, DAC, BrightQuery, Birdeye, Uberall and OpenTravel Alliance. Available under CDLA Permissive 2.0, https://cdla.dev/permissive-2-0/ (text: `sources/licences/CDLA-Permissive-2.0.txt`).
+- Data from Foursquare. Copyright 2024 Foursquare Labs, Inc. All rights reserved. Available under Apache 2.0, https://www.apache.org/licenses/LICENSE-2.0 (text: `sources/licences/Apache-2.0.txt`). Foursquare data was transformed to the Overture schema. Changed: 2026-03-18. NOTICE: `sources/licences/foursquare-os-places-NOTICE.txt`, which also states the changes made in this repository.
+- Data from AllThePlaces. Available under CC0 1.0, https://creativecommons.org/publicdomain/zero/1.0/
+
+Directories: `data/venues/overture-places/`, `data/venues/overture-places-foursquare/`, `data/venues/overture-places-alltheplaces/`.
+
+Places were selected with the Land Information Ontario Province boundary. Contains information licensed under the Open Government Licence – Ontario, https://www.ontario.ca/page/open-government-licence-ontario
+<!-- overture end -->
+
 <!-- g7 small towns start -->
 ## County of Huron
 

@@ -1,17 +1,17 @@
 {
   "definition": "A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. Section 5.6 counts only tier 2 and tier 3 values toward 500,000. Tier 0 and tier 1 accessibility facts are reported separately and are not verified.",
-  "records": 1789705,
-  "pieces": 9141636,
-  "gaps": 54660704,
+  "records": 1915332,
+  "pieces": 10476972,
+  "gaps": 58727329,
   "derived_excluded": 4207,
   "verified_toward_500k": 0,
   "accessibility_fact_pieces": 916698,
-  "other_populated_pieces": 7707836,
+  "other_populated_pieces": 9043172,
   "accessibility_pieces": 916698,
-  "accessibility_gaps": 30114679,
-  "identity_pieces": 7707836,
+  "accessibility_gaps": 33129727,
+  "identity_pieces": 9043172,
   "context_pieces": 517102,
-  "context_gaps": 5253002,
+  "context_gaps": 5504256,
   "accessibility_definition": "An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.",
   "context_definition": "Context fields are populated values that are not a physical access measurement: access, crossing, lit, foot, fee, changing_table_fee, unisex, male, female, locked, and supervised. They are not accessibility facts and they are not names or geometry.",
   "accessibility_fields": {
@@ -94,18 +94,18 @@
   },
   "by_tranche": {
     "venue": {
-      "records": 644792,
-      "pieces": 3794487,
+      "records": 770419,
+      "pieces": 5129823,
       "accessibility_facts": 121532,
-      "other_populated": 3576465,
+      "other_populated": 4911801,
       "verified": 0,
-      "gaps": 23931569,
+      "gaps": 27998194,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 3794487
+        "0": 5129823
       },
       "gaps_by_tier": {
-        "0": 23931569
+        "0": 27998194
       },
       "pieces_by_source": {
         "ajax-playgrounds": 486,
@@ -179,6 +179,9 @@
         "ottawa-parks-inventory": 51047,
         "ottawa-parks": 12302,
         "ottawa-recreation-facilities": 2840,
+        "overture-places-alltheplaces": 25270,
+        "overture-places-foursquare": 185597,
+        "overture-places": 1124469,
         "pickering-facilities": 250,
         "pickering-parks": 1267,
         "quinte-west-parks": 872,
@@ -202,59 +205,60 @@
         "windsor-playgrounds": 903
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 866391,
+        "2026-11-16": 2201727,
         "2026-11-13": 2924533,
         "2026-11-17": 3563
       },
       "gaps_by_retrieved_at": {
-        "2026-11-16": 3580110,
+        "2026-11-16": 7646735,
         "2026-11-13": 20336059,
         "2026-11-17": 15400
       },
       "gap_fields": {
-        "addr_housenumber": 501963,
-        "addr_street": 497545,
-        "addr_city": 526261,
-        "addr_postcode": 578824,
-        "addr_unit": 637248,
-        "opening_hours": 623124,
-        "level": 634124,
-        "operator": 591917,
-        "brand": 593455,
-        "website": 605323,
-        "wheelchair": 632122,
-        "wheelchair_description": 624730,
-        "entrance": 627159,
-        "automatic_door": 644699,
-        "door": 642757,
-        "door_width": 644792,
-        "ramp": 644763,
-        "ramp_wheelchair": 644792,
-        "ramp_stroller": 644792,
-        "step_count": 644792,
-        "incline": 644792,
-        "kerb": 644606,
-        "kerb_height": 644792,
-        "tactile_paving": 644779,
-        "handrail": 644792,
-        "width": 644762,
-        "access": 556837,
-        "surface": 581696,
-        "smoothness": 644660,
-        "lit": 636257,
-        "braille": 644792,
-        "hearing_loop": 644789,
-        "speech_output": 643344,
-        "stroller": 644741,
-        "capacity_disabled": 640754,
-        "indoor": 641788,
-        "elevator": 644779,
+        "addr_housenumber": 510769,
+        "addr_street": 504639,
+        "addr_city": 527253,
+        "addr_postcode": 583099,
+        "addr_unit": 762875,
+        "opening_hours": 748751,
+        "level": 759751,
+        "operator": 717544,
+        "brand": 705137,
+        "website": 629600,
+        "wheelchair": 757749,
+        "wheelchair_description": 750357,
+        "entrance": 752786,
+        "automatic_door": 770326,
+        "door": 768384,
+        "door_width": 770419,
+        "ramp": 770390,
+        "ramp_wheelchair": 770419,
+        "ramp_stroller": 770419,
+        "step_count": 770419,
+        "incline": 770419,
+        "kerb": 770233,
+        "kerb_height": 770419,
+        "tactile_paving": 770406,
+        "handrail": 770419,
+        "width": 770389,
+        "access": 682464,
+        "surface": 707323,
+        "smoothness": 770287,
+        "lit": 761884,
+        "braille": 770419,
+        "hearing_loop": 770416,
+        "speech_output": 768971,
+        "stroller": 770368,
+        "capacity_disabled": 766381,
+        "indoor": 767415,
+        "elevator": 770406,
         "ref": 550140,
-        "category": 7838,
-        "name": 395449
+        "category": 12353,
+        "name": 401757,
+        "category_group": 4239
       },
       "accessibility_pieces": 121532,
-      "accessibility_gaps": 15353476,
+      "accessibility_gaps": 18368524,
       "accessibility_by_field": {
         "capacity_disabled": 4038,
         "wheelchair_description": 20062,
@@ -274,7 +278,7 @@
         "tactile_paving": 13
       },
       "context_pieces": 96490,
-      "context_gaps": 1193094,
+      "context_gaps": 1444348,
       "context_by_field": {
         "access": 87955,
         "lit": 8535
@@ -2735,6 +2739,54 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-16": 2840
+      },
+      "accessibility_pieces": 0
+    },
+    "overture-places-alltheplaces": {
+      "records": 2302,
+      "pieces": 25270,
+      "gaps": 73716,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 25270
+      },
+      "pieces_by_tranche": {
+        "venue": 25270
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 25270
+      },
+      "accessibility_pieces": 0
+    },
+    "overture-places-foursquare": {
+      "records": 17241,
+      "pieces": 185597,
+      "gaps": 555766,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 185597
+      },
+      "pieces_by_tranche": {
+        "venue": 185597
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 185597
+      },
+      "accessibility_pieces": 0
+    },
+    "overture-places": {
+      "records": 106084,
+      "pieces": 1124469,
+      "gaps": 3437143,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 1124469
+      },
+      "pieces_by_tranche": {
+        "venue": 1124469
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 1124469
       },
       "accessibility_pieces": 0
     },
@@ -14496,6 +14548,326 @@
     {
       "file": "data/venues/ottawa-recreation-facilities/n45.5_w075.5.ndjson.gz",
       "bytes": 1094
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n41.5_w083.0.ndjson.gz",
+      "bytes": 829
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n42.0_w082.0.ndjson.gz",
+      "bytes": 2123
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n42.0_w082.5.ndjson.gz",
+      "bytes": 10592
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n42.0_w083.0.ndjson.gz",
+      "bytes": 25128
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n42.0_w083.5.ndjson.gz",
+      "bytes": 18899
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n42.5_w079.0.ndjson.gz",
+      "bytes": 2517
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n42.5_w079.5.ndjson.gz",
+      "bytes": 6265
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n42.5_w080.0.ndjson.gz",
+      "bytes": 3222
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n42.5_w080.5.ndjson.gz",
+      "bytes": 8623
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n42.5_w081.0.ndjson.gz",
+      "bytes": 9302
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n42.5_w081.5.ndjson.gz",
+      "bytes": 41084
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n42.5_w082.0.ndjson.gz",
+      "bytes": 9617
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n42.5_w082.5.ndjson.gz",
+      "bytes": 18839
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n42.5_w083.0.ndjson.gz",
+      "bytes": 827
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n43.0_w079.5.ndjson.gz",
+      "bytes": 41629
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n43.0_w080.0.ndjson.gz",
+      "bytes": 94152
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n43.0_w080.5.ndjson.gz",
+      "bytes": 50806
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n43.0_w081.0.ndjson.gz",
+      "bytes": 37406
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n43.0_w081.5.ndjson.gz",
+      "bytes": 23407
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n43.0_w082.0.ndjson.gz",
+      "bytes": 3493
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n43.0_w082.5.ndjson.gz",
+      "bytes": 1889
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n41.5_w082.5.ndjson.gz",
+      "bytes": 759
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n41.5_w083.0.ndjson.gz",
+      "bytes": 2805
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n42.0_w082.0.ndjson.gz",
+      "bytes": 3298
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n42.0_w082.5.ndjson.gz",
+      "bytes": 56905
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n42.0_w083.0.ndjson.gz",
+      "bytes": 151697
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n42.0_w083.5.ndjson.gz",
+      "bytes": 132243
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n42.5_w079.0.ndjson.gz",
+      "bytes": 12087
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n42.5_w079.5.ndjson.gz",
+      "bytes": 41482
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n42.5_w080.0.ndjson.gz",
+      "bytes": 9220
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n42.5_w080.5.ndjson.gz",
+      "bytes": 36372
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n42.5_w081.0.ndjson.gz",
+      "bytes": 25429
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n42.5_w081.5.ndjson.gz",
+      "bytes": 295888
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n42.5_w082.0.ndjson.gz",
+      "bytes": 17323
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n42.5_w082.5.ndjson.gz",
+      "bytes": 81132
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n42.5_w083.0.ndjson.gz",
+      "bytes": 957
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n43.0_w079.5.ndjson.gz",
+      "bytes": 249132
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n43.0_w080.0.ndjson.gz",
+      "bytes": 655502
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n43.0_w080.0.p02.ndjson.gz",
+      "bytes": 91575
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n43.0_w080.5.ndjson.gz",
+      "bytes": 409940
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n43.0_w081.0.ndjson.gz",
+      "bytes": 228183
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n43.0_w081.5.ndjson.gz",
+      "bytes": 104355
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n43.0_w082.0.ndjson.gz",
+      "bytes": 10220
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n43.0_w082.5.ndjson.gz",
+      "bytes": 5415
+    },
+    {
+      "file": "data/venues/overture-places/n41.5_w082.5.ndjson.gz",
+      "bytes": 674
+    },
+    {
+      "file": "data/venues/overture-places/n41.5_w083.0.ndjson.gz",
+      "bytes": 20756
+    },
+    {
+      "file": "data/venues/overture-places/n42.0_w080.5.ndjson.gz",
+      "bytes": 711
+    },
+    {
+      "file": "data/venues/overture-places/n42.0_w082.0.ndjson.gz",
+      "bytes": 54626
+    },
+    {
+      "file": "data/venues/overture-places/n42.0_w082.5.ndjson.gz",
+      "bytes": 368638
+    },
+    {
+      "file": "data/venues/overture-places/n42.0_w083.0.ndjson.gz",
+      "bytes": 798318
+    },
+    {
+      "file": "data/venues/overture-places/n42.0_w083.0.p02.ndjson.gz",
+      "bytes": 196450
+    },
+    {
+      "file": "data/venues/overture-places/n42.0_w083.5.ndjson.gz",
+      "bytes": 758567
+    },
+    {
+      "file": "data/venues/overture-places/n42.5_w079.0.ndjson.gz",
+      "bytes": 85588
+    },
+    {
+      "file": "data/venues/overture-places/n42.5_w079.5.ndjson.gz",
+      "bytes": 325510
+    },
+    {
+      "file": "data/venues/overture-places/n42.5_w080.0.ndjson.gz",
+      "bytes": 107221
+    },
+    {
+      "file": "data/venues/overture-places/n42.5_w080.5.ndjson.gz",
+      "bytes": 333586
+    },
+    {
+      "file": "data/venues/overture-places/n42.5_w081.0.ndjson.gz",
+      "bytes": 260918
+    },
+    {
+      "file": "data/venues/overture-places/n42.5_w081.5.ndjson.gz",
+      "bytes": 791187
+    },
+    {
+      "file": "data/venues/overture-places/n42.5_w081.5.p02.ndjson.gz",
+      "bytes": 796027
+    },
+    {
+      "file": "data/venues/overture-places/n42.5_w081.5.p03.ndjson.gz",
+      "bytes": 138933
+    },
+    {
+      "file": "data/venues/overture-places/n42.5_w082.0.ndjson.gz",
+      "bytes": 212366
+    },
+    {
+      "file": "data/venues/overture-places/n42.5_w082.5.ndjson.gz",
+      "bytes": 539372
+    },
+    {
+      "file": "data/venues/overture-places/n42.5_w083.0.ndjson.gz",
+      "bytes": 4120
+    },
+    {
+      "file": "data/venues/overture-places/n43.0_w079.5.ndjson.gz",
+      "bytes": 798999
+    },
+    {
+      "file": "data/venues/overture-places/n43.0_w079.5.p02.ndjson.gz",
+      "bytes": 793227
+    },
+    {
+      "file": "data/venues/overture-places/n43.0_w079.5.p03.ndjson.gz",
+      "bytes": 163321
+    },
+    {
+      "file": "data/venues/overture-places/n43.0_w080.0.ndjson.gz",
+      "bytes": 800555
+    },
+    {
+      "file": "data/venues/overture-places/n43.0_w080.0.p02.ndjson.gz",
+      "bytes": 785202
+    },
+    {
+      "file": "data/venues/overture-places/n43.0_w080.0.p03.ndjson.gz",
+      "bytes": 797882
+    },
+    {
+      "file": "data/venues/overture-places/n43.0_w080.0.p04.ndjson.gz",
+      "bytes": 789621
+    },
+    {
+      "file": "data/venues/overture-places/n43.0_w080.0.p05.ndjson.gz",
+      "bytes": 794924
+    },
+    {
+      "file": "data/venues/overture-places/n43.0_w080.0.p06.ndjson.gz",
+      "bytes": 310450
+    },
+    {
+      "file": "data/venues/overture-places/n43.0_w080.5.ndjson.gz",
+      "bytes": 809274
+    },
+    {
+      "file": "data/venues/overture-places/n43.0_w080.5.p02.ndjson.gz",
+      "bytes": 803875
+    },
+    {
+      "file": "data/venues/overture-places/n43.0_w080.5.p03.ndjson.gz",
+      "bytes": 748183
+    },
+    {
+      "file": "data/venues/overture-places/n43.0_w081.0.ndjson.gz",
+      "bytes": 813802
+    },
+    {
+      "file": "data/venues/overture-places/n43.0_w081.0.p02.ndjson.gz",
+      "bytes": 539668
+    },
+    {
+      "file": "data/venues/overture-places/n43.0_w081.5.ndjson.gz",
+      "bytes": 739049
+    },
+    {
+      "file": "data/venues/overture-places/n43.0_w082.0.ndjson.gz",
+      "bytes": 148707
+    },
+    {
+      "file": "data/venues/overture-places/n43.0_w082.5.ndjson.gz",
+      "bytes": 64593
     },
     {
       "file": "data/venues/pickering-facilities/n43.5_w079.5.ndjson.gz",
