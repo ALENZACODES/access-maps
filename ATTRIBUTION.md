@@ -658,4 +658,24 @@ Open Government Licence – Niagara Peninsula Conservation Authority (NPCA): htt
 Datasets retrieved 2026-11-17 (NPCA open data, https://gis-npca-camaps.opendata.arcgis.com): Conservation Areas NPCA (`npca-conservation-areas`); Conservation Authority Trails NPCA (`npca-trails`).
 
 WC_Access, TrailRating, AverageSlope and MaximumGrade are the Authority's own values, kept as text; they are not a wheelchair measurement by this project. The licence does not cover personal information or the Authority's names, crests and logos.
+
+## Lake Simcoe Region Conservation Authority
+
+Contains Information made available under Lake Simcoe Region Conservation Authority Open Data Licence v1.0.
+
+Lake Simcoe Region Conservation Authority Open Data Licence v1.0: https://lsrca.on.ca/index.php/home/open-data/
+
+Datasets retrieved 2026-11-17 (LSRCA Open Data, https://lsrca-open-data-camaps.opendata.arcgis.com): LSRCA Lands - Public (`lsrca-public-lands`).
+
+The layer has no accessibility column. Do not suggest that the Authority endorses this project.
+
+## Central Lake Ontario Conservation Authority
+
+Contains Information made available under Central Lake Ontario Conservation Authority's Open Data Licence v1.0.
+
+CLOCA Open Data Licence v1: http://camaps.maps.arcgis.com/sharing/rest/content/items/20586dab57ce40fd9b102d97c144302c/data
+
+Datasets retrieved 2026-11-17 (CLOCA open data, https://cloca-camaps.opendata.arcgis.com): CLOCA Conservation Areas - Public Access (`cloca-conservation-areas`); CLOCA Existing Trails (`cloca-trails`).
+
+A trail's DIFFICULTY is the Authority's own rating, kept as text; it is not a wheelchair measurement by this project. Do not suggest that the Authority endorses this project.
 <!-- g7 small towns end -->

@@ -2669,6 +2669,51 @@
       "tier": 0,
       "tier_note": "Municipal open data is tier 0. It is not shown as verified.",
       "notes": "Trail lines in NPCA conservation areas (328 rows on 2026-11-17). Rows whose Feature is Road, whose TrailType is Road, Retired, Abandoned Path, Driveway or Parking Loop, or whose TrailRating is Retired are left out. Surface is stored as published. TrailRating, AverageSlope and MaximumGrade have no stated unit or scale and are kept as COLUMN=value text in wheelchair_description. A line drawn in several parts is stored as one record per part. The item's licence field links the Open Government Licence – Niagara Peninsula Conservation Authority (NPCA) PDF (date modified August 28, 2019, based on version 2.0 of the Open Government Licence – Canada), read on 2026-11-17: a worldwide, royalty-free, perpetual, non-exclusive licence to copy, modify, publish, translate, adapt, distribute or otherwise use the Information for any lawful purpose, including commercial purposes, with the attribution statement above; it excludes personal information, third-party rights and the Authority's names and logos. The layer is served through the item's ArcGIS Online proxy URL. "
+    },
+    {
+      "id": "lsrca-public-lands",
+      "name": "LSRCA Lands - Public",
+      "kind": "municipal",
+      "url": "https://www.arcgis.com/home/item.html?id=46d6cd03991c4e90a40dee49ba2cd241",
+      "download_url": "https://gis.lsrca.on.ca/gis/rest/services/OpenData/MapServer/46",
+      "licence_name": "Lake Simcoe Region Conservation Authority Open Data Licence v1.0",
+      "licence_url": "https://lsrca.on.ca/index.php/home/open-data/",
+      "licence_id": "LSRCA-Open-Data-Licence-1.0",
+      "attribution": "Contains Information made available under Lake Simcoe Region Conservation Authority Open Data Licence v1.0.",
+      "retrieved_at": "2026-11-17",
+      "tier": 0,
+      "tier_note": "Municipal open data is tier 0. It is not shown as verified.",
+      "notes": "Publicly released LSRCA properties (59 parcel outlines on 2026-11-17, 17 property names). One venue is stored per PROPERTY_NAME, at the vertex mean of its first parcel (lowest OBJECTID), which is a map anchor, not an entrance; the id is built from the name. Rows whose PUBLIC_RELEASE is not Yes would be left out (none on 2026-11-17). The owner, manager and acquisition columns are not requested. The layer has no accessibility column, so every accessibility field stays UNKNOWN. The item's licence field names the Lake Simcoe Region Conservation Authority Open Data Licence v1.0 and links https://www.lsrca.on.ca/Pages/GIS-Open-Data-Licence.aspx, which redirects to https://lsrca.on.ca/index.php/home/open-data/; the licence text there was read on 2026-11-17: a worldwide, royalty-free, perpetual, non-exclusive licence to copy, publish, distribute and transmit the Information, adapt it and use it commercially, with the attribution statement above; the user must not suggest endorsement or misrepresent the Information, and indemnifies the Authority. It excludes personal information and third-party rights. The map service's copyright text reads All Rights Reserved; the item in the Authority's open-data catalogue carries the open licence, and only catalogued items are imported. "
+    },
+    {
+      "id": "cloca-conservation-areas",
+      "name": "CLOCA Conservation Areas - Public Access",
+      "kind": "municipal",
+      "url": "https://www.arcgis.com/home/item.html?id=9bc70789a52b486f9f1d488a61930f4d",
+      "download_url": "https://geo.cloca.com/swa/rest/services/CLOCA/OPENDATA/MapServer/1",
+      "licence_name": "CLOCA Open Data Licence v1",
+      "licence_url": "http://camaps.maps.arcgis.com/sharing/rest/content/items/20586dab57ce40fd9b102d97c144302c/data",
+      "licence_id": "CLOCA-Open-Data-Licence-1.0",
+      "attribution": "Contains Information made available under Central Lake Ontario Conservation Authority's Open Data Licence v1.0.",
+      "retrieved_at": "2026-11-17",
+      "tier": 0,
+      "tier_note": "Municipal open data is tier 0. It is not shown as verified.",
+      "notes": "Publicly accessible conservation area outlines (32 parcels on 2026-11-17, 10 area names). One venue is stored per ConservationArea name, at the vertex mean of its first parcel (lowest Property_ID), which is a map anchor, not an entrance; the id is built from the name. The layer has no accessibility column, so every accessibility field stays UNKNOWN. The item's licence field links the CLOCA Open Data Licence v1 PDF, read on 2026-11-17: a worldwide, royalty-free, perpetual, non-exclusive licence to copy, publish, distribute and transmit the Information, adapt it and use it commercially, with the attribution statement above; the user must not suggest endorsement or misrepresent the Information, and indemnifies the Authority. It excludes personal information and third-party rights. "
+    },
+    {
+      "id": "cloca-trails",
+      "name": "CLOCA Existing Trails",
+      "kind": "municipal",
+      "url": "https://www.arcgis.com/home/item.html?id=60a85b4c91e548a2a34f5323c9f5ab97",
+      "download_url": "https://geo.cloca.com/swa/rest/services/CLOCA/OPENDATA/MapServer/20",
+      "licence_name": "CLOCA Open Data Licence v1",
+      "licence_url": "http://camaps.maps.arcgis.com/sharing/rest/content/items/20586dab57ce40fd9b102d97c144302c/data",
+      "licence_id": "CLOCA-Open-Data-Licence-1.0",
+      "attribution": "Contains Information made available under Central Lake Ontario Conservation Authority's Open Data Licence v1.0.",
+      "retrieved_at": "2026-11-17",
+      "tier": 0,
+      "tier_note": "Municipal open data is tier 0. It is not shown as verified.",
+      "notes": "Existing trail lines (286 rows on 2026-11-17). Only DESIGNATION OF (Off Road) rows with STATUS 1 are imported; on-road rows and the cycling lane, wider curb lane and wider paved shoulder surfaces are left out. SURFACE and DIFFICULTY are coded; they are spelled out through the layer's own published domains, SURFACE into surface and DIFFICULTY as the Authority's DIFFICULTY=<value> text in wheelchair_description (not a wheelchair yes or no). A line drawn in several parts is stored as one record per part. The item's licence field links the CLOCA Open Data Licence v1 PDF, read on 2026-11-17: a worldwide, royalty-free, perpetual, non-exclusive licence to copy, publish, distribute and transmit the Information, adapt it and use it commercially, with the attribution statement above; the user must not suggest endorsement or misrepresent the Information, and indemnifies the Authority. It excludes personal information and third-party rights. "
     }
   ]
 }

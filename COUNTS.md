@@ -5,35 +5,35 @@ A piece is one field on one record whose value is not UNKNOWN and whose derived 
 Verified field-values toward the 500,000 target: **0**.
 Tier 0 and tier 1 values count as 0 toward the 250,000 verified venue field-values and toward the 500,000 verified total. Section 5.6 counts tier 2 and tier 3 only.
 Verified toward 500,000 is 0. None of those verified field-values exist in this import.
-Open-data or operator-claimed physical accessibility facts (tier 0 and tier 1 only): **918,289**.
+Open-data or operator-claimed physical accessibility facts (tier 0 and tier 1 only): **918,512**.
 Context fields, reported separately (access, crossing, lit, fee, and the other context fields below): **517,102**.
-All other populated values: **11,371,732**.
-All populated pieces together: **12,807,123**.
-Total UNKNOWN gaps: **65,827,045**.
-UNKNOWN gaps on accessibility fields: **38,382,693**.
+All other populated values: **11,372,863**.
+All populated pieces together: **12,808,477**.
+Total UNKNOWN gaps: **65,834,820**.
+UNKNOWN gaps on accessibility fields: **38,386,604**.
 Derived values excluded from both totals: **4,207**.
-Records: **2,135,317**.
+Records: **2,135,593**.
 
 The illustrative targets are 250,000 venue, 100,000 path, 50,000 transit, and 100,000 washroom verified field-values. Shortfall is the target minus verified values.
 
 | Tranche | Records | Physical accessibility facts (tier 0–1) | Context fields | Other populated | Verified (tier 2–3) | UNKNOWN gaps | Illustrative target | Shortfall |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| venue | 988441 | 121567 | 96490 | 7233048 | 0 | 35051858 | 250000 | 250000 |
+| venue | 988468 | 121567 | 96490 | 7233183 | 0 | 35052884 | 250000 | 250000 |
 | washroom | 7158 | 3668 | 3036 | 29197 | 0 | 239054 | 100000 | 100000 |
-| path | 1107364 | 771774 | 417576 | 3941227 | 0 | 30305071 | 100000 | 100000 |
+| path | 1107613 | 771997 | 417576 | 3942223 | 0 | 30311820 | 100000 | 100000 |
 | transit | 32354 | 21280 | 0 | 168260 | 0 | 231062 | 50000 | 50000 |
 
 ## Accessibility facts
 
 An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.
 
-Physical accessibility facts, context fields, and the remaining pieces add up to the total: 918,289 + 517,102 + 11,371,732 = 12,807,123.
+Physical accessibility facts, context fields, and the remaining pieces add up to the total: 918,512 + 517,102 + 11,372,863 = 12,808,477.
 
 | Tranche | Physical accessibility pieces | Context pieces | Remaining pieces |
 | --- | ---: | ---: | ---: |
-| venue | 121567 | 96490 | 7233048 |
+| venue | 121567 | 96490 | 7233183 |
 | washroom | 3668 | 3036 | 29197 |
-| path | 771774 | 417576 | 3941227 |
+| path | 771997 | 417576 | 3942223 |
 | transit | 21280 | 0 | 168260 |
 
 Context fields are populated values that are not a physical access measurement: access, crossing, lit, foot, fee, changing_table_fee, unisex, male, female, locked, and supervised. They are not accessibility facts and they are not names or geometry.
@@ -112,7 +112,7 @@ Populated accessibility facts by field:
 
 ### path
 
-- surface: 382033
+- surface: 382256
 - width: 116701
 - tactile_paving: 99435
 - kerb: 57242
@@ -132,9 +132,9 @@ Populated accessibility facts by field:
 
 | Tranche | Tier 0 | Tier 1 | Tier 2 | Tier 3 | Tier 4 |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| venue | 7451105 | 0 | 0 | 0 | 0 |
+| venue | 7451240 | 0 | 0 | 0 | 0 |
 | washroom | 35901 | 0 | 0 | 0 | 0 |
-| path | 5130577 | 0 | 0 | 0 | 0 |
+| path | 5131796 | 0 | 0 | 0 | 0 |
 | transit | 1310 | 188230 | 0 | 0 | 0 |
 
 ## Pieces by source and retrieval date
@@ -153,6 +153,8 @@ Populated accessibility facts by field:
 | cambridge-play-structures | 392 | 2864 | 0 | 13992 | 2864 | 0 | 2026-11-16 |
 | cambridge-sidewalks | 8188 | 35174 | 10610 | 226842 | 35174 | 0 | 2026-11-16 |
 | cambridge-trails | 1896 | 9615 | 3927 | 51057 | 9615 | 0 | 2026-11-16 |
+| cloca-conservation-areas | 10 | 50 | 0 | 380 | 50 | 0 | 2026-11-17 |
+| cloca-trails | 249 | 1219 | 223 | 6749 | 1219 | 0 | 2026-11-17 |
 | cornwall-recreational-paths | 221 | 1153 | 441 | 5919 | 1153 | 0 | 2026-11-16 |
 | cornwall-sidewalks | 1636 | 9814 | 3270 | 42538 | 9814 | 0 | 2026-11-16 |
 | cornwall-transit-bus-stops | 308 | 1232 | 0 | 2772 | 1232 | 0 | 2026-11-16 |
@@ -226,6 +228,7 @@ Populated accessibility facts by field:
 | london-sidewalks | 11196 | 55976 | 22388 | 302296 | 55976 | 0 | 2026-11-16 |
 | london-trails | 2464 | 7392 | 0 | 71456 | 7392 | 0 | 2026-11-16 |
 | london-walkways | 465 | 1395 | 0 | 13485 | 1395 | 0 | 2026-11-16 |
+| lsrca-public-lands | 17 | 85 | 0 | 646 | 85 | 0 | 2026-11-17 |
 | markham-city-facilities | 82 | 574 | 0 | 2952 | 574 | 0 | 2026-11-16 |
 | markham-trails | 3075 | 15240 | 2994 | 83160 | 15240 | 0 | 2026-11-16 |
 | metrolinx-go | 889 | 6151 | 889 | 5406 | 0 | 6151 | 2026-11-15 |
@@ -323,18 +326,18 @@ Populated accessibility facts by field:
 
 ### venue
 
-- braille: 988441
-- door_width: 988441
-- handrail: 988441
-- incline: 988441
-- kerb_height: 988441
-- ramp_stroller: 988441
-- ramp_wheelchair: 988441
-- step_count: 988441
-- hearing_loop: 988438
-- elevator: 988428
-- tactile_paving: 988428
-- ramp: 988412
+- braille: 988468
+- door_width: 988468
+- handrail: 988468
+- incline: 988468
+- kerb_height: 988468
+- ramp_stroller: 988468
+- ramp_wheelchair: 988468
+- step_count: 988468
+- hearing_loop: 988465
+- elevator: 988455
+- tactile_paving: 988455
+- ramp: 988439
 
 ### washroom
 
@@ -353,18 +356,18 @@ Populated accessibility facts by field:
 
 ### path
 
-- bidirectional: 1107364
-- from_ref: 1107364
-- max_slope: 1107364
-- min_width: 1107364
-- pathway_mode: 1107364
-- reversed_signposted_as: 1107364
-- stair_count: 1107364
-- to_ref: 1107364
-- traversal_time_s: 1107364
-- ramp: 1105992
+- bidirectional: 1107613
+- from_ref: 1107613
+- max_slope: 1107613
+- min_width: 1107613
+- pathway_mode: 1107613
+- reversed_signposted_as: 1107613
+- stair_count: 1107613
+- to_ref: 1107613
+- traversal_time_s: 1107613
+- ramp: 1106241
+- step_count: 1105575
 - signposted_as: 1105534
-- step_count: 1105326
 
 ### transit
 
@@ -383,8 +386,8 @@ Populated accessibility facts by field:
 
 A place is a venue, washroom or transit record; paths are not places. Records from different sources that the same-place matcher links (data/links/same-place) count as one distinct place. Distinct places = place records in no link cluster + link clusters with at least one record present. Possible duplicates are not merged. A distinct place has a known accessibility fact when at least one of its records has a populated, non-derived accessibility field. "Only in this source" counts the distinct places whose every record comes from that source.
 
-Place records (venue, washroom, transit): **1,027,953**.
-Distinct places: **938,647**.
+Place records (venue, washroom, transit): **1,027,980**.
+Distinct places: **938,674**.
 Records joined by same-place links: **161,034** in **71,728** clusters.
 Distinct places with at least one known accessibility fact: **128,167**.
 Possible duplicates listed for review and not merged: **79,451**.
@@ -398,6 +401,7 @@ The links are older than the record files (method same-place-v1): records added 
 | brampton-recreation-centres | 39 | 6 | 33 |
 | brant-parks | 60 | 19 | 41 |
 | cambridge-play-structures | 392 | 286 | 106 |
+| cloca-conservation-areas | 10 | 10 | 0 |
 | cornwall-transit-bus-stops | 308 | 308 | 0 |
 | cornwall-water-bottle-filling-stations | 6 | 5 | 1 |
 | essex-county-libraries | 15 | 8 | 7 |
@@ -451,6 +455,7 @@ The links are older than the record files (method same-place-v1): records added 
 | london-off-street-parking | 21 | 1 | 20 |
 | london-park-amenities | 1225 | 798 | 427 |
 | london-parking-inventory | 170 | 147 | 23 |
+| lsrca-public-lands | 17 | 17 | 0 |
 | markham-city-facilities | 82 | 46 | 36 |
 | metrolinx-go | 889 | 678 | 211 |
 | metrolinx-up | 5 | 2 | 3 |

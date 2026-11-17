@@ -573,5 +573,95 @@
     "name": "PSPC building accessibility scores, Federal Heritage Designations and the Parks Canada list of parks and sites (no coordinates)",
     "url": "https://open.canada.ca/data/dataset/aaf6462d-eab9-4165-9329-24095451121d",
     "reason": "Checked 2026-11-16. Three Open Government Licence – Canada datasets were read: Total Accessibility Score of PSPC owned and lease purchased buildings (205 buildings, addresses and an accessibility score, no coordinates), Federal Heritage Designations (3,888 rows, no coordinates, and it includes designated persons) and List of National Parks and National Historic Sites (parksid.xml, names only). This pipeline does not geocode, so none is imported. No open.canada.ca dataset of Service Canada or Canada Post locations with coordinates was found."
+  },
+  {
+    "name": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)",
+    "url": "https://www.arcgis.com/home/search.html",
+    "reason": "Checked 2026-11-17 (lane G7, small-towns sweep). A territorial district is not a municipal government, so no upper tier publishes data for these municipalities. For each of the 139 single-tier municipalities in these districts not already covered (listed with status gap in sources/ontario-municipalities-remaining.json), an ArcGIS Online search for a hub site, site application or feature layer under the municipality's name was run on 2026-11-17. It found no municipal open-data portal and no municipal layer whose licence permits redistribution: the municipal layers it found (City of Kenora planning, boat launch and trail layers; West Parry Sound Geography Network trails and municipal layers; Town of Fort Frances infrastructure) have a blank licence field or read 'For illustrative purposes only', and the Town of Parry Sound parcels carry a copyright notice. Hits under the same names elsewhere (Cochrane, Alberta; Espanola, New Mexico; Marathon County, Wisconsin; Pembroke Pines, Florida) are other places. No web search of each municipality's own website was made. Province-wide sources already in this repository (OpenStreetMap, Statistics Canada LODE, Province of Ontario) are the only data for these places."
+  },
+  {
+    "name": "County of Renfrew GIS layers and City of Pembroke",
+    "url": "https://renfrewcountygismapping-cofr.hub.arcgis.com",
+    "reason": "Checked 2026-11-17 (lane G7, small-towns sweep). The County of Renfrew's public ArcGIS layers (Trails, PublicSiteLayers and about 300 other feature services in its organization) carry a licence field stating that the contents are protected by copyright and may not be reproduced or redistributed without the prior written permission of the County of Renfrew. Nothing was imported. No City of Pembroke open-data portal was found by an ArcGIS Online search under its name (the hits are Pembroke Pines, Florida and Pembroke Park, Florida)."
+  },
+  {
+    "name": "District Municipality of Muskoka GeoHub and Town of Huntsville",
+    "url": "https://map.muskoka.on.ca/pages/terms-of-use",
+    "reason": "Checked 2026-11-17 (lane G7, small-towns sweep). The Muskoka GeoHub lists 51 items, including Trails - Trails and Trails - Points of Interest. Its Terms of Use page (page item 6c6a632b72ec44c8a0ae06189dcd336b) says the material is produced under licence from the Ontario Ministry of Natural Resources, includes King's Printer material, 'All rights reserved', and grants no right to redistribute. Nothing was imported. The Town of Huntsville hub (https://huntsville-Muskoka.opendata.arcgis.com) lists a Services List table under the Open Government Licence - Huntsville, which has no coordinates, and a Huntsville Transit map service at https://maps.huntsville.ca/arcgis/rest/services/Public_Map_Services; requests to maps.huntsville.ca failed TLS certificate verification (curl error 60) and were not retried without verification. No Bracebridge, Gravenhurst, Muskoka Lakes, Lake of Bays or Georgian Bay portal was found by an ArcGIS Online search under their names."
+  },
+  {
+    "name": "County of Bruce open spatial data, Saugeen Shores GeoHub and Kincardine GIS Map Hub",
+    "url": "https://bruce-county-open-spatial-data-brucecounty.hub.arcgis.com",
+    "reason": "Checked 2026-11-17 (lane G7, small-towns sweep). The County's open spatial data hub lists roads, civic addresses, parcels, forests, municipal boundaries and Trails in Bruce County (FeatureServer layer 6, with difficulty, width and tread columns). Each item's licence field reads 'Subject to terms of Bruce County Open Data Licence', but no text of that licence was found: the hub pages (Open Spatial Data, FAQs) do not hold it, https://www.brucecounty.on.ca/open-data and similar paths returned HTTP 404, and a web search did not find it. Without the licence text nothing was imported. The County's Accessible Public Washrooms in Bruce map tour keeps its washroom points inside a web map item with no licence field and no data layer. The Saugeen Shores GeoHub catalogue is empty and the Kincardine GIS Map Hub lists only a heritage tour layer with a blank licence field."
+  },
+  {
+    "name": "County of Grey layers other than the GTR bus stops",
+    "url": "https://maps.grey.ca",
+    "reason": "Checked 2026-11-17 (lane G7, small-towns sweep). Only items whose licence field names the Grey County Open Data Licence were imported (grey-county-gtr-bus-stops). The Tourism service layers (Hiking, Cycling Trail, Nordic Skiing, Open Space, Parking, Tom Thompson Trail) have a blank licence field; Child Care Facilities, AED Locations and the planning layers are not accessibility places or link only the site's general terms, which grant a view-and-print licence for personal non-commercial use. The Grey County Municipal Accessible Spaces Map is a Web Experience with no catalogued data layer. The County's imported stops fall in a few towns only; the Grey municipalities listed with this gap have no record from any municipal source."
+  },
+  {
+    "name": "County of Dufferin ArcGIS layers",
+    "url": "https://www.arcgis.com/home/search.html?q=owner%3ADufferinGIS",
+    "reason": "Checked 2026-11-17 (lane G7, small-towns sweep). The County's ArcGIS Online organization holds about 390 items. Its feature layers, including Recreation Centres, Municipal Office Locations and Bruce Trail, have a blank licence field; only some 2017-2018 CSV tables name a Dufferin County Open Data License, and none of them is a place layer. https://www.dufferincounty.ca/services/open-data returned HTTP 404. Nothing was imported."
+  },
+  {
+    "name": "United Counties of Stormont, Dundas and Glengarry layers",
+    "url": "https://www.arcgis.com/home/search.html?q=SDG",
+    "reason": "Checked 2026-11-17 (lane G7, small-towns sweep). The Counties' public layers (SDG_CommunityPointsofInterestNEW, SDG_PointsofInterest_ParkandRecViewNEW, SDG_POI_CountyMunicipalOfficesNEW, SDG_Trail_PublicView, SDG_ParkandRecreationLand_View and others) carry licence text such as 'For reference purposes only' or a blank field, with no grant of rights to copy or redistribute. No open-data portal was found. Nothing was imported."
+  },
+  {
+    "name": "County of Haliburton GIS hub",
+    "url": "https://gis-haliburtoncounty-ca-HalCty.hub.arcgis.com",
+    "reason": "Checked 2026-11-17 (lane G7, small-towns sweep). The County's GIS hub catalogue lists two flood-mapping feature layers (Burnt River and Gull River) with a blank licence field and nothing else. No other County or lower-tier open-data portal was found by an ArcGIS Online search. Nothing was imported."
+  },
+  {
+    "name": "County of Frontenac open data",
+    "url": "https://www.arcgis.com/sharing/rest/content/items/b8d2d338adc240c9b7d78e5f615e0652/data",
+    "reason": "Checked 2026-11-17 (lane G7, small-towns sweep). The County's layers (Park, Beach, Community Hall, Library, Boat Launch, Baseball Field, Frontenac K&P Trail and others) point to the County of Frontenac Open Government Licence v1.0. That licence (PDF item b8d2d338adc240c9b7d78e5f615e0652, read 2026-11-17) is based on the Open Government Licence - Ontario but adds clause 5: users must ensure they do not 'rely on it for navigation, decision making or advising'. This project's pages exist to help people decide where they can go, so that condition cannot be met and nothing was imported."
+  },
+  {
+    "name": "County of Peterborough layers",
+    "url": "https://www.arcgis.com/home/search.html?q=owner%3AGIS_PtboCounty",
+    "reason": "Checked 2026-11-17 (lane G7, small-towns sweep). The County's own layers (Trail - Public, Sidewalk, Point of Interest - Public, Emergency Response POI - Public and others) have a blank licence field; only provincial layers it re-hosts carry the Open Government Licence - Ontario. No County open-data portal was found (the County's only hub site is a Public Works hub). Nothing was imported. The City of Peterborough is a separate gap."
+  },
+  {
+    "name": "County of Northumberland, Town of Cobourg and Municipality of Port Hope",
+    "url": "https://public-townofcobourg.hub.arcgis.com/pages/terms-of-use",
+    "reason": "Checked 2026-11-17 (lane G7, small-towns sweep). No County of Northumberland open-data catalogue was found (northumberland.opendata.arcgis.com is Northumberland County Council in England). The Town of Cobourg GIS hub lists Parks and Sidewalks under the Town of Cobourg Open Data Terms of Use (revised November 1, 2021, read 2026-11-17), which license copying of the unmodified datasets only and allow distribution only if the distributor gives each recipient the Town's terms and obtains the recipient's agreement to them; the Town may suspend or terminate the licence. As for the City of Peterborough, this pipeline converts records to its own schema and cannot obtain each recipient's agreement, so nothing was imported. The Open Port Hope hub lists only LiDAR contours and viewers. Nothing was imported for the other Northumberland municipalities."
+  },
+  {
+    "name": "County of Lanark and its municipalities, including the Town of Smiths Falls",
+    "url": "https://www.lanarkcounty.ca/",
+    "reason": "Checked 2026-11-17 (lane G7, small-towns sweep). No County of Lanark open-data portal or licensed layer was found: an ArcGIS Online search for Lanark County hub sites and feature layers returned only third-party and Scottish (Lanarkshire) items, and opendata.lanarkcounty.ca did not resolve. No portal was found for Carleton Place, Mississippi Mills, Perth (Ontario), Smiths Falls or the townships by an ArcGIS Online search under their names. Nothing was imported."
+  },
+  {
+    "name": "County of Perth and Town of St. Marys",
+    "url": "https://www.perthcounty.ca/",
+    "reason": "Checked 2026-11-17 (lane G7, small-towns sweep). https://www.perthcounty.ca/en/county-government/open-data.aspx returned HTTP 404 and an ArcGIS Online search found no County of Perth or Town of St. Marys hub site or licensed layer (the City of Stratford is a separate gap). Nothing was imported."
+  },
+  {
+    "name": "Toronto and Region Conservation Authority trails",
+    "url": "https://trca.ca/about/open-data-licence/",
+    "reason": "Checked 2026-11-17 (lane G7, small-towns sweep). Trails TRCA (item 01afef48031f45f482d3094bd4c0682f, 3,124 lines) is under the TRCA Open Data Licence v1.0, read 2026-11-17. That licence lets TRCA 'revoke the Licence at any time in its sole and absolute discretion', after which the recipient must cease to use the data in any manner. A licence that can be withdrawn at will gives redistributed copies no lasting basis, so it was not imported. Nearly all TRCA trails are in the 77 largest municipalities."
+  },
+  {
+    "name": "Lake Simcoe Region Conservation Authority Trails layer",
+    "url": "https://gis.lsrca.on.ca/gis/rest/services/OpenData/MapServer/12",
+    "reason": "Checked 2026-11-17 (lane G7, small-towns sweep). Layer 12 (Trails, 445 lines with SURFACETYPE, ACCESSIBLE, WIDTH and CLEARANCE columns) is in the Authority's OpenData map service but not in its open-data catalogue, and the service's copyright text reads 'All Rights Reserved'. Only the catalogued LSRCA Lands - Public layer, whose item names the LSRCA Open Data Licence v1.0, was imported (lsrca-public-lands)."
+  },
+  {
+    "name": "County of Lennox and Addington items under all-rights-reserved terms",
+    "url": "https://open-data-hub-lennoxaddington.hub.arcgis.com/",
+    "reason": "Checked 2026-11-17 (lane G7, small-towns sweep). Dining, Lodging, POI (Public View), Traffic Lights Locations (Public View) and County Owned Bridges (Public View) carry the County's own terms in their licence field ('No part of the information herein may be sold, copied, distributed, or transmitted in any form without the prior written consent of the County. All rights reserved.') instead of the link to the open licence, and were not imported. County Bike Trails (Public View) is a set of 12 on-road cycling routes and was not imported. The open-licensed facility sites and sidewalks are imported."
+  },
+  {
+    "name": "Townships of Faraday, Pelee, Wellesley and East Zorra-Tavistock",
+    "url": "https://opendata-Hastings-GIS.hub.arcgis.com/",
+    "reason": "Checked 2026-11-17 (lane G7, small-towns sweep). No layer imported for their upper tiers has a record inside these municipalities: the County of Hastings layers have none in Faraday, the County of Essex layers none on Pelee Island (Pelee is a separated township), the County of Oxford trails none in East Zorra-Tavistock, and the Region of Waterloo layers were not imported (see the Region of Waterloo gap). No township open-data portal was found by an ArcGIS Online search under each name."
+  },
+  {
+    "name": "Township of Scugog Public GIS Portal",
+    "url": "https://public-scugog.hub.arcgis.com",
+    "reason": "Checked 2026-11-17 (lane G7, small-towns sweep). The Township's layers (Parks - Public, Sidewalks - Public, Trails - Public and others) carry only an accuracy disclaimer in their licence field, with no grant of rights to copy or redistribute, and were not imported. Scugog has imported records from the conservation authority layers."
   }
 ]

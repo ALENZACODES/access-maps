@@ -804,6 +804,21 @@ export const LICENCE_FINDINGS: readonly LicenceFinding[] = [
     licence: "OGL-NPCA",
     reason: "Open Government Licence – Niagara Peninsula Conservation Authority (NPCA). Not in the strict export allowlist.",
   },
+  {
+    sourceId: "lsrca-public-lands",
+    licence: "LSRCA-Open-Data-Licence-1.0",
+    reason: "Lake Simcoe Region Conservation Authority Open Data Licence v1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "cloca-conservation-areas",
+    licence: "CLOCA-Open-Data-Licence-1.0",
+    reason: "CLOCA Open Data Licence v1. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "cloca-trails",
+    licence: "CLOCA-Open-Data-Licence-1.0",
+    reason: "CLOCA Open Data Licence v1. Not in the strict export allowlist.",
+  },
   // g7 small towns end
 ];
 

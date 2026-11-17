@@ -24,9 +24,9 @@
   "method": "Rows of 98100002.csv whose DGUID starts with 2021A000535 (census subdivisions in Ontario) were joined to the table's own metadata file for the census subdivision type and parent census division. Indian reserves (IRI), Indian settlements (S-É) and unorganized territories (NO) are not municipalities and are left out: 414 municipalities remain, which with Ontario's 30 upper-tier municipalities makes the province's 444. The 77 already listed in ontario-top-50-municipalities.json and ontario-municipalities-51-75.json are left out, leaving the municipalities below, sorted by 2021 population. upper_tier is the Land Information Ontario boundary's UPPER_TIER_MUNICIPALITY (null for a single-tier municipality, including every municipality in a territorial district and the separated cities and towns); the boundary was matched to the census subdivision by name within its census division. municipal_records counts, per source, the records of sources/registry.json entries of kind municipal whose point, or a path's first vertex, falls inside the municipality's boundary (generalized to 0.0001 degrees, about 10 m), counted on the branch that last changed this file. status is imported when that count is above zero, otherwise gap with the name of the sources/gaps.json record that says why, or pending while the sweep has not reached that publisher. Province-wide sources (OpenStreetMap, Statistics Canada, Province of Ontario) are not counted here.",
   "summary": {
     "municipalities": 337,
-    "imported": 87,
-    "gap": 0,
-    "pending": 250
+    "imported": 90,
+    "gap": 247,
+    "pending": 0
   },
   "municipalities": [
     {
@@ -73,7 +73,8 @@
       "census_division": "Simcoe",
       "upper_tier": "County of Simcoe",
       "lio_name": "TOWNSHIP OF SPRINGWATER",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Simcoe data portal"
     },
     {
       "name": "Owen Sound",
@@ -100,7 +101,11 @@
       "census_division": "Durham",
       "upper_tier": "Regional Municipality of Durham",
       "lio_name": "TOWNSHIP OF SCUGOG",
-      "status": "pending"
+      "status": "imported",
+      "municipal_records": {
+        "cloca-conservation-areas": 1,
+        "cloca-trails": 10
+      }
     },
     {
       "name": "Uxbridge",
@@ -112,7 +117,10 @@
       "census_division": "Durham",
       "upper_tier": "Regional Municipality of Durham",
       "lio_name": "TOWNSHIP OF UXBRIDGE",
-      "status": "pending"
+      "status": "imported",
+      "municipal_records": {
+        "lsrca-public-lands": 1
+      }
     },
     {
       "name": "Wilmot",
@@ -158,7 +166,8 @@
       "census_division": "Muskoka",
       "upper_tier": "District Municipality of Muskoka",
       "lio_name": "TOWN OF HUNTSVILLE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "District Municipality of Muskoka GeoHub and Town of Huntsville"
     },
     {
       "name": "Cobourg",
@@ -170,7 +179,8 @@
       "census_division": "Northumberland",
       "upper_tier": "County of Northumberland",
       "lio_name": "TOWN OF COBOURG",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Northumberland, Town of Cobourg and Municipality of Port Hope"
     },
     {
       "name": "South Frontenac",
@@ -262,7 +272,8 @@
       "census_division": "Peterborough",
       "upper_tier": "County of Peterborough",
       "lio_name": "TOWNSHIP OF SELWYN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Peterborough layers"
     },
     {
       "name": "Tillsonburg",
@@ -305,7 +316,8 @@
       "census_division": "Renfrew",
       "upper_tier": "County of Renfrew",
       "lio_name": "TOWN OF PETAWAWA",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Renfrew GIS layers and City of Pembroke"
     },
     {
       "name": "North Grenville",
@@ -349,7 +361,8 @@
       "census_division": "Simcoe",
       "upper_tier": "County of Simcoe",
       "lio_name": "TOWN OF MIDLAND",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Simcoe data portal"
     },
     {
       "name": "Bracebridge",
@@ -361,7 +374,8 @@
       "census_division": "Muskoka",
       "upper_tier": "District Municipality of Muskoka",
       "lio_name": "TOWN OF BRACEBRIDGE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "District Municipality of Muskoka GeoHub and Town of Huntsville"
     },
     {
       "name": "Port Hope",
@@ -373,7 +387,8 @@
       "census_division": "Northumberland",
       "upper_tier": "County of Northumberland",
       "lio_name": "MUNICIPALITY OF PORT HOPE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Northumberland, Town of Cobourg and Municipality of Port Hope"
     },
     {
       "name": "Greater Napanee",
@@ -401,7 +416,8 @@
       "census_division": "Bruce",
       "upper_tier": "County of Bruce",
       "lio_name": "TOWN OF SAUGEEN SHORES",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Bruce open spatial data, Saugeen Shores GeoHub and Kincardine GIS Map Hub"
     },
     {
       "name": "North Perth",
@@ -413,7 +429,8 @@
       "census_division": "Perth",
       "upper_tier": "County of Perth",
       "lio_name": "MUNICIPALITY OF NORTH PERTH",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Perth and Town of St. Marys"
     },
     {
       "name": "West Lincoln",
@@ -440,7 +457,8 @@
       "census_division": "Kenora",
       "upper_tier": null,
       "lio_name": "CITY OF KENORA",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Clearview",
@@ -452,7 +470,8 @@
       "census_division": "Simcoe",
       "upper_tier": "County of Simcoe",
       "lio_name": "TOWNSHIP OF CLEARVIEW",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Simcoe data portal"
     },
     {
       "name": "Mississippi Mills",
@@ -464,7 +483,8 @@
       "census_division": "Lanark",
       "upper_tier": "County of Lanark",
       "lio_name": "MUNICIPALITY OF MISSISSIPPI MILLS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Lanark and its municipalities, including the Town of Smiths Falls"
     },
     {
       "name": "St. Clair",
@@ -491,7 +511,8 @@
       "census_division": "Nipissing",
       "upper_tier": null,
       "lio_name": "MUNICIPALITY OF WEST NIPISSING",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Severn",
@@ -503,7 +524,8 @@
       "census_division": "Simcoe",
       "upper_tier": "County of Simcoe",
       "lio_name": "TOWNSHIP OF SEVERN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Simcoe data portal"
     },
     {
       "name": "Pembroke",
@@ -515,7 +537,8 @@
       "census_division": "Renfrew",
       "upper_tier": null,
       "lio_name": "CITY OF PEMBROKE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Renfrew GIS layers and City of Pembroke"
     },
     {
       "name": "Thames Centre",
@@ -527,7 +550,8 @@
       "census_division": "Middlesex",
       "upper_tier": "County of Middlesex",
       "lio_name": "MUNICIPALITY OF THAMES CENTRE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipality of Strathroy-Caradoc and County of Middlesex open data"
     },
     {
       "name": "Guelph/Eramosa",
@@ -556,7 +580,8 @@
       "census_division": "Northumberland",
       "upper_tier": "County of Northumberland",
       "lio_name": "MUNICIPALITY OF TRENT HILLS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Northumberland, Town of Cobourg and Municipality of Port Hope"
     },
     {
       "name": "Central Elgin",
@@ -568,7 +593,8 @@
       "census_division": "Elgin",
       "upper_tier": "County of Elgin",
       "lio_name": "MUNICIPALITY OF CENTRAL ELGIN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "City of St. Thomas and County of Elgin"
     },
     {
       "name": "Ingersoll",
@@ -610,7 +636,8 @@
       "census_division": "Prescott and Russell",
       "upper_tier": "United Counties of Prescott and Russell",
       "lio_name": "THE NATION MUNICIPALITY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "City of Clarence-Rockland and United Counties of Prescott and Russell open data"
     },
     {
       "name": "South Glengarry",
@@ -637,7 +664,8 @@
       "census_division": "Muskoka",
       "upper_tier": "District Municipality of Muskoka",
       "lio_name": "TOWN OF GRAVENHURST",
-      "status": "pending"
+      "status": "gap",
+      "gap": "District Municipality of Muskoka GeoHub and Town of Huntsville"
     },
     {
       "name": "West Grey",
@@ -649,7 +677,8 @@
       "census_division": "Grey",
       "upper_tier": "County of Grey",
       "lio_name": "MUNICIPALITY OF WEST GREY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Grey layers other than the GTR bus stops"
     },
     {
       "name": "Tiny",
@@ -661,7 +690,8 @@
       "census_division": "Simcoe",
       "upper_tier": "County of Simcoe",
       "lio_name": "TOWNSHIP OF TINY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Simcoe data portal"
     },
     {
       "name": "Perth East",
@@ -673,7 +703,8 @@
       "census_division": "Perth",
       "upper_tier": "County of Perth",
       "lio_name": "TOWNSHIP OF PERTH EAST",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Perth and Town of St. Marys"
     },
     {
       "name": "Brock",
@@ -685,7 +716,10 @@
       "census_division": "Durham",
       "upper_tier": "Regional Municipality of Durham",
       "lio_name": "TOWNSHIP OF BROCK",
-      "status": "pending"
+      "status": "imported",
+      "municipal_records": {
+        "lsrca-public-lands": 2
+      }
     },
     {
       "name": "Carleton Place",
@@ -697,7 +731,8 @@
       "census_division": "Lanark",
       "upper_tier": "County of Lanark",
       "lio_name": "TOWN OF CARLETON PLACE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Lanark and its municipalities, including the Town of Smiths Falls"
     },
     {
       "name": "Wellington North",
@@ -709,7 +744,8 @@
       "census_division": "Wellington",
       "upper_tier": "County of Wellington",
       "lio_name": "TOWNSHIP OF WELLINGTON NORTH",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Township of Centre Wellington and County of Wellington open data"
     },
     {
       "name": "Kincardine",
@@ -721,7 +757,8 @@
       "census_division": "Bruce",
       "upper_tier": "County of Bruce",
       "lio_name": "MUNICIPALITY OF KINCARDINE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Bruce open spatial data, Saugeen Shores GeoHub and Kincardine GIS Map Hub"
     },
     {
       "name": "Brighton",
@@ -733,7 +770,8 @@
       "census_division": "Northumberland",
       "upper_tier": "County of Northumberland",
       "lio_name": "MUNICIPALITY OF BRIGHTON",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Northumberland, Town of Cobourg and Municipality of Port Hope"
     },
     {
       "name": "Erin",
@@ -775,7 +813,8 @@
       "census_division": "Grey",
       "upper_tier": "County of Grey",
       "lio_name": "MUNICIPALITY OF MEAFORD",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Grey layers other than the GTR bus stops"
     },
     {
       "name": "Elliot Lake",
@@ -787,7 +826,8 @@
       "census_division": "Algoma",
       "upper_tier": null,
       "lio_name": "CITY OF ELLIOT LAKE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Wellesley",
@@ -799,7 +839,8 @@
       "census_division": "Waterloo",
       "upper_tier": "Regional Municipality of Waterloo",
       "lio_name": "TOWNSHIP OF WELLESLEY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Townships of Faraday, Pelee, Wellesley and East Zorra-Tavistock"
     },
     {
       "name": "North Dundas",
@@ -811,7 +852,8 @@
       "census_division": "Stormont, Dundas and Glengarry",
       "upper_tier": "United Counties of Stormont, Dundas and Glengarry",
       "lio_name": "TOWNSHIP OF NORTH DUNDAS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "United Counties of Stormont, Dundas and Glengarry layers"
     },
     {
       "name": "Norwich",
@@ -853,7 +895,8 @@
       "census_division": "Simcoe",
       "upper_tier": "County of Simcoe",
       "lio_name": "TOWNSHIP OF TAY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Simcoe data portal"
     },
     {
       "name": "Hamilton",
@@ -865,7 +908,8 @@
       "census_division": "Northumberland",
       "upper_tier": "County of Northumberland",
       "lio_name": "TOWNSHIP OF HAMILTON",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Northumberland, Town of Cobourg and Municipality of Port Hope"
     },
     {
       "name": "South Dundas",
@@ -877,7 +921,8 @@
       "census_division": "Stormont, Dundas and Glengarry",
       "upper_tier": "United Counties of Stormont, Dundas and Glengarry",
       "lio_name": "MUNICIPALITY OF SOUTH DUNDAS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "United Counties of Stormont, Dundas and Glengarry layers"
     },
     {
       "name": "Adjala-Tosorontio",
@@ -919,7 +964,8 @@
       "census_division": "Wellington",
       "upper_tier": "County of Wellington",
       "lio_name": "TOWNSHIP OF MAPLETON",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Township of Centre Wellington and County of Wellington open data"
     },
     {
       "name": "North Dumfries",
@@ -948,7 +994,8 @@
       "census_division": "Grey",
       "upper_tier": "County of Grey",
       "lio_name": "MUNICIPALITY OF GREY HIGHLANDS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Grey layers other than the GTR bus stops"
     },
     {
       "name": "Ramara",
@@ -960,7 +1007,8 @@
       "census_division": "Simcoe",
       "upper_tier": "County of Simcoe",
       "lio_name": "TOWNSHIP OF RAMARA",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Simcoe data portal"
     },
     {
       "name": "Hawkesbury",
@@ -972,7 +1020,8 @@
       "census_division": "Prescott and Russell",
       "upper_tier": "United Counties of Prescott and Russell",
       "lio_name": "TOWN OF HAWKESBURY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "City of Clarence-Rockland and United Counties of Prescott and Russell open data"
     },
     {
       "name": "North Glengarry",
@@ -984,7 +1033,8 @@
       "census_division": "Stormont, Dundas and Glengarry",
       "upper_tier": "United Counties of Stormont, Dundas and Glengarry",
       "lio_name": "TOWNSHIP OF NORTH GLENGARRY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "United Counties of Stormont, Dundas and Glengarry layers"
     },
     {
       "name": "Penetanguishene",
@@ -996,7 +1046,8 @@
       "census_division": "Simcoe",
       "upper_tier": "County of Simcoe",
       "lio_name": "TOWN OF PENETANGUISHENE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Simcoe data portal"
     },
     {
       "name": "South Huron",
@@ -1027,7 +1078,8 @@
       "census_division": "Peterborough",
       "upper_tier": "County of Peterborough",
       "lio_name": "TOWNSHIP OF CAVAN MONAGHAN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Peterborough layers"
     },
     {
       "name": "Alfred and Plantagenet",
@@ -1039,7 +1091,8 @@
       "census_division": "Prescott and Russell",
       "upper_tier": "United Counties of Prescott and Russell",
       "lio_name": "TOWNSHIP OF ALFRED AND PLANTAGENET",
-      "status": "pending"
+      "status": "gap",
+      "gap": "City of Clarence-Rockland and United Counties of Prescott and Russell open data"
     },
     {
       "name": "Leeds and the Thousand Islands",
@@ -1066,7 +1119,8 @@
       "census_division": "Bruce",
       "upper_tier": "County of Bruce",
       "lio_name": "MUNICIPALITY OF BROCKTON",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Bruce open spatial data, Saugeen Shores GeoHub and Kincardine GIS Map Hub"
     },
     {
       "name": "Temiskaming Shores",
@@ -1078,7 +1132,8 @@
       "census_division": "Timiskaming",
       "upper_tier": null,
       "lio_name": "CITY OF TEMISKAMING SHORES",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Arnprior",
@@ -1090,7 +1145,8 @@
       "census_division": "Renfrew",
       "upper_tier": "County of Renfrew",
       "lio_name": "TOWN OF ARNPRIOR",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Renfrew GIS layers and City of Pembroke"
     },
     {
       "name": "Elizabethtown-Kitley",
@@ -1138,7 +1194,8 @@
       "census_division": "Renfrew",
       "upper_tier": "County of Renfrew",
       "lio_name": "TOWNSHIP OF LAURENTIAN VALLEY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Renfrew GIS layers and City of Pembroke"
     },
     {
       "name": "Mono",
@@ -1165,7 +1222,8 @@
       "census_division": "Grey",
       "upper_tier": "County of Grey",
       "lio_name": "TOWN OF THE BLUE MOUNTAINS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Grey layers other than the GTR bus stops"
     },
     {
       "name": "Malahide",
@@ -1177,7 +1235,8 @@
       "census_division": "Elgin",
       "upper_tier": "County of Elgin",
       "lio_name": "TOWNSHIP OF MALAHIDE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "City of St. Thomas and County of Elgin"
     },
     {
       "name": "Smiths Falls",
@@ -1189,7 +1248,8 @@
       "census_division": "Lanark",
       "upper_tier": null,
       "lio_name": "TOWN OF SMITHS FALLS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Lanark and its municipalities, including the Town of Smiths Falls"
     },
     {
       "name": "South Bruce Peninsula",
@@ -1216,7 +1276,8 @@
       "census_division": "Wellington",
       "upper_tier": "County of Wellington",
       "lio_name": "TOWN OF MINTO",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Township of Centre Wellington and County of Wellington open data"
     },
     {
       "name": "West Perth",
@@ -1228,7 +1289,8 @@
       "census_division": "Perth",
       "upper_tier": "County of Perth",
       "lio_name": "MUNICIPALITY OF WEST PERTH",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Perth and Town of St. Marys"
     },
     {
       "name": "Beckwith",
@@ -1285,7 +1347,8 @@
       "census_division": "Prescott and Russell",
       "upper_tier": "United Counties of Prescott and Russell",
       "lio_name": "TOWNSHIP OF CHAMPLAIN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "City of Clarence-Rockland and United Counties of Prescott and Russell open data"
     },
     {
       "name": "Zorra",
@@ -1327,7 +1390,8 @@
       "census_division": "Renfrew",
       "upper_tier": "County of Renfrew",
       "lio_name": "TOWN OF RENFREW",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Renfrew GIS layers and City of Pembroke"
     },
     {
       "name": "Drummond/North Elmsley",
@@ -1339,7 +1403,8 @@
       "census_division": "Lanark",
       "upper_tier": "County of Lanark",
       "lio_name": "TOWNSHIP OF DRUMMOND/NORTH ELMSLEY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Lanark and its municipalities, including the Town of Smiths Falls"
     },
     {
       "name": "Kapuskasing",
@@ -1351,7 +1416,8 @@
       "census_division": "Cochrane",
       "upper_tier": null,
       "lio_name": "TOWN OF KAPUSKASING",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Hanover",
@@ -1363,7 +1429,8 @@
       "census_division": "Grey",
       "upper_tier": "County of Grey",
       "lio_name": "TOWN OF HANOVER",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Grey layers other than the GTR bus stops"
     },
     {
       "name": "Puslinch",
@@ -1411,7 +1478,8 @@
       "census_division": "Oxford",
       "upper_tier": "County of Oxford",
       "lio_name": "TOWNSHIP OF EAST ZORRA-TAVISTOCK",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Townships of Faraday, Pelee, Wellesley and East Zorra-Tavistock"
     },
     {
       "name": "Stone Mills",
@@ -1461,7 +1529,8 @@
       "census_division": "Timiskaming",
       "upper_tier": null,
       "lio_name": "TOWN OF KIRKLAND LAKE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Huron-Kinloss",
@@ -1473,7 +1542,8 @@
       "census_division": "Bruce",
       "upper_tier": "County of Bruce",
       "lio_name": "TOWNSHIP OF HURON-KINLOSS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Bruce open spatial data, Saugeen Shores GeoHub and Kincardine GIS Map Hub"
     },
     {
       "name": "Aylmer",
@@ -1485,7 +1555,8 @@
       "census_division": "Elgin",
       "upper_tier": "County of Elgin",
       "lio_name": "TOWN OF AYLMER",
-      "status": "pending"
+      "status": "gap",
+      "gap": "City of St. Thomas and County of Elgin"
     },
     {
       "name": "Muskoka Lakes",
@@ -1497,7 +1568,8 @@
       "census_division": "Muskoka",
       "upper_tier": "District Municipality of Muskoka",
       "lio_name": "TOWNSHIP OF MUSKOKA LAKES",
-      "status": "pending"
+      "status": "gap",
+      "gap": "District Municipality of Muskoka GeoHub and Town of Huntsville"
     },
     {
       "name": "Douro-Dummer",
@@ -1509,7 +1581,8 @@
       "census_division": "Peterborough",
       "upper_tier": "County of Peterborough",
       "lio_name": "TOWNSHIP OF DOURO-DUMMER",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Peterborough layers"
     },
     {
       "name": "McNab/Braeside",
@@ -1521,7 +1594,8 @@
       "census_division": "Renfrew",
       "upper_tier": "County of Renfrew",
       "lio_name": "TOWNSHIP OF MCNAB/BRAESIDE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Renfrew GIS layers and City of Pembroke"
     },
     {
       "name": "South-West Oxford",
@@ -1599,7 +1673,8 @@
       "census_division": "Northumberland",
       "upper_tier": "County of Northumberland",
       "lio_name": "TOWNSHIP OF ALNWICK/HALDIMAND",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Northumberland, Town of Cobourg and Municipality of Port Hope"
     },
     {
       "name": "Fort Frances",
@@ -1611,7 +1686,8 @@
       "census_division": "Rainy River",
       "upper_tier": null,
       "lio_name": "TOWN OF FORT FRANCES",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "North Stormont",
@@ -1623,7 +1699,8 @@
       "census_division": "Stormont, Dundas and Glengarry",
       "upper_tier": "United Counties of Stormont, Dundas and Glengarry",
       "lio_name": "TOWNSHIP OF NORTH STORMONT",
-      "status": "pending"
+      "status": "gap",
+      "gap": "United Counties of Stormont, Dundas and Glengarry layers"
     },
     {
       "name": "Dryden",
@@ -1635,7 +1712,8 @@
       "census_division": "Kenora",
       "upper_tier": null,
       "lio_name": "CITY OF DRYDEN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Augusta",
@@ -1662,7 +1740,8 @@
       "census_division": "Perth",
       "upper_tier": null,
       "lio_name": "TOWN OF ST. MARYS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Perth and Town of St. Marys"
     },
     {
       "name": "Whitewater Region",
@@ -1674,7 +1753,8 @@
       "census_division": "Renfrew",
       "upper_tier": "County of Renfrew",
       "lio_name": "TOWNSHIP OF WHITEWATER REGION",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Renfrew GIS layers and City of Pembroke"
     },
     {
       "name": "Dysart et al",
@@ -1686,7 +1766,8 @@
       "census_division": "Haliburton",
       "upper_tier": "County of Haliburton",
       "lio_name": "MUNICIPALITY OF DYSART ET AL",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Haliburton GIS hub"
     },
     {
       "name": "Bayham",
@@ -1713,7 +1794,8 @@
       "census_division": "Peterborough",
       "upper_tier": "County of Peterborough",
       "lio_name": "TOWNSHIP OF OTONABEE-SOUTH MONAGHAN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Peterborough layers"
     },
     {
       "name": "Chatsworth",
@@ -1725,7 +1807,8 @@
       "census_division": "Grey",
       "upper_tier": "County of Grey",
       "lio_name": "TOWNSHIP OF CHATSWORTH",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Grey layers other than the GTR bus stops"
     },
     {
       "name": "Minden Hills",
@@ -1737,7 +1820,8 @@
       "census_division": "Haliburton",
       "upper_tier": "County of Haliburton",
       "lio_name": "TOWNSHIP OF MINDEN HILLS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Haliburton GIS hub"
     },
     {
       "name": "Arran-Elderslie",
@@ -1749,7 +1833,8 @@
       "census_division": "Bruce",
       "upper_tier": "County of Bruce",
       "lio_name": "MUNICIPALITY OF ARRAN-ELDERSLIE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Bruce open spatial data, Saugeen Shores GeoHub and Kincardine GIS Map Hub"
     },
     {
       "name": "Wainfleet",
@@ -1778,7 +1863,8 @@
       "census_division": "Parry Sound",
       "upper_tier": null,
       "lio_name": "TOWN OF PARRY SOUND",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Cramahe",
@@ -1790,7 +1876,8 @@
       "census_division": "Northumberland",
       "upper_tier": "County of Northumberland",
       "lio_name": "TOWNSHIP OF CRAMAHE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Northumberland, Town of Cobourg and Municipality of Port Hope"
     },
     {
       "name": "Perth",
@@ -1802,7 +1889,8 @@
       "census_division": "Lanark",
       "upper_tier": "County of Lanark",
       "lio_name": "TOWN OF PERTH",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Lanark and its municipalities, including the Town of Smiths Falls"
     },
     {
       "name": "Trent Lakes",
@@ -1814,7 +1902,8 @@
       "census_division": "Peterborough",
       "upper_tier": "County of Peterborough",
       "lio_name": "MUNICIPALITY OF TRENT LAKES",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Peterborough layers"
     },
     {
       "name": "North Middlesex",
@@ -1826,7 +1915,8 @@
       "census_division": "Middlesex",
       "upper_tier": "County of Middlesex",
       "lio_name": "MUNICIPALITY OF NORTH MIDDLESEX",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipality of Strathroy-Caradoc and County of Middlesex open data"
     },
     {
       "name": "Tweed",
@@ -1858,7 +1948,8 @@
       "census_division": "Thunder Bay",
       "upper_tier": null,
       "lio_name": "MUNICIPALITY OF OLIVER PAIPOONGE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Petrolia",
@@ -1885,7 +1976,8 @@
       "census_division": "Lanark",
       "upper_tier": "County of Lanark",
       "lio_name": "TOWNSHIP OF TAY VALLEY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Lanark and its municipalities, including the Town of Smiths Falls"
     },
     {
       "name": "Southwest Middlesex",
@@ -1897,7 +1989,8 @@
       "census_division": "Middlesex",
       "upper_tier": "County of Middlesex",
       "lio_name": "MUNICIPALITY OF SOUTHWEST MIDDLESEX",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipality of Strathroy-Caradoc and County of Middlesex open data"
     },
     {
       "name": "Ashfield-Colborne-Wawanosh",
@@ -1928,7 +2021,8 @@
       "census_division": "Bruce",
       "upper_tier": "County of Bruce",
       "lio_name": "MUNICIPALITY OF SOUTH BRUCE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Bruce open spatial data, Saugeen Shores GeoHub and Kincardine GIS Map Hub"
     },
     {
       "name": "Sioux Lookout",
@@ -1940,7 +2034,8 @@
       "census_division": "Kenora",
       "upper_tier": null,
       "lio_name": "MUNICIPALITY OF SIOUX LOOKOUT",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Lanark Highlands",
@@ -1952,7 +2047,8 @@
       "census_division": "Lanark",
       "upper_tier": "County of Lanark",
       "lio_name": "TOWNSHIP OF LANARK HIGHLANDS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Lanark and its municipalities, including the Town of Smiths Falls"
     },
     {
       "name": "Lucan Biddulph",
@@ -1964,7 +2060,8 @@
       "census_division": "Middlesex",
       "upper_tier": "County of Middlesex",
       "lio_name": "TOWNSHIP OF LUCAN BIDDULPH",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipality of Strathroy-Caradoc and County of Middlesex open data"
     },
     {
       "name": "Cochrane",
@@ -1976,7 +2073,8 @@
       "census_division": "Cochrane",
       "upper_tier": null,
       "lio_name": "TOWN OF COCHRANE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Gananoque",
@@ -2004,7 +2102,8 @@
       "census_division": "Parry Sound",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF SEGUIN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Espanola",
@@ -2016,7 +2115,8 @@
       "census_division": "Sudbury",
       "upper_tier": null,
       "lio_name": "TOWN OF ESPANOLA",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Havelock-Belmont-Methuen",
@@ -2028,7 +2128,8 @@
       "census_division": "Peterborough",
       "upper_tier": "County of Peterborough",
       "lio_name": "TOWNSHIP OF HAVELOCK-BELMONT-METHUEN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Peterborough layers"
     },
     {
       "name": "West Elgin",
@@ -2040,7 +2141,8 @@
       "census_division": "Elgin",
       "upper_tier": "County of Elgin",
       "lio_name": "MUNICIPALITY OF WEST ELGIN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "City of St. Thomas and County of Elgin"
     },
     {
       "name": "North Huron",
@@ -2091,7 +2193,8 @@
       "census_division": "Nipissing",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF EAST FERRIS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Central Frontenac",
@@ -2119,7 +2222,8 @@
       "census_division": "Elgin",
       "upper_tier": "County of Elgin",
       "lio_name": "TOWNSHIP OF SOUTHWOLD",
-      "status": "pending"
+      "status": "gap",
+      "gap": "City of St. Thomas and County of Elgin"
     },
     {
       "name": "Centre Hastings",
@@ -2148,7 +2252,8 @@
       "census_division": "Cochrane",
       "upper_tier": null,
       "lio_name": "TOWN OF HEARST",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Asphodel-Norwood",
@@ -2160,7 +2265,8 @@
       "census_division": "Peterborough",
       "upper_tier": "County of Peterborough",
       "lio_name": "TOWNSHIP OF ASPHODEL-NORWOOD",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Peterborough layers"
     },
     {
       "name": "Tyendinaga",
@@ -2189,7 +2295,8 @@
       "census_division": "Cochrane",
       "upper_tier": null,
       "lio_name": "TOWN OF IROQUOIS FALLS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Northern Bruce Peninsula",
@@ -2201,7 +2308,8 @@
       "census_division": "Bruce",
       "upper_tier": "County of Bruce",
       "lio_name": "MUNICIPALITY OF NORTHERN BRUCE PENINSULA",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Bruce open spatial data, Saugeen Shores GeoHub and Kincardine GIS Map Hub"
     },
     {
       "name": "Hastings Highlands",
@@ -2230,7 +2338,8 @@
       "census_division": "Dufferin",
       "upper_tier": "County of Dufferin",
       "lio_name": "TOWNSHIP OF AMARANTH",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Dufferin ArcGIS layers"
     },
     {
       "name": "Greenstone",
@@ -2242,7 +2351,8 @@
       "census_division": "Thunder Bay",
       "upper_tier": null,
       "lio_name": "MUNICIPALITY OF GREENSTONE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Marmora and Lake",
@@ -2272,7 +2382,8 @@
       "census_division": "Renfrew",
       "upper_tier": "County of Renfrew",
       "lio_name": "TOWN OF DEEP RIVER",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Renfrew GIS layers and City of Pembroke"
     },
     {
       "name": "Dutton/Dunwich",
@@ -2284,7 +2395,8 @@
       "census_division": "Elgin",
       "upper_tier": "County of Elgin",
       "lio_name": "MUNICIPALITY OF DUTTON/DUNWICH",
-      "status": "pending"
+      "status": "gap",
+      "gap": "City of St. Thomas and County of Elgin"
     },
     {
       "name": "Red Lake",
@@ -2296,7 +2408,8 @@
       "census_division": "Kenora",
       "upper_tier": null,
       "lio_name": "MUNICIPALITY OF RED LAKE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Prescott",
@@ -2363,7 +2476,8 @@
       "census_division": "Parry Sound",
       "upper_tier": null,
       "lio_name": "MUNICIPALITY OF CALLANDER",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Casselman",
@@ -2375,7 +2489,8 @@
       "census_division": "Prescott and Russell",
       "upper_tier": "United Counties of Prescott and Russell",
       "lio_name": "MUNICIPALITY OF CASSELMAN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "City of Clarence-Rockland and United Counties of Prescott and Russell open data"
     },
     {
       "name": "Madawaska Valley",
@@ -2387,7 +2502,8 @@
       "census_division": "Renfrew",
       "upper_tier": "County of Renfrew",
       "lio_name": "TOWNSHIP OF MADAWASKA VALLEY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Renfrew GIS layers and City of Pembroke"
     },
     {
       "name": "Montague",
@@ -2399,7 +2515,8 @@
       "census_division": "Lanark",
       "upper_tier": "County of Lanark",
       "lio_name": "TOWNSHIP OF MONTAGUE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Lanark and its municipalities, including the Town of Smiths Falls"
     },
     {
       "name": "Bonnechere Valley",
@@ -2411,7 +2528,8 @@
       "census_division": "Renfrew",
       "upper_tier": "County of Renfrew",
       "lio_name": "TOWNSHIP OF BONNECHERE VALLEY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Renfrew GIS layers and City of Pembroke"
     },
     {
       "name": "Grand Valley",
@@ -2423,7 +2541,8 @@
       "census_division": "Dufferin",
       "upper_tier": "County of Dufferin",
       "lio_name": "TOWN OF GRAND VALLEY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Dufferin ArcGIS layers"
     },
     {
       "name": "Highlands East",
@@ -2435,7 +2554,8 @@
       "census_division": "Haliburton",
       "upper_tier": "County of Haliburton",
       "lio_name": "MUNICIPALITY OF HIGHLANDS EAST",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Haliburton GIS hub"
     },
     {
       "name": "Perth South",
@@ -2462,7 +2582,8 @@
       "census_division": "Muskoka",
       "upper_tier": "District Municipality of Muskoka",
       "lio_name": "TOWNSHIP OF LAKE OF BAYS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "District Municipality of Muskoka GeoHub and Town of Huntsville"
     },
     {
       "name": "Warwick",
@@ -2523,7 +2644,8 @@
       "census_division": "Muskoka",
       "upper_tier": "District Municipality of Muskoka",
       "lio_name": "TOWNSHIP OF GEORGIAN BAY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "District Municipality of Muskoka GeoHub and Town of Huntsville"
     },
     {
       "name": "Blind River",
@@ -2535,7 +2657,8 @@
       "census_division": "Algoma",
       "upper_tier": null,
       "lio_name": "TOWN OF BLIND RIVER",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "East Hawkesbury",
@@ -2547,7 +2670,8 @@
       "census_division": "Prescott and Russell",
       "upper_tier": "United Counties of Prescott and Russell",
       "lio_name": "TOWNSHIP OF EAST HAWKESBURY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "City of Clarence-Rockland and United Counties of Prescott and Russell open data"
     },
     {
       "name": "Powassan",
@@ -2559,7 +2683,8 @@
       "census_division": "Parry Sound",
       "upper_tier": null,
       "lio_name": "MUNICIPALITY OF POWASSAN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Shuniah",
@@ -2571,7 +2696,8 @@
       "census_division": "Thunder Bay",
       "upper_tier": null,
       "lio_name": "MUNICIPALITY OF SHUNIAH",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Sables-Spanish Rivers",
@@ -2583,7 +2709,8 @@
       "census_division": "Sudbury",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF SABLES-SPANISH RIVERS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Horton",
@@ -2595,7 +2722,8 @@
       "census_division": "Renfrew",
       "upper_tier": "County of Renfrew",
       "lio_name": "TOWNSHIP OF HORTON",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Renfrew GIS layers and City of Pembroke"
     },
     {
       "name": "Marathon",
@@ -2607,7 +2735,8 @@
       "census_division": "Thunder Bay",
       "upper_tier": null,
       "lio_name": "TOWN OF MARATHON",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Merrickville-Wolford",
@@ -2634,7 +2763,8 @@
       "census_division": "Dufferin",
       "upper_tier": "County of Dufferin",
       "lio_name": "TOWNSHIP OF MELANCTHON",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Dufferin ArcGIS layers"
     },
     {
       "name": "North Algona Wilberforce",
@@ -2646,7 +2776,8 @@
       "census_division": "Renfrew",
       "upper_tier": "County of Renfrew",
       "lio_name": "TOWNSHIP OF NORTH ALGONA WILBERFORCE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Renfrew GIS layers and City of Pembroke"
     },
     {
       "name": "Athens",
@@ -2674,7 +2805,8 @@
       "census_division": "Middlesex",
       "upper_tier": "County of Middlesex",
       "lio_name": "TOWNSHIP OF ADELAIDE-METCALFE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipality of Strathroy-Caradoc and County of Middlesex open data"
     },
     {
       "name": "Admaston/Bromley",
@@ -2686,7 +2818,8 @@
       "census_division": "Renfrew",
       "upper_tier": "County of Renfrew",
       "lio_name": "TOWNSHIP OF ADMASTON/BROMLEY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Renfrew GIS layers and City of Pembroke"
     },
     {
       "name": "Laurentian Hills",
@@ -2698,7 +2831,8 @@
       "census_division": "Renfrew",
       "upper_tier": "County of Renfrew",
       "lio_name": "TOWN OF LAURENTIAN HILLS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Renfrew GIS layers and City of Pembroke"
     },
     {
       "name": "North Kawartha",
@@ -2710,7 +2844,8 @@
       "census_division": "Peterborough",
       "upper_tier": "County of Peterborough",
       "lio_name": "TOWNSHIP OF NORTH KAWARTHA",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Peterborough layers"
     },
     {
       "name": "Greater Madawaska",
@@ -2737,7 +2872,8 @@
       "census_division": "Sudbury",
       "upper_tier": null,
       "lio_name": "MUNICIPALITY OF FRENCH RIVER",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Enniskillen",
@@ -2764,7 +2900,8 @@
       "census_division": "Dufferin",
       "upper_tier": "County of Dufferin",
       "lio_name": "TOWNSHIP OF EAST GARAFRAXA",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Dufferin ArcGIS layers"
     },
     {
       "name": "McDougall",
@@ -2776,7 +2913,8 @@
       "census_division": "Parry Sound",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF MCDOUGALL",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Markstay-Warren",
@@ -2788,7 +2926,8 @@
       "census_division": "Sudbury",
       "upper_tier": null,
       "lio_name": "MUNICIPALITY OF MARKSTAY-WARREN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Wawa",
@@ -2800,7 +2939,8 @@
       "census_division": "Algoma",
       "upper_tier": null,
       "lio_name": "MUNICIPALITY OF WAWA",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Perry",
@@ -2812,7 +2952,8 @@
       "census_division": "Parry Sound",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF PERRY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Atikokan",
@@ -2824,7 +2965,8 @@
       "census_division": "Rainy River",
       "upper_tier": null,
       "lio_name": "TOWN OF ATIKOKAN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Northeastern Manitoulin and the Islands",
@@ -2836,7 +2978,8 @@
       "census_division": "Manitoulin",
       "upper_tier": null,
       "lio_name": "TOWN OF NORTHEASTERN MANITOULIN AND THE ISLANDS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Front of Yonge",
@@ -2863,7 +3006,8 @@
       "census_division": "Haliburton",
       "upper_tier": "County of Haliburton",
       "lio_name": "TOWNSHIP OF ALGONQUIN HIGHLANDS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Haliburton GIS hub"
     },
     {
       "name": "Black River-Matheson",
@@ -2875,7 +3019,8 @@
       "census_division": "Cochrane",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF BLACK RIVER-MATHESON",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Addington Highlands",
@@ -2904,7 +3049,8 @@
       "census_division": "Renfrew",
       "upper_tier": "County of Renfrew",
       "lio_name": "TOWNSHIP OF KILLALOE, HAGARTY AND RICHARDS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Renfrew GIS layers and City of Pembroke"
     },
     {
       "name": "Brooke-Alvinston",
@@ -2946,7 +3092,8 @@
       "census_division": "Thunder Bay",
       "upper_tier": null,
       "lio_name": "MUNICIPALITY OF NEEBING",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Central Manitoulin",
@@ -2958,7 +3105,8 @@
       "census_division": "Manitoulin",
       "upper_tier": null,
       "lio_name": "MUNICIPALITY OF CENTRAL MANITOULIN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Madoc",
@@ -2989,7 +3137,8 @@
       "census_division": "Nipissing",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF BONFIELD",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Manitouwadge",
@@ -3001,7 +3150,8 @@
       "census_division": "Thunder Bay",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF MANITOUWADGE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Dawn-Euphemia",
@@ -3028,7 +3178,8 @@
       "census_division": "Sudbury",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF CHAPLEAU",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Frontenac Islands",
@@ -3040,7 +3191,8 @@
       "census_division": "Frontenac",
       "upper_tier": "County of Frontenac",
       "lio_name": "TOWNSHIP OF FRONTENAC ISLANDS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Frontenac open data"
     },
     {
       "name": "Point Edward",
@@ -3067,7 +3219,8 @@
       "census_division": "Nipissing",
       "upper_tier": null,
       "lio_name": "TOWN OF MATTAWA",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Huron Shores",
@@ -3079,7 +3232,8 @@
       "census_division": "Algoma",
       "upper_tier": null,
       "lio_name": "MUNICIPALITY OF HURON SHORES",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Nipissing",
@@ -3091,7 +3245,8 @@
       "census_division": "Parry Sound",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF NIPISSING",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Magnetawan",
@@ -3103,7 +3258,8 @@
       "census_division": "Parry Sound",
       "upper_tier": null,
       "lio_name": "MUNICIPALITY OF MAGNETAWAN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Deseronto",
@@ -3133,7 +3289,8 @@
       "census_division": "Hastings",
       "upper_tier": "County of Hastings",
       "lio_name": "TOWNSHIP OF FARADAY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Townships of Faraday, Pelee, Wellesley and East Zorra-Tavistock"
     },
     {
       "name": "Strong",
@@ -3145,7 +3302,8 @@
       "census_division": "Parry Sound",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF STRONG",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Brudenell, Lyndoch and Raglan",
@@ -3172,7 +3330,8 @@
       "census_division": "Thunder Bay",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF TERRACE BAY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Macdonald, Meredith and Aberdeen Additional",
@@ -3184,7 +3343,8 @@
       "census_division": "Algoma",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF MACDONALD, MEREDITH AND ABERDEEN ADDITIONAL",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Moosonee",
@@ -3196,7 +3356,8 @@
       "census_division": "Cochrane",
       "upper_tier": null,
       "lio_name": "TOWN OF MOOSONEE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Carling",
@@ -3208,7 +3369,8 @@
       "census_division": "Parry Sound",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF CARLING",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Nipigon",
@@ -3220,7 +3382,8 @@
       "census_division": "Thunder Bay",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF NIPIGON",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Armour",
@@ -3232,7 +3395,8 @@
       "census_division": "Parry Sound",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF ARMOUR",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Englehart",
@@ -3244,7 +3408,8 @@
       "census_division": "Timiskaming",
       "upper_tier": null,
       "lio_name": "TOWN OF ENGLEHART",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "St. Joseph",
@@ -3256,7 +3421,8 @@
       "census_division": "Algoma",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF ST. JOSEPH",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "McKellar",
@@ -3268,7 +3434,8 @@
       "census_division": "Parry Sound",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF MCKELLAR",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "St.-Charles",
@@ -3280,7 +3447,8 @@
       "census_division": "Sudbury",
       "upper_tier": null,
       "lio_name": "MUNICIPALITY OF ST.-CHARLES",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Chisholm",
@@ -3292,7 +3460,8 @@
       "census_division": "Nipissing",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF CHISHOLM",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Thessalon",
@@ -3304,7 +3473,8 @@
       "census_division": "Algoma",
       "upper_tier": null,
       "lio_name": "TOWN OF THESSALON",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Ignace",
@@ -3316,7 +3486,8 @@
       "census_division": "Kenora",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF IGNACE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Emo",
@@ -3328,7 +3499,8 @@
       "census_division": "Rainy River",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF EMO",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Smooth Rock Falls",
@@ -3340,7 +3512,8 @@
       "census_division": "Cochrane",
       "upper_tier": null,
       "lio_name": "TOWN OF SMOOTH ROCK FALLS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Armstrong",
@@ -3352,7 +3525,8 @@
       "census_division": "Timiskaming",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF ARMSTRONG",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Moonbeam",
@@ -3364,7 +3538,8 @@
       "census_division": "Cochrane",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF MOONBEAM",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Laird",
@@ -3376,7 +3551,8 @@
       "census_division": "Algoma",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF LAIRD",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "South River",
@@ -3388,7 +3564,8 @@
       "census_division": "Parry Sound",
       "upper_tier": null,
       "lio_name": "VILLAGE OF SOUTH RIVER",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Whitestone",
@@ -3400,7 +3577,8 @@
       "census_division": "Parry Sound",
       "upper_tier": null,
       "lio_name": "MUNICIPALITY OF WHITESTONE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "South Algonquin",
@@ -3412,7 +3590,8 @@
       "census_division": "Nipissing",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF SOUTH ALGONQUIN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Schreiber",
@@ -3424,7 +3603,8 @@
       "census_division": "Thunder Bay",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF SCHREIBER",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Machin",
@@ -3436,7 +3616,8 @@
       "census_division": "Kenora",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF MACHIN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Assiginack",
@@ -3448,7 +3629,8 @@
       "census_division": "Manitoulin",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF ASSIGINACK",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Cobalt",
@@ -3460,7 +3642,8 @@
       "census_division": "Timiskaming",
       "upper_tier": null,
       "lio_name": "TOWN OF COBALT",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Papineau-Cameron",
@@ -3472,7 +3655,8 @@
       "census_division": "Nipissing",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF PAPINEAU-CAMERON",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "The Archipelago",
@@ -3484,7 +3668,8 @@
       "census_division": "Parry Sound",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF THE ARCHIPELAGO",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Prince",
@@ -3496,7 +3681,8 @@
       "census_division": "Algoma",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF PRINCE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Kearney",
@@ -3508,7 +3694,8 @@
       "census_division": "Parry Sound",
       "upper_tier": null,
       "lio_name": "TOWN OF KEARNEY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Machar",
@@ -3520,7 +3707,8 @@
       "census_division": "Parry Sound",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF MACHAR",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Hornepayne",
@@ -3532,7 +3720,8 @@
       "census_division": "Algoma",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF HORNEPAYNE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Burk's Falls",
@@ -3544,7 +3733,8 @@
       "census_division": "Parry Sound",
       "upper_tier": null,
       "lio_name": "VILLAGE OF BURK'S FALLS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Alberton",
@@ -3556,7 +3746,8 @@
       "census_division": "Rainy River",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF ALBERTON",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Carlow/Mayo",
@@ -3585,7 +3776,8 @@
       "census_division": "Parry Sound",
       "upper_tier": null,
       "lio_name": "VILLAGE OF SUNDRIDGE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Ear Falls",
@@ -3597,7 +3789,8 @@
       "census_division": "Kenora",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF EAR FALLS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "McMurrich/Monteith",
@@ -3609,7 +3802,8 @@
       "census_division": "Parry Sound",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF MCMURRICH/MONTEITH",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Red Rock",
@@ -3621,7 +3815,8 @@
       "census_division": "Thunder Bay",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF RED ROCK",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Temagami",
@@ -3633,7 +3828,8 @@
       "census_division": "Nipissing",
       "upper_tier": null,
       "lio_name": "MUNICIPALITY OF TEMAGAMI",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Gore Bay",
@@ -3645,7 +3841,8 @@
       "census_division": "Manitoulin",
       "upper_tier": null,
       "lio_name": "TOWN OF GORE BAY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Conmee",
@@ -3657,7 +3854,8 @@
       "census_division": "Thunder Bay",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF CONMEE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "La Vallee",
@@ -3669,7 +3867,8 @@
       "census_division": "Rainy River",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF LA VALLEE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Chapple",
@@ -3681,7 +3880,8 @@
       "census_division": "Rainy River",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF CHAPPLE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Plummer Additional",
@@ -3693,7 +3893,8 @@
       "census_division": "Algoma",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF PLUMMER ADDITIONAL",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Val Rita-Harty",
@@ -3705,7 +3906,8 @@
       "census_division": "Cochrane",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF VAL RITA-HARTY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Billings",
@@ -3717,7 +3919,8 @@
       "census_division": "Manitoulin",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF BILLINGS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Rainy River",
@@ -3729,7 +3932,8 @@
       "census_division": "Rainy River",
       "upper_tier": null,
       "lio_name": "TOWN OF RAINY RIVER",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Johnson",
@@ -3741,7 +3945,8 @@
       "census_division": "Algoma",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF JOHNSON",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Larder Lake",
@@ -3753,7 +3958,8 @@
       "census_division": "Timiskaming",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF LARDER LAKE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Ryerson",
@@ -3765,7 +3971,8 @@
       "census_division": "Parry Sound",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF RYERSON",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Tudor and Cashel",
@@ -3794,7 +4001,8 @@
       "census_division": "Kenora",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF SIOUX NARROWS-NESTOR FALLS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Wollaston",
@@ -3822,7 +4030,8 @@
       "census_division": "Thunder Bay",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF O'CONNOR",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Charlton and Dack",
@@ -3834,7 +4043,8 @@
       "census_division": "Timiskaming",
       "upper_tier": null,
       "lio_name": "MUNICIPALITY OF CHARLTON AND DACK",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Spanish",
@@ -3846,7 +4056,8 @@
       "census_division": "Algoma",
       "upper_tier": null,
       "lio_name": "TOWN OF SPANISH",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Oil Springs",
@@ -3888,7 +4099,8 @@
       "census_division": "Manitoulin",
       "upper_tier": null,
       "lio_name": "MUNICIPALITY OF GORDON / BARRIE ISLAND",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Bruce Mines",
@@ -3900,7 +4112,8 @@
       "census_division": "Algoma",
       "upper_tier": null,
       "lio_name": "TOWN OF BRUCE MINES",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Baldwin",
@@ -3912,7 +4125,8 @@
       "census_division": "Sudbury",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF BALDWIN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "McGarry",
@@ -3924,7 +4138,8 @@
       "census_division": "Timiskaming",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF MCGARRY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Dubreuilville",
@@ -3936,7 +4151,8 @@
       "census_division": "Algoma",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF DUBREUILVILLE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Tarbutt and Tarbutt Additional",
@@ -3948,7 +4164,8 @@
       "census_division": "Algoma",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF TARBUTT",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Calvin",
@@ -3960,7 +4177,8 @@
       "census_division": "Nipissing",
       "upper_tier": null,
       "lio_name": "MUNICIPALITY OF CALVIN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "White River",
@@ -3972,7 +4190,8 @@
       "census_division": "Algoma",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF WHITE RIVER",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Mattice-Val Côté",
@@ -3984,7 +4203,8 @@
       "census_division": "Cochrane",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF MATTICE-VAL CÔTÉ",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "The North Shore",
@@ -3996,7 +4216,8 @@
       "census_division": "Algoma",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF THE NORTH SHORE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Harris",
@@ -4008,7 +4229,8 @@
       "census_division": "Timiskaming",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF HARRIS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Hudson",
@@ -4020,7 +4242,8 @@
       "census_division": "Timiskaming",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF HUDSON",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Harley",
@@ -4032,7 +4255,8 @@
       "census_division": "Timiskaming",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF HARLEY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Coleman",
@@ -4044,7 +4268,8 @@
       "census_division": "Timiskaming",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF COLEMAN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Evanturel",
@@ -4056,7 +4281,8 @@
       "census_division": "Timiskaming",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF EVANTUREL",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Morley",
@@ -4068,7 +4294,8 @@
       "census_division": "Rainy River",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF MORLEY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Fauquier-Strickland",
@@ -4080,7 +4307,8 @@
       "census_division": "Cochrane",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF FAUQUIER-STRICKLAND",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Tehkummah",
@@ -4092,7 +4320,8 @@
       "census_division": "Manitoulin",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF TEHKUMMAH",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Gillies",
@@ -4104,7 +4333,8 @@
       "census_division": "Thunder Bay",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF GILLIES",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Newbury",
@@ -4116,7 +4346,8 @@
       "census_division": "Middlesex",
       "upper_tier": "County of Middlesex",
       "lio_name": "VILLAGE OF NEWBURY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipality of Strathroy-Caradoc and County of Middlesex open data"
     },
     {
       "name": "Limerick",
@@ -4143,7 +4374,8 @@
       "census_division": "Rainy River",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF DAWSON",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Pickle Lake",
@@ -4155,7 +4387,8 @@
       "census_division": "Kenora",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF PICKLE LAKE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Killarney",
@@ -4167,7 +4400,8 @@
       "census_division": "Sudbury",
       "upper_tier": null,
       "lio_name": "MUNICIPALITY OF KILLARNEY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Burpee and Mills",
@@ -4179,7 +4413,8 @@
       "census_division": "Manitoulin",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF BURPEE AND MILLS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Hilton",
@@ -4191,7 +4426,8 @@
       "census_division": "Algoma",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF HILTON",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Dorion",
@@ -4203,7 +4439,8 @@
       "census_division": "Thunder Bay",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF DORION",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Nairn and Hyman",
@@ -4215,7 +4452,8 @@
       "census_division": "Sudbury",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF NAIRN AND HYMAN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Latchford",
@@ -4227,7 +4465,8 @@
       "census_division": "Timiskaming",
       "upper_tier": null,
       "lio_name": "TOWN OF LATCHFORD",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "James",
@@ -4239,7 +4478,8 @@
       "census_division": "Timiskaming",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF JAMES",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Casey",
@@ -4251,7 +4491,8 @@
       "census_division": "Timiskaming",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF CASEY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Kerns",
@@ -4263,7 +4504,8 @@
       "census_division": "Timiskaming",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF KERNS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Jocelyn",
@@ -4275,7 +4517,8 @@
       "census_division": "Algoma",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF JOCELYN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Chamberlain",
@@ -4287,7 +4530,8 @@
       "census_division": "Timiskaming",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF CHAMBERLAIN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Lake of the Woods",
@@ -4299,7 +4543,8 @@
       "census_division": "Rainy River",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF LAKE OF THE WOODS",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Joly",
@@ -4311,7 +4556,8 @@
       "census_division": "Parry Sound",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF JOLY",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Matachewan",
@@ -4323,7 +4569,8 @@
       "census_division": "Timiskaming",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF MATACHEWAN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Head, Clara and Maria",
@@ -4335,7 +4582,8 @@
       "census_division": "Renfrew",
       "upper_tier": "County of Renfrew",
       "lio_name": "TOWNSHIP OF HEAD, CLARA AND MARIA",
-      "status": "pending"
+      "status": "gap",
+      "gap": "County of Renfrew GIS layers and City of Pembroke"
     },
     {
       "name": "Pelee",
@@ -4347,7 +4595,8 @@
       "census_division": "Essex",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF PELEE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Townships of Faraday, Pelee, Wellesley and East Zorra-Tavistock"
     },
     {
       "name": "Hilliard",
@@ -4359,7 +4608,8 @@
       "census_division": "Timiskaming",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF HILLIARD",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Opasatika",
@@ -4371,7 +4621,8 @@
       "census_division": "Cochrane",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF OPASATIKA",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Hilton Beach",
@@ -4383,7 +4634,8 @@
       "census_division": "Algoma",
       "upper_tier": null,
       "lio_name": "VILLAGE OF HILTON BEACH",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Mattawan",
@@ -4395,7 +4647,8 @@
       "census_division": "Nipissing",
       "upper_tier": null,
       "lio_name": "MUNICIPALITY OF MATTAWAN",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Gauthier",
@@ -4407,7 +4660,8 @@
       "census_division": "Timiskaming",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF GAUTHIER",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Brethour",
@@ -4419,7 +4673,8 @@
       "census_division": "Timiskaming",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF BRETHOUR",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Thornloe",
@@ -4431,7 +4686,8 @@
       "census_division": "Timiskaming",
       "upper_tier": null,
       "lio_name": "VILLAGE OF THORNLOE",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     },
     {
       "name": "Cockburn Island",
@@ -4443,7 +4699,8 @@
       "census_division": "Manitoulin",
       "upper_tier": null,
       "lio_name": "TOWNSHIP OF COCKBURN ISLAND",
-      "status": "pending"
+      "status": "gap",
+      "gap": "Municipalities in Ontario's territorial districts (Algoma, Cochrane, Kenora, Manitoulin, Nipissing, Parry Sound, Rainy River, Sudbury, Thunder Bay, Timiskaming)"
     }
   ]
 }
