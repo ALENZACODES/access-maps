@@ -8,6 +8,7 @@ import { importGtfs } from "../../scripts/import-gtfs.js";
 import { runLayerJobs, type LayerJob } from "../../scripts/import-cities-g3.js";
 import { importStatcanLode } from "../../scripts/import-statcan-lode.js";
 import { importOntarioGeohub } from "../../scripts/import-ontario-geohub.js";
+import { importOntarioCatalogue } from "../../scripts/import-ontario-catalogue.js";
 import { gpkgBlob, wkbPoint, writeGpkg } from "../national/lode-fixtures.js";
 import { PerSourceRun } from "../../src/failsafe/per-source.js";
 import { commitRecord } from "../../src/io/commit.js";
@@ -210,6 +211,28 @@ describe("Ontario GeoHub layers", () => {
   });
 });
 
+describe("Ontario Data Catalogue files", () => {
+  it("a download that is not a workbook keeps its files; the CSV sources are refreshed", async () => {
+    const env = fixtureRepo();
+    const schools = seedSource(env.data, "venues", "ontario-public-schools", 2);
+    const schoolsBefore = readFileSync(schools);
+    const courts = seedSource(env.data, "venues", "ontario-courthouses", 2);
+    const cache = path.join(env.root, ".cache", "provincial");
+    mkdirSync(cache, { recursive: true });
+    writeFileSync(path.join(cache, "ontario-public-schools.xlsx"), Buffer.from("<html>503 Service Unavailable</html>"));
+    writeFileSync(path.join(cache, "ontario-courthouses.csv"), `'Bldg_Ministry_Official_Name','Bldg_City','Bldg_Latitude','Bldg_Longitude'\nFixture Courthouse 1,Fixture,43.65,-79.38\nFixture Courthouse 2,Fixture,43.66,-79.39\n,,,\n`);
+    writeFileSync(path.join(cache, "ontario-correctional-institutions.csv"), `Institution,Operating_Status,Latitude,Longitude\nFixture Centre,Open,43.65,-79.38\nFixture Jail,Closed,43.65,-79.38\n`);
+
+    await expect(importOntarioCatalogue(env.root, ["ontario-public-schools", "ontario-courthouses", "ontario-correctional-institutions"])).rejects.toThrow(/importOntarioCatalogue: 1 of 3 sources failed.*ontario-public-schools/);
+
+    expect(readFileSync(schools).equals(schoolsBefore)).toBe(true);
+    expect(allIds(path.dirname(courts))).toEqual(["ontario-courthouses:fixture-courthouse-1", "ontario-courthouses:fixture-courthouse-2"]);
+    expect(allIds(path.join(env.data, "venues", "ontario-correctional-institutions"))).toEqual(["ontario-correctional-institutions:fixture-centre"]);
+    expect(env.log.report.outcomes).toContainEqual(expect.objectContaining({ step: "importOntarioCatalogue/ontario-public-schools", status: "step_failed" }));
+    expect(env.log.report.outcomes).toContainEqual(expect.objectContaining({ target: "venues/ontario-public-schools", status: "kept_last_known_good" }));
+  });
+});
+
 describe("PerSourceRun", () => {
   it("reports a source that failed before it marked anything, and finish() passes when nothing failed", async () => {
     const env = tempRoot();
@@ -246,7 +269,7 @@ describe("PerSourceRun", () => {
     }
     // The fixture sources used above are registered tier 0 or tier 1 sources.
     const registry = readRegistry(repo);
-    for (const id of ["toronto-park-washrooms", "toronto-street-washrooms", "toronto-crem-washrooms", "ottawa-public-washrooms", "ottawa-park-parking", "gtfs-grt-bus", "gtfs-hsr", "kitchener-public-washrooms", "guelph-restrooms", "windsor-park-washrooms", "statcan-odhf", "statcan-odef", "statcan-odcaf", "ontario-provincial-parks", "ontario-otn-access-points", "ontario-railway-stations"]) {
+    for (const id of ["toronto-park-washrooms", "toronto-street-washrooms", "toronto-crem-washrooms", "ottawa-public-washrooms", "ottawa-park-parking", "gtfs-grt-bus", "gtfs-hsr", "kitchener-public-washrooms", "guelph-restrooms", "windsor-park-washrooms", "statcan-odhf", "statcan-odef", "statcan-odcaf", "ontario-provincial-parks", "ontario-otn-access-points", "ontario-railway-stations", "ontario-public-schools", "ontario-courthouses", "ontario-correctional-institutions"]) {
       expect(registry.sources.some((entry) => entry.id === id), id).toBe(true);
     }
   });

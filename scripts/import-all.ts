@@ -10,6 +10,7 @@ import { importMunicipal } from "./import-municipal.js";
 import { importOsm } from "./import-osm.js";
 import { importStatcanLode } from "./import-statcan-lode.js";
 import { importOntarioGeohub } from "./import-ontario-geohub.js";
+import { importOntarioCatalogue } from "./import-ontario-catalogue.js";
 import { importYorkDurhamCities } from "./import-york-durham-cities.js";
 import { writeCounts } from "./count.js";
 
@@ -27,5 +28,6 @@ await importCitiesG6(repoRoot);
 await importGtfs(repoRoot);
 await importStatcanLode(repoRoot);
 await importOntarioGeohub(repoRoot);
+await importOntarioCatalogue(repoRoot);
 await importOsm(repoRoot);
 await writeCounts(repoRoot);

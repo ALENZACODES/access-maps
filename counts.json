@@ -1,17 +1,17 @@
 {
   "definition": "A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. Section 5.6 counts only tier 2 and tier 3 values toward 500,000. Tier 0 and tier 1 accessibility facts are reported separately and are not verified.",
-  "records": 1772685,
-  "pieces": 8986483,
-  "gaps": 54088424,
+  "records": 1788884,
+  "pieces": 9136232,
+  "gaps": 54635232,
   "derived_excluded": 4207,
   "verified_toward_500k": 0,
   "accessibility_fact_pieces": 916402,
-  "other_populated_pieces": 7552979,
+  "other_populated_pieces": 7702728,
   "accessibility_pieces": 916402,
-  "accessibility_gaps": 29710464,
-  "identity_pieces": 7552979,
+  "accessibility_gaps": 30099240,
+  "identity_pieces": 7702728,
   "context_pieces": 517102,
-  "context_gaps": 5218254,
+  "context_gaps": 5250652,
   "accessibility_definition": "An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.",
   "context_definition": "Context fields are populated values that are not a physical access measurement: access, crossing, lit, foot, fee, changing_table_fee, unisex, male, female, locked, and supervised. They are not accessibility facts and they are not names or geometry.",
   "accessibility_fields": {
@@ -94,18 +94,18 @@
   },
   "by_tranche": {
     "venue": {
-      "records": 628152,
-      "pieces": 3641175,
+      "records": 644351,
+      "pieces": 3790924,
       "accessibility_facts": 121532,
-      "other_populated": 3423153,
+      "other_populated": 3572902,
       "verified": 0,
-      "gaps": 23369361,
+      "gaps": 23916169,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 3641175
+        "0": 3790924
       },
       "gaps_by_tier": {
-        "0": 23369361
+        "0": 23916169
       },
       "pieces_by_source": {
         "ajax-playgrounds": 486,
@@ -145,12 +145,18 @@
         "newmarket-park-features": 1641,
         "newmarket-trail-points": 1282,
         "niagara-falls-playgrounds": 489,
+        "ontario-alcohol-retail-locations": 74837,
+        "ontario-correctional-institutions": 225,
+        "ontario-courthouses": 553,
         "ontario-fishing-access-points": 11820,
         "ontario-moh-service-locations": 115197,
         "ontario-official-airports": 1884,
         "ontario-otn-access-points": 3412,
+        "ontario-private-schools": 17070,
         "ontario-provincial-parks": 2429,
+        "ontario-public-schools": 54386,
         "ontario-railway-stations": 1026,
+        "ontario-seniors-active-living-centres": 2678,
         "orangeville-parks": 318,
         "oshawa-community-centres": 140,
         "osm-ontario": 2914928,
@@ -183,57 +189,57 @@
         "windsor-playgrounds": 903
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 716642,
+        "2026-11-16": 866391,
         "2026-11-13": 2924533
       },
       "gaps_by_retrieved_at": {
-        "2026-11-16": 3033302,
+        "2026-11-16": 3580110,
         "2026-11-13": 20336059
       },
       "gap_fields": {
-        "addr_housenumber": 501651,
-        "addr_street": 497382,
+        "addr_housenumber": 501851,
+        "addr_street": 497475,
         "addr_city": 526208,
         "addr_postcode": 578469,
-        "addr_unit": 621031,
-        "opening_hours": 606484,
-        "level": 617484,
-        "operator": 580220,
-        "brand": 576815,
-        "website": 588870,
-        "wheelchair": 615482,
-        "wheelchair_description": 608090,
-        "entrance": 610519,
-        "automatic_door": 628059,
-        "door": 626117,
-        "door_width": 628152,
-        "ramp": 628123,
-        "ramp_wheelchair": 628152,
-        "ramp_stroller": 628152,
-        "step_count": 628152,
-        "incline": 628152,
-        "kerb": 627966,
-        "kerb_height": 628152,
-        "tactile_paving": 628139,
-        "handrail": 628152,
-        "width": 628122,
-        "access": 540197,
-        "surface": 565056,
-        "smoothness": 628020,
-        "lit": 619617,
-        "braille": 628152,
-        "hearing_loop": 628149,
-        "speech_output": 626704,
-        "stroller": 628101,
-        "capacity_disabled": 624114,
-        "indoor": 625148,
-        "elevator": 628139,
-        "ref": 540116,
-        "category": 107,
+        "addr_unit": 636807,
+        "opening_hours": 622683,
+        "level": 633683,
+        "operator": 591476,
+        "brand": 593014,
+        "website": 605069,
+        "wheelchair": 631681,
+        "wheelchair_description": 624289,
+        "entrance": 626718,
+        "automatic_door": 644258,
+        "door": 642316,
+        "door_width": 644351,
+        "ramp": 644322,
+        "ramp_wheelchair": 644351,
+        "ramp_stroller": 644351,
+        "step_count": 644351,
+        "incline": 644351,
+        "kerb": 644165,
+        "kerb_height": 644351,
+        "tactile_paving": 644338,
+        "handrail": 644351,
+        "width": 644321,
+        "access": 556396,
+        "surface": 581255,
+        "smoothness": 644219,
+        "lit": 635816,
+        "braille": 644351,
+        "hearing_loop": 644348,
+        "speech_output": 642903,
+        "stroller": 644300,
+        "capacity_disabled": 640313,
+        "indoor": 641347,
+        "elevator": 644338,
+        "ref": 549699,
+        "category": 7838,
         "name": 395446
       },
       "accessibility_pieces": 121532,
-      "accessibility_gaps": 14954116,
+      "accessibility_gaps": 15342892,
       "accessibility_by_field": {
         "capacity_disabled": 4038,
         "wheelchair_description": 20062,
@@ -253,7 +259,7 @@
         "tactile_paving": 13
       },
       "context_pieces": 96490,
-      "context_gaps": 1159814,
+      "context_gaps": 1192212,
       "context_by_field": {
         "access": 87955,
         "lit": 8535
@@ -2150,6 +2156,54 @@
       },
       "accessibility_pieces": 79
     },
+    "ontario-alcohol-retail-locations": {
+      "records": 9180,
+      "pieces": 74837,
+      "gaps": 319903,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 74837
+      },
+      "pieces_by_tranche": {
+        "venue": 74837
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 74837
+      },
+      "accessibility_pieces": 0
+    },
+    "ontario-correctional-institutions": {
+      "records": 25,
+      "pieces": 225,
+      "gaps": 850,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 225
+      },
+      "pieces_by_tranche": {
+        "venue": 225
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 225
+      },
+      "accessibility_pieces": 0
+    },
+    "ontario-courthouses": {
+      "records": 79,
+      "pieces": 553,
+      "gaps": 2844,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 553
+      },
+      "pieces_by_tranche": {
+        "venue": 553
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 553
+      },
+      "accessibility_pieces": 0
+    },
     "ontario-fishing-access-points": {
       "records": 2432,
       "pieces": 11820,
@@ -2214,6 +2268,22 @@
       },
       "accessibility_pieces": 0
     },
+    "ontario-private-schools": {
+      "records": 1673,
+      "pieces": 17070,
+      "gaps": 54869,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 17070
+      },
+      "pieces_by_tranche": {
+        "venue": 17070
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 17070
+      },
+      "accessibility_pieces": 0
+    },
     "ontario-provincial-parks": {
       "records": 347,
       "pieces": 2429,
@@ -2230,6 +2300,22 @@
       },
       "accessibility_pieces": 0
     },
+    "ontario-public-schools": {
+      "records": 4943,
+      "pieces": 54386,
+      "gaps": 158163,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 54386
+      },
+      "pieces_by_tranche": {
+        "venue": 54386
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 54386
+      },
+      "accessibility_pieces": 0
+    },
     "ontario-railway-stations": {
       "records": 171,
       "pieces": 1026,
@@ -2243,6 +2329,22 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-16": 1026
+      },
+      "accessibility_pieces": 0
+    },
+    "ontario-seniors-active-living-centres": {
+      "records": 299,
+      "pieces": 2678,
+      "gaps": 10179,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 2678
+      },
+      "pieces_by_tranche": {
+        "venue": 2678
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 2678
       },
       "accessibility_pieces": 0
     },
@@ -5971,6 +6073,950 @@
       "bytes": 5681
     },
     {
+      "file": "data/venues/ontario-alcohol-retail-locations/n41.5_w083.0.ndjson.gz",
+      "bytes": 1778
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n42.0_w082.0.ndjson.gz",
+      "bytes": 1706
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n42.0_w082.5.ndjson.gz",
+      "bytes": 7772
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n42.0_w083.0.ndjson.gz",
+      "bytes": 20966
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n42.0_w083.5.ndjson.gz",
+      "bytes": 14885
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n42.5_w079.0.ndjson.gz",
+      "bytes": 2500
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n42.5_w079.5.ndjson.gz",
+      "bytes": 7090
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n42.5_w080.0.ndjson.gz",
+      "bytes": 2557
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n42.5_w080.5.ndjson.gz",
+      "bytes": 8521
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n42.5_w081.0.ndjson.gz",
+      "bytes": 6878
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n42.5_w081.5.ndjson.gz",
+      "bytes": 26154
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n42.5_w082.0.ndjson.gz",
+      "bytes": 6123
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n42.5_w082.5.ndjson.gz",
+      "bytes": 10551
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n42.5_w083.0.ndjson.gz",
+      "bytes": 673
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n43.0_w079.5.ndjson.gz",
+      "bytes": 45696
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n43.0_w080.0.ndjson.gz",
+      "bytes": 61617
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n43.0_w080.5.ndjson.gz",
+      "bytes": 37256
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n43.0_w081.0.ndjson.gz",
+      "bytes": 23063
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n43.0_w081.5.ndjson.gz",
+      "bytes": 15373
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n43.0_w082.0.ndjson.gz",
+      "bytes": 5081
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n43.0_w082.5.ndjson.gz",
+      "bytes": 1630
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n43.5_w077.5.ndjson.gz",
+      "bytes": 5578
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n43.5_w078.0.ndjson.gz",
+      "bytes": 821
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n43.5_w078.5.ndjson.gz",
+      "bytes": 5376
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n43.5_w079.0.ndjson.gz",
+      "bytes": 27035
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n43.5_w079.5.ndjson.gz",
+      "bytes": 172659
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n43.5_w080.0.ndjson.gz",
+      "bytes": 113400
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n43.5_w080.5.ndjson.gz",
+      "bytes": 20888
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n43.5_w081.0.ndjson.gz",
+      "bytes": 9241
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n43.5_w081.5.ndjson.gz",
+      "bytes": 3801
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n43.5_w082.0.ndjson.gz",
+      "bytes": 4473
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.0_w076.0.ndjson.gz",
+      "bytes": 1156
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.0_w076.5.ndjson.gz",
+      "bytes": 7577
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.0_w077.0.ndjson.gz",
+      "bytes": 13404
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.0_w077.5.ndjson.gz",
+      "bytes": 10961
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.0_w078.0.ndjson.gz",
+      "bytes": 10702
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.0_w078.5.ndjson.gz",
+      "bytes": 13689
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.0_w079.0.ndjson.gz",
+      "bytes": 8866
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.0_w079.5.ndjson.gz",
+      "bytes": 19187
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.0_w080.0.ndjson.gz",
+      "bytes": 25606
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.0_w080.5.ndjson.gz",
+      "bytes": 8336
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.0_w081.0.ndjson.gz",
+      "bytes": 3348
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.0_w081.5.ndjson.gz",
+      "bytes": 5957
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.0_w082.0.ndjson.gz",
+      "bytes": 2317
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.5_w075.0.ndjson.gz",
+      "bytes": 660
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.5_w075.5.ndjson.gz",
+      "bytes": 3276
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.5_w076.0.ndjson.gz",
+      "bytes": 6933
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.5_w076.5.ndjson.gz",
+      "bytes": 5683
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.5_w077.0.ndjson.gz",
+      "bytes": 1810
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.5_w077.5.ndjson.gz",
+      "bytes": 1780
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.5_w078.0.ndjson.gz",
+      "bytes": 1196
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.5_w078.5.ndjson.gz",
+      "bytes": 2550
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.5_w079.0.ndjson.gz",
+      "bytes": 4026
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.5_w079.5.ndjson.gz",
+      "bytes": 8750
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.5_w080.0.ndjson.gz",
+      "bytes": 8823
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.5_w080.5.ndjson.gz",
+      "bytes": 4836
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.5_w081.0.ndjson.gz",
+      "bytes": 4794
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n44.5_w081.5.ndjson.gz",
+      "bytes": 2633
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.0_w074.5.ndjson.gz",
+      "bytes": 1551
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.0_w075.0.ndjson.gz",
+      "bytes": 7527
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.0_w075.5.ndjson.gz",
+      "bytes": 8862
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.0_w076.0.ndjson.gz",
+      "bytes": 42046
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.0_w076.5.ndjson.gz",
+      "bytes": 7909
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.0_w077.0.ndjson.gz",
+      "bytes": 2359
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.0_w077.5.ndjson.gz",
+      "bytes": 1085
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.0_w078.0.ndjson.gz",
+      "bytes": 2911
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.0_w078.5.ndjson.gz",
+      "bytes": 1536
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.0_w079.0.ndjson.gz",
+      "bytes": 2419
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.0_w079.5.ndjson.gz",
+      "bytes": 5069
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.0_w080.0.ndjson.gz",
+      "bytes": 2811
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.0_w080.5.ndjson.gz",
+      "bytes": 2792
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.0_w082.0.ndjson.gz",
+      "bytes": 1009
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.5_w075.0.ndjson.gz",
+      "bytes": 4042
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.5_w075.5.ndjson.gz",
+      "bytes": 2370
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.5_w077.0.ndjson.gz",
+      "bytes": 1742
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.5_w077.5.ndjson.gz",
+      "bytes": 4849
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.5_w078.0.ndjson.gz",
+      "bytes": 987
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.5_w079.0.ndjson.gz",
+      "bytes": 708
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.5_w079.5.ndjson.gz",
+      "bytes": 2728
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.5_w080.0.ndjson.gz",
+      "bytes": 1381
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.5_w080.5.ndjson.gz",
+      "bytes": 664
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.5_w081.0.ndjson.gz",
+      "bytes": 980
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.5_w082.0.ndjson.gz",
+      "bytes": 1558
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.5_w082.5.ndjson.gz",
+      "bytes": 1429
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n45.5_w083.5.ndjson.gz",
+      "bytes": 668
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n46.0_w077.5.ndjson.gz",
+      "bytes": 1160
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n46.0_w078.0.ndjson.gz",
+      "bytes": 814
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n46.0_w079.0.ndjson.gz",
+      "bytes": 1302
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n46.0_w079.5.ndjson.gz",
+      "bytes": 6973
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n46.0_w080.0.ndjson.gz",
+      "bytes": 1867
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n46.0_w080.5.ndjson.gz",
+      "bytes": 1701
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n46.0_w081.0.ndjson.gz",
+      "bytes": 2891
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n46.0_w081.5.ndjson.gz",
+      "bytes": 4507
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n46.0_w082.0.ndjson.gz",
+      "bytes": 1609
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n46.0_w082.5.ndjson.gz",
+      "bytes": 1136
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n46.0_w083.0.ndjson.gz",
+      "bytes": 1808
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n46.0_w083.5.ndjson.gz",
+      "bytes": 1106
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n46.0_w084.0.ndjson.gz",
+      "bytes": 1568
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n46.0_w084.5.ndjson.gz",
+      "bytes": 1091
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n46.5_w079.5.ndjson.gz",
+      "bytes": 685
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n46.5_w080.0.ndjson.gz",
+      "bytes": 676
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n46.5_w080.5.ndjson.gz",
+      "bytes": 1030
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n46.5_w081.0.ndjson.gz",
+      "bytes": 5762
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n46.5_w081.5.ndjson.gz",
+      "bytes": 3125
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n46.5_w082.0.ndjson.gz",
+      "bytes": 870
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n46.5_w084.5.ndjson.gz",
+      "bytes": 5947
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n46.5_w085.0.ndjson.gz",
+      "bytes": 829
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n47.0_w080.0.ndjson.gz",
+      "bytes": 1403
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n47.0_w082.5.ndjson.gz",
+      "bytes": 656
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n47.5_w080.0.ndjson.gz",
+      "bytes": 2002
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n47.5_w080.5.ndjson.gz",
+      "bytes": 791
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n47.5_w081.0.ndjson.gz",
+      "bytes": 827
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n47.5_w081.5.ndjson.gz",
+      "bytes": 821
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n47.5_w082.0.ndjson.gz",
+      "bytes": 984
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n47.5_w083.5.ndjson.gz",
+      "bytes": 885
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n47.5_w085.0.ndjson.gz",
+      "bytes": 1226
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.0_w080.0.ndjson.gz",
+      "bytes": 835
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.0_w080.5.ndjson.gz",
+      "bytes": 1777
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.0_w081.5.ndjson.gz",
+      "bytes": 3995
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.0_w082.0.ndjson.gz",
+      "bytes": 881
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.0_w082.5.ndjson.gz",
+      "bytes": 786
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.0_w085.0.ndjson.gz",
+      "bytes": 682
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.0_w089.5.ndjson.gz",
+      "bytes": 6925
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.0_w090.0.ndjson.gz",
+      "bytes": 1291
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.5_w080.5.ndjson.gz",
+      "bytes": 999
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.5_w081.0.ndjson.gz",
+      "bytes": 1546
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.5_w085.5.ndjson.gz",
+      "bytes": 912
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.5_w086.0.ndjson.gz",
+      "bytes": 667
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.5_w086.5.ndjson.gz",
+      "bytes": 1157
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.5_w087.5.ndjson.gz",
+      "bytes": 1375
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.5_w088.0.ndjson.gz",
+      "bytes": 676
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.5_w088.5.ndjson.gz",
+      "bytes": 662
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.5_w089.0.ndjson.gz",
+      "bytes": 964
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.5_w089.5.ndjson.gz",
+      "bytes": 664
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.5_w090.0.ndjson.gz",
+      "bytes": 675
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.5_w090.5.ndjson.gz",
+      "bytes": 960
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.5_w092.0.ndjson.gz",
+      "bytes": 1045
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.5_w093.5.ndjson.gz",
+      "bytes": 1261
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.5_w094.0.ndjson.gz",
+      "bytes": 1073
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n48.5_w095.0.ndjson.gz",
+      "bytes": 942
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n49.0_w081.5.ndjson.gz",
+      "bytes": 1112
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n49.0_w082.0.ndjson.gz",
+      "bytes": 989
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n49.0_w082.5.ndjson.gz",
+      "bytes": 1723
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n49.0_w085.0.ndjson.gz",
+      "bytes": 968
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n49.0_w086.0.ndjson.gz",
+      "bytes": 815
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n49.0_w088.5.ndjson.gz",
+      "bytes": 899
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n49.0_w090.5.ndjson.gz",
+      "bytes": 807
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n49.0_w092.0.ndjson.gz",
+      "bytes": 1013
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n49.0_w094.0.ndjson.gz",
+      "bytes": 956
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n49.0_w094.5.ndjson.gz",
+      "bytes": 961
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n49.5_w083.5.ndjson.gz",
+      "bytes": 660
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n49.5_w084.0.ndjson.gz",
+      "bytes": 1178
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n49.5_w087.0.ndjson.gz",
+      "bytes": 1323
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n49.5_w088.0.ndjson.gz",
+      "bytes": 652
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n49.5_w091.5.ndjson.gz",
+      "bytes": 666
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n49.5_w093.0.ndjson.gz",
+      "bytes": 1651
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n49.5_w093.5.ndjson.gz",
+      "bytes": 681
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n49.5_w094.5.ndjson.gz",
+      "bytes": 1890
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n49.5_w095.0.ndjson.gz",
+      "bytes": 1171
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n49.5_w095.5.ndjson.gz",
+      "bytes": 643
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n50.0_w087.0.ndjson.gz",
+      "bytes": 805
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n50.0_w089.5.ndjson.gz",
+      "bytes": 825
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n50.0_w091.0.ndjson.gz",
+      "bytes": 656
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n50.0_w092.0.ndjson.gz",
+      "bytes": 927
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n50.0_w093.5.ndjson.gz",
+      "bytes": 676
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n50.5_w093.5.ndjson.gz",
+      "bytes": 976
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n51.0_w081.0.ndjson.gz",
+      "bytes": 652
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n51.0_w085.5.ndjson.gz",
+      "bytes": 825
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n51.0_w090.5.ndjson.gz",
+      "bytes": 659
+    },
+    {
+      "file": "data/venues/ontario-alcohol-retail-locations/n51.0_w094.0.ndjson.gz",
+      "bytes": 1112
+    },
+    {
+      "file": "data/venues/ontario-correctional-institutions/n42.0_w083.0.ndjson.gz",
+      "bytes": 638
+    },
+    {
+      "file": "data/venues/ontario-correctional-institutions/n42.5_w081.5.ndjson.gz",
+      "bytes": 635
+    },
+    {
+      "file": "data/venues/ontario-correctional-institutions/n42.5_w082.5.ndjson.gz",
+      "bytes": 619
+    },
+    {
+      "file": "data/venues/ontario-correctional-institutions/n43.0_w079.5.ndjson.gz",
+      "bytes": 633
+    },
+    {
+      "file": "data/venues/ontario-correctional-institutions/n43.0_w080.0.ndjson.gz",
+      "bytes": 638
+    },
+    {
+      "file": "data/venues/ontario-correctional-institutions/n43.0_w081.0.ndjson.gz",
+      "bytes": 619
+    },
+    {
+      "file": "data/venues/ontario-correctional-institutions/n43.5_w079.5.ndjson.gz",
+      "bytes": 637
+    },
+    {
+      "file": "data/venues/ontario-correctional-institutions/n43.5_w080.0.ndjson.gz",
+      "bytes": 1018
+    },
+    {
+      "file": "data/venues/ontario-correctional-institutions/n44.0_w077.0.ndjson.gz",
+      "bytes": 632
+    },
+    {
+      "file": "data/venues/ontario-correctional-institutions/n44.0_w079.0.ndjson.gz",
+      "bytes": 627
+    },
+    {
+      "file": "data/venues/ontario-correctional-institutions/n44.5_w076.0.ndjson.gz",
+      "bytes": 775
+    },
+    {
+      "file": "data/venues/ontario-correctional-institutions/n44.5_w080.0.ndjson.gz",
+      "bytes": 636
+    },
+    {
+      "file": "data/venues/ontario-correctional-institutions/n45.0_w076.0.ndjson.gz",
+      "bytes": 631
+    },
+    {
+      "file": "data/venues/ontario-correctional-institutions/n46.0_w079.5.ndjson.gz",
+      "bytes": 625
+    },
+    {
+      "file": "data/venues/ontario-correctional-institutions/n46.0_w081.5.ndjson.gz",
+      "bytes": 616
+    },
+    {
+      "file": "data/venues/ontario-correctional-institutions/n46.5_w084.5.ndjson.gz",
+      "bytes": 652
+    },
+    {
+      "file": "data/venues/ontario-correctional-institutions/n48.0_w089.5.ndjson.gz",
+      "bytes": 773
+    },
+    {
+      "file": "data/venues/ontario-correctional-institutions/n48.5_w081.0.ndjson.gz",
+      "bytes": 628
+    },
+    {
+      "file": "data/venues/ontario-correctional-institutions/n48.5_w093.5.ndjson.gz",
+      "bytes": 621
+    },
+    {
+      "file": "data/venues/ontario-correctional-institutions/n49.5_w094.5.ndjson.gz",
+      "bytes": 615
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n42.0_w082.5.ndjson.gz",
+      "bytes": 611
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n42.0_w083.5.ndjson.gz",
+      "bytes": 756
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n42.5_w079.5.ndjson.gz",
+      "bytes": 616
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n42.5_w080.0.ndjson.gz",
+      "bytes": 606
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n42.5_w080.5.ndjson.gz",
+      "bytes": 639
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n42.5_w081.5.ndjson.gz",
+      "bytes": 776
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n42.5_w082.5.ndjson.gz",
+      "bytes": 615
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n43.0_w079.5.ndjson.gz",
+      "bytes": 651
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n43.0_w080.0.ndjson.gz",
+      "bytes": 774
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n43.0_w080.5.ndjson.gz",
+      "bytes": 975
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n43.0_w081.0.ndjson.gz",
+      "bytes": 859
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n43.5_w078.5.ndjson.gz",
+      "bytes": 630
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n43.5_w079.0.ndjson.gz",
+      "bytes": 622
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n43.5_w079.5.ndjson.gz",
+      "bytes": 1512
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n43.5_w080.0.ndjson.gz",
+      "bytes": 1009
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n43.5_w080.5.ndjson.gz",
+      "bytes": 868
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n43.5_w082.0.ndjson.gz",
+      "bytes": 627
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n44.0_w076.5.ndjson.gz",
+      "bytes": 895
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n44.0_w077.0.ndjson.gz",
+      "bytes": 733
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n44.0_w077.5.ndjson.gz",
+      "bytes": 1057
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n44.0_w078.5.ndjson.gz",
+      "bytes": 733
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n44.0_w079.0.ndjson.gz",
+      "bytes": 611
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n44.0_w079.5.ndjson.gz",
+      "bytes": 611
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n44.0_w080.0.ndjson.gz",
+      "bytes": 649
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n44.0_w081.5.ndjson.gz",
+      "bytes": 607
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n44.5_w076.0.ndjson.gz",
+      "bytes": 610
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n44.5_w076.5.ndjson.gz",
+      "bytes": 622
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n44.5_w081.0.ndjson.gz",
+      "bytes": 619
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n45.0_w075.0.ndjson.gz",
+      "bytes": 609
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n45.0_w076.0.ndjson.gz",
+      "bytes": 605
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n45.0_w079.5.ndjson.gz",
+      "bytes": 615
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n45.0_w080.5.ndjson.gz",
+      "bytes": 616
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n45.5_w075.0.ndjson.gz",
+      "bytes": 719
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n45.5_w077.5.ndjson.gz",
+      "bytes": 637
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n45.5_w082.5.ndjson.gz",
+      "bytes": 611
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n46.0_w079.5.ndjson.gz",
+      "bytes": 617
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n46.0_w081.0.ndjson.gz",
+      "bytes": 627
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n46.0_w081.5.ndjson.gz",
+      "bytes": 626
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n46.5_w084.5.ndjson.gz",
+      "bytes": 627
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n47.0_w080.0.ndjson.gz",
+      "bytes": 632
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n48.0_w081.5.ndjson.gz",
+      "bytes": 723
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n48.0_w089.5.ndjson.gz",
+      "bytes": 744
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n48.5_w093.5.ndjson.gz",
+      "bytes": 619
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n49.0_w081.5.ndjson.gz",
+      "bytes": 610
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n49.5_w093.0.ndjson.gz",
+      "bytes": 613
+    },
+    {
+      "file": "data/venues/ontario-courthouses/n49.5_w094.5.ndjson.gz",
+      "bytes": 605
+    },
+    {
       "file": "data/venues/ontario-fishing-access-points/n42.5_w079.5.ndjson.gz",
       "bytes": 617
     },
@@ -8707,6 +9753,494 @@
       "bytes": 533
     },
     {
+      "file": "data/venues/ontario-private-schools/n42.0_w082.5.ndjson.gz",
+      "bytes": 1204
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n42.0_w083.0.ndjson.gz",
+      "bytes": 2440
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n42.0_w083.5.ndjson.gz",
+      "bytes": 1564
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n42.0_w084.0.ndjson.gz",
+      "bytes": 650
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n42.5_w076.0.ndjson.gz",
+      "bytes": 653
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n42.5_w079.0.ndjson.gz",
+      "bytes": 868
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n42.5_w079.5.ndjson.gz",
+      "bytes": 1106
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n42.5_w080.0.ndjson.gz",
+      "bytes": 1118
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n42.5_w080.5.ndjson.gz",
+      "bytes": 1342
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n42.5_w081.0.ndjson.gz",
+      "bytes": 3625
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n42.5_w081.5.ndjson.gz",
+      "bytes": 2838
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n42.5_w082.0.ndjson.gz",
+      "bytes": 935
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n42.5_w082.5.ndjson.gz",
+      "bytes": 1629
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n43.0_w076.0.ndjson.gz",
+      "bytes": 656
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n43.0_w079.5.ndjson.gz",
+      "bytes": 3810
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n43.0_w080.0.ndjson.gz",
+      "bytes": 9793
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n43.0_w080.5.ndjson.gz",
+      "bytes": 6167
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n43.0_w081.0.ndjson.gz",
+      "bytes": 3326
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n43.0_w081.5.ndjson.gz",
+      "bytes": 1228
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n43.0_w082.5.ndjson.gz",
+      "bytes": 648
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n43.5_w077.5.ndjson.gz",
+      "bytes": 796
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n43.5_w078.0.ndjson.gz",
+      "bytes": 639
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n43.5_w078.5.ndjson.gz",
+      "bytes": 1212
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n43.5_w079.0.ndjson.gz",
+      "bytes": 3429
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n43.5_w079.5.ndjson.gz",
+      "bytes": 53259
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n43.5_w080.0.ndjson.gz",
+      "bytes": 27081
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n43.5_w080.5.ndjson.gz",
+      "bytes": 4387
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n43.5_w081.0.ndjson.gz",
+      "bytes": 6959
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n43.5_w081.5.ndjson.gz",
+      "bytes": 2666
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n43.5_w082.0.ndjson.gz",
+      "bytes": 1713
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.0_w076.5.ndjson.gz",
+      "bytes": 1044
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.0_w077.0.ndjson.gz",
+      "bytes": 1495
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.0_w077.5.ndjson.gz",
+      "bytes": 1455
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.0_w078.0.ndjson.gz",
+      "bytes": 916
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.0_w078.5.ndjson.gz",
+      "bytes": 1465
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.0_w079.0.ndjson.gz",
+      "bytes": 1331
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.0_w079.5.ndjson.gz",
+      "bytes": 3661
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.0_w080.0.ndjson.gz",
+      "bytes": 3208
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.0_w080.5.ndjson.gz",
+      "bytes": 1474
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.0_w081.0.ndjson.gz",
+      "bytes": 2276
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.0_w081.5.ndjson.gz",
+      "bytes": 2902
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.0_w082.0.ndjson.gz",
+      "bytes": 1033
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.5_w075.5.ndjson.gz",
+      "bytes": 654
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.5_w076.0.ndjson.gz",
+      "bytes": 1036
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.5_w076.5.ndjson.gz",
+      "bytes": 1228
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.5_w077.0.ndjson.gz",
+      "bytes": 636
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.5_w077.5.ndjson.gz",
+      "bytes": 645
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.5_w078.5.ndjson.gz",
+      "bytes": 651
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.5_w079.0.ndjson.gz",
+      "bytes": 643
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.5_w079.5.ndjson.gz",
+      "bytes": 1133
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.5_w080.0.ndjson.gz",
+      "bytes": 1504
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.5_w080.5.ndjson.gz",
+      "bytes": 650
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.5_w081.0.ndjson.gz",
+      "bytes": 1437
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n44.5_w081.5.ndjson.gz",
+      "bytes": 773
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n45.0_w075.0.ndjson.gz",
+      "bytes": 1174
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n45.0_w075.5.ndjson.gz",
+      "bytes": 1233
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n45.0_w076.0.ndjson.gz",
+      "bytes": 7318
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n45.0_w076.5.ndjson.gz",
+      "bytes": 992
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n45.0_w077.0.ndjson.gz",
+      "bytes": 647
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n45.0_w078.0.ndjson.gz",
+      "bytes": 1021
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n45.0_w079.0.ndjson.gz",
+      "bytes": 788
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n45.0_w079.5.ndjson.gz",
+      "bytes": 1310
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n45.0_w080.0.ndjson.gz",
+      "bytes": 1035
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n45.0_w080.5.ndjson.gz",
+      "bytes": 804
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n45.5_w075.5.ndjson.gz",
+      "bytes": 653
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n45.5_w077.0.ndjson.gz",
+      "bytes": 891
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n45.5_w077.5.ndjson.gz",
+      "bytes": 643
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n45.5_w078.0.ndjson.gz",
+      "bytes": 660
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n45.5_w079.0.ndjson.gz",
+      "bytes": 639
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n45.5_w079.5.ndjson.gz",
+      "bytes": 649
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n45.5_w080.0.ndjson.gz",
+      "bytes": 652
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n45.5_w081.0.ndjson.gz",
+      "bytes": 783
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n45.5_w082.0.ndjson.gz",
+      "bytes": 640
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n45.5_w082.5.ndjson.gz",
+      "bytes": 645
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n46.0_w079.5.ndjson.gz",
+      "bytes": 1035
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n46.0_w080.0.ndjson.gz",
+      "bytes": 652
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n46.0_w080.5.ndjson.gz",
+      "bytes": 645
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n46.0_w081.0.ndjson.gz",
+      "bytes": 953
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n46.0_w081.5.ndjson.gz",
+      "bytes": 640
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n46.0_w082.5.ndjson.gz",
+      "bytes": 646
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n46.0_w083.5.ndjson.gz",
+      "bytes": 656
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n46.0_w084.0.ndjson.gz",
+      "bytes": 871
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n46.0_w084.5.ndjson.gz",
+      "bytes": 659
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n46.5_w081.0.ndjson.gz",
+      "bytes": 642
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n46.5_w084.5.ndjson.gz",
+      "bytes": 1008
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n47.5_w080.0.ndjson.gz",
+      "bytes": 767
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n47.5_w081.0.ndjson.gz",
+      "bytes": 656
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n48.0_w089.5.ndjson.gz",
+      "bytes": 1564
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n48.0_w090.0.ndjson.gz",
+      "bytes": 648
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n48.5_w079.5.ndjson.gz",
+      "bytes": 805
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n48.5_w086.0.ndjson.gz",
+      "bytes": 645
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n48.5_w086.5.ndjson.gz",
+      "bytes": 644
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n48.5_w092.5.ndjson.gz",
+      "bytes": 649
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n48.5_w093.0.ndjson.gz",
+      "bytes": 648
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n48.5_w093.5.ndjson.gz",
+      "bytes": 657
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n48.5_w094.0.ndjson.gz",
+      "bytes": 640
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n48.5_w094.5.ndjson.gz",
+      "bytes": 642
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n49.0_w094.0.ndjson.gz",
+      "bytes": 775
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n49.5_w084.5.ndjson.gz",
+      "bytes": 659
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n49.5_w086.0.ndjson.gz",
+      "bytes": 657
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n49.5_w087.0.ndjson.gz",
+      "bytes": 657
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n49.5_w093.0.ndjson.gz",
+      "bytes": 653
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n49.5_w094.5.ndjson.gz",
+      "bytes": 650
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n49.5_w095.0.ndjson.gz",
+      "bytes": 771
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n49.5_w095.5.ndjson.gz",
+      "bytes": 637
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n50.0_w092.0.ndjson.gz",
+      "bytes": 783
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n50.0_w093.5.ndjson.gz",
+      "bytes": 645
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n50.0_w094.5.ndjson.gz",
+      "bytes": 648
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n50.0_w095.0.ndjson.gz",
+      "bytes": 650
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n51.0_w081.0.ndjson.gz",
+      "bytes": 635
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n51.5_w088.0.ndjson.gz",
+      "bytes": 638
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n51.5_w092.0.ndjson.gz",
+      "bytes": 641
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n51.5_w094.0.ndjson.gz",
+      "bytes": 648
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n52.0_w082.0.ndjson.gz",
+      "bytes": 794
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n52.0_w088.0.ndjson.gz",
+      "bytes": 657
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n52.5_w082.5.ndjson.gz",
+      "bytes": 632
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n52.5_w091.0.ndjson.gz",
+      "bytes": 657
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n52.5_w091.5.ndjson.gz",
+      "bytes": 686
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n52.5_w094.5.ndjson.gz",
+      "bytes": 637
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n53.0_w090.0.ndjson.gz",
+      "bytes": 646
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n53.5_w089.0.ndjson.gz",
+      "bytes": 651
+    },
+    {
+      "file": "data/venues/ontario-private-schools/n53.5_w090.0.ndjson.gz",
+      "bytes": 783
+    },
+    {
       "file": "data/venues/ontario-provincial-parks/n41.5_w083.0.ndjson.gz",
       "bytes": 846
     },
@@ -9467,6 +11001,598 @@
       "bytes": 636
     },
     {
+      "file": "data/venues/ontario-public-schools/n41.5_w083.0.ndjson.gz",
+      "bytes": 667
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n42.0_w082.0.ndjson.gz",
+      "bytes": 1326
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n42.0_w082.5.ndjson.gz",
+      "bytes": 3003
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n42.0_w083.0.ndjson.gz",
+      "bytes": 7674
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n42.0_w083.5.ndjson.gz",
+      "bytes": 6111
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n42.5_w079.0.ndjson.gz",
+      "bytes": 1096
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n42.5_w079.5.ndjson.gz",
+      "bytes": 3558
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n42.5_w080.0.ndjson.gz",
+      "bytes": 1400
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n42.5_w080.5.ndjson.gz",
+      "bytes": 3136
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n42.5_w081.0.ndjson.gz",
+      "bytes": 2649
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n42.5_w081.5.ndjson.gz",
+      "bytes": 11102
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n42.5_w082.0.ndjson.gz",
+      "bytes": 2837
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n42.5_w082.5.ndjson.gz",
+      "bytes": 5063
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n43.0_w079.5.ndjson.gz",
+      "bytes": 11961
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n43.0_w080.0.ndjson.gz",
+      "bytes": 29460
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n43.0_w080.5.ndjson.gz",
+      "bytes": 17024
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n43.0_w081.0.ndjson.gz",
+      "bytes": 10609
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n43.0_w081.5.ndjson.gz",
+      "bytes": 6815
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n43.0_w082.0.ndjson.gz",
+      "bytes": 1945
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n43.0_w082.5.ndjson.gz",
+      "bytes": 1669
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n43.5_w077.5.ndjson.gz",
+      "bytes": 820
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n43.5_w078.5.ndjson.gz",
+      "bytes": 2271
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n43.5_w079.0.ndjson.gz",
+      "bytes": 13764
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n43.5_w079.5.ndjson.gz",
+      "bytes": 84630
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n43.5_w080.0.ndjson.gz",
+      "bytes": 62119
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n43.5_w080.5.ndjson.gz",
+      "bytes": 9798
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n43.5_w081.0.ndjson.gz",
+      "bytes": 3760
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n43.5_w081.5.ndjson.gz",
+      "bytes": 1923
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n43.5_w082.0.ndjson.gz",
+      "bytes": 1763
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.0_w076.0.ndjson.gz",
+      "bytes": 670
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.0_w076.5.ndjson.gz",
+      "bytes": 3187
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.0_w077.0.ndjson.gz",
+      "bytes": 6540
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.0_w077.5.ndjson.gz",
+      "bytes": 4156
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.0_w078.0.ndjson.gz",
+      "bytes": 4279
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.0_w078.5.ndjson.gz",
+      "bytes": 5201
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.0_w079.0.ndjson.gz",
+      "bytes": 3464
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.0_w079.5.ndjson.gz",
+      "bytes": 8338
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.0_w080.0.ndjson.gz",
+      "bytes": 11404
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.0_w080.5.ndjson.gz",
+      "bytes": 2867
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.0_w081.0.ndjson.gz",
+      "bytes": 1638
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.0_w081.5.ndjson.gz",
+      "bytes": 2757
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.0_w082.0.ndjson.gz",
+      "bytes": 1283
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.5_w075.0.ndjson.gz",
+      "bytes": 664
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.5_w075.5.ndjson.gz",
+      "bytes": 1292
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.5_w076.0.ndjson.gz",
+      "bytes": 3610
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.5_w076.5.ndjson.gz",
+      "bytes": 2955
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.5_w077.0.ndjson.gz",
+      "bytes": 1102
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.5_w077.5.ndjson.gz",
+      "bytes": 1063
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.5_w078.0.ndjson.gz",
+      "bytes": 667
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.5_w078.5.ndjson.gz",
+      "bytes": 786
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.5_w079.0.ndjson.gz",
+      "bytes": 1187
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.5_w079.5.ndjson.gz",
+      "bytes": 2852
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.5_w080.0.ndjson.gz",
+      "bytes": 3339
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.5_w080.5.ndjson.gz",
+      "bytes": 966
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.5_w081.0.ndjson.gz",
+      "bytes": 1742
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n44.5_w081.5.ndjson.gz",
+      "bytes": 1146
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n45.0_w074.5.ndjson.gz",
+      "bytes": 693
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n45.0_w075.0.ndjson.gz",
+      "bytes": 5145
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n45.0_w075.5.ndjson.gz",
+      "bytes": 6550
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n45.0_w076.0.ndjson.gz",
+      "bytes": 30276
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n45.0_w076.5.ndjson.gz",
+      "bytes": 3534
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n45.0_w077.0.ndjson.gz",
+      "bytes": 1648
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n45.0_w078.0.ndjson.gz",
+      "bytes": 1784
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n45.0_w078.5.ndjson.gz",
+      "bytes": 997
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n45.0_w079.0.ndjson.gz",
+      "bytes": 886
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n45.0_w079.5.ndjson.gz",
+      "bytes": 2063
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n45.0_w080.0.ndjson.gz",
+      "bytes": 1013
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n45.0_w080.5.ndjson.gz",
+      "bytes": 1521
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n45.0_w082.0.ndjson.gz",
+      "bytes": 659
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n45.5_w075.0.ndjson.gz",
+      "bytes": 2105
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n45.5_w075.5.ndjson.gz",
+      "bytes": 1702
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n45.5_w077.0.ndjson.gz",
+      "bytes": 1107
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n45.5_w077.5.ndjson.gz",
+      "bytes": 2862
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n45.5_w079.5.ndjson.gz",
+      "bytes": 1128
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n45.5_w080.0.ndjson.gz",
+      "bytes": 897
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n45.5_w081.0.ndjson.gz",
+      "bytes": 648
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n45.5_w082.0.ndjson.gz",
+      "bytes": 904
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n45.5_w082.5.ndjson.gz",
+      "bytes": 897
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n46.0_w077.5.ndjson.gz",
+      "bytes": 995
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n46.0_w079.0.ndjson.gz",
+      "bytes": 1257
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n46.0_w079.5.ndjson.gz",
+      "bytes": 3813
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n46.0_w080.0.ndjson.gz",
+      "bytes": 1531
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n46.0_w080.5.ndjson.gz",
+      "bytes": 1356
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n46.0_w081.0.ndjson.gz",
+      "bytes": 2863
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n46.0_w081.5.ndjson.gz",
+      "bytes": 2144
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n46.0_w082.0.ndjson.gz",
+      "bytes": 1096
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n46.0_w082.5.ndjson.gz",
+      "bytes": 930
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n46.0_w083.0.ndjson.gz",
+      "bytes": 2194
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n46.0_w084.0.ndjson.gz",
+      "bytes": 961
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n46.0_w084.5.ndjson.gz",
+      "bytes": 783
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n46.5_w079.5.ndjson.gz",
+      "bytes": 669
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n46.5_w080.5.ndjson.gz",
+      "bytes": 675
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n46.5_w081.0.ndjson.gz",
+      "bytes": 3167
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n46.5_w081.5.ndjson.gz",
+      "bytes": 2556
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n46.5_w084.5.ndjson.gz",
+      "bytes": 4003
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n47.0_w080.0.ndjson.gz",
+      "bytes": 946
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n47.5_w080.0.ndjson.gz",
+      "bytes": 1932
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n47.5_w080.5.ndjson.gz",
+      "bytes": 656
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n47.5_w082.0.ndjson.gz",
+      "bytes": 694
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n47.5_w083.5.ndjson.gz",
+      "bytes": 1157
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n47.5_w085.0.ndjson.gz",
+      "bytes": 1232
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n48.0_w080.0.ndjson.gz",
+      "bytes": 688
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n48.0_w080.5.ndjson.gz",
+      "bytes": 1597
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n48.0_w081.5.ndjson.gz",
+      "bytes": 3156
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n48.0_w082.5.ndjson.gz",
+      "bytes": 685
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n48.0_w085.0.ndjson.gz",
+      "bytes": 830
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n48.0_w089.5.ndjson.gz",
+      "bytes": 4916
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n48.0_w090.0.ndjson.gz",
+      "bytes": 774
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n48.5_w080.5.ndjson.gz",
+      "bytes": 664
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n48.5_w081.0.ndjson.gz",
+      "bytes": 1397
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n48.5_w085.5.ndjson.gz",
+      "bytes": 662
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n48.5_w086.5.ndjson.gz",
+      "bytes": 1271
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n48.5_w087.5.ndjson.gz",
+      "bytes": 1204
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n48.5_w088.5.ndjson.gz",
+      "bytes": 793
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n48.5_w089.0.ndjson.gz",
+      "bytes": 804
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n48.5_w089.5.ndjson.gz",
+      "bytes": 673
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n48.5_w092.0.ndjson.gz",
+      "bytes": 864
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n48.5_w093.0.ndjson.gz",
+      "bytes": 652
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n48.5_w093.5.ndjson.gz",
+      "bytes": 1078
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n48.5_w094.0.ndjson.gz",
+      "bytes": 902
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n48.5_w094.5.ndjson.gz",
+      "bytes": 808
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n48.5_w095.0.ndjson.gz",
+      "bytes": 753
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n49.0_w081.5.ndjson.gz",
+      "bytes": 1112
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n49.0_w082.0.ndjson.gz",
+      "bytes": 903
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n49.0_w082.5.ndjson.gz",
+      "bytes": 1700
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n49.0_w085.0.ndjson.gz",
+      "bytes": 1000
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n49.0_w086.0.ndjson.gz",
+      "bytes": 1008
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n49.0_w088.5.ndjson.gz",
+      "bytes": 783
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n49.0_w090.5.ndjson.gz",
+      "bytes": 660
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n49.0_w092.0.ndjson.gz",
+      "bytes": 890
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n49.0_w094.0.ndjson.gz",
+      "bytes": 655
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n49.0_w094.5.ndjson.gz",
+      "bytes": 664
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n49.5_w083.5.ndjson.gz",
+      "bytes": 688
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n49.5_w084.0.ndjson.gz",
+      "bytes": 1337
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n49.5_w087.0.ndjson.gz",
+      "bytes": 1424
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n49.5_w088.0.ndjson.gz",
+      "bytes": 658
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n49.5_w093.0.ndjson.gz",
+      "bytes": 1248
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n49.5_w093.5.ndjson.gz",
+      "bytes": 660
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n49.5_w094.5.ndjson.gz",
+      "bytes": 1449
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n49.5_w095.0.ndjson.gz",
+      "bytes": 765
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n50.0_w087.0.ndjson.gz",
+      "bytes": 801
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n50.0_w089.5.ndjson.gz",
+      "bytes": 773
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n50.0_w091.0.ndjson.gz",
+      "bytes": 659
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n50.0_w092.0.ndjson.gz",
+      "bytes": 901
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n50.5_w093.5.ndjson.gz",
+      "bytes": 660
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n51.0_w081.0.ndjson.gz",
+      "bytes": 1016
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n51.0_w090.5.ndjson.gz",
+      "bytes": 759
+    },
+    {
+      "file": "data/venues/ontario-public-schools/n51.0_w094.0.ndjson.gz",
+      "bytes": 1132
+    },
+    {
       "file": "data/venues/ontario-railway-stations/n42.0_w082.5.ndjson.gz",
       "bytes": 588
     },
@@ -9725,6 +11851,322 @@
     {
       "file": "data/venues/ontario-railway-stations/n50.0_w094.5.ndjson.gz",
       "bytes": 579
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n42.0_w082.0.ndjson.gz",
+      "bytes": 925
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n42.0_w082.5.ndjson.gz",
+      "bytes": 822
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n42.0_w083.0.ndjson.gz",
+      "bytes": 1394
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n42.0_w083.5.ndjson.gz",
+      "bytes": 654
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n42.5_w079.0.ndjson.gz",
+      "bytes": 655
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n42.5_w079.5.ndjson.gz",
+      "bytes": 1071
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n42.5_w080.0.ndjson.gz",
+      "bytes": 652
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n42.5_w080.5.ndjson.gz",
+      "bytes": 780
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n42.5_w081.0.ndjson.gz",
+      "bytes": 642
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n42.5_w081.5.ndjson.gz",
+      "bytes": 1114
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n42.5_w082.0.ndjson.gz",
+      "bytes": 642
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n42.5_w082.5.ndjson.gz",
+      "bytes": 932
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n43.0_w079.5.ndjson.gz",
+      "bytes": 1348
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n43.0_w080.0.ndjson.gz",
+      "bytes": 2297
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n43.0_w080.5.ndjson.gz",
+      "bytes": 1873
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n43.0_w081.0.ndjson.gz",
+      "bytes": 1023
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n43.0_w081.5.ndjson.gz",
+      "bytes": 929
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n43.5_w078.5.ndjson.gz",
+      "bytes": 780
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n43.5_w079.0.ndjson.gz",
+      "bytes": 1375
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n43.5_w079.5.ndjson.gz",
+      "bytes": 8398
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n43.5_w080.0.ndjson.gz",
+      "bytes": 3574
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n43.5_w080.5.ndjson.gz",
+      "bytes": 1293
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n43.5_w081.0.ndjson.gz",
+      "bytes": 809
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n43.5_w082.0.ndjson.gz",
+      "bytes": 653
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n44.0_w077.0.ndjson.gz",
+      "bytes": 1028
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n44.0_w077.5.ndjson.gz",
+      "bytes": 814
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n44.0_w078.5.ndjson.gz",
+      "bytes": 830
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n44.0_w079.0.ndjson.gz",
+      "bytes": 667
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n44.0_w079.5.ndjson.gz",
+      "bytes": 895
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n44.0_w080.0.ndjson.gz",
+      "bytes": 771
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n44.0_w080.5.ndjson.gz",
+      "bytes": 658
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n44.5_w076.0.ndjson.gz",
+      "bytes": 639
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n44.5_w076.5.ndjson.gz",
+      "bytes": 666
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n44.5_w078.5.ndjson.gz",
+      "bytes": 682
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n44.5_w080.0.ndjson.gz",
+      "bytes": 922
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n44.5_w080.5.ndjson.gz",
+      "bytes": 654
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n44.5_w081.5.ndjson.gz",
+      "bytes": 642
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n45.0_w075.0.ndjson.gz",
+      "bytes": 809
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n45.0_w076.0.ndjson.gz",
+      "bytes": 2305
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n45.0_w076.5.ndjson.gz",
+      "bytes": 813
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n45.0_w077.0.ndjson.gz",
+      "bytes": 675
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n45.0_w078.0.ndjson.gz",
+      "bytes": 648
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n45.0_w079.5.ndjson.gz",
+      "bytes": 791
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n45.5_w077.5.ndjson.gz",
+      "bytes": 1146
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n45.5_w079.5.ndjson.gz",
+      "bytes": 890
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n45.5_w082.5.ndjson.gz",
+      "bytes": 650
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n46.0_w079.0.ndjson.gz",
+      "bytes": 648
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n46.0_w079.5.ndjson.gz",
+      "bytes": 930
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n46.0_w080.0.ndjson.gz",
+      "bytes": 649
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n46.0_w081.0.ndjson.gz",
+      "bytes": 785
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n46.0_w081.5.ndjson.gz",
+      "bytes": 667
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n46.0_w082.0.ndjson.gz",
+      "bytes": 647
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n46.0_w083.0.ndjson.gz",
+      "bytes": 650
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n46.5_w080.5.ndjson.gz",
+      "bytes": 641
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n46.5_w081.0.ndjson.gz",
+      "bytes": 1021
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n46.5_w081.5.ndjson.gz",
+      "bytes": 1015
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n46.5_w084.5.ndjson.gz",
+      "bytes": 790
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n47.5_w083.5.ndjson.gz",
+      "bytes": 653
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n47.5_w085.0.ndjson.gz",
+      "bytes": 662
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n48.0_w081.5.ndjson.gz",
+      "bytes": 654
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n48.0_w089.5.ndjson.gz",
+      "bytes": 917
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n48.0_w090.0.ndjson.gz",
+      "bytes": 644
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n48.5_w087.5.ndjson.gz",
+      "bytes": 793
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n48.5_w092.0.ndjson.gz",
+      "bytes": 637
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n48.5_w093.5.ndjson.gz",
+      "bytes": 657
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n48.5_w094.5.ndjson.gz",
+      "bytes": 649
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n48.5_w095.0.ndjson.gz",
+      "bytes": 661
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n49.0_w082.5.ndjson.gz",
+      "bytes": 664
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n49.0_w086.0.ndjson.gz",
+      "bytes": 646
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n49.0_w088.5.ndjson.gz",
+      "bytes": 639
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n49.0_w094.5.ndjson.gz",
+      "bytes": 662
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n49.5_w084.0.ndjson.gz",
+      "bytes": 656
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n49.5_w087.0.ndjson.gz",
+      "bytes": 779
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n49.5_w093.0.ndjson.gz",
+      "bytes": 642
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n49.5_w093.5.ndjson.gz",
+      "bytes": 655
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n49.5_w094.5.ndjson.gz",
+      "bytes": 659
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n50.0_w087.0.ndjson.gz",
+      "bytes": 644
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n50.0_w092.0.ndjson.gz",
+      "bytes": 650
+    },
+    {
+      "file": "data/venues/ontario-seniors-active-living-centres/n50.5_w093.5.ndjson.gz",
+      "bytes": 649
     },
     {
       "file": "data/venues/orangeville-parks/n43.5_w080.5.ndjson.gz",

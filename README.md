@@ -39,7 +39,7 @@ City of Toronto park washroom `Status` uses the datastore field note on resource
 
 A piece is one field on one record whose value is not `UNKNOWN` and whose `derived` flag is not true. `UNKNOWN` values are gaps. Photos, reviews, and tags are not pieces. A fact stored on a washroom record is not also stored on the venue.
 
-Section 5.6 counts only tier 2 and tier 3 values toward 500,000. This import's verified total is 0, so the shortfall is the full illustrative target in every tranche. The files, retrieved between 2026-11-13 and 2026-11-16, contain 916,402 tier 0 or tier 1 physical accessibility-fact values. Context fields, including access, crossing, lit, and fee, are 517,102 and are counted separately. Other populated values are 7,552,979. [COUNTS.md](COUNTS.md) has the tier split, the retrieval date, and the UNKNOWN gaps.
+Section 5.6 counts only tier 2 and tier 3 values toward 500,000. This import's verified total is 0, so the shortfall is the full illustrative target in every tranche. The files, retrieved between 2026-11-13 and 2026-11-16, contain 916,402 tier 0 or tier 1 physical accessibility-fact values. Context fields, including access, crossing, lit, and fee, are 517,102 and are counted separately. Other populated values are 7,702,728. [COUNTS.md](COUNTS.md) has the tier split, the retrieval date, and the UNKNOWN gaps.
 
 [COUNTS.md](COUNTS.md) also lists accessibility facts separately from names, addresses, and geometry. `toilets:wheelchair` is stored on the washroom `wheelchair` field. Tier 4 alert rows are not pieces.
 
@@ -110,6 +110,10 @@ Washroom fields from a venue, such as `toilets:wheelchair`, are emitted as a sep
 ## Province of Ontario place layers
 
 `npx tsx scripts/import-ontario-geohub.ts` reads six Land Information Ontario map layers listed in the Ontario Data Catalogue under the Open Government Licence – Ontario: Ministry of Health service provider locations, fishing access points, regulated provincial parks, official airports, Ontario Trail Network access points and railway passenger stations. Each job requests only the columns it names. A polygon is stored at the vertex mean of its largest ring (`geometry:vertex_mean`), which is not an entrance. The fishing access point `ACCESSIBILITY_FLG` is kept as `ACCESSIBILITY_FLG=<value>` in `wheelchair_description`. A health service name that may name a person is not stored. `npm run import` runs it after the Statistics Canada importer.
+
+## Province of Ontario place files
+
+`npx tsx scripts/import-ontario-catalogue.ts` reads six Ontario Data Catalogue files under the Open Government Licence – Ontario: publicly funded school locations, private school locations, alcohol retail locations, courthouses, Seniors Active Living Centres and open adult correctional institutions. Workbooks are read with `src/io/xlsx.ts` (the system `unzip` and a small SpreadsheetML parser; no new dependency). Only location columns are read: no phone, contact, enrolment or demographic column. A row that repeats an earlier row's name and address is the same place and is written once. `npm run import` runs it after the GeoHub importer.
 
 ## Licence re-checks
 

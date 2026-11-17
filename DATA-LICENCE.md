@@ -36,6 +36,8 @@ The Statistics Canada Linkable Open Data Environment databases (`statcan-odhf`, 
 
 The Province of Ontario place layers from Land Information Ontario (`ontario-moh-service-locations`, `ontario-fishing-access-points`, `ontario-provincial-parks`, `ontario-official-airports`, `ontario-otn-access-points`, `ontario-railway-stations`) use the Open Government Licence – Ontario, recorded with the Ontario Data Catalogue's identifier `OGL-ON-1.0`. The licence text was read on 2026-11-16 at https://www.ontario.ca/page/open-government-licence-ontario.
 
+The Province of Ontario place files from the Ontario Data Catalogue (`ontario-public-schools`, `ontario-private-schools`, `ontario-alcohol-retail-locations`, `ontario-courthouses`, `ontario-seniors-active-living-centres`, `ontario-correctional-institutions`) use the Open Government Licence – Ontario (`OGL-ON-1.0`), read on 2026-11-16.
+
 GO Transit and UP Express packed rows are stored only under `data/transit/metrolinx-go/` and `data/transit/metrolinx-up/`. They were accepted under the Metrolinx Access and Use Agreement on 2026-11-15. John Khan confirmed that acceptance directly to QA on 2026-11-15 at 5:59 PM ET (America/Toronto). The packed licence string is `Metrolinx Access and Use Agreement (accepted 2026-11-15)`. Those files are excluded from `data/tiles/open/` so they can be removed quickly if Metrolinx cancels. Never use Metrolinx, GO, or UP marks. Do not mix these rows into any other agency's files.
 
 MiWay GTFS is not in this pack. The official terms could not be confirmed.
