@@ -11,6 +11,7 @@ import { importOsm } from "./import-osm.js";
 import { importStatcanLode } from "./import-statcan-lode.js";
 import { importOntarioGeohub } from "./import-ontario-geohub.js";
 import { importOntarioCatalogue } from "./import-ontario-catalogue.js";
+import { importOverturePlaces } from "./import-overture-places.js";
 import { importYorkDurhamCities } from "./import-york-durham-cities.js";
 import { writeCounts } from "./count.js";
 
@@ -29,5 +30,7 @@ await importGtfs(repoRoot);
 await importStatcanLode(repoRoot);
 await importOntarioGeohub(repoRoot);
 await importOntarioCatalogue(repoRoot);
+// Reads the extract written by tools/overture/extract_places.py (.cache/overture/<release>/).
+await importOverturePlaces(repoRoot);
 await importOsm(repoRoot);
 await writeCounts(repoRoot);

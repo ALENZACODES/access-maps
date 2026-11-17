@@ -7,18 +7,18 @@ Tier 0 and tier 1 values count as 0 toward the 250,000 verified venue field-valu
 Verified toward 500,000 is 0. None of those verified field-values exist in this import.
 Open-data or operator-claimed physical accessibility facts (tier 0 and tier 1 only): **916,402**.
 Context fields, reported separately (access, crossing, lit, fee, and the other context fields below): **517,102**.
-All other populated values: **7,702,728**.
-All populated pieces together: **9,136,232**.
-Total UNKNOWN gaps: **54,635,232**.
-UNKNOWN gaps on accessibility fields: **30,099,240**.
+All other populated values: **9,038,064**.
+All populated pieces together: **10,471,568**.
+Total UNKNOWN gaps: **58,701,857**.
+UNKNOWN gaps on accessibility fields: **33,114,288**.
 Derived values excluded from both totals: **4,207**.
-Records: **1,788,884**.
+Records: **1,914,511**.
 
 The illustrative targets are 250,000 venue, 100,000 path, 50,000 transit, and 100,000 washroom verified field-values. Shortfall is the target minus verified values.
 
 | Tranche | Records | Physical accessibility facts (tier 0–1) | Context fields | Other populated | Verified (tier 2–3) | UNKNOWN gaps | Illustrative target | Shortfall |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| venue | 644351 | 121532 | 96490 | 3572902 | 0 | 23916169 | 250000 | 250000 |
+| venue | 769978 | 121532 | 96490 | 4908238 | 0 | 27982794 | 250000 | 250000 |
 | washroom | 7154 | 3668 | 3036 | 29165 | 0 | 238930 | 100000 | 100000 |
 | path | 1105455 | 769922 | 417576 | 3934564 | 0 | 30252498 | 100000 | 100000 |
 | transit | 31924 | 21280 | 0 | 166097 | 0 | 227635 | 50000 | 50000 |
@@ -27,11 +27,11 @@ The illustrative targets are 250,000 venue, 100,000 path, 50,000 transit, and 10
 
 An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.
 
-Physical accessibility facts, context fields, and the remaining pieces add up to the total: 916,402 + 517,102 + 7,702,728 = 9,136,232.
+Physical accessibility facts, context fields, and the remaining pieces add up to the total: 916,402 + 517,102 + 9,038,064 = 10,471,568.
 
 | Tranche | Physical accessibility pieces | Context pieces | Remaining pieces |
 | --- | ---: | ---: | ---: |
-| venue | 121532 | 96490 | 3572902 |
+| venue | 121532 | 96490 | 4908238 |
 | washroom | 3668 | 3036 | 29165 |
 | path | 769922 | 417576 | 3934564 |
 | transit | 21280 | 0 | 166097 |
@@ -132,7 +132,7 @@ Populated accessibility facts by field:
 
 | Tranche | Tier 0 | Tier 1 | Tier 2 | Tier 3 | Tier 4 |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| venue | 3790924 | 0 | 0 | 0 | 0 |
+| venue | 5126260 | 0 | 0 | 0 | 0 |
 | washroom | 35869 | 0 | 0 | 0 | 0 |
 | path | 5122062 | 0 | 0 | 0 | 0 |
 | transit | 1232 | 186145 | 0 | 0 | 0 |
@@ -251,6 +251,9 @@ Populated accessibility facts by field:
 | ottawa-pedestrian-network | 20297 | 75358 | 0 | 574146 | 75358 | 0 | 2026-11-16 |
 | ottawa-public-washrooms | 186 | 1988 | 545 | 5266 | 1988 | 0 | 2026-11-16 |
 | ottawa-recreation-facilities | 371 | 2840 | 0 | 13113 | 2840 | 0 | 2026-11-16 |
+| overture-places | 106084 | 1124469 | 0 | 3437143 | 1124469 | 0 | 2026-11-16 |
+| overture-places-alltheplaces | 2302 | 25270 | 0 | 73716 | 25270 | 0 | 2026-11-16 |
+| overture-places-foursquare | 17241 | 185597 | 0 | 555766 | 185597 | 0 | 2026-11-16 |
 | oxford-county-trails | 101 | 493 | 191 | 2739 | 493 | 0 | 2026-11-16 |
 | peel-trails | 7791 | 31164 | 7791 | 218148 | 31164 | 0 | 2026-11-16 |
 | pickering-facilities | 28 | 250 | 0 | 954 | 250 | 0 | 2026-11-16 |
@@ -298,18 +301,18 @@ Populated accessibility facts by field:
 
 ### venue
 
-- braille: 644351
-- door_width: 644351
-- handrail: 644351
-- incline: 644351
-- kerb_height: 644351
-- ramp_stroller: 644351
-- ramp_wheelchair: 644351
-- step_count: 644351
-- hearing_loop: 644348
-- elevator: 644338
-- tactile_paving: 644338
-- ramp: 644322
+- braille: 769978
+- door_width: 769978
+- handrail: 769978
+- incline: 769978
+- kerb_height: 769978
+- ramp_stroller: 769978
+- ramp_wheelchair: 769978
+- step_count: 769978
+- hearing_loop: 769975
+- elevator: 769965
+- tactile_paving: 769965
+- ramp: 769949
 
 ### washroom
 
