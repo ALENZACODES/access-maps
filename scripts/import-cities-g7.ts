@@ -9,6 +9,9 @@ import { GREY_COUNTY_JOBS } from "../src/municipal/cities/grey-county.js";
 import { HASTINGS_COUNTY_JOBS } from "../src/municipal/cities/hastings-county.js";
 import { HURON_COUNTY_JOBS } from "../src/municipal/cities/huron-county.js";
 import { LEEDS_GRENVILLE_JOBS } from "../src/municipal/cities/leeds-grenville.js";
+import { LENNOX_ADDINGTON_JOBS } from "../src/municipal/cities/lennox-addington.js";
+import { NIAGARA_PENINSULA_CONSERVATION_JOBS } from "../src/municipal/cities/niagara-peninsula-conservation.js";
+import { QUINTE_CONSERVATION_JOBS } from "../src/municipal/cities/quinte-conservation.js";
 import type { Provenance } from "../src/model/provenance.js";
 import { readRegistry, requireSource } from "../src/registry.js";
 import { compileValidators } from "../src/validate/ajv.js";
@@ -20,7 +23,7 @@ const USER_AGENT = "access-maps-pipeline/1.0 (Ontario open-data import; licence 
  * cover the municipalities listed in sources/ontario-municipalities-remaining.json. The
  * registry download_url is the layer URL. Each job names the only columns requested.
  */
-export const G7_LAYER_JOBS: readonly G7LayerJob[] = [...HURON_COUNTY_JOBS, ...HASTINGS_COUNTY_JOBS, ...LEEDS_GRENVILLE_JOBS, ...GREY_COUNTY_JOBS];
+export const G7_LAYER_JOBS: readonly G7LayerJob[] = [...HURON_COUNTY_JOBS, ...HASTINGS_COUNTY_JOBS, ...LEEDS_GRENVILLE_JOBS, ...GREY_COUNTY_JOBS, ...LENNOX_ADDINGTON_JOBS, ...QUINTE_CONSERVATION_JOBS, ...NIAGARA_PENINSULA_CONSERVATION_JOBS];
 
 export interface G7Imported {
   source_id: string;

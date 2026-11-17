@@ -1,17 +1,17 @@
 {
   "definition": "A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. Section 5.6 counts only tier 2 and tier 3 values toward 500,000. Tier 0 and tier 1 accessibility facts are reported separately and are not verified.",
-  "records": 2004045,
-  "pieces": 11420981,
-  "gaps": 61585469,
+  "records": 2006058,
+  "pieces": 11431690,
+  "gaps": 61644341,
   "derived_excluded": 4207,
   "verified_toward_500k": 0,
-  "accessibility_fact_pieces": 916698,
-  "other_populated_pieces": 9987181,
-  "accessibility_pieces": 916698,
-  "accessibility_gaps": 35249248,
-  "identity_pieces": 9987181,
+  "accessibility_fact_pieces": 918289,
+  "other_populated_pieces": 9996299,
+  "accessibility_pieces": 918289,
+  "accessibility_gaps": 35280477,
+  "identity_pieces": 9996299,
   "context_pieces": 517102,
-  "context_gaps": 5680848,
+  "context_gaps": 5687982,
   "accessibility_definition": "An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.",
   "context_definition": "Context fields are populated values that are not a physical access measurement: access, crossing, lit, foot, fee, changing_table_fee, unisex, male, female, locked, and supervised. They are not accessibility facts and they are not names or geometry.",
   "accessibility_fields": {
@@ -94,18 +94,18 @@
   },
   "by_tranche": {
     "venue": {
-      "records": 858715,
-      "pieces": 6071747,
-      "accessibility_facts": 121532,
-      "other_populated": 5853725,
+      "records": 859182,
+      "pieces": 6075672,
+      "accessibility_facts": 121567,
+      "other_populated": 5857615,
       "verified": 0,
-      "gaps": 30852998,
+      "gaps": 30869154,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 6071747
+        "0": 6075672
       },
       "gaps_by_tier": {
-        "0": 30852998
+        "0": 30869154
       },
       "pieces_by_source": {
         "ajax-playgrounds": 486,
@@ -146,6 +146,7 @@
         "lambton-accessible-facilities": 513,
         "leeds-grenville-county-offices": 56,
         "leeds-grenville-municipal-offices": 102,
+        "lennox-addington-facility-sites": 3453,
         "london-libraries": 153,
         "london-off-street-parking": 147,
         "london-park-amenities": 11505,
@@ -158,6 +159,7 @@
         "newmarket-park-features": 1641,
         "newmarket-trail-points": 1282,
         "niagara-falls-playgrounds": 489,
+        "npca-conservation-areas": 320,
         "ontario-alcohol-retail-locations": 74837,
         "ontario-correctional-institutions": 225,
         "ontario-courthouses": 553,
@@ -184,6 +186,7 @@
         "overture-places": 1900563,
         "pickering-facilities": 250,
         "pickering-parks": 1267,
+        "quinte-conservation-areas": 152,
         "quinte-west-parks": 872,
         "statcan-odcaf": 11715,
         "statcan-odef": 51181,
@@ -207,61 +210,61 @@
       "pieces_by_retrieved_at": {
         "2026-11-16": 3143651,
         "2026-11-13": 2924533,
-        "2026-11-17": 3563
+        "2026-11-17": 7488
       },
       "gaps_by_retrieved_at": {
         "2026-11-16": 10501539,
         "2026-11-13": 20336059,
-        "2026-11-17": 15400
+        "2026-11-17": 31556
       },
       "gap_fields": {
-        "addr_housenumber": 516892,
-        "addr_street": 509017,
-        "addr_city": 527830,
-        "addr_postcode": 585439,
-        "addr_unit": 851171,
-        "opening_hours": 837047,
-        "level": 848047,
-        "operator": 805840,
-        "brand": 784066,
-        "website": 643849,
-        "wheelchair": 846045,
-        "wheelchair_description": 838653,
-        "entrance": 841082,
-        "automatic_door": 858622,
-        "door": 856680,
-        "door_width": 858715,
-        "ramp": 858686,
-        "ramp_wheelchair": 858715,
-        "ramp_stroller": 858715,
-        "step_count": 858715,
-        "incline": 858715,
-        "kerb": 858529,
-        "kerb_height": 858715,
-        "tactile_paving": 858702,
-        "handrail": 858715,
-        "width": 858685,
-        "access": 770760,
-        "surface": 795619,
-        "smoothness": 858583,
-        "lit": 850180,
-        "braille": 858715,
-        "hearing_loop": 858712,
-        "speech_output": 857267,
-        "stroller": 858664,
-        "capacity_disabled": 854677,
-        "indoor": 855711,
-        "elevator": 858702,
-        "ref": 550140,
+        "addr_housenumber": 517006,
+        "addr_street": 509060,
+        "addr_city": 527836,
+        "addr_postcode": 585906,
+        "addr_unit": 851638,
+        "opening_hours": 837514,
+        "level": 848514,
+        "operator": 806307,
+        "brand": 784533,
+        "website": 643999,
+        "wheelchair": 846512,
+        "wheelchair_description": 839085,
+        "entrance": 841549,
+        "automatic_door": 859089,
+        "door": 857147,
+        "door_width": 859182,
+        "ramp": 859153,
+        "ramp_wheelchair": 859182,
+        "ramp_stroller": 859182,
+        "step_count": 859182,
+        "incline": 859182,
+        "kerb": 858996,
+        "kerb_height": 859182,
+        "tactile_paving": 859169,
+        "handrail": 859182,
+        "width": 859152,
+        "access": 771227,
+        "surface": 796086,
+        "smoothness": 859050,
+        "lit": 850647,
+        "braille": 859182,
+        "hearing_loop": 859179,
+        "speech_output": 857734,
+        "stroller": 859131,
+        "capacity_disabled": 855144,
+        "indoor": 856178,
+        "elevator": 859169,
+        "ref": 550607,
         "category": 15883,
         "name": 405891,
         "category_group": 7607
       },
-      "accessibility_pieces": 121532,
-      "accessibility_gaps": 20487628,
+      "accessibility_pieces": 121567,
+      "accessibility_gaps": 20498801,
       "accessibility_by_field": {
         "capacity_disabled": 4038,
-        "wheelchair_description": 20062,
+        "wheelchair_description": 20097,
         "kerb": 186,
         "automatic_door": 93,
         "elevator": 13,
@@ -278,25 +281,25 @@
         "tactile_paving": 13
       },
       "context_pieces": 96490,
-      "context_gaps": 1620940,
+      "context_gaps": 1621874,
       "context_by_field": {
         "access": 87955,
         "lit": 8535
       }
     },
     "washroom": {
-      "records": 7154,
-      "pieces": 35869,
+      "records": 7158,
+      "pieces": 35901,
       "accessibility_facts": 3668,
-      "other_populated": 29165,
+      "other_populated": 29197,
       "verified": 0,
-      "gaps": 238930,
+      "gaps": 239054,
       "derived_excluded": 4207,
       "pieces_by_tier": {
-        "0": 35869
+        "0": 35901
       },
       "gaps_by_tier": {
-        "0": 238930
+        "0": 239054
       },
       "pieces_by_source": {
         "guelph-restrooms": 328,
@@ -305,6 +308,7 @@
         "kingston-public-washrooms": 432,
         "kitchener-public-washrooms": 758,
         "lambton-accessible-facilities": 197,
+        "lennox-addington-facility-sites": 32,
         "london-park-amenities": 617,
         "newmarket-park-features": 74,
         "newmarket-trail-points": 55,
@@ -324,53 +328,55 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-16": 10985,
-        "2026-11-13": 24884
+        "2026-11-13": 24884,
+        "2026-11-17": 32
       },
       "gaps_by_retrieved_at": {
         "2026-11-16": 37319,
-        "2026-11-13": 201611
+        "2026-11-13": 201611,
+        "2026-11-17": 124
       },
       "gap_fields": {
-        "wheelchair": 5068,
-        "wheelchair_description": 7085,
-        "changing_table": 6517,
-        "changing_table_fee": 7151,
-        "changing_table_location": 7150,
-        "adult_changing_table": 6977,
-        "access": 5952,
-        "fee": 6422,
-        "opening_hours": 6111,
-        "unisex": 6648,
-        "male": 6857,
-        "female": 6861,
-        "supervised": 7151,
-        "level": 6927,
-        "indoor": 7028,
-        "operator": 6522,
+        "wheelchair": 5072,
+        "wheelchair_description": 7089,
+        "changing_table": 6521,
+        "changing_table_fee": 7155,
+        "changing_table_location": 7154,
+        "adult_changing_table": 6981,
+        "access": 5956,
+        "fee": 6426,
+        "opening_hours": 6115,
+        "unisex": 6652,
+        "male": 6861,
+        "female": 6865,
+        "supervised": 7155,
+        "level": 6931,
+        "indoor": 7032,
+        "operator": 6526,
         "addr_housenumber": 6680,
         "addr_street": 6659,
         "addr_city": 7015,
-        "addr_postcode": 7062,
-        "address": 6281,
-        "description": 6587,
-        "locked": 7154,
-        "drinking_water": 7101,
-        "shower": 7132,
-        "disposal": 5647,
-        "capacity": 7149,
-        "seasonal": 6843,
-        "location": 6540,
-        "published_accessibility": 6459,
-        "building": 6012,
-        "parent_id": 5183,
-        "status": 6634,
+        "addr_postcode": 7066,
+        "address": 6285,
+        "description": 6591,
+        "locked": 7158,
+        "drinking_water": 7105,
+        "shower": 7136,
+        "disposal": 5651,
+        "capacity": 7153,
+        "seasonal": 6847,
+        "location": 6544,
+        "published_accessibility": 6463,
+        "building": 6016,
+        "parent_id": 5187,
+        "status": 6638,
         "website": 6730,
-        "posted_date": 6799,
+        "posted_date": 6803,
         "name": 5699,
         "facility_type": 1137
       },
       "accessibility_pieces": 3668,
-      "accessibility_gaps": 39256,
+      "accessibility_gaps": 39280,
       "accessibility_by_field": {
         "published_accessibility": 695,
         "changing_table": 637,
@@ -380,7 +386,7 @@
         "changing_table_location": 4
       },
       "context_pieces": 3036,
-      "context_gaps": 54196,
+      "context_gaps": 54228,
       "context_by_field": {
         "male": 297,
         "female": 293,
@@ -392,18 +398,18 @@
       }
     },
     "path": {
-      "records": 1105822,
-      "pieces": 5123825,
-      "accessibility_facts": 770218,
-      "other_populated": 3936031,
+      "records": 1107364,
+      "pieces": 5130577,
+      "accessibility_facts": 771774,
+      "other_populated": 3941227,
       "verified": 0,
-      "gaps": 30262479,
+      "gaps": 30305071,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 5123825
+        "0": 5130577
       },
       "gaps_by_tier": {
-        "0": 30262479
+        "0": 30305071
       },
       "pieces_by_source": {
         "ajax-recreational-trails": 6730,
@@ -428,6 +434,7 @@
         "kitchener-crosswalks": 28240,
         "kitchener-sidewalks": 119683,
         "kitchener-trails": 30177,
+        "lennox-addington-sidewalks": 3836,
         "london-sidewalks": 55976,
         "london-trails": 7392,
         "london-walkways": 1395,
@@ -437,11 +444,13 @@
         "newmarket-trails": 2956,
         "niagara-falls-sidewalks": 20490,
         "niagara-falls-trails": 221,
+        "npca-trails": 1589,
         "oshawa-trails": 897,
         "osm-ontario": 3863020,
         "ottawa-pedestrian-network": 75358,
         "oxford-county-trails": 493,
         "peel-trails": 31164,
+        "quinte-conservation-trails": 1327,
         "quinte-west-trails": 799,
         "thunder-bay-sidewalks": 15480,
         "thunder-bay-trails": 2804,
@@ -456,52 +465,52 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-16": 1259042,
-        "2026-11-17": 1763,
+        "2026-11-17": 8515,
         "2026-11-13": 3863020
       },
       "gaps_by_retrieved_at": {
         "2026-11-16": 7026718,
-        "2026-11-17": 9981,
+        "2026-11-17": 52573,
         "2026-11-13": 23225780
       },
       "gap_fields": {
-        "footway": 590095,
-        "foot": 1071190,
-        "smoothness": 1079837,
-        "incline": 1091388,
-        "kerb": 1048580,
-        "tactile_paving": 1006387,
-        "wheelchair": 1079195,
-        "wheelchair_description": 1063020,
-        "step_count": 1103784,
-        "handrail": 1103111,
-        "access": 1092342,
-        "max_slope": 1105822,
-        "min_width": 1105822,
-        "stair_count": 1105822,
-        "from_ref": 1105822,
-        "to_ref": 1105822,
-        "crossing": 788273,
-        "pathway_mode": 1105822,
-        "bidirectional": 1105822,
-        "oneway": 1093503,
-        "traversal_time_s": 1105822,
-        "signposted_as": 1104562,
-        "reversed_signposted_as": 1105822,
-        "ramp": 1104450,
-        "indoor": 1103252,
-        "length_m": 1018768,
-        "lit": 1053907,
-        "width": 989121,
-        "surface": 724951,
+        "footway": 591637,
+        "foot": 1072732,
+        "smoothness": 1081379,
+        "incline": 1092930,
+        "kerb": 1050122,
+        "tactile_paving": 1007929,
+        "wheelchair": 1080737,
+        "wheelchair_description": 1064168,
+        "step_count": 1105326,
+        "handrail": 1104653,
+        "access": 1093884,
+        "max_slope": 1107364,
+        "min_width": 1107364,
+        "stair_count": 1107364,
+        "from_ref": 1107364,
+        "to_ref": 1107364,
+        "crossing": 789815,
+        "pathway_mode": 1107364,
+        "bidirectional": 1107364,
+        "oneway": 1095045,
+        "traversal_time_s": 1107364,
+        "signposted_as": 1105534,
+        "reversed_signposted_as": 1107364,
+        "ramp": 1105992,
+        "indoor": 1104794,
+        "length_m": 1020310,
+        "lit": 1055449,
+        "width": 990663,
+        "surface": 725331,
         "kind": 365
       },
-      "accessibility_pieces": 770218,
-      "accessibility_gaps": 14711290,
+      "accessibility_pieces": 771774,
+      "accessibility_gaps": 14731322,
       "accessibility_by_field": {
-        "surface": 380871,
+        "surface": 382033,
         "width": 116701,
-        "wheelchair_description": 42802,
+        "wheelchair_description": 43196,
         "handrail": 2711,
         "tactile_paving": 99435,
         "kerb": 57242,
@@ -512,7 +521,7 @@
         "step_count": 2038
       },
       "context_pieces": 417576,
-      "context_gaps": 4005712,
+      "context_gaps": 4011880,
       "context_by_field": {
         "lit": 51915,
         "crossing": 317549,
@@ -943,6 +952,22 @@
       },
       "accessibility_pieces": 12892
     },
+    "lennox-addington-sidewalks": {
+      "records": 959,
+      "pieces": 3836,
+      "gaps": 26852,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 3836
+      },
+      "pieces_by_tranche": {
+        "path": 3836
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 3836
+      },
+      "accessibility_pieces": 959
+    },
     "london-sidewalks": {
       "records": 11196,
       "pieces": 55976,
@@ -1087,6 +1112,22 @@
       },
       "accessibility_pieces": 32
     },
+    "npca-trails": {
+      "records": 315,
+      "pieces": 1589,
+      "gaps": 8491,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 1589
+      },
+      "pieces_by_tranche": {
+        "path": 1589
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 1589
+      },
+      "accessibility_pieces": 342
+    },
     "oshawa-trails": {
       "records": 299,
       "pieces": 897,
@@ -1168,6 +1209,22 @@
         "2026-11-16": 31164
       },
       "accessibility_pieces": 7791
+    },
+    "quinte-conservation-trails": {
+      "records": 268,
+      "pieces": 1327,
+      "gaps": 7249,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 1327
+      },
+      "pieces_by_tranche": {
+        "path": 1327
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 1327
+      },
+      "accessibility_pieces": 255
     },
     "quinte-west-trails": {
       "records": 132,
@@ -2243,6 +2300,23 @@
       },
       "accessibility_pieces": 0
     },
+    "lennox-addington-facility-sites": {
+      "records": 410,
+      "pieces": 3485,
+      "gaps": 14129,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 3485
+      },
+      "pieces_by_tranche": {
+        "venue": 3453,
+        "washroom": 32
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 3485
+      },
+      "accessibility_pieces": 0
+    },
     "london-libraries": {
       "records": 17,
       "pieces": 153,
@@ -2437,6 +2511,22 @@
         "2026-11-16": 489
       },
       "accessibility_pieces": 79
+    },
+    "npca-conservation-areas": {
+      "records": 42,
+      "pieces": 320,
+      "gaps": 1486,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 320
+      },
+      "pieces_by_tranche": {
+        "venue": 320
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 320
+      },
+      "accessibility_pieces": 35
     },
     "ontario-alcohol-retail-locations": {
       "records": 9180,
@@ -2837,6 +2927,22 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-16": 1392
+      },
+      "accessibility_pieces": 0
+    },
+    "quinte-conservation-areas": {
+      "records": 19,
+      "pieces": 152,
+      "gaps": 665,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 152
+      },
+      "pieces_by_tranche": {
+        "venue": 152
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 152
       },
       "accessibility_pieces": 0
     },
@@ -3583,6 +3689,18 @@
       "bytes": 3295
     },
     {
+      "file": "data/paths/lennox-addington-sidewalks/n44.0_w077.0.ndjson.gz",
+      "bytes": 67832
+    },
+    {
+      "file": "data/paths/lennox-addington-sidewalks/n44.0_w077.5.ndjson.gz",
+      "bytes": 1023
+    },
+    {
+      "file": "data/paths/lennox-addington-sidewalks/n44.5_w077.5.ndjson.gz",
+      "bytes": 1049
+    },
+    {
       "file": "data/paths/london-sidewalks/n42.5_w081.5.ndjson.gz",
       "bytes": 460413
     },
@@ -3657,6 +3775,22 @@
     {
       "file": "data/paths/niagara-falls-trails/n43.0_w079.5.ndjson.gz",
       "bytes": 35583
+    },
+    {
+      "file": "data/paths/npca-trails/n42.5_w079.5.ndjson.gz",
+      "bytes": 24920
+    },
+    {
+      "file": "data/paths/npca-trails/n42.5_w080.0.ndjson.gz",
+      "bytes": 2588
+    },
+    {
+      "file": "data/paths/npca-trails/n43.0_w079.5.ndjson.gz",
+      "bytes": 64292
+    },
+    {
+      "file": "data/paths/npca-trails/n43.0_w080.0.ndjson.gz",
+      "bytes": 42974
     },
     {
       "file": "data/paths/oshawa-trails/n43.5_w079.0.ndjson.gz",
@@ -5331,6 +5465,38 @@
       "bytes": 29141
     },
     {
+      "file": "data/paths/quinte-conservation-trails/n43.5_w077.0.ndjson.gz",
+      "bytes": 3999
+    },
+    {
+      "file": "data/paths/quinte-conservation-trails/n43.5_w077.5.ndjson.gz",
+      "bytes": 2125
+    },
+    {
+      "file": "data/paths/quinte-conservation-trails/n44.0_w077.0.ndjson.gz",
+      "bytes": 1114
+    },
+    {
+      "file": "data/paths/quinte-conservation-trails/n44.0_w077.5.ndjson.gz",
+      "bytes": 25037
+    },
+    {
+      "file": "data/paths/quinte-conservation-trails/n44.0_w078.0.ndjson.gz",
+      "bytes": 2543
+    },
+    {
+      "file": "data/paths/quinte-conservation-trails/n44.5_w077.0.ndjson.gz",
+      "bytes": 6077
+    },
+    {
+      "file": "data/paths/quinte-conservation-trails/n44.5_w077.5.ndjson.gz",
+      "bytes": 1988
+    },
+    {
+      "file": "data/paths/quinte-conservation-trails/n44.5_w078.0.ndjson.gz",
+      "bytes": 3715
+    },
+    {
       "file": "data/paths/quinte-west-trails/n44.0_w078.0.ndjson.gz",
       "bytes": 32908
     },
@@ -6143,6 +6309,26 @@
       "bytes": 629
     },
     {
+      "file": "data/venues/lennox-addington-facility-sites/n44.0_w077.0.ndjson.gz",
+      "bytes": 31880
+    },
+    {
+      "file": "data/venues/lennox-addington-facility-sites/n44.0_w077.5.ndjson.gz",
+      "bytes": 5711
+    },
+    {
+      "file": "data/venues/lennox-addington-facility-sites/n44.5_w077.0.ndjson.gz",
+      "bytes": 815
+    },
+    {
+      "file": "data/venues/lennox-addington-facility-sites/n44.5_w077.5.ndjson.gz",
+      "bytes": 5566
+    },
+    {
+      "file": "data/venues/lennox-addington-facility-sites/n45.0_w077.5.ndjson.gz",
+      "bytes": 2743
+    },
+    {
       "file": "data/venues/london-libraries/n42.5_w081.5.ndjson.gz",
       "bytes": 1553
     },
@@ -6649,6 +6835,22 @@
     {
       "file": "data/venues/niagara-falls-playgrounds/n43.0_w079.5.ndjson.gz",
       "bytes": 5681
+    },
+    {
+      "file": "data/venues/npca-conservation-areas/n42.5_w079.5.ndjson.gz",
+      "bytes": 1761
+    },
+    {
+      "file": "data/venues/npca-conservation-areas/n42.5_w080.0.ndjson.gz",
+      "bytes": 978
+    },
+    {
+      "file": "data/venues/npca-conservation-areas/n43.0_w079.5.ndjson.gz",
+      "bytes": 1908
+    },
+    {
+      "file": "data/venues/npca-conservation-areas/n43.0_w080.0.ndjson.gz",
+      "bytes": 991
     },
     {
       "file": "data/venues/ontario-alcohol-retail-locations/n41.5_w083.0.ndjson.gz",
@@ -15019,6 +15221,34 @@
       "bytes": 14742
     },
     {
+      "file": "data/venues/quinte-conservation-areas/n43.5_w077.0.ndjson.gz",
+      "bytes": 632
+    },
+    {
+      "file": "data/venues/quinte-conservation-areas/n43.5_w077.5.ndjson.gz",
+      "bytes": 636
+    },
+    {
+      "file": "data/venues/quinte-conservation-areas/n44.0_w077.5.ndjson.gz",
+      "bytes": 1384
+    },
+    {
+      "file": "data/venues/quinte-conservation-areas/n44.0_w078.0.ndjson.gz",
+      "bytes": 622
+    },
+    {
+      "file": "data/venues/quinte-conservation-areas/n44.5_w077.0.ndjson.gz",
+      "bytes": 920
+    },
+    {
+      "file": "data/venues/quinte-conservation-areas/n44.5_w077.5.ndjson.gz",
+      "bytes": 847
+    },
+    {
+      "file": "data/venues/quinte-conservation-areas/n44.5_w078.0.ndjson.gz",
+      "bytes": 635
+    },
+    {
       "file": "data/venues/quinte-west-parks/n44.0_w077.5.ndjson.gz",
       "bytes": 1738
     },
@@ -18077,6 +18307,10 @@
     {
       "file": "data/washrooms/lambton-accessible-facilities/n43.0_w082.5.ndjson.gz",
       "bytes": 790
+    },
+    {
+      "file": "data/washrooms/lennox-addington-facility-sites/n44.0_w077.0.ndjson.gz",
+      "bytes": 1011
     },
     {
       "file": "data/washrooms/london-park-amenities/n42.5_w081.5.ndjson.gz",
