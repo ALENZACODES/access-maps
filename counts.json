@@ -3369,10 +3369,10 @@
   "total_shortfall": 500000,
   "distinct_places": {
     "definition": "A place is a venue, washroom or transit record; paths are not places. Records from different sources that the same-place matcher links (data/links/same-place) count as one distinct place. Distinct places = place records in no link cluster + link clusters with at least one record present. Possible duplicates are not merged. A distinct place has a known accessibility fact when at least one of its records has a populated, non-derived accessibility field. \"Only in this source\" counts the distinct places whose every record comes from that source.",
-    "place_records": 897769,
-    "distinct_places": 808725,
-    "records_joined_by_links": 160585,
-    "clusters": 71541,
+    "place_records": 898223,
+    "distinct_places": 808917,
+    "records_joined_by_links": 161034,
+    "clusters": 71728,
     "with_known_accessibility_fact": 128132,
     "by_source": {
       "ajax-playgrounds": {
@@ -3434,6 +3434,11 @@
         "records": 499,
         "only_in_this_source": 387,
         "shared_with_other_sources": 112
+      },
+      "grey-county-gtr-bus-stops": {
+        "records": 13,
+        "only_in_this_source": 11,
+        "shared_with_other_sources": 2
       },
       "gtfs-brampton": {
         "records": 2872,
@@ -3525,6 +3530,61 @@
         "only_in_this_source": 66,
         "shared_with_other_sources": 7
       },
+      "hastings-county-arenas": {
+        "records": 9,
+        "only_in_this_source": 1,
+        "shared_with_other_sources": 8
+      },
+      "hastings-county-hospitals": {
+        "records": 3,
+        "only_in_this_source": 1,
+        "shared_with_other_sources": 2
+      },
+      "hastings-county-libraries": {
+        "records": 13,
+        "only_in_this_source": 2,
+        "shared_with_other_sources": 11
+      },
+      "hastings-county-municipal-offices": {
+        "records": 17,
+        "only_in_this_source": 7,
+        "shared_with_other_sources": 10
+      },
+      "hastings-county-sports-facilities": {
+        "records": 25,
+        "only_in_this_source": 5,
+        "shared_with_other_sources": 20
+      },
+      "huron-county-entertainment": {
+        "records": 10,
+        "only_in_this_source": 6,
+        "shared_with_other_sources": 4
+      },
+      "huron-county-libraries": {
+        "records": 12,
+        "only_in_this_source": 1,
+        "shared_with_other_sources": 11
+      },
+      "huron-county-parks": {
+        "records": 88,
+        "only_in_this_source": 35,
+        "shared_with_other_sources": 53
+      },
+      "huron-county-places-of-worship": {
+        "records": 86,
+        "only_in_this_source": 30,
+        "shared_with_other_sources": 56
+      },
+      "huron-county-recreation": {
+        "records": 120,
+        "only_in_this_source": 43,
+        "shared_with_other_sources": 77
+      },
+      "huron-county-trail-features": {
+        "records": 38,
+        "only_in_this_source": 38,
+        "shared_with_other_sources": 0
+      },
       "kingston-accessible-features": {
         "records": 1003,
         "only_in_this_source": 896,
@@ -3575,6 +3635,16 @@
         "only_in_this_source": 62,
         "shared_with_other_sources": 19
       },
+      "leeds-grenville-county-offices": {
+        "records": 7,
+        "only_in_this_source": 6,
+        "shared_with_other_sources": 1
+      },
+      "leeds-grenville-municipal-offices": {
+        "records": 13,
+        "only_in_this_source": 3,
+        "shared_with_other_sources": 10
+      },
       "london-libraries": {
         "records": 17,
         "only_in_this_source": 3,
@@ -3602,8 +3672,8 @@
       },
       "metrolinx-go": {
         "records": 889,
-        "only_in_this_source": 679,
-        "shared_with_other_sources": 210
+        "only_in_this_source": 678,
+        "shared_with_other_sources": 211
       },
       "metrolinx-up": {
         "records": 5,
@@ -3682,8 +3752,8 @@
       },
       "ontario-moh-service-locations": {
         "records": 11625,
-        "only_in_this_source": 3653,
-        "shared_with_other_sources": 7972
+        "only_in_this_source": 3651,
+        "shared_with_other_sources": 7974
       },
       "ontario-official-airports": {
         "records": 314,
@@ -3732,8 +3802,8 @@
       },
       "osm-ontario": {
         "records": 545524,
-        "only_in_this_source": 492801,
-        "shared_with_other_sources": 52723
+        "only_in_this_source": 492751,
+        "shared_with_other_sources": 52773
       },
       "ottawa-drinking-fountains": {
         "records": 112,
@@ -3772,8 +3842,8 @@
       },
       "overture-places": {
         "records": 179003,
-        "only_in_this_source": 144459,
-        "shared_with_other_sources": 34544
+        "only_in_this_source": 144435,
+        "shared_with_other_sources": 34568
       },
       "overture-places-alltheplaces": {
         "records": 3782,
@@ -3812,13 +3882,13 @@
       },
       "statcan-odhf": {
         "records": 11021,
-        "only_in_this_source": 3640,
-        "shared_with_other_sources": 7381
+        "only_in_this_source": 3638,
+        "shared_with_other_sources": 7383
       },
       "statcan-odsrf": {
         "records": 27464,
-        "only_in_this_source": 13016,
-        "shared_with_other_sources": 14448
+        "only_in_this_source": 12911,
+        "shared_with_other_sources": 14553
       },
       "sudbury-fieldhouses": {
         "records": 61,
@@ -3934,9 +4004,9 @@
     "links": {
       "method": "same-place-v1",
       "current": true,
-      "input_digest": "ea5442fa4a62e2c62fd005f44c3fe5e2d2844fce61e885e84be792b773f877eb",
-      "data_digest": "ea5442fa4a62e2c62fd005f44c3fe5e2d2844fce61e885e84be792b773f877eb",
-      "possible_duplicates": 79249,
+      "input_digest": "cb75d017a0c2f019d5286c74f37e562837237b168d727098ff23741ec2366af8",
+      "data_digest": "cb75d017a0c2f019d5286c74f37e562837237b168d727098ff23741ec2366af8",
+      "possible_duplicates": 79451,
       "links_to_missing_records": 0
     }
   },
