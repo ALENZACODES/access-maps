@@ -217,7 +217,7 @@ Populated accessibility facts by field:
 | milton-parking-lots | 57 | 567 | 56 | 1884 | 567 | 0 | 2026-11-16 |
 | milton-sidewalks | 5256 | 31329 | 5256 | 136863 | 31329 | 0 | 2026-11-16 |
 | milton-trails | 2107 | 10519 | 2107 | 56905 | 10519 | 0 | 2026-11-16 |
-| milton-transit-gtfs | 417 | 2085 | 0 | 3336 | 0 | 2085 | 2026-11-16 |
+| milton-transit-gtfs | 417 | 2085 | 0 | 3336 | 0 | 2085 | 2026-11-17 |
 | mto-picnic-parks | 168 | 1005 | 0 | 6219 | 1005 | 0 | 2026-11-13 |
 | newmarket-landmarks | 35 | 244 | 0 | 1261 | 244 | 0 | 2026-11-16 |
 | newmarket-park-features | 281 | 1715 | 0 | 10320 | 1715 | 0 | 2026-11-16 |
