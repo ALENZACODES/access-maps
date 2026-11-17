@@ -28,6 +28,8 @@
     "fetch:ttc-alerts": "tsx scripts/fetch-ttc-alerts.ts",
     "build:tiles": "tsx scripts/build-pmtiles.ts",
     "count": "tsx scripts/count.ts",
+    "match:places": "tsx scripts/match-places.ts",
+    "eval:places": "tsx scripts/places-eval.ts --evaluate test/fixtures/places/labelled-pairs.jsonl",
     "import": "tsx scripts/import-failsafe.ts",
     "import:unguarded": "tsx scripts/import-all.ts",
     "build:web-pack": "tsx scripts/build-web-pack.ts",

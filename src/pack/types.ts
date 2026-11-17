@@ -1,4 +1,5 @@
 import type { BBox, PackRegion } from "./regions.js";
+import type { PackLinksEntry } from "./links.js";
 
 export interface PackPart {
   path: string;
@@ -33,6 +34,11 @@ export interface PackManifest {
    */
   tiles: Record<string, { path: string; bytes: number; sha256: string; licence: string; bbox: BBox }>;
   counts: { records: number; byTranche: Record<string, number>; bySource: Record<string, number> };
+  /**
+   * Same-place links: per cell, the clusters of records from different sources that are one real
+   * place, and possible duplicates that were not merged. Absent when there are no trustworthy links.
+   */
+  links?: PackLinksEntry;
   /** Partitions left out of this build, with the reason. The app shows these places as unavailable. */
   withheld?: Array<{ path: string; sourceId: string | null; tranche: string | null; cell: string | null; reason: string }>;
 }
