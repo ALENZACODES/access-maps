@@ -545,6 +545,21 @@ Retrieved 2026-11-16 from the Land Information Ontario map services listed in th
 
 The Fishing Access Point ACCESSIBILITY_FLG column is stored as the Ministry's published flag text. It is not a measurement by this project.
 
+## Province of Ontario place files (Ontario Data Catalogue)
+
+Contains information licensed under the Open Government Licence – Ontario.
+
+https://www.ontario.ca/page/open-government-licence-ontario
+
+Retrieved 2026-11-16:
+
+- School information and student demographics, 2024-2025 (location columns only), https://data.ontario.ca/dataset/school-information-and-student-demographics (`ontario-public-schools`)
+- Private School Location List, https://data.ontario.ca/dataset/private-school-location-list (`ontario-private-schools`)
+- Where to buy alcoholic beverages, https://data.ontario.ca/dataset/alcohol-sales-in-retail-stores (`ontario-alcohol-retail-locations`)
+- Latitude and longitude of Ontario courthouses, https://data.ontario.ca/dataset/latitude-and-longitude-of-ontario-courthouses (`ontario-courthouses`)
+- Seniors Active Living Centre locations, https://data.ontario.ca/dataset/seniors-active-living-centre-locations (`ontario-seniors-active-living-centres`)
+- Ontario's adult provincial correctional institutions, https://data.ontario.ca/dataset/ontario-s-correctional-institutions-locations (`ontario-correctional-institutions`)
+
 ## Offline map tiles
 
 `data/tiles/odbl/` is OpenStreetMap data under the Open Database License (ODbL) 1.0. It is a separate file from every other licence.
