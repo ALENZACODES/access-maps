@@ -2054,6 +2054,51 @@
       "tier": 0,
       "tier_note": "Municipal data is tier 0. It is not shown as verified.",
       "notes": "Basis for inclusion: the repository owner stated in chat on 2026-11-16 that use is permitted and instructed that this layer be included. No written licence granting redistribution was read for this dataset. Served from the County's public GIS server and not listed in the County's open-data catalogue. Haldimand County's open-data hub site item (ArcGIS item d16c768293b74ab29ca691487dfc68fa) has the licence field text CC-BY-SA with no version and no link, and no licence page was found; this layer is not listed in that catalogue, so that text is not claimed for it. Trail lines. Only rows with Status ACTIVE and OffRoad Y are imported; on-road cycling routes, rows in the planning stage and rows with Status N/A, OTHER or NOT MAINTAINED BY COUNTY are left out. Type and Class are kept together as the kind. The catalogued HaldimandTrails service answered Token Required on 2026-11-16 and was not used."
+    },
+    {
+      "id": "overture-places",
+      "name": "Overture Maps Foundation places, Ontario (CDLA Permissive 2.0 sources)",
+      "kind": "aggregator",
+      "url": "https://docs.overturemaps.org/guides/places/",
+      "download_url": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=places/type=place/",
+      "licence_name": "Community Data License Agreement – Permissive, Version 2.0",
+      "licence_url": "https://cdla.dev/permissive-2-0/",
+      "licence_id": "CDLA-Permissive-2.0",
+      "attribution": "Overture Maps Foundation, overturemaps.org. Places data from Meta, Microsoft and other providers, available under CDLA Permissive 2.0.",
+      "retrieved_at": "2026-11-16",
+      "tier": 0,
+      "tier_note": "Overture places are tier 0 open-data imports. They are not shown as verified.",
+      "notes": "Places whose every source is under CDLA Permissive 2.0 (Meta, Microsoft, PinMeTo, Krick, RenderSEO, DAC, BrightQuery, Birdeye, Uberall, OpenTravel Alliance, and Overture's own processing). CDLA Permissive 2.0 section 2.1 requires the licence text to be made available with shared data: sources/licences/CDLA-Permissive-2.0.txt. Overture Maps Foundation places theme, release 2026-10-21.0 (the current release on https://docs.overturemaps.org/release-calendar/ on 2026-11-16), read from s3://overturemaps-us-west-2/release/2026-10-21.0/theme=places/type=place/ with DuckDB (tools/overture/extract_places.py), filtering on the bbox column first. Kept: point places inside the Land Information Ontario Province boundary (Open Government Licence – Ontario; contains information licensed under the Open Government Licence – Ontario), every source licence in CDLA-Permissive-2.0, Apache-2.0 or CC0-1.0, not permanently closed, Overture confidence 0.5 or higher, with a primary name, and one place per exact duplicate group (same name at the same coordinates). The places theme contains no OpenStreetMap data, according to the Overture places guide. Overture publishes no accessibility attribute for places, so every accessibility field is UNKNOWN. Categories are Overture's basic_category and taxonomy.primary as published. Phone numbers, emails and social links are not read. Names, brands and websites of individual health practitioner categories are not kept, as for OpenStreetMap. Overture's confidence and source update time are kept as text on the ref field's raw value. The record id is overture:<Overture GERS id>."
+    },
+    {
+      "id": "overture-places-foursquare",
+      "name": "Overture Maps Foundation places, Ontario (places with a Foursquare source)",
+      "kind": "aggregator",
+      "url": "https://docs.overturemaps.org/guides/places/",
+      "download_url": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=places/type=place/",
+      "licence_name": "Community Data License Agreement – Permissive, Version 2.0 and Apache License 2.0",
+      "licence_url": "https://docs.overturemaps.org/attribution/",
+      "licence_id": "CDLA-Permissive-2.0 AND Apache-2.0",
+      "attribution": "Overture Maps Foundation, overturemaps.org. Places data from Meta, Microsoft and other providers, available under CDLA Permissive 2.0. Data from Foursquare: Copyright 2024 Foursquare Labs, Inc. All rights reserved. Available under Apache 2.0. Foursquare data was transformed to the Overture schema. Changed: 2026-03-18. Foursquare NOTICE: sources/licences/foursquare-os-places-NOTICE.txt.",
+      "retrieved_at": "2026-11-16",
+      "tier": 0,
+      "tier_note": "Overture places are tier 0 open-data imports. They are not shown as verified.",
+      "notes": "Places that have a Foursquare source (Apache License 2.0) and an Overture CDLA Permissive 2.0 source. Apache 2.0 text: sources/licences/Apache-2.0.txt (https://www.apache.org/licenses/LICENSE-2.0). The Foursquare NOTICE and the notice of this repository's changes are in sources/licences/foursquare-os-places-NOTICE.txt. CDLA Permissive 2.0 text: sources/licences/CDLA-Permissive-2.0.txt. Overture Maps Foundation places theme, release 2026-10-21.0 (the current release on https://docs.overturemaps.org/release-calendar/ on 2026-11-16), read from s3://overturemaps-us-west-2/release/2026-10-21.0/theme=places/type=place/ with DuckDB (tools/overture/extract_places.py), filtering on the bbox column first. Kept: point places inside the Land Information Ontario Province boundary (Open Government Licence – Ontario; contains information licensed under the Open Government Licence – Ontario), every source licence in CDLA-Permissive-2.0, Apache-2.0 or CC0-1.0, not permanently closed, Overture confidence 0.5 or higher, with a primary name, and one place per exact duplicate group (same name at the same coordinates). The places theme contains no OpenStreetMap data, according to the Overture places guide. Overture publishes no accessibility attribute for places, so every accessibility field is UNKNOWN. Categories are Overture's basic_category and taxonomy.primary as published. Phone numbers, emails and social links are not read. Names, brands and websites of individual health practitioner categories are not kept, as for OpenStreetMap. Overture's confidence and source update time are kept as text on the ref field's raw value. The record id is overture:<Overture GERS id>."
+    },
+    {
+      "id": "overture-places-alltheplaces",
+      "name": "Overture Maps Foundation places, Ontario (places with an AllThePlaces source)",
+      "kind": "aggregator",
+      "url": "https://docs.overturemaps.org/guides/places/",
+      "download_url": "s3://overturemaps-us-west-2/release/2026-10-21.0/theme=places/type=place/",
+      "licence_name": "Community Data License Agreement – Permissive, Version 2.0 and CC0 1.0",
+      "licence_url": "https://docs.overturemaps.org/attribution/",
+      "licence_id": "CDLA-Permissive-2.0 AND CC0-1.0",
+      "attribution": "Overture Maps Foundation, overturemaps.org. Places data from Meta, Microsoft and other providers, available under CDLA Permissive 2.0. Data from AllThePlaces, available under CC0 1.0.",
+      "retrieved_at": "2026-11-16",
+      "tier": 0,
+      "tier_note": "Overture places are tier 0 open-data imports. They are not shown as verified.",
+      "notes": "Places that have an AllThePlaces source (CC0 1.0, https://creativecommons.org/publicdomain/zero/1.0/) and an Overture CDLA Permissive 2.0 source. CDLA Permissive 2.0 text: sources/licences/CDLA-Permissive-2.0.txt. Overture Maps Foundation places theme, release 2026-10-21.0 (the current release on https://docs.overturemaps.org/release-calendar/ on 2026-11-16), read from s3://overturemaps-us-west-2/release/2026-10-21.0/theme=places/type=place/ with DuckDB (tools/overture/extract_places.py), filtering on the bbox column first. Kept: point places inside the Land Information Ontario Province boundary (Open Government Licence – Ontario; contains information licensed under the Open Government Licence – Ontario), every source licence in CDLA-Permissive-2.0, Apache-2.0 or CC0-1.0, not permanently closed, Overture confidence 0.5 or higher, with a primary name, and one place per exact duplicate group (same name at the same coordinates). The places theme contains no OpenStreetMap data, according to the Overture places guide. Overture publishes no accessibility attribute for places, so every accessibility field is UNKNOWN. Categories are Overture's basic_category and taxonomy.primary as published. Phone numbers, emails and social links are not read. Names, brands and websites of individual health practitioner categories are not kept, as for OpenStreetMap. Overture's confidence and source update time are kept as text on the ref field's raw value. The record id is overture:<Overture GERS id>."
     }
   ]
 }

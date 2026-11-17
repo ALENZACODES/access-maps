@@ -121,7 +121,7 @@ const sourceRegistryEntry = {
   properties: {
     id: { type: "string", minLength: 1 },
     name: { type: "string", minLength: 1 },
-    kind: { type: "string", enum: ["osm", "gtfs", "municipal"] },
+    kind: { type: "string", enum: ["osm", "gtfs", "gtfs-rt", "municipal", "provincial", "aggregator"] },
     url: { type: "string", minLength: 1 },
     download_url: { type: "string", minLength: 1 },
     licence_name: { type: "string", minLength: 1 },
