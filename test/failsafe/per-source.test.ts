@@ -6,6 +6,9 @@ import { importMunicipal } from "../../scripts/import-municipal.js";
 import { importCityOpenData } from "../../scripts/import-city-open-data.js";
 import { importGtfs } from "../../scripts/import-gtfs.js";
 import { runLayerJobs, type LayerJob } from "../../scripts/import-cities-g3.js";
+import { importStatcanLode } from "../../scripts/import-statcan-lode.js";
+import { importOntarioGeohub } from "../../scripts/import-ontario-geohub.js";
+import { gpkgBlob, wkbPoint, writeGpkg } from "../national/lode-fixtures.js";
 import { PerSourceRun } from "../../src/failsafe/per-source.js";
 import { commitRecord } from "../../src/io/commit.js";
 import { fv } from "../../src/model/provenance.js";
@@ -160,6 +163,53 @@ describe("one source failing inside an importer never holds back the others", ()
   });
 });
 
+describe("Statistics Canada LODE databases", () => {
+  it("a corrupt zip for one database keeps its files; the GeoPackage and CSV databases are refreshed", async () => {
+    const env = fixtureRepo();
+    const odhf = seedSource(env.data, "venues", "statcan-odhf", 2);
+    const odcaf = seedSource(env.data, "venues", "statcan-odcaf", 2);
+    const odcafBefore = readFileSync(odcaf);
+    const cache = path.join(env.root, ".cache", "lode");
+    for (const id of ["statcan-odhf", "statcan-odef", "statcan-odcaf"]) mkdirSync(path.join(cache, id), { recursive: true });
+    // Statistics Canada Lambert metres for a point in Toronto.
+    writeGpkg(path.join(cache, "statcan-odhf", "odhf_v2.gpkg"), "odhf_v2", ["id", "name", "type", "provider", "prov_terr"], [1, 2, 3].map((n) => ({ id: `FX${n}`, name: `Fixture ${n}`, type: "Pharmacy", provider: "Government of Ontario", prov_terr: "ON", geom: gpkgBlob(wkbPoint(7224817.495306485, 928699.0518283916)) })));
+    writeFileSync(path.join(cache, "statcan-odef", "odef_v3_0_1.csv"), `unique_id,province_code,facility_name,geometry\nFX1,ON,Fixture School,POINT (-79.38 43.65)\nFX2,QC,Fixture Ecole,POINT (-73.6 45.5)\n`);
+    // The ODCAF download was cut short: the zip is an HTML error page and the CSV was never extracted.
+    writeFileSync(path.join(cache, "statcan-odcaf", "statcan-odcaf.zip"), Buffer.from("<html>503 Service Unavailable</html>"));
+
+    await expect(importStatcanLode(env.root, ["statcan-odhf", "statcan-odef", "statcan-odcaf"])).rejects.toThrow(/importStatcanLode: 1 of 3 sources failed.*statcan-odcaf/);
+
+    expect(allIds(path.dirname(odhf))).toEqual(["statcan-odhf:FX1", "statcan-odhf:FX2", "statcan-odhf:FX3"]);
+    expect(allIds(path.join(env.data, "venues", "statcan-odef"))).toEqual(["statcan-odef:FX1"]);
+    expect(readFileSync(odcaf).equals(odcafBefore)).toBe(true);
+    expect(env.log.report.outcomes).toContainEqual(expect.objectContaining({ step: "importStatcanLode/statcan-odcaf", status: "step_failed" }));
+    expect(env.log.report.outcomes).toContainEqual(expect.objectContaining({ source_id: "statcan-odcaf", target: "venues/statcan-odcaf", status: "kept_last_known_good" }));
+  });
+});
+
+describe("Ontario GeoHub layers", () => {
+  it("a cut-short cache file for one layer keeps its files; the other layers are refreshed", async () => {
+    const env = fixtureRepo();
+    const parks = seedSource(env.data, "venues", "ontario-provincial-parks", 2);
+    const stations = seedSource(env.data, "venues", "ontario-railway-stations", 2);
+    const stationsBefore = readFileSync(stations);
+    const cache = path.join(env.root, ".cache", "provincial");
+    mkdirSync(cache, { recursive: true });
+    const features = [1, 2, 3].map((n) => ({ attributes: { OBJECTID: String(n), OGF_ID: `FX${n}`, PROTECTED_AREA_NAME_ENG: `Fixture ${n}`, LOCATION_ACCURACY: "Within 10 metres" }, anchor: { lon: -79.38, lat: 43.65, key: "geometry" } }));
+    writeFileSync(path.join(cache, "ontario-provincial-parks.json"), JSON.stringify({ features }));
+    writeFileSync(path.join(cache, "ontario-otn-access-points.json"), JSON.stringify({ features }));
+    writeFileSync(path.join(cache, "ontario-railway-stations.json"), JSON.stringify({ features }).slice(0, 50));
+
+    await expect(importOntarioGeohub(env.root, ["ontario-provincial-parks", "ontario-otn-access-points", "ontario-railway-stations"])).rejects.toThrow(/importOntarioGeohub: 1 of 3 sources failed.*ontario-railway-stations/);
+
+    expect(allIds(path.dirname(parks))).toEqual(["ontario-provincial-parks:FX1", "ontario-provincial-parks:FX2", "ontario-provincial-parks:FX3"]);
+    expect(allIds(path.join(env.data, "venues", "ontario-otn-access-points"))).toHaveLength(3);
+    expect(readFileSync(stations).equals(stationsBefore)).toBe(true);
+    expect(env.log.report.outcomes).toContainEqual(expect.objectContaining({ step: "importOntarioGeohub/ontario-railway-stations", status: "step_failed" }));
+    expect(env.log.report.outcomes).toContainEqual(expect.objectContaining({ target: "venues/ontario-railway-stations", status: "kept_last_known_good" }));
+  });
+});
+
 describe("PerSourceRun", () => {
   it("reports a source that failed before it marked anything, and finish() passes when nothing failed", async () => {
     const env = tempRoot();
@@ -196,7 +246,7 @@ describe("PerSourceRun", () => {
     }
     // The fixture sources used above are registered tier 0 or tier 1 sources.
     const registry = readRegistry(repo);
-    for (const id of ["toronto-park-washrooms", "toronto-street-washrooms", "toronto-crem-washrooms", "ottawa-public-washrooms", "ottawa-park-parking", "gtfs-grt-bus", "gtfs-hsr", "kitchener-public-washrooms", "guelph-restrooms", "windsor-park-washrooms"]) {
+    for (const id of ["toronto-park-washrooms", "toronto-street-washrooms", "toronto-crem-washrooms", "ottawa-public-washrooms", "ottawa-park-parking", "gtfs-grt-bus", "gtfs-hsr", "kitchener-public-washrooms", "guelph-restrooms", "windsor-park-washrooms", "statcan-odhf", "statcan-odef", "statcan-odcaf", "ontario-provincial-parks", "ontario-otn-access-points", "ontario-railway-stations"]) {
       expect(registry.sources.some((entry) => entry.id === id), id).toBe(true);
     }
   });

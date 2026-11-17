@@ -39,7 +39,7 @@ City of Toronto park washroom `Status` uses the datastore field note on resource
 
 A piece is one field on one record whose value is not `UNKNOWN` and whose `derived` flag is not true. `UNKNOWN` values are gaps. Photos, reviews, and tags are not pieces. A fact stored on a washroom record is not also stored on the venue.
 
-Section 5.6 counts only tier 2 and tier 3 values toward 500,000. This import's verified total is 0, so the shortfall is the full illustrative target in every tranche. The files, retrieved between 2026-11-13 and 2026-11-16, contain 911,067 tier 0 or tier 1 physical accessibility-fact values. Context fields, including access, crossing, lit, and fee, are 517,102 and are counted separately. Other populated values are 7,038,610. [COUNTS.md](COUNTS.md) has the tier split, the retrieval date, and the UNKNOWN gaps.
+Section 5.6 counts only tier 2 and tier 3 values toward 500,000. This import's verified total is 0, so the shortfall is the full illustrative target in every tranche. The files, retrieved between 2026-11-13 and 2026-11-16, contain 916,402 tier 0 or tier 1 physical accessibility-fact values. Context fields, including access, crossing, lit, and fee, are 517,102 and are counted separately. Other populated values are 7,552,979. [COUNTS.md](COUNTS.md) has the tier split, the retrieval date, and the UNKNOWN gaps.
 
 [COUNTS.md](COUNTS.md) also lists accessibility facts separately from names, addresses, and geometry. `toilets:wheelchair` is stored on the washroom `wheelchair` field. Tier 4 alert rows are not pieces.
 
@@ -102,6 +102,14 @@ Washroom fields from a venue, such as `toilets:wheelchair`, are emitted as a sep
 - Whitby sidewalk ramp counts and Whitby's park "Accessible Amenities" flag are kept as published in `wheelchair_description`. They are not stored as a ramp or wheelchair value.
 - A washroom that a park layer only lists as an amenity (Whitby, Pickering) is a washroom record at the park point, marked `derived`. Pickering's amenity domain codes Yes as 0.
 - For Vaughan, Richmond Hill, Aurora, Whitchurch-Stouffville, Georgina, Clarington, Barrie and Kawartha Lakes no licence that permits redistribution could be read on 2026-11-16, so nothing from them is imported. Peterborough's terms allow distribution only of unmodified datasets with each recipient's agreement, and the Barrie Transit and York Region Transit GTFS zips need a person to accept terms first. The reasons are in [sources/gaps.json](sources/gaps.json).
+
+## Statistics Canada place databases
+
+`npx tsx scripts/import-statcan-lode.ts` reads four Statistics Canada Linkable Open Data Environment databases (healthcare, sports and recreation, educational, and cultural and art facilities) and keeps their Ontario rows, using each database's own province column. GeoPackage files are read with Node's built-in SQLite module, one row at a time, and their Statistics Canada Lambert coordinates (EPSG:3347) are converted to degrees. Trails, rows from providers listed in [sources/gaps.json](sources/gaps.json), the ODCAF listing that is not open data, and ODCAF artist rows are left out. A healthcare facility name that may name a person is not stored. The ODSRF `accessible` column is kept as `accessible=<text as published>` in `wheelchair_description`. `npm run import` runs it after the GTFS importer.
+
+## Province of Ontario place layers
+
+`npx tsx scripts/import-ontario-geohub.ts` reads six Land Information Ontario map layers listed in the Ontario Data Catalogue under the Open Government Licence – Ontario: Ministry of Health service provider locations, fishing access points, regulated provincial parks, official airports, Ontario Trail Network access points and railway passenger stations. Each job requests only the columns it names. A polygon is stored at the vertex mean of its largest ring (`geometry:vertex_mean`), which is not an entrance. The fishing access point `ACCESSIBILITY_FLG` is kept as `ACCESSIBILITY_FLG=<value>` in `wheelchair_description`. A health service name that may name a person is not stored. `npm run import` runs it after the Statistics Canada importer.
 
 ## Licence re-checks
 
