@@ -678,6 +678,21 @@ export const LICENCE_FINDINGS: readonly LicenceFinding[] = [
     licence: "owner-permission-2026-11-16",
     reason: "Included on the repository owner's statement of 2026-11-16; no publisher licence was read for this layer. Not an open licence in the strict export allowlist.",
   },
+  {
+    sourceId: "overture-places",
+    licence: "CDLA-Permissive-2.0",
+    reason: "Community Data License Agreement – Permissive 2.0 (Overture Maps Foundation places). Not in the strict export allowlist; the licence text ships in sources/licences/.",
+  },
+  {
+    sourceId: "overture-places-foursquare",
+    licence: "CDLA-Permissive-2.0 AND Apache-2.0",
+    reason: "Overture places with a Foursquare source: CDLA Permissive 2.0 and Apache 2.0, with the Foursquare NOTICE in sources/licences/. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "overture-places-alltheplaces",
+    licence: "CDLA-Permissive-2.0 AND CC0-1.0",
+    reason: "Overture places with an AllThePlaces source: CDLA Permissive 2.0 and CC0 1.0. Not in the strict export allowlist as a combined identifier.",
+  },
 ];
 
 export function isDocumentedLicence(sourceId: string, licence: string): boolean {
