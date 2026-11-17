@@ -9,6 +9,7 @@ import { runLayerJobs, type LayerJob } from "../../scripts/import-cities-g3.js";
 import { importStatcanLode } from "../../scripts/import-statcan-lode.js";
 import { importOntarioGeohub } from "../../scripts/import-ontario-geohub.js";
 import { importOntarioCatalogue } from "../../scripts/import-ontario-catalogue.js";
+import { importCitiesG7, G7_LAYER_JOBS } from "../../scripts/import-cities-g7.js";
 import { gpkgBlob, wkbPoint, writeGpkg } from "../national/lode-fixtures.js";
 import { importOverturePlaces, overtureCache } from "../../scripts/import-overture-places.js";
 import { PerSourceRun } from "../../src/failsafe/per-source.js";
@@ -162,6 +163,34 @@ describe("one source failing inside an importer never holds back the others", ()
       "replaced:washrooms/windsor-park-washrooms",
     ]);
     expect(readdirSync(path.join(env.root, ".cache", "failsafe", "staging"))).toEqual([]);
+  });
+});
+
+describe("small-town county layers (lane G7)", () => {
+  it("a cut-short cache file for one county layer keeps its files; the layers before and after it are refreshed", async () => {
+    const env = fixtureRepo();
+    const ids = ["huron-county-libraries", "hastings-county-libraries", "leeds-grenville-municipal-offices"];
+    const before = ids.map((id) => seedSource(env.data, "venues", id, 3, "n44.5_w077.0"));
+    const brokenBefore = readFileSync(before[1] as string);
+    const cache = path.join(env.root, ".cache", "municipal");
+    mkdirSync(cache, { recursive: true });
+    // Labelled fixtures, not real places.
+    writeFileSync(path.join(cache, "huron-county-libraries.json"), JSON.stringify({ features: [1, 2].map((n) => ({ attributes: { OBJECTID: n, Branch: `Fixture ${n}`, Location: `${n} Fixture St` }, geometry: { x: -81.4, y: 43.55 } })) }));
+    writeFileSync(path.join(cache, "hastings-county-libraries.json"), JSON.stringify({ features: [{ attributes: { FID: 1 } }] }).slice(0, 30));
+    writeFileSync(path.join(cache, "leeds-grenville-municipal-offices.json"), JSON.stringify({ features: [1, 2, 3, 4].map((n) => ({ attributes: { OBJECTID: n, Name: `Fixture office ${n}`, Type: "Municipal Office" }, geometry: { x: -75.95, y: 44.62 } })) }));
+
+    await expect(importCitiesG7(env.root, ids, G7_LAYER_JOBS)).rejects.toThrow(/importCitiesG7: 1 of 3 sources failed.*hastings-county-libraries/);
+
+    expect(allIds(path.join(env.data, "venues", "huron-county-libraries"))).toEqual(["huron-county-libraries:1", "huron-county-libraries:2"]);
+    expect(allIds(path.join(env.data, "venues", "leeds-grenville-municipal-offices"))).toEqual([1, 2, 3, 4].map((n) => `leeds-grenville-municipal-offices:${n}`));
+    expect(readFileSync(before[1] as string).equals(brokenBefore)).toBe(true);
+    const statuses = env.log.report.outcomes.map((o) => `${o.status}:${o.target ?? o.step}`);
+    expect(statuses).toEqual([
+      "replaced:venues/huron-county-libraries",
+      "step_failed:importCitiesG7/hastings-county-libraries",
+      "kept_last_known_good:venues/hastings-county-libraries",
+      "replaced:venues/leeds-grenville-municipal-offices",
+    ]);
   });
 });
 
@@ -322,7 +351,7 @@ describe("PerSourceRun", () => {
     }
     // The fixture sources used above are registered tier 0 or tier 1 sources.
     const registry = readRegistry(repo);
-    for (const id of ["toronto-park-washrooms", "toronto-street-washrooms", "toronto-crem-washrooms", "ottawa-public-washrooms", "ottawa-park-parking", "gtfs-grt-bus", "gtfs-hsr", "kitchener-public-washrooms", "guelph-restrooms", "windsor-park-washrooms", "statcan-odhf", "statcan-odef", "statcan-odcaf", "ontario-provincial-parks", "ontario-otn-access-points", "ontario-railway-stations", "ontario-public-schools", "ontario-courthouses", "ontario-correctional-institutions", "overture-places", "overture-places-foursquare", "overture-places-alltheplaces"]) {
+    for (const id of ["toronto-park-washrooms", "toronto-street-washrooms", "toronto-crem-washrooms", "ottawa-public-washrooms", "ottawa-park-parking", "gtfs-grt-bus", "gtfs-hsr", "kitchener-public-washrooms", "guelph-restrooms", "windsor-park-washrooms", "statcan-odhf", "statcan-odef", "statcan-odcaf", "ontario-provincial-parks", "ontario-otn-access-points", "ontario-railway-stations", "ontario-public-schools", "ontario-courthouses", "ontario-correctional-institutions", "overture-places", "overture-places-foursquare", "overture-places-alltheplaces", "huron-county-libraries", "hastings-county-libraries", "leeds-grenville-municipal-offices"]) {
       expect(registry.sources.some((entry) => entry.id === id), id).toBe(true);
     }
   });
