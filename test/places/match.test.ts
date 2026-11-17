@@ -44,6 +44,12 @@ describe("name normalisation", () => {
     expect(compareNames(nameTokens("Toronto Harbour Water Taxi"), nameTokens("Toronto Waterfront Park")).score).toBeLessThan(0.6);
   });
 
+  it("treats words that are names of object properties as plain words", () => {
+    expect(nameTokens("Constructor Hall")).toEqual(["constructor", "hall"]);
+    expect(nameTokens("__proto__ toString")).toEqual(["proto", "tostring"]);
+    expect(compareNames(nameTokens("Constructor Hall"), nameTokens("constructor hall")).score).toBe(1);
+  });
+
   it("reads street abbreviations", () => {
     expect(nameTokens("Main Street East")).toEqual(nameTokens("Main St. E"));
     expect(splitAddress("5 Example Rd, Toronto")).toEqual({ housenumber: ["5"], street: ["example", "rd"] });
