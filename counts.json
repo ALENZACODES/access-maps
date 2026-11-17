@@ -3108,11 +3108,11 @@
   "total_shortfall": 500000,
   "distinct_places": {
     "definition": "A place is a venue, washroom or transit record; paths are not places. Records from different sources that the same-place matcher links (data/links/same-place) count as one distinct place. Distinct places = place records in no link cluster + link clusters with at least one record present. Possible duplicates are not merged. A distinct place has a known accessibility fact when at least one of its records has a populated, non-derived accessibility field. \"Only in this source\" counts the distinct places whose every record comes from that source.",
-    "place_records": 809056,
-    "distinct_places": 734997,
-    "records_joined_by_links": 133155,
-    "clusters": 59096,
-    "with_known_accessibility_fact": 128133,
+    "place_records": 897769,
+    "distinct_places": 808725,
+    "records_joined_by_links": 160585,
+    "clusters": 71541,
+    "with_known_accessibility_fact": 128132,
     "by_source": {
       "ajax-playgrounds": {
         "records": 81,
@@ -3131,8 +3131,8 @@
       },
       "brampton-recreation-centres": {
         "records": 39,
-        "only_in_this_source": 9,
-        "shared_with_other_sources": 30
+        "only_in_this_source": 6,
+        "shared_with_other_sources": 33
       },
       "brant-parks": {
         "records": 60,
@@ -3176,8 +3176,8 @@
       },
       "gtfs-brampton": {
         "records": 2872,
-        "only_in_this_source": 2810,
-        "shared_with_other_sources": 62
+        "only_in_this_source": 2807,
+        "shared_with_other_sources": 65
       },
       "gtfs-drt": {
         "records": 1912,
@@ -3216,8 +3216,8 @@
       },
       "gtfs-ttc": {
         "records": 9357,
-        "only_in_this_source": 9068,
-        "shared_with_other_sources": 289
+        "only_in_this_source": 9066,
+        "shared_with_other_sources": 291
       },
       "guelph-parking-lots": {
         "records": 17,
@@ -3341,8 +3341,8 @@
       },
       "metrolinx-go": {
         "records": 889,
-        "only_in_this_source": 688,
-        "shared_with_other_sources": 201
+        "only_in_this_source": 679,
+        "shared_with_other_sources": 210
       },
       "metrolinx-up": {
         "records": 5,
@@ -3357,6 +3357,11 @@
       "milton-parking-lots": {
         "records": 57,
         "only_in_this_source": 52,
+        "shared_with_other_sources": 5
+      },
+      "milton-transit-gtfs": {
+        "records": 417,
+        "only_in_this_source": 412,
         "shared_with_other_sources": 5
       },
       "mto-picnic-parks": {
@@ -3396,18 +3401,18 @@
       },
       "ontario-alcohol-retail-locations": {
         "records": 9180,
-        "only_in_this_source": 4628,
-        "shared_with_other_sources": 4552
+        "only_in_this_source": 4420,
+        "shared_with_other_sources": 4760
       },
       "ontario-correctional-institutions": {
         "records": 25,
-        "only_in_this_source": 10,
-        "shared_with_other_sources": 15
+        "only_in_this_source": 7,
+        "shared_with_other_sources": 18
       },
       "ontario-courthouses": {
         "records": 79,
-        "only_in_this_source": 66,
-        "shared_with_other_sources": 13
+        "only_in_this_source": 64,
+        "shared_with_other_sources": 15
       },
       "ontario-fishing-access-points": {
         "records": 2432,
@@ -3416,8 +3421,8 @@
       },
       "ontario-moh-service-locations": {
         "records": 11625,
-        "only_in_this_source": 3817,
-        "shared_with_other_sources": 7808
+        "only_in_this_source": 3653,
+        "shared_with_other_sources": 7972
       },
       "ontario-official-airports": {
         "records": 314,
@@ -3431,8 +3436,8 @@
       },
       "ontario-private-schools": {
         "records": 1673,
-        "only_in_this_source": 1307,
-        "shared_with_other_sources": 366
+        "only_in_this_source": 1222,
+        "shared_with_other_sources": 451
       },
       "ontario-provincial-parks": {
         "records": 347,
@@ -3441,8 +3446,8 @@
       },
       "ontario-public-schools": {
         "records": 4943,
-        "only_in_this_source": 219,
-        "shared_with_other_sources": 4724
+        "only_in_this_source": 216,
+        "shared_with_other_sources": 4727
       },
       "ontario-railway-stations": {
         "records": 171,
@@ -3466,8 +3471,8 @@
       },
       "osm-ontario": {
         "records": 545524,
-        "only_in_this_source": 504175,
-        "shared_with_other_sources": 41349
+        "only_in_this_source": 492801,
+        "shared_with_other_sources": 52723
       },
       "ottawa-drinking-fountains": {
         "records": 112,
@@ -3505,19 +3510,19 @@
         "shared_with_other_sources": 109
       },
       "overture-places": {
-        "records": 106084,
-        "only_in_this_source": 85265,
-        "shared_with_other_sources": 20819
+        "records": 179003,
+        "only_in_this_source": 144459,
+        "shared_with_other_sources": 34544
       },
       "overture-places-alltheplaces": {
-        "records": 2302,
-        "only_in_this_source": 1712,
-        "shared_with_other_sources": 590
+        "records": 3782,
+        "only_in_this_source": 2814,
+        "shared_with_other_sources": 968
       },
       "overture-places-foursquare": {
-        "records": 17241,
-        "only_in_this_source": 15559,
-        "shared_with_other_sources": 1682
+        "records": 31138,
+        "only_in_this_source": 28185,
+        "shared_with_other_sources": 2953
       },
       "pickering-facilities": {
         "records": 28,
@@ -3536,23 +3541,23 @@
       },
       "statcan-odcaf": {
         "records": 1423,
-        "only_in_this_source": 921,
-        "shared_with_other_sources": 502
+        "only_in_this_source": 920,
+        "shared_with_other_sources": 503
       },
       "statcan-odef": {
         "records": 5146,
-        "only_in_this_source": 361,
-        "shared_with_other_sources": 4785
+        "only_in_this_source": 346,
+        "shared_with_other_sources": 4800
       },
       "statcan-odhf": {
         "records": 11021,
-        "only_in_this_source": 3746,
-        "shared_with_other_sources": 7275
+        "only_in_this_source": 3640,
+        "shared_with_other_sources": 7381
       },
       "statcan-odsrf": {
         "records": 27464,
-        "only_in_this_source": 13087,
-        "shared_with_other_sources": 14377
+        "only_in_this_source": 13016,
+        "shared_with_other_sources": 14448
       },
       "sudbury-fieldhouses": {
         "records": 61,
@@ -3596,8 +3601,8 @@
       },
       "toronto-parks-recreation-facilities": {
         "records": 1801,
-        "only_in_this_source": 196,
-        "shared_with_other_sources": 1605
+        "only_in_this_source": 193,
+        "shared_with_other_sources": 1608
       },
       "toronto-street-washrooms": {
         "records": 4,
@@ -3661,16 +3666,16 @@
       },
       "york-region-yrt-bus-stops": {
         "records": 4827,
-        "only_in_this_source": 4496,
-        "shared_with_other_sources": 331
+        "only_in_this_source": 4497,
+        "shared_with_other_sources": 330
       }
     },
     "links": {
       "method": "same-place-v1",
       "current": true,
-      "input_digest": "8722c8e012946064f544a430ee00f2df091c4701ae79f60e78ce798d2a746207",
-      "data_digest": "8722c8e012946064f544a430ee00f2df091c4701ae79f60e78ce798d2a746207",
-      "possible_duplicates": 61768,
+      "input_digest": "ea5442fa4a62e2c62fd005f44c3fe5e2d2844fce61e885e84be792b773f877eb",
+      "data_digest": "ea5442fa4a62e2c62fd005f44c3fe5e2d2844fce61e885e84be792b773f877eb",
+      "possible_duplicates": 79249,
       "links_to_missing_records": 0
     }
   },
