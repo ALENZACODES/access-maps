@@ -587,3 +587,45 @@ Directories: `data/venues/overture-places/`, `data/venues/overture-places-foursq
 
 Places were selected with the Land Information Ontario Province boundary. Contains information licensed under the Open Government Licence – Ontario, https://www.ontario.ca/page/open-government-licence-ontario
 <!-- overture end -->
+
+<!-- g7 small towns start -->
+## County of Huron
+
+Contains information licensed under the Open Government Licence – The County of Huron.
+
+Open Government Licence – The County of Huron (based on version 1.0 of the Open Government Licence – Ontario), stated in full in each item's licence field, for example https://www.arcgis.com/home/item.html?id=ddd734819ee5492aa7df21855e0890b3
+
+Datasets retrieved 2026-11-17 (County of Huron open-data hub, https://data-huron.opendata.arcgis.com/): County of Huron Library (`huron-county-libraries`); County of Huron Parks (`huron-county-parks`); County of Huron Recreation (`huron-county-recreation`); County of Huron Entertainment (`huron-county-entertainment`); County of Huron Places of Worship (`huron-county-places-of-worship`); County of Huron Trail Features (`huron-county-trail-features`); County of Huron Trails (`huron-county-trails`).
+
+These layers have no accessibility column, except that a trail's use columns may read Accessible; that word is kept as the County's own flag and is not a wheelchair measurement by this project. The licence does not cover personal information or the County's names, crests and logos.
+
+## County of Hastings
+
+Contains information licensed under the Open Government License – The Corporation of the County of Hastings.
+
+Open Government License – Corporation of the County of Hastings, version 1.0, stated in full in each item's licence field.
+
+Datasets retrieved 2026-11-17 (County of Hastings open-data hub, https://opendata-Hastings-GIS.hub.arcgis.com/): County of Hastings Library Location (Open Data) (`hastings-county-libraries`); County of Hastings Sports Facilities (Open Data) (`hastings-county-sports-facilities`); County of Hastings Community Arenas (Open Data) (`hastings-county-arenas`); County of Hastings Hospital Locations (Open Data) (`hastings-county-hospitals`); County of Hastings Member Municipal Office (Open Data) (`hastings-county-municipal-offices`).
+
+These layers have no accessibility column. The licence does not cover personal information or the County's names, crests and logos.
+
+## United Counties of Leeds and Grenville
+
+Contains information licensed under the Open Government Licence – United Counties of Leeds and Grenville.
+
+Open Government Licence – United Counties of Leeds and Grenville 1.0: https://geohub-uclg.hub.arcgis.com/pages/terms-of-use
+
+Datasets retrieved 2026-11-17 (Leeds Grenville GeoHub, https://geohub-uclg.hub.arcgis.com/): United Counties of Leeds and Grenville LG_MunicipalOffices_OpenData (`leeds-grenville-municipal-offices`); United Counties of Leeds and Grenville LG_CountyOffices_OpenData (`leeds-grenville-county-offices`).
+
+These layers have no accessibility column. The licence does not cover personal information or the Counties' names, crests and logos.
+
+## County of Grey
+
+Contains information licensed under the Grey County Open Data Licence.
+
+Grey County Open Data Licence (first version): https://maps.grey.ca/pages/terms
+
+Datasets retrieved 2026-11-17 (County of Grey GIS, https://maps.grey.ca/): County of Grey Grey Transit Route (GTR) Bus Stops (`grey-county-gtr-bus-stops`).
+
+The layer is the County's own stop list, not a GTFS feed, and has no wheelchair boarding column. The licence does not cover personal information or the County's names, crests and logos.
+<!-- g7 small towns end -->

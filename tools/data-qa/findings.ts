@@ -698,6 +698,83 @@ export const LICENCE_FINDINGS: readonly LicenceFinding[] = [
     licence: "CDLA-Permissive-2.0 AND CC0-1.0",
     reason: "Overture places with an AllThePlaces source: CDLA Permissive 2.0 and CC0 1.0. Not in the strict export allowlist as a combined identifier.",
   },
+  // g7 small towns start
+  {
+    sourceId: "huron-county-libraries",
+    licence: "OGL-Huron-1.0",
+    reason: "Open Government Licence – The County of Huron. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "huron-county-parks",
+    licence: "OGL-Huron-1.0",
+    reason: "Open Government Licence – The County of Huron. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "huron-county-recreation",
+    licence: "OGL-Huron-1.0",
+    reason: "Open Government Licence – The County of Huron. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "huron-county-entertainment",
+    licence: "OGL-Huron-1.0",
+    reason: "Open Government Licence – The County of Huron. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "huron-county-places-of-worship",
+    licence: "OGL-Huron-1.0",
+    reason: "Open Government Licence – The County of Huron. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "huron-county-trail-features",
+    licence: "OGL-Huron-1.0",
+    reason: "Open Government Licence – The County of Huron. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "huron-county-trails",
+    licence: "OGL-Huron-1.0",
+    reason: "Open Government Licence – The County of Huron. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "hastings-county-libraries",
+    licence: "OGL-Hastings-1.0",
+    reason: "Open Government License – Corporation of the County of Hastings 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "hastings-county-sports-facilities",
+    licence: "OGL-Hastings-1.0",
+    reason: "Open Government License – Corporation of the County of Hastings 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "hastings-county-arenas",
+    licence: "OGL-Hastings-1.0",
+    reason: "Open Government License – Corporation of the County of Hastings 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "hastings-county-hospitals",
+    licence: "OGL-Hastings-1.0",
+    reason: "Open Government License – Corporation of the County of Hastings 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "hastings-county-municipal-offices",
+    licence: "OGL-Hastings-1.0",
+    reason: "Open Government License – Corporation of the County of Hastings 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "leeds-grenville-municipal-offices",
+    licence: "OGL-Leeds-Grenville-1.0",
+    reason: "Open Government Licence – United Counties of Leeds and Grenville 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "leeds-grenville-county-offices",
+    licence: "OGL-Leeds-Grenville-1.0",
+    reason: "Open Government Licence – United Counties of Leeds and Grenville 1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "grey-county-gtr-bus-stops",
+    licence: "Grey-County-Open-Data-Licence-1",
+    reason: "Grey County Open Data Licence (first version). Not in the strict export allowlist.",
+  },
+  // g7 small towns end
 ];
 
 export function isDocumentedLicence(sourceId: string, licence: string): boolean {

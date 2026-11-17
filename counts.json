@@ -1,17 +1,17 @@
 {
   "definition": "A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. Section 5.6 counts only tier 2 and tier 3 values toward 500,000. Tier 0 and tier 1 accessibility facts are reported separately and are not verified.",
-  "records": 2003224,
-  "pieces": 11415577,
-  "gaps": 61559997,
+  "records": 2004045,
+  "pieces": 11420981,
+  "gaps": 61585469,
   "derived_excluded": 4207,
   "verified_toward_500k": 0,
-  "accessibility_fact_pieces": 916402,
-  "other_populated_pieces": 9982073,
-  "accessibility_pieces": 916402,
-  "accessibility_gaps": 35233809,
-  "identity_pieces": 9982073,
+  "accessibility_fact_pieces": 916698,
+  "other_populated_pieces": 9987181,
+  "accessibility_pieces": 916698,
+  "accessibility_gaps": 35249248,
+  "identity_pieces": 9987181,
   "context_pieces": 517102,
-  "context_gaps": 5678498,
+  "context_gaps": 5680848,
   "accessibility_definition": "An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.",
   "context_definition": "Context fields are populated values that are not a physical access measurement: access, crossing, lit, foot, fee, changing_table_fee, unisex, male, female, locked, and supervised. They are not accessibility facts and they are not names or geometry.",
   "accessibility_fields": {
@@ -94,18 +94,18 @@
   },
   "by_tranche": {
     "venue": {
-      "records": 858274,
-      "pieces": 6068184,
+      "records": 858715,
+      "pieces": 6071747,
       "accessibility_facts": 121532,
-      "other_populated": 5850162,
+      "other_populated": 5853725,
       "verified": 0,
-      "gaps": 30837598,
+      "gaps": 30852998,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 6068184
+        "0": 6071747
       },
       "gaps_by_tier": {
-        "0": 30837598
+        "0": 30852998
       },
       "pieces_by_source": {
         "ajax-playgrounds": 486,
@@ -125,6 +125,17 @@
         "haldimand-traffic-signals": 788,
         "hamilton-bus-stop-amenities": 16709,
         "hamilton-drinking-fountains": 1097,
+        "hastings-county-arenas": 81,
+        "hastings-county-hospitals": 24,
+        "hastings-county-libraries": 104,
+        "hastings-county-municipal-offices": 153,
+        "hastings-county-sports-facilities": 200,
+        "huron-county-entertainment": 87,
+        "huron-county-libraries": 84,
+        "huron-county-parks": 769,
+        "huron-county-places-of-worship": 732,
+        "huron-county-recreation": 982,
+        "huron-county-trail-features": 189,
         "kingston-accessible-features": 7808,
         "kingston-parking-lots": 400,
         "kingston-points-of-interest": 7600,
@@ -133,6 +144,8 @@
         "kitchener-playground-equipment": 308,
         "kitchener-playgrounds": 3235,
         "lambton-accessible-facilities": 513,
+        "leeds-grenville-county-offices": 56,
+        "leeds-grenville-municipal-offices": 102,
         "london-libraries": 153,
         "london-off-street-parking": 147,
         "london-park-amenities": 11505,
@@ -193,57 +206,59 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-16": 3143651,
-        "2026-11-13": 2924533
+        "2026-11-13": 2924533,
+        "2026-11-17": 3563
       },
       "gaps_by_retrieved_at": {
         "2026-11-16": 10501539,
-        "2026-11-13": 20336059
+        "2026-11-13": 20336059,
+        "2026-11-17": 15400
       },
       "gap_fields": {
-        "addr_housenumber": 516780,
-        "addr_street": 508947,
-        "addr_city": 527777,
-        "addr_postcode": 585084,
-        "addr_unit": 850730,
-        "opening_hours": 836606,
-        "level": 847606,
-        "operator": 805399,
-        "brand": 783625,
-        "website": 643595,
-        "wheelchair": 845604,
-        "wheelchair_description": 838212,
-        "entrance": 840641,
-        "automatic_door": 858181,
-        "door": 856239,
-        "door_width": 858274,
-        "ramp": 858245,
-        "ramp_wheelchair": 858274,
-        "ramp_stroller": 858274,
-        "step_count": 858274,
-        "incline": 858274,
-        "kerb": 858088,
-        "kerb_height": 858274,
-        "tactile_paving": 858261,
-        "handrail": 858274,
-        "width": 858244,
-        "access": 770319,
-        "surface": 795178,
-        "smoothness": 858142,
-        "lit": 849739,
-        "braille": 858274,
-        "hearing_loop": 858271,
-        "speech_output": 856826,
-        "stroller": 858223,
-        "capacity_disabled": 854236,
-        "indoor": 855270,
-        "elevator": 858261,
-        "ref": 549699,
+        "addr_housenumber": 516892,
+        "addr_street": 509017,
+        "addr_city": 527830,
+        "addr_postcode": 585439,
+        "addr_unit": 851171,
+        "opening_hours": 837047,
+        "level": 848047,
+        "operator": 805840,
+        "brand": 784066,
+        "website": 643849,
+        "wheelchair": 846045,
+        "wheelchair_description": 838653,
+        "entrance": 841082,
+        "automatic_door": 858622,
+        "door": 856680,
+        "door_width": 858715,
+        "ramp": 858686,
+        "ramp_wheelchair": 858715,
+        "ramp_stroller": 858715,
+        "step_count": 858715,
+        "incline": 858715,
+        "kerb": 858529,
+        "kerb_height": 858715,
+        "tactile_paving": 858702,
+        "handrail": 858715,
+        "width": 858685,
+        "access": 770760,
+        "surface": 795619,
+        "smoothness": 858583,
+        "lit": 850180,
+        "braille": 858715,
+        "hearing_loop": 858712,
+        "speech_output": 857267,
+        "stroller": 858664,
+        "capacity_disabled": 854677,
+        "indoor": 855711,
+        "elevator": 858702,
+        "ref": 550140,
         "category": 15883,
-        "name": 405888,
+        "name": 405891,
         "category_group": 7607
       },
       "accessibility_pieces": 121532,
-      "accessibility_gaps": 20477044,
+      "accessibility_gaps": 20487628,
       "accessibility_by_field": {
         "capacity_disabled": 4038,
         "wheelchair_description": 20062,
@@ -263,7 +278,7 @@
         "tactile_paving": 13
       },
       "context_pieces": 96490,
-      "context_gaps": 1620058,
+      "context_gaps": 1620940,
       "context_by_field": {
         "access": 87955,
         "lit": 8535
@@ -377,18 +392,18 @@
       }
     },
     "path": {
-      "records": 1105455,
-      "pieces": 5122062,
-      "accessibility_facts": 769922,
-      "other_populated": 3934564,
+      "records": 1105822,
+      "pieces": 5123825,
+      "accessibility_facts": 770218,
+      "other_populated": 3936031,
       "verified": 0,
-      "gaps": 30252498,
+      "gaps": 30262479,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 5122062
+        "0": 5123825
       },
       "gaps_by_tier": {
-        "0": 30252498
+        "0": 30262479
       },
       "pieces_by_source": {
         "ajax-recreational-trails": 6730,
@@ -408,6 +423,7 @@
         "hamilton-pedestrian-features": 192,
         "hamilton-sidewalks": 177776,
         "hamilton-trails": 6944,
+        "huron-county-trails": 1763,
         "kingston-trails": 530,
         "kitchener-crosswalks": 28240,
         "kitchener-sidewalks": 119683,
@@ -440,50 +456,52 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-16": 1259042,
+        "2026-11-17": 1763,
         "2026-11-13": 3863020
       },
       "gaps_by_retrieved_at": {
         "2026-11-16": 7026718,
+        "2026-11-17": 9981,
         "2026-11-13": 23225780
       },
       "gap_fields": {
-        "footway": 589728,
-        "foot": 1070823,
-        "smoothness": 1079470,
-        "incline": 1091021,
-        "kerb": 1048213,
-        "tactile_paving": 1006020,
-        "wheelchair": 1078828,
-        "wheelchair_description": 1062657,
-        "step_count": 1103417,
-        "handrail": 1102744,
-        "access": 1091975,
-        "max_slope": 1105455,
-        "min_width": 1105455,
-        "stair_count": 1105455,
-        "from_ref": 1105455,
-        "to_ref": 1105455,
-        "crossing": 787906,
-        "pathway_mode": 1105455,
-        "bidirectional": 1105455,
-        "oneway": 1093136,
-        "traversal_time_s": 1105455,
-        "signposted_as": 1104561,
-        "reversed_signposted_as": 1105455,
-        "ramp": 1104083,
-        "indoor": 1102885,
-        "length_m": 1018401,
-        "lit": 1053540,
-        "width": 988754,
-        "surface": 724876,
+        "footway": 590095,
+        "foot": 1071190,
+        "smoothness": 1079837,
+        "incline": 1091388,
+        "kerb": 1048580,
+        "tactile_paving": 1006387,
+        "wheelchair": 1079195,
+        "wheelchair_description": 1063020,
+        "step_count": 1103784,
+        "handrail": 1103111,
+        "access": 1092342,
+        "max_slope": 1105822,
+        "min_width": 1105822,
+        "stair_count": 1105822,
+        "from_ref": 1105822,
+        "to_ref": 1105822,
+        "crossing": 788273,
+        "pathway_mode": 1105822,
+        "bidirectional": 1105822,
+        "oneway": 1093503,
+        "traversal_time_s": 1105822,
+        "signposted_as": 1104562,
+        "reversed_signposted_as": 1105822,
+        "ramp": 1104450,
+        "indoor": 1103252,
+        "length_m": 1018768,
+        "lit": 1053907,
+        "width": 989121,
+        "surface": 724951,
         "kind": 365
       },
-      "accessibility_pieces": 769922,
-      "accessibility_gaps": 14706448,
+      "accessibility_pieces": 770218,
+      "accessibility_gaps": 14711290,
       "accessibility_by_field": {
-        "surface": 380579,
+        "surface": 380871,
         "width": 116701,
-        "wheelchair_description": 42798,
+        "wheelchair_description": 42802,
         "handrail": 2711,
         "tactile_paving": 99435,
         "kerb": 57242,
@@ -494,7 +512,7 @@
         "step_count": 2038
       },
       "context_pieces": 417576,
-      "context_gaps": 4004244,
+      "context_gaps": 4005712,
       "context_by_field": {
         "lit": 51915,
         "crossing": 317549,
@@ -503,23 +521,24 @@
       }
     },
     "transit": {
-      "records": 32341,
-      "pieces": 189462,
+      "records": 32354,
+      "pieces": 189540,
       "accessibility_facts": 21280,
-      "other_populated": 168182,
+      "other_populated": 168260,
       "verified": 0,
-      "gaps": 230971,
+      "gaps": 231062,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 1232,
+        "0": 1310,
         "1": 188230
       },
       "gaps_by_tier": {
-        "0": 2772,
+        "0": 2863,
         "1": 228199
       },
       "pieces_by_source": {
         "cornwall-transit-bus-stops": 1232,
+        "grey-county-gtr-bus-stops": 78,
         "gtfs-brampton": 16917,
         "gtfs-drt": 11472,
         "gtfs-gova": 4484,
@@ -538,29 +557,31 @@
         "york-region-yrt-bus-stops": 29942
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 70695,
+        "2026-11-16": 68610,
+        "2026-11-17": 2163,
         "2026-11-13": 112586,
         "2026-11-15": 6181
       },
       "gaps_by_retrieved_at": {
-        "2026-11-16": 93378,
+        "2026-11-16": 90042,
+        "2026-11-17": 3427,
         "2026-11-13": 132152,
         "2026-11-15": 5441
       },
       "gap_fields": {
         "location_type": 308,
-        "parent_station": 32173,
-        "wheelchair_boarding": 11061,
-        "platform_code": 32327,
-        "level_id": 32341,
-        "level_index": 32341,
-        "level_name": 32341,
+        "parent_station": 32186,
+        "wheelchair_boarding": 11074,
+        "platform_code": 32340,
+        "level_id": 32354,
+        "level_index": 32354,
+        "level_name": 32354,
         "description": 24672,
-        "url": 31344,
+        "url": 31357,
         "stop_code": 2063
       },
       "accessibility_pieces": 21280,
-      "accessibility_gaps": 11061,
+      "accessibility_gaps": 11074,
       "accessibility_by_field": {
         "wheelchair_boarding": 21280
       },
@@ -841,6 +862,22 @@
         "2026-11-16": 6944
       },
       "accessibility_pieces": 1388
+    },
+    "huron-county-trails": {
+      "records": 367,
+      "pieces": 1763,
+      "gaps": 9981,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 1763
+      },
+      "pieces_by_tranche": {
+        "path": 1763
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 1763
+      },
+      "accessibility_pieces": 296
     },
     "kingston-trails": {
       "records": 89,
@@ -1324,6 +1361,22 @@
       },
       "accessibility_pieces": 0
     },
+    "grey-county-gtr-bus-stops": {
+      "records": 13,
+      "pieces": 78,
+      "gaps": 91,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 78
+      },
+      "pieces_by_tranche": {
+        "transit": 78
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 78
+      },
+      "accessibility_pieces": 0
+    },
     "gtfs-brampton": {
       "records": 2872,
       "pieces": 16917,
@@ -1528,7 +1581,7 @@
         "transit": 2085
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 2085
+        "2026-11-17": 2085
       },
       "accessibility_pieces": 0
     },
@@ -1852,6 +1905,182 @@
       },
       "accessibility_pieces": 0
     },
+    "hastings-county-arenas": {
+      "records": 9,
+      "pieces": 81,
+      "gaps": 306,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 81
+      },
+      "pieces_by_tranche": {
+        "venue": 81
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 81
+      },
+      "accessibility_pieces": 0
+    },
+    "hastings-county-hospitals": {
+      "records": 3,
+      "pieces": 24,
+      "gaps": 105,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 24
+      },
+      "pieces_by_tranche": {
+        "venue": 24
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 24
+      },
+      "accessibility_pieces": 0
+    },
+    "hastings-county-libraries": {
+      "records": 13,
+      "pieces": 104,
+      "gaps": 455,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 104
+      },
+      "pieces_by_tranche": {
+        "venue": 104
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 104
+      },
+      "accessibility_pieces": 0
+    },
+    "hastings-county-municipal-offices": {
+      "records": 17,
+      "pieces": 153,
+      "gaps": 578,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 153
+      },
+      "pieces_by_tranche": {
+        "venue": 153
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 153
+      },
+      "accessibility_pieces": 0
+    },
+    "hastings-county-sports-facilities": {
+      "records": 25,
+      "pieces": 200,
+      "gaps": 875,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 200
+      },
+      "pieces_by_tranche": {
+        "venue": 200
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 200
+      },
+      "accessibility_pieces": 0
+    },
+    "huron-county-entertainment": {
+      "records": 10,
+      "pieces": 87,
+      "gaps": 343,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 87
+      },
+      "pieces_by_tranche": {
+        "venue": 87
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 87
+      },
+      "accessibility_pieces": 0
+    },
+    "huron-county-libraries": {
+      "records": 12,
+      "pieces": 84,
+      "gaps": 432,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 84
+      },
+      "pieces_by_tranche": {
+        "venue": 84
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 84
+      },
+      "accessibility_pieces": 0
+    },
+    "huron-county-parks": {
+      "records": 88,
+      "pieces": 769,
+      "gaps": 3015,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 769
+      },
+      "pieces_by_tranche": {
+        "venue": 769
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 769
+      },
+      "accessibility_pieces": 0
+    },
+    "huron-county-places-of-worship": {
+      "records": 86,
+      "pieces": 732,
+      "gaps": 2966,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 732
+      },
+      "pieces_by_tranche": {
+        "venue": 732
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 732
+      },
+      "accessibility_pieces": 0
+    },
+    "huron-county-recreation": {
+      "records": 120,
+      "pieces": 982,
+      "gaps": 4178,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 982
+      },
+      "pieces_by_tranche": {
+        "venue": 982
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 982
+      },
+      "accessibility_pieces": 0
+    },
+    "huron-county-trail-features": {
+      "records": 38,
+      "pieces": 189,
+      "gaps": 1445,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 189
+      },
+      "pieces_by_tranche": {
+        "venue": 189
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 189
+      },
+      "accessibility_pieces": 0
+    },
     "kingston-accessible-features": {
       "records": 1003,
       "pieces": 8198,
@@ -1981,6 +2210,38 @@
         "2026-11-16": 710
       },
       "accessibility_pieces": 80
+    },
+    "leeds-grenville-county-offices": {
+      "records": 7,
+      "pieces": 56,
+      "gaps": 245,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 56
+      },
+      "pieces_by_tranche": {
+        "venue": 56
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 56
+      },
+      "accessibility_pieces": 0
+    },
+    "leeds-grenville-municipal-offices": {
+      "records": 13,
+      "pieces": 102,
+      "gaps": 457,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 102
+      },
+      "pieces_by_tranche": {
+        "venue": 102
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 102
+      },
+      "accessibility_pieces": 0
     },
     "london-libraries": {
       "records": 17,
@@ -3841,6 +4102,14 @@
     {
       "file": "data/paths/hamilton-trails/n43.0_w080.5.ndjson.gz",
       "bytes": 16858
+    },
+    {
+      "file": "data/paths/huron-county-trails/n43.5_w081.5.ndjson.gz",
+      "bytes": 51017
+    },
+    {
+      "file": "data/paths/huron-county-trails/n43.5_w082.0.ndjson.gz",
+      "bytes": 90765
     },
     {
       "file": "data/paths/kingston-trails/n44.0_w076.5.ndjson.gz",
@@ -5775,6 +6044,22 @@
       "bytes": 11883
     },
     {
+      "file": "data/transit/grey-county-gtr-bus-stops/n43.5_w080.5.ndjson.gz",
+      "bytes": 474
+    },
+    {
+      "file": "data/transit/grey-county-gtr-bus-stops/n44.0_w080.5.ndjson.gz",
+      "bytes": 696
+    },
+    {
+      "file": "data/transit/grey-county-gtr-bus-stops/n44.5_w081.0.ndjson.gz",
+      "bytes": 457
+    },
+    {
+      "file": "data/transit/grey-county-gtr-bus-stops/n44.5_w081.5.ndjson.gz",
+      "bytes": 584
+    },
+    {
       "file": "data/transit/gtfs-brampton/n43.5_w080.0.ndjson.gz",
       "bytes": 112091
     },
@@ -5936,11 +6221,11 @@
     },
     {
       "file": "data/transit/milton-transit-gtfs/n43.0_w080.0.ndjson.gz",
-      "bytes": 3538
+      "bytes": 3589
     },
     {
       "file": "data/transit/milton-transit-gtfs/n43.5_w080.0.ndjson.gz",
-      "bytes": 11147
+      "bytes": 11244
     },
     {
       "file": "data/transit/oakville-transit-gtfs/n43.0_w080.0.ndjson.gz",
@@ -6135,6 +6420,194 @@
       "bytes": 931
     },
     {
+      "file": "data/venues/hastings-county-arenas/n44.0_w077.5.ndjson.gz",
+      "bytes": 915
+    },
+    {
+      "file": "data/venues/hastings-county-arenas/n44.0_w078.0.ndjson.gz",
+      "bytes": 975
+    },
+    {
+      "file": "data/venues/hastings-county-arenas/n44.5_w077.5.ndjson.gz",
+      "bytes": 623
+    },
+    {
+      "file": "data/venues/hastings-county-arenas/n45.0_w078.0.ndjson.gz",
+      "bytes": 616
+    },
+    {
+      "file": "data/venues/hastings-county-hospitals/n44.0_w077.5.ndjson.gz",
+      "bytes": 620
+    },
+    {
+      "file": "data/venues/hastings-county-hospitals/n44.0_w078.0.ndjson.gz",
+      "bytes": 616
+    },
+    {
+      "file": "data/venues/hastings-county-hospitals/n45.0_w078.0.ndjson.gz",
+      "bytes": 615
+    },
+    {
+      "file": "data/venues/hastings-county-libraries/n44.0_w077.5.ndjson.gz",
+      "bytes": 868
+    },
+    {
+      "file": "data/venues/hastings-county-libraries/n44.0_w078.0.ndjson.gz",
+      "bytes": 777
+    },
+    {
+      "file": "data/venues/hastings-county-libraries/n44.5_w077.5.ndjson.gz",
+      "bytes": 562
+    },
+    {
+      "file": "data/venues/hastings-county-libraries/n44.5_w078.0.ndjson.gz",
+      "bytes": 700
+    },
+    {
+      "file": "data/venues/hastings-county-libraries/n45.0_w078.0.ndjson.gz",
+      "bytes": 793
+    },
+    {
+      "file": "data/venues/hastings-county-municipal-offices/n44.0_w077.5.ndjson.gz",
+      "bytes": 1136
+    },
+    {
+      "file": "data/venues/hastings-county-municipal-offices/n44.0_w078.0.ndjson.gz",
+      "bytes": 923
+    },
+    {
+      "file": "data/venues/hastings-county-municipal-offices/n44.5_w077.5.ndjson.gz",
+      "bytes": 648
+    },
+    {
+      "file": "data/venues/hastings-county-municipal-offices/n44.5_w078.0.ndjson.gz",
+      "bytes": 989
+    },
+    {
+      "file": "data/venues/hastings-county-municipal-offices/n45.0_w078.0.ndjson.gz",
+      "bytes": 1008
+    },
+    {
+      "file": "data/venues/hastings-county-sports-facilities/n44.0_w077.5.ndjson.gz",
+      "bytes": 1333
+    },
+    {
+      "file": "data/venues/hastings-county-sports-facilities/n44.0_w078.0.ndjson.gz",
+      "bytes": 822
+    },
+    {
+      "file": "data/venues/hastings-county-sports-facilities/n44.5_w077.5.ndjson.gz",
+      "bytes": 831
+    },
+    {
+      "file": "data/venues/hastings-county-sports-facilities/n44.5_w078.0.ndjson.gz",
+      "bytes": 728
+    },
+    {
+      "file": "data/venues/hastings-county-sports-facilities/n45.0_w078.0.ndjson.gz",
+      "bytes": 1401
+    },
+    {
+      "file": "data/venues/huron-county-entertainment/n43.0_w081.5.ndjson.gz",
+      "bytes": 609
+    },
+    {
+      "file": "data/venues/huron-county-entertainment/n43.0_w082.0.ndjson.gz",
+      "bytes": 758
+    },
+    {
+      "file": "data/venues/huron-county-entertainment/n43.5_w081.5.ndjson.gz",
+      "bytes": 852
+    },
+    {
+      "file": "data/venues/huron-county-entertainment/n43.5_w082.0.ndjson.gz",
+      "bytes": 948
+    },
+    {
+      "file": "data/venues/huron-county-libraries/n43.0_w081.5.ndjson.gz",
+      "bytes": 653
+    },
+    {
+      "file": "data/venues/huron-county-libraries/n43.0_w082.0.ndjson.gz",
+      "bytes": 642
+    },
+    {
+      "file": "data/venues/huron-county-libraries/n43.5_w081.5.ndjson.gz",
+      "bytes": 900
+    },
+    {
+      "file": "data/venues/huron-county-libraries/n43.5_w082.0.ndjson.gz",
+      "bytes": 721
+    },
+    {
+      "file": "data/venues/huron-county-parks/n43.0_w081.5.ndjson.gz",
+      "bytes": 1121
+    },
+    {
+      "file": "data/venues/huron-county-parks/n43.0_w082.0.ndjson.gz",
+      "bytes": 1531
+    },
+    {
+      "file": "data/venues/huron-county-parks/n43.5_w081.5.ndjson.gz",
+      "bytes": 3068
+    },
+    {
+      "file": "data/venues/huron-county-parks/n43.5_w082.0.ndjson.gz",
+      "bytes": 5002
+    },
+    {
+      "file": "data/venues/huron-county-parks/n44.0_w082.0.ndjson.gz",
+      "bytes": 790
+    },
+    {
+      "file": "data/venues/huron-county-places-of-worship/n43.0_w081.5.ndjson.gz",
+      "bytes": 1779
+    },
+    {
+      "file": "data/venues/huron-county-places-of-worship/n43.0_w082.0.ndjson.gz",
+      "bytes": 1710
+    },
+    {
+      "file": "data/venues/huron-county-places-of-worship/n43.5_w081.5.ndjson.gz",
+      "bytes": 3874
+    },
+    {
+      "file": "data/venues/huron-county-places-of-worship/n43.5_w082.0.ndjson.gz",
+      "bytes": 3287
+    },
+    {
+      "file": "data/venues/huron-county-places-of-worship/n44.0_w082.0.ndjson.gz",
+      "bytes": 643
+    },
+    {
+      "file": "data/venues/huron-county-recreation/n43.0_w081.5.ndjson.gz",
+      "bytes": 1927
+    },
+    {
+      "file": "data/venues/huron-county-recreation/n43.0_w082.0.ndjson.gz",
+      "bytes": 1836
+    },
+    {
+      "file": "data/venues/huron-county-recreation/n43.5_w081.5.ndjson.gz",
+      "bytes": 4714
+    },
+    {
+      "file": "data/venues/huron-county-recreation/n43.5_w082.0.ndjson.gz",
+      "bytes": 6931
+    },
+    {
+      "file": "data/venues/huron-county-recreation/n44.0_w082.0.ndjson.gz",
+      "bytes": 787
+    },
+    {
+      "file": "data/venues/huron-county-trail-features/n43.5_w081.5.ndjson.gz",
+      "bytes": 1772
+    },
+    {
+      "file": "data/venues/huron-county-trail-features/n43.5_w082.0.ndjson.gz",
+      "bytes": 1856
+    },
+    {
       "file": "data/venues/kingston-accessible-features/n44.0_w076.5.ndjson.gz",
       "bytes": 50622
     },
@@ -6213,6 +6686,34 @@
     {
       "file": "data/venues/lambton-accessible-facilities/n43.0_w082.5.ndjson.gz",
       "bytes": 1731
+    },
+    {
+      "file": "data/venues/leeds-grenville-county-offices/n44.0_w076.5.ndjson.gz",
+      "bytes": 635
+    },
+    {
+      "file": "data/venues/leeds-grenville-county-offices/n44.5_w076.0.ndjson.gz",
+      "bytes": 1154
+    },
+    {
+      "file": "data/venues/leeds-grenville-municipal-offices/n44.0_w076.0.ndjson.gz",
+      "bytes": 629
+    },
+    {
+      "file": "data/venues/leeds-grenville-municipal-offices/n44.0_w076.5.ndjson.gz",
+      "bytes": 796
+    },
+    {
+      "file": "data/venues/leeds-grenville-municipal-offices/n44.5_w076.0.ndjson.gz",
+      "bytes": 1333
+    },
+    {
+      "file": "data/venues/leeds-grenville-municipal-offices/n44.5_w076.5.ndjson.gz",
+      "bytes": 763
+    },
+    {
+      "file": "data/venues/leeds-grenville-municipal-offices/n45.0_w076.0.ndjson.gz",
+      "bytes": 629
     },
     {
       "file": "data/venues/london-libraries/n42.5_w081.5.ndjson.gz",
