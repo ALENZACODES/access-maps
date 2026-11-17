@@ -1,15 +1,15 @@
 {
   "definition": "A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. Section 5.6 counts only tier 2 and tier 3 values toward 500,000. Tier 0 and tier 1 accessibility facts are reported separately and are not verified.",
-  "records": 1914511,
-  "pieces": 10471568,
-  "gaps": 58701857,
+  "records": 1914928,
+  "pieces": 10473653,
+  "gaps": 58705193,
   "derived_excluded": 4207,
   "verified_toward_500k": 0,
   "accessibility_fact_pieces": 916402,
-  "other_populated_pieces": 9038064,
+  "other_populated_pieces": 9040149,
   "accessibility_pieces": 916402,
-  "accessibility_gaps": 33114288,
-  "identity_pieces": 9038064,
+  "accessibility_gaps": 33114705,
+  "identity_pieces": 9040149,
   "context_pieces": 517102,
   "context_gaps": 5501906,
   "accessibility_definition": "An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.",
@@ -503,20 +503,20 @@
       }
     },
     "transit": {
-      "records": 31924,
-      "pieces": 187377,
+      "records": 32341,
+      "pieces": 189462,
       "accessibility_facts": 21280,
-      "other_populated": 166097,
+      "other_populated": 168182,
       "verified": 0,
-      "gaps": 227635,
+      "gaps": 230971,
       "derived_excluded": 0,
       "pieces_by_tier": {
         "0": 1232,
-        "1": 186145
+        "1": 188230
       },
       "gaps_by_tier": {
         "0": 2772,
-        "1": 224863
+        "1": 228199
       },
       "pieces_by_source": {
         "cornwall-transit-bus-stops": 1232,
@@ -532,34 +532,35 @@
         "guelph-transit-gtfs": 3733,
         "metrolinx-go": 6151,
         "metrolinx-up": 30,
+        "milton-transit-gtfs": 2085,
         "oakville-transit-gtfs": 5815,
         "windsor-transit-gtfs": 8784,
         "york-region-yrt-bus-stops": 29942
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 68610,
+        "2026-11-16": 70695,
         "2026-11-13": 112586,
         "2026-11-15": 6181
       },
       "gaps_by_retrieved_at": {
-        "2026-11-16": 90042,
+        "2026-11-16": 93378,
         "2026-11-13": 132152,
         "2026-11-15": 5441
       },
       "gap_fields": {
         "location_type": 308,
-        "parent_station": 31756,
-        "wheelchair_boarding": 10644,
-        "platform_code": 31910,
-        "level_id": 31924,
-        "level_index": 31924,
-        "level_name": 31924,
-        "description": 24255,
-        "url": 30927,
+        "parent_station": 32173,
+        "wheelchair_boarding": 11061,
+        "platform_code": 32327,
+        "level_id": 32341,
+        "level_index": 32341,
+        "level_name": 32341,
+        "description": 24672,
+        "url": 31344,
         "stop_code": 2063
       },
       "accessibility_pieces": 21280,
-      "accessibility_gaps": 10644,
+      "accessibility_gaps": 11061,
       "accessibility_by_field": {
         "wheelchair_boarding": 21280
       },
@@ -1514,6 +1515,22 @@
         "2026-11-15": 30
       },
       "accessibility_pieces": 5
+    },
+    "milton-transit-gtfs": {
+      "records": 417,
+      "pieces": 2085,
+      "gaps": 3336,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "1": 2085
+      },
+      "pieces_by_tranche": {
+        "transit": 2085
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-16": 2085
+      },
+      "accessibility_pieces": 0
     },
     "oakville-transit-gtfs": {
       "records": 1163,
@@ -5343,6 +5360,14 @@
     {
       "file": "data/transit/metrolinx-up/n43.5_w080.0.ndjson.gz",
       "bytes": 518
+    },
+    {
+      "file": "data/transit/milton-transit-gtfs/n43.0_w080.0.ndjson.gz",
+      "bytes": 3538
+    },
+    {
+      "file": "data/transit/milton-transit-gtfs/n43.5_w080.0.ndjson.gz",
+      "bytes": 11147
     },
     {
       "file": "data/transit/oakville-transit-gtfs/n43.0_w080.0.ndjson.gz",
