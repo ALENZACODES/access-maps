@@ -21,12 +21,12 @@
     "retrieved_at": "2026-11-17",
     "use": "Used only to work out the upper tier (UPPER_TIER_MUNICIPALITY) and to count which imported records fall inside each municipality. The boundaries are not imported into data/."
   },
-  "method": "Rows of 98100002.csv whose DGUID starts with 2021A000535 (census subdivisions in Ontario) were joined to the table's own metadata file for the census subdivision type and parent census division. Indian reserves (IRI), Indian settlements (S-É) and unorganized territories (NO) are not municipalities and are left out: 414 municipalities remain, which with Ontario's 30 upper-tier municipalities makes the province's 444. The 77 already listed in ontario-top-50-municipalities.json and ontario-municipalities-51-75.json are left out, leaving the municipalities below, sorted by 2021 population. upper_tier is the Land Information Ontario boundary's UPPER_TIER_MUNICIPALITY (null for a single-tier municipality, including every municipality in a territorial district and the separated cities and towns); the boundary was matched to the census subdivision by name within its census division. municipal_records counts, per source, the records of sources/registry.json entries of kind municipal whose point, or a path's first vertex, falls inside the municipality's boundary (generalized to 0.0005 degrees), counted on the branch that last changed this file. status is imported when that count is above zero, otherwise gap with the name of the sources/gaps.json record that says why, or pending while the sweep has not reached that publisher. Province-wide sources (OpenStreetMap, Statistics Canada, Province of Ontario) are not counted here.",
+  "method": "Rows of 98100002.csv whose DGUID starts with 2021A000535 (census subdivisions in Ontario) were joined to the table's own metadata file for the census subdivision type and parent census division. Indian reserves (IRI), Indian settlements (S-É) and unorganized territories (NO) are not municipalities and are left out: 414 municipalities remain, which with Ontario's 30 upper-tier municipalities makes the province's 444. The 77 already listed in ontario-top-50-municipalities.json and ontario-municipalities-51-75.json are left out, leaving the municipalities below, sorted by 2021 population. upper_tier is the Land Information Ontario boundary's UPPER_TIER_MUNICIPALITY (null for a single-tier municipality, including every municipality in a territorial district and the separated cities and towns); the boundary was matched to the census subdivision by name within its census division. municipal_records counts, per source, the records of sources/registry.json entries of kind municipal whose point, or a path's first vertex, falls inside the municipality's boundary (generalized to 0.0001 degrees, about 10 m), counted on the branch that last changed this file. status is imported when that count is above zero, otherwise gap with the name of the sources/gaps.json record that says why, or pending while the sweep has not reached that publisher. Province-wide sources (OpenStreetMap, Statistics Canada, Province of Ontario) are not counted here.",
   "summary": {
     "municipalities": 337,
-    "imported": 78,
+    "imported": 87,
     "gap": 0,
-    "pending": 259
+    "pending": 250
   },
   "municipalities": [
     {
@@ -184,7 +184,8 @@
       "lio_name": "TOWNSHIP OF SOUTH FRONTENAC",
       "status": "imported",
       "municipal_records": {
-        "kingston-trails": 1
+        "kingston-trails": 1,
+        "quinte-conservation-trails": 7
       }
     },
     {
@@ -199,6 +200,8 @@
       "lio_name": "CITY OF PORT COLBORNE",
       "status": "imported",
       "municipal_records": {
+        "npca-conservation-areas": 2,
+        "npca-trails": 13,
         "welland-trails": 1
       }
     },
@@ -229,7 +232,9 @@
       "lio_name": "TOWN OF NIAGARA-ON-THE-LAKE",
       "status": "imported",
       "municipal_records": {
-        "niagara-falls-trails": 1
+        "niagara-falls-trails": 1,
+        "npca-conservation-areas": 4,
+        "npca-trails": 62
       }
     },
     {
@@ -244,7 +249,7 @@
       "lio_name": "MUNICIPALITY OF MIDDLESEX CENTRE",
       "status": "imported",
       "municipal_records": {
-        "london-trails": 2
+        "london-trails": 1
       }
     },
     {
@@ -284,7 +289,11 @@
       "census_division": "Niagara",
       "upper_tier": "Regional Municipality of Niagara",
       "lio_name": "TOWN OF PELHAM",
-      "status": "pending"
+      "status": "imported",
+      "municipal_records": {
+        "npca-conservation-areas": 3,
+        "npca-trails": 15
+      }
     },
     {
       "name": "Petawawa",
@@ -324,7 +333,11 @@
       "census_division": "Lennox and Addington",
       "upper_tier": "County of Lennox and Addington",
       "lio_name": "TOWNSHIP OF LOYALIST",
-      "status": "pending"
+      "status": "imported",
+      "municipal_records": {
+        "lennox-addington-facility-sites": 114,
+        "lennox-addington-sidewalks": 394
+      }
     },
     {
       "name": "Midland",
@@ -372,7 +385,11 @@
       "census_division": "Lennox and Addington",
       "upper_tier": "County of Lennox and Addington",
       "lio_name": "TOWN OF GREATER NAPANEE",
-      "status": "pending"
+      "status": "imported",
+      "municipal_records": {
+        "lennox-addington-facility-sites": 142,
+        "lennox-addington-sidewalks": 460
+      }
     },
     {
       "name": "Saugeen Shores",
@@ -408,7 +425,10 @@
       "census_division": "Niagara",
       "upper_tier": "Regional Municipality of Niagara",
       "lio_name": "TOWNSHIP OF WEST LINCOLN",
-      "status": "pending"
+      "status": "imported",
+      "municipal_records": {
+        "npca-conservation-areas": 2
+      }
     },
     {
       "name": "Kenora",
@@ -727,7 +747,7 @@
       "lio_name": "TOWN OF ERIN",
       "status": "imported",
       "municipal_records": {
-        "peel-trails": 1
+        "peel-trails": 2
       }
     },
     {
@@ -871,7 +891,7 @@
       "lio_name": "TOWNSHIP OF ADJALA-TOSORONTIO",
       "status": "imported",
       "municipal_records": {
-        "peel-trails": 1
+        "peel-trails": 2
       }
     },
     {
@@ -913,7 +933,7 @@
       "lio_name": "TOWNSHIP OF NORTH DUMFRIES",
       "status": "imported",
       "municipal_records": {
-        "cambridge-play-structures": 4,
+        "cambridge-play-structures": 3,
         "cambridge-sidewalks": 12,
         "cambridge-trails": 21
       }
@@ -1105,7 +1125,7 @@
         "huron-county-places-of-worship": 16,
         "huron-county-recreation": 16,
         "huron-county-trail-features": 8,
-        "huron-county-trails": 29
+        "huron-county-trails": 28
       }
     },
     {
@@ -1132,7 +1152,7 @@
       "lio_name": "TOWN OF MONO",
       "status": "imported",
       "municipal_records": {
-        "peel-trails": 8
+        "peel-trails": 6
       }
     },
     {
@@ -1222,7 +1242,7 @@
       "lio_name": "TOWNSHIP OF BECKWITH",
       "status": "imported",
       "municipal_records": {
-        "ottawa-pedestrian-network": 5
+        "ottawa-pedestrian-network": 6
       }
     },
     {
@@ -1357,7 +1377,7 @@
       "lio_name": "TOWNSHIP OF PUSLINCH",
       "status": "imported",
       "municipal_records": {
-        "cambridge-sidewalks": 3,
+        "cambridge-sidewalks": 2,
         "guelph-sidewalks": 1
       }
     },
@@ -1377,7 +1397,7 @@
         "huron-county-libraries": 1,
         "huron-county-parks": 27,
         "huron-county-places-of-worship": 11,
-        "huron-county-recreation": 21,
+        "huron-county-recreation": 22,
         "huron-county-trails": 33
       }
     },
@@ -1391,10 +1411,7 @@
       "census_division": "Oxford",
       "upper_tier": "County of Oxford",
       "lio_name": "TOWNSHIP OF EAST ZORRA-TAVISTOCK",
-      "status": "imported",
-      "municipal_records": {
-        "oxford-county-trails": 1
-      }
+      "status": "pending"
     },
     {
       "name": "Stone Mills",
@@ -1406,7 +1423,13 @@
       "census_division": "Lennox and Addington",
       "upper_tier": "County of Lennox and Addington",
       "lio_name": "TOWNSHIP OF STONE MILLS",
-      "status": "pending"
+      "status": "imported",
+      "municipal_records": {
+        "lennox-addington-facility-sites": 85,
+        "lennox-addington-sidewalks": 97,
+        "quinte-conservation-areas": 1,
+        "quinte-conservation-trails": 7
+      }
     },
     {
       "name": "Central Huron",
@@ -1548,7 +1571,7 @@
         "huron-county-places-of-worship": 11,
         "huron-county-recreation": 24,
         "huron-county-trail-features": 7,
-        "huron-county-trails": 45
+        "huron-county-trails": 46
       }
     },
     {
@@ -1740,7 +1763,9 @@
       "lio_name": "TOWNSHIP OF WAINFLEET",
       "status": "imported",
       "municipal_records": {
-        "haldimand-trails": 1
+        "haldimand-trails": 1,
+        "npca-conservation-areas": 7,
+        "npca-trails": 27
       }
     },
     {
@@ -1818,7 +1843,9 @@
         "hastings-county-arenas": 2,
         "hastings-county-libraries": 1,
         "hastings-county-municipal-offices": 1,
-        "hastings-county-sports-facilities": 4
+        "hastings-county-sports-facilities": 4,
+        "quinte-conservation-areas": 1,
+        "quinte-conservation-trails": 36
       }
     },
     {
@@ -2076,7 +2103,11 @@
       "census_division": "Frontenac",
       "upper_tier": "County of Frontenac",
       "lio_name": "TOWNSHIP OF CENTRAL FRONTENAC",
-      "status": "pending"
+      "status": "imported",
+      "municipal_records": {
+        "quinte-conservation-areas": 4,
+        "quinte-conservation-trails": 36
+      }
     },
     {
       "name": "Southwold",
@@ -2691,7 +2722,10 @@
       "census_division": "Renfrew",
       "upper_tier": "County of Renfrew",
       "lio_name": "TOWNSHIP OF GREATER MADAWASKA",
-      "status": "pending"
+      "status": "imported",
+      "municipal_records": {
+        "lennox-addington-facility-sites": 1
+      }
     },
     {
       "name": "French River",
@@ -2853,7 +2887,12 @@
       "census_division": "Lennox and Addington",
       "upper_tier": "County of Lennox and Addington",
       "lio_name": "TOWNSHIP OF ADDINGTON HIGHLANDS",
-      "status": "pending"
+      "status": "imported",
+      "municipal_records": {
+        "lennox-addington-facility-sites": 63,
+        "lennox-addington-sidewalks": 8,
+        "quinte-conservation-areas": 2
+      }
     },
     {
       "name": "Killaloe, Hagarty and Richards",
@@ -2892,7 +2931,10 @@
       "census_division": "Frontenac",
       "upper_tier": "County of Frontenac",
       "lio_name": "TOWNSHIP OF NORTH FRONTENAC",
-      "status": "pending"
+      "status": "imported",
+      "municipal_records": {
+        "lennox-addington-facility-sites": 2
+      }
     },
     {
       "name": "Neebing",
@@ -2932,7 +2974,9 @@
       "municipal_records": {
         "hastings-county-arenas": 1,
         "hastings-county-municipal-offices": 1,
-        "hastings-county-sports-facilities": 1
+        "hastings-county-sports-facilities": 1,
+        "quinte-conservation-areas": 1,
+        "quinte-conservation-trails": 21
       }
     },
     {
@@ -3113,7 +3157,10 @@
       "census_division": "Renfrew",
       "upper_tier": "County of Renfrew",
       "lio_name": "TOWNSHIP OF BRUDENELL, LYNDOCH AND RAGLAN",
-      "status": "pending"
+      "status": "imported",
+      "municipal_records": {
+        "lennox-addington-facility-sites": 1
+      }
     },
     {
       "name": "Terrace Bay",
