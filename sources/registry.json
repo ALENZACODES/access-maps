@@ -2339,6 +2339,21 @@
       "tier": 0,
       "tier_note": "Overture places are tier 0 open-data imports. They are not shown as verified.",
       "notes": "Places that have an AllThePlaces source (CC0 1.0, https://creativecommons.org/publicdomain/zero/1.0/) and an Overture CDLA Permissive 2.0 source. CDLA Permissive 2.0 text: sources/licences/CDLA-Permissive-2.0.txt. Overture Maps Foundation places theme, release 2026-10-21.0 (the current release on https://docs.overturemaps.org/release-calendar/ on 2026-11-16), read from s3://overturemaps-us-west-2/release/2026-10-21.0/theme=places/type=place/ with DuckDB (tools/overture/extract_places.py), filtering on the bbox column first. Kept: point places inside the Land Information Ontario Province boundary (Open Government Licence – Ontario; contains information licensed under the Open Government Licence – Ontario), every source licence in CDLA-Permissive-2.0, Apache-2.0 or CC0-1.0, not permanently closed, Overture confidence 0.5 or higher, with a primary name, and one place per exact duplicate group (same name at the same coordinates). The places theme contains no OpenStreetMap data, according to the Overture places guide. Overture publishes no accessibility attribute for places, so every accessibility field is UNKNOWN. Categories are Overture's basic_category and taxonomy.primary as published. Phone numbers, emails and social links are not read. Names, brands and websites of individual health practitioner categories are not kept, as for OpenStreetMap. Overture's confidence and source update time are kept as text on the ref field's raw value. The record id is overture:<Overture GERS id>."
+    },
+    {
+      "id": "milton-transit-gtfs",
+      "name": "Milton Transit GTFS",
+      "kind": "gtfs",
+      "url": "https://www.arcgis.com/home/item.html?id=6d91cda9496043a395710d0a73a7699f",
+      "download_url": "https://metrolinx.tmix.se/gtfs/gtfs-milton.zip",
+      "licence_name": "Open Government Licence – Milton, version 2.0",
+      "licence_url": "https://discover-milton.hub.arcgis.com/pages/disclaimer-and-terms-of-use",
+      "licence_id": "OGL-Milton-2.0",
+      "attribution": "Contains information licensed under the Open Government Licence – Milton.",
+      "retrieved_at": "2026-11-16",
+      "tier": 1,
+      "tier_note": "Static GTFS fields published by the operator are tier 1 operator claims, not verified observations. wheelchair_boarding 0 or empty is stored as UNKNOWN.",
+      "notes": "Town of Milton ArcGIS item MILTON-GTFS (6d91cda9496043a395710d0a73a7699f, owner Milton_Maps) links this zip and sets its licence to the Town of Milton disclaimer and terms of use page, the Open Government Licence – Milton; that text (hub item 66bc793c2cfa4b03874beed76f12080d) was read on 2026-11-17: worldwide, royalty-free, perpetual, non-exclusive licence to copy, modify, publish, adapt and distribute for any lawful purpose, with attribution. The zip was downloaded on 2026-11-17 (UTC); its feed_info gives service from 2026-11-16 to 2027-01-02. retrieved_at is 2026-11-16 because the repository's strict-data check does not accept a later date yet. The file has no pathways.txt or levels.txt. agency_phone is not read."
     }
   ]
 }
