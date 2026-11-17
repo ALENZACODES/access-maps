@@ -8,6 +8,7 @@ import { importGtfs } from "./import-gtfs.js";
 import { importMoreMunicipal } from "./import-more-municipal.js";
 import { importMunicipal } from "./import-municipal.js";
 import { importOsm } from "./import-osm.js";
+import { importStatcanLode } from "./import-statcan-lode.js";
 import { importOverturePlaces } from "./import-overture-places.js";
 import { importYorkDurhamCities } from "./import-york-durham-cities.js";
 import { writeCounts } from "./count.js";
@@ -24,6 +25,7 @@ await importYorkDurhamCities(repoRoot);
 await importCitiesG4(repoRoot);
 await importCitiesG6(repoRoot);
 await importGtfs(repoRoot);
+await importStatcanLode(repoRoot);
 // Reads the extract written by tools/overture/extract_places.py (.cache/overture/<release>/).
 await importOverturePlaces(repoRoot);
 await importOsm(repoRoot);

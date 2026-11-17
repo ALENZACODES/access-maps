@@ -6,6 +6,8 @@ import { importMunicipal } from "../../scripts/import-municipal.js";
 import { importCityOpenData } from "../../scripts/import-city-open-data.js";
 import { importGtfs } from "../../scripts/import-gtfs.js";
 import { runLayerJobs, type LayerJob } from "../../scripts/import-cities-g3.js";
+import { importStatcanLode } from "../../scripts/import-statcan-lode.js";
+import { gpkgBlob, wkbPoint, writeGpkg } from "../national/lode-fixtures.js";
 import { importOverturePlaces, overtureCache } from "../../scripts/import-overture-places.js";
 import { PerSourceRun } from "../../src/failsafe/per-source.js";
 import { commitRecord } from "../../src/io/commit.js";
@@ -161,6 +163,30 @@ describe("one source failing inside an importer never holds back the others", ()
   });
 });
 
+describe("Statistics Canada LODE databases", () => {
+  it("a corrupt zip for one database keeps its files; the GeoPackage and CSV databases are refreshed", async () => {
+    const env = fixtureRepo();
+    const odhf = seedSource(env.data, "venues", "statcan-odhf", 2);
+    const odcaf = seedSource(env.data, "venues", "statcan-odcaf", 2);
+    const odcafBefore = readFileSync(odcaf);
+    const cache = path.join(env.root, ".cache", "lode");
+    for (const id of ["statcan-odhf", "statcan-odef", "statcan-odcaf"]) mkdirSync(path.join(cache, id), { recursive: true });
+    // Statistics Canada Lambert metres for a point in Toronto.
+    writeGpkg(path.join(cache, "statcan-odhf", "odhf_v2.gpkg"), "odhf_v2", ["id", "name", "type", "provider", "prov_terr"], [1, 2, 3].map((n) => ({ id: `FX${n}`, name: `Fixture ${n}`, type: "Pharmacy", provider: "Government of Ontario", prov_terr: "ON", geom: gpkgBlob(wkbPoint(7224817.495306485, 928699.0518283916)) })));
+    writeFileSync(path.join(cache, "statcan-odef", "odef_v3_0_1.csv"), `unique_id,province_code,facility_name,geometry\nFX1,ON,Fixture School,POINT (-79.38 43.65)\nFX2,QC,Fixture Ecole,POINT (-73.6 45.5)\n`);
+    // The ODCAF download was cut short: the zip is an HTML error page and the CSV was never extracted.
+    writeFileSync(path.join(cache, "statcan-odcaf", "statcan-odcaf.zip"), Buffer.from("<html>503 Service Unavailable</html>"));
+
+    await expect(importStatcanLode(env.root, ["statcan-odhf", "statcan-odef", "statcan-odcaf"])).rejects.toThrow(/importStatcanLode: 1 of 3 sources failed.*statcan-odcaf/);
+
+    expect(allIds(path.dirname(odhf))).toEqual(["statcan-odhf:FX1", "statcan-odhf:FX2", "statcan-odhf:FX3"]);
+    expect(allIds(path.join(env.data, "venues", "statcan-odef"))).toEqual(["statcan-odef:FX1"]);
+    expect(readFileSync(odcaf).equals(odcafBefore)).toBe(true);
+    expect(env.log.report.outcomes).toContainEqual(expect.objectContaining({ step: "importStatcanLode/statcan-odcaf", status: "step_failed" }));
+    expect(env.log.report.outcomes).toContainEqual(expect.objectContaining({ source_id: "statcan-odcaf", target: "venues/statcan-odcaf", status: "kept_last_known_good" }));
+  });
+});
+
 describe("Overture places: three sources from one extract", () => {
   /** Labelled test fixture rows, not real places: one per licence set, inside a fixture boundary around downtown Toronto. */
   function overtureFixture(root: string, cutShort = false) {
@@ -249,7 +275,7 @@ describe("PerSourceRun", () => {
     }
     // The fixture sources used above are registered tier 0 or tier 1 sources.
     const registry = readRegistry(repo);
-    for (const id of ["toronto-park-washrooms", "toronto-street-washrooms", "toronto-crem-washrooms", "ottawa-public-washrooms", "ottawa-park-parking", "gtfs-grt-bus", "gtfs-hsr", "kitchener-public-washrooms", "guelph-restrooms", "windsor-park-washrooms", "overture-places", "overture-places-foursquare", "overture-places-alltheplaces"]) {
+    for (const id of ["toronto-park-washrooms", "toronto-street-washrooms", "toronto-crem-washrooms", "ottawa-public-washrooms", "ottawa-park-parking", "gtfs-grt-bus", "gtfs-hsr", "kitchener-public-washrooms", "guelph-restrooms", "windsor-park-washrooms", "statcan-odhf", "statcan-odef", "statcan-odcaf", "overture-places", "overture-places-foursquare", "overture-places-alltheplaces"]) {
       expect(registry.sources.some((entry) => entry.id === id), id).toBe(true);
     }
   });

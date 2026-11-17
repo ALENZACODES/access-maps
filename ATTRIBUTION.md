@@ -513,6 +513,21 @@ Datasets, retrieved 2026-11-16 from https://gis.haldimandcounty.ca/server/rest/s
 
 These layers are not in the County's open-data catalogue, and no publisher licence was read for them. They are included because the repository owner stated in chat on 2026-11-16 that their use is permitted (licence id `owner-permission-2026-11-16`). The County's Audible and Accessible columns are stored as published flags. They are not a measurement by this project.
 
+## Statistics Canada Linkable Open Data Environment
+
+Contains information licensed under the Open Government Licence – Canada.
+
+https://open.canada.ca/en/open-government-licence-canada
+
+Ontario rows of these databases, retrieved 2026-11-16:
+
+- Statistics Canada. (2026). Open Database of Healthcare Facilities, version 2.0. https://www150.statcan.gc.ca/n1/pub/13-26-0001/132600012020001-eng.htm (`statcan-odhf`)
+- Statistics Canada. (2026). Open Database of Sports and Recreational Facilities, version 2.0. https://www150.statcan.gc.ca/n1/pub/21-26-0002/212600022021001-eng.htm (`statcan-odsrf`)
+- Statistics Canada. (2024). Open Database of Educational Facilities, version 3.0. https://www150.statcan.gc.ca/n1/pub/37-26-0001/372600012022001-eng.htm (`statcan-odef`)
+- Statistics Canada. (2020). Open Database of Cultural and Art Facilities, version 1.0. https://www.statcan.gc.ca/en/lode/databases/odcaf (`statcan-odcaf`)
+
+Each database is compiled from many providers' open data. The data sources file in each download lists every provider with its own licence and attribution statement. Rows from providers listed in [sources/gaps.json](sources/gaps.json) are not included. The ODSRF `accessible` column is stored as the provider's published flag text. It is not a measurement by this project.
+
 ## Offline map tiles
 
 `data/tiles/odbl/` is OpenStreetMap data under the Open Database License (ODbL) 1.0. It is a separate file from every other licence.
