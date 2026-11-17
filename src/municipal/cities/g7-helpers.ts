@@ -4,12 +4,14 @@ import {
   attributesOf,
   civic,
   dataset,
+  labelled,
   lineFields,
   pointFields,
   pointOf,
   present,
   published,
   regionOf,
+  ringMeanOf,
   type RawFeature,
   type Row,
 } from "./g4-helpers.js";
@@ -59,11 +61,15 @@ export interface PointVenueSpec {
   keep?: (row: Row) => boolean;
   /** Other columns `keep` or `group` read. */
   extra?: readonly string[];
+  /** `ring_mean` for a polygon layer: the stored point is the vertex mean of the first ring, not an entrance. */
+  anchor?: "point" | "ring_mean";
+  /** Columns kept as the publisher's own `COLUMN=value` text in wheelchair_description. */
+  labelledColumns?: readonly string[];
 }
 
 /** Columns a point venue spec reads, for the layer request. */
 export function pointVenueFields(spec: PointVenueSpec): string[] {
-  return [spec.idKey, spec.name, spec.category, spec.address, spec.city, spec.postcode, spec.website, ...(spec.extra ?? [])].filter(
+  return [spec.idKey, spec.name, spec.category, spec.address, spec.city, spec.postcode, spec.website, ...(spec.labelledColumns ?? []), ...(spec.extra ?? [])].filter(
     (key): key is string => typeof key === "string",
   );
 }
@@ -74,7 +80,7 @@ export function mapPointVenue(spec: PointVenueSpec, feature: RawFeature, ctx: Pr
   if (spec.keep && !spec.keep(row)) return null;
   const key = present(row, spec.idKey);
   if (key === "") return null;
-  const point = pointOf(feature);
+  const point = spec.anchor === "ring_mean" ? ringMeanOf(feature) : pointOf(feature);
   const fields: Record<string, FieldValue> = {
     name: published(row, spec.name, ctx),
     category: spec.category
@@ -83,8 +89,9 @@ export function mapPointVenue(spec: PointVenueSpec, feature: RawFeature, ctx: Pr
         ? dataset(spec.fixedCategory, ctx)
         : unknownField(ctx),
     category_group: dataset(typeof spec.group === "function" ? spec.group(row) : spec.group, ctx),
-    ...pointFields(point, ctx),
+    ...pointFields(point, ctx, spec.anchor === "ring_mean" ? "geometry:vertex_mean" : "geometry"),
   };
+  if (spec.labelledColumns) fields.wheelchair_description = labelled(row, spec.labelledColumns, ctx);
   if (spec.address) {
     const raw = row[spec.address] ?? "";
     Object.assign(fields, civic(spec.addressBeforeComma ? (raw.split(",")[0] ?? "") : raw, spec.address, ctx));
@@ -117,12 +124,14 @@ export interface TrailSpec {
   /** Columns whose published values are kept as `COLUMN=value` text in wheelchair_description, only when one says accessible. */
   flagColumns?: readonly string[];
   keep?: (row: Row) => boolean;
+  /** Columns kept as the publisher's own `COLUMN=value` text in wheelchair_description (for example a difficulty rating or a grade with no stated unit). */
+  labelledColumns?: readonly string[];
   /** Other columns `keep` reads. */
   extra?: readonly string[];
 }
 
 export function trailFields(spec: TrailSpec): string[] {
-  return [spec.idKey, spec.name, spec.surface, ...(spec.flagColumns ?? []), ...(spec.extra ?? [])].filter((key): key is string => typeof key === "string");
+  return [spec.idKey, spec.name, spec.surface, ...(spec.flagColumns ?? []), ...(spec.labelledColumns ?? []), ...(spec.extra ?? [])].filter((key): key is string => typeof key === "string");
 }
 
 /**
@@ -153,6 +162,7 @@ export function mapTrail(spec: TrailSpec, feature: RawFeature, ctx: Provenance):
     if (spec.name) fields.signposted_as = published(row, spec.name, ctx);
     if (spec.surface) fields.surface = published(row, spec.surface, ctx);
     if (spec.flagColumns) fields.wheelchair_description = accessibleFlag(row, spec.flagColumns, ctx);
+    if (spec.labelledColumns) fields.wheelchair_description = labelled(row, spec.labelledColumns, ctx);
     return buildRecord("path", partId(ctx.source_id, key, part), line.region, fields, ctx);
   });
 }

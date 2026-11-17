@@ -628,4 +628,34 @@ Grey County Open Data Licence (first version): https://maps.grey.ca/pages/terms
 Datasets retrieved 2026-11-17 (County of Grey GIS, https://maps.grey.ca/): County of Grey Grey Transit Route (GTR) Bus Stops (`grey-county-gtr-bus-stops`).
 
 The layer is the County's own stop list, not a GTFS feed, and has no wheelchair boarding column. The licence does not cover personal information or the County's names, crests and logos.
+
+## County of Lennox and Addington
+
+Contains information licensed under the Open Government Licence – County of Lennox and Addington.
+
+Open Government Licence – County of Lennox and Addington, version 2: https://open-data-hub-lennoxaddington.hub.arcgis.com/pages/terms-of-use
+
+Datasets retrieved 2026-11-17 (County of Lennox and Addington open-data portal, https://open-data-hub-lennoxaddington.hub.arcgis.com/): County of Lennox and Addington Facility Sites Point (Public View) (`lennox-addington-facility-sites`); County of Lennox and Addington Sidewalks (Public View) (`lennox-addington-sidewalks`).
+
+These layers have no accessibility column. The licence does not cover personal information or the County's names, crests and logos.
+
+## Quinte Conservation
+
+Contains Information made available under Quinte Conservation Authority's Open Data Licence v1.0
+
+Quinte Conservation Authority Open Data Licence v1.0: https://camaps.maps.arcgis.com/sharing/rest/content/items/63994104a14b4f87ac6aec7463954873/data
+
+Datasets retrieved 2026-11-17 (Quinte Conservation open data, https://data.quinteconservation.ca): Quinte Conservation Managed Conservation Areas (`quinte-conservation-areas`); Quinte Conservation Conservation Area Trails (`quinte-conservation-trails`).
+
+A trail's DIFFICULTY is the Authority's own rating, kept as text; it is not a wheelchair measurement by this project. Do not suggest that the Authority endorses this project.
+
+## Niagara Peninsula Conservation Authority
+
+Contains information licensed under the Open Government Licence – NPCA.
+
+Open Government Licence – Niagara Peninsula Conservation Authority (NPCA): https://camaps.maps.arcgis.com/sharing/rest/content/items/cd29aca041b24c9a8b922213bd8616cb/data
+
+Datasets retrieved 2026-11-17 (NPCA open data, https://gis-npca-camaps.opendata.arcgis.com): Conservation Areas NPCA (`npca-conservation-areas`); Conservation Authority Trails NPCA (`npca-trails`).
+
+WC_Access, TrailRating, AverageSlope and MaximumGrade are the Authority's own values, kept as text; they are not a wheelchair measurement by this project. The licence does not cover personal information or the Authority's names, crests and logos.
 <!-- g7 small towns end -->

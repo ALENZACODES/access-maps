@@ -774,6 +774,36 @@ export const LICENCE_FINDINGS: readonly LicenceFinding[] = [
     licence: "Grey-County-Open-Data-Licence-1",
     reason: "Grey County Open Data Licence (first version). Not in the strict export allowlist.",
   },
+  {
+    sourceId: "lennox-addington-facility-sites",
+    licence: "OGL-Lennox-Addington-2.0",
+    reason: "Open Government Licence – County of Lennox and Addington, version 2. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "lennox-addington-sidewalks",
+    licence: "OGL-Lennox-Addington-2.0",
+    reason: "Open Government Licence – County of Lennox and Addington, version 2. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "quinte-conservation-areas",
+    licence: "QCA-Open-Data-Licence-1.0",
+    reason: "Quinte Conservation Authority Open Data Licence v1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "quinte-conservation-trails",
+    licence: "QCA-Open-Data-Licence-1.0",
+    reason: "Quinte Conservation Authority Open Data Licence v1.0. Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "npca-conservation-areas",
+    licence: "OGL-NPCA",
+    reason: "Open Government Licence – Niagara Peninsula Conservation Authority (NPCA). Not in the strict export allowlist.",
+  },
+  {
+    sourceId: "npca-trails",
+    licence: "OGL-NPCA",
+    reason: "Open Government Licence – Niagara Peninsula Conservation Authority (NPCA). Not in the strict export allowlist.",
+  },
   // g7 small towns end
 ];
 
