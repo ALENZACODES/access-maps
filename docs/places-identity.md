@@ -2,6 +2,18 @@
 
 Many places are in the data more than once: a park from OpenStreetMap and from the city's parks layer, a bus stop from a GTFS feed and from a city's stop-amenities layer. Each record is kept exactly as its source published it. A separate set of link files says which records, from different sources, describe the same real place. The links are used to count distinct places and to show one place page per real place, with every source's record side by side.
 
+## Licences: links, not a merged database
+
+The sources carry different licences: OpenStreetMap is ODbL 1.0 (share-alike); Overture places are CDLA-Permissive-2.0 and Apache-2.0; the city, provincial and federal layers carry their own open licences. Overture's own places guide cautions that joining CDLA-licensed data to OSM may create a derivative database under ODbL. This design therefore does not combine sources:
+
+- No record is changed and no combined record is made. Every source record stays in its own `data/<tranche>/<source_id>/` file with its own licence on every field.
+- The link files hold only what the matcher computed: record keys (tranche and id), source ids, cells, and the matcher's evidence (distance, a name-similarity score, a class-compatibility number, an address agreement word, an identifier agreement word, a reason). They copy no name, category, address or any other value from any record. No combined name, category or address is produced anywhere, in `data/links/`, in the count or in the pack.
+- The cluster id is the key of one of its member records (for example an OSM id). It is an identifier, not a value from the record.
+- The count reports numbers only.
+- The pack keeps each source's parts as they are and adds the link files. The place page is specified to show each source's facts in its own column with that source's licence, retrieval date and tier, with conflicts shown as conflicts and no value chosen or merged: a collective arrangement of separate databases, not one merged database. See [place-page-clusters.md](place-page-clusters.md).
+
+The matcher reads OSM and non-OSM values together to compute the scores. Its outputs are the links described above. Whether a set of links between an ODbL database and a CDLA database is itself a derivative database is a legal question this repository does not settle; the links are kept in their own directory, apart from every source, so they can be withheld or removed without touching any source.
+
 ## Matcher (`npm run match:places`)
 
 Code: `src/places/` (`normalize.ts`, `category.ts`, `match.ts`, `links.ts`) and `scripts/match-places.ts`.
@@ -17,7 +29,7 @@ It reads every venue, washroom and transit record and writes only `data/links/`.
 7. **Ambiguity.** If a record matches two or more records of one other source with scores within 0.08, none of those matches is used. A match must also be the record's best match from that source.
 8. **Clusters.** Matches are merged strongest first. Two groups merge only if no source would appear twice and every pair across them is at least a possible duplicate with no address conflict. Otherwise the edge is listed as a possible duplicate. Possible duplicates are never merged: under-merging adds a page, over-merging hides a place.
 
-The run streams: pass 1 reads each file once and keeps a small per-cell working file in `.cache/places-match/`; pass 2 matches one 0.5-degree cell at a time with an edge margin from its eight neighbours. Each pair is evaluated exactly once. Everything is sorted by record key, so the output is the same for any input order (checked by a property test). On the data of 2026-11-16 at the first run (606,434 place records) a run took about 2 minutes on this 2-CPU machine, with a measured peak resident memory of about 0.9 GB.
+The run streams: pass 1 reads each file once and keeps a small per-cell working file in `.cache/places-match/`; pass 2 matches one 0.5-degree cell at a time with an edge margin from its eight neighbours. Each pair is evaluated exactly once. Everything is sorted by record key, so the output is the same for any input order (checked by a property test). On the data of 2026-11-16 at the first run (606,434 place records) a run took about 2 minutes on this 2-CPU machine, with a measured peak resident memory of about 0.9 GB; on 2026-11-17 (1,189,063 place records) the measured peak was about 2.3 GB.
 
 ## Link files
 
@@ -62,7 +74,7 @@ The count reads every link file through `index.json` and stops if a file does no
 
 **Labels.** One person labelled each pair by reading both records (names, categories, addresses, identifiers, distance) without the score: "same" when both describe one physical place or feature; "different" for a part and its whole (a court in a park, a washroom in a library, a platform in a station), stops on different sides or streets, or different items; "unsure" when the records cannot tell. For unnamed small features of the same type the records cannot settle it, so the rule was: same within 5 m, unsure from 5 to 30 m. Those labels encode a judgement, not ground truth; results are reported with and without them.
 
-**Two sets.** The figures below are for the links committed with this change, computed from main after the Statistics Canada, Province of Ontario and Overture imports (#72 to #78). The labelled pairs were drawn from the data before those imports. The tuning set (360 pairs, 285 judged) was labelled first and the rules were adjusted on it, so its figures are in-sample. The held-out set (200 pairs drawn later with another seed; the 17 already in the tuning set were dropped, leaving 183, 127 judged) was labelled before it was scored.
+**Two sets.** The figures below are for the links committed with this change, computed from main after all place imports of 2026-11-17 (#72 to #84). The labelled pairs were drawn from the data before those imports. The tuning set (360 pairs, 285 judged) was labelled first and the rules were adjusted on it, so its figures are in-sample. The held-out set (200 pairs drawn later with another seed; the 17 already in the tuning set were dropped, leaving 183, 127 judged) was labelled before it was scored.
 
 | Set | Judged | TP | FP | FN | TN | Precision | Recall | Weighted precision | Weighted recall |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -85,7 +97,7 @@ Limits:
 
 - The sample is drawn from candidate pairs. A pair the candidate rules never consider (farther apart than the radius, or with incompatible classes) is in neither recall nor precision.
 - 412 judged pairs give wide intervals; zero false merges in 127 held-out pairs is consistent with a false-merge rate of a few percent.
-- The labelled pairs were drawn before the government-database and Overture imports. Those sources bring other taxonomies and many chain stores; the figures above do not cover them. A spot check of 25 Overture-OSM clusters (every 727th of 18,196, read by one person) found 24 clearly the same place and 1 uncertain (a park and a beach of the same name at the same point); that is a spot check, not a measured precision.
+- The labelled pairs were drawn before the government-database and Overture imports. Those sources bring other taxonomies and many chain stores; the figures above do not cover them. A spot check of 25 Overture-OSM clusters (every 727th of 18,196, read by one person) found 24 clearly the same place and 1 uncertain (a park and a beach of the same name at the same point); that is a spot check, not a measured precision. After all four Overture batches, a second spot check of 30 Overture-OSM clusters (evenly spaced among 72,522) found 29 clearly the same place and the same uncertain park and beach. Two of the 30 were linked on the address alone because one or both records carry no name (OSM drops dentist names; an unnamed OSM hairdresser and a named barber at one plaza address): an address shared by several businesses of one kind is a known risk for such links; when two records of one source share the address, the ambiguity rule keeps them apart, but a single candidate is linked.
 
 ## Web pack
 

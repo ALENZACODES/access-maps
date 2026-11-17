@@ -116,7 +116,7 @@ export function nameTokens(value: string | null | undefined): string[] {
   const out: string[] = [];
   for (const raw of text.split(/[^\p{L}\p{N}]+/u)) {
     if (!raw) continue;
-    const token = CANONICAL[raw] ?? raw;
+    const token = Object.hasOwn(CANONICAL, raw) ? CANONICAL[raw]! : raw;
     if (STOPWORDS.has(token)) continue;
     out.push(token);
   }
