@@ -7,18 +7,18 @@ Tier 0 and tier 1 values count as 0 toward the 250,000 verified venue field-valu
 Verified toward 500,000 is 0. None of those verified field-values exist in this import.
 Open-data or operator-claimed physical accessibility facts (tier 0 and tier 1 only): **918,512**.
 Context fields, reported separately (access, crossing, lit, fee, and the other context fields below): **517,102**.
-All other populated values: **11,372,863**.
-All populated pieces together: **12,808,477**.
-Total UNKNOWN gaps: **65,834,820**.
-UNKNOWN gaps on accessibility fields: **38,386,604**.
+All other populated values: **13,006,163**.
+All populated pieces together: **14,441,777**.
+Total UNKNOWN gaps: **71,128,089**.
+UNKNOWN gaps on accessibility fields: **42,252,596**.
 Derived values excluded from both totals: **4,207**.
-Records: **2,135,593**.
+Records: **2,296,676**.
 
 The illustrative targets are 250,000 venue, 100,000 path, 50,000 transit, and 100,000 washroom verified field-values. Shortfall is the target minus verified values.
 
 | Tranche | Records | Physical accessibility facts (tier 0–1) | Context fields | Other populated | Verified (tier 2–3) | UNKNOWN gaps | Illustrative target | Shortfall |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| venue | 988468 | 121567 | 96490 | 7233183 | 0 | 35052884 | 250000 | 250000 |
+| venue | 1149551 | 121567 | 96490 | 8866483 | 0 | 40346153 | 250000 | 250000 |
 | washroom | 7158 | 3668 | 3036 | 29197 | 0 | 239054 | 100000 | 100000 |
 | path | 1107613 | 771997 | 417576 | 3942223 | 0 | 30311820 | 100000 | 100000 |
 | transit | 32354 | 21280 | 0 | 168260 | 0 | 231062 | 50000 | 50000 |
@@ -27,11 +27,11 @@ The illustrative targets are 250,000 venue, 100,000 path, 50,000 transit, and 10
 
 An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.
 
-Physical accessibility facts, context fields, and the remaining pieces add up to the total: 918,512 + 517,102 + 11,372,863 = 12,808,477.
+Physical accessibility facts, context fields, and the remaining pieces add up to the total: 918,512 + 517,102 + 13,006,163 = 14,441,777.
 
 | Tranche | Physical accessibility pieces | Context pieces | Remaining pieces |
 | --- | ---: | ---: | ---: |
-| venue | 121567 | 96490 | 7233183 |
+| venue | 121567 | 96490 | 8866483 |
 | washroom | 3668 | 3036 | 29197 |
 | path | 771997 | 417576 | 3942223 |
 | transit | 21280 | 0 | 168260 |
@@ -132,7 +132,7 @@ Populated accessibility facts by field:
 
 | Tranche | Tier 0 | Tier 1 | Tier 2 | Tier 3 | Tier 4 |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| venue | 7451240 | 0 | 0 | 0 | 0 |
+| venue | 9084540 | 0 | 0 | 0 | 0 |
 | washroom | 35901 | 0 | 0 | 0 | 0 |
 | path | 5131796 | 0 | 0 | 0 | 0 |
 | transit | 1310 | 188230 | 0 | 0 | 0 |
@@ -274,9 +274,9 @@ Populated accessibility facts by field:
 | ottawa-pedestrian-network | 20297 | 75358 | 0 | 574146 | 75358 | 0 | 2026-11-16 |
 | ottawa-public-washrooms | 186 | 1988 | 545 | 5266 | 1988 | 0 | 2026-11-16 |
 | ottawa-recreation-facilities | 371 | 2840 | 0 | 13113 | 2840 | 0 | 2026-11-16 |
-| overture-places | 283587 | 3010038 | 0 | 9184203 | 3010038 | 0 | 2026-11-16 |
-| overture-places-alltheplaces | 5689 | 61889 | 0 | 182738 | 61889 | 0 | 2026-11-16 |
-| overture-places-foursquare | 53906 | 580766 | 0 | 1737192 | 580766 | 0 | 2026-11-16 |
+| overture-places | 424444 | 4426275 | 0 | 13824817 | 4426275 | 0 | 2026-11-16 |
+| overture-places-alltheplaces | 9023 | 97613 | 0 | 290376 | 97613 | 0 | 2026-11-16 |
+| overture-places-foursquare | 70798 | 762105 | 0 | 2282209 | 762105 | 0 | 2026-11-16 |
 | oxford-county-trails | 101 | 493 | 191 | 2739 | 493 | 0 | 2026-11-16 |
 | peel-trails | 7791 | 31164 | 7791 | 218148 | 31164 | 0 | 2026-11-16 |
 | pickering-facilities | 28 | 250 | 0 | 954 | 250 | 0 | 2026-11-16 |
@@ -326,18 +326,18 @@ Populated accessibility facts by field:
 
 ### venue
 
-- braille: 988468
-- door_width: 988468
-- handrail: 988468
-- incline: 988468
-- kerb_height: 988468
-- ramp_stroller: 988468
-- ramp_wheelchair: 988468
-- step_count: 988468
-- hearing_loop: 988465
-- elevator: 988455
-- tactile_paving: 988455
-- ramp: 988439
+- braille: 1149551
+- door_width: 1149551
+- handrail: 1149551
+- incline: 1149551
+- kerb_height: 1149551
+- ramp_stroller: 1149551
+- ramp_wheelchair: 1149551
+- step_count: 1149551
+- hearing_loop: 1149548
+- elevator: 1149538
+- tactile_paving: 1149538
+- ramp: 1149522
 
 ### washroom
 
@@ -386,8 +386,8 @@ Populated accessibility facts by field:
 
 A place is a venue, washroom or transit record; paths are not places. Records from different sources that the same-place matcher links (data/links/same-place) count as one distinct place. Distinct places = place records in no link cluster + link clusters with at least one record present. Possible duplicates are not merged. A distinct place has a known accessibility fact when at least one of its records has a populated, non-derived accessibility field. "Only in this source" counts the distinct places whose every record comes from that source.
 
-Place records (venue, washroom, transit): **1,027,980**.
-Distinct places: **938,674**.
+Place records (venue, washroom, transit): **1,189,063**.
+Distinct places: **1,099,757**.
 Records joined by same-place links: **161,034** in **71,728** clusters.
 Distinct places with at least one known accessibility fact: **128,167**.
 Possible duplicates listed for review and not merged: **79,451**.
@@ -492,9 +492,9 @@ The links are older than the record files (method same-place-v1): records added 
 | ottawa-parks-inventory | 7916 | 2310 | 5606 |
 | ottawa-public-washrooms | 186 | 163 | 23 |
 | ottawa-recreation-facilities | 371 | 262 | 109 |
-| overture-places | 283587 | 249019 | 34568 |
-| overture-places-alltheplaces | 5689 | 4721 | 968 |
-| overture-places-foursquare | 53906 | 50953 | 2953 |
+| overture-places | 424444 | 389876 | 34568 |
+| overture-places-alltheplaces | 9023 | 8055 | 968 |
+| overture-places-foursquare | 70798 | 67845 | 2953 |
 | pickering-facilities | 28 | 12 | 16 |
 | pickering-parks | 201 | 54 | 147 |
 | quinte-conservation-areas | 19 | 19 | 0 |

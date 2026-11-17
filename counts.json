@@ -1,17 +1,17 @@
 {
   "definition": "A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. Section 5.6 counts only tier 2 and tier 3 values toward 500,000. Tier 0 and tier 1 accessibility facts are reported separately and are not verified.",
-  "records": 2135593,
-  "pieces": 12808477,
-  "gaps": 65834820,
+  "records": 2296676,
+  "pieces": 14441777,
+  "gaps": 71128089,
   "derived_excluded": 4207,
   "verified_toward_500k": 0,
   "accessibility_fact_pieces": 918512,
-  "other_populated_pieces": 11372863,
+  "other_populated_pieces": 13006163,
   "accessibility_pieces": 918512,
-  "accessibility_gaps": 38386604,
-  "identity_pieces": 11372863,
+  "accessibility_gaps": 42252596,
+  "identity_pieces": 13006163,
   "context_pieces": 517102,
-  "context_gaps": 5947550,
+  "context_gaps": 6269716,
   "accessibility_definition": "An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.",
   "context_definition": "Context fields are populated values that are not a physical access measurement: access, crossing, lit, foot, fee, changing_table_fee, unisex, male, female, locked, and supervised. They are not accessibility facts and they are not names or geometry.",
   "accessibility_fields": {
@@ -94,18 +94,18 @@
   },
   "by_tranche": {
     "venue": {
-      "records": 988468,
-      "pieces": 7451240,
+      "records": 1149551,
+      "pieces": 9084540,
       "accessibility_facts": 121567,
-      "other_populated": 7233183,
+      "other_populated": 8866483,
       "verified": 0,
-      "gaps": 35052884,
+      "gaps": 40346153,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 7451240
+        "0": 9084540
       },
       "gaps_by_tier": {
-        "0": 35052884
+        "0": 40346153
       },
       "pieces_by_source": {
         "ajax-playgrounds": 486,
@@ -183,9 +183,9 @@
         "ottawa-parks-inventory": 51047,
         "ottawa-parks": 12302,
         "ottawa-recreation-facilities": 2840,
-        "overture-places-alltheplaces": 61889,
-        "overture-places-foursquare": 580766,
-        "overture-places": 3010038,
+        "overture-places-alltheplaces": 97613,
+        "overture-places-foursquare": 762105,
+        "overture-places": 4426275,
         "pickering-facilities": 250,
         "pickering-parks": 1267,
         "quinte-conservation-areas": 152,
@@ -210,60 +210,60 @@
         "windsor-playgrounds": 903
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 4519084,
+        "2026-11-16": 6152384,
         "2026-11-13": 2924533,
         "2026-11-17": 7623
       },
       "gaps_by_retrieved_at": {
-        "2026-11-16": 14684243,
+        "2026-11-16": 19977512,
         "2026-11-13": 20336059,
         "2026-11-17": 32582
       },
       "gap_fields": {
-        "addr_housenumber": 525742,
-        "addr_street": 515444,
-        "addr_city": 528491,
-        "addr_postcode": 589480,
-        "addr_unit": 980924,
-        "opening_hours": 966800,
-        "level": 977800,
-        "operator": 935593,
-        "brand": 901605,
-        "website": 666202,
-        "wheelchair": 975798,
-        "wheelchair_description": 968371,
-        "entrance": 970835,
-        "automatic_door": 988375,
-        "door": 986433,
-        "door_width": 988468,
-        "ramp": 988439,
-        "ramp_wheelchair": 988468,
-        "ramp_stroller": 988468,
-        "step_count": 988468,
-        "incline": 988468,
-        "kerb": 988282,
-        "kerb_height": 988468,
-        "tactile_paving": 988455,
-        "handrail": 988468,
-        "width": 988438,
-        "access": 900513,
-        "surface": 925372,
-        "smoothness": 988336,
-        "lit": 979933,
-        "braille": 988468,
-        "hearing_loop": 988465,
-        "speech_output": 987020,
-        "stroller": 988417,
-        "capacity_disabled": 984430,
-        "indoor": 985464,
-        "elevator": 988455,
+        "addr_housenumber": 555844,
+        "addr_street": 543504,
+        "addr_city": 539710,
+        "addr_postcode": 611827,
+        "addr_unit": 1142007,
+        "opening_hours": 1127883,
+        "level": 1138883,
+        "operator": 1096676,
+        "brand": 1047325,
+        "website": 712741,
+        "wheelchair": 1136881,
+        "wheelchair_description": 1129454,
+        "entrance": 1131918,
+        "automatic_door": 1149458,
+        "door": 1147516,
+        "door_width": 1149551,
+        "ramp": 1149522,
+        "ramp_wheelchair": 1149551,
+        "ramp_stroller": 1149551,
+        "step_count": 1149551,
+        "incline": 1149551,
+        "kerb": 1149365,
+        "kerb_height": 1149551,
+        "tactile_paving": 1149538,
+        "handrail": 1149551,
+        "width": 1149521,
+        "access": 1061596,
+        "surface": 1086455,
+        "smoothness": 1149419,
+        "lit": 1141016,
+        "braille": 1149551,
+        "hearing_loop": 1149548,
+        "speech_output": 1148103,
+        "stroller": 1149500,
+        "capacity_disabled": 1145513,
+        "indoor": 1146547,
+        "elevator": 1149538,
         "ref": 550634,
-        "category": 21114,
-        "name": 412885,
-        "category_group": 12595
+        "category": 26096,
+        "name": 419020,
+        "category_group": 17187
       },
       "accessibility_pieces": 121567,
-      "accessibility_gaps": 23601665,
+      "accessibility_gaps": 27467657,
       "accessibility_by_field": {
         "capacity_disabled": 4038,
         "wheelchair_description": 20097,
@@ -283,7 +283,7 @@
         "tactile_paving": 13
       },
       "context_pieces": 96490,
-      "context_gaps": 1880446,
+      "context_gaps": 2202612,
       "context_by_field": {
         "access": 87955,
         "lit": 8535
@@ -2901,50 +2901,50 @@
       "accessibility_pieces": 0
     },
     "overture-places-alltheplaces": {
-      "records": 5689,
-      "pieces": 61889,
-      "gaps": 182738,
+      "records": 9023,
+      "pieces": 97613,
+      "gaps": 290376,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 61889
+        "0": 97613
       },
       "pieces_by_tranche": {
-        "venue": 61889
+        "venue": 97613
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 61889
+        "2026-11-16": 97613
       },
       "accessibility_pieces": 0
     },
     "overture-places-foursquare": {
-      "records": 53906,
-      "pieces": 580766,
-      "gaps": 1737192,
+      "records": 70798,
+      "pieces": 762105,
+      "gaps": 2282209,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 580766
+        "0": 762105
       },
       "pieces_by_tranche": {
-        "venue": 580766
+        "venue": 762105
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 580766
+        "2026-11-16": 762105
       },
       "accessibility_pieces": 0
     },
     "overture-places": {
-      "records": 283587,
-      "pieces": 3010038,
-      "gaps": 9184203,
+      "records": 424444,
+      "pieces": 4426275,
+      "gaps": 13824817,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 3010038
+        "0": 4426275
       },
       "pieces_by_tranche": {
-        "venue": 3010038
+        "venue": 4426275
       },
       "pieces_by_retrieved_at": {
-        "2026-11-16": 3010038
+        "2026-11-16": 4426275
       },
       "accessibility_pieces": 0
     },
@@ -3526,8 +3526,8 @@
   "total_shortfall": 500000,
   "distinct_places": {
     "definition": "A place is a venue, washroom or transit record; paths are not places. Records from different sources that the same-place matcher links (data/links/same-place) count as one distinct place. Distinct places = place records in no link cluster + link clusters with at least one record present. Possible duplicates are not merged. A distinct place has a known accessibility fact when at least one of its records has a populated, non-derived accessibility field. \"Only in this source\" counts the distinct places whose every record comes from that source.",
-    "place_records": 1027980,
-    "distinct_places": 938674,
+    "place_records": 1189063,
+    "distinct_places": 1099757,
     "records_joined_by_links": 161034,
     "clusters": 71728,
     "with_known_accessibility_fact": 128167,
@@ -4018,18 +4018,18 @@
         "shared_with_other_sources": 109
       },
       "overture-places": {
-        "records": 283587,
-        "only_in_this_source": 249019,
+        "records": 424444,
+        "only_in_this_source": 389876,
         "shared_with_other_sources": 34568
       },
       "overture-places-alltheplaces": {
-        "records": 5689,
-        "only_in_this_source": 4721,
+        "records": 9023,
+        "only_in_this_source": 8055,
         "shared_with_other_sources": 968
       },
       "overture-places-foursquare": {
-        "records": 53906,
-        "only_in_this_source": 50953,
+        "records": 70798,
+        "only_in_this_source": 67845,
         "shared_with_other_sources": 2953
       },
       "pickering-facilities": {
@@ -4187,7 +4187,7 @@
       "method": "same-place-v1",
       "current": false,
       "input_digest": "cb75d017a0c2f019d5286c74f37e562837237b168d727098ff23741ec2366af8",
-      "data_digest": "850375feace3b911eeb797ae576d6602b7149f959b141206e1629094cce0d399",
+      "data_digest": "2cba2a6c6df6036ce20ce138d27d7a744407365711851f4253ce48dabc99dd9b",
       "possible_duplicates": 79451,
       "links_to_missing_records": 0
     }
@@ -15656,6 +15656,718 @@
       "bytes": 5203
     },
     {
+      "file": "data/venues/overture-places-alltheplaces/n44.0_w076.0.ndjson.gz",
+      "bytes": 999
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.0_w076.5.ndjson.gz",
+      "bytes": 10498
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.0_w077.0.ndjson.gz",
+      "bytes": 18329
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.0_w077.5.ndjson.gz",
+      "bytes": 13335
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.0_w078.0.ndjson.gz",
+      "bytes": 11911
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.0_w078.5.ndjson.gz",
+      "bytes": 18174
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.0_w079.0.ndjson.gz",
+      "bytes": 11677
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.0_w079.5.ndjson.gz",
+      "bytes": 27566
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.0_w080.0.ndjson.gz",
+      "bytes": 39110
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.0_w080.5.ndjson.gz",
+      "bytes": 10641
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.0_w081.0.ndjson.gz",
+      "bytes": 4047
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.0_w081.5.ndjson.gz",
+      "bytes": 8009
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.0_w082.0.ndjson.gz",
+      "bytes": 3192
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.5_w075.0.ndjson.gz",
+      "bytes": 996
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.5_w075.5.ndjson.gz",
+      "bytes": 3183
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.5_w076.0.ndjson.gz",
+      "bytes": 10475
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.5_w076.5.ndjson.gz",
+      "bytes": 6458
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.5_w077.0.ndjson.gz",
+      "bytes": 1995
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.5_w077.5.ndjson.gz",
+      "bytes": 2729
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.5_w078.0.ndjson.gz",
+      "bytes": 1271
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.5_w078.5.ndjson.gz",
+      "bytes": 1986
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.5_w079.0.ndjson.gz",
+      "bytes": 5385
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.5_w079.5.ndjson.gz",
+      "bytes": 8710
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.5_w080.0.ndjson.gz",
+      "bytes": 10384
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.5_w080.5.ndjson.gz",
+      "bytes": 5292
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.5_w081.0.ndjson.gz",
+      "bytes": 7296
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n44.5_w081.5.ndjson.gz",
+      "bytes": 3747
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.0_w074.5.ndjson.gz",
+      "bytes": 1686
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.0_w075.0.ndjson.gz",
+      "bytes": 14571
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.0_w075.5.ndjson.gz",
+      "bytes": 13688
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.0_w076.0.ndjson.gz",
+      "bytes": 121057
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.0_w076.5.ndjson.gz",
+      "bytes": 9615
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.0_w077.0.ndjson.gz",
+      "bytes": 3047
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.0_w077.5.ndjson.gz",
+      "bytes": 995
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.0_w078.0.ndjson.gz",
+      "bytes": 4392
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.0_w078.5.ndjson.gz",
+      "bytes": 1137
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.0_w079.0.ndjson.gz",
+      "bytes": 2647
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.0_w079.5.ndjson.gz",
+      "bytes": 8037
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.0_w080.0.ndjson.gz",
+      "bytes": 3365
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.0_w080.5.ndjson.gz",
+      "bytes": 2926
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.0_w082.0.ndjson.gz",
+      "bytes": 819
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.5_w074.5.ndjson.gz",
+      "bytes": 1032
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.5_w075.0.ndjson.gz",
+      "bytes": 5222
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.5_w075.5.ndjson.gz",
+      "bytes": 4040
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.5_w077.0.ndjson.gz",
+      "bytes": 1765
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.5_w077.5.ndjson.gz",
+      "bytes": 7629
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.5_w078.0.ndjson.gz",
+      "bytes": 999
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.5_w079.5.ndjson.gz",
+      "bytes": 2840
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.5_w080.0.ndjson.gz",
+      "bytes": 1978
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.5_w080.5.ndjson.gz",
+      "bytes": 1063
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.5_w081.0.ndjson.gz",
+      "bytes": 820
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.5_w082.0.ndjson.gz",
+      "bytes": 2728
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.5_w082.5.ndjson.gz",
+      "bytes": 2606
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n45.5_w083.0.ndjson.gz",
+      "bytes": 770
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n46.0_w077.5.ndjson.gz",
+      "bytes": 1509
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n46.0_w078.0.ndjson.gz",
+      "bytes": 1203
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n46.0_w079.0.ndjson.gz",
+      "bytes": 1520
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n46.0_w079.5.ndjson.gz",
+      "bytes": 10477
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n46.0_w080.0.ndjson.gz",
+      "bytes": 2809
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n46.0_w080.5.ndjson.gz",
+      "bytes": 2341
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n46.0_w081.0.ndjson.gz",
+      "bytes": 6342
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n46.0_w081.5.ndjson.gz",
+      "bytes": 6331
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n46.0_w082.0.ndjson.gz",
+      "bytes": 3486
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n46.0_w082.5.ndjson.gz",
+      "bytes": 1640
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n46.0_w083.0.ndjson.gz",
+      "bytes": 3421
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n46.0_w083.5.ndjson.gz",
+      "bytes": 1000
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n46.0_w084.0.ndjson.gz",
+      "bytes": 2169
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n46.0_w084.5.ndjson.gz",
+      "bytes": 2109
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n46.5_w079.5.ndjson.gz",
+      "bytes": 1003
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n46.5_w080.0.ndjson.gz",
+      "bytes": 823
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n46.5_w080.5.ndjson.gz",
+      "bytes": 1152
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n46.5_w081.0.ndjson.gz",
+      "bytes": 9552
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n46.5_w081.5.ndjson.gz",
+      "bytes": 5715
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n46.5_w082.0.ndjson.gz",
+      "bytes": 1521
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n46.5_w084.5.ndjson.gz",
+      "bytes": 10708
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n46.5_w085.0.ndjson.gz",
+      "bytes": 1063
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n47.0_w080.0.ndjson.gz",
+      "bytes": 1805
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n47.0_w081.5.ndjson.gz",
+      "bytes": 1037
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n47.0_w082.0.ndjson.gz",
+      "bytes": 1142
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n47.0_w082.5.ndjson.gz",
+      "bytes": 1024
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n47.0_w085.0.ndjson.gz",
+      "bytes": 820
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n47.5_w080.0.ndjson.gz",
+      "bytes": 4153
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n47.5_w080.5.ndjson.gz",
+      "bytes": 820
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n47.5_w081.0.ndjson.gz",
+      "bytes": 994
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n47.5_w081.5.ndjson.gz",
+      "bytes": 827
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n47.5_w082.0.ndjson.gz",
+      "bytes": 1039
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n47.5_w083.0.ndjson.gz",
+      "bytes": 1017
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n47.5_w083.5.ndjson.gz",
+      "bytes": 1760
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n47.5_w084.0.ndjson.gz",
+      "bytes": 1008
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n47.5_w085.0.ndjson.gz",
+      "bytes": 1244
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.0_w080.0.ndjson.gz",
+      "bytes": 1009
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.0_w080.5.ndjson.gz",
+      "bytes": 2535
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.0_w081.5.ndjson.gz",
+      "bytes": 6610
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.0_w082.5.ndjson.gz",
+      "bytes": 819
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.0_w084.0.ndjson.gz",
+      "bytes": 748
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.0_w084.5.ndjson.gz",
+      "bytes": 1152
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.0_w085.0.ndjson.gz",
+      "bytes": 1122
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.0_w089.5.ndjson.gz",
+      "bytes": 13408
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.0_w090.0.ndjson.gz",
+      "bytes": 1714
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.5_w080.5.ndjson.gz",
+      "bytes": 1040
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.5_w081.0.ndjson.gz",
+      "bytes": 1751
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.5_w083.0.ndjson.gz",
+      "bytes": 740
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.5_w085.5.ndjson.gz",
+      "bytes": 1691
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.5_w086.5.ndjson.gz",
+      "bytes": 1929
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.5_w087.5.ndjson.gz",
+      "bytes": 1917
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.5_w088.5.ndjson.gz",
+      "bytes": 1220
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.5_w089.0.ndjson.gz",
+      "bytes": 818
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.5_w090.0.ndjson.gz",
+      "bytes": 975
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.5_w090.5.ndjson.gz",
+      "bytes": 1065
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.5_w092.0.ndjson.gz",
+      "bytes": 1176
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.5_w093.5.ndjson.gz",
+      "bytes": 2242
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.5_w094.0.ndjson.gz",
+      "bytes": 1665
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.5_w094.5.ndjson.gz",
+      "bytes": 980
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n48.5_w095.0.ndjson.gz",
+      "bytes": 1027
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.0_w081.5.ndjson.gz",
+      "bytes": 2094
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.0_w082.0.ndjson.gz",
+      "bytes": 1551
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.0_w082.5.ndjson.gz",
+      "bytes": 1862
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.0_w083.0.ndjson.gz",
+      "bytes": 829
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.0_w084.5.ndjson.gz",
+      "bytes": 776
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.0_w085.0.ndjson.gz",
+      "bytes": 1226
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.0_w086.0.ndjson.gz",
+      "bytes": 1607
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.0_w088.5.ndjson.gz",
+      "bytes": 1061
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.0_w090.5.ndjson.gz",
+      "bytes": 1036
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.0_w092.0.ndjson.gz",
+      "bytes": 1241
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.0_w094.0.ndjson.gz",
+      "bytes": 993
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.0_w094.5.ndjson.gz",
+      "bytes": 987
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.5_w083.0.ndjson.gz",
+      "bytes": 823
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.5_w083.5.ndjson.gz",
+      "bytes": 983
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.5_w084.0.ndjson.gz",
+      "bytes": 1554
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.5_w084.5.ndjson.gz",
+      "bytes": 825
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.5_w087.0.ndjson.gz",
+      "bytes": 1885
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.5_w088.0.ndjson.gz",
+      "bytes": 823
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.5_w089.5.ndjson.gz",
+      "bytes": 677
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.5_w093.0.ndjson.gz",
+      "bytes": 2688
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.5_w093.5.ndjson.gz",
+      "bytes": 1078
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.5_w094.0.ndjson.gz",
+      "bytes": 745
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.5_w094.5.ndjson.gz",
+      "bytes": 2379
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.5_w095.0.ndjson.gz",
+      "bytes": 1633
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n49.5_w095.5.ndjson.gz",
+      "bytes": 1024
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n50.0_w087.0.ndjson.gz",
+      "bytes": 1197
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n50.0_w088.0.ndjson.gz",
+      "bytes": 755
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n50.0_w088.5.ndjson.gz",
+      "bytes": 746
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n50.0_w089.0.ndjson.gz",
+      "bytes": 748
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n50.0_w089.5.ndjson.gz",
+      "bytes": 1174
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n50.0_w090.5.ndjson.gz",
+      "bytes": 909
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n50.0_w091.0.ndjson.gz",
+      "bytes": 1025
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n50.0_w092.0.ndjson.gz",
+      "bytes": 1489
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n50.0_w092.5.ndjson.gz",
+      "bytes": 986
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n50.0_w094.5.ndjson.gz",
+      "bytes": 1035
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n50.0_w095.0.ndjson.gz",
+      "bytes": 834
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n50.5_w093.5.ndjson.gz",
+      "bytes": 1283
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n51.0_w081.0.ndjson.gz",
+      "bytes": 1385
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n51.0_w090.5.ndjson.gz",
+      "bytes": 999
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n51.0_w094.0.ndjson.gz",
+      "bytes": 1844
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n51.5_w086.0.ndjson.gz",
+      "bytes": 827
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n51.5_w088.0.ndjson.gz",
+      "bytes": 832
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n51.5_w092.0.ndjson.gz",
+      "bytes": 824
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n51.5_w094.0.ndjson.gz",
+      "bytes": 834
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n51.5_w094.5.ndjson.gz",
+      "bytes": 729
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n52.0_w082.0.ndjson.gz",
+      "bytes": 1163
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n52.0_w088.0.ndjson.gz",
+      "bytes": 837
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n52.0_w094.5.ndjson.gz",
+      "bytes": 825
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n52.5_w082.5.ndjson.gz",
+      "bytes": 830
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n52.5_w087.5.ndjson.gz",
+      "bytes": 815
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n52.5_w089.5.ndjson.gz",
+      "bytes": 829
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n52.5_w091.5.ndjson.gz",
+      "bytes": 830
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n52.5_w093.5.ndjson.gz",
+      "bytes": 820
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n52.5_w094.5.ndjson.gz",
+      "bytes": 1000
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n53.0_w090.0.ndjson.gz",
+      "bytes": 823
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n53.0_w092.0.ndjson.gz",
+      "bytes": 827
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n53.0_w093.0.ndjson.gz",
+      "bytes": 829
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n53.0_w093.5.ndjson.gz",
+      "bytes": 1007
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n53.5_w089.0.ndjson.gz",
+      "bytes": 840
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n53.5_w090.0.ndjson.gz",
+      "bytes": 994
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n53.5_w091.0.ndjson.gz",
+      "bytes": 819
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n53.5_w092.5.ndjson.gz",
+      "bytes": 829
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n54.5_w085.5.ndjson.gz",
+      "bytes": 825
+    },
+    {
+      "file": "data/venues/overture-places-alltheplaces/n55.5_w088.0.ndjson.gz",
+      "bytes": 819
+    },
+    {
       "file": "data/venues/overture-places-foursquare/n41.5_w082.5.ndjson.gz",
       "bytes": 759
     },
@@ -15814,6 +16526,614 @@
     {
       "file": "data/venues/overture-places-foursquare/n43.5_w082.0.ndjson.gz",
       "bytes": 15644
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.0_w076.0.ndjson.gz",
+      "bytes": 1426
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.0_w076.5.ndjson.gz",
+      "bytes": 48673
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.0_w077.0.ndjson.gz",
+      "bytes": 87359
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.0_w077.5.ndjson.gz",
+      "bytes": 71418
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.0_w078.0.ndjson.gz",
+      "bytes": 39366
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.0_w078.5.ndjson.gz",
+      "bytes": 104691
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.0_w079.0.ndjson.gz",
+      "bytes": 45487
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.0_w079.5.ndjson.gz",
+      "bytes": 146661
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.0_w080.0.ndjson.gz",
+      "bytes": 222680
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.0_w080.5.ndjson.gz",
+      "bytes": 35606
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.0_w081.0.ndjson.gz",
+      "bytes": 11120
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.0_w081.5.ndjson.gz",
+      "bytes": 26279
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.0_w082.0.ndjson.gz",
+      "bytes": 8626
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.5_w075.0.ndjson.gz",
+      "bytes": 1299
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.5_w075.5.ndjson.gz",
+      "bytes": 7613
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.5_w076.0.ndjson.gz",
+      "bytes": 45446
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.5_w076.5.ndjson.gz",
+      "bytes": 35486
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.5_w077.0.ndjson.gz",
+      "bytes": 4103
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.5_w077.5.ndjson.gz",
+      "bytes": 3417
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.5_w078.0.ndjson.gz",
+      "bytes": 3291
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.5_w078.5.ndjson.gz",
+      "bytes": 4088
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.5_w079.0.ndjson.gz",
+      "bytes": 12483
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.5_w079.5.ndjson.gz",
+      "bytes": 59435
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.5_w080.0.ndjson.gz",
+      "bytes": 46676
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.5_w080.5.ndjson.gz",
+      "bytes": 25529
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.5_w081.0.ndjson.gz",
+      "bytes": 33440
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n44.5_w081.5.ndjson.gz",
+      "bytes": 10769
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.0_w074.5.ndjson.gz",
+      "bytes": 1643
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.0_w075.0.ndjson.gz",
+      "bytes": 47750
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.0_w075.5.ndjson.gz",
+      "bytes": 43553
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.0_w076.0.ndjson.gz",
+      "bytes": 661672
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.0_w076.0.p02.ndjson.gz",
+      "bytes": 151941
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.0_w076.5.ndjson.gz",
+      "bytes": 30320
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.0_w077.0.ndjson.gz",
+      "bytes": 7799
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.0_w077.5.ndjson.gz",
+      "bytes": 1502
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.0_w078.0.ndjson.gz",
+      "bytes": 9403
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.0_w078.5.ndjson.gz",
+      "bytes": 3148
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.0_w079.0.ndjson.gz",
+      "bytes": 8195
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.0_w079.5.ndjson.gz",
+      "bytes": 40661
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.0_w080.0.ndjson.gz",
+      "bytes": 10788
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.0_w080.5.ndjson.gz",
+      "bytes": 9462
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.0_w081.5.ndjson.gz",
+      "bytes": 1157
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.0_w082.0.ndjson.gz",
+      "bytes": 2172
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.5_w074.5.ndjson.gz",
+      "bytes": 774
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.5_w075.0.ndjson.gz",
+      "bytes": 15543
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.5_w075.5.ndjson.gz",
+      "bytes": 9771
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.5_w077.0.ndjson.gz",
+      "bytes": 4896
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.5_w077.5.ndjson.gz",
+      "bytes": 30816
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.5_w078.0.ndjson.gz",
+      "bytes": 1115
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.5_w079.0.ndjson.gz",
+      "bytes": 714
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.5_w079.5.ndjson.gz",
+      "bytes": 6973
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.5_w080.0.ndjson.gz",
+      "bytes": 2305
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.5_w080.5.ndjson.gz",
+      "bytes": 769
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.5_w081.0.ndjson.gz",
+      "bytes": 964
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.5_w082.0.ndjson.gz",
+      "bytes": 4449
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.5_w082.5.ndjson.gz",
+      "bytes": 3877
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n45.5_w083.0.ndjson.gz",
+      "bytes": 753
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.0_w077.5.ndjson.gz",
+      "bytes": 1722
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.0_w078.0.ndjson.gz",
+      "bytes": 1241
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.0_w078.5.ndjson.gz",
+      "bytes": 770
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.0_w079.0.ndjson.gz",
+      "bytes": 2278
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.0_w079.5.ndjson.gz",
+      "bytes": 56329
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.0_w080.0.ndjson.gz",
+      "bytes": 8283
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.0_w080.5.ndjson.gz",
+      "bytes": 2636
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.0_w081.0.ndjson.gz",
+      "bytes": 24605
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.0_w081.5.ndjson.gz",
+      "bytes": 23563
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.0_w082.0.ndjson.gz",
+      "bytes": 4057
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.0_w082.5.ndjson.gz",
+      "bytes": 1746
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.0_w083.0.ndjson.gz",
+      "bytes": 6439
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.0_w083.5.ndjson.gz",
+      "bytes": 1097
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.0_w084.0.ndjson.gz",
+      "bytes": 2115
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.0_w084.5.ndjson.gz",
+      "bytes": 2284
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.0_w085.0.ndjson.gz",
+      "bytes": 733
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.5_w080.0.ndjson.gz",
+      "bytes": 1443
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.5_w080.5.ndjson.gz",
+      "bytes": 1237
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.5_w081.0.ndjson.gz",
+      "bytes": 36512
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.5_w081.5.ndjson.gz",
+      "bytes": 11937
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.5_w082.0.ndjson.gz",
+      "bytes": 980
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.5_w083.0.ndjson.gz",
+      "bytes": 758
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.5_w084.5.ndjson.gz",
+      "bytes": 30784
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n46.5_w085.0.ndjson.gz",
+      "bytes": 965
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n47.0_w080.0.ndjson.gz",
+      "bytes": 3982
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n47.0_w081.0.ndjson.gz",
+      "bytes": 746
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n47.0_w084.5.ndjson.gz",
+      "bytes": 760
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n47.5_w080.0.ndjson.gz",
+      "bytes": 7334
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n47.5_w081.5.ndjson.gz",
+      "bytes": 755
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n47.5_w083.5.ndjson.gz",
+      "bytes": 1118
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n47.5_w085.0.ndjson.gz",
+      "bytes": 2529
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n48.0_w080.0.ndjson.gz",
+      "bytes": 746
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n48.0_w080.5.ndjson.gz",
+      "bytes": 3449
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n48.0_w081.5.ndjson.gz",
+      "bytes": 24662
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n48.0_w085.0.ndjson.gz",
+      "bytes": 746
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n48.0_w089.0.ndjson.gz",
+      "bytes": 775
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n48.0_w089.5.ndjson.gz",
+      "bytes": 68624
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n48.0_w090.0.ndjson.gz",
+      "bytes": 1943
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n48.5_w080.5.ndjson.gz",
+      "bytes": 1019
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n48.5_w081.0.ndjson.gz",
+      "bytes": 2332
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n48.5_w081.5.ndjson.gz",
+      "bytes": 1673
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n48.5_w083.0.ndjson.gz",
+      "bytes": 725
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n48.5_w085.0.ndjson.gz",
+      "bytes": 791
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n48.5_w086.5.ndjson.gz",
+      "bytes": 1944
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n48.5_w087.5.ndjson.gz",
+      "bytes": 2310
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n48.5_w088.0.ndjson.gz",
+      "bytes": 762
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n48.5_w089.0.ndjson.gz",
+      "bytes": 1341
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n48.5_w089.5.ndjson.gz",
+      "bytes": 1137
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n48.5_w092.0.ndjson.gz",
+      "bytes": 1573
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n48.5_w093.5.ndjson.gz",
+      "bytes": 5155
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n48.5_w094.0.ndjson.gz",
+      "bytes": 1777
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n48.5_w094.5.ndjson.gz",
+      "bytes": 758
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n48.5_w095.0.ndjson.gz",
+      "bytes": 961
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n49.0_w081.5.ndjson.gz",
+      "bytes": 4587
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n49.0_w082.0.ndjson.gz",
+      "bytes": 1455
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n49.0_w082.5.ndjson.gz",
+      "bytes": 4428
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n49.0_w083.5.ndjson.gz",
+      "bytes": 780
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n49.0_w084.5.ndjson.gz",
+      "bytes": 4366
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n49.0_w085.0.ndjson.gz",
+      "bytes": 2655
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n49.0_w086.0.ndjson.gz",
+      "bytes": 918
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n49.0_w088.5.ndjson.gz",
+      "bytes": 1720
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n49.0_w089.5.ndjson.gz",
+      "bytes": 749
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n49.0_w090.5.ndjson.gz",
+      "bytes": 1099
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n49.0_w092.0.ndjson.gz",
+      "bytes": 1287
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n49.0_w094.0.ndjson.gz",
+      "bytes": 1573
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n49.0_w094.5.ndjson.gz",
+      "bytes": 752
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n49.5_w084.0.ndjson.gz",
+      "bytes": 3219
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n49.5_w084.5.ndjson.gz",
+      "bytes": 762
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n49.5_w085.0.ndjson.gz",
+      "bytes": 721
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n49.5_w087.0.ndjson.gz",
+      "bytes": 2127
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n49.5_w088.0.ndjson.gz",
+      "bytes": 758
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n49.5_w092.5.ndjson.gz",
+      "bytes": 726
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n49.5_w093.0.ndjson.gz",
+      "bytes": 5186
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n49.5_w093.5.ndjson.gz",
+      "bytes": 1006
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n49.5_w094.5.ndjson.gz",
+      "bytes": 7329
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n49.5_w095.0.ndjson.gz",
+      "bytes": 1968
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n50.0_w089.5.ndjson.gz",
+      "bytes": 747
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n50.0_w091.0.ndjson.gz",
+      "bytes": 742
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n50.0_w092.0.ndjson.gz",
+      "bytes": 2786
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n50.0_w092.5.ndjson.gz",
+      "bytes": 706
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n50.0_w093.0.ndjson.gz",
+      "bytes": 769
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n50.5_w093.5.ndjson.gz",
+      "bytes": 1271
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n51.0_w081.0.ndjson.gz",
+      "bytes": 1268
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n51.0_w086.5.ndjson.gz",
+      "bytes": 778
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n51.0_w087.0.ndjson.gz",
+      "bytes": 964
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n51.0_w090.5.ndjson.gz",
+      "bytes": 930
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n51.0_w094.0.ndjson.gz",
+      "bytes": 1596
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n51.5_w086.5.ndjson.gz",
+      "bytes": 749
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n51.5_w087.0.ndjson.gz",
+      "bytes": 760
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n51.5_w089.0.ndjson.gz",
+      "bytes": 743
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n51.5_w094.5.ndjson.gz",
+      "bytes": 750
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n52.0_w089.5.ndjson.gz",
+      "bytes": 770
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n52.0_w094.0.ndjson.gz",
+      "bytes": 749
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n52.0_w095.0.ndjson.gz",
+      "bytes": 656
+    },
+    {
+      "file": "data/venues/overture-places-foursquare/n53.0_w093.5.ndjson.gz",
+      "bytes": 767
     },
     {
       "file": "data/venues/overture-places/n41.5_w082.5.ndjson.gz",
@@ -16126,6 +17446,1942 @@
     {
       "file": "data/venues/overture-places/n43.5_w082.0.ndjson.gz",
       "bytes": 171138
+    },
+    {
+      "file": "data/venues/overture-places/n44.0_w076.0.ndjson.gz",
+      "bytes": 19307
+    },
+    {
+      "file": "data/venues/overture-places/n44.0_w076.5.ndjson.gz",
+      "bytes": 397663
+    },
+    {
+      "file": "data/venues/overture-places/n44.0_w077.0.ndjson.gz",
+      "bytes": 678594
+    },
+    {
+      "file": "data/venues/overture-places/n44.0_w077.5.ndjson.gz",
+      "bytes": 557983
+    },
+    {
+      "file": "data/venues/overture-places/n44.0_w078.0.ndjson.gz",
+      "bytes": 425216
+    },
+    {
+      "file": "data/venues/overture-places/n44.0_w078.5.ndjson.gz",
+      "bytes": 724845
+    },
+    {
+      "file": "data/venues/overture-places/n44.0_w079.0.ndjson.gz",
+      "bytes": 394268
+    },
+    {
+      "file": "data/venues/overture-places/n44.0_w079.5.ndjson.gz",
+      "bytes": 819834
+    },
+    {
+      "file": "data/venues/overture-places/n44.0_w079.5.p02.ndjson.gz",
+      "bytes": 262294
+    },
+    {
+      "file": "data/venues/overture-places/n44.0_w080.0.ndjson.gz",
+      "bytes": 815484
+    },
+    {
+      "file": "data/venues/overture-places/n44.0_w080.0.p02.ndjson.gz",
+      "bytes": 732944
+    },
+    {
+      "file": "data/venues/overture-places/n44.0_w080.5.ndjson.gz",
+      "bytes": 330177
+    },
+    {
+      "file": "data/venues/overture-places/n44.0_w081.0.ndjson.gz",
+      "bytes": 125635
+    },
+    {
+      "file": "data/venues/overture-places/n44.0_w081.5.ndjson.gz",
+      "bytes": 279755
+    },
+    {
+      "file": "data/venues/overture-places/n44.0_w082.0.ndjson.gz",
+      "bytes": 89340
+    },
+    {
+      "file": "data/venues/overture-places/n44.5_w075.0.ndjson.gz",
+      "bytes": 8789
+    },
+    {
+      "file": "data/venues/overture-places/n44.5_w075.5.ndjson.gz",
+      "bytes": 67212
+    },
+    {
+      "file": "data/venues/overture-places/n44.5_w076.0.ndjson.gz",
+      "bytes": 325390
+    },
+    {
+      "file": "data/venues/overture-places/n44.5_w076.5.ndjson.gz",
+      "bytes": 292106
+    },
+    {
+      "file": "data/venues/overture-places/n44.5_w077.0.ndjson.gz",
+      "bytes": 64612
+    },
+    {
+      "file": "data/venues/overture-places/n44.5_w077.5.ndjson.gz",
+      "bytes": 67315
+    },
+    {
+      "file": "data/venues/overture-places/n44.5_w078.0.ndjson.gz",
+      "bytes": 42800
+    },
+    {
+      "file": "data/venues/overture-places/n44.5_w078.5.ndjson.gz",
+      "bytes": 94513
+    },
+    {
+      "file": "data/venues/overture-places/n44.5_w079.0.ndjson.gz",
+      "bytes": 180254
+    },
+    {
+      "file": "data/venues/overture-places/n44.5_w079.5.ndjson.gz",
+      "bytes": 441202
+    },
+    {
+      "file": "data/venues/overture-places/n44.5_w080.0.ndjson.gz",
+      "bytes": 390823
+    },
+    {
+      "file": "data/venues/overture-places/n44.5_w080.5.ndjson.gz",
+      "bytes": 225368
+    },
+    {
+      "file": "data/venues/overture-places/n44.5_w081.0.ndjson.gz",
+      "bytes": 284999
+    },
+    {
+      "file": "data/venues/overture-places/n44.5_w081.5.ndjson.gz",
+      "bytes": 130274
+    },
+    {
+      "file": "data/venues/overture-places/n44.5_w082.0.ndjson.gz",
+      "bytes": 756
+    },
+    {
+      "file": "data/venues/overture-places/n45.0_w074.5.ndjson.gz",
+      "bytes": 20299
+    },
+    {
+      "file": "data/venues/overture-places/n45.0_w075.0.ndjson.gz",
+      "bytes": 392857
+    },
+    {
+      "file": "data/venues/overture-places/n45.0_w075.5.ndjson.gz",
+      "bytes": 378068
+    },
+    {
+      "file": "data/venues/overture-places/n45.0_w076.0.ndjson.gz",
+      "bytes": 814580
+    },
+    {
+      "file": "data/venues/overture-places/n45.0_w076.0.p02.ndjson.gz",
+      "bytes": 817659
+    },
+    {
+      "file": "data/venues/overture-places/n45.0_w076.0.p03.ndjson.gz",
+      "bytes": 805645
+    },
+    {
+      "file": "data/venues/overture-places/n45.0_w076.0.p04.ndjson.gz",
+      "bytes": 813921
+    },
+    {
+      "file": "data/venues/overture-places/n45.0_w076.0.p05.ndjson.gz",
+      "bytes": 817295
+    },
+    {
+      "file": "data/venues/overture-places/n45.0_w076.0.p06.ndjson.gz",
+      "bytes": 34058
+    },
+    {
+      "file": "data/venues/overture-places/n45.0_w076.5.ndjson.gz",
+      "bytes": 327751
+    },
+    {
+      "file": "data/venues/overture-places/n45.0_w077.0.ndjson.gz",
+      "bytes": 125524
+    },
+    {
+      "file": "data/venues/overture-places/n45.0_w077.5.ndjson.gz",
+      "bytes": 33114
+    },
+    {
+      "file": "data/venues/overture-places/n45.0_w078.0.ndjson.gz",
+      "bytes": 140543
+    },
+    {
+      "file": "data/venues/overture-places/n45.0_w078.5.ndjson.gz",
+      "bytes": 48575
+    },
+    {
+      "file": "data/venues/overture-places/n45.0_w079.0.ndjson.gz",
+      "bytes": 128681
+    },
+    {
+      "file": "data/venues/overture-places/n45.0_w079.5.ndjson.gz",
+      "bytes": 374059
+    },
+    {
+      "file": "data/venues/overture-places/n45.0_w080.0.ndjson.gz",
+      "bytes": 153764
+    },
+    {
+      "file": "data/venues/overture-places/n45.0_w080.5.ndjson.gz",
+      "bytes": 120138
+    },
+    {
+      "file": "data/venues/overture-places/n45.0_w081.0.ndjson.gz",
+      "bytes": 636
+    },
+    {
+      "file": "data/venues/overture-places/n45.0_w081.5.ndjson.gz",
+      "bytes": 14758
+    },
+    {
+      "file": "data/venues/overture-places/n45.0_w082.0.ndjson.gz",
+      "bytes": 34193
+    },
+    {
+      "file": "data/venues/overture-places/n45.0_w082.5.ndjson.gz",
+      "bytes": 666
+    },
+    {
+      "file": "data/venues/overture-places/n45.5_w074.5.ndjson.gz",
+      "bytes": 4688
+    },
+    {
+      "file": "data/venues/overture-places/n45.5_w075.0.ndjson.gz",
+      "bytes": 130509
+    },
+    {
+      "file": "data/venues/overture-places/n45.5_w075.5.ndjson.gz",
+      "bytes": 87571
+    },
+    {
+      "file": "data/venues/overture-places/n45.5_w076.5.ndjson.gz",
+      "bytes": 2188
+    },
+    {
+      "file": "data/venues/overture-places/n45.5_w077.0.ndjson.gz",
+      "bytes": 51235
+    },
+    {
+      "file": "data/venues/overture-places/n45.5_w077.5.ndjson.gz",
+      "bytes": 264752
+    },
+    {
+      "file": "data/venues/overture-places/n45.5_w078.0.ndjson.gz",
+      "bytes": 26183
+    },
+    {
+      "file": "data/venues/overture-places/n45.5_w078.5.ndjson.gz",
+      "bytes": 25764
+    },
+    {
+      "file": "data/venues/overture-places/n45.5_w079.0.ndjson.gz",
+      "bytes": 32996
+    },
+    {
+      "file": "data/venues/overture-places/n45.5_w079.5.ndjson.gz",
+      "bytes": 98519
+    },
+    {
+      "file": "data/venues/overture-places/n45.5_w080.0.ndjson.gz",
+      "bytes": 49326
+    },
+    {
+      "file": "data/venues/overture-places/n45.5_w080.5.ndjson.gz",
+      "bytes": 28408
+    },
+    {
+      "file": "data/venues/overture-places/n45.5_w081.0.ndjson.gz",
+      "bytes": 17137
+    },
+    {
+      "file": "data/venues/overture-places/n45.5_w081.5.ndjson.gz",
+      "bytes": 4461
+    },
+    {
+      "file": "data/venues/overture-places/n45.5_w082.0.ndjson.gz",
+      "bytes": 62308
+    },
+    {
+      "file": "data/venues/overture-places/n45.5_w082.5.ndjson.gz",
+      "bytes": 59429
+    },
+    {
+      "file": "data/venues/overture-places/n45.5_w083.0.ndjson.gz",
+      "bytes": 8173
+    },
+    {
+      "file": "data/venues/overture-places/n45.5_w083.5.ndjson.gz",
+      "bytes": 2870
+    },
+    {
+      "file": "data/venues/overture-places/n46.0_w077.5.ndjson.gz",
+      "bytes": 21775
+    },
+    {
+      "file": "data/venues/overture-places/n46.0_w078.0.ndjson.gz",
+      "bytes": 15378
+    },
+    {
+      "file": "data/venues/overture-places/n46.0_w078.5.ndjson.gz",
+      "bytes": 9178
+    },
+    {
+      "file": "data/venues/overture-places/n46.0_w079.0.ndjson.gz",
+      "bytes": 31198
+    },
+    {
+      "file": "data/venues/overture-places/n46.0_w079.5.ndjson.gz",
+      "bytes": 404430
+    },
+    {
+      "file": "data/venues/overture-places/n46.0_w080.0.ndjson.gz",
+      "bytes": 76408
+    },
+    {
+      "file": "data/venues/overture-places/n46.0_w080.5.ndjson.gz",
+      "bytes": 48938
+    },
+    {
+      "file": "data/venues/overture-places/n46.0_w081.0.ndjson.gz",
+      "bytes": 201394
+    },
+    {
+      "file": "data/venues/overture-places/n46.0_w081.5.ndjson.gz",
+      "bytes": 220027
+    },
+    {
+      "file": "data/venues/overture-places/n46.0_w082.0.ndjson.gz",
+      "bytes": 56246
+    },
+    {
+      "file": "data/venues/overture-places/n46.0_w082.5.ndjson.gz",
+      "bytes": 35647
+    },
+    {
+      "file": "data/venues/overture-places/n46.0_w083.0.ndjson.gz",
+      "bytes": 91678
+    },
+    {
+      "file": "data/venues/overture-places/n46.0_w083.5.ndjson.gz",
+      "bytes": 23003
+    },
+    {
+      "file": "data/venues/overture-places/n46.0_w084.0.ndjson.gz",
+      "bytes": 44993
+    },
+    {
+      "file": "data/venues/overture-places/n46.0_w084.5.ndjson.gz",
+      "bytes": 20405
+    },
+    {
+      "file": "data/venues/overture-places/n46.0_w085.0.ndjson.gz",
+      "bytes": 1987
+    },
+    {
+      "file": "data/venues/overture-places/n46.5_w079.0.ndjson.gz",
+      "bytes": 808
+    },
+    {
+      "file": "data/venues/overture-places/n46.5_w079.5.ndjson.gz",
+      "bytes": 7114
+    },
+    {
+      "file": "data/venues/overture-places/n46.5_w080.0.ndjson.gz",
+      "bytes": 17759
+    },
+    {
+      "file": "data/venues/overture-places/n46.5_w080.5.ndjson.gz",
+      "bytes": 16504
+    },
+    {
+      "file": "data/venues/overture-places/n46.5_w081.0.ndjson.gz",
+      "bytes": 300576
+    },
+    {
+      "file": "data/venues/overture-places/n46.5_w081.5.ndjson.gz",
+      "bytes": 127410
+    },
+    {
+      "file": "data/venues/overture-places/n46.5_w082.0.ndjson.gz",
+      "bytes": 12429
+    },
+    {
+      "file": "data/venues/overture-places/n46.5_w082.5.ndjson.gz",
+      "bytes": 5495
+    },
+    {
+      "file": "data/venues/overture-places/n46.5_w083.0.ndjson.gz",
+      "bytes": 9355
+    },
+    {
+      "file": "data/venues/overture-places/n46.5_w083.5.ndjson.gz",
+      "bytes": 14145
+    },
+    {
+      "file": "data/venues/overture-places/n46.5_w084.0.ndjson.gz",
+      "bytes": 10443
+    },
+    {
+      "file": "data/venues/overture-places/n46.5_w084.5.ndjson.gz",
+      "bytes": 373641
+    },
+    {
+      "file": "data/venues/overture-places/n46.5_w085.0.ndjson.gz",
+      "bytes": 9844
+    },
+    {
+      "file": "data/venues/overture-places/n47.0_w079.5.ndjson.gz",
+      "bytes": 2394
+    },
+    {
+      "file": "data/venues/overture-places/n47.0_w080.0.ndjson.gz",
+      "bytes": 57203
+    },
+    {
+      "file": "data/venues/overture-places/n47.0_w080.5.ndjson.gz",
+      "bytes": 11319
+    },
+    {
+      "file": "data/venues/overture-places/n47.0_w081.0.ndjson.gz",
+      "bytes": 12904
+    },
+    {
+      "file": "data/venues/overture-places/n47.0_w081.5.ndjson.gz",
+      "bytes": 8692
+    },
+    {
+      "file": "data/venues/overture-places/n47.0_w082.0.ndjson.gz",
+      "bytes": 10258
+    },
+    {
+      "file": "data/venues/overture-places/n47.0_w082.5.ndjson.gz",
+      "bytes": 7345
+    },
+    {
+      "file": "data/venues/overture-places/n47.0_w083.0.ndjson.gz",
+      "bytes": 5605
+    },
+    {
+      "file": "data/venues/overture-places/n47.0_w083.5.ndjson.gz",
+      "bytes": 5240
+    },
+    {
+      "file": "data/venues/overture-places/n47.0_w084.0.ndjson.gz",
+      "bytes": 10587
+    },
+    {
+      "file": "data/venues/overture-places/n47.0_w084.5.ndjson.gz",
+      "bytes": 10552
+    },
+    {
+      "file": "data/venues/overture-places/n47.0_w085.0.ndjson.gz",
+      "bytes": 9113
+    },
+    {
+      "file": "data/venues/overture-places/n47.0_w086.0.ndjson.gz",
+      "bytes": 700
+    },
+    {
+      "file": "data/venues/overture-places/n47.5_w080.0.ndjson.gz",
+      "bytes": 101373
+    },
+    {
+      "file": "data/venues/overture-places/n47.5_w080.5.ndjson.gz",
+      "bytes": 10384
+    },
+    {
+      "file": "data/venues/overture-places/n47.5_w081.0.ndjson.gz",
+      "bytes": 14925
+    },
+    {
+      "file": "data/venues/overture-places/n47.5_w081.5.ndjson.gz",
+      "bytes": 12933
+    },
+    {
+      "file": "data/venues/overture-places/n47.5_w082.0.ndjson.gz",
+      "bytes": 13880
+    },
+    {
+      "file": "data/venues/overture-places/n47.5_w082.5.ndjson.gz",
+      "bytes": 5740
+    },
+    {
+      "file": "data/venues/overture-places/n47.5_w083.0.ndjson.gz",
+      "bytes": 6299
+    },
+    {
+      "file": "data/venues/overture-places/n47.5_w083.5.ndjson.gz",
+      "bytes": 28723
+    },
+    {
+      "file": "data/venues/overture-places/n47.5_w084.0.ndjson.gz",
+      "bytes": 13979
+    },
+    {
+      "file": "data/venues/overture-places/n47.5_w084.5.ndjson.gz",
+      "bytes": 8280
+    },
+    {
+      "file": "data/venues/overture-places/n47.5_w085.0.ndjson.gz",
+      "bytes": 40483
+    },
+    {
+      "file": "data/venues/overture-places/n47.5_w085.5.ndjson.gz",
+      "bytes": 2008
+    },
+    {
+      "file": "data/venues/overture-places/n47.5_w086.0.ndjson.gz",
+      "bytes": 2228
+    },
+    {
+      "file": "data/venues/overture-places/n47.5_w090.0.ndjson.gz",
+      "bytes": 698
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w080.0.ndjson.gz",
+      "bytes": 17825
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w080.5.ndjson.gz",
+      "bytes": 58241
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w081.0.ndjson.gz",
+      "bytes": 7398
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w081.5.ndjson.gz",
+      "bytes": 203820
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w082.0.ndjson.gz",
+      "bytes": 8510
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w082.5.ndjson.gz",
+      "bytes": 7949
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w083.0.ndjson.gz",
+      "bytes": 3968
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w083.5.ndjson.gz",
+      "bytes": 3997
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w084.0.ndjson.gz",
+      "bytes": 9359
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w084.5.ndjson.gz",
+      "bytes": 13272
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w085.0.ndjson.gz",
+      "bytes": 16892
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w085.5.ndjson.gz",
+      "bytes": 6638
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w086.0.ndjson.gz",
+      "bytes": 1614
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w086.5.ndjson.gz",
+      "bytes": 1477
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w088.0.ndjson.gz",
+      "bytes": 744
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w088.5.ndjson.gz",
+      "bytes": 639
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w089.0.ndjson.gz",
+      "bytes": 5776
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w089.5.ndjson.gz",
+      "bytes": 573444
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w090.0.ndjson.gz",
+      "bytes": 22880
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w090.5.ndjson.gz",
+      "bytes": 6185
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w091.0.ndjson.gz",
+      "bytes": 5633
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w091.5.ndjson.gz",
+      "bytes": 6051
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w092.0.ndjson.gz",
+      "bytes": 5528
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w092.5.ndjson.gz",
+      "bytes": 2691
+    },
+    {
+      "file": "data/venues/overture-places/n48.0_w093.0.ndjson.gz",
+      "bytes": 978
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w080.0.ndjson.gz",
+      "bytes": 4233
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w080.5.ndjson.gz",
+      "bytes": 13910
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w081.0.ndjson.gz",
+      "bytes": 34879
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w081.5.ndjson.gz",
+      "bytes": 14458
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w082.0.ndjson.gz",
+      "bytes": 4473
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w082.5.ndjson.gz",
+      "bytes": 1572
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w083.0.ndjson.gz",
+      "bytes": 2407
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w083.5.ndjson.gz",
+      "bytes": 1853
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w084.0.ndjson.gz",
+      "bytes": 2168
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w084.5.ndjson.gz",
+      "bytes": 5680
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w085.0.ndjson.gz",
+      "bytes": 2799
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w085.5.ndjson.gz",
+      "bytes": 14615
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w086.0.ndjson.gz",
+      "bytes": 7387
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w086.5.ndjson.gz",
+      "bytes": 26577
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w087.0.ndjson.gz",
+      "bytes": 4406
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w087.5.ndjson.gz",
+      "bytes": 30450
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w088.0.ndjson.gz",
+      "bytes": 8242
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w088.5.ndjson.gz",
+      "bytes": 7908
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w089.0.ndjson.gz",
+      "bytes": 20540
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w089.5.ndjson.gz",
+      "bytes": 17287
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w090.0.ndjson.gz",
+      "bytes": 6650
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w090.5.ndjson.gz",
+      "bytes": 12305
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w091.0.ndjson.gz",
+      "bytes": 5074
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w091.5.ndjson.gz",
+      "bytes": 9486
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w092.0.ndjson.gz",
+      "bytes": 24686
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w092.5.ndjson.gz",
+      "bytes": 4715
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w093.0.ndjson.gz",
+      "bytes": 6986
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w093.5.ndjson.gz",
+      "bytes": 62160
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w094.0.ndjson.gz",
+      "bytes": 20524
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w094.5.ndjson.gz",
+      "bytes": 3764
+    },
+    {
+      "file": "data/venues/overture-places/n48.5_w095.0.ndjson.gz",
+      "bytes": 8054
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w080.0.ndjson.gz",
+      "bytes": 971
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w080.5.ndjson.gz",
+      "bytes": 2661
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w081.0.ndjson.gz",
+      "bytes": 5282
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w081.5.ndjson.gz",
+      "bytes": 46909
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w082.0.ndjson.gz",
+      "bytes": 10967
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w082.5.ndjson.gz",
+      "bytes": 60923
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w083.0.ndjson.gz",
+      "bytes": 4948
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w083.5.ndjson.gz",
+      "bytes": 3295
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w084.0.ndjson.gz",
+      "bytes": 2442
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w084.5.ndjson.gz",
+      "bytes": 5043
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w085.0.ndjson.gz",
+      "bytes": 13383
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w085.5.ndjson.gz",
+      "bytes": 5174
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w086.0.ndjson.gz",
+      "bytes": 15227
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w086.5.ndjson.gz",
+      "bytes": 3716
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w087.0.ndjson.gz",
+      "bytes": 3552
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w087.5.ndjson.gz",
+      "bytes": 4419
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w088.0.ndjson.gz",
+      "bytes": 5493
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w088.5.ndjson.gz",
+      "bytes": 26816
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w089.0.ndjson.gz",
+      "bytes": 5917
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w089.5.ndjson.gz",
+      "bytes": 4933
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w090.0.ndjson.gz",
+      "bytes": 3899
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w090.5.ndjson.gz",
+      "bytes": 5954
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w091.0.ndjson.gz",
+      "bytes": 4681
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w091.5.ndjson.gz",
+      "bytes": 6678
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w092.0.ndjson.gz",
+      "bytes": 16256
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w092.5.ndjson.gz",
+      "bytes": 3805
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w093.0.ndjson.gz",
+      "bytes": 6560
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w093.5.ndjson.gz",
+      "bytes": 6335
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w094.0.ndjson.gz",
+      "bytes": 15127
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w094.5.ndjson.gz",
+      "bytes": 19618
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w095.0.ndjson.gz",
+      "bytes": 3233
+    },
+    {
+      "file": "data/venues/overture-places/n49.0_w095.5.ndjson.gz",
+      "bytes": 1002
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w080.0.ndjson.gz",
+      "bytes": 2021
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w080.5.ndjson.gz",
+      "bytes": 1924
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w081.0.ndjson.gz",
+      "bytes": 1572
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w081.5.ndjson.gz",
+      "bytes": 1450
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w082.0.ndjson.gz",
+      "bytes": 2568
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w082.5.ndjson.gz",
+      "bytes": 2864
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w083.0.ndjson.gz",
+      "bytes": 4405
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w083.5.ndjson.gz",
+      "bytes": 4262
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w084.0.ndjson.gz",
+      "bytes": 42684
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w084.5.ndjson.gz",
+      "bytes": 7079
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w085.0.ndjson.gz",
+      "bytes": 5799
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w085.5.ndjson.gz",
+      "bytes": 2685
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w086.0.ndjson.gz",
+      "bytes": 3565
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w086.5.ndjson.gz",
+      "bytes": 7928
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w087.0.ndjson.gz",
+      "bytes": 31620
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w087.5.ndjson.gz",
+      "bytes": 6085
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w088.0.ndjson.gz",
+      "bytes": 10938
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w088.5.ndjson.gz",
+      "bytes": 3186
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w089.0.ndjson.gz",
+      "bytes": 2029
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w089.5.ndjson.gz",
+      "bytes": 3320
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w090.0.ndjson.gz",
+      "bytes": 3421
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w090.5.ndjson.gz",
+      "bytes": 3282
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w091.0.ndjson.gz",
+      "bytes": 5277
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w091.5.ndjson.gz",
+      "bytes": 8297
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w092.0.ndjson.gz",
+      "bytes": 5448
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w092.5.ndjson.gz",
+      "bytes": 7360
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w093.0.ndjson.gz",
+      "bytes": 73133
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w093.5.ndjson.gz",
+      "bytes": 23072
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w094.0.ndjson.gz",
+      "bytes": 11111
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w094.5.ndjson.gz",
+      "bytes": 104545
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w095.0.ndjson.gz",
+      "bytes": 48036
+    },
+    {
+      "file": "data/venues/overture-places/n49.5_w095.5.ndjson.gz",
+      "bytes": 4690
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w080.0.ndjson.gz",
+      "bytes": 2332
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w080.5.ndjson.gz",
+      "bytes": 1549
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w081.0.ndjson.gz",
+      "bytes": 785
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w081.5.ndjson.gz",
+      "bytes": 977
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w082.0.ndjson.gz",
+      "bytes": 1503
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w082.5.ndjson.gz",
+      "bytes": 1913
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w083.0.ndjson.gz",
+      "bytes": 683
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w083.5.ndjson.gz",
+      "bytes": 1466
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w084.5.ndjson.gz",
+      "bytes": 1867
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w085.0.ndjson.gz",
+      "bytes": 851
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w085.5.ndjson.gz",
+      "bytes": 1434
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w086.0.ndjson.gz",
+      "bytes": 1605
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w086.5.ndjson.gz",
+      "bytes": 3491
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w087.0.ndjson.gz",
+      "bytes": 9173
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w087.5.ndjson.gz",
+      "bytes": 3600
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w088.0.ndjson.gz",
+      "bytes": 5036
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w088.5.ndjson.gz",
+      "bytes": 2157
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w089.0.ndjson.gz",
+      "bytes": 4456
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w089.5.ndjson.gz",
+      "bytes": 8111
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w090.0.ndjson.gz",
+      "bytes": 2307
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w090.5.ndjson.gz",
+      "bytes": 3731
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w091.0.ndjson.gz",
+      "bytes": 6403
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w091.5.ndjson.gz",
+      "bytes": 5700
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w092.0.ndjson.gz",
+      "bytes": 38449
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w092.5.ndjson.gz",
+      "bytes": 9750
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w093.0.ndjson.gz",
+      "bytes": 4839
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w093.5.ndjson.gz",
+      "bytes": 10014
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w094.0.ndjson.gz",
+      "bytes": 4024
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w094.5.ndjson.gz",
+      "bytes": 5941
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w095.0.ndjson.gz",
+      "bytes": 7150
+    },
+    {
+      "file": "data/venues/overture-places/n50.0_w095.5.ndjson.gz",
+      "bytes": 2649
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w080.0.ndjson.gz",
+      "bytes": 1342
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w080.5.ndjson.gz",
+      "bytes": 790
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w081.0.ndjson.gz",
+      "bytes": 1089
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w081.5.ndjson.gz",
+      "bytes": 1301
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w082.0.ndjson.gz",
+      "bytes": 939
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w083.0.ndjson.gz",
+      "bytes": 781
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w083.5.ndjson.gz",
+      "bytes": 662
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w084.0.ndjson.gz",
+      "bytes": 679
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w084.5.ndjson.gz",
+      "bytes": 979
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w085.0.ndjson.gz",
+      "bytes": 813
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w085.5.ndjson.gz",
+      "bytes": 876
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w086.5.ndjson.gz",
+      "bytes": 1798
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w087.0.ndjson.gz",
+      "bytes": 1755
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w087.5.ndjson.gz",
+      "bytes": 2362
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w088.0.ndjson.gz",
+      "bytes": 2101
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w088.5.ndjson.gz",
+      "bytes": 1808
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w089.0.ndjson.gz",
+      "bytes": 2563
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w089.5.ndjson.gz",
+      "bytes": 1874
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w090.0.ndjson.gz",
+      "bytes": 2259
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w090.5.ndjson.gz",
+      "bytes": 2139
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w091.0.ndjson.gz",
+      "bytes": 1820
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w091.5.ndjson.gz",
+      "bytes": 2199
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w092.0.ndjson.gz",
+      "bytes": 2349
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w092.5.ndjson.gz",
+      "bytes": 3116
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w093.0.ndjson.gz",
+      "bytes": 2254
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w093.5.ndjson.gz",
+      "bytes": 13922
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w094.0.ndjson.gz",
+      "bytes": 5093
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w094.5.ndjson.gz",
+      "bytes": 3347
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w095.0.ndjson.gz",
+      "bytes": 2838
+    },
+    {
+      "file": "data/venues/overture-places/n50.5_w095.5.ndjson.gz",
+      "bytes": 2169
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w080.0.ndjson.gz",
+      "bytes": 1069
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w080.5.ndjson.gz",
+      "bytes": 1502
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w081.0.ndjson.gz",
+      "bytes": 20312
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w081.5.ndjson.gz",
+      "bytes": 1072
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w082.0.ndjson.gz",
+      "bytes": 974
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w083.5.ndjson.gz",
+      "bytes": 780
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w084.5.ndjson.gz",
+      "bytes": 1221
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w085.0.ndjson.gz",
+      "bytes": 679
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w085.5.ndjson.gz",
+      "bytes": 1280
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w086.5.ndjson.gz",
+      "bytes": 966
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w087.0.ndjson.gz",
+      "bytes": 1539
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w087.5.ndjson.gz",
+      "bytes": 1809
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w088.0.ndjson.gz",
+      "bytes": 1440
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w088.5.ndjson.gz",
+      "bytes": 1582
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w089.0.ndjson.gz",
+      "bytes": 2059
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w089.5.ndjson.gz",
+      "bytes": 972
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w090.0.ndjson.gz",
+      "bytes": 1404
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w090.5.ndjson.gz",
+      "bytes": 8615
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w091.0.ndjson.gz",
+      "bytes": 2178
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w091.5.ndjson.gz",
+      "bytes": 2191
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w092.0.ndjson.gz",
+      "bytes": 1896
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w092.5.ndjson.gz",
+      "bytes": 3310
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w093.0.ndjson.gz",
+      "bytes": 3698
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w093.5.ndjson.gz",
+      "bytes": 2394
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w094.0.ndjson.gz",
+      "bytes": 31765
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w094.5.ndjson.gz",
+      "bytes": 2463
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w095.0.ndjson.gz",
+      "bytes": 2370
+    },
+    {
+      "file": "data/venues/overture-places/n51.0_w095.5.ndjson.gz",
+      "bytes": 1347
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w081.0.ndjson.gz",
+      "bytes": 663
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w082.0.ndjson.gz",
+      "bytes": 681
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w082.5.ndjson.gz",
+      "bytes": 723
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w083.0.ndjson.gz",
+      "bytes": 697
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w083.5.ndjson.gz",
+      "bytes": 633
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w084.0.ndjson.gz",
+      "bytes": 636
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w084.5.ndjson.gz",
+      "bytes": 763
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w085.5.ndjson.gz",
+      "bytes": 933
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w086.0.ndjson.gz",
+      "bytes": 1765
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w086.5.ndjson.gz",
+      "bytes": 1295
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w087.0.ndjson.gz",
+      "bytes": 630
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w087.5.ndjson.gz",
+      "bytes": 2275
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w088.0.ndjson.gz",
+      "bytes": 2751
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w088.5.ndjson.gz",
+      "bytes": 2232
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w089.0.ndjson.gz",
+      "bytes": 2180
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w089.5.ndjson.gz",
+      "bytes": 1685
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w090.0.ndjson.gz",
+      "bytes": 1696
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w090.5.ndjson.gz",
+      "bytes": 1347
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w091.0.ndjson.gz",
+      "bytes": 1713
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w091.5.ndjson.gz",
+      "bytes": 1960
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w092.0.ndjson.gz",
+      "bytes": 2693
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w092.5.ndjson.gz",
+      "bytes": 1270
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w093.0.ndjson.gz",
+      "bytes": 1798
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w093.5.ndjson.gz",
+      "bytes": 1423
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w094.0.ndjson.gz",
+      "bytes": 4200
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w094.5.ndjson.gz",
+      "bytes": 1049
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w095.0.ndjson.gz",
+      "bytes": 1470
+    },
+    {
+      "file": "data/venues/overture-places/n51.5_w095.5.ndjson.gz",
+      "bytes": 1270
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w081.5.ndjson.gz",
+      "bytes": 640
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w082.0.ndjson.gz",
+      "bytes": 3989
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w082.5.ndjson.gz",
+      "bytes": 674
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w083.0.ndjson.gz",
+      "bytes": 640
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w083.5.ndjson.gz",
+      "bytes": 680
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w084.0.ndjson.gz",
+      "bytes": 681
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w085.0.ndjson.gz",
+      "bytes": 747
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w085.5.ndjson.gz",
+      "bytes": 625
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w086.0.ndjson.gz",
+      "bytes": 916
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w086.5.ndjson.gz",
+      "bytes": 1262
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w087.0.ndjson.gz",
+      "bytes": 1054
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w087.5.ndjson.gz",
+      "bytes": 1699
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w088.0.ndjson.gz",
+      "bytes": 2441
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w088.5.ndjson.gz",
+      "bytes": 2110
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w089.0.ndjson.gz",
+      "bytes": 928
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w089.5.ndjson.gz",
+      "bytes": 1147
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w090.0.ndjson.gz",
+      "bytes": 1396
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w090.5.ndjson.gz",
+      "bytes": 1357
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w091.0.ndjson.gz",
+      "bytes": 1709
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w091.5.ndjson.gz",
+      "bytes": 1073
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w092.0.ndjson.gz",
+      "bytes": 1257
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w092.5.ndjson.gz",
+      "bytes": 1153
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w093.0.ndjson.gz",
+      "bytes": 1816
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w093.5.ndjson.gz",
+      "bytes": 1766
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w094.0.ndjson.gz",
+      "bytes": 1396
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w094.5.ndjson.gz",
+      "bytes": 1722
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w095.0.ndjson.gz",
+      "bytes": 893
+    },
+    {
+      "file": "data/venues/overture-places/n52.0_w095.5.ndjson.gz",
+      "bytes": 926
+    },
+    {
+      "file": "data/venues/overture-places/n52.5_w082.5.ndjson.gz",
+      "bytes": 3644
+    },
+    {
+      "file": "data/venues/overture-places/n52.5_w083.0.ndjson.gz",
+      "bytes": 633
+    },
+    {
+      "file": "data/venues/overture-places/n52.5_w083.5.ndjson.gz",
+      "bytes": 760
+    },
+    {
+      "file": "data/venues/overture-places/n52.5_w084.0.ndjson.gz",
+      "bytes": 1045
+    },
+    {
+      "file": "data/venues/overture-places/n52.5_w086.5.ndjson.gz",
+      "bytes": 776
+    },
+    {
+      "file": "data/venues/overture-places/n52.5_w087.0.ndjson.gz",
+      "bytes": 1188
+    },
+    {
+      "file": "data/venues/overture-places/n52.5_w087.5.ndjson.gz",
+      "bytes": 2220
+    },
+    {
+      "file": "data/venues/overture-places/n52.5_w088.0.ndjson.gz",
+      "bytes": 1795
+    },
+    {
+      "file": "data/venues/overture-places/n52.5_w088.5.ndjson.gz",
+      "bytes": 1482
+    },
+    {
+      "file": "data/venues/overture-places/n52.5_w089.0.ndjson.gz",
+      "bytes": 1028
+    },
+    {
+      "file": "data/venues/overture-places/n52.5_w089.5.ndjson.gz",
+      "bytes": 2328
+    },
+    {
+      "file": "data/venues/overture-places/n52.5_w090.0.ndjson.gz",
+      "bytes": 1458
+    },
+    {
+      "file": "data/venues/overture-places/n52.5_w090.5.ndjson.gz",
+      "bytes": 2341
+    },
+    {
+      "file": "data/venues/overture-places/n52.5_w091.0.ndjson.gz",
+      "bytes": 1573
+    },
+    {
+      "file": "data/venues/overture-places/n52.5_w091.5.ndjson.gz",
+      "bytes": 3876
+    },
+    {
+      "file": "data/venues/overture-places/n52.5_w092.0.ndjson.gz",
+      "bytes": 1128
+    },
+    {
+      "file": "data/venues/overture-places/n52.5_w092.5.ndjson.gz",
+      "bytes": 932
+    },
+    {
+      "file": "data/venues/overture-places/n52.5_w093.0.ndjson.gz",
+      "bytes": 2058
+    },
+    {
+      "file": "data/venues/overture-places/n52.5_w093.5.ndjson.gz",
+      "bytes": 2258
+    },
+    {
+      "file": "data/venues/overture-places/n52.5_w094.0.ndjson.gz",
+      "bytes": 2060
+    },
+    {
+      "file": "data/venues/overture-places/n52.5_w094.5.ndjson.gz",
+      "bytes": 1432
+    },
+    {
+      "file": "data/venues/overture-places/n52.5_w095.0.ndjson.gz",
+      "bytes": 1774
+    },
+    {
+      "file": "data/venues/overture-places/n52.5_w095.5.ndjson.gz",
+      "bytes": 1144
+    },
+    {
+      "file": "data/venues/overture-places/n53.0_w084.0.ndjson.gz",
+      "bytes": 693
+    },
+    {
+      "file": "data/venues/overture-places/n53.0_w085.5.ndjson.gz",
+      "bytes": 635
+    },
+    {
+      "file": "data/venues/overture-places/n53.0_w088.0.ndjson.gz",
+      "bytes": 660
+    },
+    {
+      "file": "data/venues/overture-places/n53.0_w088.5.ndjson.gz",
+      "bytes": 668
+    },
+    {
+      "file": "data/venues/overture-places/n53.0_w089.0.ndjson.gz",
+      "bytes": 786
+    },
+    {
+      "file": "data/venues/overture-places/n53.0_w089.5.ndjson.gz",
+      "bytes": 794
+    },
+    {
+      "file": "data/venues/overture-places/n53.0_w090.0.ndjson.gz",
+      "bytes": 1573
+    },
+    {
+      "file": "data/venues/overture-places/n53.0_w091.0.ndjson.gz",
+      "bytes": 1032
+    },
+    {
+      "file": "data/venues/overture-places/n53.0_w091.5.ndjson.gz",
+      "bytes": 973
+    },
+    {
+      "file": "data/venues/overture-places/n53.0_w092.0.ndjson.gz",
+      "bytes": 2291
+    },
+    {
+      "file": "data/venues/overture-places/n53.0_w092.5.ndjson.gz",
+      "bytes": 837
+    },
+    {
+      "file": "data/venues/overture-places/n53.0_w093.0.ndjson.gz",
+      "bytes": 1170
+    },
+    {
+      "file": "data/venues/overture-places/n53.0_w093.5.ndjson.gz",
+      "bytes": 3532
+    },
+    {
+      "file": "data/venues/overture-places/n53.0_w094.0.ndjson.gz",
+      "bytes": 849
+    },
+    {
+      "file": "data/venues/overture-places/n53.0_w094.5.ndjson.gz",
+      "bytes": 680
+    },
+    {
+      "file": "data/venues/overture-places/n53.0_w095.0.ndjson.gz",
+      "bytes": 841
+    },
+    {
+      "file": "data/venues/overture-places/n53.5_w082.5.ndjson.gz",
+      "bytes": 657
+    },
+    {
+      "file": "data/venues/overture-places/n53.5_w084.5.ndjson.gz",
+      "bytes": 796
+    },
+    {
+      "file": "data/venues/overture-places/n53.5_w085.0.ndjson.gz",
+      "bytes": 629
+    },
+    {
+      "file": "data/venues/overture-places/n53.5_w087.0.ndjson.gz",
+      "bytes": 686
+    },
+    {
+      "file": "data/venues/overture-places/n53.5_w088.0.ndjson.gz",
+      "bytes": 1157
+    },
+    {
+      "file": "data/venues/overture-places/n53.5_w089.0.ndjson.gz",
+      "bytes": 990
+    },
+    {
+      "file": "data/venues/overture-places/n53.5_w089.5.ndjson.gz",
+      "bytes": 634
+    },
+    {
+      "file": "data/venues/overture-places/n53.5_w090.0.ndjson.gz",
+      "bytes": 2912
+    },
+    {
+      "file": "data/venues/overture-places/n53.5_w090.5.ndjson.gz",
+      "bytes": 1147
+    },
+    {
+      "file": "data/venues/overture-places/n53.5_w091.0.ndjson.gz",
+      "bytes": 1781
+    },
+    {
+      "file": "data/venues/overture-places/n53.5_w091.5.ndjson.gz",
+      "bytes": 1415
+    },
+    {
+      "file": "data/venues/overture-places/n53.5_w092.0.ndjson.gz",
+      "bytes": 837
+    },
+    {
+      "file": "data/venues/overture-places/n53.5_w092.5.ndjson.gz",
+      "bytes": 2023
+    },
+    {
+      "file": "data/venues/overture-places/n53.5_w093.0.ndjson.gz",
+      "bytes": 1538
+    },
+    {
+      "file": "data/venues/overture-places/n53.5_w093.5.ndjson.gz",
+      "bytes": 1002
+    },
+    {
+      "file": "data/venues/overture-places/n53.5_w094.0.ndjson.gz",
+      "bytes": 1163
+    },
+    {
+      "file": "data/venues/overture-places/n54.0_w087.5.ndjson.gz",
+      "bytes": 968
+    },
+    {
+      "file": "data/venues/overture-places/n54.0_w088.5.ndjson.gz",
+      "bytes": 815
+    },
+    {
+      "file": "data/venues/overture-places/n54.0_w089.0.ndjson.gz",
+      "bytes": 897
+    },
+    {
+      "file": "data/venues/overture-places/n54.0_w090.0.ndjson.gz",
+      "bytes": 798
+    },
+    {
+      "file": "data/venues/overture-places/n54.0_w090.5.ndjson.gz",
+      "bytes": 818
+    },
+    {
+      "file": "data/venues/overture-places/n54.0_w091.0.ndjson.gz",
+      "bytes": 689
+    },
+    {
+      "file": "data/venues/overture-places/n54.0_w091.5.ndjson.gz",
+      "bytes": 1066
+    },
+    {
+      "file": "data/venues/overture-places/n54.0_w092.0.ndjson.gz",
+      "bytes": 899
+    },
+    {
+      "file": "data/venues/overture-places/n54.0_w092.5.ndjson.gz",
+      "bytes": 798
+    },
+    {
+      "file": "data/venues/overture-places/n54.0_w093.0.ndjson.gz",
+      "bytes": 1200
+    },
+    {
+      "file": "data/venues/overture-places/n54.0_w093.5.ndjson.gz",
+      "bytes": 631
+    },
+    {
+      "file": "data/venues/overture-places/n54.5_w083.5.ndjson.gz",
+      "bytes": 925
+    },
+    {
+      "file": "data/venues/overture-places/n54.5_w085.0.ndjson.gz",
+      "bytes": 845
+    },
+    {
+      "file": "data/venues/overture-places/n54.5_w088.0.ndjson.gz",
+      "bytes": 1016
+    },
+    {
+      "file": "data/venues/overture-places/n54.5_w088.5.ndjson.gz",
+      "bytes": 898
+    },
+    {
+      "file": "data/venues/overture-places/n54.5_w089.5.ndjson.gz",
+      "bytes": 664
+    },
+    {
+      "file": "data/venues/overture-places/n54.5_w091.0.ndjson.gz",
+      "bytes": 655
+    },
+    {
+      "file": "data/venues/overture-places/n54.5_w091.5.ndjson.gz",
+      "bytes": 663
+    },
+    {
+      "file": "data/venues/overture-places/n54.5_w092.0.ndjson.gz",
+      "bytes": 1032
+    },
+    {
+      "file": "data/venues/overture-places/n54.5_w092.5.ndjson.gz",
+      "bytes": 1330
+    },
+    {
+      "file": "data/venues/overture-places/n54.5_w093.0.ndjson.gz",
+      "bytes": 657
+    },
+    {
+      "file": "data/venues/overture-places/n55.0_w084.0.ndjson.gz",
+      "bytes": 702
+    },
+    {
+      "file": "data/venues/overture-places/n55.0_w084.5.ndjson.gz",
+      "bytes": 637
+    },
+    {
+      "file": "data/venues/overture-places/n55.0_w085.5.ndjson.gz",
+      "bytes": 1532
+    },
+    {
+      "file": "data/venues/overture-places/n55.0_w087.5.ndjson.gz",
+      "bytes": 631
+    },
+    {
+      "file": "data/venues/overture-places/n55.0_w088.0.ndjson.gz",
+      "bytes": 740
+    },
+    {
+      "file": "data/venues/overture-places/n55.0_w089.0.ndjson.gz",
+      "bytes": 1088
+    },
+    {
+      "file": "data/venues/overture-places/n55.0_w089.5.ndjson.gz",
+      "bytes": 1199
+    },
+    {
+      "file": "data/venues/overture-places/n55.0_w091.0.ndjson.gz",
+      "bytes": 850
+    },
+    {
+      "file": "data/venues/overture-places/n55.0_w091.5.ndjson.gz",
+      "bytes": 668
+    },
+    {
+      "file": "data/venues/overture-places/n55.5_w088.0.ndjson.gz",
+      "bytes": 1215
+    },
+    {
+      "file": "data/venues/overture-places/n55.5_w088.5.ndjson.gz",
+      "bytes": 641
+    },
+    {
+      "file": "data/venues/overture-places/n55.5_w091.0.ndjson.gz",
+      "bytes": 660
+    },
+    {
+      "file": "data/venues/overture-places/n56.0_w088.0.ndjson.gz",
+      "bytes": 869
+    },
+    {
+      "file": "data/venues/overture-places/n56.0_w088.5.ndjson.gz",
+      "bytes": 633
+    },
+    {
+      "file": "data/venues/overture-places/n56.0_w090.0.ndjson.gz",
+      "bytes": 850
+    },
+    {
+      "file": "data/venues/overture-places/n56.0_w090.5.ndjson.gz",
+      "bytes": 662
+    },
+    {
+      "file": "data/venues/overture-places/n56.5_w089.0.ndjson.gz",
+      "bytes": 812
     },
     {
       "file": "data/venues/pickering-facilities/n43.5_w079.5.ndjson.gz",
