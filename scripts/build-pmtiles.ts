@@ -1,4 +1,4 @@
-import { mkdirSync, readdirSync } from "node:fs";
+import { mkdirSync, readdirSync, rmSync } from "node:fs";
 import { createReadStream } from "node:fs";
 import { pathToFileURL } from "node:url";
 import path from "node:path";
@@ -7,7 +7,9 @@ import { createGunzip } from "node:zlib";
 import { isAccessibilityField } from "../src/count/accessibility.js";
 import { isPiece } from "../src/model/provenance.js";
 import { TRANCHE_DIR, type DataRecord, type Tranche } from "../src/model/records.js";
-import { buildPmtiles, TileSizeError, type MapFeature } from "../src/tiles/build.js";
+import { buildPmtiles, MAX_TILE_FILE_BYTES, TILE_FILE_PATTERN, TileSizeError, type ArchiveOptions, type MapFeature } from "../src/tiles/build.js";
+import { holdReason } from "../src/pack/build.js";
+import { readRegistry } from "../src/registry.js";
 import { writeFileAtomic } from "../src/failsafe/files.js";
 import { checkRecord } from "../src/failsafe/record-check.js";
 import { failsafeLog } from "../src/failsafe/report.js";
@@ -20,43 +22,106 @@ export const TILES_HELD_FOR_LEGAL_REVIEW = new Set([
   "metrolinx-up",
 ]);
 
-export async function buildOfflineTiles(repoRoot: string, includePaths = true): Promise<string[]> {
-  const features = await collect(path.join(repoRoot, "data"), includePaths);
+export async function buildOfflineTiles(repoRoot: string, includePaths = true, limit = MAX_TILE_FILE_BYTES): Promise<string[]> {
+  const excluded = excludedSources(repoRoot);
+  const features = await collect(path.join(repoRoot, "data"), includePaths, excluded);
   const written: string[] = [];
   for (const family of FAMILIES) {
     const group = features.filter((feature) => feature.licenceFamily === family);
     if (group.length === 0) continue;
     const directory = path.join(repoRoot, "data", "tiles", family === "odbl" ? "odbl" : "open");
     mkdirSync(directory, { recursive: true });
-    const options = archiveOptions(family);
-    try {
-      const archive = buildPmtiles(group, options);
-      const file = path.join(directory, "places.pmtiles");
+    // Every archive of the family is built before any file is written, so a
+    // failed build leaves the previous files as they were.
+    const archives = splitToFit(group, archiveOptions(family), limit);
+    const names = new Set<string>();
+    for (const { label, archive, features: count } of archives) {
+      const name = label ? `places-${label}.pmtiles` : "places.pmtiles";
+      const file = path.join(directory, name);
       writeFileAtomic(file, archive);
+      names.add(name);
       written.push(path.relative(repoRoot, file));
-      console.log(JSON.stringify({ file: path.relative(repoRoot, file), bytes: archive.length, features: group.length }));
-    } catch (error) {
-      if (!(error instanceof TileSizeError)) throw error;
-      const bands = new Map<string, MapFeature[]>();
-      for (const feature of group) {
-        const label = `n${String(Math.max(0, Math.floor(feature.lat))).padStart(2, "0")}`;
-        const list = bands.get(label) ?? [];
-        list.push(feature);
-        bands.set(label, list);
-      }
-      for (const [label, band] of [...bands.entries()].sort(([a], [b]) => a.localeCompare(b))) {
-        const archive = buildPmtiles(band, options);
-        const file = path.join(directory, `places-${label}.pmtiles`);
-        writeFileAtomic(file, archive);
-        written.push(path.relative(repoRoot, file));
-        console.log(JSON.stringify({ file: path.relative(repoRoot, file), bytes: archive.length, features: band.length }));
-      }
+      console.log(JSON.stringify({ file: path.relative(repoRoot, file), bytes: archive.length, features: count }));
+    }
+    // Files from an earlier split that this build did not write would list stale places.
+    for (const name of readdirSync(directory)) {
+      if (TILE_FILE_PATTERN.test(name) && !names.has(name)) rmSync(path.join(directory, name));
     }
   }
   return written;
 }
 
-function archiveOptions(family: "odbl" | "other") {
+export interface SplitArchive {
+  /** "" for one file per family, else a band such as n43 or n43-w080. */
+  label: string;
+  archive: Buffer;
+  features: number;
+}
+
+/**
+ * Builds one archive for the features, or, when it would reach the 25 MiB
+ * file limit, one per 1-degree latitude band (places-n43), and a band that is
+ * still too large one per 1-degree longitude band inside it (places-n43-w080).
+ * Bands are cut on the feature's point (the first vertex of a path), so every
+ * feature is in exactly one file. Throws rather than write a file over the limit.
+ */
+export function splitToFit(features: MapFeature[], options: ArchiveOptions, limit = MAX_TILE_FILE_BYTES): SplitArchive[] {
+  const whole = tryBuild(features, options, limit);
+  if (whole) return [{ label: "", archive: whole, features: features.length }];
+  const out: SplitArchive[] = [];
+  for (const [lat, band] of groupBy(features, latBand)) {
+    const archive = tryBuild(band, options, limit);
+    if (archive) {
+      out.push({ label: lat, archive, features: band.length });
+      continue;
+    }
+    for (const [lon, cell] of groupBy(band, lonBand)) {
+      const piece = tryBuild(cell, options, limit);
+      if (!piece) throw new Error(`tiles for ${lat}-${lon} (${cell.length} features) are still over the ${limit} byte limit`);
+      out.push({ label: `${lat}-${lon}`, archive: piece, features: cell.length });
+    }
+  }
+  return out;
+}
+
+function tryBuild(features: MapFeature[], options: ArchiveOptions, limit: number): Buffer | null {
+  try {
+    const archive = buildPmtiles(features, options);
+    return archive.length < limit ? archive : null;
+  } catch (error) {
+    if (error instanceof TileSizeError) return null;
+    throw error;
+  }
+}
+
+const latBand = (feature: MapFeature) => `n${String(Math.max(0, Math.floor(feature.lat))).padStart(2, "0")}`;
+const lonBand = (feature: MapFeature) => `w${String(Math.max(0, Math.ceil(-feature.lon))).padStart(3, "0")}`;
+
+function groupBy(features: MapFeature[], key: (feature: MapFeature) => string): Array<[string, MapFeature[]]> {
+  const groups = new Map<string, MapFeature[]>();
+  for (const feature of features) {
+    const label = key(feature);
+    const list = groups.get(label) ?? [];
+    list.push(feature);
+    groups.set(label, list);
+  }
+  return [...groups.entries()].sort(([a], [b]) => a.localeCompare(b));
+}
+
+/**
+ * Sources the tiles leave out: the ones the web pack holds (the same
+ * holdReason rule as src/pack/build.ts), and GO Transit and UP Express, which
+ * stay in their own metrolinx-* files. A source not in the registry has no
+ * licence and is left out too (see collectFile).
+ */
+export function excludedSources(repoRoot: string): { held: Set<string>; registered: Set<string> } {
+  const registry = readRegistry(repoRoot);
+  const held = new Set<string>(TILES_HELD_FOR_LEGAL_REVIEW);
+  for (const source of registry.sources) if (holdReason(source) !== null) held.add(source.id);
+  return { held, registered: new Set(registry.sources.map((source) => source.id)) };
+}
+
+function archiveOptions(family: "odbl" | "other"): ArchiveOptions {
   return {
     family,
     name: family === "odbl" ? "OSM Ontario place overlay" : "Open-data place overlay",
@@ -73,11 +138,21 @@ function archiveOptions(family: "odbl" | "other") {
   };
 }
 
-async function collect(dataRoot: string, includePaths: boolean): Promise<MapFeature[]> {
+async function collect(dataRoot: string, includePaths: boolean, excluded: { held: Set<string>; registered: Set<string> }): Promise<MapFeature[]> {
   const features: MapFeature[] = [];
   for (const tranche of Object.keys(TRANCHE_DIR) as Tranche[]) {
     const directory = path.join(dataRoot, TRANCHE_DIR[tranche]);
-    for (const file of listNdjson(directory)) features.push(...await collectFile(file, tranche, includePaths));
+    for (const file of listNdjson(directory)) {
+      const sourceId = path.basename(path.dirname(file));
+      if (!excluded.registered.has(sourceId)) {
+        failsafeLog().outcome({ step: "tiles", source_id: sourceId, target: file, status: "withheld", reason: "source is not in sources/registry.json, so it has no licence" });
+        continue;
+      }
+      if (excluded.held.has(sourceId)) continue;
+      for (const feature of await collectFile(file, tranche, includePaths)) {
+        if (!excluded.held.has(feature.props.source_id ?? "")) features.push(feature);
+      }
+    }
   }
   return features;
 }

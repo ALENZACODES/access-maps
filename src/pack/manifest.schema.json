@@ -20,8 +20,9 @@
       }
     },
     "search": { "type": "object", "additionalProperties": { "$ref": "#/$defs/searchPart" } },
-    "tiles": { "type": "object", "additionalProperties": { "type": "object", "required": ["path", "bytes", "licence"], "additionalProperties": false,
-      "properties": { "path": { "type": "string" }, "bytes": { "$ref": "#/$defs/bytes" }, "licence": { "type": "string" } } } },
+    "tiles": { "type": "object", "propertyNames": { "pattern": "^(open|odbl)(/n[0-9]{2}(-w[0-9]{3})?)?$" },
+      "additionalProperties": { "type": "object", "required": ["path", "bytes", "sha256", "licence", "bbox"], "additionalProperties": false,
+      "properties": { "path": { "type": "string", "pattern": "^tiles/(open|odbl)/places(-n[0-9]{2}(-w[0-9]{3})?)?\\.pmtiles$" }, "bytes": { "$ref": "#/$defs/bytes" }, "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }, "licence": { "enum": ["mixed-open", "ODbL-1.0"] }, "bbox": { "$ref": "#/$defs/bbox" } } } },
     "withheld": { "type": "array", "items": { "type": "object", "required": ["path", "sourceId", "tranche", "cell", "reason"], "additionalProperties": false,
       "properties": { "path": { "type": "string" }, "sourceId": { "type": ["string", "null"] }, "tranche": { "enum": ["venue", "washroom", "transit", "path", null] }, "cell": { "type": ["string", "null"] }, "reason": { "type": "string", "minLength": 1 } } } },
     "counts": { "type": "object", "required": ["records", "byTranche", "bySource"], "additionalProperties": false,

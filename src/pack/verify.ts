@@ -1,6 +1,7 @@
 import { readFile, stat } from "node:fs/promises";
 import path from "node:path";
-import { digest, recordsIn } from "./build.js";
+import { digest, PACK_FILE_LIMIT, recordsIn } from "./build.js";
+import { TILE_FILE_PATTERN } from "../tiles/build.js";
 import type { PackManifest, PackPart } from "./types.js";
 
 export async function verifyWebPack(options: { data: string; out: string }): Promise<void> {
@@ -90,10 +91,18 @@ export async function verifyWebPack(options: { data: string; out: string }): Pro
       }
     }
   }
-  for (const tile of Object.values(manifest.tiles)) {
+  for (const [key, tile] of Object.entries(manifest.tiles)) {
     const file = path.resolve(root, tile.path);
     if (!file.startsWith(`${root}${path.sep}`)) throw new Error("Unsafe tile path");
+    if (withheld.has(tile.path)) throw new Error(`Withheld tile included: ${tile.path}`);
+    // The key, the path and the licence agree, so an ODbL file is never listed as open data or the other way round.
+    const [family, band] = key.split("/");
+    const name = path.posix.basename(tile.path);
+    const match = TILE_FILE_PATTERN.exec(name);
+    if ((family !== "open" && family !== "odbl") || !match || tile.path !== `tiles/${family}/${name}` || (match[1] ?? undefined) !== band) throw new Error(`Tile key does not match its path: ${key}`);
+    if (tile.licence !== (family === "odbl" ? "ODbL-1.0" : "mixed-open")) throw new Error(`Tile licence does not match its family: ${key}`);
     const size = (await stat(file)).size;
-    if (size > 25 * 1024 * 1024 || size !== tile.bytes) throw new Error(`Tile size mismatch: ${tile.path}`);
+    if (size > PACK_FILE_LIMIT || size !== tile.bytes) throw new Error(`Tile size mismatch: ${tile.path}`);
+    await check(file, tile);
   }
 }
