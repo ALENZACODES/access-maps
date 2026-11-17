@@ -528,5 +528,30 @@
     "name": "Statistics Canada ODEF: Ontario rows without a point",
     "url": "https://www150.statcan.gc.ca/n1/pub/37-26-0001/372600012022001-eng.htm",
     "reason": "Checked 2026-11-16. 1,668 of the 6,814 Ontario rows in odef_v3_0_1.csv have an empty geometry column, so they have no map cell and are not imported. ODCAF has 145 Ontario rows (after exclusions) with '..' coordinates, also not imported."
+  },
+  {
+    "name": "Fishing Access Point rows marked not visible",
+    "url": "https://data.ontario.ca/dataset/fishing-access-points",
+    "reason": "Checked 2026-11-16. 1,301 of the 3,733 Fishing Access Point features have VISIBILITY_IND No. The layer does not say why a site is marked not visible, so those rows are not imported; the 2,432 rows marked Yes are (ontario-fishing-access-points)."
+  },
+  {
+    "name": "Official airports: heliports and hospital heliports; Airport Other (abandoned airports)",
+    "url": "https://data.ontario.ca/dataset/official-airports",
+    "reason": "Checked 2026-11-16. The 89 Official Airports rows with AIRPORT_TYPE Heliport or Hospital Heliport are landing pads, not places the public visits, and are not imported. The Airport Other layer is catalogued as abandoned-airports and is not imported."
+  },
+  {
+    "name": "Ontario Railway Network stations other than passenger stations",
+    "url": "https://data.ontario.ca/dataset/ontario-railway-network-orwn",
+    "reason": "Checked 2026-11-16. 500 of the 671 ORWN Station features have STNTYPE Freight, Maintenance, Intermodal or Unknown. They are not public passenger places, or the layer does not say they are, so only Passenger Station and Mixed (171) are imported."
+  },
+  {
+    "name": "Municipal Park (Land Information Ontario)",
+    "url": "https://data.ontario.ca/dataset/municipal-parks",
+    "reason": "Checked 2026-11-16. The layer has 388 outlines, many last edited before 2005 and some named as potential parks (for example 'Potential Rouge Park North of Steeles'); it does not say which parks exist today. Not imported; municipal park layers come from each municipality's own portal."
+  },
+  {
+    "name": "Ontario OPP detachments, Functional Assessment Centres and licensed child care facilities (no coordinates)",
+    "url": "https://data.ontario.ca/dataset/licensed-child-care-facilities-in-ontario",
+    "reason": "Checked 2026-11-16. ontario-provincial-police-detachments-and-bureaus-listing (CSV), approved-functional-assessment-centres-for-drivers (CSV) and licensed-child-care-facilities-in-ontario (October 2026 XLSX) are OGL-ON-1.0 but publish addresses without coordinates. This pipeline does not geocode, so they are not imported."
   }
 ]

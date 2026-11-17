@@ -7,6 +7,7 @@ import { importCityOpenData } from "../../scripts/import-city-open-data.js";
 import { importGtfs } from "../../scripts/import-gtfs.js";
 import { runLayerJobs, type LayerJob } from "../../scripts/import-cities-g3.js";
 import { importStatcanLode } from "../../scripts/import-statcan-lode.js";
+import { importOntarioGeohub } from "../../scripts/import-ontario-geohub.js";
 import { gpkgBlob, wkbPoint, writeGpkg } from "../national/lode-fixtures.js";
 import { PerSourceRun } from "../../src/failsafe/per-source.js";
 import { commitRecord } from "../../src/io/commit.js";
@@ -186,6 +187,29 @@ describe("Statistics Canada LODE databases", () => {
   });
 });
 
+describe("Ontario GeoHub layers", () => {
+  it("a cut-short cache file for one layer keeps its files; the other layers are refreshed", async () => {
+    const env = fixtureRepo();
+    const parks = seedSource(env.data, "venues", "ontario-provincial-parks", 2);
+    const stations = seedSource(env.data, "venues", "ontario-railway-stations", 2);
+    const stationsBefore = readFileSync(stations);
+    const cache = path.join(env.root, ".cache", "provincial");
+    mkdirSync(cache, { recursive: true });
+    const features = [1, 2, 3].map((n) => ({ attributes: { OBJECTID: String(n), OGF_ID: `FX${n}`, PROTECTED_AREA_NAME_ENG: `Fixture ${n}`, LOCATION_ACCURACY: "Within 10 metres" }, anchor: { lon: -79.38, lat: 43.65, key: "geometry" } }));
+    writeFileSync(path.join(cache, "ontario-provincial-parks.json"), JSON.stringify({ features }));
+    writeFileSync(path.join(cache, "ontario-otn-access-points.json"), JSON.stringify({ features }));
+    writeFileSync(path.join(cache, "ontario-railway-stations.json"), JSON.stringify({ features }).slice(0, 50));
+
+    await expect(importOntarioGeohub(env.root, ["ontario-provincial-parks", "ontario-otn-access-points", "ontario-railway-stations"])).rejects.toThrow(/importOntarioGeohub: 1 of 3 sources failed.*ontario-railway-stations/);
+
+    expect(allIds(path.dirname(parks))).toEqual(["ontario-provincial-parks:FX1", "ontario-provincial-parks:FX2", "ontario-provincial-parks:FX3"]);
+    expect(allIds(path.join(env.data, "venues", "ontario-otn-access-points"))).toHaveLength(3);
+    expect(readFileSync(stations).equals(stationsBefore)).toBe(true);
+    expect(env.log.report.outcomes).toContainEqual(expect.objectContaining({ step: "importOntarioGeohub/ontario-railway-stations", status: "step_failed" }));
+    expect(env.log.report.outcomes).toContainEqual(expect.objectContaining({ target: "venues/ontario-railway-stations", status: "kept_last_known_good" }));
+  });
+});
+
 describe("PerSourceRun", () => {
   it("reports a source that failed before it marked anything, and finish() passes when nothing failed", async () => {
     const env = tempRoot();
@@ -222,7 +246,7 @@ describe("PerSourceRun", () => {
     }
     // The fixture sources used above are registered tier 0 or tier 1 sources.
     const registry = readRegistry(repo);
-    for (const id of ["toronto-park-washrooms", "toronto-street-washrooms", "toronto-crem-washrooms", "ottawa-public-washrooms", "ottawa-park-parking", "gtfs-grt-bus", "gtfs-hsr", "kitchener-public-washrooms", "guelph-restrooms", "windsor-park-washrooms", "statcan-odhf", "statcan-odef", "statcan-odcaf"]) {
+    for (const id of ["toronto-park-washrooms", "toronto-street-washrooms", "toronto-crem-washrooms", "ottawa-public-washrooms", "ottawa-park-parking", "gtfs-grt-bus", "gtfs-hsr", "kitchener-public-washrooms", "guelph-restrooms", "windsor-park-washrooms", "statcan-odhf", "statcan-odef", "statcan-odcaf", "ontario-provincial-parks", "ontario-otn-access-points", "ontario-railway-stations"]) {
       expect(registry.sources.some((entry) => entry.id === id), id).toBe(true);
     }
   });
