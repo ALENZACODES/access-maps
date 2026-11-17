@@ -8,6 +8,8 @@ import type { G7LayerJob } from "../src/municipal/cities/g7-helpers.js";
 import { GREY_COUNTY_JOBS } from "../src/municipal/cities/grey-county.js";
 import { HASTINGS_COUNTY_JOBS } from "../src/municipal/cities/hastings-county.js";
 import { HURON_COUNTY_JOBS } from "../src/municipal/cities/huron-county.js";
+import { CENTRAL_LAKE_ONTARIO_CONSERVATION_JOBS } from "../src/municipal/cities/central-lake-ontario-conservation.js";
+import { LAKE_SIMCOE_CONSERVATION_JOBS } from "../src/municipal/cities/lake-simcoe-conservation.js";
 import { LEEDS_GRENVILLE_JOBS } from "../src/municipal/cities/leeds-grenville.js";
 import { LENNOX_ADDINGTON_JOBS } from "../src/municipal/cities/lennox-addington.js";
 import { NIAGARA_PENINSULA_CONSERVATION_JOBS } from "../src/municipal/cities/niagara-peninsula-conservation.js";
@@ -23,7 +25,10 @@ const USER_AGENT = "access-maps-pipeline/1.0 (Ontario open-data import; licence 
  * cover the municipalities listed in sources/ontario-municipalities-remaining.json. The
  * registry download_url is the layer URL. Each job names the only columns requested.
  */
-export const G7_LAYER_JOBS: readonly G7LayerJob[] = [...HURON_COUNTY_JOBS, ...HASTINGS_COUNTY_JOBS, ...LEEDS_GRENVILLE_JOBS, ...GREY_COUNTY_JOBS, ...LENNOX_ADDINGTON_JOBS, ...QUINTE_CONSERVATION_JOBS, ...NIAGARA_PENINSULA_CONSERVATION_JOBS];
+export const G7_LAYER_JOBS: readonly G7LayerJob[] = [...HURON_COUNTY_JOBS, ...HASTINGS_COUNTY_JOBS, ...LEEDS_GRENVILLE_JOBS, ...GREY_COUNTY_JOBS, ...LENNOX_ADDINGTON_JOBS, ...QUINTE_CONSERVATION_JOBS, ...NIAGARA_PENINSULA_CONSERVATION_JOBS,
+  ...LAKE_SIMCOE_CONSERVATION_JOBS,
+  ...CENTRAL_LAKE_ONTARIO_CONSERVATION_JOBS,
+];
 
 export interface G7Imported {
   source_id: string;
@@ -49,6 +54,10 @@ export async function importCitiesG7(
       const source = requireSource(registry, job.id);
       if (source.kind !== "municipal" || source.tier !== 0) throw new Error(`${job.id} must be tier 0 municipal data`);
       const features = await cachedLayer(repoRoot, job.id, source.download_url, job.fields);
+      if (job.order) {
+        const key = job.order;
+        features.sort((a, b) => Number(a.attributes?.[key]) - Number(b.attributes?.[key]));
+      }
       resetSourceDirs(path.join(repoRoot, "data"), source.id, job.tranches);
       const ctx: Provenance = { source_id: source.id, licence: source.licence_id, retrieved_at: source.retrieved_at, tier: 0 };
       const seen = new Set<string>();

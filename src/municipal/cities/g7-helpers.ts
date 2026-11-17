@@ -32,6 +32,8 @@ export interface G7LayerJob {
   tranches: Tranche[];
   fields: readonly string[];
   map: (feature: RawFeature, ctx: Provenance) => DataRecord | DataRecord[] | null;
+  /** Numeric column the importer sorts features by before mapping, so "the first row" is the same on every run. */
+  order?: string;
 }
 
 /** How one point layer's columns become a venue record. Every column named here is requested. */
@@ -65,6 +67,22 @@ export interface PointVenueSpec {
   anchor?: "point" | "ring_mean";
   /** Columns kept as the publisher's own `COLUMN=value` text in wheelchair_description. */
   labelledColumns?: readonly string[];
+  /**
+   * `name`: the record id is built from the name column, for layers that draw one place as
+   * several parcels. The importer keeps the first row (lowest object id) for each name and
+   * drops the repeats, so one place is stored once.
+   */
+  idFrom?: "name";
+}
+
+/** Lower-case ASCII slug of a published name, used as a stable record key. */
+export function nameKey(name: string): string {
+  return name
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 }
 
 /** Columns a point venue spec reads, for the layer request. */
@@ -78,7 +96,7 @@ export function pointVenueFields(spec: PointVenueSpec): string[] {
 export function mapPointVenue(spec: PointVenueSpec, feature: RawFeature, ctx: Provenance): DataRecord | null {
   const row = attributesOf(feature);
   if (spec.keep && !spec.keep(row)) return null;
-  const key = present(row, spec.idKey);
+  const key = spec.idFrom === "name" ? nameKey(present(row, spec.name)) : present(row, spec.idKey);
   if (key === "") return null;
   const point = spec.anchor === "ring_mean" ? ringMeanOf(feature) : pointOf(feature);
   const fields: Record<string, FieldValue> = {
@@ -109,6 +127,7 @@ export function pointVenueJob(id: string, spec: PointVenueSpec): G7LayerJob {
     tranches: ["venue"],
     fields: pointVenueFields(spec),
     map: (feature, ctx) => mapPointVenue(spec, feature, ctx),
+    ...(spec.idFrom === "name" ? { order: spec.idKey } : {}),
   };
 }
 
