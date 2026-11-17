@@ -3,6 +3,22 @@ import { zxyToTileId } from "pmtiles";
 import { encodeMvt, type MvtFeature } from "./mvt.js";
 
 export const MAX_PMTILES_BYTES = 50 * 1024 * 1024;
+/**
+ * Largest overlay file the repository and the web pack accept (25 MiB, the
+ * pack's per-file limit). `npm run build:tiles` splits a family into
+ * latitude bands, then longitude bands, until every file is under it.
+ */
+export const MAX_TILE_FILE_BYTES = 25 * 1024 * 1024;
+/** Matches the overlay files the pack lists: places.pmtiles, places-n43.pmtiles, places-n43-w080.pmtiles. */
+export const TILE_FILE_PATTERN = /^places(?:-(n\d{2}(?:-w\d{3})?))?\.pmtiles$/;
+
+/** Reads the bounds a PMTiles v3 header stores (bytes 102 to 117): [west, south, east, north]. */
+export function pmtilesBounds(header: Uint8Array): [number, number, number, number] {
+  if (header.length < HEADER_BYTES) throw new Error("PMTiles header is shorter than 127 bytes");
+  const view = Buffer.from(header.buffer, header.byteOffset, header.byteLength);
+  if (view.toString("ascii", 0, 7) !== "PMTiles" || view.readUInt8(7) !== 3) throw new Error("not a PMTiles v3 archive");
+  return [102, 106, 110, 114].map((offset) => view.readInt32LE(offset) / 1e7) as [number, number, number, number];
+}
 const HEADER_BYTES = 127;
 const ROOT_LIMIT = 16384;
 const EXTENT = 4096;

@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { once } from "node:events";
 import { createReadStream, createWriteStream } from "node:fs";
-import { mkdir, readdir, rename, rm, stat, writeFile } from "node:fs/promises";
+import { mkdir, open, readdir, rename, rm, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { createInterface } from "node:readline";
 import { createGunzip, createGzip } from "node:zlib";
@@ -12,8 +12,11 @@ import type { PackManifest, PackPart } from "./types.js";
 import { readRegistry, type SourceEntry } from "../registry.js";
 import { checkRecord } from "../failsafe/record-check.js";
 import { failsafeLog } from "../failsafe/report.js";
+import { pmtilesBounds, TILE_FILE_PATTERN } from "../tiles/build.js";
 
-const LIMIT = 25 * 1024 * 1024;
+/** Largest file the pack lists (25 MiB). The same value as MAX_TILE_FILE_BYTES in src/tiles/build.ts. */
+export const PACK_FILE_LIMIT = 25 * 1024 * 1024;
+const LIMIT = PACK_FILE_LIMIT;
 const PATH_PATTERN = /^(venues|washrooms|paths|transit)\/([^/]+)\/([ns]\d{2,3}\.\d_[ew]\d{3}\.\d)(?:\.p\d+)?\.ndjson\.gz$/;
 const TRANCHES: Tranche[] = ["venue", "washroom", "transit", "path"];
 const DIR_TO_TRANCHE = Object.fromEntries(Object.entries(TRANCHE_DIR).map(([key, value]) => [value, key])) as Record<string, Tranche>;
@@ -140,6 +143,17 @@ export async function* recordsIn(file: string): AsyncGenerator<DataRecord> {
   try {
     for await (const line of lines) if (line.trim()) yield JSON.parse(line) as DataRecord;
   } finally { lines.close(); stream.destroy(); }
+}
+
+async function readHead(file: string, length: number): Promise<Buffer> {
+  const handle = await open(file, "r");
+  try {
+    const buffer = Buffer.alloc(length);
+    const { bytesRead } = await handle.read(buffer, 0, length, 0);
+    return buffer.subarray(0, bytesRead);
+  } finally {
+    await handle.close();
+  }
 }
 
 export async function digest(file: string): Promise<{ bytes: number; sha256: string }> {
@@ -324,15 +338,40 @@ export async function buildWebPack(options: {
       path: `pack/v1/search/${cell}.json.gz`, ...await digest(output), count,
     };
   }
-  for (const [key, licence] of [["open", "mixed-open"], ["odbl", "ODbL-1.0"]] as const) {
-    const relative = `tiles/${key}/places.pmtiles`;
+  for (const [family, licence] of [["open", "mixed-open"], ["odbl", "ODbL-1.0"]] as const) {
+    // One overlay per family (places.pmtiles), or, when the family was split to
+    // stay under the file limit, one per band (places-n43.pmtiles,
+    // places-n43-w080.pmtiles). Keys are "open", "odbl", "odbl/n43", "odbl/n43-w080".
+    let names: string[];
     try {
-      const file = await stat(path.join(dataRoot, relative));
-      // An oversized overlay is left out with its reason; the record parts are still packed.
-      if (file.size > LIMIT) withhold({ path: relative, sourceId: null, tranche: null, cell: null, reason: `tile is ${file.size} bytes, over the ${LIMIT} byte limit` });
-      else manifest.tiles[key] = { path: relative, bytes: file.size, licence };
+      names = (await readdir(path.join(dataRoot, "tiles", family))).filter((name) => name.endsWith(".pmtiles")).sort();
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+      continue;
+    }
+    for (const name of names) {
+      const relative = `tiles/${family}/${name}`;
+      const band = TILE_FILE_PATTERN.exec(name);
+      if (!band) {
+        withhold({ path: relative, sourceId: null, tranche: null, cell: null, reason: "unexpected tile file name" });
+        continue;
+      }
+      const file = path.join(dataRoot, relative);
+      const size = (await stat(file)).size;
+      // An oversized overlay is left out with its reason; the record parts are still packed.
+      if (size > LIMIT) {
+        withhold({ path: relative, sourceId: null, tranche: null, cell: null, reason: `tile is ${size} bytes, over the ${LIMIT} byte limit` });
+        continue;
+      }
+      let bbox: [number, number, number, number];
+      try {
+        bbox = pmtilesBounds(await readHead(file, 127));
+      } catch (error) {
+        withhold({ path: relative, sourceId: null, tranche: null, cell: null, reason: `tile header is unreadable: ${(error as Error).message}` });
+        continue;
+      }
+      const { sha256 } = await digest(file);
+      manifest.tiles[band[1] ? `${family}/${band[1]}` : family] = { path: relative, bytes: size, sha256, licence, bbox };
     }
   }
   const manifestFile = path.join(out, "manifest.json");

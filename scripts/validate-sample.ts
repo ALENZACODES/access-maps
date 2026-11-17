@@ -5,6 +5,7 @@ import { createGunzip } from "node:zlib";
 import { readRegistry } from "../src/registry.js";
 import { validationError, compileValidators } from "../src/validate/ajv.js";
 import type { Tranche } from "../src/model/records.js";
+import { MAX_TILE_FILE_BYTES } from "../src/tiles/build.js";
 
 const MAX_BYTES = 50 * 1024 * 1024;
 const PER_FILE = 20;
@@ -22,7 +23,8 @@ const files = listNdjson(path.join(repoRoot, "data"));
 if (files.length === 0) throw new Error("validate-sample found no data files");
 for (const file of listPmtiles(path.join(repoRoot, "data"))) {
   const bytes = statSync(file).size;
-  if (bytes >= MAX_BYTES) throw new Error(`${file} is ${bytes} bytes, at or over 50 MB`);
+  // Overlay tiles must fit the web pack's per-file limit, or the pack withholds them.
+  if (bytes >= MAX_TILE_FILE_BYTES) throw new Error(`${file} is ${bytes} bytes, at or over the ${MAX_TILE_FILE_BYTES} byte tile limit; run npm run build:tiles to split it`);
 }
 const seen: Record<Tranche, number> = { venue: 0, washroom: 0, path: 0, transit: 0 };
 let checked = 0;
