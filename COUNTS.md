@@ -5,20 +5,20 @@ A piece is one field on one record whose value is not UNKNOWN and whose derived 
 Verified field-values toward the 500,000 target: **0**.
 Tier 0 and tier 1 values count as 0 toward the 250,000 verified venue field-values and toward the 500,000 verified total. Section 5.6 counts tier 2 and tier 3 only.
 Verified toward 500,000 is 0. None of those verified field-values exist in this import.
-Open-data or operator-claimed physical accessibility facts (tier 0 and tier 1 only): **916,068**.
+Open-data or operator-claimed physical accessibility facts (tier 0 and tier 1 only): **916,402**.
 Context fields, reported separately (access, crossing, lit, fee, and the other context fields below): **517,102**.
-All other populated values: **8,752,881**.
-All populated pieces together: **10,186,051**.
-Total UNKNOWN gaps: **57,613,911**.
-UNKNOWN gaps on accessibility fields: **32,348,038**.
+All other populated values: **8,888,315**.
+All populated pieces together: **10,321,819**.
+Total UNKNOWN gaps: **58,155,049**.
+UNKNOWN gaps on accessibility fields: **32,725,512**.
 Derived values excluded from both totals: **4,207**.
-Records: **1,882,570**.
+Records: **1,898,312**.
 
 The illustrative targets are 250,000 venue, 100,000 path, 50,000 transit, and 100,000 washroom verified field-values. Shortfall is the target minus verified values.
 
 | Tranche | Records | Physical accessibility facts (tier 0–1) | Context fields | Other populated | Verified (tier 2–3) | UNKNOWN gaps | Illustrative target | Shortfall |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| venue | 738037 | 121198 | 96490 | 4623055 | 0 | 26894848 | 250000 | 250000 |
+| venue | 753779 | 121532 | 96490 | 4758489 | 0 | 27435986 | 250000 | 250000 |
 | washroom | 7154 | 3668 | 3036 | 29165 | 0 | 238930 | 100000 | 100000 |
 | path | 1105455 | 769922 | 417576 | 3934564 | 0 | 30252498 | 100000 | 100000 |
 | transit | 31924 | 21280 | 0 | 166097 | 0 | 227635 | 50000 | 50000 |
@@ -27,11 +27,11 @@ The illustrative targets are 250,000 venue, 100,000 path, 50,000 transit, and 10
 
 An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.
 
-Physical accessibility facts, context fields, and the remaining pieces add up to the total: 916,068 + 517,102 + 8,752,881 = 10,186,051.
+Physical accessibility facts, context fields, and the remaining pieces add up to the total: 916,402 + 517,102 + 8,888,315 = 10,321,819.
 
 | Tranche | Physical accessibility pieces | Context pieces | Remaining pieces |
 | --- | ---: | ---: | ---: |
-| venue | 121198 | 96490 | 4623055 |
+| venue | 121532 | 96490 | 4758489 |
 | washroom | 3668 | 3036 | 29165 |
 | path | 769922 | 417576 | 3934564 |
 | transit | 21280 | 0 | 166097 |
@@ -85,7 +85,7 @@ Populated accessibility facts by field:
 ### venue
 
 - surface: 63096
-- wheelchair_description: 19728
+- wheelchair_description: 20062
 - entrance: 17633
 - wheelchair: 12670
 - capacity_disabled: 4038
@@ -132,7 +132,7 @@ Populated accessibility facts by field:
 
 | Tranche | Tier 0 | Tier 1 | Tier 2 | Tier 3 | Tier 4 |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| venue | 4840743 | 0 | 0 | 0 | 0 |
+| venue | 4976511 | 0 | 0 | 0 | 0 |
 | washroom | 35869 | 0 | 0 | 0 | 0 |
 | path | 5122062 | 0 | 0 | 0 | 0 |
 | transit | 1232 | 186145 | 0 | 0 | 0 |
@@ -227,6 +227,12 @@ Populated accessibility facts by field:
 | niagara-falls-trails | 43 | 221 | 32 | 1155 | 221 | 0 | 2026-11-16 |
 | oakville-town-washrooms | 21 | 105 | 0 | 714 | 105 | 0 | 2026-11-16 |
 | oakville-transit-gtfs | 1163 | 5815 | 0 | 9304 | 0 | 5815 | 2026-11-16 |
+| ontario-fishing-access-points | 2432 | 11820 | 334 | 92756 | 11820 | 0 | 2026-11-16 |
+| ontario-moh-service-locations | 11625 | 115197 | 0 | 384678 | 115197 | 0 | 2026-11-16 |
+| ontario-official-airports | 314 | 1884 | 0 | 11618 | 1884 | 0 | 2026-11-16 |
+| ontario-otn-access-points | 853 | 3412 | 0 | 33267 | 3412 | 0 | 2026-11-16 |
+| ontario-provincial-parks | 347 | 2429 | 0 | 12492 | 2429 | 0 | 2026-11-16 |
+| ontario-railway-stations | 171 | 1026 | 0 | 6327 | 1026 | 0 | 2026-11-16 |
 | orangeville-parks | 42 | 342 | 36 | 1428 | 342 | 0 | 2026-11-16 |
 | oshawa-community-centres | 20 | 140 | 0 | 720 | 140 | 0 | 2026-11-16 |
 | oshawa-trails | 299 | 897 | 0 | 8671 | 897 | 0 | 2026-11-16 |
@@ -289,18 +295,18 @@ Populated accessibility facts by field:
 
 ### venue
 
-- braille: 738037
-- door_width: 738037
-- handrail: 738037
-- incline: 738037
-- kerb_height: 738037
-- ramp_stroller: 738037
-- ramp_wheelchair: 738037
-- step_count: 738037
-- hearing_loop: 738034
-- elevator: 738024
-- tactile_paving: 738024
-- ramp: 738008
+- braille: 753779
+- door_width: 753779
+- handrail: 753779
+- incline: 753779
+- kerb_height: 753779
+- ramp_stroller: 753779
+- ramp_wheelchair: 753779
+- step_count: 753779
+- hearing_loop: 753776
+- elevator: 753766
+- tactile_paving: 753766
+- ramp: 753750
 
 ### washroom
 

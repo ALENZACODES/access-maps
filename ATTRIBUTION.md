@@ -528,6 +528,23 @@ Ontario rows of these databases, retrieved 2026-11-16:
 
 Each database is compiled from many providers' open data. The data sources file in each download lists every provider with its own licence and attribution statement. Rows from providers listed in [sources/gaps.json](sources/gaps.json) are not included. The ODSRF `accessible` column is stored as the provider's published flag text. It is not a measurement by this project.
 
+## Province of Ontario place layers (Land Information Ontario)
+
+Contains information licensed under the Open Government Licence – Ontario.
+
+https://www.ontario.ca/page/open-government-licence-ontario
+
+Retrieved 2026-11-16 from the Land Information Ontario map services listed in the Ontario Data Catalogue:
+
+- Ministry of Health Service Provider Locations (MOHSERLO), https://data.ontario.ca/dataset/ministry-of-health-service-provider-locations-mohserlo (`ontario-moh-service-locations`)
+- Fishing Access Point, https://data.ontario.ca/dataset/fishing-access-points (`ontario-fishing-access-points`)
+- Provincial Park Regulated, https://data.ontario.ca/dataset/provincial-park-regulated (`ontario-provincial-parks`)
+- Official Airports, https://data.ontario.ca/dataset/official-airports (`ontario-official-airports`)
+- Ontario Trail Network (OTN) Access Point, https://data.ontario.ca/dataset/ontario-trail-network (`ontario-otn-access-points`)
+- Ontario Railway Network (ORWN) Station, https://data.ontario.ca/dataset/ontario-railway-network-orwn (`ontario-railway-stations`)
+
+The Fishing Access Point ACCESSIBILITY_FLG column is stored as the Ministry's published flag text. It is not a measurement by this project.
+
 ## Offline map tiles
 
 `data/tiles/odbl/` is OpenStreetMap data under the Open Database License (ODbL) 1.0. It is a separate file from every other licence.
