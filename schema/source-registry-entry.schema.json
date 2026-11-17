@@ -34,7 +34,8 @@
         "gtfs-rt",
         "municipal",
         "provincial",
-        "federal"
+        "federal",
+        "aggregator"
       ]
     },
     "url": {

@@ -10,6 +10,7 @@ import { importStatcanLode } from "../../scripts/import-statcan-lode.js";
 import { importOntarioGeohub } from "../../scripts/import-ontario-geohub.js";
 import { importOntarioCatalogue } from "../../scripts/import-ontario-catalogue.js";
 import { gpkgBlob, wkbPoint, writeGpkg } from "../national/lode-fixtures.js";
+import { importOverturePlaces, overtureCache } from "../../scripts/import-overture-places.js";
 import { PerSourceRun } from "../../src/failsafe/per-source.js";
 import { commitRecord } from "../../src/io/commit.js";
 import { fv } from "../../src/model/provenance.js";
@@ -233,6 +234,58 @@ describe("Ontario Data Catalogue files", () => {
   });
 });
 
+describe("Overture places: three sources from one extract", () => {
+  /** Labelled test fixture rows, not real places: one per licence set, inside a fixture boundary around downtown Toronto. */
+  function overtureFixture(root: string, cutShort = false) {
+    const cache = overtureCache(root);
+    mkdirSync(path.dirname(cache.places), { recursive: true });
+    mkdirSync(path.dirname(cache.boundary), { recursive: true });
+    const row = (id: string, licences: string[]) => ({
+      id, lon: -79.38, lat: 43.65 + Number(id.slice(-1)) / 1000, geometry_type: "POINT", confidence: 0.9, operating_status: null,
+      name: `Fixture place ${id}`, basic_category: "fixture", taxonomy_primary: "fixture", brand: null, websites: [],
+      address: { freeform: null, locality: null, postcode: null, region: "ON", country: "CA" },
+      sources: licences.map((license) => ({ dataset: "fixture", license, property: "", update_time: "2026-10-12T00:00:00.000Z" })),
+    });
+    const text = [row("fx1", ["CDLA-Permissive-2.0"]), row("fx2", ["CDLA-Permissive-2.0", "Apache-2.0"]), row("fx3", ["CDLA-Permissive-2.0", "CC0-1.0"])]
+      .map((r) => JSON.stringify(r)).join("\n") + "\n";
+    const gz = gzipSync(text);
+    writeFileSync(cache.places, cutShort ? gz.subarray(0, 30) : gz);
+    writeFileSync(cache.boundary, JSON.stringify({ type: "FeatureCollection", features: [{ type: "Feature", properties: {}, geometry: { type: "Polygon", coordinates: [[[-79.5, 43.6], [-79.3, 43.6], [-79.3, 43.7], [-79.5, 43.7], [-79.5, 43.6]]] } }] }));
+  }
+
+  it("a source missing from the registry keeps its files; the other two are refreshed", async () => {
+    const env = fixtureRepo();
+    const ids = ["overture-places", "overture-places-foursquare", "overture-places-alltheplaces"];
+    const before = ids.map((id) => seedSource(env.data, "venues", id, 2));
+    const failedBefore = readFileSync(before[2] as string);
+    const registryFile = path.join(env.root, "sources", "registry.json");
+    const registry = JSON.parse(readFileSync(registryFile, "utf8")) as { sources: Array<{ id: string }> };
+    registry.sources = registry.sources.filter((source) => source.id !== "overture-places-alltheplaces");
+    writeFileSync(registryFile, JSON.stringify(registry));
+    overtureFixture(env.root);
+
+    await expect(importOverturePlaces(env.root)).rejects.toThrow(/importOverturePlaces: 1 of 3 sources failed.*overture-places-alltheplaces/);
+
+    expect(allIds(path.join(env.data, "venues", "overture-places"))).toEqual(["overture:fx1"]);
+    expect(allIds(path.join(env.data, "venues", "overture-places-foursquare"))).toEqual(["overture:fx2"]);
+    expect(readFileSync(before[2] as string).equals(failedBefore)).toBe(true);
+    expect(env.log.report.outcomes).toContainEqual(expect.objectContaining({ target: "venues/overture-places-alltheplaces", status: "kept_last_known_good" }));
+  });
+
+  it("a cut-short extract fails every source and every source keeps its files", async () => {
+    const env = fixtureRepo();
+    const ids = ["overture-places", "overture-places-foursquare", "overture-places-alltheplaces"];
+    const before = ids.map((id) => seedSource(env.data, "venues", id, 2));
+    const bytes = before.map((file) => readFileSync(file));
+    overtureFixture(env.root, true);
+
+    await expect(importOverturePlaces(env.root)).rejects.toThrow(/importOverturePlaces: 3 of 3 sources failed/);
+
+    before.forEach((file, i) => expect(readFileSync(file).equals(bytes[i] as Buffer)).toBe(true));
+    expect(env.log.report.outcomes.filter((o) => o.status === "kept_last_known_good").map((o) => o.target).sort()).toEqual(ids.map((id) => `venues/${id}`).sort());
+  });
+});
+
 describe("PerSourceRun", () => {
   it("reports a source that failed before it marked anything, and finish() passes when nothing failed", async () => {
     const env = tempRoot();
@@ -269,7 +322,7 @@ describe("PerSourceRun", () => {
     }
     // The fixture sources used above are registered tier 0 or tier 1 sources.
     const registry = readRegistry(repo);
-    for (const id of ["toronto-park-washrooms", "toronto-street-washrooms", "toronto-crem-washrooms", "ottawa-public-washrooms", "ottawa-park-parking", "gtfs-grt-bus", "gtfs-hsr", "kitchener-public-washrooms", "guelph-restrooms", "windsor-park-washrooms", "statcan-odhf", "statcan-odef", "statcan-odcaf", "ontario-provincial-parks", "ontario-otn-access-points", "ontario-railway-stations", "ontario-public-schools", "ontario-courthouses", "ontario-correctional-institutions"]) {
+    for (const id of ["toronto-park-washrooms", "toronto-street-washrooms", "toronto-crem-washrooms", "ottawa-public-washrooms", "ottawa-park-parking", "gtfs-grt-bus", "gtfs-hsr", "kitchener-public-washrooms", "guelph-restrooms", "windsor-park-washrooms", "statcan-odhf", "statcan-odef", "statcan-odcaf", "ontario-provincial-parks", "ontario-otn-access-points", "ontario-railway-stations", "ontario-public-schools", "ontario-courthouses", "ontario-correctional-institutions", "overture-places", "overture-places-foursquare", "overture-places-alltheplaces"]) {
       expect(registry.sources.some((entry) => entry.id === id), id).toBe(true);
     }
   });

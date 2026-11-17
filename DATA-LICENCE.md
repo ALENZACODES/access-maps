@@ -50,6 +50,18 @@ Town of Oakville datasets (Town Facilities washroom rows and the Oakville Transi
 
 Brampton Transit publishes the GTFS item with `licenseInfo` set to the string `CC BY`. The item does not state a Creative Commons version. Redistribution follows that published statement and includes attribution. The item page is https://www.arcgis.com/home/item.html?id=a355aabd5a8c490186bdce559c9c75fb
 
+<!-- overture start -->
+## Overture Maps Foundation places
+
+`data/venues/overture-places/`, `data/venues/overture-places-foursquare/` and `data/venues/overture-places-alltheplaces/` hold places from the Overture Maps Foundation places theme, release 2026-10-21.0. Overture's Attribution and Licensing page (https://docs.overturemaps.org/attribution/, read 2026-11-16) gives each places source its own licence: CDLA Permissive 2.0 for Meta, Microsoft, PinMeTo, Krick, RenderSEO, DAC, BrightQuery, Birdeye, Uberall and OpenTravel Alliance; Apache 2.0 for Foursquare; CC0 1.0 for AllThePlaces. Every place lists the licence of each of its sources, and every Ontario place in the release had only these three licences, so no place was left out for its licence.
+
+- CDLA Permissive 2.0 lets a recipient use, modify and share the data if the text of the agreement is made available with it: `sources/licences/CDLA-Permissive-2.0.txt`.
+- Apache 2.0 needs a copy of the licence, notice of changes, and the full Foursquare NOTICE: `sources/licences/Apache-2.0.txt` and `sources/licences/foursquare-os-places-NOTICE.txt` (with this repository's notice of changes at the end).
+- CC0 1.0 has no conditions.
+
+The Ontario boundary used to select places is the Land Information Ontario Province layer. Contains information licensed under the Open Government Licence – Ontario. The boundary itself is not stored in this repository. Overture's places theme contains no OpenStreetMap data, so these directories are not ODbL.
+<!-- overture end -->
+
 ## Owner-permitted sources
 
 These sources carry the licence id `owner-permission-2026-11-16`. On 2026-11-16 the repository owner stated in chat that use of these publishers' data is permitted and instructed that it be included. That statement is the basis for including them. It is recorded here as it was given; it is not a licence text from the publisher. Each registry entry says whether a publisher's terms were read and what they say.
