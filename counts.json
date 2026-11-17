@@ -1,17 +1,17 @@
 {
   "definition": "A piece is one field on one record whose value is not UNKNOWN and whose derived flag is not true. UNKNOWN values are gaps. Derived copies are excluded from both pieces and gaps. Section 5.6 counts only tier 2 and tier 3 values toward 500,000. Tier 0 and tier 1 accessibility facts are reported separately and are not verified.",
-  "records": 2006058,
-  "pieces": 11431690,
-  "gaps": 61644341,
+  "records": 2006334,
+  "pieces": 11433044,
+  "gaps": 61652116,
   "derived_excluded": 4207,
   "verified_toward_500k": 0,
-  "accessibility_fact_pieces": 918289,
-  "other_populated_pieces": 9996299,
-  "accessibility_pieces": 918289,
-  "accessibility_gaps": 35280477,
-  "identity_pieces": 9996299,
+  "accessibility_fact_pieces": 918512,
+  "other_populated_pieces": 9997430,
+  "accessibility_pieces": 918512,
+  "accessibility_gaps": 35284388,
+  "identity_pieces": 9997430,
   "context_pieces": 517102,
-  "context_gaps": 5687982,
+  "context_gaps": 5689032,
   "accessibility_definition": "An accessibility fact is a piece whose field is a physical access condition or aid: wheelchair, step count, ramp, door, door width, elevator, kerb, surface, smoothness, incline, slope, changing table, tactile paving, handrail, width, hearing loop, braille, speech output, or automatic door. toilets:wheelchair is stored on the washroom wheelchair field. Legal access, crossing, lighting, fees, foot permission, and washroom audience or supervision are context fields and are counted on their own line. Names, categories, addresses, hours, operators, coordinates, and geometry are counted apart from both.",
   "context_definition": "Context fields are populated values that are not a physical access measurement: access, crossing, lit, foot, fee, changing_table_fee, unisex, male, female, locked, and supervised. They are not accessibility facts and they are not names or geometry.",
   "accessibility_fields": {
@@ -94,18 +94,18 @@
   },
   "by_tranche": {
     "venue": {
-      "records": 859182,
-      "pieces": 6075672,
+      "records": 859209,
+      "pieces": 6075807,
       "accessibility_facts": 121567,
-      "other_populated": 5857615,
+      "other_populated": 5857750,
       "verified": 0,
-      "gaps": 30869154,
+      "gaps": 30870180,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 6075672
+        "0": 6075807
       },
       "gaps_by_tier": {
-        "0": 30869154
+        "0": 30870180
       },
       "pieces_by_source": {
         "ajax-playgrounds": 486,
@@ -114,6 +114,7 @@
         "brampton-recreation-centres": 312,
         "brant-parks": 297,
         "cambridge-play-structures": 2864,
+        "cloca-conservation-areas": 50,
         "cornwall-water-bottle-filling-stations": 30,
         "essex-county-libraries": 120,
         "essex-county-recreational-areas": 1086,
@@ -151,6 +152,7 @@
         "london-off-street-parking": 147,
         "london-park-amenities": 11505,
         "london-parking-inventory": 1360,
+        "lsrca-public-lands": 85,
         "markham-city-facilities": 574,
         "milton-park-amenities": 1299,
         "milton-parking-lots": 567,
@@ -210,58 +212,58 @@
       "pieces_by_retrieved_at": {
         "2026-11-16": 3143651,
         "2026-11-13": 2924533,
-        "2026-11-17": 7488
+        "2026-11-17": 7623
       },
       "gaps_by_retrieved_at": {
         "2026-11-16": 10501539,
         "2026-11-13": 20336059,
-        "2026-11-17": 31556
+        "2026-11-17": 32582
       },
       "gap_fields": {
-        "addr_housenumber": 517006,
-        "addr_street": 509060,
-        "addr_city": 527836,
-        "addr_postcode": 585906,
-        "addr_unit": 851638,
-        "opening_hours": 837514,
-        "level": 848514,
-        "operator": 806307,
-        "brand": 784533,
-        "website": 643999,
-        "wheelchair": 846512,
-        "wheelchair_description": 839085,
-        "entrance": 841549,
-        "automatic_door": 859089,
-        "door": 857147,
-        "door_width": 859182,
-        "ramp": 859153,
-        "ramp_wheelchair": 859182,
-        "ramp_stroller": 859182,
-        "step_count": 859182,
-        "incline": 859182,
-        "kerb": 858996,
-        "kerb_height": 859182,
-        "tactile_paving": 859169,
-        "handrail": 859182,
-        "width": 859152,
-        "access": 771227,
-        "surface": 796086,
-        "smoothness": 859050,
-        "lit": 850647,
-        "braille": 859182,
-        "hearing_loop": 859179,
-        "speech_output": 857734,
-        "stroller": 859131,
-        "capacity_disabled": 855144,
-        "indoor": 856178,
-        "elevator": 859169,
-        "ref": 550607,
+        "addr_housenumber": 517033,
+        "addr_street": 509087,
+        "addr_city": 527863,
+        "addr_postcode": 585933,
+        "addr_unit": 851665,
+        "opening_hours": 837541,
+        "level": 848541,
+        "operator": 806334,
+        "brand": 784560,
+        "website": 644026,
+        "wheelchair": 846539,
+        "wheelchair_description": 839112,
+        "entrance": 841576,
+        "automatic_door": 859116,
+        "door": 857174,
+        "door_width": 859209,
+        "ramp": 859180,
+        "ramp_wheelchair": 859209,
+        "ramp_stroller": 859209,
+        "step_count": 859209,
+        "incline": 859209,
+        "kerb": 859023,
+        "kerb_height": 859209,
+        "tactile_paving": 859196,
+        "handrail": 859209,
+        "width": 859179,
+        "access": 771254,
+        "surface": 796113,
+        "smoothness": 859077,
+        "lit": 850674,
+        "braille": 859209,
+        "hearing_loop": 859206,
+        "speech_output": 857761,
+        "stroller": 859158,
+        "capacity_disabled": 855171,
+        "indoor": 856205,
+        "elevator": 859196,
+        "ref": 550634,
         "category": 15883,
         "name": 405891,
         "category_group": 7607
       },
       "accessibility_pieces": 121567,
-      "accessibility_gaps": 20498801,
+      "accessibility_gaps": 20499449,
       "accessibility_by_field": {
         "capacity_disabled": 4038,
         "wheelchair_description": 20097,
@@ -281,7 +283,7 @@
         "tactile_paving": 13
       },
       "context_pieces": 96490,
-      "context_gaps": 1621874,
+      "context_gaps": 1621928,
       "context_by_field": {
         "access": 87955,
         "lit": 8535
@@ -398,18 +400,18 @@
       }
     },
     "path": {
-      "records": 1107364,
-      "pieces": 5130577,
-      "accessibility_facts": 771774,
-      "other_populated": 3941227,
+      "records": 1107613,
+      "pieces": 5131796,
+      "accessibility_facts": 771997,
+      "other_populated": 3942223,
       "verified": 0,
-      "gaps": 30305071,
+      "gaps": 30311820,
       "derived_excluded": 0,
       "pieces_by_tier": {
-        "0": 5130577
+        "0": 5131796
       },
       "gaps_by_tier": {
-        "0": 30305071
+        "0": 30311820
       },
       "pieces_by_source": {
         "ajax-recreational-trails": 6730,
@@ -418,6 +420,7 @@
         "brant-trails": 510,
         "cambridge-sidewalks": 35174,
         "cambridge-trails": 9615,
+        "cloca-trails": 1219,
         "cornwall-recreational-paths": 1153,
         "cornwall-sidewalks": 9814,
         "essex-county-trails": 668,
@@ -465,50 +468,50 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-16": 1259042,
-        "2026-11-17": 8515,
+        "2026-11-17": 9734,
         "2026-11-13": 3863020
       },
       "gaps_by_retrieved_at": {
         "2026-11-16": 7026718,
-        "2026-11-17": 52573,
+        "2026-11-17": 59322,
         "2026-11-13": 23225780
       },
       "gap_fields": {
-        "footway": 591637,
-        "foot": 1072732,
-        "smoothness": 1081379,
-        "incline": 1092930,
-        "kerb": 1050122,
-        "tactile_paving": 1007929,
-        "wheelchair": 1080737,
-        "wheelchair_description": 1064168,
-        "step_count": 1105326,
-        "handrail": 1104653,
-        "access": 1093884,
-        "max_slope": 1107364,
-        "min_width": 1107364,
-        "stair_count": 1107364,
-        "from_ref": 1107364,
-        "to_ref": 1107364,
-        "crossing": 789815,
-        "pathway_mode": 1107364,
-        "bidirectional": 1107364,
-        "oneway": 1095045,
-        "traversal_time_s": 1107364,
+        "footway": 591886,
+        "foot": 1072981,
+        "smoothness": 1081628,
+        "incline": 1093179,
+        "kerb": 1050371,
+        "tactile_paving": 1008178,
+        "wheelchair": 1080986,
+        "wheelchair_description": 1064417,
+        "step_count": 1105575,
+        "handrail": 1104902,
+        "access": 1094133,
+        "max_slope": 1107613,
+        "min_width": 1107613,
+        "stair_count": 1107613,
+        "from_ref": 1107613,
+        "to_ref": 1107613,
+        "crossing": 790064,
+        "pathway_mode": 1107613,
+        "bidirectional": 1107613,
+        "oneway": 1095294,
+        "traversal_time_s": 1107613,
         "signposted_as": 1105534,
-        "reversed_signposted_as": 1107364,
-        "ramp": 1105992,
-        "indoor": 1104794,
-        "length_m": 1020310,
-        "lit": 1055449,
-        "width": 990663,
-        "surface": 725331,
+        "reversed_signposted_as": 1107613,
+        "ramp": 1106241,
+        "indoor": 1105043,
+        "length_m": 1020559,
+        "lit": 1055698,
+        "width": 990912,
+        "surface": 725357,
         "kind": 365
       },
-      "accessibility_pieces": 771774,
-      "accessibility_gaps": 14731322,
+      "accessibility_pieces": 771997,
+      "accessibility_gaps": 14734585,
       "accessibility_by_field": {
-        "surface": 382033,
+        "surface": 382256,
         "width": 116701,
         "wheelchair_description": 43196,
         "handrail": 2711,
@@ -521,7 +524,7 @@
         "step_count": 2038
       },
       "context_pieces": 417576,
-      "context_gaps": 4011880,
+      "context_gaps": 4012876,
       "context_by_field": {
         "lit": 51915,
         "crossing": 317549,
@@ -695,6 +698,22 @@
         "2026-11-16": 9615
       },
       "accessibility_pieces": 3927
+    },
+    "cloca-trails": {
+      "records": 249,
+      "pieces": 1219,
+      "gaps": 6749,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 1219
+      },
+      "pieces_by_tranche": {
+        "path": 1219
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 1219
+      },
+      "accessibility_pieces": 223
     },
     "cornwall-recreational-paths": {
       "records": 221,
@@ -1786,6 +1805,22 @@
       },
       "accessibility_pieces": 0
     },
+    "cloca-conservation-areas": {
+      "records": 10,
+      "pieces": 50,
+      "gaps": 380,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 50
+      },
+      "pieces_by_tranche": {
+        "venue": 50
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 50
+      },
+      "accessibility_pieces": 0
+    },
     "cornwall-water-bottle-filling-stations": {
       "records": 6,
       "pieces": 30,
@@ -2379,6 +2414,22 @@
       },
       "pieces_by_retrieved_at": {
         "2026-11-16": 1360
+      },
+      "accessibility_pieces": 0
+    },
+    "lsrca-public-lands": {
+      "records": 17,
+      "pieces": 85,
+      "gaps": 646,
+      "derived_excluded": 0,
+      "pieces_by_tier": {
+        "0": 85
+      },
+      "pieces_by_tranche": {
+        "venue": 85
+      },
+      "pieces_by_retrieved_at": {
+        "2026-11-17": 85
       },
       "accessibility_pieces": 0
     },
@@ -3475,8 +3526,8 @@
   "total_shortfall": 500000,
   "distinct_places": {
     "definition": "A place is a venue, washroom or transit record; paths are not places. Records from different sources that the same-place matcher links (data/links/same-place) count as one distinct place. Distinct places = place records in no link cluster + link clusters with at least one record present. Possible duplicates are not merged. A distinct place has a known accessibility fact when at least one of its records has a populated, non-derived accessibility field. \"Only in this source\" counts the distinct places whose every record comes from that source.",
-    "place_records": 898694,
-    "distinct_places": 809388,
+    "place_records": 898721,
+    "distinct_places": 809415,
     "records_joined_by_links": 161034,
     "clusters": 71728,
     "with_known_accessibility_fact": 128167,
@@ -3510,6 +3561,11 @@
         "records": 392,
         "only_in_this_source": 286,
         "shared_with_other_sources": 106
+      },
+      "cloca-conservation-areas": {
+        "records": 10,
+        "only_in_this_source": 10,
+        "shared_with_other_sources": 0
       },
       "cornwall-transit-bus-stops": {
         "records": 308,
@@ -3775,6 +3831,11 @@
         "records": 170,
         "only_in_this_source": 147,
         "shared_with_other_sources": 23
+      },
+      "lsrca-public-lands": {
+        "records": 17,
+        "only_in_this_source": 17,
+        "shared_with_other_sources": 0
       },
       "markham-city-facilities": {
         "records": 82,
@@ -4126,7 +4187,7 @@
       "method": "same-place-v1",
       "current": false,
       "input_digest": "cb75d017a0c2f019d5286c74f37e562837237b168d727098ff23741ec2366af8",
-      "data_digest": "399cffb8d1c982b6cad05b68f36f3f34fae07b8c5342904029f9d5dbfe39f86a",
+      "data_digest": "68559ea13e95716e020d30981545af6d8160861d85f830d2c8fae5b979b28ccd",
       "possible_duplicates": 79451,
       "links_to_missing_records": 0
     }
@@ -4173,6 +4234,22 @@
     {
       "file": "data/paths/cambridge-trails/n43.0_w080.5.ndjson.gz",
       "bytes": 221186
+    },
+    {
+      "file": "data/paths/cloca-trails/n43.5_w079.0.ndjson.gz",
+      "bytes": 47645
+    },
+    {
+      "file": "data/paths/cloca-trails/n43.5_w079.5.ndjson.gz",
+      "bytes": 599
+    },
+    {
+      "file": "data/paths/cloca-trails/n44.0_w079.0.ndjson.gz",
+      "bytes": 37241
+    },
+    {
+      "file": "data/paths/cloca-trails/n44.0_w079.5.ndjson.gz",
+      "bytes": 3453
     },
     {
       "file": "data/paths/cornwall-recreational-paths/n45.0_w075.0.ndjson.gz",
@@ -6547,6 +6624,18 @@
       "bytes": 29041
     },
     {
+      "file": "data/venues/cloca-conservation-areas/n43.5_w079.0.ndjson.gz",
+      "bytes": 1022
+    },
+    {
+      "file": "data/venues/cloca-conservation-areas/n44.0_w079.0.ndjson.gz",
+      "bytes": 758
+    },
+    {
+      "file": "data/venues/cloca-conservation-areas/n44.0_w079.5.ndjson.gz",
+      "bytes": 576
+    },
+    {
       "file": "data/venues/cornwall-water-bottle-filling-stations/n45.0_w075.0.ndjson.gz",
       "bytes": 1077
     },
@@ -7013,6 +7102,14 @@
     {
       "file": "data/venues/london-parking-inventory/n43.0_w081.5.ndjson.gz",
       "bytes": 968
+    },
+    {
+      "file": "data/venues/lsrca-public-lands/n44.0_w079.5.ndjson.gz",
+      "bytes": 1443
+    },
+    {
+      "file": "data/venues/lsrca-public-lands/n44.0_w080.0.ndjson.gz",
+      "bytes": 1022
     },
     {
       "file": "data/venues/markham-city-facilities/n43.5_w079.5.ndjson.gz",
