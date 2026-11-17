@@ -3367,6 +3367,649 @@
   ],
   "illustrative_total_target": 500000,
   "total_shortfall": 500000,
+  "distinct_places": {
+    "definition": "A place is a venue, washroom or transit record; paths are not places. Records from different sources that the same-place matcher links (data/links/same-place) count as one distinct place. Distinct places = place records in no link cluster + link clusters with at least one record present. Possible duplicates are not merged. A distinct place has a known accessibility fact when at least one of its records has a populated, non-derived accessibility field. \"Only in this source\" counts the distinct places whose every record comes from that source.",
+    "place_records": 898223,
+    "distinct_places": 808917,
+    "records_joined_by_links": 161034,
+    "clusters": 71728,
+    "with_known_accessibility_fact": 128132,
+    "by_source": {
+      "ajax-playgrounds": {
+        "records": 81,
+        "only_in_this_source": 0,
+        "shared_with_other_sources": 81
+      },
+      "ajax-town-facilities": {
+        "records": 56,
+        "only_in_this_source": 48,
+        "shared_with_other_sources": 8
+      },
+      "brampton-city-parking": {
+        "records": 5,
+        "only_in_this_source": 2,
+        "shared_with_other_sources": 3
+      },
+      "brampton-recreation-centres": {
+        "records": 39,
+        "only_in_this_source": 6,
+        "shared_with_other_sources": 33
+      },
+      "brant-parks": {
+        "records": 60,
+        "only_in_this_source": 19,
+        "shared_with_other_sources": 41
+      },
+      "cambridge-play-structures": {
+        "records": 392,
+        "only_in_this_source": 286,
+        "shared_with_other_sources": 106
+      },
+      "cornwall-transit-bus-stops": {
+        "records": 308,
+        "only_in_this_source": 308,
+        "shared_with_other_sources": 0
+      },
+      "cornwall-water-bottle-filling-stations": {
+        "records": 6,
+        "only_in_this_source": 5,
+        "shared_with_other_sources": 1
+      },
+      "essex-county-libraries": {
+        "records": 15,
+        "only_in_this_source": 8,
+        "shared_with_other_sources": 7
+      },
+      "essex-county-recreational-areas": {
+        "records": 181,
+        "only_in_this_source": 2,
+        "shared_with_other_sources": 179
+      },
+      "greater-sudbury-playgrounds": {
+        "records": 178,
+        "only_in_this_source": 71,
+        "shared_with_other_sources": 107
+      },
+      "greater-sudbury-recreation": {
+        "records": 499,
+        "only_in_this_source": 387,
+        "shared_with_other_sources": 112
+      },
+      "grey-county-gtr-bus-stops": {
+        "records": 13,
+        "only_in_this_source": 11,
+        "shared_with_other_sources": 2
+      },
+      "gtfs-brampton": {
+        "records": 2872,
+        "only_in_this_source": 2807,
+        "shared_with_other_sources": 65
+      },
+      "gtfs-drt": {
+        "records": 1912,
+        "only_in_this_source": 1908,
+        "shared_with_other_sources": 4
+      },
+      "gtfs-gova": {
+        "records": 1121,
+        "only_in_this_source": 1120,
+        "shared_with_other_sources": 1
+      },
+      "gtfs-grt-bus": {
+        "records": 2265,
+        "only_in_this_source": 2251,
+        "shared_with_other_sources": 14
+      },
+      "gtfs-grt-ion": {
+        "records": 32,
+        "only_in_this_source": 32,
+        "shared_with_other_sources": 0
+      },
+      "gtfs-hsr": {
+        "records": 2353,
+        "only_in_this_source": 35,
+        "shared_with_other_sources": 2318
+      },
+      "gtfs-kingston": {
+        "records": 787,
+        "only_in_this_source": 785,
+        "shared_with_other_sources": 2
+      },
+      "gtfs-ltc": {
+        "records": 1947,
+        "only_in_this_source": 1946,
+        "shared_with_other_sources": 1
+      },
+      "gtfs-ttc": {
+        "records": 9357,
+        "only_in_this_source": 9066,
+        "shared_with_other_sources": 291
+      },
+      "guelph-parking-lots": {
+        "records": 17,
+        "only_in_this_source": 9,
+        "shared_with_other_sources": 8
+      },
+      "guelph-restrooms": {
+        "records": 68,
+        "only_in_this_source": 54,
+        "shared_with_other_sources": 14
+      },
+      "guelph-transit-gtfs": {
+        "records": 622,
+        "only_in_this_source": 622,
+        "shared_with_other_sources": 0
+      },
+      "haldimand-accessible-parking": {
+        "records": 133,
+        "only_in_this_source": 132,
+        "shared_with_other_sources": 1
+      },
+      "haldimand-pedestrian-crossings": {
+        "records": 16,
+        "only_in_this_source": 16,
+        "shared_with_other_sources": 0
+      },
+      "haldimand-traffic-signals": {
+        "records": 117,
+        "only_in_this_source": 117,
+        "shared_with_other_sources": 0
+      },
+      "hamilton-bus-stop-amenities": {
+        "records": 2387,
+        "only_in_this_source": 72,
+        "shared_with_other_sources": 2315
+      },
+      "hamilton-drinking-fountains": {
+        "records": 157,
+        "only_in_this_source": 152,
+        "shared_with_other_sources": 5
+      },
+      "hamilton-park-washrooms": {
+        "records": 73,
+        "only_in_this_source": 66,
+        "shared_with_other_sources": 7
+      },
+      "hastings-county-arenas": {
+        "records": 9,
+        "only_in_this_source": 1,
+        "shared_with_other_sources": 8
+      },
+      "hastings-county-hospitals": {
+        "records": 3,
+        "only_in_this_source": 1,
+        "shared_with_other_sources": 2
+      },
+      "hastings-county-libraries": {
+        "records": 13,
+        "only_in_this_source": 2,
+        "shared_with_other_sources": 11
+      },
+      "hastings-county-municipal-offices": {
+        "records": 17,
+        "only_in_this_source": 7,
+        "shared_with_other_sources": 10
+      },
+      "hastings-county-sports-facilities": {
+        "records": 25,
+        "only_in_this_source": 5,
+        "shared_with_other_sources": 20
+      },
+      "huron-county-entertainment": {
+        "records": 10,
+        "only_in_this_source": 6,
+        "shared_with_other_sources": 4
+      },
+      "huron-county-libraries": {
+        "records": 12,
+        "only_in_this_source": 1,
+        "shared_with_other_sources": 11
+      },
+      "huron-county-parks": {
+        "records": 88,
+        "only_in_this_source": 35,
+        "shared_with_other_sources": 53
+      },
+      "huron-county-places-of-worship": {
+        "records": 86,
+        "only_in_this_source": 30,
+        "shared_with_other_sources": 56
+      },
+      "huron-county-recreation": {
+        "records": 120,
+        "only_in_this_source": 43,
+        "shared_with_other_sources": 77
+      },
+      "huron-county-trail-features": {
+        "records": 38,
+        "only_in_this_source": 38,
+        "shared_with_other_sources": 0
+      },
+      "kingston-accessible-features": {
+        "records": 1003,
+        "only_in_this_source": 896,
+        "shared_with_other_sources": 107
+      },
+      "kingston-parking-lots": {
+        "records": 56,
+        "only_in_this_source": 14,
+        "shared_with_other_sources": 42
+      },
+      "kingston-points-of-interest": {
+        "records": 766,
+        "only_in_this_source": 341,
+        "shared_with_other_sources": 425
+      },
+      "kingston-public-washrooms": {
+        "records": 48,
+        "only_in_this_source": 39,
+        "shared_with_other_sources": 9
+      },
+      "kitchener-accessible-parking": {
+        "records": 53,
+        "only_in_this_source": 51,
+        "shared_with_other_sources": 2
+      },
+      "kitchener-parking-lots": {
+        "records": 51,
+        "only_in_this_source": 39,
+        "shared_with_other_sources": 12
+      },
+      "kitchener-playground-equipment": {
+        "records": 44,
+        "only_in_this_source": 38,
+        "shared_with_other_sources": 6
+      },
+      "kitchener-playgrounds": {
+        "records": 337,
+        "only_in_this_source": 108,
+        "shared_with_other_sources": 229
+      },
+      "kitchener-public-washrooms": {
+        "records": 95,
+        "only_in_this_source": 90,
+        "shared_with_other_sources": 5
+      },
+      "lambton-accessible-facilities": {
+        "records": 81,
+        "only_in_this_source": 62,
+        "shared_with_other_sources": 19
+      },
+      "leeds-grenville-county-offices": {
+        "records": 7,
+        "only_in_this_source": 6,
+        "shared_with_other_sources": 1
+      },
+      "leeds-grenville-municipal-offices": {
+        "records": 13,
+        "only_in_this_source": 3,
+        "shared_with_other_sources": 10
+      },
+      "london-libraries": {
+        "records": 17,
+        "only_in_this_source": 3,
+        "shared_with_other_sources": 14
+      },
+      "london-off-street-parking": {
+        "records": 21,
+        "only_in_this_source": 1,
+        "shared_with_other_sources": 20
+      },
+      "london-park-amenities": {
+        "records": 1225,
+        "only_in_this_source": 798,
+        "shared_with_other_sources": 427
+      },
+      "london-parking-inventory": {
+        "records": 170,
+        "only_in_this_source": 147,
+        "shared_with_other_sources": 23
+      },
+      "markham-city-facilities": {
+        "records": 82,
+        "only_in_this_source": 46,
+        "shared_with_other_sources": 36
+      },
+      "metrolinx-go": {
+        "records": 889,
+        "only_in_this_source": 678,
+        "shared_with_other_sources": 211
+      },
+      "metrolinx-up": {
+        "records": 5,
+        "only_in_this_source": 2,
+        "shared_with_other_sources": 3
+      },
+      "milton-park-amenities": {
+        "records": 164,
+        "only_in_this_source": 19,
+        "shared_with_other_sources": 145
+      },
+      "milton-parking-lots": {
+        "records": 57,
+        "only_in_this_source": 52,
+        "shared_with_other_sources": 5
+      },
+      "milton-transit-gtfs": {
+        "records": 417,
+        "only_in_this_source": 412,
+        "shared_with_other_sources": 5
+      },
+      "mto-picnic-parks": {
+        "records": 168,
+        "only_in_this_source": 7,
+        "shared_with_other_sources": 161
+      },
+      "newmarket-landmarks": {
+        "records": 35,
+        "only_in_this_source": 19,
+        "shared_with_other_sources": 16
+      },
+      "newmarket-park-features": {
+        "records": 281,
+        "only_in_this_source": 174,
+        "shared_with_other_sources": 107
+      },
+      "newmarket-trail-points": {
+        "records": 268,
+        "only_in_this_source": 230,
+        "shared_with_other_sources": 38
+      },
+      "niagara-falls-playgrounds": {
+        "records": 82,
+        "only_in_this_source": 14,
+        "shared_with_other_sources": 68
+      },
+      "oakville-town-washrooms": {
+        "records": 21,
+        "only_in_this_source": 20,
+        "shared_with_other_sources": 1
+      },
+      "oakville-transit-gtfs": {
+        "records": 1163,
+        "only_in_this_source": 1147,
+        "shared_with_other_sources": 16
+      },
+      "ontario-alcohol-retail-locations": {
+        "records": 9180,
+        "only_in_this_source": 4420,
+        "shared_with_other_sources": 4760
+      },
+      "ontario-correctional-institutions": {
+        "records": 25,
+        "only_in_this_source": 7,
+        "shared_with_other_sources": 18
+      },
+      "ontario-courthouses": {
+        "records": 79,
+        "only_in_this_source": 64,
+        "shared_with_other_sources": 15
+      },
+      "ontario-fishing-access-points": {
+        "records": 2432,
+        "only_in_this_source": 47,
+        "shared_with_other_sources": 2385
+      },
+      "ontario-moh-service-locations": {
+        "records": 11625,
+        "only_in_this_source": 3651,
+        "shared_with_other_sources": 7974
+      },
+      "ontario-official-airports": {
+        "records": 314,
+        "only_in_this_source": 313,
+        "shared_with_other_sources": 1
+      },
+      "ontario-otn-access-points": {
+        "records": 853,
+        "only_in_this_source": 853,
+        "shared_with_other_sources": 0
+      },
+      "ontario-private-schools": {
+        "records": 1673,
+        "only_in_this_source": 1222,
+        "shared_with_other_sources": 451
+      },
+      "ontario-provincial-parks": {
+        "records": 347,
+        "only_in_this_source": 27,
+        "shared_with_other_sources": 320
+      },
+      "ontario-public-schools": {
+        "records": 4943,
+        "only_in_this_source": 216,
+        "shared_with_other_sources": 4727
+      },
+      "ontario-railway-stations": {
+        "records": 171,
+        "only_in_this_source": 154,
+        "shared_with_other_sources": 17
+      },
+      "ontario-seniors-active-living-centres": {
+        "records": 299,
+        "only_in_this_source": 102,
+        "shared_with_other_sources": 197
+      },
+      "orangeville-parks": {
+        "records": 42,
+        "only_in_this_source": 7,
+        "shared_with_other_sources": 35
+      },
+      "oshawa-community-centres": {
+        "records": 20,
+        "only_in_this_source": 5,
+        "shared_with_other_sources": 15
+      },
+      "osm-ontario": {
+        "records": 545524,
+        "only_in_this_source": 492751,
+        "shared_with_other_sources": 52773
+      },
+      "ottawa-drinking-fountains": {
+        "records": 112,
+        "only_in_this_source": 109,
+        "shared_with_other_sources": 3
+      },
+      "ottawa-library-locations": {
+        "records": 34,
+        "only_in_this_source": 16,
+        "shared_with_other_sources": 18
+      },
+      "ottawa-park-parking": {
+        "records": 408,
+        "only_in_this_source": 51,
+        "shared_with_other_sources": 357
+      },
+      "ottawa-parks": {
+        "records": 1378,
+        "only_in_this_source": 109,
+        "shared_with_other_sources": 1269
+      },
+      "ottawa-parks-inventory": {
+        "records": 7916,
+        "only_in_this_source": 2310,
+        "shared_with_other_sources": 5606
+      },
+      "ottawa-public-washrooms": {
+        "records": 186,
+        "only_in_this_source": 163,
+        "shared_with_other_sources": 23
+      },
+      "ottawa-recreation-facilities": {
+        "records": 371,
+        "only_in_this_source": 262,
+        "shared_with_other_sources": 109
+      },
+      "overture-places": {
+        "records": 179003,
+        "only_in_this_source": 144435,
+        "shared_with_other_sources": 34568
+      },
+      "overture-places-alltheplaces": {
+        "records": 3782,
+        "only_in_this_source": 2814,
+        "shared_with_other_sources": 968
+      },
+      "overture-places-foursquare": {
+        "records": 31138,
+        "only_in_this_source": 28185,
+        "shared_with_other_sources": 2953
+      },
+      "pickering-facilities": {
+        "records": 28,
+        "only_in_this_source": 12,
+        "shared_with_other_sources": 16
+      },
+      "pickering-parks": {
+        "records": 201,
+        "only_in_this_source": 54,
+        "shared_with_other_sources": 147
+      },
+      "quinte-west-parks": {
+        "records": 126,
+        "only_in_this_source": 88,
+        "shared_with_other_sources": 38
+      },
+      "statcan-odcaf": {
+        "records": 1423,
+        "only_in_this_source": 920,
+        "shared_with_other_sources": 503
+      },
+      "statcan-odef": {
+        "records": 5146,
+        "only_in_this_source": 346,
+        "shared_with_other_sources": 4800
+      },
+      "statcan-odhf": {
+        "records": 11021,
+        "only_in_this_source": 3638,
+        "shared_with_other_sources": 7383
+      },
+      "statcan-odsrf": {
+        "records": 27464,
+        "only_in_this_source": 12911,
+        "shared_with_other_sources": 14553
+      },
+      "sudbury-fieldhouses": {
+        "records": 61,
+        "only_in_this_source": 57,
+        "shared_with_other_sources": 4
+      },
+      "thunder-bay-city-facilities": {
+        "records": 62,
+        "only_in_this_source": 43,
+        "shared_with_other_sources": 19
+      },
+      "toronto-accessible-parking-stalls": {
+        "records": 669,
+        "only_in_this_source": 499,
+        "shared_with_other_sources": 170
+      },
+      "toronto-community-centre-washrooms": {
+        "records": 9,
+        "only_in_this_source": 9,
+        "shared_with_other_sources": 0
+      },
+      "toronto-crem-washrooms": {
+        "records": 119,
+        "only_in_this_source": 119,
+        "shared_with_other_sources": 0
+      },
+      "toronto-drinking-fountains": {
+        "records": 802,
+        "only_in_this_source": 469,
+        "shared_with_other_sources": 333
+      },
+      "toronto-library-branches": {
+        "records": 182,
+        "only_in_this_source": 79,
+        "shared_with_other_sources": 103
+      },
+      "toronto-park-washrooms": {
+        "records": 355,
+        "only_in_this_source": 117,
+        "shared_with_other_sources": 238
+      },
+      "toronto-parks-recreation-facilities": {
+        "records": 1801,
+        "only_in_this_source": 193,
+        "shared_with_other_sources": 1608
+      },
+      "toronto-street-washrooms": {
+        "records": 4,
+        "only_in_this_source": 1,
+        "shared_with_other_sources": 3
+      },
+      "toronto-traffic-signals": {
+        "records": 2563,
+        "only_in_this_source": 2563,
+        "shared_with_other_sources": 0
+      },
+      "waterloo-parking-lots": {
+        "records": 31,
+        "only_in_this_source": 22,
+        "shared_with_other_sources": 9
+      },
+      "waterloo-playgrounds": {
+        "records": 83,
+        "only_in_this_source": 0,
+        "shared_with_other_sources": 83
+      },
+      "welland-public-washrooms": {
+        "records": 3,
+        "only_in_this_source": 1,
+        "shared_with_other_sources": 2
+      },
+      "whitby-parks": {
+        "records": 174,
+        "only_in_this_source": 51,
+        "shared_with_other_sources": 123
+      },
+      "whitby-town-facilities": {
+        "records": 27,
+        "only_in_this_source": 10,
+        "shared_with_other_sources": 17
+      },
+      "windsor-bus-stops": {
+        "records": 1425,
+        "only_in_this_source": 69,
+        "shared_with_other_sources": 1356
+      },
+      "windsor-drinking-fountains": {
+        "records": 16,
+        "only_in_this_source": 16,
+        "shared_with_other_sources": 0
+      },
+      "windsor-park-washrooms": {
+        "records": 42,
+        "only_in_this_source": 35,
+        "shared_with_other_sources": 7
+      },
+      "windsor-playgrounds": {
+        "records": 131,
+        "only_in_this_source": 1,
+        "shared_with_other_sources": 130
+      },
+      "windsor-transit-gtfs": {
+        "records": 1464,
+        "only_in_this_source": 108,
+        "shared_with_other_sources": 1356
+      },
+      "york-region-yrt-bus-stops": {
+        "records": 4827,
+        "only_in_this_source": 4497,
+        "shared_with_other_sources": 330
+      }
+    },
+    "links": {
+      "method": "same-place-v1",
+      "current": true,
+      "input_digest": "cb75d017a0c2f019d5286c74f37e562837237b168d727098ff23741ec2366af8",
+      "data_digest": "cb75d017a0c2f019d5286c74f37e562837237b168d727098ff23741ec2366af8",
+      "possible_duplicates": 79451,
+      "links_to_missing_records": 0
+    }
+  },
   "alerts": {
     "records": 32,
     "elevator": 3,

@@ -13,6 +13,7 @@ import { readRegistry, type SourceEntry } from "../registry.js";
 import { checkRecord } from "../failsafe/record-check.js";
 import { failsafeLog } from "../failsafe/report.js";
 import { pmtilesBounds, TILE_FILE_PATTERN } from "../tiles/build.js";
+import { buildPackLinks } from "./links.js";
 
 /** Largest file the pack lists (25 MiB). The same value as MAX_TILE_FILE_BYTES in src/tiles/build.ts. */
 export const PACK_FILE_LIMIT = 25 * 1024 * 1024;
@@ -177,7 +178,7 @@ function sourceCommit(repoRoot: string): string {
   catch { return "2c01751faf39854bb849dae00b804cf881e72287"; }
 }
 
-const NON_PARTITION_DIRS = new Set(["alerts", "tiles", "schedules"]);
+const NON_PARTITION_DIRS = new Set(["alerts", "tiles", "schedules", "links"]);
 
 export interface WithheldPart {
   path: string;
@@ -284,6 +285,8 @@ export async function buildWebPack(options: {
     withheld,
   };
   await mkdir(path.join(out, "search"), { recursive: true });
+  /** tranche|id of every record in a packed part, with its cell: the only records links may name. */
+  const packed = new Map<string, string>();
   for (const cell of [...groups.keys()].sort()) {
     const parts = groups.get(cell)!.sort((a, b) => a.relative.localeCompare(b.relative, "en"));
     const output = path.join(out, "search", `${cell}.json.gz`);
@@ -306,6 +309,7 @@ export async function buildWebPack(options: {
         const { bytes, sha256 } = checked;
         const partCount = checked.hits.length;
         for (const hit of checked.hits) {
+          packed.set(`${hit.tranche}|${hit.id}`, cell);
           if (count) await write(gzip, ",");
           await write(gzip, JSON.stringify(hit));
           count++;
@@ -374,6 +378,8 @@ export async function buildWebPack(options: {
       manifest.tiles[band[1] ? `${family}/${band[1]}` : family] = { path: relative, bytes: size, sha256, licence, bbox };
     }
   }
+  const links = await buildPackLinks({ dataRoot, out, packed, limit: LIMIT, digest, withhold });
+  if (links) manifest.links = links;
   const manifestFile = path.join(out, "manifest.json");
   await mkdir(out, { recursive: true });
   await writeFile(`${manifestFile}.tmp`, `${JSON.stringify(manifest, null, 2)}\n`);
