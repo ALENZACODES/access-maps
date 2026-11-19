@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; img-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+  <title>Attribution placement review</title>
+  <link rel="stylesheet" href="./obligation.css">
+  <script type="module" src="./obligation-route.mjs"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <header><h1 id="title">Attribution placement review</h1><p id="intro">Compare source notices and the pages where they appear using files on your device.</p></header>
+  <main id="main">
+    <section aria-labelledby="input-heading">
+      <h2 id="input-heading">Local records</h2>
+      <div class="field"><label id="language-label" for="language">Language</label><select id="language"><option value="en">English</option><option value="fr">Français</option></select></div>
+      <div class="field"><label id="current-label" for="current">Current register JSON</label><input type="file" id="current" accept=".json,application/json"></div>
+      <div class="field"><label id="previous-label" for="previous">Earlier register JSON (optional)</label><input type="file" id="previous" accept=".json,application/json"></div>
+      <div class="field"><label id="pairs-label" for="pairs">Require EN/FR companion pages</label><input type="checkbox" id="pairs"></div>
+      <button id="run" type="button">Inspect placements</button>
+      <p id="privacy">All records stay in this browser session. No files are uploaded.</p>
+    </section>
+    <section aria-labelledby="result-heading"><h2 id="result-heading">Results</h2>
+      <p id="status" role="status" aria-live="polite">Choose the current register to begin.</p>
+      <div id="actions" aria-label="Report actions">
+        <button id="save-text" type="button" disabled>Save text</button>
+        <button id="save-json" type="button" disabled>Save JSON</button>
+        <button id="save-html" type="button" disabled>Save HTML</button>
+        <button id="print" type="button" disabled>Print</button>
+      </div>
+      <div id="report"></div>
+    </section>
+  </main>
+  <footer><p id="disclaimer">These findings describe supplied evidence, not actual accessibility conditions.</p></footer>
+</body>
+</html>
