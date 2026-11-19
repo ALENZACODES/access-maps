@@ -19,7 +19,7 @@ const MAX_BYTES = 32 * 1024 * 1024;
 const DAY_MS = 86_400_000;
 const ID = /^[a-z][a-z0-9]*(?:[-_][a-z0-9]+)*$/;
 const DIGEST = /^[a-f0-9]{64}$/;
-const UNSAFE_COPY = /[\u0000-\u001f\u007f]|<\s*\/?\s*[a-z]|(?:javascript|data)\s*:/i;
+const UNSAFE_COPY = /\p{Cc}|<\s*\/?\s*[a-z]|(?:javascript|data)\s*:/i;
 const UNSAFE_PERSONAL = /[\w.+-]+@[\w.-]+\.[a-z]{2,}|\b(?:password|token|api[-_]?key|private[-_]?key)\s*[:=]/i;
 const ASSERTIVE = /\b(?:guaranteed|real[- ]time|officially approved|partnership|garanti|temps réel|partenariat)\b/i;
 
@@ -51,7 +51,7 @@ function dateNumber(value) {
 }
 function pathSafe(value) {
   if (typeof value !== 'string' || value.length === 0 || value.length > 320 ||
-      value.startsWith('/') || /[\\%?#:\u0000-\u001f\u007f]/.test(value)) return false;
+      value.startsWith('/') || /[\\%?#:]|\p{Cc}/.test(value)) return false;
   return value.split('/').every(part => part !== '' && part !== '.' && part !== '..');
 }
 function frSpacing(value) {
