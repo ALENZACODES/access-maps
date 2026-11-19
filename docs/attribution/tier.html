@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'none'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+  <title>Attribution evidence tiers</title>
+  <link rel="stylesheet" href="./tier.css">
+  <script type="module" src="./tier-route.mjs"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <header>
+    <h1 id="heading">Attribution evidence tiers</h1>
+    <p id="intro">Review locally supplied source and licence evidence. Unknown information stays UNKNOWN.</p>
+  </header>
+  <main id="main" tabindex="-1">
+    <form id="controls" autocomplete="off">
+      <label id="language-label" for="language">Language:</label>
+      <select id="language" name="language"><option value="en">English</option><option value="fr">Français</option></select>
+      <label id="current-label" for="current">Current release JSON</label>
+      <input id="current" type="file" accept=".json,application/json">
+      <label id="previous-label" for="previous">Previous release JSON (optional)</label>
+      <input id="previous" type="file" accept=".json,application/json">
+      <button id="review" type="submit">Review release</button>
+      <button id="save-text" type="button" disabled>Save text report</button>
+      <button id="save-html" type="button" disabled>Save HTML report</button>
+      <button id="save-json" type="button" disabled>Save JSON report</button>
+    </form>
+    <p id="status" role="status" aria-live="polite">Choose a local JSON file. Nothing is sent to a server.</p>
+    <section id="summary" aria-labelledby="summary-title">
+      <h2 id="summary-title">Summary</h2>
+      <p id="summary-body">No report loaded.</p>
+    </section>
+    <section id="details" aria-labelledby="details-title">
+      <h2 id="details-title">Findings</h2>
+      <ol id="finding-list"></ol>
+    </section>
+    <section id="sources" aria-labelledby="sources-title">
+      <h2 id="sources-title">Source records</h2>
+      <div id="source-list"></div>
+    </section>
+    <section id="surfaces" aria-labelledby="surfaces-title">
+      <h2 id="surfaces-title">Publication surfaces</h2>
+      <div id="surface-list"></div>
+    </section>
+  </main>
+  <footer><p id="disclaimer">This page describes source evidence. It does not assess the accessibility of places or services.</p></footer>
+</body>
+</html>
