@@ -1,0 +1,22 @@
+:root{font-family:system-ui,-apple-system,sans-serif;color-scheme:light dark;line-height:1.55}
+body{max-width:74rem;margin:0 auto;padding:1.25rem;background:Canvas;color:CanvasText}
+h1,h2,h3{line-height:1.2}
+.controls{display:grid;grid-template-columns:minmax(9rem,20rem) minmax(12rem,1fr);gap:0.65rem;align-items:center}
+.controls label{font-weight:600}
+.controls input,.controls select,.controls button{min-height:44px;min-width:44px;font:inherit;padding:0.45rem 0.7rem}
+.controls button{justify-self:start;border:2px solid currentColor;background:Canvas;color:CanvasText;border-radius:0.3rem;cursor:pointer}
+.controls button[disabled]{opacity:.6;cursor:not-allowed}
+:focus-visible{outline:3px solid Highlight;outline-offset:3px}
+.skip{position:absolute;left:-100vw;top:0;padding:0.7rem;background:Canvas;color:CanvasText}
+.skip:focus{left:1rem;top:1rem}
+#status{border-inline-start:4px solid currentColor;padding:.8rem 1rem}
+article{border:1px solid GrayText;padding:1rem;margin-block:1rem;overflow-wrap:anywhere}
+pre{white-space:pre-wrap;overflow-wrap:anywhere}
+dl{display:grid;grid-template-columns:minmax(10rem,14rem) 1fr;gap:.5rem}
+dt{font-weight:bold}dd{margin:0}
+a{display:inline-flex;min-height:44px;min-width:44px;align-items:center}
+li{padding-block:.45rem}
+@media(max-width:48rem){.controls,dl{grid-template-columns:1fr}.controls button{width:100%}}
+@media(forced-colors:active){.controls button{border:2px solid ButtonText}#status{border-color:CanvasText}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:0s!important;animation-duration:0s!important}}
+@media print{.controls,.skip,#introduction{display:none}body{max-width:none;padding:0}article{break-inside:avoid}}
