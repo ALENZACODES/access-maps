@@ -1,0 +1,136 @@
+.route-evidence-panel {
+  border-block: 2px solid #244536;
+  padding: 1rem 0;
+  margin-block: 1.5rem;
+  color: #1c1915;
+  background: #fffdf8;
+}
+.route-evidence-panel h3,
+.route-evidence-panel h4,
+.route-evidence-panel h5 {
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+.route-evidence-panel button,
+.route-evidence-panel input,
+.route-evidence-panel select,
+.route-evidence-panel summary {
+  min-height: 44px;
+  min-width: 44px;
+  font: inherit;
+}
+.route-evidence-panel button,
+.route-evidence-panel select,
+.route-evidence-panel input {
+  border: 2px solid #244536;
+  border-radius: 0.25rem;
+  padding: 0.55rem 0.75rem;
+  background: #fff;
+  color: #182c23;
+}
+.route-evidence-panel button:focus-visible,
+.route-evidence-panel input:focus-visible,
+.route-evidence-panel select:focus-visible,
+.route-evidence-panel summary:focus-visible {
+  outline: 3px solid #0b3a82;
+  outline-offset: 3px;
+}
+.route-evidence-body {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.route-evidence-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid #647469;
+}
+.route-evidence-filters label,
+.route-evidence-sort {
+  display: grid;
+  align-content: start;
+  gap: 0.35rem;
+}
+.route-evidence-option-list {
+  display: grid;
+  gap: 1rem;
+}
+.route-evidence-option {
+  padding: 1rem;
+  border: 1px solid #647469;
+  background: #fff;
+}
+.route-evidence-option > header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: baseline;
+}
+.route-evidence-outcome {
+  border-left: 5px solid #647469;
+  padding-left: 0.75rem;
+  font-weight: 700;
+}
+.route-evidence-outcome-supported { border-color: #167341; }
+.route-evidence-outcome-conditional,
+.route-evidence-outcome-unknown { border-color: #ac7400; }
+.route-evidence-outcome-blocked { border-color: #a6251b; }
+.route-evidence-issues {
+  list-style: none;
+  display: grid;
+  gap: 0.75rem;
+  padding: 0;
+}
+.route-evidence-issue {
+  padding: 0.75rem;
+  border-left: 4px solid #647469;
+  background: #f7f6f1;
+}
+.route-evidence-blocking { border-color: #a6251b; }
+.route-evidence-caution { border-color: #ac7400; }
+.route-evidence-information { border-color: #365ca0; }
+.route-evidence-issue-title { font-weight: 700; }
+.route-evidence-issue dl,
+.route-evidence-segment dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 0.4rem;
+}
+.route-evidence-issue dl div,
+.route-evidence-segment dl div {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem;
+}
+.route-evidence-panel dt { font-weight: 700; }
+.route-evidence-panel dd { margin: 0; overflow-wrap: anywhere; }
+.route-evidence-segments { display: grid; gap: 0.75rem; }
+.route-evidence-segment { padding: 0.5rem; border: 1px solid #647469; }
+.route-evidence-status-unknown { border-left: 5px solid #ac7400; }
+.route-evidence-status-no { border-left: 5px solid #a6251b; }
+.route-evidence-status-yes { border-left: 5px solid #167341; }
+.route-evidence-panel details { margin-top: 0.75rem; }
+.route-evidence-panel summary { cursor: pointer; padding: 0.55rem; }
+.route-evidence-scroll { overflow-x: auto; max-width: 100%; }
+.route-evidence-panel table { border-collapse: collapse; min-width: 35rem; width: 100%; }
+.route-evidence-panel th,
+.route-evidence-panel td { border: 1px solid #647469; padding: 0.5rem; text-align: left; }
+.route-evidence-panel caption { font-weight: 700; text-align: left; }
+@media (max-width: 600px) {
+  .route-evidence-option { padding: 0.75rem; }
+  .route-evidence-issue dl div,
+  .route-evidence-segment dl div { grid-template-columns: 1fr; }
+}
+@media (forced-colors: active) {
+  .route-evidence-option,
+  .route-evidence-issue,
+  .route-evidence-outcome { border: 2px solid CanvasText; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .route-evidence-panel * { animation: none !important; transition: none !important; }
+}
+
+.route-evidence-export-label { display: grid; gap: 0.5rem; }
+.route-evidence-export-label textarea { width: 100%; max-width: 100%; font: 0.875rem/1.4 monospace; min-height: 8rem; }

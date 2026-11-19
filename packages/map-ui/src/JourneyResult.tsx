@@ -3,6 +3,7 @@ import { displayValue, prototypeLabel, toMapFeatures, type Journey, type Journey
 import { AccessibleMap } from "./AccessibleMap.js";
 import { AttributionSources } from "./AttributionSources.js";
 import { mapCopy, statusLabel } from "./i18n.js";
+import { RouteEvidencePanel } from "./RouteEvidencePanel.js";
 
 export function JourneyResult({ plan }: { plan: JourneyPlan }) {
   const text = mapCopy(plan.locale);
@@ -85,6 +86,7 @@ export function JourneyResult({ plan }: { plan: JourneyPlan }) {
           ))}
         </section>
       ) : null}
+      <RouteEvidencePanel key={plan.id} plan={plan} />
       <AccessibleMap
         features={features}
         locale={plan.locale}
