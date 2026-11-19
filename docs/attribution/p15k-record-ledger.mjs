@@ -20,7 +20,7 @@ const SILOS = new Set(['open', 'odbl']);
 const FEATURES = new Set(['entrance', 'washroom', 'lift', 'parking', 'path', 'seating']);
 const IDENTIFIER = /^[a-z][a-z0-9]*(?:[-_][a-z0-9]+)*$/;
 const HEX_DIGEST = /^[a-f0-9]{64}$/;
-const INVALID_COPY = /<\s*\/?\s*[a-z]|javascript\s*:|data\s*:|\bon\w+\s*=|[\u0000-\u001f\u007f]/i;
+const INVALID_COPY = /<\s*\/?\s*[a-z]|javascript\s*:|data\s*:|\bon\w+\s*=|\p{Cc}/i;
 const PRIVATE_COPY = /[\w.+-]+@[\w.-]+\.[a-z]{2,}|\b(?:password|token|secret|apikey)\s*[:=]/i;
 const OVERCLAIM_COPY = /\b(?:guaranteed|real[- ]time|partnership|garanti|temps réel|partenariat)\b/i;
 
