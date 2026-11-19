@@ -90,7 +90,7 @@ function day(value) {
 }
 function localPath(value) {
   return typeof value === 'string' && value.length > 0 && value.length <= 400 &&
-    !value.startsWith('/') && !/[\\%?#:\u0000-\u001f\u007f]/.test(value) &&
+    !value.startsWith('/') && !/[\\%?#:]|\p{Cc}/.test(value) &&
     value.split('/').every(segment => segment !== '' && segment !== '.' && segment !== '..');
 }
 function frenchSpace(value) {
@@ -104,7 +104,7 @@ function frenchSpace(value) {
 }
 function safeText(value) {
   return typeof value === 'string' && value.length > 0 && value.length <= 280 &&
-    value.trim() === value && !/[\u0000-\u001f\u007f]/.test(value) &&
+    value.trim() === value && !/\p{Cc}/.test(value) &&
     !/<\s*\/?\s*[a-z]|(?:javascript|data)\s*:|\bon\w+\s*=/i.test(value) &&
     !/[\w.+-]+@[\w.-]+\.[a-z]{2,}|\b(?:password|token|apikey|privatekey)\s*[:=]/i.test(value) &&
     !/\b(?:guaranteed|real[- ]time|partnership|garanti|temps réel|partenariat)\b/i.test(value);
