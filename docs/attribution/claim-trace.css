@@ -1,0 +1,126 @@
+:root {
+  color-scheme: light dark;
+}
+
+html {
+  font-family: system-ui, sans-serif;
+  line-height: 1.55;
+  scroll-behavior: smooth;
+}
+
+body {
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 1rem;
+  background: Canvas;
+  color: CanvasText;
+}
+
+h1, h2, h3 {
+  line-height: 1.3;
+}
+
+header, section, footer {
+  margin-bottom: 1.25rem;
+}
+
+section {
+  border: 1px solid GrayText;
+  border-radius: .5rem;
+  padding: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  margin-bottom: 1rem;
+}
+
+button, select, input[type="file"], a {
+  min-height:44px;
+  min-width:44px;
+  box-sizing: border-box;
+}
+
+button, select, input {
+  font: inherit;
+  padding: .6rem .8rem;
+}
+
+button {
+  border: 2px solid ButtonText;
+  border-radius: .3rem;
+  background: ButtonFace;
+  color: ButtonText;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: .6;
+}
+
+:focus-visible {
+  outline: 3px solid Highlight;
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -10rem;
+  left: 1rem;
+  z-index: 5;
+  background: Canvas;
+  color: CanvasText;
+  padding: .6rem;
+}
+
+.skip-link:focus {
+  top: .5rem;
+}
+
+.report-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin: 1rem 0;
+}
+
+#results article {
+  border: 1px solid GrayText;
+  border-radius: .35rem;
+  padding: .9rem;
+  margin: 1rem 0;
+  overflow-wrap: anywhere;
+}
+
+#results pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+#results li {
+  padding: .3rem 0;
+}
+
+@media (max-width: 42rem) {
+  body { padding: .6rem; }
+  section { padding: .75rem; }
+  .report-actions { flex-direction: column; align-items: stretch; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0s !important; animation-duration: 0s !important; }
+}
+
+@media (forced-colors: active) {
+  :focus-visible { outline: 3px solid Highlight; }
+}
+
+@media print {
+  .skip-link, .field, button, select, input, .report-actions { display: none !important; }
+  section, #results article { border: 0; }
+  body { max-width: none; }
+}

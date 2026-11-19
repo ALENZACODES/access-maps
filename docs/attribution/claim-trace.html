@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'none'; connect-src 'none'; form-action 'none'; object-src 'none'; base-uri 'none'">
+  <title>Claim and source trace</title>
+  <link rel="stylesheet" href="./claim-trace.css">
+  <script type="module" src="./claim-trace-route.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header>
+    <h1 id="title">Claim and source trace</h1>
+    <p id="intro">Review local source evidence without uploading it.</p>
+  </header>
+  <main id="main">
+    <section aria-labelledby="input-title">
+      <h2 id="input-title">Local source records</h2>
+      <div class="field">
+        <label id="language-label" for="language">Language:</label>
+        <select id="language" name="language">
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+        </select>
+      </div>
+      <div class="field">
+        <label id="current-label" for="current">Choose a claim record</label>
+        <input id="current" name="current" type="file" accept=".json,application/json">
+      </div>
+      <div class="field">
+        <label id="previous-label" for="previous">Choose an earlier record (optional)</label>
+        <input id="previous" name="previous" type="file" accept=".json,application/json">
+      </div>
+      <button id="run" type="button">Review evidence</button>
+      <p id="status" role="status" aria-live="polite">Choose a local JSON file to begin.</p>
+    </section>
+    <section aria-labelledby="report-title">
+      <h2 id="report-title">Local report</h2>
+      <div class="report-actions" role="group" aria-label="Report actions">
+        <button id="save-text" type="button" disabled>Save text report</button>
+        <button id="save-json" type="button" disabled>Save JSON report</button>
+        <button id="save-html" type="button" disabled>Save HTML report</button>
+        <button id="print" type="button" disabled>Print results</button>
+      </div>
+      <div id="results" aria-live="off"></div>
+    </section>
+  </main>
+  <footer>
+    <p id="disclaimer">This page describes submitted evidence. It does not assess actual accessibility or service conditions.</p>
+  </footer>
+</body>
+</html>
