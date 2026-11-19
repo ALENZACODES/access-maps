@@ -1,0 +1,28 @@
+:root { color-scheme: light dark; }
+html { font: 100%/1.55 system-ui, sans-serif; scroll-behavior: smooth; }
+body { max-width: 78rem; margin: auto; padding: 1rem; color: CanvasText; background: Canvas; }
+h1, h2, h3, h4 { line-height: 1.28; }
+header, main, section, footer { margin-block: 1rem; }
+section { border: 1px solid GrayText; border-radius: .5rem; padding: 1rem; }
+.field { display: flex; flex-direction: column; gap: .4rem; margin-block: .75rem; }
+button, select, input[type=file], input[type=checkbox], a { min-height:44px; min-width:44px; }
+button, select, input { font: inherit; padding: .5rem .75rem; }
+input[type=checkbox] { accent-color: Highlight; align-self: start; }
+button { cursor: pointer; border: 2px solid ButtonText; border-radius: .3rem; background: ButtonFace; color: ButtonText; }
+button:disabled { cursor: not-allowed; opacity: .6; }
+a { display: inline-flex; align-items: center; }
+:focus-visible { outline: 3px solid Highlight; outline-offset: 3px; }
+.skip { position: absolute; top: -10rem; left: 1rem; background: Canvas; padding: .5rem; z-index: 2; }
+.skip:focus { top: 0; }
+#report-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-block: 1rem; }
+#report article { border: 1px solid GrayText; border-radius: .4rem; padding: .8rem; margin-block: 1rem; overflow-wrap: anywhere; }
+#report ul { padding-inline-start: 1.5rem; }
+#report li { padding-block: .4rem; overflow-wrap: anywhere; }
+#report dl { display: grid; grid-template-columns: minmax(10rem, 1fr) minmax(0, 2fr); gap: .4rem; }
+#report dt { font-weight: 700; }
+#report dd { margin: 0; overflow-wrap: anywhere; white-space: pre-wrap; }
+#report pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+@media (max-width:42rem) { #report dl { display: block; } #report dd { margin-block-end: .7rem; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition-duration: 0s !important; } }
+@media (forced-colors: active) { :focus-visible { outline: 3px solid Highlight; } button { border: 2px solid ButtonText; } }
+@media print { #report-actions, .field, #run, .skip { display: none !important; } section, article { border: none !important; break-inside: avoid; } body { max-width: none; } }
