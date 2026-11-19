@@ -51,7 +51,7 @@ function dateNumber(value) {
 }
 function pathSafe(value) {
   if (typeof value !== 'string' || value.length === 0 || value.length > 320 ||
-      value.startsWith('/') || /[\\%?#:]|\p{Cc}/.test(value)) return false;
+      value.startsWith('/') || /[\\%?#:]|\p{Cc}/u.test(value)) return false;
   return value.split('/').every(part => part !== '' && part !== '.' && part !== '..');
 }
 function frSpacing(value) {
