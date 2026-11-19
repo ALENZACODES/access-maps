@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'none'; connect-src 'none'; form-action 'none'; object-src 'none'; base-uri 'none'">
+<title>Attribution correction review</title>
+<link rel="stylesheet" href="./correction.css">
+<script type="module" src="./correction-route.mjs"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header><h1 id="title">Attribution correction review</h1><p id="intro">Review local source-correction records.</p></header>
+<main id="main">
+<section aria-labelledby="input-heading">
+<h2 id="input-heading">Local correction registers</h2>
+<div class="field"><label id="language-label" for="language">Language:</label><select id="language"><option value="en">English</option><option value="fr">Français</option></select></div>
+<div class="field"><label id="current-label" for="current">Choose current register</label><input id="current" type="file" accept=".json,application/json"></div>
+<div class="field"><label id="previous-label" for="previous">Choose earlier register (optional)</label><input id="previous" type="file" accept=".json,application/json"></div>
+<button type="button" id="run">Review cases</button>
+<p id="help">No files are sent to a service.</p>
+</section>
+<section aria-labelledby="result-heading">
+<h2 id="result-heading">Results</h2>
+<p id="status" role="status" aria-live="polite">Choose a local JSON register to begin.</p>
+<nav aria-label="Report actions">
+<button id="save-text" type="button" disabled>Export text report</button>
+<button id="save-html" type="button" disabled>Export HTML report</button>
+<button id="save-json" type="button" disabled>Export JSON report</button>
+<button id="print" type="button" disabled>Print report</button>
+</nav>
+<div id="report" aria-live="off"></div>
+</section>
+</main>
+</body>
+</html>

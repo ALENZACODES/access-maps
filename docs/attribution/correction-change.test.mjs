@@ -1,0 +1,107 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { printable, safeKey, change, affectedSurfaces, classifySource,
+  classifyEvidence, classifyCase, classifySurface, compareCorrections } from './correction-change.mjs';
+import { register, source, evidence, correction, surface, clone,
+  replaceCase, replaceSource, replaceSurface } from './correction-fixtures.mjs';
+const before=()=>register();
+const compare=(mutate)=>{const prior=before();const next=clone(prior);mutate(next);return compareCorrections(prior,next);};
+const includes=(result,kind,field)=>assert.ok(result.changes.some(c=>c.kind===kind&&c.field===field),JSON.stringify(result.changes));
+const containsBlock=(result,kind,field)=>assert.ok(result.changes.some(c=>c.kind===kind&&c.field===field&&c.level==='block'));
+test('printable arrays have deterministic order',()=>assert.equal(printable(['b','a']),'a, b'));
+test('printable preserves explicit unknown',()=>assert.equal(printable('UNKNOWN'),'UNKNOWN'));
+test('printable transforms null into UNKNOWN',()=>assert.equal(printable(null),'UNKNOWN'));
+test('safe key collapses line whitespace',()=>assert.equal(safeKey(' a\n  b '),'a b'));
+test('change factory retains affected surfaces',()=>{
+ const item=change('source-changed','block','source','permission','YES','NO',['a','a','b']);
+ assert.deepEqual(item.surfaces,['a','b']);assert.equal(item.before,'YES');assert.equal(item.after,'NO');
+});
+test('affected source includes directly linked surfaces',()=>assert.deepEqual(affectedSurfaces(register(),'osm-one'),['surface-one']));
+test('affected source ignores unlinked sources',()=>assert.deepEqual(affectedSurfaces(register(),'unrelated'),[]));
+test('permission removal is blocking',()=>assert.equal(classifySource('permission','YES','UNKNOWN'),'block'));
+test('permission gained is review',()=>assert.equal(classifySource('permission','UNKNOWN','YES'),'review'));
+test('removing included source is blocking',()=>assert.equal(classifySource('included','YES','NO'),'block'));
+test('including held source requires review',()=>assert.equal(classifySource('included','NO','YES'),'review'));
+test('licence change is blocking',()=>assert.equal(classifySource('licence','A','B'),'block'));
+test('notice change is blocking',()=>assert.equal(classifySource('notice','A','B'),'block'));
+test('source URL change is blocking',()=>assert.equal(classifySource('sourceUrl','A','B'),'block'));
+test('licence URL change is blocking',()=>assert.equal(classifySource('licenceUrl','A','B'),'block'));
+test('known terms date lost is blocking',()=>assert.equal(classifySource('termsDate','2026-01-01','UNKNOWN'),'block'));
+test('known dataset date lost is blocking',()=>assert.equal(classifySource('datasetDate','2026-01-01','UNKNOWN'),'block'));
+test('unknown dataset date gaining evidence is review',()=>assert.equal(classifySource('datasetDate','UNKNOWN','2026-01-01'),'review'));
+test('source display name change is informational',()=>assert.equal(classifySource('name','A','B'),'info'));
+test('evidence URL change is blocking',()=>assert.equal(classifyEvidence('url','A','B'),'block'));
+test('evidence licence change is blocking',()=>assert.equal(classifyEvidence('licenceUrl','A','B'),'block'));
+test('evidence source change is blocking',()=>assert.equal(classifyEvidence('sourceId','A','B'),'block'));
+test('evidence date lost is blocking',()=>assert.equal(classifyEvidence('collectedOn','2026-01-01','UNKNOWN'),'block'));
+test('evidence tier lost is blocking',()=>assert.equal(classifyEvidence('tier','primary','UNKNOWN'),'block'));
+test('evidence excerpt edit gets review',()=>assert.equal(classifyEvidence('excerpt','A','B'),'review'));
+test('case reopened after resolution blocks',()=>assert.equal(classifyCase('state','resolved','open'),'block'));
+test('case resolved after review receives review',()=>assert.equal(classifyCase('state','under-review','resolved'),'review'));
+test('case acceptance removed blocks',()=>assert.equal(classifyCase('decision','accept','decline'),'block'));
+test('case permission removed blocks',()=>assert.equal(classifyCase('permission','YES','NO'),'block'));
+test('case evidence removed blocks',()=>assert.equal(classifyCase('evidenceIds',['a','b'],['a']),'block'));
+test('case evidence added receives review',()=>assert.equal(classifyCase('evidenceIds',['a'],['a','b']),'review'));
+test('case proposed text change blocks',()=>assert.equal(classifyCase('proposedText','a','b'),'block'));
+test('case rationale change blocks',()=>assert.equal(classifyCase('decisionNote','a','b'),'block'));
+test('case opening date lost blocks',()=>assert.equal(classifyCase('openedOn','2026-01-01','UNKNOWN'),'block'));
+test('case summary change is review',()=>assert.equal(classifyCase('summary','a','b'),'review'));
+test('surface source removed blocks',()=>assert.equal(classifySurface('sourceIds',['a','b'],['a']),'block'));
+test('surface source added is review',()=>assert.equal(classifySurface('sourceIds',['a'],['a','b']),'review'));
+test('surface case removed blocks',()=>assert.equal(classifySurface('caseIds',['a','b'],['a']),'block'));
+test('surface offline evidence lost blocks',()=>assert.equal(classifySurface('offline','YES','UNKNOWN'),'block'));
+test('surface keyboard evidence lost blocks',()=>assert.equal(classifySurface('keyboard','YES','UNKNOWN'),'block'));
+test('surface screen-reader evidence lost blocks',()=>assert.equal(classifySurface('screenReader','YES','NO'),'block'));
+test('smaller target blocks',()=>assert.equal(classifySurface('minimumTargetPx',48,44),'block'));
+test('larger target is informational',()=>assert.equal(classifySurface('minimumTargetPx',44,64),'info'));
+test('unknown target after numeric target blocks',()=>assert.equal(classifySurface('minimumTargetPx',44,'UNKNOWN'),'block'));
+test('route change is blocking',()=>assert.equal(classifySurface('route','a','b'),'block'));
+test('locale change is blocking',()=>assert.equal(classifySurface('locale','en','fr'),'block'));
+test('identical registers have no changes',()=>assert.equal(compareCorrections(before(),before()).changes.length,0));
+test('identical register is clear',()=>assert.equal(compareCorrections(before(),before()).blocked,false));
+test('release identifier change is listed',()=>includes(compare(x=>{x.releaseId='release-two';}),'release-id','releaseId'));
+test('lost locale pair requirement blocks',()=>containsBlock(compareCorrections(register({localePairRequired:true}),register()),'pair-requirement','localePairRequired'));
+test('source added gets a new-source finding',()=>includes(compare(x=>{x.sources.push(source({id:'new-source'}));}),'sources-added','id'));
+test('source removed gets a blocking finding',()=>containsBlock(compare(x=>{x.sources=[];}),'sources-removed','id'));
+test('source permission lost blocks comparison',()=>containsBlock(compare(x=>{x.sources[0].permission='NO';}),'sources-changed','permission'));
+test('source notice changed blocks comparison',()=>containsBlock(compare(x=>{x.sources[0].notice='wrong';}),'sources-changed','notice'));
+test('source licence changed blocks comparison',()=>containsBlock(compare(x=>{x.sources[0].licence='other';}),'sources-changed','licence'));
+test('source dataset evidence lost blocks',()=>containsBlock(compareCorrections(register({sources:[source({datasetDate:'2026-11-02'})]}),register()),'sources-changed','datasetDate'));
+test('evidence record removed blocks comparison',()=>containsBlock(compare(x=>{x.evidence=[];}),'evidence-removed','id'));
+test('evidence URL changed blocks comparison',()=>containsBlock(compare(x=>{x.evidence[0].url='https://example.org/other';}),'evidence-changed','url'));
+test('case record removed blocks comparison',()=>containsBlock(compare(x=>{x.cases=[];}),'cases-removed','id'));
+test('case record added is review',()=>includes(compare(x=>{x.cases.push(correction({id:'case-two'}));}),'cases-added','id'));
+test('case decision lost blocks comparison',()=>containsBlock(compare(x=>{x.cases[0].decision='UNKNOWN';}),'cases-changed','decision'));
+test('case state regressed blocks comparison',()=>containsBlock(compare(x=>{x.cases[0].state='open';}),'cases-changed','state'));
+test('case evidence list reduced blocks comparison',()=>containsBlock(compare(x=>{x.cases[0].evidenceIds=[];}),'cases-changed','evidenceIds'));
+test('surface removed blocks comparison',()=>containsBlock(compare(x=>{x.surfaces=[];}),'surfaces-removed','id'));
+test('surface source removed blocks comparison',()=>containsBlock(compare(x=>{x.surfaces[0].sourceIds=[];}),'surfaces-changed','sourceIds'));
+test('surface target reduced blocks comparison',()=>containsBlock(compare(x=>{x.surfaces[0].minimumTargetPx=43;}),'surfaces-changed','minimumTargetPx'));
+test('surface target enlarged does not produce blocking change',()=>{
+ const r=compare(x=>{x.surfaces[0].minimumTargetPx=64;});
+ assert.ok(r.changes.some(c=>c.field==='minimumTargetPx'&&c.level==='info'));
+ assert.equal(r.blockingChanges,0);
+});
+test('new blocker is explicit in comparison',()=>includes(compare(x=>{x.sources[0].permission='NO';}),'new-blocker','SOURCE_PERMISSION'));
+test('comparison returns prior and current audit records',()=>{
+ const r=compare(x=>{x.sources[0].permission='NO';});
+ assert.equal(r.previousAudit.blocked,false);assert.equal(r.currentAudit.blocked,true);
+});
+test('comparison reports nonzero block count',()=>assert.ok(compare(x=>{x.sources[0].permission='NO';}).blockingChanges>0));
+test('comparison does not mutate previous input',()=>{
+ const a=before(),b=replaceSource(a,{permission:'NO'}),snapshot=JSON.stringify(a);
+ compareCorrections(a,b);assert.equal(JSON.stringify(a),snapshot);
+});
+test('comparison does not mutate current input',()=>{
+ const a=before(),b=replaceCase(a,{state:'open',decision:'UNKNOWN'}),snapshot=JSON.stringify(b);
+ compareCorrections(a,b);assert.equal(JSON.stringify(b),snapshot);
+});
+test('comparison change records affected surface',()=>{
+ const r=compare(x=>{x.sources[0].permission='NO';});
+ assert.ok(r.changes.some(c=>c.field==='permission'&&c.surfaces.includes('surface-one')));
+});
+test('comparison sorts change records',()=>{
+ const r=compare(x=>{x.sources[0].licence='changed';x.sources[0].permission='NO';});
+ const keys=r.changes.map(c=>`${c.entity}|${c.field}|${c.kind}`);
+ assert.deepEqual(keys,[...keys].sort());
+});

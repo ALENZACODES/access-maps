@@ -1,0 +1,128 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { BLOCK, ATTENTION, INFORMATION, issue, containsNotice, expectedNotices, auditCorrections } from './correction-audit.mjs';
+import { register, source, evidence, correction, surface, emptyRegister,
+  withSource, withCase, withSurface, withEvidence, pairRegister,
+  metrolinxAua, metrolinxOgl, ltcSource } from './correction-fixtures.mjs';
+import { METROLINX_AUA_LEGEND, METROLINX_OGL_NOTICE,
+  METROLINX_AUA_END_USER_LAWS_EN,METROLINX_AUA_END_USER_LAWS_FR } from './attribution-utils.mjs';
+const codes=result=>result.findings.map(x=>x.code);
+const has=(result,code)=>assert.ok(codes(result).includes(code),`Missing ${code}: ${codes(result).join(', ')}`);
+const lacks=(result,code)=>assert.ok(!codes(result).includes(code),`Unexpected ${code}`);
+const audit=options=>auditCorrections(register(options));
+
+test('blocking severity literal',()=>assert.equal(BLOCK,'block'));
+test('attention severity literal',()=>assert.equal(ATTENTION,'attention'));
+test('informational severity literal',()=>assert.equal(INFORMATION,'info'));
+test('finding factory preserves all relationships',()=>{
+ const value=issue('X','block','a.b','missing','src','surface','case');
+ assert.deepEqual(value,{code:'X',level:'block',path:'a.b',detail:'missing',sourceId:'src',surfaceId:'surface',caseId:'case'});
+});
+test('notice comparison is newline tolerant',()=>assert.equal(containsNotice('one\n two','one two'),true));
+test('notice comparison preserves content',()=>assert.equal(containsNotice('one','two'),false));
+test('notice comparison rejects nontext',()=>assert.equal(containsNotice(null,'one'),false));
+test('OSM requires distinct source and licence lines',()=>assert.equal(expectedNotices(source()).length,2));
+test('Metrolinx AUA requires section 3 and two laws lines',()=>assert.equal(expectedNotices(metrolinxAua()).length,3));
+test('Metrolinx OGL requires independent notice',()=>assert.deepEqual(expectedNotices(metrolinxOgl()),[METROLINX_OGL_NOTICE]));
+test('LTC source has identifiable attribution line',()=>assert.equal(expectedNotices(ltcSource()).length,1));
+test('unknown provider has no invented legal notice',()=>assert.deepEqual(expectedNotices(source({provider:'other'})),[]));
+test('baseline register is not blocked',()=>assert.equal(auditCorrections(register()).blocked,false));
+test('baseline missing dataset date remains informational',()=>has(auditCorrections(register()),'DATASET_DATE_UNKNOWN'));
+test('baseline missing published date remains informational',()=>has(auditCorrections(register()),'SURFACE_DATE_UNKNOWN'));
+test('empty sources blocks release',()=>has(auditCorrections(emptyRegister()),'NO_SOURCES'));
+test('empty surfaces blocks release',()=>has(auditCorrections(emptyRegister()),'NO_SURFACES'));
+test('unused source is informational',()=>has(auditCorrections(register({surfaces:[]})),'SOURCE_UNUSED'));
+for(const permission of ['UNKNOWN','NO'])
+ test(`included source permission ${permission} blocks`,()=>has(auditCorrections(withSource({permission})),'SOURCE_PERMISSION'));
+test('excluded source does not undergo permission block',()=>lacks(auditCorrections(withSource({included:'NO',permission:'UNKNOWN'})),'SOURCE_PERMISSION'));
+test('unknown source URL blocks',()=>has(auditCorrections(withSource({sourceUrl:'UNKNOWN'})),'SOURCE_URL_UNKNOWN'));
+test('unknown licence URL blocks',()=>has(auditCorrections(withSource({licenceUrl:'UNKNOWN'})),'LICENCE_URL_UNKNOWN'));
+test('unknown licence name blocks',()=>has(auditCorrections(withSource({licence:'UNKNOWN'})),'LICENCE_UNKNOWN'));
+test('unknown terms date blocks',()=>has(auditCorrections(withSource({termsDate:'UNKNOWN'})),'TERMS_DATE_UNKNOWN'));
+test('unknown acquisition date blocks',()=>has(auditCorrections(withSource({acquisitionDate:'UNKNOWN'})),'ACQUISITION_UNKNOWN'));
+test('unknown evidence tier needs attention',()=>has(auditCorrections(withSource({tier:'UNKNOWN'})),'SOURCE_TIER_UNKNOWN'));
+test('missing source notice blocks',()=>has(auditCorrections(withSource({notice:''})),'NOTICE_EMPTY'));
+test('OSM missing credit fails',()=>has(auditCorrections(withSource({notice:'Open Database License (ODbL) 1.0'})),'NOTICE_MISSING'));
+test('OSM missing ODbL notice fails',()=>has(auditCorrections(withSource({notice:'© OpenStreetMap contributors'})),'NOTICE_MISSING'));
+test('OSM licence without ODbL fails',()=>has(auditCorrections(withSource({licence:'UNKNOWN'})),'ODBL_LICENCE'));
+test('LTC incorrect licence fails',()=>has(auditCorrections(register({sources:[ltcSource({id:'osm-one',licence:'wrong'})]})),'LTC_TERMS'));
+test('AUA exact legal language preserved',()=>{
+ const notices=expectedNotices(metrolinxAua());
+ assert.ok(notices.includes(METROLINX_AUA_LEGEND));
+ assert.ok(notices.includes(METROLINX_AUA_END_USER_LAWS_EN));
+ assert.ok(notices.includes(METROLINX_AUA_END_USER_LAWS_FR));
+});
+test('AUA notice omitted fails',()=>has(auditCorrections(register({sources:[metrolinxAua({id:'osm-one',notice:METROLINX_AUA_END_USER_LAWS_EN})]})),'NOTICE_MISSING'));
+test('OGL notice omitted fails',()=>has(auditCorrections(register({sources:[metrolinxOgl({id:'osm-one',notice:''})]})),'NOTICE_MISSING'));
+test('AUA and OGL mixed source notices fail',()=>has(auditCorrections(register({sources:[metrolinxAua({id:'osm-one',notice:`${metrolinxAua().notice}\n${METROLINX_OGL_NOTICE}`})]})),'MIXED_METROLINX_TERMS'));
+test('OGL with AUA legend mixed fails',()=>has(auditCorrections(register({sources:[metrolinxOgl({id:'osm-one',notice:`${METROLINX_OGL_NOTICE}\n${METROLINX_AUA_LEGEND}`})]})),'MIXED_METROLINX_TERMS'));
+test('provider-specific terms cannot be guessed from label',()=>has(auditCorrections(register({sources:[metrolinxAua({id:'osm-one',licence:'UNKNOWN'})]})),'METROLINX_TERMS'));
+test('terms reviewed after acquisition creates attention',()=>has(auditCorrections(withSource({termsDate:'2026-11-02'})),'TERMS_AFTER_ACQUISITION'));
+test('terms reviewed before acquisition does not warn',()=>lacks(auditCorrections(register()),'TERMS_AFTER_ACQUISITION'));
+test('unknown dataset date never turns into a date',()=>assert.equal(auditCorrections(register()).informationCount,2));
+for(const [field,date] of [['termsDate','2026-12-01'],['acquisitionDate','2026-12-01'],['datasetDate','2026-12-01']])
+ test(`future source ${field} fails with explicit reference`,()=>has(auditCorrections(withSource({[field]:date}),{today:'2026-11-19'}),'FUTURE_DATE'));
+test('no reference date means no inferred future',()=>lacks(auditCorrections(withSource({datasetDate:'2099-01-01'})),'FUTURE_DATE'));
+test('bad reference format is rejected',()=>assert.throws(()=>auditCorrections(register(),{today:'yesterday'})));
+test('evidence without source fails',()=>has(auditCorrections(withEvidence({sourceId:'missing'})),'EVIDENCE_SOURCE_MISSING'));
+test('unknown evidence URL receives attention',()=>has(auditCorrections(withEvidence({url:'UNKNOWN'})),'EVIDENCE_URL_UNKNOWN'));
+test('unknown evidence licence receives attention',()=>has(auditCorrections(withEvidence({licenceUrl:'UNKNOWN'})),'EVIDENCE_LICENCE_UNKNOWN'));
+test('unknown evidence collection date receives attention',()=>has(auditCorrections(withEvidence({collectedOn:'UNKNOWN'})),'EVIDENCE_DATE_UNKNOWN'));
+test('unknown evidence tier receives attention',()=>has(auditCorrections(withEvidence({tier:'UNKNOWN'})),'EVIDENCE_TIER_UNKNOWN'));
+test('unused evidence is reported',()=>has(auditCorrections(register({cases:[]})),'EVIDENCE_UNUSED'));
+test('missing case source blocks',()=>has(auditCorrections(withCase({sourceId:'missing'})),'CASE_SOURCE_MISSING'));
+test('missing case surface blocks',()=>has(auditCorrections(withCase({surfaceId:'missing'})),'CASE_SURFACE_MISSING'));
+test('case source absent from surface blocks',()=>has(auditCorrections(withSurface({sourceIds:[]})),'CASE_SURFACE_SOURCE'));
+test('case not linked from surface blocks',()=>has(auditCorrections(withSurface({caseIds:[]})),'CASE_UNLINKED'));
+test('missing case evidence blocks',()=>has(auditCorrections(withCase({evidenceIds:['missing']})),'CASE_EVIDENCE_MISSING'));
+test('evidence for wrong source blocks',()=>has(auditCorrections(withEvidence({sourceId:'unrelated'})),'EVIDENCE_SOURCE_MISMATCH'));
+test('missing case opened date triggers attention',()=>has(auditCorrections(withCase({openedOn:'UNKNOWN'})),'CASE_DATE_UNKNOWN'));
+test('case update before opening blocks',()=>has(auditCorrections(withCase({updatedOn:'2026-10-01'})),'CASE_DATE_ORDER'));
+test('open case with accepted decision blocks',()=>has(auditCorrections(withCase({state:'open'})),'PREMATURE_DECISION'));
+test('open case on included source blocks',()=>has(auditCorrections(withCase({state:'open',decision:'UNKNOWN'})),'UNRESOLVED_INCLUDED'));
+test('under-review case on included source blocks',()=>has(auditCorrections(withCase({state:'under-review',decision:'UNKNOWN'})),'UNRESOLVED_INCLUDED'));
+test('open case with no supporting records attracts attention',()=>has(auditCorrections(withCase({state:'open',decision:'UNKNOWN',evidenceIds:[]})),'CASE_EVIDENCE_EMPTY'));
+test('resolved case without decision blocks',()=>has(auditCorrections(withCase({decision:'UNKNOWN'})),'DECISION_MISSING'));
+test('resolved case without date blocks',()=>has(auditCorrections(withCase({decisionOn:'UNKNOWN'})),'DECISION_DATE_UNKNOWN'));
+test('resolved case without explanation blocks',()=>has(auditCorrections(withCase({decisionNote:''})),'DECISION_NOTE_MISSING'));
+test('resolved case without evidence blocks',()=>has(auditCorrections(withCase({evidenceIds:[]})),'DECISION_EVIDENCE_MISSING'));
+test('resolved case cannot be declined',()=>has(auditCorrections(withCase({decision:'decline'})),'DECISION_STATE_MISMATCH'));
+test('rejected case cannot be accepted',()=>has(auditCorrections(withCase({state:'rejected',decision:'accept'})),'DECISION_STATE_MISMATCH'));
+test('withdrawn case cannot be accepted',()=>has(auditCorrections(withCase({state:'withdrawn'})),'WITHDRAWN_ACCEPTED'));
+test('decision before opening blocks',()=>has(auditCorrections(withCase({decisionOn:'2026-10-01'})),'DECISION_BEFORE_OPEN'));
+test('accepted case needs explicit permission',()=>has(auditCorrections(withCase({permission:'UNKNOWN'})),'CASE_PERMISSION'));
+test('accepted case needs proposed text',()=>has(auditCorrections(withCase({proposedText:''})),'PROPOSAL_MISSING'));
+test('case unknown locale gets attention',()=>has(auditCorrections(withCase({locale:'UNKNOWN'})),'CASE_LOCALE_UNKNOWN'));
+test('missing surface source blocks',()=>has(auditCorrections(withSurface({sourceIds:['missing']})),'SURFACE_SOURCE_MISSING'));
+test('excluded source linked by surface blocks',()=>has(auditCorrections(withSource({included:'NO'})),'SURFACE_SOURCE_HELD'));
+test('missing surface case blocks',()=>has(auditCorrections(withSurface({caseIds:['missing']})),'SURFACE_CASE_MISSING'));
+test('surface with no sources blocks',()=>has(auditCorrections(withSurface({sourceIds:[]})),'SURFACE_NO_SOURCES'));
+test('require offline on unknown surface blocks',()=>has(auditCorrections(withSurface({offline:'UNKNOWN'}),{requireOffline:true}),'SURFACE_OFFLINE'));
+test('offline not required by default',()=>lacks(auditCorrections(withSurface({offline:'UNKNOWN'})),'SURFACE_OFFLINE'));
+test('unknown keyboard evidence blocks',()=>has(auditCorrections(withSurface({keyboard:'UNKNOWN'})),'KEYBOARD_EVIDENCE'));
+test('no screen-reader evidence blocks',()=>has(auditCorrections(withSurface({screenReader:'NO'})),'SCREEN_READER_EVIDENCE'));
+test('unknown target dimension blocks',()=>has(auditCorrections(withSurface({minimumTargetPx:'UNKNOWN'})),'TARGET_UNKNOWN'));
+test('43 pixel target blocks',()=>has(auditCorrections(withSurface({minimumTargetPx:43})),'TARGET_TOO_SMALL'));
+test('44 pixel target passes',()=>lacks(auditCorrections(register()),'TARGET_TOO_SMALL'));
+test('larger target passes',()=>lacks(auditCorrections(withSurface({minimumTargetPx:64})),'TARGET_TOO_SMALL'));
+test('required EN/FR pair absence blocks',()=>has(auditCorrections(register({localePairRequired:true})),'LANGUAGE_PAIR_MISSING'));
+test('explicit EN/FR pair avoids missing-pair block',()=>lacks(auditCorrections(pairRegister()),'LANGUAGE_PAIR_MISSING'));
+test('option can require pairs',()=>has(auditCorrections(register(),{requirePairs:true}),'LANGUAGE_PAIR_MISSING'));
+test('explicit option can disable pair requirement',()=>lacks(auditCorrections(register({localePairRequired:true}),{requirePairs:false}),'LANGUAGE_PAIR_MISSING'));
+test('cases are mapped by surface',()=>assert.deepEqual(auditCorrections(register()).casesBySurface['surface-one'],['case-one']));
+test('source count matches supplied data',()=>assert.equal(auditCorrections(register()).sourceCount,1));
+test('case count matches supplied data',()=>assert.equal(auditCorrections(register()).caseCount,1));
+test('evidence count matches supplied data',()=>assert.equal(auditCorrections(register()).evidenceCount,1));
+test('surface count matches supplied data',()=>assert.equal(auditCorrections(register()).surfaceCount,1));
+test('findings are deterministically sorted',()=>{
+ const findings=auditCorrections(emptyRegister()).findings;
+ assert.deepEqual(findings.map(f=>`${f.path}|${f.code}`),findings.map(f=>`${f.path}|${f.code}`).sort());
+});
+test('audit does not mutate its input',()=>{
+ const value=register(), snapshot=JSON.stringify(value);
+ auditCorrections(value);assert.equal(JSON.stringify(value),snapshot);
+});
+test('bad evidence dates remain UNKNOWN',()=>assert.equal(auditCorrections(register()).findings.find(f=>f.code==='DATASET_DATE_UNKNOWN')?.level,'info'));
+
+test('other provider vague licence cannot pass',()=>has(auditCorrections(register({sources:[source({provider:'other',licence:'Open Data'})]})),'OTHER_LICENCE'));
+test('other provider with explicit CC BY licence is not blocked by other-licence check',()=>lacks(auditCorrections(register({sources:[source({provider:'other',licence:'CC-BY-4.0'})]})),'OTHER_LICENCE'));
