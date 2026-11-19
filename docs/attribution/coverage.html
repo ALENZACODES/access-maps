@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; img-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+  <title>Attribution coverage · the App</title>
+  <link rel="stylesheet" href="./coverage.css">
+  <script type="module" src="./coverage-route.mjs"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <header><h1 id="page-title">Attribution coverage</h1><p id="intro">Review source records locally. Missing facts remain UNKNOWN.</p></header>
+  <main id="main">
+    <section aria-labelledby="load-title">
+      <h2 id="load-title">Local release records</h2>
+      <form id="coverage-form">
+        <label for="candidate">Candidate release (JSON)</label><input id="candidate" type="file" accept="application/json,.json" required>
+        <label for="previous">Earlier release (optional JSON)</label><input id="previous" type="file" accept="application/json,.json">
+        <label for="locale">Language</label><select id="locale"><option value="en">English</option><option value="fr">Français</option></select>
+        <button id="audit" type="submit">Review records</button>
+      </form>
+    </section>
+    <section aria-labelledby="result-title"><h2 id="result-title">Audit results</h2><p id="status" role="status" aria-live="polite">No file selected.</p><div id="summary"></div></section>
+    <section aria-labelledby="sources-title"><h2 id="sources-title">Source and licence evidence</h2><div id="sources"></div></section>
+    <section aria-labelledby="findings-title"><h2 id="findings-title">Release findings</h2><div id="findings"></div></section>
+    <section aria-labelledby="changes-title"><h2 id="changes-title">Changes</h2><div id="changes"></div></section>
+    <section aria-labelledby="exports-title"><h2 id="exports-title">Local exports</h2><div class="actions">
+      <button id="text-export" type="button" disabled>Export text</button>
+      <button id="json-export" type="button" disabled>Export JSON</button>
+      <button id="html-export" type="button" disabled>Export HTML</button>
+      <button id="print" type="button" disabled>Print</button>
+    </div></section>
+  </main>
+  <footer><p id="disclaimer">A source record does not establish conditions at any physical location.</p></footer>
+</body>
+</html>
