@@ -5,13 +5,8 @@ export { MAP_FRENCH_REVIEW, mapCopy, mapCopyLocaleKeys, statusLabel } from "./i1
 export type { MapLocale } from "./i18n.js";
 export { AttributionSources } from "./AttributionSources.js";
 export { OutageJourneyView, StationOutageStatus } from "./Outages.js";
-export { RouteEvidencePanel } from "./RouteEvidencePanel.js";
-export {
-  buildRouteEvidence, compareEvidenceOptions, EVIDENCE_COPY, EMPTY_FILTERS,
-  evidenceExport, filterEvidence, routeStatus, sortedOptions,
-} from "./routeEvidence.js";
-export type {
-  EvidenceDashboard, EvidenceOption, EvidenceSegment, EvidenceIssue, EvidenceFilters,
-  EvidenceState, EvidenceOutcome, EvidenceSeverity, EvidenceCategory, EvidenceSort,
-  EvidenceLocale, EvidenceDifference, EvidenceSource,
-} from "./routeEvidence.js";
+export { RouteNeedsPanel } from "./RouteNeedsPanel.js";
+export { compareRoutes, assessRequirement, normalizeProfile, DEFAULT_PROFILE as DEFAULT_ROUTE_NEEDS_PROFILE, withChoice, summarizeComparison } from "./routeNeeds.js";
+export type { NeedsProfile, Choice, RequirementId, RequirementAssessment, RouteAssessment } from "./routeNeeds.js";
+export { needsCopy, needsCopyKeys } from "./routeNeedsCopy.js";
+export { compareNeedsSnapshots, sourceInventory, portableNeedsComparison, exportNeedsJson, sourceDateChanges } from "./routeNeedsReview.js";

@@ -2,8 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { displayValue, prototypeLabel, toMapFeatures, type Journey, type JourneyPlan, type Leg } from "@access-maps/journey";
 import { AccessibleMap } from "./AccessibleMap.js";
 import { AttributionSources } from "./AttributionSources.js";
+import { RouteNeedsPanel } from "./RouteNeedsPanel.js";
+import "./route-needs.css";
 import { mapCopy, statusLabel } from "./i18n.js";
-import { RouteEvidencePanel } from "./RouteEvidencePanel.js";
 
 export function JourneyResult({ plan }: { plan: JourneyPlan }) {
   const text = mapCopy(plan.locale);
@@ -86,13 +87,13 @@ export function JourneyResult({ plan }: { plan: JourneyPlan }) {
           ))}
         </section>
       ) : null}
-      <RouteEvidencePanel key={plan.id} plan={plan} />
       <AccessibleMap
         features={features}
         locale={plan.locale}
         attribution={drawsOsm ? text.attributionOsm : text.attributionPlain}
       />
       <AttributionSources plan={plan} />
+      <RouteNeedsPanel plan={plan} />
     </article>
   );
 }
