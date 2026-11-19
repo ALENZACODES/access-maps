@@ -40,7 +40,8 @@
     "audit:offline-attribution": "tsx docs/attribution/offline-cli.ts",
     "test:offline-attribution": "tsx --test docs/attribution/offline-*.spec.ts",
     "data-qa:publish": "tsx tools/data-qa/p15g-cli.ts",
-    "data-qa:regression": "tsx tools/data-qa/p15h-cli.ts"
+    "data-qa:regression": "tsx tools/data-qa/p15h-cli.ts",
+    "audit:bilingual-attribution": "tsx docs/attribution/offline-parity-cli.ts"
   },
   "dependencies": {
     "ajv": "^8.17.1",
