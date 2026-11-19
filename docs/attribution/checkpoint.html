@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; img-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+  <title>Source and licence checkpoint</title>
+  <link rel="stylesheet" href="./checkpoint.css">
+  <script type="module" src="./checkpoint-route.mjs"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <header><h1 id="title">Source and licence checkpoint</h1></header>
+  <main id="main">
+    <p id="introduction">Read local source and licence evidence without uploading it.</p>
+    <section aria-labelledby="controls-title">
+      <h2 id="controls-title">Review controls</h2>
+      <div class="controls">
+        <label for="language" id="language-label">Language:</label>
+        <select id="language"><option value="en">English</option><option value="fr">Français</option></select>
+        <label for="current" id="current-label">Current release JSON</label>
+        <input id="current" type="file" accept=".json,application/json">
+        <label for="previous" id="previous-label">Earlier release JSON (optional)</label>
+        <input id="previous" type="file" accept=".json,application/json">
+        <button id="run" type="button">Review records</button>
+        <button id="download-text" type="button" disabled>Save text report</button>
+        <button id="download-json" type="button" disabled>Save JSON report</button>
+        <button id="download-html" type="button" disabled>Save HTML report</button>
+        <button id="print" type="button" disabled>Print report</button>
+      </div>
+    </section>
+    <p role="status" aria-live="polite" aria-atomic="true" id="status">Choose a local file to begin.</p>
+    <section aria-label="Results" id="results" tabindex="-1"></section>
+    <p id="disclaimer">This report describes supplied records. It does not assess any place or route.</p>
+  </main>
+</body>
+</html>
