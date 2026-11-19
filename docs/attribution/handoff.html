@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'none'; connect-src 'none'; form-action 'none'; object-src 'none'; base-uri 'none'">
+  <title>Attribution handoff audit</title>
+  <link rel="stylesheet" href="./handoff.css">
+  <script type="module" src="./handoff-route.mjs"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <header><h1 id="title">Attribution handoff audit</h1>
+    <p id="introduction">Inspect local handoff records without transmitting or storing them.</p>
+  </header>
+  <main id="main">
+    <section aria-labelledby="input-heading">
+      <h2 id="input-heading">Local records</h2>
+      <div class="field"><label id="language-label" for="language">Language</label>
+        <select id="language"><option value="en">English</option><option value="fr">Français</option></select></div>
+      <div class="field"><label id="current-label" for="current">Current handoff JSON</label>
+        <input id="current" type="file" accept=".json,application/json"></div>
+      <div class="field"><label id="previous-label" for="previous">Earlier handoff JSON (optional)</label>
+        <input id="previous" type="file" accept=".json,application/json"></div>
+      <button id="review" type="button">Review records</button>
+      <p id="input-note">UNKNOWN values remain UNKNOWN. Imported files stay in browser memory only.</p>
+    </section>
+    <section aria-labelledby="result-heading">
+      <h2 id="result-heading">Audit results</h2>
+      <p id="status" role="status" aria-live="polite">Choose a local file to begin.</p>
+      <div id="actions" role="group" aria-label="Report actions">
+        <button id="save-text" type="button" disabled>Save text report</button>
+        <button id="save-json" type="button" disabled>Save JSON report</button>
+        <button id="save-html" type="button" disabled>Save HTML report</button>
+        <button id="print" type="button" disabled>Print report</button>
+      </div>
+      <div id="report" aria-live="off"></div>
+    </section>
+  </main>
+  <footer><p id="disclaimer">This page describes source records. It does not assess any location or service.</p></footer>
+</body>
+</html>
