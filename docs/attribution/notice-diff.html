@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'none'; connect-src 'none'; form-action 'none'; object-src 'none'; base-uri 'none'">
+  <title>Attribution notice change review</title>
+  <link rel="stylesheet" href="./notice-diff.css">
+  <script type="module" src="./notice-diff-route.mjs"></script>
+</head>
+<body>
+  <a class="skip" href="#main" id="skip">Skip to main content</a>
+  <header>
+    <h1 id="title">Attribution notice change review</h1>
+    <p id="intro">Inspect locally supplied source notices and their recorded rights.</p>
+  </header>
+  <main id="main">
+    <section aria-labelledby="inputs-heading">
+      <h2 id="inputs-heading">Local files</h2>
+      <div class="field">
+        <label id="language-label" for="language">Language</label>
+        <select id="language"><option value="en">English</option><option value="fr">Français</option></select>
+      </div>
+      <div class="field">
+        <label id="current-label" for="current">Current notice release (JSON)</label>
+        <input id="current" type="file" accept=".json,application/json">
+      </div>
+      <div class="field">
+        <label id="previous-label" for="previous">Earlier notice release (optional)</label>
+        <input id="previous" type="file" accept=".json,application/json">
+      </div>
+      <div class="field option"><input id="require-pairs" type="checkbox"><label id="pairs-label" for="require-pairs">Require EN/FR route pairs</label></div>
+      <div class="field option"><input id="allow-online" type="checkbox"><label id="online-label" for="allow-online">Allow a route without offline evidence</label></div>
+      <button id="run" type="button">Inspect notices</button>
+      <p id="hint">Files stay on this device. Missing dates remain UNKNOWN.</p>
+    </section>
+    <section aria-labelledby="report-heading">
+      <h2 id="report-heading">Review results</h2>
+      <p role="status" aria-live="polite" aria-atomic="true" id="status">Choose a local JSON file.</p>
+      <nav class="actions" aria-label="Report actions">
+        <button id="save-text" type="button" disabled>Save text</button>
+        <button id="save-json" type="button" disabled>Save JSON</button>
+        <button id="save-html" type="button" disabled>Save HTML</button>
+        <button id="print" type="button" disabled>Print</button>
+      </nav>
+      <div id="results" aria-live="off"></div>
+    </section>
+  </main>
+  <footer><p id="disclaimer">This page reports the supplied evidence. It does not assess access conditions.</p></footer>
+</body>
+</html>
