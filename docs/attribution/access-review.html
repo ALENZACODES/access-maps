@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'none'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Attribution notice review</title>
+  <link rel="stylesheet" href="./access-review.css">
+  <script type="module" src="./access-review-route.mjs"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <header><h1 id="title">Attribution notice review</h1><p id="intro">Examine evidence recorded for attribution notices. Files stay on this device.</p></header>
+  <main id="main">
+    <section aria-labelledby="inputs-title">
+      <h2 id="inputs-title">Local evidence files</h2>
+      <div class="field"><label for="language" id="language-label">Language:</label><select id="language"><option value="en">English</option><option value="fr">Français</option></select></div>
+      <div class="field"><label for="current" id="current-label">Current review JSON</label><input id="current" type="file" accept=".json,application/json"></div>
+      <div class="field"><label for="previous" id="previous-label">Earlier review JSON (optional)</label><input id="previous" type="file" accept=".json,application/json"></div>
+      <fieldset><legend>Publication checks</legend>
+        <div class="field option"><input id="require-offline" type="checkbox"><label for="require-offline" id="offline-label">Require offline delivery</label></div>
+        <div class="field option"><input id="require-paired" type="checkbox"><label for="require-paired" id="paired-label">Require English and French companions</label></div>
+        <div class="field option"><input id="require-evidence" type="checkbox"><label for="require-evidence" id="evidence-label">Require review evidence links</label></div>
+      </fieldset>
+      <p id="file-help">Choose files from this device. No upload is performed.</p>
+      <button id="run" type="button">Review local evidence</button>
+    </section>
+    <section aria-labelledby="report-heading">
+      <h2 id="report-heading">Report</h2>
+      <p role="status" aria-live="polite" id="status">Choose a local JSON file to start.</p>
+      <div class="actions" aria-label="Report actions">
+        <button type="button" id="save-text" disabled>Export text</button>
+        <button type="button" id="save-json" disabled>Export JSON</button>
+        <button type="button" id="save-html" disabled>Export HTML</button>
+        <button type="button" id="print" disabled>Print report</button>
+      </div>
+      <div id="results" aria-live="off"></div>
+    </section>
+  </main>
+  <footer><p id="disclaimer">This is a record review, not an assessment of a location or service.</p></footer>
+</body>
+</html>
