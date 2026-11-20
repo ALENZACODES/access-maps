@@ -73,3 +73,18 @@ test('JSON export remains valid schema and does not store personal data',()=>{
   assert.equal(JSON.parse(json).schema,PACKET_SCHEMA);
   assert.ok(!json.includes('localStorage'));
 });
+
+test('French packet labels use a nonbreaking space before every colon', () => {
+  const fr = packetText(fixture(), 'fr');
+  const labels = ['Vue affichée', 'Chemin local', 'Langue', 'État de l’examen', 'Couche',
+    'Source', 'Licence', 'Adresse de la source', 'Adresse de la licence',
+    'Récupération le', 'Niveau de preuve', 'Autorisation de redistribution',
+    'Crédit', 'Mention affichée', 'Emplacement de la mention', 'Observation le',
+    'Lacunes consignées'];
+  for (const label of labels) {
+    assert.ok(fr.includes(label + '\u00a0:'), label);
+    assert.ok(!fr.includes(label + ':'), label);
+  }
+  const en = packetText(fixture(), 'en');
+  assert.ok(en.includes('Display surface: '));
+});
