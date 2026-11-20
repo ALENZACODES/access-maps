@@ -1,0 +1,5 @@
+/* A distinct, accessible link to the local notice observation journal. */
+.observation-entry{display:flex;flex-wrap:wrap;gap:.75rem;padding:1rem;margin:1rem 0;border:1px solid ButtonBorder;border-radius:.5rem}
+.observation-entry a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:.55rem .9rem;border:2px solid ButtonBorder;border-radius:.3rem;color:LinkText;background:Canvas}
+.observation-entry a:focus-visible{outline:3px solid Highlight;outline-offset:3px}
+@media print{.observation-entry{display:none}}
