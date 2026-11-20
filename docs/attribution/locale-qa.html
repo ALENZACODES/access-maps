@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'none'; connect-src 'none'; form-action 'none'; object-src 'none'; base-uri 'none'">
+  <title>Bilingual attribution quality review</title>
+  <link rel="stylesheet" href="./locale-qa.css">
+  <script type="module" src="./locale-qa-route.mjs"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <header><h1 id="title">Bilingual attribution quality review</h1><p id="intro">Inspect recorded source and licence notices using only local files.</p></header>
+  <main id="main">
+    <section aria-labelledby="inputs-title">
+      <h2 id="inputs-title">Local release files</h2>
+      <div class="field"><label id="language-label" for="language">Language</label><select id="language"><option value="en">English</option><option value="fr">Français</option></select></div>
+      <div class="field"><label id="current-label" for="current">Choose a release record</label><input id="current" type="file" accept=".json,application/json"></div>
+      <div class="field"><label id="previous-label" for="previous">Choose an earlier record (optional)</label><input id="previous" type="file" accept=".json,application/json"></div>
+      <button type="button" id="run">Review notices</button>
+      <p id="hint">Records remain in this page until it is closed. Nothing is transmitted.</p>
+    </section>
+    <section aria-labelledby="results-title">
+      <h2 id="results-title">Results</h2>
+      <p role="status" aria-live="polite" id="status">Choose a local release record to begin.</p>
+      <div id="actions" aria-label="Report actions"><button id="save-text" type="button" disabled>Save text</button><button id="save-json" type="button" disabled>Save JSON</button><button id="save-html" type="button" disabled>Save HTML</button><button id="print" type="button" disabled>Print</button></div>
+      <div id="results" aria-live="off"></div>
+    </section>
+  </main>
+  <footer><p id="disclaimer">This page checks recorded metadata, not conditions at a physical location.</p></footer>
+</body>
+</html>
