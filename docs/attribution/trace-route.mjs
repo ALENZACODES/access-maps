@@ -2,6 +2,7 @@ import { TRACE_SCHEMA, UNKNOWN, emptyTrace, parseTrace, jsonTrace, replaceRecord
 import { auditTrace, compareTraces } from './trace-audit.mjs';
 import { localeCopy, findingLabel } from './trace-copy.mjs';
 import { buildTraceMatrix, matrixBySurface, matrixTsv } from './trace-matrix.mjs';
+import { packetJson, packetText } from './trace-packet.mjs';
 
 /** Explicit local UI. No use of storage, network requests, timers or generated source facts. */
 const root = document.getElementById('trace-root');
@@ -112,6 +113,8 @@ function controls(t) {
     button(t.create, () => { state = emptyTrace(); older = null; editId = null; render(); noticeMessage(t.started); }),
     button(t.export, () => download('map-notice-trace.json', jsonTrace(state), 'application/json')),
     button(t.exportFindings, () => download(`map-notice-findings-${locale}.txt`, reportText(t, report()), 'text/plain;charset=utf-8')),
+    button(locale === 'fr' ? 'Exporter le dossier des mentions' : 'Export notice evidence packet', () => download(`map-notice-evidence-${locale}.txt`, packetText(state, locale), 'text/plain;charset=utf-8')),
+    button(locale === 'fr' ? 'Exporter les preuves JSON' : 'Export evidence JSON', () => download('map-notice-evidence.json', packetJson(state), 'application/json')),
   );
   section.append(actions,
     filePicker(t, t.import, newState => { state = newState; older = null; editId = null; render(); noticeMessage(t.loaded); }),
