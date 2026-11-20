@@ -1,0 +1,15 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+const read=name=>readFile(new URL(`./${name}`,import.meta.url),'utf8');
+test('merged #108 navigation remains intact in final homepage',async()=>{const html=await read('index.html');assert.match(html,/href="placement.html\?lang=en"/u);assert.match(html,/href="placement.html\?lang=fr"/u);assert.match(html,/placement-link.css/u);});
+test('merged #109 navigation remains intact in final homepage',async()=>{const html=await read('index.html');assert.match(html,/href="trace.html"/u);assert.match(html,/href="trace.html\?lang=fr"/u);assert.match(html,/trace-link.css/u);});
+test('new conflict tool is linked in both languages',async()=>{const html=await read('index.html');assert.match(html,/href="conflict.html\?lang=en"/u);assert.match(html,/href="conflict.html\?lang=fr"/u);assert.match(html,/conflict-link.css/u);});
+test('new page references its included CSS and module',async()=>{const html=await read('conflict.html');assert.match(html,/href="conflict.css"/u);assert.match(html,/src="conflict-route.mjs"/u);});
+test('all first-party module imports are provided by this ZIP',async()=>{for(const filename of ['conflict-core.mjs','conflict-audit.mjs','conflict-copy.mjs','conflict-route.mjs','conflict-cli.mjs','conflict-core.test.mjs','conflict-audit.test.mjs','conflict-copy.test.mjs','conflict-cli.test.mjs','conflict-fixture.mjs']){const source=await read(filename);for(const hit of source.matchAll(/from ['"]\.\/([^'"]+)['"]/gu))assert.ok(await read(hit[1]),`${filename}: ${hit[1]}`);}});
+test('no scheduled workflows, wake pings or remote connections introduced',async()=>{const entry=await read('conflict-route.mjs');const html=await read('conflict.html');assert.ok(!/setInterval|setTimeout|fetch\(|XMLHttpRequest|WebSocket|navigator\.sendBeacon/u.test(entry));assert.ok(!/https:\/\//u.test(html));});
+test('page keeps source terms link local',async()=>{const src=await read('conflict-route.mjs');assert.match(src,/link.href='index.html'/u);});
+test('link interactions have 44px and visible focus',async()=>{const css=await read('conflict-link.css');assert.match(css,/min-height:44px/u);assert.match(css,/:focus-visible/u);});
+test('French display copy has no user-facing verify phrase',async()=>{const s=await read('conflict-copy.mjs');assert.ok(!/vérif|verify|real-time|guarantee|partnership/iu.test(s));});
+test('comparison results are rendered in the page and not export-only',async()=>{const route=await read('conflict-route.mjs');assert.match(route,/function comparisonView\(\)/u);assert.match(route,/main\.append\(columns,summaries\(\),comparisonView\(\)\)/u);assert.match(route,/result\.regressions\.some/u);});
+test('comparison preview remains informational when no baseline chosen',async()=>{const route=await read('conflict-route.mjs');assert.match(route,/if\(!previous\)/u);assert.match(route,/t\(\)\.pending/u);});
