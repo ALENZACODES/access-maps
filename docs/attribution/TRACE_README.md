@@ -71,3 +71,20 @@ characters escaped for safer opening in spreadsheet software. The export
 contains provenance and credits, not real-world place attributes. The
 `trace-matrix.mjs` pure module also provides per-view and per-source rollups
 for local review and tests.
+
+## Surface evidence packet (P18 next round)
+
+The Trace Explorer now provides two explicit exports, a bilingual text evidence
+packet and a structured JSON packet. `trace-packet.mjs` is the shared pure
+implementation. It includes one section per included display surface, lists
+source, licence, retrieval date and evidence tier, the notice's placement and
+observation date, and records gaps without filling `UNKNOWN`. An OpenStreetMap
+geometry credit requires the exact `© OpenStreetMap contributors` string and
+adjacent map placement. Source URLs remain references; the export does not
+fetch URLs. Held layers are excluded from publication packets by default.
+
+The export is deterministic and user-initiated. It is not a claim of physical
+accessibility, provider permission or WCAG conformance. The Node tests for the
+packet are automatically discovered by the root test glob. The included
+`index.html` is the merged `#108` homepage with both the existing placement
+planner links and the trace explorer links preserved.
