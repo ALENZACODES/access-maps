@@ -3,6 +3,7 @@ import { displayValue, prototypeLabel, toMapFeatures, type Journey, type Journey
 import { AccessibleMap } from "./AccessibleMap.js";
 import { AttributionSources } from "./AttributionSources.js";
 import { RouteNeedsPanel } from "./RouteNeedsPanel.js";
+import { RouteEvidencePanel } from "./RouteEvidencePanel.js";
 import "./route-needs.css";
 import { mapCopy, statusLabel } from "./i18n.js";
 
@@ -94,6 +95,7 @@ export function JourneyResult({ plan }: { plan: JourneyPlan }) {
       />
       <AttributionSources plan={plan} />
       <RouteNeedsPanel plan={plan} />
+      <RouteEvidencePanel plan={plan} />
     </article>
   );
 }
