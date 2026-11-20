@@ -86,24 +86,25 @@ export function packetText(input, locale='en', options={}) {
   const lang = locale === 'fr' ? 'fr' : 'en';
   const t = COPY[lang];
   const bundle = collectPackets(input,options);
+  const sep = lang === 'fr' ? '\u00a0:' : ':';
   const lines = [t.title, '', bundle.title, t.warning, ''];
   if (bundle.packets.length === 0) lines.push(t.empty);
   for (const packet of bundle.packets) {
     const s = packet.surface;
-    lines.push(`${t.surface}: ${s.label} (${s.id})`,`${t.path}: ${s.route}`,`${t.language}: ${s.locale}`,`${t.status}: ${packet.status}`);
+    lines.push(`${t.surface}${sep} ${s.label} (${s.id})`,`${t.path}${sep} ${s.route}`,`${t.language}${sep} ${s.locale}`,`${t.status}${sep} ${packet.status}`);
     if (!packet.creditPlacements.length) lines.push(t.empty);
     for (const item of packet.creditPlacements) {
       const source = item.source;
       const notice = item.notice;
-      lines.push('',`${t.layer}: ${item.layer.label} (${item.layer.id})`,`${t.source}: ${source.name} (${source.id})`,
-        `${t.licence}: ${source.licence}`,`${t.sourceUrl}: ${source.sourceUrl}`,`${t.licenceUrl}: ${source.licenceUrl}`,
-        `${t.retrieved}: ${source.retrievedOn}`,`${t.tier}: ${source.tier}`,`${t.permission}: ${source.permission}`,
-        `${t.credit}: ${source.credit}`,`${t.notice}: ${notice === UNKNOWN ? UNKNOWN : notice.text}`,
-        `${t.placement}: ${notice === UNKNOWN ? UNKNOWN : notice.placement}`,
-        `${t.observed}: ${notice === UNKNOWN ? UNKNOWN : notice.observedOn}`,
-        `${t.gaps}: ${item.gaps.length ? item.gaps.join(', ') : t.none}`);
+      lines.push('',`${t.layer}${sep} ${item.layer.label} (${item.layer.id})`,`${t.source}${sep} ${source.name} (${source.id})`,
+        `${t.licence}${sep} ${source.licence}`,`${t.sourceUrl}${sep} ${source.sourceUrl}`,`${t.licenceUrl}${sep} ${source.licenceUrl}`,
+        `${t.retrieved}${sep} ${source.retrievedOn}`,`${t.tier}${sep} ${source.tier}`,`${t.permission}${sep} ${source.permission}`,
+        `${t.credit}${sep} ${source.credit}`,`${t.notice}${sep} ${notice === UNKNOWN ? UNKNOWN : notice.text}`,
+        `${t.placement}${sep} ${notice === UNKNOWN ? UNKNOWN : notice.placement}`,
+        `${t.observed}${sep} ${notice === UNKNOWN ? UNKNOWN : notice.observedOn}`,
+        `${t.gaps}${sep} ${item.gaps.length ? item.gaps.join(', ') : t.none}`);
     }
-    lines.push('',`${t.gaps}: ${packet.gapCodes.length ? packet.gapCodes.join(', ') : t.none}`,'');
+    lines.push('',`${t.gaps}${sep} ${packet.gapCodes.length ? packet.gapCodes.join(', ') : t.none}`,'');
   }
   return `${lines.join('\n')}\n`;
 }
