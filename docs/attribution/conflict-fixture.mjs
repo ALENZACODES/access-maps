@@ -1,0 +1,2 @@
+import {CONFLICT_SCHEMA,OSM_CREDIT,newConflict} from './conflict-core.mjs';
+export const base=()=>({schema:CONFLICT_SCHEMA,title:'Fictional interface assessment',conflicts:[{...newConflict('record-01'),surfaceId:'surface-en',layerId:'layer-01',sourceId:'osm',current:'© OpenStreetMap contributors',proposed:OSM_CREDIT,source:'https://www.openstreetmap.org/copyright',licence:'ODbL-1.0',retrievedOn:'2026-11-20',tier:'publisher',reason:'Local demonstration only',decision:'resolved',reviewedOn:'2026-11-20',note:'Reviewer inspected credit',severity:'review'}]});

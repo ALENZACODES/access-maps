@@ -1,0 +1,20 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {mkdtemp,writeFile,rm} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {runCli} from './conflict-cli.mjs';
+import {base} from './conflict-fixture.mjs';
+const run=async(args)=>{let stdout='',stderr='';const code=await runCli(args,{write:s=>stdout+=s},{write:s=>stderr+=s});return {code,stdout,stderr};};
+async function fixture(fn){const dir=await mkdtemp(join(tmpdir(),'p18-conflicts-'));try{const file=join(dir,'current.json');await writeFile(file,JSON.stringify(base()));return await fn(file,dir);}finally{await rm(dir,{recursive:true,force:true});}}
+test('CLI rejects no paths',async()=>assert.equal((await run([])).code,2));
+test('CLI rejects unsupported options',async()=>assert.equal((await run(['--remote'])).code,2));
+test('CLI returns 2 on absent file',async()=>assert.equal((await run(['/nonexistent/file.json'])).code,2));
+test('CLI passes explicit fictional completed review',async()=>fixture(async file=>{const r=await run([file]);assert.equal(r.code,0);assert.ok(r.stdout.includes('Attribution conflict review'));}));
+test('CLI supports JSON report',async()=>fixture(async file=>{const r=await run([file,'--json']);assert.equal(JSON.parse(r.stdout).gate.audit.total,1);}));
+test('CLI supports French nonbreaking punctuation',async()=>fixture(async file=>{const r=await run([file,'--fr']);assert.match(r.stdout,/Fiche\u00a0:/u);}));
+test('CLI blocks unresolved records',async()=>fixture(async(file)=>{const m=base();m.conflicts[0].decision='open';await writeFile(file,JSON.stringify(m));assert.equal((await run([file])).code,1);}));
+test('CLI blocks unknown source evidence',async()=>fixture(async(file)=>{const m=base();m.conflicts[0].retrievedOn='UNKNOWN';await writeFile(file,JSON.stringify(m));assert.equal((await run([file])).code,1);}));
+test('CLI rejects malformed input',async()=>fixture(async(file)=>{await writeFile(file,'{bad');assert.equal((await run([file])).code,2);}));
+test('CLI compares baseline and current',async()=>fixture(async(file,dir)=>{const earlier=join(dir,'previous.json');const m=base();m.conflicts[0].note='older';await writeFile(earlier,JSON.stringify(m));const r=await run([file,earlier]);assert.equal(r.code,0);assert.ok(r.stdout.includes('note'));}));
+test('CLI detects reopened records in change comparison',async()=>fixture(async(file,dir)=>{const earlier=join(dir,'previous.json');await writeFile(earlier,JSON.stringify(base()));const m=base();m.conflicts[0].decision='open';await writeFile(file,JSON.stringify(m));assert.equal((await run([file,earlier])).code,1);}));

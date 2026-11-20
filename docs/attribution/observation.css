@@ -1,0 +1,39 @@
+:root{font: 100%/1.55 system-ui,sans-serif;color-scheme:light dark}
+*{box-sizing:border-box}
+body{margin:0 auto;max-width:76rem;padding:1.25rem;background:Canvas;color:CanvasText}
+main{max-width:100%}
+h1,h2,h3{line-height:1.22}
+header{border-bottom:2px solid ButtonBorder;padding-bottom:1rem}
+section{border:1px solid ButtonBorder;padding:1rem;margin:1.25rem 0;border-radius:.5rem}
+input,select,textarea,button,a.action{font:inherit;min-height:44px;min-width:44px;border-radius:.25rem}
+input,select,textarea{padding:.55rem;max-width:100%;border:1px solid ButtonBorder;background:Field;color:FieldText}
+input[type=file]{width:100%}
+textarea{width:100%;min-height:6rem}
+button,a.action{cursor:pointer;padding:.55rem .85rem;border:2px solid ButtonBorder;background:ButtonFace;color:ButtonText}
+a{color:LinkText;display:inline-flex;align-items:center;min-height:44px;min-width:44px;padding:.55rem}
+a.action{display:inline-flex;align-items:center;text-decoration:none}
+:focus-visible{outline:3px solid Highlight!important;outline-offset:3px}
+label{display:flex;flex-direction:column;gap:.25rem;font-weight:600}
+fieldset{border:1px solid ButtonBorder;border-radius:.4rem;margin:1rem 0;padding:1rem}
+legend{font-weight:700}
+.controls{display:flex;gap:.75rem;flex-wrap:wrap;align-items:end;margin:1rem 0}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:1rem}
+.full{grid-column:1/-1}
+.note{border-inline-start:4px solid Highlight;padding:.5rem 1rem;background:Canvas}
+.status{min-height:2rem;font-weight:650}
+.row{border-top:1px solid ButtonBorder;padding:.85rem 0;display:flex;flex-wrap:wrap;align-items:start;justify-content:space-between;gap:1rem}
+.row > div{min-width:0;flex:1}
+.row p{margin:.25rem 0;overflow-wrap:anywhere}
+.row-actions{display:flex;flex-wrap:wrap;gap:.5rem}
+.finding{padding:.75rem 0;border-bottom:1px solid ButtonBorder}
+.finding strong{display:block}
+.block{border-inline-start:4px solid currentColor;padding-inline-start:.75rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr));gap:1rem}
+summary{min-height:44px;cursor:pointer;padding:.55rem}
+output{display:block}
+.skip{position:absolute;top:-8rem;left:1rem;background:Canvas;color:CanvasText;padding:.75rem;z-index:10}
+.skip:focus{top:.5rem}
+.muted{opacity:.82}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+@media print{button,input,select,textarea,.controls,.skip{display:none!important}section{break-inside:avoid}body{max-width:none}}
