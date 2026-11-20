@@ -32,3 +32,45 @@ The OSM credit is always literally **© OpenStreetMap contributors**. A proposed
 ## Local checks
 
 Run `node --test docs/attribution/conflict-*.test.mjs` from a complete `access-maps` checkout. Each `.mjs` implementation file also supports `node --check`. Full repository lint, TypeScript, precache and accessible browser checks must be performed in a real checkout before deployment. The new static route must be published alongside its files by the host. No assertion that a host SPA serves `docs/attribution/` is made here.
+
+## P18 next slice: per-view handoff packet (current maps main c7ecd320)
+
+The Conflict Review page now has a human-readable **Attribution review handoff**
+section. Choose all views or one named view from the selected local conflict
+register. Expand each view to read each discrepancy's disposition, missing
+fields and recorded finding codes. These records are never mapped onto a real
+place. The summary reports both unresolved items and cases with insufficient
+recorded evidence; a resolved decision is not treated as legal authorisation.
+
+The section can export a local JSON packet (`map-attribution-conflict-handoff/1`)
+or a bilingual text packet. Exported packets are deterministic: original record
+order does not affect the grouped output. A packet contains every selected
+record's scope, source link, licence, retrieved-on date, evidence tier,
+current/proposed text, reviewer reason, review date and notes. Missing values
+remain `UNKNOWN`. Group-level counts distinguish unresolved items, missing
+fields and records requiring attention. Duplicate scope records remain
+separate and are visibly flagged rather than automatically reconciled.
+
+The new `conflict-handoff.mjs` is used by both the browser section and its
+local tests (`conflict-handoff.test.mjs`). It imports only the included
+`conflict-core.mjs` and `conflict-audit.mjs` modules. The page needs no
+external libraries or new routing runtime; do not publish the route unless
+`docs/attribution/conflict.html` and its locally referenced files are served.
+
+### Merged-page regression correction
+
+`observation-route.mjs` is the complete replacement of the #112 file. The
+English/French editor heading and findings-heading separators now use the
+locale-specific `colon()` helper: English `:`, French U+00A0 then `:`.
+`observation-fr-headings.test.mjs` ensures both remain correct. The complete
+`index.html` is based on merged #112 and retains both languages of the
+placement, trace and observation routes, plus the new conflict page links.
+
+### Test scope and limits
+
+The 276 passing local Node tests cover the conflict/handoff modules, the
+observation modules from merged #112 and their integration entry-point
+contracts. New `.mjs` files pass `node --check`. The test scripts use Node's
+built-in runner and existing root glob, requiring no package or CI changes.
+There is no claim of passing workspace-wide TypeScript lint, pack-budget,
+Playwright/axe, or assistive-technology evaluations without the full checkout.

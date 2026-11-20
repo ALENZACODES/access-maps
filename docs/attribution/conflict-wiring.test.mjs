@@ -13,3 +13,18 @@ test('link interactions have 44px and visible focus',async()=>{const css=await r
 test('French display copy has no user-facing verify phrase',async()=>{const s=await read('conflict-copy.mjs');assert.ok(!/vérif|verify|real-time|guarantee|partnership/iu.test(s));});
 test('comparison results are rendered in the page and not export-only',async()=>{const route=await read('conflict-route.mjs');assert.match(route,/function comparisonView\(\)/u);assert.match(route,/main\.append\(columns,summaries\(\),comparisonView\(\)\)/u);assert.match(route,/result\.regressions\.some/u);});
 test('comparison preview remains informational when no baseline chosen',async()=>{const route=await read('conflict-route.mjs');assert.match(route,/if\(!previous\)/u);assert.match(route,/t\(\)\.pending/u);});
+test('handoff view is mounted in the existing conflict page', async()=>{
+  const route=await read('conflict-route.mjs');
+  assert.match(route,/import \{buildHandoff,handoffCopy,handoffJson,handoffText\} from '\.\/conflict-handoff\.mjs'/u);
+  assert.match(route,/function handoffView\(\)/u);
+  assert.match(route,/main\.append\(handoffView\(\)\)/u);
+  assert.match(route,/selectedHandoffSurface/u);
+  assert.match(route,/details\.append\(list\)/u);
+});
+test('handoff exports use local Blob downloads and do not send data',async()=>{
+  const route=await read('conflict-route.mjs');
+  const handoff=await read('conflict-handoff.mjs');
+  assert.match(route,/handoffJson\(current,options\)/u);
+  assert.match(route,/handoffText\(current,locale,options\)/u);
+  assert.doesNotMatch(handoff,/\bfetch\(|XMLHttpRequest|sendBeacon|WebSocket|localStorage|sessionStorage|setInterval/iu);
+});

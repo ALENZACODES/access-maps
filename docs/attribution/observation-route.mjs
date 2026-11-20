@@ -110,9 +110,10 @@ export function mountObservationJournal(doc, root = doc.querySelector('main'), s
     safeUpdate(candidate, t().removed);
   }
   function openEditor(kind, model, previousId = null) { editing = {kind, model, previousId}; render(); doc.querySelector('#observation-editor h2')?.focus(); }
+  function colon() { return locale === 'fr' ? '\u00a0:' : ':'; }
   function makeEditor() {
     const section = node(doc,'section',null,{id:'observation-editor'});
-    const heading = node(doc,'h2',`${t().edit}: ${editing.kind}`,{tabindex:'-1'});
+    const heading = node(doc,'h2',`${t().edit}${colon()} ${editing.kind}`,{tabindex:'-1'});
     const form = node(doc,'form');
     append(form, editFields(doc, editing.model, editing.kind, t()));
     const actions = node(doc,'div',null,{class:'controls'});
@@ -177,7 +178,7 @@ export function mountObservationJournal(doc, root = doc.querySelector('main'), s
   function makeFindings() {
     const report=auditJournal(journal);
     const section=node(doc,'section');
-    section.appendChild(node(doc,'h2',`${t().findings} — ${t().issueCount}: ${report.totals.blocking}`));
+    section.appendChild(node(doc,'h2',`${t().findings} — ${t().issueCount}${colon()} ${report.totals.blocking}`));
     const filter=selectField(doc,t().selectView,'findingView',selectedView,['',...journal.views.map(x=>x.id)]);
     filter.querySelector('option').textContent=t().allViews;
     filter.querySelector('select').addEventListener('change',event=>{selectedView=event.target.value;render();});

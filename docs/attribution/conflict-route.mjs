@@ -1,6 +1,7 @@
 import {emptyConflicts,newConflict,parseConflicts,upsertConflict,removeConflict,filterConflicts,serializeConflicts,CATEGORIES,SEVERITIES,DECISIONS,EVIDENCE,UNKNOWN} from './conflict-core.mjs';
 import {auditConflicts,reconcileAgainstBaseline,summarizeBySource} from './conflict-audit.mjs';
 import {COPY,normalizeLocale,reportText,changesText,rowsTsv} from './conflict-copy.mjs';
+import {buildHandoff,handoffCopy,handoffJson,handoffText} from './conflict-handoff.mjs';
 
 /** Explicit local-file interactions only. No storage, timers, or requests. */
 const root=document.querySelector('#conflict-root');
@@ -12,6 +13,7 @@ let selected=null;
 let decisionFilter='all';
 let severityFilter='all';
 let query='';
+let selectedHandoffSurface='all';
 const el=(tag,text='',className='')=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=String(text);if(className)n.className=className;return n;};
 const append=(parent,...children)=>{for(const c of children)parent.append(c);return parent;};
 const t=()=>COPY[locale];
@@ -32,7 +34,7 @@ function recordForm(){const area=el('section');area.setAttribute('aria-labelledb
 function listView(){const pane=el('section');pane.setAttribute('aria-labelledby','records-heading');const heading=el('h2',t().filter);heading.id='records-heading';pane.append(heading);
  const controls=el('div',undefined,'filters');append(controls,labelControl(t().decision,select([['all',t().all],...DECISIONS.map(x=>[x,t()[x]??x])],decisionFilter,v=>{decisionFilter=v;render();})),labelControl(t().severity,select([['all',t().all],...SEVERITIES.map(x=>[x,t()[x]??x])],severityFilter,v=>{severityFilter=v;render();})),labelControl(t().filter,input(query,v=>{query=v;render();})));pane.append(controls);
  const rows=filterConflicts(current,{decision:decisionFilter,severity:severityFilter,query});const list=el('ul');for(const row of rows){const li=el('li');const name=`${row.id} · ${row.sourceId} · ${row.category} · ${row.decision}`;const b=button(name,()=>{selected=row.id;render();document.querySelector('#form-heading')?.scrollIntoView({block:'start'});});if(selected===row.id)b.setAttribute('aria-current','true');li.append(b);list.append(li);}if(!rows.length)list.append(el('li',t().none));pane.append(list);return pane;}
-function summaries(){const area=el('section');area.setAttribute('aria-labelledby','summary-heading');const heading=el('h2',t().summary);heading.id='summary-heading';area.append(heading);const a=auditConflicts(current);area.append(el('p',`${current.conflicts.length} ${t().count} · ${a.blocking} ${t().blocking}`));const summary=el('ul');for(const s of summarizeBySource(current))summary.append(el('li',`${s.sourceId}: ${s.total} · ${s.open} ${t().open} · ${s.resolved} ${t().resolved}`));area.append(summary);const h=el('h3',t().findings);area.append(h);const ul=el('ul');for(const f of a.findings)ul.append(el('li',`${f.id} — ${f.code} (${f.severity})`));if(!a.findings.length)ul.append(el('li',t().none));area.append(ul);return area;}
+function summaries(){const area=el('section');area.setAttribute('aria-labelledby','summary-heading');const heading=el('h2',t().summary);heading.id='summary-heading';area.append(heading);const a=auditConflicts(current);area.append(el('p',`${current.conflicts.length} ${t().count} · ${a.blocking} ${t().blocking}`));const summary=el('ul');for(const s of summarizeBySource(current))summary.append(el('li',`${s.sourceId}${locale==='fr'?'\u00a0:':':'} ${s.total} · ${s.open} ${t().open} · ${s.resolved} ${t().resolved}`));area.append(summary);const h=el('h3',t().findings);area.append(h);const ul=el('ul');for(const f of a.findings)ul.append(el('li',`${f.id} — ${f.code} (${f.severity})`));if(!a.findings.length)ul.append(el('li',t().none));area.append(ul);return area;}
 function comparisonView() {
  const section=el('section');
  section.setAttribute('aria-labelledby','comparison-heading');
@@ -47,7 +49,7 @@ function comparisonView() {
  for(const change of result.changes){
   const li=el('li');
   const critical=result.regressions.some(item=>item.id===change.id && item.field===change.field);
-  const prefix=critical?`${t().blocking}: `:'';
+  const prefix=critical?`${t().blocking}${locale==='fr'?'\u00a0:':':'} `:'';
   li.textContent=`${prefix}${change.id} · ${change.kind} · ${change.field} · ${change.before} → ${change.after}`;
   list.append(li);
  }
@@ -55,9 +57,41 @@ function comparisonView() {
  section.append(list);
  return section;
 }
+function handoffView() {
+ const labels=handoffCopy(locale);
+ const section=el('section');section.setAttribute('aria-labelledby','handoff-heading');
+ const heading=el('h2',labels.title);heading.id='handoff-heading';section.append(heading);
+ section.append(el('p',labels.caution));
+ const available=[...new Set(current.conflicts.map(x=>x.surfaceId))].sort();
+ const selected=selectedHandoffSurface==='all'||available.includes(selectedHandoffSurface)?selectedHandoffSurface:'all';
+ const choose=labelControl(labels.view,select([['all',t().all],...available.map(x=>[x,x])],selected,value=>{
+  selectedHandoffSurface=value;render();
+ }));
+ const options=selected==='all'?{}:{surfaceId:selected};
+ const packet=buildHandoff(current,options);
+ const actions=el('div',undefined,'tools');
+ actions.append(choose,button(`${labels.title} JSON`,()=>download('map-attribution-handoff.json',handoffJson(current,options),'application/json')),
+  button(`${labels.title} TXT`,()=>download(`map-attribution-handoff-${locale}.txt`,handoffText(current,locale,options))));
+ section.append(actions);
+ section.append(el('p',`${packet.summary.records} ${labels.records} · ${packet.summary.unresolved} ${labels.unresolved} · ${packet.summary.missingFields} ${labels.missing}`));
+ if(!packet.groups.length)section.append(el('p',labels.noRows));
+ for(const group of packet.groups){
+  const details=el('details');const summary=el('summary',`${group.surfaceId} · ${group.recordCount} ${labels.records} · ${group.status}`);
+  details.append(summary);
+  const list=el('ul');
+  for(const record of group.records){
+   const item=el('li');
+   const title=el('strong',`${record.id} · ${record.sourceId} · ${record.category}`);
+   const info=el('p',`${record.decision} · ${record.missingFields.join(', ')||labels.none} · ${record.findingCodes.join(', ')||labels.none}`);
+   item.append(title,info);list.append(item);
+  }
+  details.append(list);section.append(details);
+ }
+ return section;
+}
 function render(){if(!root)return;document.documentElement.lang=locale;document.title=`${t().title} — the App`;root.replaceChildren();const main=el('main');main.id='main';append(main,el('h1',t().title),el('p',t().intro),el('p',t().warning));
  const tools=el('section',undefined,'tools');tools.setAttribute('aria-label',t().language);append(tools,labelControl(t().language,select([['en',t().english],['fr',t().french]],locale,v=>{locale=normalizeLocale(v);history.replaceState(null,'',`?lang=${locale}`);render();})),picker(t().import,x=>{current=x;selected=null;render();}),picker(t().previous,x=>{previous=x;render();}),button(t().add,()=>{selected=null;render();document.querySelector('#form-heading')?.scrollIntoView({block:'start'});}),button(t().export,()=>download('attribution-conflicts.json',serializeConflicts(current),'application/json')),button(t().report,()=>download(`attribution-conflicts-${locale}.txt`,reportText(current,locale))),button('TSV',()=>download('attribution-conflicts.tsv',rowsTsv(current),'text/tab-separated-values')));
  if(selected)tools.append(button(t().remove,()=>{current=removeConflict(current,selected);selected=null;render();status(t().removed);}));
- if(previous)tools.append(button(t().changes,()=>{const result=reconcileAgainstBaseline(previous,current);download(`attribution-conflict-changes-${locale}.txt`,changesText(previous,current,locale));status(`${t().changes}: ${result.changes.length}`);}));
- main.append(tools);const columns=el('div',undefined,'columns');append(columns,listView(),recordForm());main.append(columns,summaries(),comparisonView());const footer=el('p');const link=el('a',t().close);link.href='index.html';footer.append(link);main.append(footer);root.append(main);}
+ if(previous)tools.append(button(t().changes,()=>{const result=reconcileAgainstBaseline(previous,current);download(`attribution-conflict-changes-${locale}.txt`,changesText(previous,current,locale));status(`${t().changes}${locale==='fr'?'\u00a0:':':'} ${result.changes.length}`);}));
+ main.append(tools);const columns=el('div',undefined,'columns');append(columns,listView(),recordForm());main.append(columns,summaries(),comparisonView());main.append(handoffView());const footer=el('p');const link=el('a',t().close);link.href='index.html';footer.append(link);main.append(footer);root.append(main);}
 render();
