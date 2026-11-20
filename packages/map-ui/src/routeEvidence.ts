@@ -143,7 +143,7 @@ export const EVIDENCE_COPY = Object.freeze({
     notAdvice: "These are records about routes, not personal or medical recommendations. Check conditions before travelling.",
     save: "Save local review JSON",
     copy: "Copy review JSON",
-    saved: "Local JSON is ready to copy or save on this device.",
+    saved: "Review prepared for local export. Local JSON is ready to copy or save on this device.",
     status: "Status",
   }),
   fr: Object.freeze({
@@ -200,7 +200,7 @@ export const EVIDENCE_COPY = Object.freeze({
     notAdvice: "Ces données portent sur les parcours, et non sur des recommandations personnelles ou médicales. Contrôlez les conditions avant le départ.",
     save: "Enregistrer le rapport JSON local",
     copy: "Copier le rapport JSON",
-    saved: "Le rapport JSON local est prêt à copier ou à enregistrer sur cet appareil.",
+    saved: "Le rapport est prêt pour l’exportation locale. Le fichier JSON peut être copié ou enregistré sur cet appareil.",
     status: "État",
   }),
 });
