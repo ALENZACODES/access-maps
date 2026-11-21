@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { displayValue, prototypeLabel, toMapFeatures, type Journey, type JourneyPlan, type Leg } from "@access-maps/journey";
 import { AccessibleMap } from "./AccessibleMap.js";
 import { AttributionSources } from "./AttributionSources.js";
@@ -10,6 +10,8 @@ export function JourneyResult({ plan }: { plan: JourneyPlan }) {
   const text = mapCopy(plan.locale);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const features = toMapFeatures(plan);
+  const needsId = useId();
+  const [showNeeds, setShowNeeds] = useState(false);
 
   const before = plan.warnings.filter((warning) => warning.beforeCommit);
   const urgent = [
@@ -27,6 +29,7 @@ export function JourneyResult({ plan }: { plan: JourneyPlan }) {
   useEffect(() => {
     headingRef.current?.focus();
     setAnnouncement("");
+    setShowNeeds(false);
     const timer = setTimeout(() => setAnnouncement(urgentText), 50);
     return () => clearTimeout(timer);
   }, [plan.id, urgentText]);
@@ -36,6 +39,9 @@ export function JourneyResult({ plan }: { plan: JourneyPlan }) {
     plan.journeys.some((journey) => journey.legs.some((leg) => leg.stepFree.status === "not-step-free"));
 
   const drawsOsm = features.some((feature) => feature.odbl);
+  const needsButtonLabel = plan.locale === "fr"
+    ? (showNeeds ? "Masquer la comparaison des parcours" : "Comparer les parcours selon vos préférences d’accessibilité")
+    : (showNeeds ? "Hide route comparison" : "Compare routes with your accessibility preferences");
 
   return (
     <article className="journey-result">
@@ -93,7 +99,21 @@ export function JourneyResult({ plan }: { plan: JourneyPlan }) {
         attribution={drawsOsm ? text.attributionOsm : text.attributionPlain}
       />
       <AttributionSources plan={plan} />
-      <RouteNeedsPanel plan={plan} />
+      <section aria-label={plan.locale === "fr" ? "Comparaison des parcours" : "Route comparison"}>
+        <button
+          type="button"
+          className="route-needs-launch"
+          style={{ minHeight: 44, minWidth: 44 }}
+          aria-expanded={showNeeds}
+          aria-controls={needsId}
+          onClick={() => setShowNeeds((previous) => !previous)}
+        >
+          {needsButtonLabel}
+        </button>
+        <div id={needsId}>
+          {showNeeds ? <RouteNeedsPanel plan={plan} /> : null}
+        </div>
+      </section>
     </article>
   );
 }
