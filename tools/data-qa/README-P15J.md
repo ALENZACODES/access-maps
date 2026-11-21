@@ -1,7 +1,7 @@
 # P15J: Offline handoff, resume and bilingual coverage gates
 
-Run `npx tsx --test tools/data-qa/p15j-*.test.ts` to exercise the local gates.
-Run `npx tsx tools/data-qa/p15j-cli.ts --help` for audit commands.
+Run `node --import tsx --test tools/data-qa/p15j-*.test.ts` to exercise the local gates.
+Run `node --import tsx tools/data-qa/p15j-cli.ts --help` for audit commands.
 The CLI accepts only local JSON files and writes a new local report when requested.
 No fetching, external hosting, background jobs or scheduled operations are used.
 
