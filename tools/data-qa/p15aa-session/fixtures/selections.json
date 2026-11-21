@@ -1,0 +1,19 @@
+[
+  {
+    "field": "wheelchair",
+    "record": {
+      "id": "osm:node/900000000000001",
+      "tranche": "venue",
+      "region": "unknown",
+      "fields": {
+        "wheelchair": {
+          "value": "UNKNOWN",
+          "source_id": "osm-ontario",
+          "licence": "ODbL-1.0",
+          "retrieved_at": "2026-01-01",
+          "tier": 0
+        }
+      }
+    }
+  }
+]
