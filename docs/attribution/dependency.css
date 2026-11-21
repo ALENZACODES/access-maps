@@ -1,0 +1,36 @@
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color-scheme:light dark;line-height:1.5}
+*{box-sizing:border-box}
+body{margin:0 auto;max-width:77rem;padding:1.2rem;background:Canvas;color:CanvasText}
+main{display:grid;gap:1.2rem}
+header,section{padding:1rem;border:1px solid color-mix(in srgb,CanvasText 35%,transparent);border-radius:.65rem}
+header{background:color-mix(in srgb,Canvas 92%,CanvasText 8%)}
+header h1{margin:.25rem 0}
+h2{margin-top:0}
+label{display:grid;gap:.4rem;font-weight:600}
+input,select,button,a{font:inherit}
+button,select,input[type=file],input[type=search]{min-height:44px}
+button{border:2px solid CanvasText;border-radius:.4rem;background:Canvas;color:CanvasText;padding:.6rem;cursor:pointer}
+button[aria-pressed=true]{background:Highlight;color:HighlightText;border-color:Highlight}
+button:hover{filter:brightness(.92)}
+a{display:inline-flex;align-items:center;min-height:44px;text-underline-offset:.2rem}
+:where(a,button,input,select,summary):focus-visible{outline:3px solid #d47b16;outline-offset:3px}
+.dependency-skip{position:absolute;left:-10000px;top:0;background:Canvas;color:CanvasText;z-index:10;padding:.75rem}
+.dependency-skip:focus-visible{left:1rem;top:1rem}
+.dependency-warning{border-inline-start:4px solid currentColor;padding-inline-start:.8rem}
+.dependency-language,.dependency-actions,.dependency-filters{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.dependency-tools{display:grid;gap:1rem}
+.dependency-tools label{max-width:48rem}
+.dependency-definition{display:grid;grid-template-columns:minmax(8rem,15rem) 1fr;gap:.75rem;padding:.3rem 0;border-bottom:1px solid color-mix(in srgb,CanvasText 18%,transparent)}
+.dependency-definition dt{font-weight:700}
+.dependency-definition dd{margin:0;overflow-wrap:anywhere}
+.dependency-summary{margin:0}
+.dependency-surface{padding:1rem;margin:.8rem 0;border:1px solid color-mix(in srgb,CanvasText 40%,transparent);border-radius:.5rem}
+.dependency-surface details{margin:.5rem 0;padding:.5rem;border:1px solid color-mix(in srgb,CanvasText 20%,transparent)}
+.dependency-surface summary{cursor:pointer;min-height:44px;padding:.6rem;display:list-item}
+.dependency-finding{border-inline-start:4px solid CanvasText;padding:.75rem;margin:.6rem 0;background:color-mix(in srgb,Canvas 93%,CanvasText 7%);overflow-wrap:anywhere}
+.dependency-finding.block{border-inline-start-color:#a63623}
+.dependency-finding.attention{border-inline-start-color:#976400}
+.dependency-status{min-height:1.8rem;font-weight:700}
+@media(max-width:640px){body{padding:.6rem}.dependency-definition{grid-template-columns:1fr;gap:.1rem}.dependency-actions{display:grid}.dependency-actions button{width:100%}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+@media print{button,input,select,.dependency-skip,.dependency-tools{display:none!important}section,header{break-inside:avoid}}
