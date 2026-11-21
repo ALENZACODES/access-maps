@@ -1,0 +1,17 @@
+:root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5;color-scheme:light dark}
+*{box-sizing:border-box}body{max-width:76rem;margin:0 auto;padding:1rem;background:Canvas;color:CanvasText}
+.parity-skip{position:absolute;left:-10000px;top:auto}.parity-skip:focus{left:1rem;top:1rem;padding:1rem;background:Canvas;color:CanvasText;z-index:10}
+.parity-header{border-bottom:2px solid currentColor;padding-bottom:1rem;margin-bottom:1rem}.parity-header a{display:inline-flex;align-items:center;min-height:44px}
+.parity-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:1rem}
+.parity-card{border:1px solid currentColor;border-radius:.55rem;padding:1rem;margin:1rem 0;overflow-wrap:anywhere}
+.parity-card h2{margin-top:0}.parity-card h3{font-size:1rem}
+.parity-card label,.parity-header label{display:flex;flex-direction:column;gap:.35rem;font-weight:600;margin:.5rem 0}
+.parity-card input,.parity-card select,.parity-header select{font:inherit;min-height:44px;width:100%;max-width:100%;padding:.5rem;border:1px solid currentColor;border-radius:.3rem;background:Canvas;color:CanvasText}
+.parity-card input[type=file]{min-height:52px}.parity-actions{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1rem}
+.parity-actions button{font:inherit;min-height:44px;min-width:44px;padding:.6rem .85rem;cursor:pointer;border:2px solid currentColor;border-radius:.4rem;background:Canvas;color:CanvasText}
+.parity-card :focus-visible,.parity-header :focus-visible,.parity-skip:focus-visible{outline:3px solid #b05e00;outline-offset:3px}
+.parity-list{padding-left:1.5rem}.parity-list li{padding:.5rem 0;border-bottom:1px solid GrayText}
+.parity-finding.block{border-inline-start:4px solid currentColor;padding-inline-start:.6rem}
+.parity-status{min-height:1.75rem;font-weight:650}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important}}
+@media print{.parity-actions,.parity-skip,input[type=file]{display:none!important}.parity-card{break-inside:avoid}}
