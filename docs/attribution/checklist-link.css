@@ -1,0 +1,3 @@
+.checklist-links{display:flex;gap:.6rem;flex-wrap:wrap;margin:1rem 0;padding:.8rem;border:1px solid currentColor;border-radius:.4rem}
+.checklist-links a{display:inline-flex;align-items:center;min-height:44px;min-width:44px;padding:.6rem;text-underline-offset:.2rem}
+.checklist-links a:focus-visible{outline:3px solid #a65b00;outline-offset:3px}
