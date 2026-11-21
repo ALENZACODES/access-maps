@@ -71,16 +71,24 @@ describe('P15I root runner integration contract', () => {
   it('runs P15C through P15H in one Node test invocation', () => {
     const commands = testScriptCommands();
     const nodeSuites = commands[1];
-    assert.ok(nodeSuites.startsWith('tsx --test '));
+    assert.ok(nodeSuites.startsWith('node --import tsx --test '));
     for (const pattern of p15) {
       assert.ok(nodeSuites.includes(pattern), `Missing ${pattern} from P15 Node runner`);
       assertOneScriptReference(pattern);
     }
   });
 
+  it('runs the place-link review specs once alongside the other Node QA suites', () => {
+    const pattern = 'tools/data-qa/place-link-review/*.spec.ts';
+    assert.ok(testScriptCommands()[1].split(' ').includes(pattern));
+    assertOneScriptReference(pattern);
+    assert.equal(packageJson.scripts['data-qa:place-link-review'],
+      'node --experimental-strip-types tools/data-qa/place-link-review/cli.ts');
+  });
+
   it('retains the P18 offline attribution suite in a separate Node runner', () => {
     const commands = testScriptCommands();
-    assert.equal(commands[2], `tsx --test ${offline}`);
+    assert.equal(commands[2], `node --import tsx --test ${offline}`);
     assertOneScriptReference(offline);
   });
 
@@ -138,7 +146,7 @@ describe('P15I root runner integration contract', () => {
 
   it('does not omit a suite when changing the root test runner', () => {
     const commands = testScriptCommands();
-    assert.equal(commands.filter((item) => item.startsWith('tsx --test ')).length, 2);
+    assert.equal(commands.filter((item) => item.startsWith('node --import tsx --test ')).length, 2);
     assert.equal(commands.filter((item) => item.startsWith('npm test -w ')).length, workspaces.length);
   });
 });
