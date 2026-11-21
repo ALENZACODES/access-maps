@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Local, bilingual offline data quality review">
+  <title>Offline data review</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#results" data-i18n="skip">Skip to review results</a>
+  <header class="site-header">
+    <div class="container header-row">
+      <div>
+        <h1 data-i18n="title">Offline data review</h1>
+        <p data-i18n="subtitle">Review local accessibility records before publishing an offline package.</p>
+      </div>
+      <div class="locale-control">
+        <label for="locale" data-i18n="language">Language</label>
+        <select id="locale" name="locale">
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+        </select>
+      </div>
+    </div>
+  </header>
+  <main class="container">
+    <section class="panel" aria-labelledby="input-heading">
+      <h2 id="input-heading" data-i18n="inputHeading">Local input files</h2>
+      <p data-i18n="fileHelp">Files are processed on this device. Nothing is uploaded.</p>
+      <form id="review-form" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="current" data-i18n="manifestLabel">Current publication JSON</label>
+            <input id="current" name="current" type="file" accept=".json,application/json" required>
+          </div>
+          <div class="field">
+            <label for="previous-file" data-i18n="previousLabel">Earlier publication JSON (optional)</label>
+            <input id="previous-file" name="previous" type="file" accept=".json,application/json">
+          </div>
+          <div class="field">
+            <label for="as-of" data-i18n="asOf">Review date</label>
+            <input id="as-of" name="asOf" type="date" required>
+          </div>
+          <div class="field">
+            <label for="max-age" data-i18n="sourceAge">Maximum source age, days</label>
+            <input id="max-age" name="maxAge" type="number" min="0" max="3650" step="1" value="365" required>
+          </div>
+        </div>
+        <div class="button-row">
+          <button id="submit-review" type="submit" data-i18n="review">Review files</button>
+          <button id="clear-review" type="reset" class="secondary" data-i18n="reset">Clear review</button>
+        </div>
+      </form>
+      <p id="input-status" role="status" aria-live="polite"></p>
+    </section>
+    <section class="panel" aria-labelledby="help-heading">
+      <div class="panel-heading">
+        <h2 id="help-heading" data-i18n="instructions">How to use the local review</h2>
+        <button id="toggle-help" type="button" class="secondary" aria-expanded="false"
+          aria-controls="help-content" data-i18n="help">Help</button>
+      </div>
+      <div id="help-content" hidden>
+        <ol>
+          <li data-i18n="instruction1">Choose a current JSON publication from your device.</li>
+          <li data-i18n="instruction2">Optionally choose an earlier JSON publication to compare changes.</li>
+          <li data-i18n="instruction3">Select a review date, then examine every blocking finding.</li>
+          <li data-i18n="instruction4">Save a report locally for your publication records.</li>
+        </ol>
+        <p data-i18n="keyboardHelp">Use Tab to move between controls and Enter to activate buttons.</p>
+      </div>
+    </section>
+    <section id="results" class="panel results" aria-labelledby="results-heading" tabindex="-1">
+      <h2 id="results-heading" data-i18n="results">Review results</h2>
+      <p id="review-status" role="status" aria-live="polite" data-i18n="noResults">
+        Choose a publication JSON file and select Review files.
+      </p>
+      <div id="review-summary" class="summary-grid" hidden></div>
+      <section id="changes-panel" aria-labelledby="changes-heading" hidden>
+        <h3 id="changes-heading" data-i18n="comparison">Change summary</h3>
+        <div id="changes-output" class="summary-grid"></div>
+      </section>
+      <section id="findings-panel" aria-labelledby="findings-heading" hidden>
+        <h3 id="findings-heading" data-i18n="findingsHeading">Publication findings</h3>
+        <div class="filter-grid">
+          <div class="field">
+            <label for="level-filter" data-i18n="filter">Filter findings</label>
+            <select id="level-filter">
+              <option value="all" data-i18n="all">All findings</option>
+              <option value="ERROR" data-i18n="errors">Blocking findings</option>
+              <option value="NOTICE" data-i18n="notices">Notices</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="category-filter" data-i18n="category">Finding category</label>
+            <select id="category-filter"><option value="all" data-i18n="all">All findings</option></select>
+          </div>
+          <div class="field">
+            <label for="finding-search" data-i18n="search">Search finding codes or locations</label>
+            <input id="finding-search" type="search" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="page-size" data-i18n="perPage">Findings per page</label>
+            <select id="page-size">
+              <option value="10">10</option><option value="20">20</option><option value="50">50</option>
+            </select>
+          </div>
+        </div>
+        <div class="button-row">
+          <button id="clear-filters" class="secondary" type="button" data-i18n="clearFilter">Clear filters</button>
+        </div>
+        <div id="findings-output" class="findings-list"></div>
+        <nav class="pager" aria-label="Findings pages">
+          <button id="previous-page" type="button" class="secondary" data-i18n="previous">Previous</button>
+          <output id="page-count" aria-live="polite"></output>
+          <button id="next-page" type="button" class="secondary" data-i18n="next">Next</button>
+        </nav>
+      </section>
+      <section id="sources-panel" aria-labelledby="sources-heading" hidden>
+        <div class="panel-heading">
+          <h3 id="sources-heading" data-i18n="sourceDetails">Source details</h3>
+          <button id="toggle-sources" type="button" class="secondary" aria-expanded="false"
+            aria-controls="source-content" data-i18n="showSources">Show source inventory</button>
+        </div>
+        <div id="source-content" hidden>
+          <label for="source-search" data-i18n="sourceFilter">Filter sources</label>
+          <input id="source-search" type="search" autocomplete="off">
+          <div id="source-output" class="source-list"></div>
+        </div>
+      </section>
+      <div id="exports" class="button-row" hidden>
+        <button id="export-json" type="button" data-i18n="exportJson">Save report as JSON</button>
+        <button id="export-csv" type="button" class="secondary" data-i18n="exportCsv">Save findings as CSV</button>
+      </div>
+      <p data-i18n="exportHelp">Exports contain finding codes and paths, not source descriptions.</p>
+      <p class="disclaimer" data-i18n="conclusion">
+        This review reports data quality only and does not determine route suitability.
+      </p>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container"><p data-i18n="footer">Offline-only review. No account, tracking, or remote map is required.</p></div>
+  </footer>
+</body>
+</html>
