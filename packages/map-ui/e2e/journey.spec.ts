@@ -1,4 +1,6 @@
 import AxeBuilder from "@axe-core/playwright";
+import { displayValue, planJourney, prototypeLabel } from "@access-maps/journey";
+import { demoPlanInput } from "../demo/fixture.js";
 import { expect, test, type Locator, type Page } from "@playwright/test";
 
 /**
@@ -89,18 +91,88 @@ test("the demo journey completes by keyboard alone", async ({ page }) => {
   expect(errors).toEqual([]);
 });
 
-test("every leg shows a step-free status and its source, and unknowns say Unknown", async ({ page }) => {
-  await page.goto("/");
-  const legs = page.locator("article.journey-result ol > li");
-  expect(await legs.count()).toBeGreaterThan(0);
-  for (const leg of await legs.all()) {
-    await expect(leg.locator(".status")).toHaveText(/Step-free|Unknown|Not step-free|Information/);
-    await expect(leg).toContainText("Source:");
-    await expect(leg).toContainText("Licence:");
-    await expect(leg).toContainText("Retrieved:");
-  }
-  await expect(page.locator(".status-unknown").first()).toContainText("Unknown");
-});
+for (const locale of ["en", "fr"] as const) {
+  test(`every outbound and return leg retains its status and provenance with route comparison open (${locale})`, async ({ page }) => {
+    const french = locale === "fr";
+    const planned = planJourney(demoPlanInput(locale));
+    const routes = [...planned.journeys, ...planned.blocked];
+    const colon = french ? "\u00a0:" : ":";
+    const statusLabels = french
+      ? { "step-free": "■ Sans marches", "not-step-free": "▲ Avec marches ou obstacle", unknown: "? Inconnu" }
+      : { "step-free": "■ Step-free", "not-step-free": "▲ Not step-free", unknown: "? Unknown" };
+    await page.goto(`/?lang=${locale}`);
+    await page.getByRole("button", { name: french
+      ? "Comparer les parcours selon vos préférences d’accessibilité"
+      : "Compare routes with your accessibility preferences" }).click();
+    await expect(page.locator(".route-needs-results > li").first()).toBeVisible();
+
+    const article = page.getByRole("article");
+    const directions = [
+      { name: french ? "Segments de l’aller" : "Outbound legs", legs: routes.map((route) => route.legs) },
+      { name: french ? "Segments du retour" : "Return legs", legs: routes.map((route) => route.returnJourney.legs) },
+    ];
+    expect(routes.length).toBeGreaterThan(0);
+    for (const direction of directions) {
+      const lists = article.getByRole("list", { name: direction.name, exact: true });
+      const actual = await lists.evaluateAll((nodes, sourceLabel) => nodes.map((list) =>
+        Array.from(list.querySelectorAll(":scope > li"), (row) => {
+          const paragraphs = Array.from(row.querySelectorAll(":scope > p"));
+          return {
+            titles: Array.from(row.querySelectorAll(":scope > h4, :scope > h5"), (heading) => heading.textContent),
+            statuses: paragraphs.filter((p) => p.classList.contains("status")).map((p) => ({
+              codes: Array.from(p.classList).filter((name) => name.startsWith("status-")),
+              label: p.textContent,
+            })),
+            provenance: paragraphs.map((p) => p.textContent ?? "").filter((text) => text.startsWith(sourceLabel)),
+          };
+        })), `Source${colon} `);
+      const expected = direction.legs.map((legs) => legs.map((leg) => {
+        const record = leg.provenance;
+        const fields = [
+          `Source${colon} ${displayValue(locale, record.sourceId)}.`,
+          `Licence${colon} ${displayValue(locale, record.licence)}.`,
+        ];
+        if (record.attribution) fields.push(`Attribution${colon} ${record.attribution}.`);
+        const retrieved = displayValue(locale, record.retrievedOn ?? record.retrievedAt);
+        fields.push(`${french ? "Récupéré" : "Retrieved"}${colon} ${retrieved}.`, prototypeLabel(locale, record.tier));
+        return {
+          titles: [leg.title],
+          statuses: [{ codes: [`status-${leg.stepFree.status}`], label: statusLabels[leg.stepFree.status] }],
+          provenance: [fields.join(" ")],
+        };
+      }));
+      expect(actual, direction.name).toEqual(expected);
+    }
+    await expect(article.locator(".status-unknown").first()).toContainText(french ? "Inconnu" : "Unknown");
+  });
+
+  test(`expanded route evidence is keyboard accessible on a narrow screen (${locale})`, async ({ page }) => {
+    const french = locale === "fr";
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto(`/?lang=${locale}`);
+    const panel = page.getByRole("region", {
+      name: french ? "Observations et incertitudes du parcours" : "Route evidence and uncertainty",
+    });
+    const toggle = panel.getByRole("button", {
+      name: french ? "Consulter les observations du parcours" : "Inspect route evidence",
+    });
+    await toggle.focus();
+    await page.keyboard.press("Enter");
+    const sort = panel.getByRole("combobox", { name: french ? "Trier les options" : "Order options", exact: true });
+    await page.keyboard.press("Tab");
+    await expect(sort).toBeFocused();
+    const axe = await new AxeBuilder({ page }).include(".route-evidence-panel")
+      .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22a", "wcag22aa"]).analyze();
+    expect(axe.violations, JSON.stringify(axe.violations, null, 2)).toEqual([]);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
+    const smallControls = await panel.locator("button, input, select, summary").evaluateAll((controls) =>
+      controls.filter((control) => {
+        const bounds = control.getBoundingClientRect();
+        return bounds.width < 44 || bounds.height < 44;
+      }).map((control) => control.outerHTML));
+    expect(smallControls).toEqual([]);
+  });
+}
 
 test("the demo journey passes axe in English and French and switches by keyboard", async ({ page }) => {
   const errors = collectConsoleErrors(page);

@@ -10,3 +10,13 @@ export { compareRoutes, assessRequirement, normalizeProfile, DEFAULT_PROFILE as 
 export type { NeedsProfile, Choice, RequirementId, RequirementAssessment, RouteAssessment } from "./routeNeeds.js";
 export { needsCopy, needsCopyKeys } from "./routeNeedsCopy.js";
 export { compareNeedsSnapshots, sourceInventory, portableNeedsComparison, exportNeedsJson, sourceDateChanges } from "./routeNeedsReview.js";
+export { RouteEvidencePanel } from "./RouteEvidencePanel.js";
+export {
+  buildRouteEvidence, compareEvidenceOptions, EVIDENCE_COPY, EMPTY_FILTERS,
+  evidenceExport, filterEvidence, routeStatus, sortedOptions,
+} from "./routeEvidence.js";
+export type {
+  EvidenceDashboard, EvidenceOption, EvidenceSegment, EvidenceIssue, EvidenceFilters,
+  EvidenceState, EvidenceOutcome, EvidenceSeverity, EvidenceCategory, EvidenceSort,
+  EvidenceLocale, EvidenceDifference, EvidenceSource,
+} from "./routeEvidence.js";
