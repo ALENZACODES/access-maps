@@ -183,3 +183,8 @@ test('no new workflows are packaged in this directory',async()=>{
   const doc=await read('BUNDLE_README.md');
   assert.ok(doc.includes('No scheduled workflow'));
 });
+
+test('French removal confirmation has a narrow no-break space before question mark', () => {
+  assert.equal(COPY.fr.confirmRemove, 'Retirer cette fiche du dossier en cours\u202f?');
+  assert.ok(!COPY.fr.confirmRemove.includes('cours ?'));
+});
