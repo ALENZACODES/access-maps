@@ -1,0 +1,11 @@
+import test from "node:test";import assert from "node:assert/strict";import {readFile} from "node:fs/promises";import {COPY} from "./presentation-copy.mjs";const read=n=>readFile(new URL(`./${n}`,import.meta.url),"utf8");
+test("homepage has EN and FR links",async()=>{const x=await read("index.html");assert.ok(x.includes('href="presentation.html?lang=en"'));assert.ok(x.includes('href="presentation.html?lang=fr"'));});
+test("homepage has link stylesheet",async()=>assert.ok((await read("index.html")).includes('href="presentation-link.css"')));
+test("all existing nav retained",async()=>{const x=await read("index.html");for(const h of ["placement.html?lang=en","trace.html?lang=fr","observation.html?lang=fr","conflict.html?lang=en","parity.html?lang=fr","dependency.html?lang=fr","integrity.html?lang=fr","bundle.html?lang=fr"])assert.ok(x.includes(`href="${h}"`));});
+test("conflict wording retained",async()=>assert.ok((await read("index.html")).includes("Open attribution conflict review")));
+test("page CSP denies network",async()=>assert.ok((await read("presentation.html")).includes("connect-src 'none'")));
+test("page references route and CSS",async()=>{const x=await read("presentation.html");assert.ok(x.includes('src="presentation-route.mjs"'));assert.ok(x.includes('href="presentation.css"'));});
+test("44px targets",async()=>assert.ok((await read("presentation.css")).includes("min-height:44px")));
+test("visible focus",async()=>assert.ok((await read("presentation.css")).includes(":focus-visible")));
+test("route no remote APIs",async()=>{const x=await read("presentation-route.mjs");assert.ok(!/fetch\s*\(|XMLHttpRequest|WebSocket|setInterval|setTimeout|sendBeacon/u.test(x));});
+test("direct imports all present",async()=>{for(const n of ["presentation-core.mjs","presentation-layout.mjs","presentation-audit.mjs","presentation-report.mjs","presentation-copy.mjs","presentation-fixture.mjs","presentation-route.mjs","presentation-core.test.mjs","presentation-layout.test.mjs","presentation-audit.test.mjs","presentation-report.test.mjs","presentation-copy.test.mjs","presentation-wiring.test.mjs","presentation-matrix.test.mjs"]){const s=await read(n);for(const m of s.matchAll(/from ["']\.\/([^"']+)["']/gu))await read(m[1]);}});
