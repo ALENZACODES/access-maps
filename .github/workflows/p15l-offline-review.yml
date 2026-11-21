@@ -1,0 +1,35 @@
+name: P15L offline publication review
+on:
+  push:
+    paths:
+      - 'tools/data-qa/offline-review/**'
+      - '.github/workflows/p15l-offline-review.yml'
+  pull_request:
+    paths:
+      - 'tools/data-qa/offline-review/**'
+      - '.github/workflows/p15l-offline-review.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: JavaScript syntax
+        run: |
+          for file in tools/data-qa/offline-review/*.mjs; do
+            node --check "$file"
+          done
+      - name: Offline publication review regression suite
+        run: node --test tools/data-qa/offline-review/*.spec.mjs
+      - name: Offline assets remain local
+        run: |
+          if grep -E -i '(https?://|@import)' tools/data-qa/offline-review/index.html tools/data-qa/offline-review/styles.css; then
+            echo 'Remote page asset reference is not permitted'
+            exit 1
+          fi

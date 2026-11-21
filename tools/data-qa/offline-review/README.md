@@ -69,7 +69,8 @@ node --test tools/data-qa/offline-review/*.spec.mjs
 ```
 
 The dedicated `.github/workflows/p15l-offline-review.yml` job uses Node 22,
-checks JavaScript syntax and runs the same tests. The new suite is intentionally
+checks JavaScript syntax and runs every `*.spec.mjs` test, including the
+workflow wiring test. CI uses no external data services. The new suite is intentionally
 named `*.spec.mjs`, so it does not conflict with the root Vitest `*.test.ts`
 discovery. This feature does not change dependency versions or the existing
 root lint/test commands.
