@@ -55,6 +55,7 @@ export function localizedPage(doc, locale) {
   const selected = locale === 'fr' ? 'fr' : 'en';
   doc.documentElement.lang = selected;
   doc.title = message(selected, 'title');
+  doc.getElementById('findings-pager').setAttribute('aria-label', message(selected, 'pager'));
   for (const element of doc.querySelectorAll('[data-i18n]')) {
     const key = element.getAttribute('data-i18n');
     if (key && Object.hasOwn(COPY[selected], key)) element.textContent = message(selected, key);
@@ -115,7 +116,7 @@ function findingCard(doc, finding, locale) {
   const article = createNode(doc, 'article', '', `finding finding-${finding.severity.toLowerCase()}`);
   const header = createNode(doc, 'header');
   header.append(createNode(doc, 'h4', finding.code));
-  header.append(createNode(doc, 'span', finding.severity));
+  header.append(createNode(doc, 'span', message(locale, finding.severity === 'ERROR' ? 'errorLevel' : 'noticeLevel')));
   article.append(header);
   article.append(createNode(doc, 'p', issueMessage(locale, finding.code)));
   const details = createNode(doc, 'dl');
@@ -124,7 +125,7 @@ function findingCard(doc, finding, locale) {
   path.append(createNode(doc, 'code', finding.path));
   details.append(path);
   details.append(createNode(doc, 'dt', message(locale, 'category')));
-  details.append(createNode(doc, 'dd', finding.origin));
+  details.append(createNode(doc, 'dd', message(locale, finding.origin === 'comparison' ? 'comparisonOrigin' : 'publicationOrigin')));
   article.append(details);
   return article;
 }
@@ -164,7 +165,8 @@ function fillSources(doc, state) {
     const details = createNode(doc, 'dl');
     for (const [key, value] of [
       ['sourceName', source.name], ['licence', source.licence],
-      ['observedOn', source.observedOn], ['reference', source.reference],
+      ['observedOn', source.observedOn], ['retrievedOn', source.retrievedOn],
+      ['tier', source.tier], ['reference', source.reference],
     ]) {
       details.append(createNode(doc, 'dt', message(state.locale, key)));
       details.append(createNode(doc, 'dd', value));
@@ -222,9 +224,24 @@ export function downloadFile(doc, name, contents, type) {
 export function mountOfflineReview(doc) {
   const state = initialState();
   const form = doc.getElementById('review-form');
-  doc.getElementById('as-of').value = preferredDate();
+  const dateInput = doc.getElementById('as-of');
+  dateInput.defaultValue = preferredDate();
+  let revision = 0;
+  let inputMessage = '';
+  function showInputMessage(key) {
+    inputMessage = key;
+    doc.getElementById('input-status').textContent = key ? message(state.locale, key) : '';
+  }
+  function clearResult() {
+    revision += 1;
+    Object.assign(state, { audit: null, comparison: null, current: null, allFindings: [], page: 1 });
+    showInputMessage('');
+    render(doc, state);
+  }
+  form.addEventListener('input', clearResult);
   doc.getElementById('locale').addEventListener('change', event => {
     state.locale = event.target.value === 'fr' ? 'fr' : 'en';
+    showInputMessage(inputMessage);
     render(doc, state);
   });
   doc.getElementById('toggle-help').addEventListener('click', () => {
@@ -241,29 +258,29 @@ export function mountOfflineReview(doc) {
     const olderFile = doc.getElementById('previous-file').files?.[0];
     const asOf = doc.getElementById('as-of').value;
     const age = doc.getElementById('max-age').value;
-    const status = doc.getElementById('input-status');
-    if (!currentFile) { status.textContent = message(state.locale, 'fileMissing'); return; }
-    if (!validPolicy(asOf, age)) { status.textContent = message(state.locale, 'invalidDate'); return; }
-    status.textContent = message(state.locale, 'loading');
+    clearResult();
+    const submitted = revision;
+    if (!currentFile) { showInputMessage('fileMissing'); return; }
+    if (!validPolicy(asOf, age)) { showInputMessage('invalidDate'); return; }
+    showInputMessage('loading');
     try {
       const current = await readLocalFile(currentFile);
       const older = olderFile ? await readLocalFile(olderFile) : null;
+      if (submitted !== revision) return;
       const result = reviewInputs(current, older, { asOf, maxAgeDays: Number(age) });
       Object.assign(state, { current, audit: result.audit, comparison: result.comparison,
         allFindings: result.findings, page: 1 });
-      status.textContent = '';
+      showInputMessage('');
       render(doc, state);
       doc.getElementById('results').focus();
     } catch {
-      status.textContent = message(state.locale, 'inputError');
+      if (submitted === revision) showInputMessage('inputError');
     }
   });
   form.addEventListener('reset', () => {
     Object.assign(state, initialState(), { locale: state.locale });
-    doc.getElementById('input-status').textContent = '';
-    doc.getElementById('as-of').value = preferredDate();
-    doc.getElementById('max-age').value = '365';
-    render(doc, state);
+    dateInput.defaultValue = preferredDate();
+    clearResult();
   });
   for (const [id, field] of [['level-filter', 'level'], ['category-filter', 'code'],
     ['page-size', 'perPage'], ['finding-search', 'query'], ['source-search', 'sourceQuery']]) {

@@ -253,13 +253,21 @@ describe('P15J bilingual offline coverage parity', () => {
     input.points[0]!.descriptionFr = 'L’accès';
     assert.equal(check(input).ok, true);
   });
-  it('rejects French question mark without narrow space', () => {
-    fail(point('descriptionFr', 'Accès ?'), 'POINT');
-  });
-  it('accepts French narrow space before question mark', () => {
+  it('accepts nonbreaking spaces in French questions, exclamations and quotations', () => {
     const input = base();
-    input.points[0]!.descriptionFr = 'Accès\u202f?';
+    input.points[0]!.descriptionFr = 'Accès\u00a0: «\u00a0Accès\u00a0? Oui\u00a0!\u00a0»';
     assert.equal(check(input).ok, true);
+  });
+  it('rejects missing, ordinary or narrow spaces at each required French punctuation position', () => {
+    for (const space of ['', ' ', '\u202f']) {
+      for (const phrase of [
+        'Source' + space + ': entrée',
+        'Accès' + space + '?',
+        'Attention' + space + '!',
+        '«' + space + 'Texte\u00a0»',
+        '«\u00a0Texte' + space + '»',
+      ]) fail(point('descriptionFr', phrase), 'POINT');
+    }
   });
   it('rejects unsafe HTML markup in English', () => {
     fail(point('descriptionEn', '<script>alert(1)</script>'), 'POINT');

@@ -71,10 +71,10 @@ export function isFrenchTypography(text) {
   if (/[a-zà-ÿ]'[a-zà-ÿ]/iu.test(text)) return false;
   for (let index = 0; index < text.length; index += 1) {
     const current = text[index];
-    if (current === ':' && index > 0 && text[index - 1] !== '\u00a0') return false;
-    if (';!?'.includes(current ?? '') && index > 0 && text[index - 1] !== '\u202f') return false;
-    if (current === '«' && text[index + 1] !== '\u202f') return false;
-    if (current === '»' && text[index - 1] !== '\u202f') return false;
+    if ((current === ':' || current === '?' || current === '!') && text[index - 1] !== '\u00a0') return false;
+    if (current === ';' && text[index - 1] !== '\u202f') return false;
+    if (current === '«' && text[index + 1] !== '\u00a0') return false;
+    if (current === '»' && text[index - 1] !== '\u00a0') return false;
   }
   return true;
 }
@@ -119,15 +119,20 @@ function uniqueIds(items, path, findings) {
   return map;
 }
 
+export function validTier(value) {
+  return Number.isInteger(value) && value >= 0 && value <= 4;
+}
+
 function validSource(source) {
-  return exactFields(source, ['id', 'name', 'licence', 'observedOn', 'reference']) &&
+  return exactFields(source, ['id', 'name', 'licence', 'observedOn', 'reference', 'retrievedOn', 'tier']) &&
     validId(source.id) && cleanText(source.name, LIMITS.label) &&
     !isHeldSource(source.name) && LICENCES.includes(source.licence) &&
-    dateNumber(source.observedOn) !== null && validLocalPath(source.reference);
+    dateNumber(source.observedOn) !== null && dateNumber(source.retrievedOn) !== null &&
+    validTier(source.tier) && validLocalPath(source.reference);
 }
 
 function validPlace(place) {
-  return exactFields(place, ['id', 'nameEn', 'nameFr', 'region', 'category']) &&
+  return exactFields(place, ['id', 'nameEn', 'nameFr', 'region', 'category'], ['sourceIds']) &&
     validId(place.id) && validId(place.region) && CATEGORIES.includes(place.category) &&
     cleanText(place.nameEn, LIMITS.label) && cleanText(place.nameFr, LIMITS.label) &&
     isFrenchTypography(place.nameFr);
@@ -156,8 +161,8 @@ function validAsset(asset) {
     ['html', 'json', 'image', 'text', 'tiles'].includes(asset.kind);
 }
 
-function sourceReferences(ids, sources, path, findings, allowEmpty) {
-  if (!allowEmpty && ids.length === 0) addFindings(findings, 'SOURCE_REQUIRED', path);
+function sourceReferences(ids, sources, path, findings) {
+  if (ids.length === 0) addFindings(findings, 'SOURCE_REQUIRED', path);
   const used = new Set();
   for (const [index, id] of ids.entries()) {
     if (used.has(id)) addFindings(findings, 'SOURCE_DUPLICATE', `${path}[${index}]`);
@@ -178,9 +183,9 @@ function observationLinks(observations, places, sources, asOf, maxAgeDays, findi
       continue;
     }
     if (!places.has(observation.placeId)) addFindings(findings, 'PLACE_MISSING', `${path}.placeId`);
-    const references = sourceReferences(observation.sourceIds, sources,
-      `${path}.sourceIds`, findings, observation.state === 'UNKNOWN');
-    if (observation.state !== 'UNKNOWN' && references.licences.length === 0) {
+    sourceReferences(observation.sourceIds, sources,
+      `${path}.sourceIds`, findings);
+    if (observation.state !== 'UNKNOWN' && !observation.sourceIds.some(id => validSource(sources.get(id)))) {
       addFindings(findings, 'UNKNOWN_REQUIRED', `${path}.state`);
     }
     const age = ageInDays(observation.observedOn, asOf);
@@ -252,7 +257,7 @@ function assetLinks(assets, sources, findings) {
     }
     if (paths.has(asset.path)) addFindings(findings, 'ASSET_PATH_DUPLICATE', `${path}.path`);
     paths.add(asset.path);
-    const references = sourceReferences(asset.sourceIds, sources, `${path}.sourceIds`, findings, false);
+    const references = sourceReferences(asset.sourceIds, sources, `${path}.sourceIds`, findings);
     if (references.includesOdbl !== (asset.silo === 'odbl')) {
       addFindings(findings, 'ODBL_SILO', `${path}.silo`);
     }
@@ -287,8 +292,17 @@ export function reviewManifest(input, policy = {}) {
   const sourceIndex = uniqueIds(sources, '$.sources', findings);
   const placeIndex = uniqueIds(places, '$.places', findings);
   for (const [index, source] of sources.entries()) {
-    if (!validSource(source)) addFindings(findings, 'SOURCE_SCHEMA', `$.sources[${index}]`);
+    const path = `$.sources[${index}]`;
+    if (isRecord(source)) {
+      if (dateNumber(source.retrievedOn) === null) addFindings(findings, 'RETRIEVAL_DATE', `${path}.retrievedOn`);
+      if (!validTier(source.tier)) addFindings(findings, 'SOURCE_TIER', `${path}.tier`);
+    }
+    if (!validSource(source)) addFindings(findings, 'SOURCE_SCHEMA', path);
     else {
+      const retrieved = dateNumber(source.retrievedOn);
+      if (retrieved < dateNumber(source.observedOn) || retrieved > dateNumber(input.generatedOn)) {
+        addFindings(findings, 'RETRIEVAL_DATE', `${path}.retrievedOn`);
+      }
       const age = ageInDays(source.observedOn, asOf);
       if (age === null || age < 0 || age > maxAgeDays) {
         addFindings(findings, 'DATE_POLICY', `$.sources[${index}].observedOn`);
@@ -296,7 +310,14 @@ export function reviewManifest(input, policy = {}) {
     }
   }
   for (const [index, place] of places.entries()) {
-    if (!validPlace(place)) addFindings(findings, 'PLACE_SCHEMA', `$.places[${index}]`);
+    const path = `$.places[${index}]`;
+    if (!validPlace(place)) {
+      addFindings(findings, 'PLACE_SCHEMA', path);
+    } else if (!Array.isArray(place.sourceIds) || place.sourceIds.length > 64 || !place.sourceIds.every(validId)) {
+      addFindings(findings, 'SOURCE_REQUIRED', `${path}.sourceIds`);
+    } else {
+      sourceReferences(place.sourceIds, sourceIndex, `${path}.sourceIds`, findings);
+    }
   }
   observationLinks(observations, placeIndex, sourceIndex, asOf, maxAgeDays, findings);
   assetLinks(assets, sourceIndex, findings);

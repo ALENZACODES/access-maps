@@ -182,10 +182,10 @@ describe('observation schema and chronology', () => {
     const input = known('YES'); input.observations[0].sourceIds = [];
     blocks(input, 'ASSERT');
   });
-  it('allows explicit UNKNOWN observation without sources, if decision does not claim source', () => {
+  it('keeps unsourced observations UNKNOWN and blocks publication', () => {
     const input = base(); input.observations[0].sourceIds = [];
     input.decisions[0].sourceIds = [];
-    const result = allows(input);
+    const result = blocks(input, 'RECORD_SOURCE');
     assert.equal(result.totals.unknown, 1);
   });
   it('does not convert UNKNOWN to YES', () => {
@@ -287,10 +287,10 @@ describe('conflicting evidence and decisions', () => {
     const input = base(); input.observations = []; input.decisions[0].state = 'YES';
     blocks(input, 'ASSERT');
   });
-  it('allows an empty UNKNOWN decision with no observation, no source', () => {
+  it('requires a traceable source even for an empty UNKNOWN decision', () => {
     const input = base(); input.observations = [];
     input.decisions[0] = { ...decision, sourceIds: [], observationIds: [] };
-    allows(input);
+    blocks(input, 'RECORD_SOURCE');
   });
   it('reports a conflict as UNKNOWN if both YES and NO survive', () => {
     const input = known('YES');
@@ -346,4 +346,45 @@ describe('finding report stability', () => {
     assert.equal(result.ok, true);
     assert.deepEqual(result.records.map(d => d.state).sort(), ['UNKNOWN', 'YES']);
   });
+});
+
+describe('recorded source provenance', () => {
+  it('reports the missing fields in a legacy source and preserves its UNKNOWN state', () => {
+    const input = base();
+    delete input.sources[0].retrievedOn;
+    delete input.sources[0].tier;
+    const result = audit(input);
+    assert.equal(result.ok, false);
+    assert.deepEqual(result.findings.filter(item => ['RETRIEVAL_DATE', 'SOURCE_TIER'].includes(item.code))
+      .map(item => item.path).sort(), ['$.sources[0].retrievedOn', '$.sources[0].tier']);
+    assert.equal(input.observations[0].state, 'UNKNOWN');
+    assert.equal(Object.hasOwn(input.sources[0], 'tier'), false);
+  });
+
+  it('requires an explicitly recorded integer tier and a real calendar retrieval date', () => {
+    const input = base();
+    for (const tier of [0, 1, 2, 3, 4]) {
+      input.sources[0].tier = tier;
+      assert.equal(audit(input).ok, true);
+    }
+    for (const tier of [-1, 5, 1.5, '0', 'UNKNOWN', null]) {
+      input.sources[0].tier = tier;
+      assert.ok(audit(input).findings.some(item => item.code === 'SOURCE_TIER'));
+    }
+    input.sources[0].tier = 0;
+    for (const retrievedOn of ['2026-02-30', '2026-11-09', '2026-11-21', 'UNKNOWN']) {
+      input.sources[0].retrievedOn = retrievedOn;
+      assert.ok(audit(input).findings.some(item => item.path === '$.sources[0].retrievedOn'));
+    }
+  });
+});
+
+it('returns the recorded retrieval date and tier with each publication decision', () => {
+  const input = base();
+  const projected = projection(input).records[0];
+  assert.equal(projected.state, 'UNKNOWN');
+  assert.equal(projected.sources[0].retrievedOn, '2026-11-12');
+  assert.equal(projected.sources[0].tier, 0);
+  delete input.sources[0].retrievedOn;
+  assert.deepEqual(projection(input).records, []);
 });

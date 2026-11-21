@@ -76,13 +76,11 @@ export function safeText(value: unknown): value is string {
 export function frenchText(value: unknown): value is string {
   if (!safeText(value)) return false;
   if (/[A-Za-zÀ-ÿ]'[A-Za-zÀ-ÿ]/.test(value)) return false;
-  if (/(^|[^\u00a0]):/.test(value) && /\S:/.test(value)) return false;
   for (let i = 0; i < value.length; i++) {
     const char = value[i];
-    if ((char === ';' || char === '!' || char === '?') && i > 0 && value[i - 1] !== '\u202f') return false;
-    if (char === ':' && i > 0 && value[i - 1] !== '\u00a0') return false;
-    if (char === '«' && value[i + 1] !== '\u202f') return false;
-    if (char === '»' && value[i - 1] !== '\u202f') return false;
+    if ((char === ':' || char === '!' || char === '?' || char === '»') && value[i - 1] !== '\u00a0') return false;
+    if (char === '«' && value[i + 1] !== '\u00a0') return false;
+    if (char === ';' && value[i - 1] !== '\u202f') return false;
   }
   return true;
 }

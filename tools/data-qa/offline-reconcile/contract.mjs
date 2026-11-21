@@ -49,17 +49,22 @@ export function frenchText(value) {
   if (/[a-zà-ÿ]'[a-zà-ÿ]/iu.test(value)) return false;
   for (let n = 0; n < value.length; n++) {
     const char = value[n];
-    if (char === ':' && n > 0 && value[n - 1] !== '\u00a0') return false;
-    if (char !== undefined && ';!?'.includes(char) && n > 0 && value[n - 1] !== '\u202f') return false;
-    if (char === '«' && value[n + 1] !== '\u202f') return false;
-    if (char === '»' && value[n - 1] !== '\u202f') return false;
+    if ((char === ':' || char === '?' || char === '!') && value[n - 1] !== '\u00a0') return false;
+    if (char === ';' && value[n - 1] !== '\u202f') return false;
+    if (char === '«' && value[n + 1] !== '\u00a0') return false;
+    if (char === '»' && value[n - 1] !== '\u00a0') return false;
   }
   return true;
 }
+export function validTier(value) {
+  return Number.isInteger(value) && value >= 0 && value <= 4;
+}
+
 export function validSource(value) {
-  return exact(value, ['id', 'name', 'licence', 'observedOn', 'reference']) &&
+  return exact(value, ['id', 'name', 'licence', 'observedOn', 'reference', 'retrievedOn', 'tier']) &&
     id(value.id) && safeText(value.name, 200) && !BLOCKED.test(value.name) &&
-    LICENCES.includes(value.licence) && dayNumber(value.observedOn) !== null && safePath(value.reference);
+    LICENCES.includes(value.licence) && dayNumber(value.observedOn) !== null && dayNumber(value.retrievedOn) !== null &&
+    validTier(value.tier) && safePath(value.reference);
 }
 export function validObservation(value) {
   return exact(value, ['id', 'placeId', 'feature', 'state', 'kind', 'sourceIds', 'observedOn', 'noteEn', 'noteFr'], ['supersedes']) &&

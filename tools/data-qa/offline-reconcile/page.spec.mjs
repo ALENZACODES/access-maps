@@ -16,7 +16,7 @@ function hasId(id) { return html.includes(`id="${id}"`); }
 describe('offline page accessibility and locale coverage', () => {
   it('includes a document language', () => assert.match(html, /<html lang="en">/u));
   it('includes viewport for small screens', () => assert.match(html, /name="viewport"/u));
-  it('includes native page landmark', () => assert.match(html, /<main id="review">/u));
+  it('includes native page landmark', () => assert.match(html, /<main id="review" tabindex="-1">/u));
   it('includes a first-level heading', () => assert.match(html, /<h1 id="heading">/u));
   it('includes a keyboard skip link', () => assert.match(html, /class="skip"/u));
   it('skip link targets main element', () => assert.match(html, /href="#review"/u));

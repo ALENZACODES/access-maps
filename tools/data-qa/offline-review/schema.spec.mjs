@@ -65,9 +65,9 @@ describe('P15L calendar and bounded local input primitives', () => {
   it('rejects ordinary spaces before a French colon', () => assert.equal(isFrenchTypography('Source : exemple'), false));
   it('accepts nonbreaking space before French colon', () => assert.equal(isFrenchTypography('Source\u00a0: exemple'), true));
   it('rejects ordinary question-mark spacing', () => assert.equal(isFrenchTypography('Où ?'), false));
-  it('accepts narrow nonbreaking question-mark spacing', () => assert.equal(isFrenchTypography('Où\u202f?'), true));
+  it('accepts nonbreaking question-mark spacing', () => assert.equal(isFrenchTypography('Où\u00a0?'), true));
   it('rejects guillemets with no spaces', () => assert.equal(isFrenchTypography('«Texte»'), false));
-  it('accepts narrow spaces inside guillemets', () => assert.equal(isFrenchTypography('«\u202fTexte\u202f»'), true));
+  it('accepts nonbreaking spaces inside guillemets', () => assert.equal(isFrenchTypography('«\u00a0Texte\u00a0»'), true));
   it('counts multibyte UTF-8 bytes rather than characters', () => assert.equal(BufferLikeByteLength('é'), 2));
   it('defines a nonzero local JSON limit', () => assert.ok(LIMITS.bytes > 1000));
 });
@@ -119,7 +119,12 @@ describe('P15L fail-closed publication manifest checks', () => {
   it('rejects unknown nonexisting source reference', () => blocks(withObservation('sourceIds', ['missing']), 'SOURCE_MISSING'));
   it('rejects duplicate observation source references', () => blocks(withObservation('sourceIds', ['source-a', 'source-a']), 'SOURCE_DUPLICATE'));
   it('rejects known access assertion without a source', () => blocks({ ...withObservation('state', 'NO'), observations: [{ ...observation(), state: 'NO', sourceIds: [] }] }, 'SOURCE_REQUIRED'));
-  it('allows UNKNOWN without a source', () => assert.equal(review(withObservation('sourceIds', [])).ok, true));
+  it('keeps an untraceable observation UNKNOWN while blocking publication', () => {
+    const result = review(withObservation('sourceIds', []));
+    assert.equal(result.ok, false);
+    assert.equal(result.counts.unknown, 1);
+    assert.ok(result.findings.some(item => item.code === 'SOURCE_REQUIRED'));
+  });
   it('rejects a future observation date', () => blocks(withObservation('observedOn', '2026-12-10'), 'DATE_POLICY'));
   it('rejects a stale observation date', () => blocks(withObservation('observedOn', '2024-01-01'), 'DATE_POLICY'));
   it('rejects a source newer than its observation', () => blocks(withObservation('observedOn', '2026-11-05'), 'SOURCE_AFTER_OBSERVATION'));
@@ -170,4 +175,45 @@ describe('P15L fail-closed publication manifest checks', () => {
   it('blocks malformed JSON without throwing', () => assert.equal(parseJsonText('{broken', POLICY).ok, false));
   it('blocks oversized input without parsing it', () => assert.equal(parseJsonText(' '.repeat(LIMITS.bytes + 1), POLICY).ok, false));
   it('accepts valid serialized manifest', () => assert.equal(parseJsonText(JSON.stringify(manifest()), POLICY).ok, true));
+});
+
+describe('recorded source provenance', () => {
+  it('reports the missing fields in a legacy source and preserves its UNKNOWN state', () => {
+    const input = manifest();
+    delete input.sources[0].retrievedOn;
+    delete input.sources[0].tier;
+    const result = review(input);
+    assert.equal(result.ok, false);
+    assert.deepEqual(result.findings.filter(item => ['RETRIEVAL_DATE', 'SOURCE_TIER'].includes(item.code))
+      .map(item => item.path).sort(), ['$.sources[0].retrievedOn', '$.sources[0].tier']);
+    assert.equal(input.observations[0].state, 'UNKNOWN');
+    assert.equal(Object.hasOwn(input.sources[0], 'tier'), false);
+  });
+
+  it('requires an explicitly recorded integer tier and a real calendar retrieval date', () => {
+    const input = manifest();
+    for (const tier of [0, 1, 2, 3, 4]) {
+      input.sources[0].tier = tier;
+      assert.equal(review(input).ok, true);
+    }
+    for (const tier of [-1, 5, 1.5, '0', 'UNKNOWN', null]) {
+      input.sources[0].tier = tier;
+      assert.ok(review(input).findings.some(item => item.code === 'SOURCE_TIER'));
+    }
+    input.sources[0].tier = 0;
+    for (const retrievedOn of ['2026-02-30', '2026-11-09', '2026-11-16', 'UNKNOWN']) {
+      input.sources[0].retrievedOn = retrievedOn;
+      assert.ok(review(input).findings.some(item => item.path === '$.sources[0].retrievedOn'));
+    }
+  });
+});
+
+it('requires provenance for a place even when no access observation was made', () => {
+  const input = manifest();
+  input.observations = [];
+  assert.equal(review(input).ok, true);
+  delete input.places[0].sourceIds;
+  blocks(input, 'SOURCE_REQUIRED');
+  input.places[0].sourceIds = ['absent'];
+  blocks(input, 'SOURCE_MISSING');
 });

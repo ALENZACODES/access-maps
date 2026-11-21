@@ -28,9 +28,9 @@ The manifest has six required root fields:
 - `schemaVersion`: integer `1`
 - `generatedOn`: calendar date `YYYY-MM-DD`
 - `sources`: array of objects with `id`, `name`, `licence`, `observedOn`,
-  and relative `reference`
+  `retrievedOn`, integer `tier` from 0 through 4, and relative `reference`
 - `places`: array of objects with `id`, `region`, `category`, `nameEn`,
-  and `nameFr`
+  `nameFr`, and `sourceIds`
 - `observations`: array of objects with `id`, `placeId`, `state` (`YES`, `NO`,
   or `UNKNOWN`), `sourceIds`, `observedOn`, `descriptionEn`, and
   `descriptionFr`; optional `replacesId` expresses an explicit predecessor
@@ -41,6 +41,11 @@ The QA engine accepts only named open licences; ODbL assets must stay in their
 own silo. Held feeds are excluded even when the source name is punctuated.
 Date checks are based on calendar days. Source names, observation texts, and
 paths are screened for unsafe markup and privacy-sensitive text.
+
+The source’s retrieval date is distinct from its observation date. Every
+place, observation and asset cites at least one source, including observations whose
+state is `UNKNOWN`. An older manifest can be inspected locally. Missing
+retrieval dates and tiers generate blocking findings until documented.
 
 No observations are generated from proximity or the existence of nearby map
 objects. Missing accessibility evidence remains `UNKNOWN`. Conflicting known
@@ -69,7 +74,7 @@ node --test tools/data-qa/offline-review/*.spec.mjs
 ```
 
 The dedicated `.github/workflows/p15l-offline-review.yml` job uses Node 22,
-checks JavaScript syntax and runs every `*.spec.mjs` test, including the
+checks pull requests that change the review tool or its workflow. It checks JavaScript syntax and runs every `*.spec.mjs` test, including the
 workflow wiring test. CI uses no external data services. The new suite is intentionally
 named `*.spec.mjs`, so it does not conflict with the root Vitest `*.test.ts`
 discovery. This feature does not change dependency versions or the existing

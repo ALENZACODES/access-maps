@@ -5,10 +5,11 @@ section { border-top: 1px solid GrayText; padding: 1rem 0; }
 .field { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; padding-block: .6rem; }
 .field label { min-width: 12rem; font-weight: 650; }
 input, select, button { min-height: 44px; min-width: 44px; font: inherit; }
+input[type="file"]::file-selector-button { min-height: 44px; min-width: 44px; }
 button { cursor: pointer; padding: .45rem .8rem; }
 .actions { display: flex; flex-wrap: wrap; gap: .75rem; }
 :focus-visible { outline: 3px solid Highlight; outline-offset: 3px; }
-.skip { position: absolute; left: -100vw; }
+.skip { display: inline-flex; align-items: center; box-sizing: border-box; min-height: 44px; min-width: 44px; position: absolute; left: -100vw; }
 .skip:focus { left: 1rem; top: 1rem; background: Canvas; padding: 1rem; z-index: 2; }
 .finding { padding: .6rem 1rem; margin: .6rem 0; border-inline-start: 4px solid GrayText; }
 .finding.error { border-inline-start-color: #b34720; }

@@ -12,8 +12,8 @@ const readme = readFileSync(resolve(folder, 'README.md'), 'utf8');
 describe('P15L repository CI and README integration', () => {
   it('has a dedicated workflow inside the repository', () => {
     assert.match(workflow, /name: P15L offline publication review/);
-    assert.match(workflow, /on:\s*\n\s*push:/);
-    assert.match(workflow, /pull_request:/);
+    assert.match(workflow, /^on:\n  pull_request:/m);
+    assert.doesNotMatch(workflow, /^  (?:push|schedule|workflow_dispatch):/m);
   });
   it('runs all .spec.mjs files without omissions or skips', () => {
     assert.match(workflow, /node --test tools\/data-qa\/offline-review\/\*\.spec\.mjs/);

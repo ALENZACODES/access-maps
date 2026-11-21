@@ -129,7 +129,7 @@ describe('explicit removal governance', () => {
 describe('observation continuity', () => {
   it('blocks removed observation even if state stays UNKNOWN', () => {
     const next = base(); next.observations = [];
-    next.decisions[0].observationIds = []; next.decisions[0].sourceIds = [];
+    next.decisions[0].observationIds = [];
     blocksDelta(base(), next, 'HISTORY');
   });
   it('blocks rewriting prior observation state under same ID', () => {
@@ -138,8 +138,9 @@ describe('observation continuity', () => {
     blocksDelta(old, next, 'HISTORY');
   });
   it('blocks rewriting earlier observation source list', () => {
-    const next = base(); next.observations[0].sourceIds = [];
-    next.decisions[0].sourceIds = [];
+    const next = secondSource(base(), 'other-source');
+    next.observations[0].sourceIds = ['other-source'];
+    next.decisions[0].sourceIds = ['other-source'];
     blocksDelta(base(), next, 'HISTORY');
   });
   it('blocks rewriting earlier recorded date', () => {
@@ -242,4 +243,16 @@ describe('structured delta report', () => {
     const report = blocksDelta(base(), {}, 'INPUT');
     assert.ok(report.findings.every(f => f.en && f.fr));
   });
+});
+
+it('detects evidence tier changes and backdated retrievals under a published source ID', () => {
+  const older = base();
+  const current = base();
+  current.sources[0].tier = 4;
+  blocksDelta(older, current, 'SOURCE');
+  current.sources[0].tier = 0;
+  current.sources[0].retrievedOn = '2026-11-11';
+  blocksDelta(older, current, 'CLOCK');
+  current.sources[0].retrievedOn = '2026-11-13';
+  assert.equal(compare(older, current).ok, true);
 });

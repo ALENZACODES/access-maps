@@ -7,12 +7,12 @@ export const POLICY = { asOf: AS_OF, maxAgeDays: 365 };
 
 export function stamp(id = 'source-a') {
   return { id, name: 'Municipal open information', licence: 'OGL-ON-1.0',
-    observedOn: '2026-11-10', reference: `sources/${id}.json` };
+    observedOn: '2026-11-10', retrievedOn: '2026-11-12', tier: 0, reference: `sources/${id}.json` };
 }
 
 export function place(id = 'place-a') {
   return { id, nameEn: 'Fictional entrance', nameFr: 'Entrée fictive',
-    region: 'region-a', category: 'entrance' };
+    region: 'region-a', category: 'entrance', sourceIds: ['source-a'] };
 }
 
 export function observation(id = 'observation-a') {

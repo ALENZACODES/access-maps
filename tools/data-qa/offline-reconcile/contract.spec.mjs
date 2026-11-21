@@ -68,8 +68,8 @@ describe('untrusted text and French typography', () => {
     'Attention !', '«Texte»', '<iframe>', 'contact@example.org']) {
     it(`rejects French formatting ${value}`, () => assert.equal(frenchText(value), false));
   }
-  for (const value of ['L’accès', 'Source\u00a0: inconnue', 'Pourquoi\u202f?',
-    'Oui\u202f; non', 'Attention\u202f!', '«\u202fTexte\u202f»', 'UNKNOWN']) {
+  for (const value of ['L’accès', 'Source\u00a0: inconnue', 'Pourquoi\u00a0?',
+    'Oui\u202f; non', 'Attention\u00a0!', '«\u00a0Texte\u00a0»', 'UNKNOWN']) {
     it(`accepts French formatting ${value}`, () => assert.equal(frenchText(value), true));
   }
 });

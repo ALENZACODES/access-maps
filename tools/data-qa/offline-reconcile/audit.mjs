@@ -1,11 +1,14 @@
 /** Publication reconciliation: provenance, chronology and explicit uncertainty. */
-import { dateWithin, dayNumber, id, isLocalInput, sourceSilo, stableSort,
-  unique, validDecision, validObservation, validSource } from './contract.mjs';
+import { dateWithin, dayNumber, id, isLocalInput, object, sourceSilo, stableSort,
+  unique, validDecision, validObservation, validSource, validTier } from './contract.mjs';
 
 const WORDS = {
   ROOT: ['The local package has an unexpected structure.', 'Le paquet local présente une structure inattendue.'],
   LIMIT: ['The declared inventory limit was exceeded.', 'La limite déclarée de l’inventaire est dépassée.'],
   SOURCE: ['Source details, date, or open licence are invalid.', 'Les détails, la date ou la licence ouverte de la source sont non valides.'],
+  RETRIEVAL_DATE: ['Supply a calendar retrieval date between the source observation date and the review date.', 'Indiquez une date de collecte comprise entre la date d’observation de la source et la date d’examen.'],
+  SOURCE_TIER: ['Supply the recorded evidence tier as an integer from 0 to 4.', 'Indiquez le niveau de preuve consigné sous forme d’un entier de 0 à 4.'],
+  RECORD_SOURCE: ['This record requires a source.', 'Cet enregistrement exige une source.'],
   OBSERVATION: ['An observation has invalid fields or bilingual notes.', 'Une observation comporte des champs ou des notes bilingues non valides.'],
   DECISION: ['A publication decision is incomplete or invalid.', 'Une décision de publication est incomplète ou non valide.'],
   DUPLICATE: ['An identifier occurs more than once.', 'Un identifiant figure plus d’une fois.'],
@@ -79,7 +82,15 @@ export function audit(input) {
   const bySource = new Map();
   for (const [index, source] of sources.entries()) {
     const path = `$.sources[${index}]`;
+    if (object(source)) {
+      if (dayNumber(source.retrievedOn) === null) findings.push(finding('RETRIEVAL_DATE', `${path}.retrievedOn`));
+      if (!validTier(source.tier)) findings.push(finding('SOURCE_TIER', `${path}.tier`));
+    }
     if (!validSource(source)) { findings.push(finding('SOURCE', path)); continue; }
+    const retrieved = dayNumber(source.retrievedOn);
+    if (retrieved < dayNumber(source.observedOn) || retrieved > dayNumber(policy.asOf)) {
+      findings.push(finding('RETRIEVAL_DATE', `${path}.retrievedOn`));
+    }
     if (bySource.has(source.id)) findings.push(finding('DUPLICATE', `${path}.id`));
     else bySource.set(source.id, source);
     if (!dateWithin(source.observedOn, policy.asOf, policy.maxSourceAgeDays)) {
@@ -118,6 +129,7 @@ export function audit(input) {
       if (observation.state !== 'UNKNOWN' || !observation.supersedes) findings.push(finding('WITHDRAW', path));
     }
     if (observation.kind === 'CORRECT' && !observation.supersedes) findings.push(finding('CORRECTION', path));
+    if (observation.sourceIds.length === 0) findings.push(finding('RECORD_SOURCE', `${path}.sourceIds`));
     if (observation.state !== 'UNKNOWN' && observation.sourceIds.length === 0) findings.push(finding('ASSERT', path));
   }
   for (const [index, observation] of observations.entries()) {
@@ -153,6 +165,7 @@ export function audit(input) {
         ![...sourceIds].every(sourceId => decision.sourceIds.includes(sourceId))) {
       findings.push(finding('DEC_SOURCES', `${path}.sourceIds`));
     }
+    if (decision.sourceIds.length === 0) findings.push(finding('RECORD_SOURCE', `${path}.sourceIds`));
     const lineage = decision.sourceIds.map(sourceId => bySource.get(sourceId)).filter(Boolean);
     if (sourceSilo(lineage) !== decision.silo ||
         (decision.silo === 'open' && lineage.some(source => source.licence === 'ODbL-1.0'))) {

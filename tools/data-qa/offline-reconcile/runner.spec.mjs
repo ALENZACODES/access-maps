@@ -22,7 +22,7 @@ describe('P15J runner regression: no missing suites or skipped tests', () => {
     }
   });
   it('runs P15J in its own CI workflow using same runner', () => {
-    assert.match(workflow, /npx tsx --test tools\/data-qa\/p15j-\*\.test\.ts/u);
+    assert.match(workflow, /node --import tsx --test tools\/data-qa\/p15j-\*\.test\.ts/u);
   });
   it('does not use a second Vitest invocation for P15J', () => {
     assert.doesNotMatch(workflow, /vitest run tools\/data-qa\/p15j/u);
@@ -47,6 +47,10 @@ describe('P15J runner regression: no missing suites or skipped tests', () => {
   });
   it('executes new review regression suite in dedicated CI job', () => {
     const ci = readFileSync(join(root, '.github/workflows/p15m-offline-reconcile.yml'), 'utf8');
+    for (const config of [ci, workflow]) {
+      assert.match(config, /^on:\n  pull_request:/mu);
+      assert.doesNotMatch(config, /^  (?:push|schedule|workflow_dispatch):/mu);
+    }
     assert.match(ci, /node --test tools\/data-qa\/offline-reconcile\/\*\.spec\.mjs/u);
   });
 });

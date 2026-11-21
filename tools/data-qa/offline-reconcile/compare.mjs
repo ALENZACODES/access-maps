@@ -104,7 +104,10 @@ export function compare(before, after, policy = { removedDecisions: [], maxRemov
     const current = newSources.get(id);
     if (!current) continue;
     if (current.licence !== previous.licence || current.name !== previous.name ||
-        current.reference !== previous.reference) findings.push(issue('SOURCE', `$.sources(${id})`));
+        current.reference !== previous.reference || current.tier !== previous.tier) findings.push(issue('SOURCE', `$.sources(${id})`));
+    if (dayNumber(current.retrievedOn) < dayNumber(previous.retrievedOn)) {
+      findings.push(issue('CLOCK', `$.sources(${id}).retrievedOn`));
+    }
     if (dayNumber(current.observedOn) < dayNumber(previous.observedOn)) {
       findings.push(issue('CLOCK', `$.sources(${id}).observedOn`));
     }

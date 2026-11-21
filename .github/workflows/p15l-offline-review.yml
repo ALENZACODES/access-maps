@@ -1,14 +1,9 @@
 name: P15L offline publication review
 on:
-  push:
-    paths:
-      - 'tools/data-qa/offline-review/**'
-      - '.github/workflows/p15l-offline-review.yml'
   pull_request:
     paths:
       - 'tools/data-qa/offline-review/**'
       - '.github/workflows/p15l-offline-review.yml'
-  workflow_dispatch:
 permissions:
   contents: read
 jobs:

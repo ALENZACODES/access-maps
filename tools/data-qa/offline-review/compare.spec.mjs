@@ -16,7 +16,7 @@ describe('P15L offline publication-to-publication regression', () => {
   it('accepts two identical manifests', () => assert.equal(compare(manifest(), manifest()).ok, true));
   it('accepts later publication date', () => assert.equal(compare(manifest(), later()).ok, true));
   it('blocks publication dates that move backward', () => {
-    const after = manifest(); after.generatedOn = '2026-11-01';
+    const after = manifest(); after.generatedOn = '2026-11-14';
     blocks(manifest(), after, 'RELEASE_DATE_REVERSED');
   });
   it('blocks a malformed previous publication', () => blocks({}, manifest(), 'BEFORE_INVALID'));
@@ -188,4 +188,16 @@ describe('P15L offline publication-to-publication regression', () => {
     const before = manifest(); const after = later(); after.assets = [];
     assert.deepEqual(compare(before, after), compare(before, after));
   });
+});
+
+it('detects evidence tier changes and backdated retrievals under a published source ID', () => {
+  const older = manifest();
+  const current = manifest();
+  current.sources[0].tier = 4;
+  blocks(older, current, 'SOURCE_ID_REUSED');
+  current.sources[0].tier = 0;
+  current.sources[0].retrievedOn = '2026-11-11';
+  blocks(older, current, 'SOURCE_DATE_REVERSED');
+  current.sources[0].retrievedOn = '2026-11-13';
+  assert.equal(compare(older, current).ok, true);
 });

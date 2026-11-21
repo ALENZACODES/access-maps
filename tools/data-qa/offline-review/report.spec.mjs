@@ -136,3 +136,13 @@ describe('P15L complete bilingual strings and safe copy', () => {
     assert.equal(message('fr', 'licence'), 'Licence');
   });
 });
+
+it('displays tier zero and distinguishes a missing stamp from an imported source', () => {
+  const input = manifest();
+  assert.equal(sourceInventory(input)[0].tier, '0');
+  assert.equal(sourceInventory(input)[0].retrievedOn, '2026-11-12');
+  delete input.sources[0].tier;
+  delete input.sources[0].retrievedOn;
+  assert.equal(sourceInventory(input)[0].tier, 'UNKNOWN');
+  assert.equal(sourceInventory(input)[0].retrievedOn, 'UNKNOWN');
+});

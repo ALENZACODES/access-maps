@@ -109,7 +109,8 @@ function addFindings(doc, data) {
   }
   for (const finding of data.rows) {
     const item = appendText(doc, root, 'li', null, { className: `finding ${finding.severity.toLowerCase()}` });
-    appendText(doc, item, 'strong', `${finding.severity} · ${finding.code}`);
+    const severity = finding.severity === 'ERROR' ? data.dict.errorLevel : data.dict.noticeLevel;
+    appendText(doc, item, 'strong', `${severity} · ${finding.code}`);
     appendText(doc, item, 'p', finding[data.locale]);
     appendText(doc, item, 'code', finding.path);
   }
@@ -117,6 +118,9 @@ function addFindings(doc, data) {
 }
 function updateLabels(doc, data) {
   doc.documentElement.lang = data.locale;
+  doc.title = data.dict.heading;
+  doc.getElementById('summary')?.setAttribute('aria-label', data.dict.summary);
+  doc.getElementById('findings')?.setAttribute('aria-label', data.dict.reviewFindings);
   for (const id of ['heading', 'intro', 'disclaimer', 'privacy', 'offline', 'summary',
     'current', 'previous', 'policy', 'language', 'filter', 'report']) {
     if (id === 'summary' || id === 'report') continue;
@@ -167,6 +171,7 @@ function save(doc, payload) {
 /** Mount once after DOMContentLoaded; all mutations are derived from the model. */
 export function mount(doc, initial = createModel()) {
   let model = initial;
+  const uploads = new Map();
   const render = () => {
     const view = renderModel(model);
     updateLabels(doc, view);
@@ -189,10 +194,16 @@ export function mount(doc, initial = createModel()) {
   for (const field of ['current', 'previous', 'policy']) {
     listen(`${field}-file`, 'change', async event => {
       const file = event.currentTarget.files?.[0];
+      const upload = Symbol();
+      uploads.set(field, upload);
+      model = applyFile(model, field, null);
+      render();
       try {
         const data = await readLocalJson(file);
+        if (uploads.get(field) !== upload) return;
         model = applyFile(model, field, data);
       } catch {
+        if (uploads.get(field) !== upload) return;
         model = { ...model, result: null, error: 'loadError' };
       }
       render();
@@ -202,7 +213,12 @@ export function mount(doc, initial = createModel()) {
   listen('action-compare', 'click', () => { model = perform(chooseMode(model, 'compare')); render(); });
   listen('action-exportJson', 'click', () => save(doc, exportPayload(model, 'json')));
   listen('action-exportCsv', 'click', () => save(doc, exportPayload(model, 'csv')));
-  listen('action-reset', 'click', () => { model = clear(model); render(); });
+  listen('action-reset', 'click', () => {
+    uploads.clear();
+    model = clear(model);
+    for (const field of ['current', 'previous', 'policy']) doc.getElementById(field + '-file').value = '';
+    render();
+  });
   render();
   return { getModel: () => model, render, dispose: () => { /* page lifetime owns listeners */ } };
 }

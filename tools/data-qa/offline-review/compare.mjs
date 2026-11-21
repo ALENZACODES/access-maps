@@ -65,7 +65,13 @@ function compareSources(before, after, findings, changes) {
       (dateNumber(source.observedOn) ?? Infinity)) {
       findings.push(finding('SOURCE_DATE_REVERSED', `$.sources.${id}.observedOn`));
     }
-    if (source.observedOn !== next.observedOn) changes.updatedSources.push(id);
+    if (dateNumber(next.retrievedOn) < dateNumber(source.retrievedOn)) {
+      findings.push(finding('SOURCE_DATE_REVERSED', `$.sources.${id}.retrievedOn`));
+    }
+    if (source.tier !== next.tier) findings.push(finding('SOURCE_ID_REUSED', `$.sources.${id}.tier`));
+    if (source.observedOn !== next.observedOn || source.retrievedOn !== next.retrievedOn) {
+      changes.updatedSources.push(id);
+    }
   }
   for (const id of newSources.keys()) {
     if (!oldSources.has(id)) changes.addedSources.push(id);

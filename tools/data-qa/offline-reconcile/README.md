@@ -14,7 +14,11 @@ Exports include findings and aggregate counts only, not raw observation notes.
 A package has schemaVersion=1; a policy containing `asOf`, `maxAgeDays`,
 `maxSourceAgeDays`, `maxObservations`, `maxSources`; arrays `sources`,
 `observations`, and `decisions`. Every source records ID, name, open licence,
-observation date and a local reference. Every observation records a state
+observation date, `retrievedOn` calendar date, integer `tier` from 0 through
+4 and a local reference. A source’s retrieval date is distinct from its
+observation date. Both observations and decisions cite at least one source,
+including records with state `UNKNOWN`. Legacy packages remain reviewable and
+generate blocking findings for missing retrieval dates or tiers. Every observation records a state
 `YES`, `NO`, or `UNKNOWN`, date, source IDs and EN/FR text. Each decision
 records a feature, state, supporting observation IDs, source IDs and an
 explicit `open` or `odbl` silo. Missing information remains UNKNOWN.
@@ -24,10 +28,12 @@ source dates beyond the policy, contradictory recorded states asserted as
 known, unsupported known decisions, incorrect withdrawal history, and ODbL
 silo crossing. No medical or eligibility advice is generated.
 
-Run `npm run test:data-qa:reconcile`. All tests use Node's built-in test runner.
+Run `npm run test:data-qa:reconcile`. All tests use Node’s built-in test runner. Pull requests that change the tool,
+its workflow or the runner configuration exercise every local spec through
+`.github/workflows/p15m-offline-reconcile.yml`.
 The server only serves a fixed set of local assets and binds to loopback.
 The page uses native labelled controls, visible focus, minimum 44px targets,
 English/French interface text and a local screen-reader status region.
 
-P15J suites likewise use `node:test` via `tsx --test`, and are excluded from
-Vitest discovery so neither runner sees an empty suite or runs them twice.
+The P15J suites use the Node test runner with tsx, both in their dedicated
+pull-request check and the root test command. Vitest excludes those four files.

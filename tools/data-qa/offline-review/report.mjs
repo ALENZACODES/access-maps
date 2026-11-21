@@ -1,6 +1,6 @@
 /** Presentation-only transformations; never mutates or strengthens source assertions. */
 import { issueMessage } from './copy.mjs';
-import { isRecord } from './schema.mjs';
+import { dateNumber, isRecord, validTier } from './schema.mjs';
 
 export function combinedFindings(audit, comparison = null) {
   const findings = [
@@ -104,7 +104,9 @@ export function sourceInventory(manifest, filter = '') {
       id: String(source.id ?? ''),
       name: String(source.name ?? ''),
       licence: String(source.licence ?? ''),
-      observedOn: String(source.observedOn ?? ''),
+      observedOn: String(source.observedOn ?? 'UNKNOWN'),
+      retrievedOn: dateNumber(source.retrievedOn) === null ? 'UNKNOWN' : source.retrievedOn,
+      tier: validTier(source.tier) ? String(source.tier) : 'UNKNOWN',
       reference: String(source.reference ?? ''),
     }));
 }

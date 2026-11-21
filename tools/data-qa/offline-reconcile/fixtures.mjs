@@ -5,7 +5,7 @@ import { compare } from './compare.mjs';
 import { dayNumber, exact, id, safePath, safeText } from './contract.mjs';
 
 export const source = Object.freeze({ id: 'municipal-a', name: 'Fictional municipal open data',
-  licence: 'OGL-ON-1.0', observedOn: '2026-11-10', reference: 'sources/municipal-a.txt' });
+  licence: 'OGL-ON-1.0', observedOn: '2026-11-10', retrievedOn: '2026-11-12', tier: 0, reference: 'sources/municipal-a.txt' });
 export const observation = Object.freeze({ id: 'obs-a', placeId: 'place-a', feature: 'entrance',
   state: 'UNKNOWN', kind: 'OBSERVE', sourceIds: ['municipal-a'], observedOn: '2026-11-12',
   noteEn: 'No source conclusion for this entrance', noteFr: 'Aucune conclusion sur cette entrée' });
@@ -81,4 +81,3 @@ export function blocksDelta(before, after, code, config) {
   assert.ok(issue(result, code), `Missing ${code}: ${JSON.stringify(result.findings)}`);
   return result;
 }
-
