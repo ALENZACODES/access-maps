@@ -173,17 +173,26 @@ describe('P15AC: text, data and date helpers', () => {
   it('accepts bilingual source labels with typography', () => {
     assert.equal(safeBilingual({ en: 'Entry', fr: 'Entrée' }), true);
   });
-  it('requires a French nonbreaking space before colon', () => {
-    assert.equal(frenchSpacing('Source: lieu'), false);
-    assert.equal(frenchSpacing('Source\u00a0: lieu'), true);
+  it('requires U+00A0 before colons, exclamation points and question marks', () => {
+    for (const mark of [':', '!', '?']) {
+      assert.equal(frenchSpacing(`Accès\u00a0${mark}`), true);
+      for (const wrong of ['', ' ', '\u202f']) {
+        assert.equal(frenchSpacing(`Accès${wrong}${mark}`), false);
+      }
+    }
   });
-  it('requires a French narrow space before the semicolon', () => {
-    assert.equal(frenchSpacing('Une source; une autre'), false);
+  it('requires U+202F before a semicolon', () => {
     assert.equal(frenchSpacing('Une source\u202f; une autre'), true);
+    for (const wrong of ['', ' ', '\u00a0']) {
+      assert.equal(frenchSpacing(`Une source${wrong}; une autre`), false);
+    }
   });
-  it('requires narrow spaces inside guillemets', () => {
-    assert.equal(frenchSpacing('« accès »'), false);
-    assert.equal(frenchSpacing('«\u202faccès\u202f»'), true);
+  it('requires U+00A0 on both inner edges of guillemets', () => {
+    assert.equal(frenchSpacing('«\u00a0accès\u00a0»'), true);
+    for (const wrong of ['', ' ', '\u202f']) {
+      assert.equal(frenchSpacing(`«${wrong}accès\u00a0»`), false);
+      assert.equal(frenchSpacing(`«\u00a0accès${wrong}»`), false);
+    }
   });
   it('uses curly French apostrophes', () => {
     assert.equal(frenchSpacing("l'accès"), false);

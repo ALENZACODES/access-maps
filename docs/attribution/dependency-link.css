@@ -1,0 +1,3 @@
+.dependency-links{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0;padding:.8rem;border:1px solid currentColor;border-radius:.5rem}
+.dependency-links a{display:inline-flex;align-items:center;min-height:44px;padding:.65rem;text-underline-offset:.2rem}
+.dependency-links a:focus-visible{outline:3px solid #d47b16;outline-offset:3px}

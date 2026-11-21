@@ -1,14 +1,22 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { RouteEvidencePanel } from "../src/RouteEvidencePanel.js";
-import { EVIDENCE_COPY } from "../src/routeEvidence.js";
+import { buildRouteEvidence, EVIDENCE_COPY, evidenceExport } from "../src/routeEvidence.js";
 import { barredLeg, journey, leg, plan, uncertainLeg, varyingPlan } from "./routeEvidenceFixtures.js";
 
 afterEach(() => cleanup());
 
 function reveal(): void {
   fireEvent.click(screen.getByRole("button", { name: "Inspect route evidence" }));
+}
+
+async function openDetails(container: HTMLElement, label: string) {
+  const toggle = Array.from(container.querySelectorAll("summary")).find((item) => item.textContent === label)!;
+  const details = toggle.closest("details")!;
+  await userEvent.setup().click(toggle);
+  await waitFor(() => expect(details.children.length).toBeGreaterThan(1));
+  return details;
 }
 
 function renderOpen() {
@@ -86,9 +94,10 @@ describe("P15AB evidence panel accessibility", () => {
     expect(view.container.textContent).toContain("UNKNOWN");
   });
 
-  it("supports reduced-motion friendly markup without forced scrolling", () => {
+  it("supports reduced-motion friendly markup without forced scrolling", async () => {
     const view = renderOpen();
     expect(view.container.querySelector(".route-evidence-option-list")).toBeTruthy();
+    await openDetails(view.container, EVIDENCE_COPY.en.sources);
     expect(view.container.querySelector(".route-evidence-scroll")).toBeTruthy();
   });
 });
@@ -238,27 +247,100 @@ describe("P15AB segment and provenance details", () => {
     expect(details?.querySelector("summary")?.textContent).toBe("Segment");
   });
 
-  it("includes a source licence and observed date in segment details", () => {
+  it("includes a source licence and observed date in segment details", async () => {
     const view = render(<RouteEvidencePanel plan={plan([journey("one", [leg("ab")])])} initiallyOpen />);
-    expect(view.container.textContent).toContain("OGL-ON-1.0");
-    expect(view.container.textContent).toContain("2026-11-18");
+    const details = await openDetails(view.container, "Segment");
+    expect(details.textContent).toContain("OGL-ON-1.0");
+    expect(details.textContent).toContain("2026-11-18");
   });
 
-  it("shows a route barrier in both the summary and the segment", () => {
+  it("shows a route barrier in both the summary and the segment", async () => {
     const view = render(<RouteEvidencePanel plan={plan([journey("barrier", [barredLeg("stairs")])])} initiallyOpen />);
     expect(view.container.querySelector(".route-evidence-outcome-blocked")).toBeTruthy();
-    expect(view.container.querySelector(".route-evidence-status-no")).toBeTruthy();
+    const details = await openDetails(view.container, "Segment");
+    expect(details.querySelector(".route-evidence-status-no")).toBeTruthy();
   });
 
-  it("marks an unknown segment without pretending it is a positive fact", () => {
+  it("marks an unknown segment without pretending it is a positive fact", async () => {
     const view = render(<RouteEvidencePanel plan={plan([journey("unknown", [uncertainLeg("missing")])])} initiallyOpen />);
-    expect(view.container.querySelector(".route-evidence-status-unknown")).toBeTruthy();
+    const details = await openDetails(view.container, "Segment");
+    expect(details.querySelector(".route-evidence-status-unknown")).toBeTruthy();
     expect(view.container.textContent).toContain("UNKNOWN");
   });
 
   it("shows explicit unknown source dates", () => {
     const view = render(<RouteEvidencePanel plan={plan([journey("unknown", [uncertainLeg("missing")])])} initiallyOpen />);
     expect(view.container.textContent).toContain("UNKNOWN");
+  });
+});
+
+describe("issue pages and source disclosures", () => {
+  for (const locale of ["en", "fr"] as const) {
+    it(`makes every issue reachable once, resets filters, and exports every page (${locale})`, async () => {
+      const user = userEvent.setup();
+      const copy = EVIDENCE_COPY[locale];
+      const fixture = plan([
+        journey("first", [uncertainLeg("a1"), uncertainLeg("a2")]),
+        journey("second", [uncertainLeg("b1"), uncertainLeg("b2")]),
+      ], [], { locale });
+      const dashboard = buildRouteEvidence(fixture);
+      const expected = dashboard.options[0]!.issues;
+      const exported = vi.fn();
+      render(<RouteEvidencePanel plan={fixture} initiallyOpen onExport={exported} />);
+      const cards = screen.getAllByRole("region", { name: /Fictional route/ });
+      const first = within(cards[0]!);
+      const next = first.getByRole("button", { name: copy.nextIssues }) as HTMLButtonElement;
+      const previous = first.getByRole("button", { name: copy.previousIssues }) as HTMLButtonElement;
+      const id = next.getAttribute("aria-controls")!;
+      const list = document.getElementById(id)!;
+      expect(cards[0]!.contains(list)).toBe(true);
+      expect(within(cards[1]!).getByRole("button", { name: copy.nextIssues }).getAttribute("aria-controls")).not.toBe(id);
+      expect(previous.disabled).toBe(true);
+      expect(list.children.length).toBe(3);
+
+      const seen: string[] = [];
+      for (let offset = 0; offset < expected.length; offset += 3) {
+        const rows = Array.from(list.children);
+        expect(rows.length).toBe(Math.min(3, expected.length - offset));
+        for (const row of rows) {
+          seen.push(row.querySelector("dd")!.textContent + "|" + row.querySelector(".route-evidence-issue-title")!.textContent);
+        }
+        if (offset + 3 < expected.length) {
+          next.focus();
+          await user.keyboard("{Enter}");
+          expect(document.activeElement?.id).toBe(`${id}-range`);
+        }
+      }
+      const colon = locale === "fr" ? "\u00a0:" : ":";
+      expect(seen).toEqual(expected.map((issue) => `${issue.legId}|${copy[issue.severity]}${colon} ${issue.text[locale]}`));
+      expect(next.disabled).toBe(true);
+      await user.click(previous);
+      expect(document.activeElement?.id).toBe(`${id}-range`);
+
+      const search = screen.getByRole("searchbox", { name: copy.query });
+      await user.type(search, "GRADIENT_UNKNOWN");
+      expect(document.activeElement).toBe(search);
+      expect(first.queryByRole("button", { name: copy.nextIssues })).toBeNull();
+      expect(document.getElementById(id)?.children.length).toBe(2);
+      expect(document.getElementById(`${id}-range`)?.textContent).toContain(`1–2 ${copy.ofTotal} 2`);
+      await user.click(screen.getByRole("button", { name: copy.save }));
+      expect(exported).toHaveBeenCalledWith(evidenceExport(dashboard));
+      await user.clear(search);
+      expect(document.getElementById(`${id}-range`)?.textContent).toContain(`1–3 ${copy.ofTotal} ${expected.length}`);
+    });
+  }
+
+  it("mounts and unmounts only the details opened by the reader", async () => {
+    const view = renderOpen();
+    expect(view.container.querySelectorAll(".route-evidence-segments, .route-evidence-scroll")).toHaveLength(0);
+    const details = await openDetails(view.container, "Segment");
+    expect(details.querySelectorAll(".route-evidence-segment")).toHaveLength(2);
+    expect(view.container.querySelectorAll(".route-evidence-segments")).toHaveLength(1);
+    expect(view.container.querySelector(".route-evidence-scroll")).toBeNull();
+    const toggle = details.querySelector("summary")!;
+    await userEvent.setup().click(toggle);
+    await waitFor(() => expect(details.querySelector(".route-evidence-segments")).toBeNull());
+    expect(document.activeElement).toBe(toggle);
   });
 });
 

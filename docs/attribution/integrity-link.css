@@ -1,0 +1,3 @@
+.integrity-entry{display:flex;flex-wrap:wrap;gap:.7rem;margin:1rem 0;padding:.8rem;border:1px solid currentColor;border-radius:.4rem}
+.integrity-entry a{display:inline-flex;min-height:44px;align-items:center;padding:.6rem;text-underline-offset:.2em}
+.integrity-entry a:focus-visible{outline:3px solid #b96b00;outline-offset:3px}

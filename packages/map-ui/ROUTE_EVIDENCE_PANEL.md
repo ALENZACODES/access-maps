@@ -1,6 +1,6 @@
 # Route evidence and uncertainty panel (P15AB)
 
-This feature mounts in the live `JourneyResult` component, after existing journey details and before the optional map canvas. It does not change route planning or the location of the emergency link. The new panel starts collapsed to preserve the established keyboard and reading order.
+This feature mounts in the live `JourneyResult` component, after the map, attribution and route-comparison control. It does not change route planning or the location of the emergency link. The new panel starts collapsed to preserve the established keyboard and reading order.
 
 ## Use
 
@@ -8,7 +8,7 @@ This feature mounts in the live `JourneyResult` component, after existing journe
 
 The panel shows outbound and return evidence separately, with the route segment, stated accessibility value (`YES`, `NO`, `UNKNOWN`), source identifier, open licence, source date, observation tier, surface and stated distance. It shows unknown and contradictory records conservatively, without claiming that a journey is appropriate for any particular person. It does not provide medical advice or eligibility decisions.
 
-Issue categories include access status, recorded barriers, missing source identifiers, unsupported licences, missing dates, unreported tiers, unknown surfaces and gradients, incomplete routed distances, missing schedules, single points of failure and existing journey warnings. Users can filter by direction, severity, category and searchable issue text. Several routes can be ordered by uncertainty, stated distance or source count, and two can be selected for an evidence comparison.
+Issue categories include access status, recorded barriers, missing source identifiers, unsupported licences, missing dates, unreported tiers, unknown surfaces and gradients, incomplete routed distances, missing schedules, single points of failure and existing journey warnings. Users can filter all issues by direction, severity, category and searchable text. Each option shows three matching issues per page, with its own count and navigation. The segment and source disclosures load their contents when opened. The local JSON export includes every issue across all pages. Several routes can be ordered by uncertainty, stated distance or source count, and two can be selected for an evidence comparison.
 
 ## Data boundaries
 
@@ -18,13 +18,13 @@ The original route result and its separate map view remain unchanged. A source's
 
 ## Local JSON export
 
-The user explicitly presses the export control. It creates a bounded derived report containing option status, segment identifiers, explicit uncertainty, source IDs, open licence identifiers, source dates and the issue codes. It does not contain the user's equipment profile, registration details, telephone numbers or full raw input. When `onExport` is supplied, the parent can handle the JSON; otherwise the browser's local download capability is used when available. The JSON is also presented in a read-only text area for copying.
+The user explicitly presses the export control. It creates a bounded derived report containing option status, segment identifiers, explicit uncertainty, source IDs, open licence identifiers, retrieval dates, evidence tiers and issue codes. Each exported segment and issue carries these source fields. It does not contain the user's equipment profile, registration details, telephone numbers or full raw input. When `onExport` is supplied, the parent can handle the JSON; otherwise the browser's local download capability is used when available. The JSON is also presented in a read-only text area for copying.
 
 No external endpoints are contacted by the module. There are no background timers, scheduled checks or implicit downloads.
 
 ## Keyboard and language
 
-The initial disclosure, filters, comparison buttons and export control are native controls with at least a 44-by-44 CSS pixel target. Focus rings, forced colours, narrow screens and reduced-motion preferences are supported. English and French have matching copy keys. French uses typographic apostrophes, U+00A0 before a colon, and U+202F before semicolons, exclamation points, question marks and inside guillemets where present. Unknown field values remain the explicit token `UNKNOWN`.
+The initial disclosure, filters, comparison buttons and export control are native controls with at least a 44-by-44 CSS pixel target. Focus rings, forced colours, narrow screens and reduced-motion preferences are supported. English and French have matching copy keys. French uses typographic apostrophes and nonbreaking spaces before colons, exclamation points and question marks and inside guillemets. Unknown field values remain the explicit token `UNKNOWN`.
 
 ## Test coverage
 

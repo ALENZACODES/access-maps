@@ -219,8 +219,8 @@ describe("JourneyResult", () => {
     expect(page).not.toContain("unknown.");
     expect(page).not.toContain("not-step-free.");
     expect(page).toMatch(/Pente\u00A0:/);
-    // New evidence panels retain the literal UNKNOWN data token; legacy labels remain French.
-    expect(page).toContain("UNKNOWN");
+    // The data value UNKNOWN is shown as a French word, with French spacing before the colon.
+    expect(page).not.toMatch(/UNKNOWN|INCONNU/);
     expect(page).toContain("Source\u00A0: Inconnu.");
     expect(page).toContain("Licence\u00A0: Inconnu.");
     expect(page).toContain("Récupéré\u00A0: Inconnu.");

@@ -16,6 +16,9 @@ export interface EvidenceIssue {
   readonly legId: string;
   readonly direction: EvidenceRouteKind;
   readonly sourceId: string;
+  readonly licence: string;
+  readonly retrievedOn: string;
+  readonly tier: number | null;
   readonly observedOn: string;
   readonly text: Readonly<{ en: string; fr: string }>;
 }
@@ -33,6 +36,7 @@ export interface EvidenceSegment {
   readonly distanceMetres: number | null;
   readonly sourceId: string;
   readonly licence: string;
+  readonly retrievedOn: string;
   readonly observedOn: string;
   readonly tier: number | null;
   readonly attribution: string | null;
@@ -96,6 +100,10 @@ export const EVIDENCE_COPY = Object.freeze({
     hide: "Hide evidence details",
     options: "Options",
     unresolved: "Items needing a closer look",
+    itemsShown: "Issues shown",
+    ofTotal: "of",
+    previousIssues: "Previous issues",
+    nextIssues: "Next issues",
     sources: "Sources",
     source: "Source",
     licence: "Licence",
@@ -153,6 +161,10 @@ export const EVIDENCE_COPY = Object.freeze({
     hide: "Masquer les détails",
     options: "Options",
     unresolved: "Éléments à examiner",
+    itemsShown: "Éléments affichés",
+    ofTotal: "sur",
+    previousIssues: "Éléments précédents",
+    nextIssues: "Éléments suivants",
     sources: "Sources",
     source: "Source",
     licence: "Licence",
@@ -258,6 +270,7 @@ function issue(
     id: `${direction}:${legId}:${code}`,
     direction, legId, code, category, severity,
     sourceId: provenance.id,
+    licence: provenance.licence, retrievedOn: provenance.retrievedOn, tier: provenance.tier,
     observedOn: provenance.retrievedOn,
     text: copy(en, fr),
   });
@@ -323,7 +336,7 @@ function inspectLeg(leg: Leg, direction: EvidenceRouteKind): EvidenceSegment {
     status: access, surface: known(leg.surface), gradient: known(leg.gradient),
     distanceMetres: leg.distanceKind === "route" && leg.distanceMetres !== null &&
       Number.isFinite(leg.distanceMetres) && leg.distanceMetres >= 0 ? leg.distanceMetres : null,
-    sourceId: source.id, licence: source.licence, observedOn: source.retrievedOn,
+    sourceId: source.id, licence: source.licence, retrievedOn: source.retrievedOn, observedOn: source.retrievedOn,
     tier: source.tier, attribution: source.attribution,
     issues: Object.freeze(issues),
   });
@@ -459,11 +472,12 @@ export function evidenceExport(dashboard: EvidenceDashboard): string {
       segments: option.segments.map((segment) => ({
         key: segment.key, legId: segment.legId, direction: segment.direction,
         status: segment.status, sourceId: segment.sourceId, licence: segment.licence,
-        observedOn: segment.observedOn, tier: segment.tier,
+        retrievedOn: segment.retrievedOn, observedOn: segment.observedOn, tier: segment.tier,
       })),
       issues: option.issues.map((item) => ({
         code: item.code, legId: item.legId, direction: item.direction,
-        sourceId: item.sourceId, observedOn: item.observedOn,
+        sourceId: item.sourceId, licence: item.licence, retrievedOn: item.retrievedOn,
+        observedOn: item.observedOn, tier: item.tier,
       })),
     })),
   }, null, 2)}\n`;

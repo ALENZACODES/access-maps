@@ -487,6 +487,26 @@ describe("P15AB filters and comparisons", () => {
 });
 
 describe("P15AB report serialization", () => {
+  it("preserves source, licence, retrieval date and tier on each exported issue", () => {
+    const dashboard = buildRouteEvidence(varyingPlan());
+    const exported = JSON.parse(evidenceExport(dashboard)) as { options: Array<{
+      segments: Array<{ legId: string; direction: string; sourceId: string; licence: string; retrievedOn: string; tier: number | null }>;
+      issues: Array<{ legId: string; direction: string; sourceId: string; licence: string; retrievedOn: string; tier: number | null }>;
+    }> };
+    expect(exported.options.flatMap((option) => option.issues).length).toBeGreaterThan(0);
+    for (const option of exported.options) {
+      for (const item of option.issues) {
+        const segment = option.segments.find((part) => part.legId === item.legId && part.direction === item.direction);
+        expect(segment).toBeDefined();
+        expect(item).toMatchObject({
+          sourceId: segment!.sourceId, licence: segment!.licence,
+          retrievedOn: segment!.retrievedOn, tier: segment!.tier,
+        });
+        expect(typeof item.retrievedOn).toBe("string");
+      }
+    }
+  });
+
   it("produces a parseable JSON document", () => {
     expect(JSON.parse(evidenceExport(base()))).toBeTruthy();
   });
@@ -561,7 +581,7 @@ describe("P15AB French copy constraints", () => {
 
   it("keeps French sentence punctuation consistent", () => {
     const combined = Object.values(EVIDENCE_COPY.fr).join(" ");
-    expect(combined).not.toMatch(/(?<!\u202f)[;!?]/u);
+    expect(combined).not.toMatch(/(?<!\u202f);|(?<!\u00a0)[!?»]|«(?!\u00a0)/u);
   });
 
   it("keeps French colons spaced when used within copy", () => {

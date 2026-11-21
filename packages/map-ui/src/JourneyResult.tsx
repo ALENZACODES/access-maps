@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { displayValue, prototypeLabel, toMapFeatures, type Journey, type JourneyPlan, type Leg } from "@access-maps/journey";
 import { AccessibleMap } from "./AccessibleMap.js";
 import { AttributionSources } from "./AttributionSources.js";
-import { RouteNeedsPanel } from "./RouteNeedsPanel.js";
 import { RouteEvidencePanel } from "./RouteEvidencePanel.js";
+import { RouteNeedsPanel } from "./RouteNeedsPanel.js";
 import "./route-needs.css";
 import { mapCopy, statusLabel } from "./i18n.js";
 
@@ -11,6 +11,8 @@ export function JourneyResult({ plan }: { plan: JourneyPlan }) {
   const text = mapCopy(plan.locale);
   const headingRef = useRef<HTMLHeadingElement>(null);
   const features = toMapFeatures(plan);
+  const needsId = useId();
+  const [showNeeds, setShowNeeds] = useState(false);
 
   const before = plan.warnings.filter((warning) => warning.beforeCommit);
   const urgent = [
@@ -28,6 +30,7 @@ export function JourneyResult({ plan }: { plan: JourneyPlan }) {
   useEffect(() => {
     headingRef.current?.focus();
     setAnnouncement("");
+    setShowNeeds(false);
     const timer = setTimeout(() => setAnnouncement(urgentText), 50);
     return () => clearTimeout(timer);
   }, [plan.id, urgentText]);
@@ -37,6 +40,9 @@ export function JourneyResult({ plan }: { plan: JourneyPlan }) {
     plan.journeys.some((journey) => journey.legs.some((leg) => leg.stepFree.status === "not-step-free"));
 
   const drawsOsm = features.some((feature) => feature.odbl);
+  const needsButtonLabel = plan.locale === "fr"
+    ? (showNeeds ? "Masquer la comparaison des parcours" : "Comparer les parcours selon vos préférences d’accessibilité")
+    : (showNeeds ? "Hide route comparison" : "Compare routes with your accessibility preferences");
 
   return (
     <article className="journey-result">
@@ -45,7 +51,7 @@ export function JourneyResult({ plan }: { plan: JourneyPlan }) {
       </h2>
       {/* Focus lands on the heading when results load, so 911 follows it and is the next Tab stop. */}
       <p className="emergency-call">
-        {text.emergency}: {plan.emergency.text}{" "}
+        {text.emergency}{text.colon} {plan.emergency.text}{" "}
         <a href="tel:911">911</a>
       </p>
       <p className="sr-only" role="status">
@@ -94,8 +100,22 @@ export function JourneyResult({ plan }: { plan: JourneyPlan }) {
         attribution={drawsOsm ? text.attributionOsm : text.attributionPlain}
       />
       <AttributionSources plan={plan} />
-      <RouteNeedsPanel plan={plan} />
-      <RouteEvidencePanel plan={plan} />
+      <section aria-label={plan.locale === "fr" ? "Comparaison des parcours" : "Route comparison"}>
+        <button
+          type="button"
+          className="route-needs-launch"
+          style={{ minHeight: 44, minWidth: 44 }}
+          aria-expanded={showNeeds}
+          aria-controls={needsId}
+          onClick={() => setShowNeeds((previous) => !previous)}
+        >
+          {needsButtonLabel}
+        </button>
+        <div id={needsId}>
+          {showNeeds ? <RouteNeedsPanel plan={plan} /> : null}
+        </div>
+      </section>
+      <RouteEvidencePanel key={plan.id} plan={plan} />
     </article>
   );
 }
@@ -125,14 +145,14 @@ function JourneyBlock({
       <p>
         <strong>{journey.weakestLink.text}</strong>
       </p>
-      <ol>
+      <ol aria-label={text.outboundLegs}>
         {journey.legs.map((leg) => (
           <LegItem key={leg.id} leg={leg} locale={locale} heading={sub} />
         ))}
       </ol>
       <Sub>{text.returnHeading}</Sub>
       <p>{journey.returnJourney.explanation}</p>
-      <ol>
+      <ol aria-label={text.returnLegs}>
         {journey.returnJourney.legs.map((leg) => (
           <LegItem key={leg.id} leg={leg} locale={locale} heading={sub} />
         ))}
@@ -169,7 +189,7 @@ function LegItem({
       {leg.timing ? (
         <p>
           {leg.timing.label}
-          {leg.timing.departure ? `: ${leg.timing.departure}` : ""}
+          {leg.timing.departure ? `${text.colon} ${leg.timing.departure}` : ""}
           {leg.timing.arrival ? `–${leg.timing.arrival}` : ""}
         </p>
       ) : null}

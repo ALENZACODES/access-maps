@@ -34,10 +34,9 @@ export function frenchSpacing(text) {
   if (/[a-zÀ-ÿ]'[a-zÀ-ÿ]/iu.test(text)) return false;
   for (let index = 0; index < text.length; index++) {
     const mark = text[index];
-    if (mark === ':' && index > 0 && text[index - 1] !== '\u00a0') return false;
-    if (';!?'.includes(mark) && index > 0 && text[index - 1] !== '\u202f') return false;
-    if (mark === '«' && text[index + 1] !== '\u202f') return false;
-    if (mark === '»' && text[index - 1] !== '\u202f') return false;
+    if (':!?»'.includes(mark) && text[index - 1] !== '\u00a0') return false;
+    if (mark === '«' && text[index + 1] !== '\u00a0') return false;
+    if (mark === ';' && text[index - 1] !== '\u202f') return false;
   }
   return true;
 }

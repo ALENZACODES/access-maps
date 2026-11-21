@@ -1,6 +1,7 @@
 import "./route-evidence.css";
-import { useId, useMemo, useState } from "react";
+import { useId, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import type { JourneyPlan } from "@access-maps/journey";
+import { mapCopy } from "./i18n.js";
 import {
   buildRouteEvidence, compareEvidenceOptions, EMPTY_FILTERS, EVIDENCE_COPY,
   evidenceExport, filterEvidence, sortedOptions,
@@ -23,12 +24,14 @@ function IssueRow({ issue, locale }: { issue: EvidenceIssue; locale: EvidenceLoc
   const copy = EVIDENCE_COPY[locale];
   return (
     <li className={`route-evidence-issue route-evidence-${issue.severity}`}>
-      <span className="route-evidence-issue-title">{copy[issue.severity]}: {issue.text[locale]}</span>
+      <span className="route-evidence-issue-title">{copy[issue.severity]}{mapCopy(locale).colon} {issue.text[locale]}</span>
       <dl>
         <div><dt>{copy.segment}</dt><dd>{issue.legId}</dd></div>
         <div><dt>{copy.direction}</dt><dd>{issue.direction === "outbound" ? copy.outbound : copy.back}</dd></div>
         <div><dt>{copy.source}</dt><dd>{issue.sourceId}</dd></div>
-        <div><dt>{copy.date}</dt><dd>{issue.observedOn}</dd></div>
+        <div><dt>{copy.licence}</dt><dd>{issue.licence}</dd></div>
+        <div><dt>{copy.date}</dt><dd>{issue.retrievedOn}</dd></div>
+        <div><dt>{copy.tier}</dt><dd>{issue.tier ?? "UNKNOWN"}</dd></div>
       </dl>
     </li>
   );
@@ -48,28 +51,32 @@ function IssueFilters({
   };
   return (
     <div className="route-evidence-filters" role="group" aria-label={copy.unresolved}>
-      <label htmlFor={`${base}-direction`}>{copy.direction}
+      <div>
+        <label htmlFor={`${base}-direction`}>{copy.direction}</label>
         <select id={`${base}-direction`} value={filters.direction} onChange={(event) => field("direction", event.target.value as EvidenceFilters["direction"])}>
           <option value="all">{copy.all}</option>
           <option value="outbound">{copy.outbound}</option>
           <option value="return">{copy.back}</option>
         </select>
-      </label>
-      <label htmlFor={`${base}-severity`}>{copy.severity}
+      </div>
+      <div>
+        <label htmlFor={`${base}-severity`}>{copy.severity}</label>
         <select id={`${base}-severity`} value={filters.severity} onChange={(event) => field("severity", event.target.value as EvidenceFilters["severity"])}>
           <option value="all">{copy.all}</option>
           {SEVERITY.map((name) => <option value={name} key={name}>{copy[name]}</option>)}
         </select>
-      </label>
-      <label htmlFor={`${base}-category`}>{copy.category}
+      </div>
+      <div>
+        <label htmlFor={`${base}-category`}>{copy.category}</label>
         <select id={`${base}-category`} value={filters.category} onChange={(event) => field("category", event.target.value as EvidenceFilters["category"])}>
           <option value="all">{copy.all}</option>
           {CATEGORIES.map((name) => <option value={name} key={name}>{copy[name]}</option>)}
         </select>
-      </label>
-      <label htmlFor={`${base}-search`}>{copy.query}
+      </div>
+      <div>
+        <label htmlFor={`${base}-search`}>{copy.query}</label>
         <input id={`${base}-search`} type="search" value={filters.query} onChange={(event) => field("query", event.target.value)} />
-      </label>
+      </div>
       <button type="button" onClick={() => change(EMPTY_FILTERS)}>{copy.clear}</button>
     </div>
   );
@@ -122,6 +129,60 @@ function SourceTable({ option, locale }: { option: EvidenceOption; locale: Evide
   );
 }
 
+function DeferredDetails({ label, children }: { label: string; children: ReactNode }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <details onToggle={(event) => setOpen(event.currentTarget.open)}>
+      <summary>{label}</summary>
+      {open ? children : null}
+    </details>
+  );
+}
+
+const ISSUES_PER_PAGE = 3;
+
+function IssuePages({ id, issues, locale }: { id: string; issues: readonly EvidenceIssue[]; locale: EvidenceLocale }) {
+  const copy = EVIDENCE_COPY[locale];
+  const [requestedPage, setPage] = useState(0);
+  const lastPage = Math.ceil(issues.length / ISSUES_PER_PAGE) - 1;
+  const page = Math.min(requestedPage, lastPage);
+  const start = page * ISSUES_PER_PAGE;
+  const end = Math.min(start + ISSUES_PER_PAGE, issues.length);
+  const rangeRef = useRef<HTMLParagraphElement>(null);
+  const focusAfterPageChange = useRef(false);
+
+  function goToPage(next: number) {
+    focusAfterPageChange.current = true;
+    setPage(next);
+  }
+
+  useLayoutEffect(() => {
+    if (focusAfterPageChange.current) {
+      rangeRef.current?.focus();
+      focusAfterPageChange.current = false;
+    }
+  }, [page]);
+
+  return (
+    <>
+      <p id={`${id}-range`} ref={rangeRef} tabIndex={-1}>
+        {copy.itemsShown}{mapCopy(locale).colon} {start + 1}–{end} {copy.ofTotal} {issues.length}
+      </p>
+      <ul id={id} className="route-evidence-issues" aria-describedby={`${id}-range`}>
+        {issues.slice(start, end).map((item) => <IssueRow issue={item} key={item.id} locale={locale} />)}
+      </ul>
+      {lastPage > 0 ? (
+        <div className="route-evidence-pagination">
+          <button type="button" aria-controls={id} disabled={page === 0}
+            onClick={() => goToPage(page - 1)}>{copy.previousIssues}</button>
+          <button type="button" aria-controls={id} disabled={page === lastPage}
+            onClick={() => goToPage(page + 1)}>{copy.nextIssues}</button>
+        </div>
+      ) : null}
+    </>
+  );
+}
+
 function OptionReview({
   option, locale, filters, selected, select,
 }: {
@@ -132,9 +193,11 @@ function OptionReview({
   select: () => void;
 }) {
   const copy = EVIDENCE_COPY[locale];
-  const issues = filterEvidence(option, filters);
+  const id = useId();
+  const issues = useMemo(() => filterEvidence(option, filters), [option, filters]);
+  const filterKey = JSON.stringify([filters.direction, filters.severity, filters.category, filters.query]);
   return (
-    <section className="route-evidence-option" aria-label={`${copy.options}: ${option.title}`}>
+    <section className="route-evidence-option" aria-label={`${copy.options}${mapCopy(locale).colon} ${option.title}`}>
       <header>
         <h4>{option.title}</h4>
         <p className={`route-evidence-outcome route-evidence-outcome-${option.status.toLowerCase()}`}>
@@ -142,19 +205,13 @@ function OptionReview({
         </p>
       </header>
       <p>{option.explanation}</p>
-      <p>{copy.unresolved}: {option.totals.caution + option.totals.blocking}</p>
-      <p>{copy.measuredDistance}: {option.distanceMetres ?? copy.unknownDistance}</p>
+      <p>{copy.unresolved}{mapCopy(locale).colon} {option.totals.caution + option.totals.blocking}</p>
+      <p>{copy.measuredDistance}{mapCopy(locale).colon} {option.distanceMetres ?? copy.unknownDistance}</p>
       <button type="button" aria-pressed={selected} onClick={select}>{copy.compare}</button>
-      <details>
-        <summary>{copy.segment}</summary>
-        <SegmentDetails option={option} locale={locale} />
-      </details>
-      <details>
-        <summary>{copy.sources}</summary>
-        <SourceTable option={option} locale={locale} />
-      </details>
+      <DeferredDetails label={copy.segment}><SegmentDetails option={option} locale={locale} /></DeferredDetails>
+      <DeferredDetails label={copy.sources}><SourceTable option={option} locale={locale} /></DeferredDetails>
       <h5>{copy.unresolved}</h5>
-      {issues.length ? <ul className="route-evidence-issues">{issues.map((item) => <IssueRow issue={item} key={item.id} locale={locale} />)}</ul> :
+      {issues.length ? <IssuePages key={filterKey} id={id} issues={issues} locale={locale} /> :
         <p>{option.issues.length ? copy.noMatch : copy.noIssues}</p>}
     </section>
   );
@@ -200,6 +257,8 @@ function EvidenceComparison({
 }
 
 export function RouteEvidencePanel({ plan, initiallyOpen = false, onExport }: RouteEvidencePanelProps) {
+  const sortId = useId();
+  const exportId = useId();
   const locale: EvidenceLocale = plan.locale;
   const copy = EVIDENCE_COPY[locale];
   const [open, setOpen] = useState(initiallyOpen);
@@ -233,19 +292,20 @@ export function RouteEvidencePanel({ plan, initiallyOpen = false, onExport }: Ro
   return (
     <section className="route-evidence-panel" aria-label={copy.heading}>
       <h3>{copy.heading}</h3>
-      <p>{copy.introduction}</p>
       <button type="button" aria-expanded={open} onClick={() => setOpen((value) => !value)}>
         {open ? copy.hide : copy.review}
       </button>
       {open ? (
         <div className="route-evidence-body">
-          <p>{copy.options}: {dashboard.summary.options}. {copy.unresolved}: {dashboard.issues.length}.</p>
+          <p>{copy.introduction}</p>
+          <p>{copy.options}{mapCopy(locale).colon} {dashboard.summary.options}. {copy.unresolved}{mapCopy(locale).colon} {dashboard.issues.length}.</p>
           <p>{copy.notAdvice}</p>
-          <label className="route-evidence-sort">{copy.sort}
-            <select value={sort} onChange={(event) => setSort(event.target.value as EvidenceSort)}>
+          <div className="route-evidence-sort">
+            <label htmlFor={sortId}>{copy.sort}</label>
+            <select id={sortId} value={sort} onChange={(event) => setSort(event.target.value as EvidenceSort)}>
               {SORT_OPTIONS.map((item) => <option key={item.value} value={item.value}>{copy[item.key]}</option>)}
             </select>
-          </label>
+          </div>
           <IssueFilters filters={filters} change={setFilters} locale={locale} />
           {!options.length ? <p>{copy.noOptions}</p> : (
             <div className="route-evidence-option-list">
@@ -261,9 +321,10 @@ export function RouteEvidencePanel({ plan, initiallyOpen = false, onExport }: Ro
           {preparedJson ? (
             <div>
               <p role="status">{copy.saved}</p>
-              <label className="route-evidence-export-label">{copy.copy}
-                <textarea rows={8} readOnly value={preparedJson} />
-              </label>
+              <div className="route-evidence-export-label">
+                <label htmlFor={exportId}>{copy.copy}</label>
+                <textarea id={exportId} rows={8} readOnly value={preparedJson} />
+              </div>
             </div>
           ) : null}
         </div>
