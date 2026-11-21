@@ -1,0 +1,29 @@
+name: P15K offline publication gates
+on:
+  pull_request:
+    paths:
+      - 'tools/data-qa/p15k-*'
+      - '.github/workflows/p15k-data-qa.yml'
+  push:
+    paths:
+      - 'tools/data-qa/p15k-*'
+      - '.github/workflows/p15k-data-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline-publication:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: JavaScript syntax gate
+        run: |
+          for file in tools/data-qa/p15k-*.mjs; do node --check "$file"; done
+      - name: Run all blocking audit regression tests
+        run: node --test tools/data-qa/p15k-*.test.mjs
+      - name: CLI usage smoke test
+        run: node tools/data-qa/p15k-cli.mjs --help
