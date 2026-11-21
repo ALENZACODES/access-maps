@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { displayValue, prototypeLabel, toMapFeatures, type Journey, type JourneyPlan, type Leg } from "@access-maps/journey";
 import { AccessibleMap } from "./AccessibleMap.js";
 import { AttributionSources } from "./AttributionSources.js";
+import { RouteEvidencePanel } from "./RouteEvidencePanel.js";
 import { RouteNeedsPanel } from "./RouteNeedsPanel.js";
 import "./route-needs.css";
 import { mapCopy, statusLabel } from "./i18n.js";
@@ -50,7 +51,7 @@ export function JourneyResult({ plan }: { plan: JourneyPlan }) {
       </h2>
       {/* Focus lands on the heading when results load, so 911 follows it and is the next Tab stop. */}
       <p className="emergency-call">
-        {text.emergency}: {plan.emergency.text}{" "}
+        {text.emergency}{text.colon} {plan.emergency.text}{" "}
         <a href="tel:911">911</a>
       </p>
       <p className="sr-only" role="status">
@@ -114,6 +115,7 @@ export function JourneyResult({ plan }: { plan: JourneyPlan }) {
           {showNeeds ? <RouteNeedsPanel plan={plan} /> : null}
         </div>
       </section>
+      <RouteEvidencePanel key={plan.id} plan={plan} />
     </article>
   );
 }
@@ -143,14 +145,14 @@ function JourneyBlock({
       <p>
         <strong>{journey.weakestLink.text}</strong>
       </p>
-      <ol>
+      <ol aria-label={text.outboundLegs}>
         {journey.legs.map((leg) => (
           <LegItem key={leg.id} leg={leg} locale={locale} heading={sub} />
         ))}
       </ol>
       <Sub>{text.returnHeading}</Sub>
       <p>{journey.returnJourney.explanation}</p>
-      <ol>
+      <ol aria-label={text.returnLegs}>
         {journey.returnJourney.legs.map((leg) => (
           <LegItem key={leg.id} leg={leg} locale={locale} heading={sub} />
         ))}
@@ -187,7 +189,7 @@ function LegItem({
       {leg.timing ? (
         <p>
           {leg.timing.label}
-          {leg.timing.departure ? `: ${leg.timing.departure}` : ""}
+          {leg.timing.departure ? `${text.colon} ${leg.timing.departure}` : ""}
           {leg.timing.arrival ? `–${leg.timing.arrival}` : ""}
         </p>
       ) : null}
