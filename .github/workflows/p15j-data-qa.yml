@@ -1,0 +1,32 @@
+name: P15J offline handoff QA
+on:
+  push:
+    paths:
+      - 'tools/data-qa/p15j-**'
+      - 'tools/data-qa/README-P15J.md'
+      - '.github/workflows/p15j-data-qa.yml'
+  pull_request:
+    paths:
+      - 'tools/data-qa/p15j-**'
+      - 'tools/data-qa/README-P15J.md'
+      - '.github/workflows/p15j-data-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  offline-gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Strict root TypeScript check
+        run: npx tsc --noEmit
+      - name: Run P15J blocking audit tests
+        run: npx vitest run tools/data-qa/p15j-*.test.ts
+      - name: Check callable audit CLI
+        run: npx tsx tools/data-qa/p15j-cli.ts --help
