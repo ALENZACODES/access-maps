@@ -1,0 +1,20 @@
+import {parsePresentation} from "./presentation-core.mjs";
+import {renderView,layoutVariants} from "./presentation-layout.mjs";
+import {auditPresentation,coverageMatrix,comparePresentation} from "./presentation-audit.mjs";
+import {reportHtml,reportJson,reportText,reportTsv} from "./presentation-report.mjs";
+import {COPY,localeFromSearch} from "./presentation-copy.mjs";
+const root=document.querySelector("#presentation-root"),status=document.querySelector("#presentation-status");if(!root||!status)throw new Error("Presentation landmarks missing");
+let locale=localeFromSearch(location.search),current=null,previous=null;const t=k=>COPY[locale][k]||k;
+const el=(tag,attrs={},text="")=>{const n=document.createElement(tag);for(const[k,v]of Object.entries(attrs))n.setAttribute(k,v);n.textContent=text;return n;};
+function download(name,type,data){const u=URL.createObjectURL(new Blob([data],{type})),a=el("a",{href:u,download:name},t("export"));a.click();URL.revokeObjectURL(u);}
+function section(title){const s=el("section"),h=el("h2",{},title);s.append(h);return s;}
+function renderResults(target){const a=auditPresentation(current);target.replaceChildren();target.append(el("p",{},a.decision));for(const f of a.findings)target.append(el("p",{},`${f.severity.toUpperCase()} ${f.code} — ${f.path}`));for(const row of coverageMatrix(current))target.append(el("p",{},`${row.viewId} (${row.locale}): ${row.noticeCount} notices; missing ${row.missingNoticeMethods.map(x=>x.method).join(", ")||"none"}`));}
+function render(){root.replaceChildren();const h=el("h1",{},t("title")),p=el("p",{},t("intro")),lang=el("select");for(const l of ["en","fr"]){const o=el("option",{value:l},l.toUpperCase());o.selected=locale===l;lang.append(o);}lang.addEventListener("change",()=>{locale=lang.value;render();});root.append(h,p,el("label",{},t("language")),lang);
+ const load=section(t("load")),file=el("input",{type:"file",accept:"application/json"});file.addEventListener("change",async()=>{if(!file.files?.[0])return;try{current=parsePresentation(await file.files[0].text());status.textContent="Presentation loaded";render();}catch(e){status.textContent=e.message;}});load.append(file);root.append(load);
+ const cmp=section(t("compare")),prior=el("input",{type:"file",accept:"application/json"});prior.addEventListener("change",async()=>{if(!prior.files?.[0])return;try{previous=parsePresentation(await prior.files[0].text());status.textContent="Previous presentation loaded";}catch(e){status.textContent=e.message;}});cmp.append(prior);const compare=el("button",{type:"button"},t("compare"));compare.addEventListener("click",()=>{if(!previous||!current){status.textContent="Load both presentations first.";return;}for(const c of comparePresentation(previous,current))cmp.append(el("p",{},`${c.severity} ${c.kind} — ${c.id}`));});cmp.append(compare);root.append(cmp);
+ const audit=section(t("audit")),run=el("button",{type:"button"},t("audit"));run.addEventListener("click",()=>{if(!current){status.textContent="Load a presentation first.";return;}renderResults(audit);});audit.append(run);root.append(audit);
+ const variant=section(t("variants")),choice=el("select");choice.addEventListener("change",()=>{variant.querySelectorAll("pre").forEach(x=>x.remove());if(!current)return;for(const x of layoutVariants(current,choice.value)){const pre=el("pre",{},x.placement);pre.textContent=x.markup;variant.append(pre);}});variant.append(choice);root.append(variant);
+ const exp=el("section"),button=el("button",{type:"button"},t("export"));button.addEventListener("click",()=>{if(!current||!current.views[0])return;download("notice-preview.html","text/html",renderView(current,current.views[0].id));download("notice-report.json","application/json",reportJson(current));download("notice-report.txt","text/plain",reportText(current,locale));download("notice-report.html","text/html",reportHtml(current,locale));download("notice-report.tsv","text/tab-separated-values",reportTsv(current));});exp.append(button);root.append(exp,el("p",{},t("disclaimer")));
+ if(current)for(const n of current.notices)choice.append(el("option",{value:n.id},n.id));
+}
+render();
