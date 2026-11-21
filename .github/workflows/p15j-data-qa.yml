@@ -27,6 +27,6 @@ jobs:
       - name: Strict root TypeScript check
         run: npx tsc --noEmit
       - name: Run P15J blocking audit tests
-        run: npx tsx --test tools/data-qa/p15j-*.test.ts
+        run: npx vitest run tools/data-qa/p15j-*.test.ts
       - name: Check callable audit CLI
         run: npx tsx tools/data-qa/p15j-cli.ts --help

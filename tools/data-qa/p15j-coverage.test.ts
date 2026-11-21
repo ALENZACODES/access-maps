@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { describe, it } from 'node:test';
+import { describe, it } from 'vitest';
 import { auditCoverage } from './p15j-coverage.js';
 
 const SOURCE = { id: 'source-a', source: 'Ontario open data', licence: 'OGL-ON-1.0',

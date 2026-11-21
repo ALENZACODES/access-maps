@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { describe, it } from 'node:test';
+import { describe, it } from 'vitest';
 import { auditHandoff } from './p15j-handoff.js';
 
 const stamp = { id: 'source-a', source: 'Ontario open data', licence: 'OGL-ON-1.0',
