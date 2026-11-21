@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; img-src 'none'; object-src 'none'; frame-src 'none'; form-action 'none'; base-uri 'none'">
+  <title>Offline evidence reconciliation / Rapprochement hors ligne</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body id="reconcile-app">
+  <a class="skip" id="skip-link" href="#review">Skip to review / Aller à l’examen</a>
+  <main id="review">
+    <header>
+      <h1 id="heading">Offline evidence reconciliation</h1>
+      <p id="intro">Review locally supplied source records. No information is sent to a server.</p>
+      <p id="disclaimer">This report describes records and information gaps. It does not determine personal suitability.</p>
+    </header>
+    <div class="field">
+      <label id="language-label" for="language-select">Language</label>
+      <select id="language-select"><option value="en">English</option><option value="fr">Français</option></select>
+    </div>
+    <section aria-labelledby="input-heading">
+      <h2 id="input-heading">Local files / Fichiers locaux</h2>
+      <div class="field">
+        <label id="current-label" for="current-file">Current package</label>
+        <input id="current-file" type="file" accept=".json,application/json">
+      </div>
+      <div class="field" id="previous-field" hidden>
+        <label id="previous-label" for="previous-file">Previous package</label>
+        <input id="previous-file" type="file" accept=".json,application/json">
+      </div>
+      <div class="field" id="policy-field" hidden>
+        <label id="policy-label" for="policy-file">Removal policy</label>
+        <input id="policy-file" type="file" accept=".json,application/json">
+      </div>
+      <div class="actions">
+        <button id="action-audit" type="button">Check publication</button>
+        <button id="action-compare" type="button">Compare releases</button>
+        <button id="action-reset" type="button">Clear the report</button>
+      </div>
+    </section>
+    <section aria-labelledby="report-heading">
+      <h2 id="report-heading">Review findings / Examiner les résultats</h2>
+      <p id="status" role="status" aria-live="polite"></p>
+      <p id="error" role="alert"></p>
+      <ul id="summary" aria-label="Summary / Résumé"></ul>
+      <div class="field">
+        <label id="filter-label" for="filter-select">Filter findings</label>
+        <select id="filter-select">
+          <option value="ALL">All findings</option>
+          <option value="ERROR">Blocking findings</option>
+          <option value="NOTICE">Notices</option>
+        </select>
+      </div>
+      <ol id="findings" aria-label="Audit findings / Résultats"></ol>
+      <div class="actions">
+        <button id="action-exportJson" type="button">Save JSON report</button>
+        <button id="action-exportCsv" type="button">Save CSV findings</button>
+      </div>
+    </section>
+    <footer>
+      <p id="privacy">Only local files are processed. Reports do not contain the original observation notes.</p>
+      <p id="offline">Works without internet access after opening the local page.</p>
+    </footer>
+  </main>
+</body>
+</html>

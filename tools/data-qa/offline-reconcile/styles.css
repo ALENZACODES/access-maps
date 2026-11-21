@@ -1,0 +1,21 @@
+:root { font-family: system-ui, sans-serif; line-height: 1.5; color-scheme: light dark; }
+body { margin: 0; background: Canvas; color: CanvasText; }
+main { max-width: 62rem; padding: 1.25rem; margin: auto; }
+section { border-top: 1px solid GrayText; padding: 1rem 0; }
+.field { display: flex; flex-wrap: wrap; gap: .6rem; align-items: center; padding-block: .6rem; }
+.field label { min-width: 12rem; font-weight: 650; }
+input, select, button { min-height: 44px; min-width: 44px; font: inherit; }
+button { cursor: pointer; padding: .45rem .8rem; }
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+:focus-visible { outline: 3px solid Highlight; outline-offset: 3px; }
+.skip { position: absolute; left: -100vw; }
+.skip:focus { left: 1rem; top: 1rem; background: Canvas; padding: 1rem; z-index: 2; }
+.finding { padding: .6rem 1rem; margin: .6rem 0; border-inline-start: 4px solid GrayText; }
+.finding.error { border-inline-start-color: #b34720; }
+.finding.notice { border-inline-start-color: #25628b; }
+.finding code { overflow-wrap: anywhere; }
+#status { font-weight: bold; }
+#error:not(:empty) { border: 2px solid #b34720; padding: .75rem; }
+[hidden] { display: none !important; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; } }
+@media (forced-colors: active) { .finding { border-inline-start-color: CanvasText; } }

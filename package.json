@@ -17,7 +17,7 @@
     "build:timetables": "node --experimental-strip-types scripts/build-gtfs-timetables.ts",
     "check:schema": "node scripts/check-schema-source.mjs",
     "lint": "tsc --noEmit && npm run lint -w @access-maps/journey && npm run lint -w @access-maps/outages && npm run lint -w @access-maps/map-ui && npm run lint -w @access-maps/journey-data && npm run lint -w @access-maps/conditions && tsc --noEmit -p packages/places-shell/tsconfig.json",
-    "test": "vitest run && tsx --test tools/data-qa/p15c-pipeline.test.ts tools/data-qa/p15c-cli.test.ts tools/data-qa/p15d-*.test.ts tools/data-qa/p15e-*.test.ts tools/data-qa/p15g-*.test.ts tools/data-qa/p15h-*.test.ts && tsx --test docs/attribution/offline-*.spec.ts && node --test tools/data-qa/p15i-runner-config.test.mjs && node --test docs/attribution/*.test.mjs && npm test -w @access-maps/journey && npm test -w @access-maps/outages && npm test -w @access-maps/map-ui && npm test -w @access-maps/journey-data && npm test -w @access-maps/conditions",
+    "test": "vitest run && tsx --test tools/data-qa/p15c-pipeline.test.ts tools/data-qa/p15c-cli.test.ts tools/data-qa/p15d-*.test.ts tools/data-qa/p15e-*.test.ts tools/data-qa/p15g-*.test.ts tools/data-qa/p15h-*.test.ts tools/data-qa/p15j-*.test.ts && tsx --test docs/attribution/offline-*.spec.ts && node --test tools/data-qa/p15i-runner-config.test.mjs && node --test docs/attribution/*.test.mjs && npm test -w @access-maps/journey && npm test -w @access-maps/outages && npm test -w @access-maps/map-ui && npm test -w @access-maps/journey-data && npm test -w @access-maps/conditions",
     "demo": "npm run demo -w @access-maps/map-ui",
     "test:e2e": "npm run test:e2e -w @access-maps/map-ui",
     "validate:sample": "tsx scripts/validate-sample.ts",
@@ -41,7 +41,9 @@
     "test:offline-attribution": "tsx --test docs/attribution/offline-*.spec.ts",
     "data-qa:publish": "tsx tools/data-qa/p15g-cli.ts",
     "data-qa:regression": "tsx tools/data-qa/p15h-cli.ts",
-    "audit:bilingual-attribution": "tsx docs/attribution/offline-parity-cli.ts"
+    "audit:bilingual-attribution": "tsx docs/attribution/offline-parity-cli.ts",
+    "data-qa:reconcile": "node tools/data-qa/offline-reconcile/serve.mjs",
+    "test:data-qa:reconcile": "node --test tools/data-qa/offline-reconcile/*.spec.mjs"
   },
   "dependencies": {
     "ajv": "^8.17.1",

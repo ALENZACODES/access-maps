@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { describe, it } from 'vitest';
+import { describe, it } from 'node:test';
 import { HELP, parse, run, type IO } from './p15j-cli.js';
 
 function mock(input: Record<string, unknown> = {}): { io: IO; out: string[]; err: string[]; saved: Map<string, string> } {
