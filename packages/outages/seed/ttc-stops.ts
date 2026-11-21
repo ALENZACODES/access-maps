@@ -1,6 +1,6 @@
 /**
  * TTC stop records copied unchanged from access-maps pull request 1
- * (branch cursor/ontario-open-data-pipeline-986f, commit 2c01751, data/transit/gtfs-ttc/*.ndjson.gz).
+ * (commit 2c01751, data/transit/gtfs-ttc/*.ndjson.gz).
  * Source: TTC GTFS static feed, retrieved 2026-11-13. Contains information licensed under the Open Government Licence – Toronto.
  * These are stop names and positions. They say nothing about elevator status.
  */
