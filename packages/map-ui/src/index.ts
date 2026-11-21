@@ -5,3 +5,8 @@ export { MAP_FRENCH_REVIEW, mapCopy, mapCopyLocaleKeys, statusLabel } from "./i1
 export type { MapLocale } from "./i18n.js";
 export { AttributionSources } from "./AttributionSources.js";
 export { OutageJourneyView, StationOutageStatus } from "./Outages.js";
+export { RouteNeedsPanel } from "./RouteNeedsPanel.js";
+export { compareRoutes, assessRequirement, normalizeProfile, DEFAULT_PROFILE as DEFAULT_ROUTE_NEEDS_PROFILE, withChoice, summarizeComparison } from "./routeNeeds.js";
+export type { NeedsProfile, Choice, RequirementId, RequirementAssessment, RouteAssessment } from "./routeNeeds.js";
+export { needsCopy, needsCopyKeys } from "./routeNeedsCopy.js";
+export { compareNeedsSnapshots, sourceInventory, portableNeedsComparison, exportNeedsJson, sourceDateChanges } from "./routeNeedsReview.js";
