@@ -1,0 +1,17 @@
+import test from "node:test";import assert from "node:assert/strict";import {noticeMarkup,renderView,layoutVariants,previewText,scaleSteps,placementDescription,exactOsmNotices} from "./presentation-layout.mjs";import {fixture} from "./presentation-fixture.mjs";
+test("markup contains exact OSM credit",()=>assert.ok(noticeMarkup(fixture(),"notice-en").includes("© OpenStreetMap contributors")));
+test("French notice has fr language",()=>assert.ok(noticeMarkup(fixture(),"notice-fr").includes('lang="fr"')));
+test("unknown notice throws",()=>assert.throws(()=>noticeMarkup(fixture(),"missing")));
+test("rendered page has CSP",()=>assert.ok(renderView(fixture(),"map-en").includes("default-src 'none'")));
+test("rendered page has no script",()=>assert.ok(!/<script\b/iu.test(renderView(fixture(),"map-en"))));
+test("rendered page has main landmark",()=>assert.ok(renderView(fixture(),"map-en").includes("<main>")));
+test("unknown view throws",()=>assert.throws(()=>renderView(fixture(),"missing")));
+test("six layout variants",()=>assert.equal(layoutVariants(fixture(),"notice-en").length,6));
+test("footer variant rendered",()=>assert.ok(layoutVariants(fixture(),"notice-en").find(x=>x.placement==="footer").markup.includes("notice--footer")));
+test("preview has locale",()=>assert.equal(previewText(fixture(),"map-fr")[0].locale,"fr"));
+test("missing view preview null",()=>assert.equal(previewText(fixture(),"missing"),null));
+test("scale steps include lower and upper bounds",()=>{const s=scaleSteps();assert.equal(s[0],.75);assert.equal(s.at(-1),2.5);});
+test("French placement description",()=>assert.ok(placementDescription("near-map","fr").includes("À côté")));
+test("unknown placement fallback",()=>assert.ok(placementDescription("invalid").includes("not recorded")));
+test("exact OSM notices both exact and near map",()=>assert.ok(exactOsmNotices(fixture()).every(x=>x.exact&&x.nearMap)));
+test("HTML escapes notice text",()=>{const x=fixture();x.notices[0].text="<script>";assert.ok(noticeMarkup(x,"notice-en").includes("&lt;script&gt;"));});
