@@ -1,0 +1,32 @@
+:root{color-scheme:light dark;font-family:system-ui,Arial,sans-serif;font-size:16px;line-height:1.5}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:#18242d}
+#integrity-root{max-width:76rem;margin:0 auto;padding:1rem}
+h1,h2,h3{line-height:1.25}
+section{border-top:1px solid #667;padding:1rem 0}
+section section{padding-inline:.75rem}
+header{margin-bottom:1.5rem}
+label{display:flex;flex-direction:column;gap:.3rem;margin:.5rem 0;font-weight:600}
+input,textarea,select,button{font:inherit;max-width:100%;min-height:44px;padding:.6rem;color:inherit;background:inherit;border:2px solid #647481;border-radius:.3rem}
+input[type=file]{width:100%}
+button{cursor:pointer;text-align:left}
+button:hover{background:#e2eefb;color:#14233a}
+a{color:#16458d;min-height:44px;display:inline-flex;align-items:center;padding:.5rem;text-underline-offset:.2em}
+:focus-visible{outline:3px solid #bc6b00!important;outline-offset:3px}
+.skip{position:absolute;top:-10rem;left:.7rem;background:#fff;color:#000;z-index:2}
+.skip:focus{top:.5rem}
+.actions{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin:.7rem 0}
+.fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:.8rem}
+.fields .full{grid-column:1/-1}
+textarea{min-height:6rem;width:100%}
+.records,.findings{list-style:none;padding:0;margin:1rem 0}
+.records>li,.findings>li{border:1px solid #71808d;border-radius:.4rem;padding:1rem;margin:.6rem 0;overflow-wrap:anywhere}
+.records>li p{margin:.4rem 0;overflow-wrap:anywhere}
+.notice,.status{padding:.9rem;border-inline-start:4px solid #725400;background:#fff7dd;color:#292216}
+.missing-row{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;padding:.6rem;border-bottom:1px solid #777}
+.editor{border:2px solid #466284;padding:1rem;border-radius:.5rem}
+.measure{border:2px solid #637d80;border-radius:.5rem;padding:1rem}
+@media(max-width:600px){#integrity-root{padding:.75rem}.actions{flex-direction:column;align-items:stretch}.actions>*{width:100%}.fields{display:block}}
+@media(prefers-color-scheme:dark){body{background:#131c22;color:#f0f3f3}a{color:#9cbeff}.notice,.status{background:#3c331a;color:#fff2d3}button:hover{background:#344b5d;color:#fff}.skip{background:#222;color:#fff}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+@media print{body{color:#000;background:#fff}button,input,select,textarea,.skip,.actions{display:none!important}#integrity-root{max-width:none}}
