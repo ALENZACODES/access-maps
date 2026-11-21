@@ -1,0 +1,23 @@
+name: P15M offline evidence reconciliation
+on:
+  pull_request:
+    paths:
+      - 'tools/data-qa/offline-reconcile/**'
+      - 'tools/data-qa/p15j-*.test.ts'
+      - 'package.json'
+      - 'vitest.config.ts'
+      - '.github/workflows/p15j-data-qa.yml'
+      - '.github/workflows/p15m-offline-reconcile.yml'
+permissions:
+  contents: read
+jobs:
+  offline-reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run all offline reconciliation specs
+        run: node --test tools/data-qa/offline-reconcile/*.spec.mjs

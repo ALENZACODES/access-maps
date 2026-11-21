@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { describe, it } from 'vitest';
+import { describe, it } from 'node:test';
 import { auditResume } from './p15j-resume.js';
 
 const HASH_A = 'a'.repeat(64);
