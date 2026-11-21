@@ -34,7 +34,10 @@ import {
   type LinkMember,
   type PossibleLine,
 } from "../places/links.js";
-import type { WithheldPart } from "./build.js";
+import type { PackManifest } from "./types.js";
+
+// Link omissions apply to an index or cell and have no individual record source or tranche.
+type WithheldLinkPart = NonNullable<PackManifest["withheld"]>[number] & { sourceId: null; tranche: null };
 
 export const PACK_LINKS_DIR = "links";
 
@@ -112,7 +115,7 @@ export async function buildPackLinks(options: {
   packed: ReadonlyMap<string, string>;
   limit: number;
   digest: (file: string) => Promise<{ bytes: number; sha256: string }>;
-  withhold: (part: WithheldPart) => void;
+  withhold: (part: WithheldLinkPart) => void;
 }): Promise<PackLinksEntry | undefined> {
   const { dataRoot, out, packed, withhold } = options;
   const dir = path.join(out, PACK_LINKS_DIR);
