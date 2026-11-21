@@ -1,0 +1,20 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {run,parseArgs,formatAudit,USAGE} from './checklist-cli.mjs';
+import {fixture} from './checklist-fixture.mjs';
+function makeIo(files){const out=[],err=[];return {out,err,io:{read:async path=>{if(!Object.hasOwn(files,path))throw new Error('Missing local file');return files[path];},write:x=>out.push(x),error:x=>err.push(x)}};}
+const good=()=>JSON.stringify(fixture());
+test('CLI exposes a local usage string',()=>assert.match(USAGE,/checklist.json/u));
+test('CLI parses simple filename',()=>assert.equal(parseArgs(['a.json']).file,'a.json'));
+test('CLI parses language and format',()=>assert.deepEqual(parseArgs(['a','--lang','fr','--format','json']),{file:'a',before:null,lang:'fr',format:'json'}));
+for(const args of [[],['--lang','fr'],['a','--lang'],['a','--format','xml'],['a','--lang','es'],['a','--lang','fr','--lang','en'],['a','--unknown','1'],['a','--before']])test(`CLI rejects options ${JSON.stringify(args)}`,()=>assert.throws(()=>parseArgs(args)));
+test('CLI passes complete fictional records',async()=>{const h=makeIo({'ok.json':good()});assert.equal(await run(['ok.json'],h.io),0);assert.match(h.out.join(''),/Notice publication checklist/u);});
+test('CLI blocks unknown evidence',async()=>{const x=fixture();x.sources[0].retrievedOn='UNKNOWN';const h=makeIo({a:JSON.stringify(x)});assert.equal(await run(['a'],h.io),1);assert.match(h.out.join(''),/RETRIEVAL_UNKNOWN/u);});
+test('CLI rejects malformed JSON',async()=>{const h=makeIo({a:'no'});assert.equal(await run(['a'],h.io),2);assert.ok(h.err.length>0);});
+test('CLI returns 2 on missing file',async()=>{const h=makeIo({});assert.equal(await run(['missing'],h.io),2);});
+test('CLI emits valid audit JSON',async()=>{const h=makeIo({a:good()});assert.equal(await run(['a','--format','json'],h.io),0);assert.equal(JSON.parse(h.out.join('')).audit.schema,'notice-publication-audit/1');});
+test('CLI emits TSV with all methods',async()=>{const h=makeIo({a:good()});assert.equal(await run(['a','--format','tsv'],h.io),0);assert.match(h.out.join(''),/screen-reader/u);});
+test('CLI compares earlier checklist',async()=>{const old=fixture(),next=fixture();next.observations[3].targetPx=10;const h=makeIo({a:JSON.stringify(next),b:JSON.stringify(old)});assert.equal(await run(['a','--before','b','--format','json'],h.io),1);assert.equal(JSON.parse(h.out.join('')).comparison.blocking,true);});
+test('CLI French output uses nonbreaking colon',async()=>{const h=makeIo({a:good()});assert.equal(await run(['a','--lang','fr'],h.io),0);assert.match(h.out.join(''),/Lacunes dans les preuves\u00a0:/u);});
+test('CLI French comparison uses nonbreaking colons',async()=>{const h=makeIo({a:good(),b:good()});assert.equal(await run(['a','--before','b','--lang','fr'],h.io),0);assert.match(h.out.join(''),/Nouvelles lacunes\u00a0:/u);});
+test('CLI does not use ambient time in output',()=>assert.ok(!formatAudit(fixture()).includes(new Date().toISOString().slice(0,10))||fixture().sources[0].retrievedOn===new Date().toISOString().slice(0,10)));
