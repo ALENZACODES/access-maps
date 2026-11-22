@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Comparer les champs cartographiques</title>
+  <link rel="stylesheet" href="field-review.css">
+  <script type="module" src="field-review-page.mjs"></script>
+</head>
+<body>
+  <a href="#main" class="skip" data-copy="skip">Aller au contenu principal</a>
+  <main id="main" tabindex="-1">
+    <header>
+      <button id="language" type="button" hidden></button>
+      <h1 data-copy="title">Comparer les champs cartographiques</h1>
+      <p data-copy="intro">Choisissez deux fichiers pour comparer les valeurs et les renseignements sur leurs sources.</p>
+    </header>
+    <div id="fallback">
+      <p>Activez les scripts du navigateur pour comparer les fichiers sur cet appareil.</p>
+      <p lang="en">Enable browser scripts to compare files on this device.</p>
+    </div>
+    <div id="workspace" hidden>
+      <section aria-labelledby="files-heading">
+        <h2 id="files-heading" data-copy="files"></h2>
+        <p id="file-help" data-copy="fileHelp"></p>
+        <div class="pair">
+          <div class="slot">
+            <label for="before-file" data-copy="beforeFile"></label>
+            <input id="before-file" type="file" accept=".json,.jsonl,.ndjson,.gz,.gzip,application/json,application/gzip" aria-describedby="file-help before-status">
+            <p id="before-status" role="status" aria-atomic="true"></p>
+            <p id="before-error" class="error" role="alert" aria-atomic="true"></p>
+            <button type="button" id="before-clear" data-copy="beforeClear"></button>
+          </div>
+          <div class="slot">
+            <label for="after-file" data-copy="afterFile"></label>
+            <input id="after-file" type="file" accept=".json,.jsonl,.ndjson,.gz,.gzip,application/json,application/gzip" aria-describedby="file-help after-status">
+            <p id="after-status" role="status" aria-atomic="true"></p>
+            <p id="after-error" class="error" role="alert" aria-atomic="true"></p>
+            <button type="button" id="after-clear" data-copy="afterClear"></button>
+          </div>
+        </div>
+        <p id="needed"></p>
+      </section>
+      <div id="ready" hidden>
+        <section aria-labelledby="filters-heading">
+          <h2 id="filters-heading" data-copy="filters"></h2>
+          <form id="filter-form">
+            <div class="filters">
+              <div>
+                <label for="kind" data-copy="show"></label>
+                <select id="kind"></select>
+              </div>
+              <div>
+                <label for="tranche" data-copy="tranche"></label>
+                <select id="tranche"></select>
+              </div>
+              <div>
+                <label for="field" data-copy="fieldFilter"></label>
+                <input id="field" type="text" list="field-hints" autocomplete="off">
+                <datalist id="field-hints"></datalist>
+              </div>
+              <div>
+                <label for="source" data-copy="sourceFilter"></label>
+                <input id="source" type="text" list="source-hints" autocomplete="off">
+                <datalist id="source-hints"></datalist>
+              </div>
+              <div>
+                <label for="side" data-copy="sideFilter"></label>
+                <select id="side">
+                  <option value="" data-copy="allRecords"></option>
+                  <option value="both" data-copy="both"></option>
+                  <option value="before" data-copy="beforeOnly"></option>
+                  <option value="after" data-copy="afterOnly"></option>
+                </select>
+              </div>
+              <div>
+                <label for="query" data-copy="query"></label>
+                <input id="query" type="search" maxlength="256" aria-describedby="query-help">
+              </div>
+            </div>
+            <p id="query-help" data-copy="searchHelp"></p>
+            <div class="actions">
+              <button type="submit" id="apply" class="primary" data-copy="apply"></button>
+              <button type="button" id="reset" data-copy="reset"></button>
+            </div>
+            <p id="pending" data-copy="pending" hidden></p>
+          </form>
+        </section>
+        <section id="results" aria-labelledby="results-heading">
+          <h2 id="results-heading" tabindex="-1" data-copy="results"></h2>
+          <p id="summary"></p>
+          <p id="coverage" data-copy="coverage"></p>
+          <div class="actions">
+            <button id="download" type="button" data-copy="download"></button>
+          </div>
+          <p id="notice-status" role="status" aria-atomic="true"></p>
+          <h3 id="page-position" tabindex="-1"></h3>
+          <div id="pagination" class="actions">
+            <button type="button" id="previous" data-copy="previous"></button>
+            <button type="button" id="next" data-copy="next"></button>
+          </div>
+          <div id="rows"></div>
+        </section>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
