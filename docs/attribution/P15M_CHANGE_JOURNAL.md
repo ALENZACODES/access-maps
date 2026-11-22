@@ -4,6 +4,12 @@ P15M compares two complete, locally supplied candidate catalogues. It is an
 additional release-review gate, not a data source, publisher, live monitor,
 network client, scheduler, or source of real-world access claims.
 
+## Compare published map fields
+
+To review the field values and source metadata in two map files, open the [field comparison](field-review.html?lang=en).
+
+Pour consulter les changements de valeurs et de sources entre deux fichiers cartographiques, ouvrez la [comparaison des champs](field-review.html?lang=fr).
+
 ## Local API
 
 `auditChangeSnapshot(candidate)` examines one catalogue without modifying it.
