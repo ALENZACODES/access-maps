@@ -1,0 +1,12 @@
+import test from"node:test";import assert from"node:assert/strict";import{readFile}from"node:fs/promises";import{COPY}from"./locale-parity-copy.mjs";const read=n=>readFile(new URL(`./${n}`,import.meta.url),"utf8");
+test("homepage EN and FR links",async()=>{const x=await read("index.html");assert.ok(x.includes('href="locale-parity.html?lang=en"'));assert.ok(x.includes('href="locale-parity.html?lang=fr"'))});
+test("homepage stylesheet",async()=>assert.ok((await read("index.html")).includes('href="locale-parity-link.css"')));
+test("all existing nav retained",async()=>{const x=await read("index.html");for(const h of["placement.html?lang=en","trace.html?lang=fr","observation.html?lang=fr","conflict.html?lang=en","parity.html?lang=fr","dependency.html?lang=fr","integrity.html?lang=fr","bundle.html?lang=fr"])assert.ok(x.includes(`href="${h}"`))});
+test("conflict wording retained",async()=>assert.ok((await read("index.html")).includes("Open attribution conflict review")));
+test("CSP denies network",async()=>assert.ok((await read("locale-parity.html")).includes("connect-src 'none'")));
+test("local route and CSS",async()=>{const x=await read("locale-parity.html");assert.ok(x.includes('src="locale-parity-route.mjs"'));assert.ok(x.includes('href="locale-parity.css"'))});
+test("44px controls",async()=>assert.ok((await read("locale-parity.css")).includes("min-height:44px")));
+test("visible focus",async()=>assert.ok((await read("locale-parity.css")).includes(":focus-visible")));
+test("route avoids remote APIs",async()=>{const x=await read("locale-parity-route.mjs");for(const term of["fetch(","XMLHttpRequest","WebSocket","setInterval","setTimeout","sendBeacon"])assert.ok(!x.includes(term))});
+test("all direct imports exist",async()=>{for(const n of["locale-parity-core.mjs","locale-parity-audit.mjs","locale-parity-report.mjs","locale-parity-copy.mjs","locale-parity-route.mjs","locale-parity-fixture.mjs","locale-parity-core.test.mjs","locale-parity-audit.test.mjs","locale-parity-report.test.mjs","locale-parity-copy.test.mjs","locale-parity-wiring.test.mjs","locale-parity-matrix.test.mjs"]){const s=await read(n);for(const m of s.matchAll(/from "\.\/([^"]+)"/gu))await read(m[1])}});
+test("copy key parity",()=>assert.deepEqual(Object.keys(COPY.en).sort(),Object.keys(COPY.fr).sort()));
