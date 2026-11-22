@@ -1,0 +1,19 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "allowImportingTsExtensions": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noEmit": true
+  },
+  "include": [
+    "p15-review-custody.mts",
+    "p15al-*.mjs",
+    "p15al-*.d.mts",
+    "p15am-*.mts"
+  ],
+  "exclude": ["*.test.mjs", "*-fixtures.mjs"]
+}

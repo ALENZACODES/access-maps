@@ -1,0 +1,20 @@
+{
+  "base": "ad3aaf21993f8df3639654504e646996abc89680",
+  "relativeTo": "docs/attribution",
+  "renames": {
+    "p15ai-pack.mjs": "p15-custody-pack.mjs",
+    "p15ai-integration.test.mjs": "p15-custody-integration.test.mjs",
+    "p15ai-redaction.mjs": "p15-custody-redaction.mjs",
+    "p15ai-audit.mjs": "p15-custody-audit.mjs",
+    "p15ai-contract.mjs": "p15-custody-contract.mjs",
+    "p15ai-pack.test.mjs": "p15-custody-pack.test.mjs",
+    "p15ai-contract.test.mjs": "p15-custody-contract.test.mjs",
+    "p15ai-ledger.test.mjs": "p15-custody-ledger.test.mjs",
+    "p15ai-redaction.test.mjs": "p15-custody-redaction.test.mjs",
+    "p15ai-fixtures.mjs": "p15-custody-fixtures.mjs",
+    "p15ai-ledger.mjs": "p15-custody-ledger.mjs",
+    "p15ai-audit.test.mjs": "p15-custody-audit.test.mjs",
+    "P15AI_VERIFICATION.md": "P15_CUSTODY_CHECKS.md",
+    "P15AI_EVIDENCE_CUSTODY.md": "P15_CUSTODY_GUIDE.md"
+  }
+}
