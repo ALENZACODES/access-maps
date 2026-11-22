@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Calendrier des avis de service</title>
+  <link rel="stylesheet" href="notice-calendar.css">
+  <script type="module" src="notice-calendar-page.mjs"></script>
+</head>
+<body>
+  <a class="skip" href="#main" data-label="skip">Aller au contenu principal</a>
+  <main id="main" tabindex="-1">
+    <header>
+      <button type="button" id="language" hidden></button>
+      <h1 data-label="title">Calendrier des avis de service</h1>
+      <p data-label="intro">Consultez les périodes indiquées dans un fichier d’avis de service et les sources de chaque avis.</p>
+    </header>
+    <div id="fallback">
+      <p>Activez les scripts du navigateur pour ouvrir un fichier ou explorer l’exemple fictif.</p>
+      <p lang="en">Enable browser scripts to open a file or explore the fictional example.</p>
+    </div>
+    <div id="workspace" hidden>
+      <section aria-labelledby="load-heading">
+        <h2 id="load-heading" data-label="loadHeading"></h2>
+        <label for="file" data-label="file"></label>
+        <p id="file-help" class="help" data-label="fileHelp"></p>
+        <input id="file" type="file" aria-describedby="file-help" accept=".json,.jsonl,.ndjson,.gz,.gzip,application/json,application/gzip">
+        <div class="actions">
+          <button type="button" id="sample" data-label="sample"></button>
+          <button type="button" id="clear" data-label="clear"></button>
+        </div>
+        <p id="origin"></p>
+        <p id="start-help" class="help" data-label="startHelp" hidden></p>
+      </section>
+      <p id="status" role="status" aria-atomic="true"></p>
+      <p id="error" role="alert" aria-atomic="true"></p>
+      <div id="loaded" hidden>
+        <section aria-labelledby="window-heading">
+          <h2 id="window-heading" data-label="windowHeading"></h2>
+          <form id="options" novalidate>
+            <div class="fields">
+              <div>
+                <label for="date" data-label="date"></label>
+                <input id="date" name="date" type="date" required>
+              </div>
+              <div>
+                <label for="days" data-label="days"></label>
+                <input id="days" name="days" type="number" min="1" max="31" step="1" required>
+              </div>
+              <div>
+                <label for="zone" data-label="zone"></label>
+                <select id="zone" name="zone">
+                  <option value="America/Toronto" data-label="eastern"></option>
+                  <option value="America/Winnipeg" data-label="central"></option>
+                  <option value="UTC" data-label="universal"></option>
+                </select>
+              </div>
+            </div>
+            <details id="filters">
+              <summary data-label="filters"></summary>
+              <div class="fields">
+                <div>
+                  <label for="equipment" data-label="equipment"></label>
+                  <select id="equipment" name="equipment">
+                    <option value="" data-label="allEquipment"></option>
+                    <option value="elevator" data-label="elevator"></option>
+                    <option value="escalator" data-label="escalator"></option>
+                    <option value="elevator_and_escalator" data-label="bothEquipment"></option>
+                    <option value="UNKNOWN" data-label="unknownEquipment"></option>
+                  </select>
+                </div>
+                <div>
+                  <label for="stop" data-label="stop"></label>
+                  <input id="stop" name="stop" type="text" autocomplete="off" maxlength="512">
+                </div>
+                <div>
+                  <label for="route" data-label="route"></label>
+                  <input id="route" name="route" type="text" autocomplete="off" maxlength="512">
+                </div>
+                <div>
+                  <label for="query" data-label="query"></label>
+                  <input id="query" name="query" type="search" maxlength="512">
+                </div>
+              </div>
+            </details>
+            <div class="actions">
+              <button type="submit" id="apply" data-label="apply"></button>
+              <button type="button" id="reset-filters" data-label="resetFilters"></button>
+            </div>
+            <p class="help" id="pending" data-label="pending" hidden></p>
+          </form>
+        </section>
+        <section id="results" aria-labelledby="results-heading">
+          <h2 id="results-heading" tabindex="-1" data-label="resultsHeading"></h2>
+          <p id="summary"></p>
+          <p class="help" data-label="limits"></p>
+          <div class="day-picker">
+            <label for="shown-day" data-label="shownDay"></label>
+            <select id="shown-day"></select>
+            <div class="actions">
+              <button type="button" id="previous-day" data-label="previousDay"></button>
+              <button type="button" id="next-day" data-label="nextDay"></button>
+            </div>
+          </div>
+          <h3 id="day-heading" tabindex="-1"></h3>
+          <div id="entries"></div>
+          <details id="unknown">
+            <summary id="unknown-title"></summary>
+            <p class="help" data-label="unknownHelp"></p>
+            <div id="unknown-entries"></div>
+          </details>
+          <details id="outside">
+            <summary id="outside-title"></summary>
+            <p class="help" data-label="outsideHelp"></p>
+            <div id="outside-entries"></div>
+          </details>
+          <button type="button" id="download" data-label="download"></button>
+        </section>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

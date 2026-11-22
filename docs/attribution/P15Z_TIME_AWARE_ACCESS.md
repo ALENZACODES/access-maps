@@ -2,6 +2,12 @@
 
 This package is a local-only candidate implementation. Inputs are caller-supplied snapshots, not live traffic, weather, or elevator information. No network access, user account, timer, background polling, automatic retries, or publication action is performed.
 
+## Service notice calendar
+
+Open a local service-alert snapshot to see its published periods by day, with the source and licence beside each notice. [Open the service notice calendar](notice-calendar.html?lang=en)
+
+Consultez les périodes publiées par jour, avec la source et la licence de chaque avis. [Ouvrir le calendrier des avis de service](notice-calendar.html?lang=fr)
+
 ## Layout
 
 - `p15z-common.mjs`: fail-closed structure, bilingual text, French typography, dates, safe paths, licence boundaries, evidence tiers, diagnostics, immutability, and deterministic digests.
