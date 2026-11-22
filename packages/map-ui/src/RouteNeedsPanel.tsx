@@ -86,13 +86,14 @@ export function RouteNeedsPanel({ plan, onExport }: {
         <p>{text.supportedCount}{plan.locale === 'fr' ? '\u00a0:' : ':'} {totals.supported} / {totals.total}</p>
         <p>{text.barrierCount}{plan.locale === 'fr' ? '\u00a0:' : ':'} {totals.barriers}</p>
         <p>{text.unresolved}{plan.locale === 'fr' ? '\u00a0:' : ':'} {totals.unknown}</p>
-        <label className="route-needs-filter" htmlFor={`${uid}-filter`}>{text.filtered}
+        <div className="route-needs-filter">
+          <label htmlFor={`${uid}-filter`}>{text.filtered}</label>
           <select id={`${uid}-filter`} value={visibleRequirement}
             onChange={(event: ChangeEvent<HTMLSelectElement>) => setVisibleRequirement(event.target.value as RequirementId | 'all')}>
             <option value="all">{text.all}</option>
             {REQUIREMENTS.map((id) => <option key={id} value={id}>{text.requirements[id]}</option>)}
           </select>
-        </label>
+        </div>
         {report.routes.length === 0 ? <p>{text.noRoutes}</p> : (
           <ol className="route-needs-results">
             {report.routes.map((route, index) => {

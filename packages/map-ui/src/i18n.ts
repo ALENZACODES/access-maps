@@ -37,6 +37,8 @@ const COPY = {
     option: "Option",
     blockedHeading: "Blocked options",
     returnHeading: "Return",
+    outboundLegs: "Outbound legs",
+    returnLegs: "Return legs",
     warningsHeading: "Before you go",
     stepFreeRequiredOn:
       "Step-free required: on. A route with a recorded step or barrier is moved to Blocked options.",
@@ -109,6 +111,8 @@ const COPY = {
     option: "Option",
     blockedHeading: "Options bloquées",
     returnHeading: "Retour",
+    outboundLegs: "Segments de l’aller",
+    returnLegs: "Segments du retour",
     warningsHeading: "Avant de partir",
     stepFreeRequiredOn:
       "Sans marches exigé\u00A0: activé. Un itinéraire avec une marche ou un obstacle enregistré passe dans Options bloquées.",
