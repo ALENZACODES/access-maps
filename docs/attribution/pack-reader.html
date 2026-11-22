@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="light dark">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; img-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Map pack sources — the App</title>
+  <link rel="stylesheet" href="pack-reader.css">
+  <script type="module" src="pack-reader-route.mjs"></script>
+</head>
+<body>
+  <a class="skip" href="#pack-main" id="pack-skip">Skip to main content</a>
+  <header class="mast">
+    <div class="mast-inner">
+      <a href="index.html?lang=en" id="pack-back">Sources and licences</a>
+      <button id="pack-language" type="button" lang="fr" hidden>Français</button>
+    </div>
+  </header>
+  <main id="pack-main" tabindex="-1">
+    <h1 id="pack-title">Map pack sources</h1>
+    <p id="pack-intro" class="intro">Find the source credits for a region or a layer in a saved map pack.</p>
+    <noscript>
+      <p>Enable JavaScript to read a saved manifest on this page.</p>
+      <p lang="fr">Activez JavaScript pour lire un manifeste enregistré sur cette page.</p>
+    </noscript>
+    <section aria-labelledby="pack-open-heading" id="pack-open" hidden>
+      <h2 id="pack-open-heading">Open a map pack manifest</h2>
+      <p id="pack-file-hint"></p>
+      <div class="file-line">
+        <div class="file-field">
+          <label id="pack-file-label" for="pack-file">Manifest file</label>
+          <input id="pack-file" type="file" accept=".json,application/json" aria-describedby="pack-file-hint">
+        </div>
+        <button id="pack-example" type="button">Explore an example</button>
+        <button id="pack-clear" type="button" hidden>Clear file</button>
+      </div>
+    </section>
+    <p id="pack-status" role="status" aria-atomic="true"></p>
+    <p id="pack-error" role="alert" aria-atomic="true"></p>
+    <div id="pack-results" hidden>
+      <p id="pack-origin" class="origin"></p>
+      <section aria-labelledby="pack-scope-heading">
+        <h2 id="pack-scope-heading">Choose coverage</h2>
+        <div class="scope-fields">
+          <div>
+            <label for="pack-region" id="pack-region-label">Region</label>
+            <select id="pack-region"></select>
+          </div>
+          <div>
+            <label for="pack-tranche" id="pack-tranche-label">Layer</label>
+            <select id="pack-tranche"></select>
+          </div>
+        </div>
+        <h3 id="pack-totals-heading">In this selection</h3>
+        <dl class="totals" id="pack-totals"></dl>
+        <p id="pack-count-hint"></p>
+        <p id="pack-unlocated"></p>
+        <div id="pack-issues" hidden>
+          <h3 id="pack-issues-heading">Manifest notes</h3>
+          <ul id="pack-issue-list"></ul>
+        </div>
+      </section>
+      <section aria-labelledby="pack-sources-heading">
+        <div class="section-head">
+          <h2 id="pack-sources-heading" tabindex="-1">Sources</h2>
+          <button id="pack-export" type="button">Save source list</button>
+        </div>
+        <p id="pack-source-help"></p>
+        <p id="pack-range"></p>
+        <div id="pack-sources"></div>
+        <nav id="pack-pager" aria-label="Source list pages" hidden>
+          <button id="pack-prev" type="button">Previous sources</button>
+          <button id="pack-next" type="button">Next sources</button>
+        </nav>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

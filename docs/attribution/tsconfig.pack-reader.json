@@ -1,0 +1,7 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true
+  },
+  "include": ["pack-reader-route.mjs", "pack-reader-lifecycle.test.mjs"]
+}
