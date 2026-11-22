@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+  <title>Sources d’une tuile</title>
+  <link rel="stylesheet" href="tile-notice.css">
+  <script type="module" src="tile-notice-page.mjs"></script>
+</head>
+<body>
+  <a class="skip" href="#main" data-label="skip">Aller au contenu principal</a>
+  <main id="main" tabindex="-1">
+    <header>
+      <button type="button" id="language" hidden></button>
+      <h1 data-label="title">Sources d’une tuile</h1>
+      <p data-label="intro">Consultez les sources des éléments encodés dans une tuile cartographique locale.</p>
+    </header>
+    <div id="fallback">
+      <p>Activez les scripts du navigateur pour ouvrir un fichier sur cet appareil.</p>
+      <p lang="en">Enable browser scripts to open a file on this device.</p>
+    </div>
+    <div id="workspace" hidden>
+      <section aria-labelledby="files-heading">
+        <h2 id="files-heading" data-label="files"></h2>
+        <div class="slots">
+          <div class="slot">
+            <label for="archive-file" data-label="archiveFile"></label>
+            <p class="help" id="archive-help" data-label="archiveHelp"></p>
+            <input id="archive-file" type="file" accept=".pmtiles,application/octet-stream" aria-describedby="archive-help archive-status">
+            <p id="archive-status" role="status" aria-atomic="true"></p>
+            <p class="error" id="archive-error" role="alert" aria-atomic="true"></p>
+            <button type="button" id="archive-clear" data-label="archiveClear"></button>
+          </div>
+          <div class="slot">
+            <label for="registry-file" data-label="registryFile"></label>
+            <p class="help" id="registry-help" data-label="registryHelp"></p>
+            <input id="registry-file" type="file" accept=".json,application/json" aria-describedby="registry-help registry-status">
+            <p id="registry-status" role="status" aria-atomic="true"></p>
+            <p class="error" id="registry-error" role="alert" aria-atomic="true"></p>
+            <button type="button" id="registry-clear" data-label="registryClear"></button>
+          </div>
+        </div>
+      </section>
+      <div id="opened" hidden>
+        <section aria-labelledby="archive-heading">
+          <h2 id="archive-heading" data-label="archiveHeading"></h2>
+          <dl id="archive-info" class="attributes"></dl>
+          <h3 data-label="archiveCredit"></h3>
+          <p id="archive-credit" dir="auto" class="credit"></p>
+        </section>
+        <section aria-labelledby="lookup-heading">
+          <h2 id="lookup-heading" data-label="lookupHeading"></h2>
+          <form id="lookup-form" novalidate>
+            <div class="fields">
+              <div>
+                <label for="mode" data-label="mode"></label>
+                <select id="mode">
+                  <option value="tile" data-label="byAddress"></option>
+                  <option value="point" data-label="byPoint"></option>
+                </select>
+              </div>
+              <div>
+                <label for="zoom" data-label="zoom"></label>
+                <input id="zoom" type="number" step="1" min="0" inputmode="numeric" required>
+              </div>
+            </div>
+            <div id="address-fields" class="fields">
+              <div>
+                <label for="x" data-label="column"></label>
+                <input type="number" id="x" step="1" min="0" inputmode="numeric" required>
+              </div>
+              <div>
+                <label for="y" data-label="row"></label>
+                <input type="number" id="y" step="1" min="0" inputmode="numeric" required>
+              </div>
+            </div>
+            <div id="point-fields" hidden>
+              <p data-label="pointHelp" id="point-help"></p>
+              <div class="fields">
+                <div>
+                  <label for="longitude" data-label="longitude"></label>
+                  <input id="longitude" type="text" inputmode="decimal" maxlength="30" aria-describedby="point-help">
+                </div>
+                <div>
+                  <label for="latitude" data-label="latitude"></label>
+                  <input id="latitude" type="text" inputmode="decimal" maxlength="30" aria-describedby="point-help">
+                </div>
+              </div>
+            </div>
+            <div class="actions">
+              <button id="lookup" class="primary" type="submit" data-label="lookup"></button>
+            </div>
+          </form>
+          <p id="lookup-error" class="error" role="alert" aria-atomic="true"></p>
+          <p id="tile-status" role="status" aria-atomic="true"></p>
+        </section>
+        <section id="result" aria-labelledby="position" hidden>
+          <h2 id="position" tabindex="-1"></h2>
+          <p id="summary"></p>
+          <dl class="attributes" id="extent"></dl>
+          <h3 data-label="adjacent"></h3>
+          <div class="actions">
+            <button type="button" id="north" data-label="north"></button>
+            <button type="button" id="south" data-label="south"></button>
+            <button type="button" id="west" data-label="west"></button>
+            <button type="button" id="east" data-label="east"></button>
+          </div>
+          <h3 data-label="sourceGroups"></h3>
+          <p id="source-help"></p>
+          <p id="page-position" tabindex="-1"></p>
+          <div id="pager" class="actions" hidden>
+            <button id="previous-page" type="button" data-label="previous"></button>
+            <button id="next-page" type="button" data-label="next"></button>
+          </div>
+          <div id="groups"></div>
+          <div class="actions">
+            <button type="button" id="download" data-label="download"></button>
+          </div>
+          <p id="export-status" role="status" aria-atomic="true"></p>
+        </section>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "types": ["node"],
+    "typeRoots": ["../../node_modules/@types", "../../e2e/node_modules/@types"],
+    "skipLibCheck": true,
+    "allowJs": true,
+    "checkJs": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noEmit": true
+  },
+  "include": ["tile-notice-*.mjs"]
+}
