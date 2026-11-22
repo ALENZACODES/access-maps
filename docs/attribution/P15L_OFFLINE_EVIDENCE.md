@@ -6,6 +6,12 @@ or publish anything. It accepts an explicit manifest and a map of local bytes
 supplied by the caller. The manifest is an assertion about the supplied bytes;
 passing the gate does not establish the real-world accuracy of a claim.
 
+## Source notices in vector overlays
+
+Inspect the notice in a local tile archive and look up the sources used in one tile. [Open tile source notices](tile-notice.html?lang=en)
+
+Consultez la mention inscrite dans une archive locale et les sources utilisées dans une tuile. [Ouvrir les mentions de source des tuiles](tile-notice.html?lang=fr)
+
 ## Input contract
 
 `auditOfflineEvidence(candidate, fileBytes)` accepts a strict root object with
